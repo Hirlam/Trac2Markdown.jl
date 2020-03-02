@@ -1,7 +1,10 @@
 module Trac2Markdown
 
 export trac2md,
-       getattachments 
+       getattachments, 
+       MARKDOWNDIR
+
+const MARKDOWNDIR = joinpath(dirname(pathof(Trac2Markdown)),"../docs/src/")
 
 function trac2md(s::String) 
 
