@@ -10,11 +10,8 @@ pages= [
     "General"
 ]
 
-# pages = ["Installation"]
-
 # recursively get all subwikis
-
-getall(page) = getall.(trac2markdown.(page))
+# getall(page) = getall.(trac2markdown.(page))
    
 trac2markdown.(pages, getattachments=true)
 
