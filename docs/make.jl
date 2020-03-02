@@ -13,7 +13,7 @@ pages= [
     "General"
 ]
 
-istravisrun = get(ENV, "CI", false)
+istravisrun = haskeyget(ENV, "CI")
 
 # Travis doesn't have access to hirlam.org. Only download locally
 if !istravisrun
