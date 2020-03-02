@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-using HTTP, Trac2Markdown
+using Trac2Markdown
 
 pages= [
     "ConfigureYourExperiment",
@@ -10,4 +10,11 @@ pages= [
     "General"
 ]
 
-trac2markdown.(pages)
+# pages = ["Installation"]
+
+# recursively get all subwikis
+
+getall(page) = getall.(trac2markdown.(page))
+   
+trac2markdown.(pages, getattachments=true)
+
