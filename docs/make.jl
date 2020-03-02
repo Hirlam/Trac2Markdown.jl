@@ -2,8 +2,7 @@ using Documenter
 
 makedocs(
     sitename = "Harmonie wiki",
-    format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),    
-    pages = pages .* ".md"
+    format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),        
 )
 
 deploydocs(
