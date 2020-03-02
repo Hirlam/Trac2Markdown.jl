@@ -109,7 +109,7 @@ deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[Trac2Markdown]]
-git-tree-sha1 = "96f6fad1a2c75db0dc00697b936c86d9a3ff4309"
+git-tree-sha1 = "3457c86d2a7a619e29ea4d7f4bfab65fdbd50b14"
 repo-rev = "master"
 repo-url = "https://github.com/Hirlam/Trac2Markdown.jl"
 uuid = "d6872678-b4ed-4b0a-bb94-7488029490cf"
