@@ -1,4 +1,4 @@
-using Documenter, HTTP, Tra2Markdown
+using Documenter, HTTP, Trac2Markdown
 
 
 wikiurl       = "https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/"
