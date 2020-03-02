@@ -1,6 +1,5 @@
-using Documenter, HTTP
+using Documenter, HTTP, Tra2Markdown
 
-include("trac2md.jl")
 
 wikiurl       = "https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/"
 attachmenturl = "https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemDocumentation/"
@@ -14,7 +13,12 @@ pages= [
     "General"
 ]
 
-for page in pages 
+istravisrun = get(ENV, "CI", false)
+
+# Travis doesn't have access to hirlam.org. Only download locally
+if !istravisrun
+
+  for page in pages 
     println("reading $page")
 
     # Retrieve page from wiki
@@ -25,7 +29,7 @@ for page in pages
     for attachment in eachmatch(r"\[raw-attachment:(.+?) .+?\]",s) 
          capture = attachment.captures[1]
          mkpath(joinpath("src",page))
-        download(joinpath(attachmenturl,page,capture),joinpath("src",page,capture))
+         download(joinpath(attachmenturl,page,capture),joinpath("src",page,capture))
     end
     
 
@@ -34,7 +38,8 @@ for page in pages
 
     # write to file
     write("src/$page.md", mdtxt)
-end
+  end
+end 
 
 makedocs(
     sitename = "Harmonie wiki",
