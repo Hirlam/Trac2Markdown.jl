@@ -48,5 +48,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/Hirlam/Trac2Markdown.git",
+    repo = "github.com/Hirlam/Trac2Markdown.jl.git",
 )
