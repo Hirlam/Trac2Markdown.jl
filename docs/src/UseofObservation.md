@@ -1,14 +1,14 @@
 # Use of Observation
 
-# Background Information
+## Background Information
    * [ODBusage2.pdf](ODBusage2.pdf) Anne Fouilloux's (ECMWF) review presentation about ODB
-   * [http://apps.ecmwf.int/odbgov http://apps.ecmwf.int/odbgov] ECMWF's ODB governance pages - useful for looking up ODB and BUFR definintions
-   * [http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf] The ODB bible - Sami Saarinen's ODB user guide (2004)
-   * [http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf] Sandor's document about observation dataflow in ALADIN 
+   * [http://apps.ecmwf.int/odbgov](http://apps.ecmwf.int/odbgov) ECMWF's ODB governance pages - useful for looking up ODB and BUFR definintions
+   * [http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf) The ODB bible - Sami Saarinen's ODB user guide (2004)
+   * [http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf](http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf) Sandor's document about observation dataflow in ALADIN 
 
-# Observation types
+## Observation types
 The observation types used by Harmonie (upper-air) data assimilation are defined in [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
-## SYNOP
+### SYNOP
 By default all SYNOP observation types (including SHIP) are used. 
 ```bash
 export SYNOP_OBS=1             # All synop
@@ -19,10 +19,10 @@ To blacklist SYNOP observations add blacklisted "ODB observation type/ASCII type
 ```
 (Note: please don't add Valentia to your blacklist - the observations from there are pretty good!)
 
-For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/ http://apps.ecmwf.int/odbgov/obstype/]
-## SHIP
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/](http://apps.ecmwf.int/odbgov/obstype/)
+### SHIP
 See information provided above on SYNOP observations.
-## BUOY
+### BUOY
 By default all BUOY observation types are used. 
 ```bash
 export BUOY_OBS=1              # Buoy
@@ -33,8 +33,8 @@ To blacklist BUOY observations add blacklisted "ODB observation type/ASCII type/
 ```
 (Note: please don't add M4 to your blacklist - the observations from there are pretty good too!)
 
-For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/ http://apps.ecmwf.int/odbgov/obstype/]
-## AIRCRAFT
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/](http://apps.ecmwf.int/odbgov/obstype/)
+### AIRCRAFT
 By default all AIRCRAFT observation types (including AMDAR, AIREP, ACARS) are used. 
 ```bash
 export AIRCRAFT_OBS=1          # AMDAR, AIREP, ACARS
@@ -52,18 +52,18 @@ Below are lines added by Xiaohua to the  DMI dka37 LISTE_NOIRE_DIAP file to excl
 2 AMDAR 144 2 EU1110 08122013
 2 AMDAR 144 2 EU0074 08122013
 ```
-## TEMP
+### TEMP
 By default all TEMP observation types are used. 
 ```bash
 export TEMP_OBS=1              # TEMP, TEMPSHIP
 ```
-## PILOT
+### PILOT
 By default all PILOT observation types are used. 
 ```bash
 export PILOT_OBS=1             # Pilot, Europrofiler
 ```
 
-## AMSUA
+### AMSUA
 By default all AMSUA observation types are not used. 
 ```bash
 export AMSUA_OBS=0             # AMSU-A
@@ -75,11 +75,11 @@ export ATOVS_SOURCE=mars       # local: EUMETCast;
                                # hirlam: hirlam radiance template 
 ```
 
-## AMV (aka SATOB, GEOWIND)
+### AMV (aka SATOB, GEOWIND)
 
 For AMVs there is a [HOW-TO page](HarmonieSystemDocumentation/ObservationHowto/Amv).
 
-## Other observation types ...
+### Other observation types ...
 More documentation to follow ...
 ```bash
 export AMSUB_OBS=0             # AMSU-B, MHS

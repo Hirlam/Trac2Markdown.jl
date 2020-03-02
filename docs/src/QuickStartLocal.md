@@ -1,7 +1,7 @@
 
 # Running Harmonie on your local platform
 
-# Introduction
+## Introduction
 These "quick start instructions" assumes that someone has already put in place a valid configuration for your local platform, CONFIG=linux.local for example.
 
 The Harmonie system runs through a number of steps to help you complete your experiment. The chain can be summarized like:
@@ -28,7 +28,7 @@ Following example shows the steps to launch an Harmonie experiment my_exp.
 
 If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration). 
 
-# Configure your experiment
+## Configure your experiment
 
  * Create an experiment directory under $HOME/hm_home and use the master script Harmonie to set up a minimum environment for your experiment.
 ```bash
@@ -51,7 +51,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CON
  * The rules for how to submit jobs are defined in Env_submit]. See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
  * If you experiment in data assimilation you might also want to change [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 
-# Start your experiment
+## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND, and forecast length, LL
 ```bash
 cd $HOME/hm_home/my_exp
@@ -65,7 +65,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie start DTG=2012122400 LLMAIN=24
 ```
  If successful, mini-SMS will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the mSMS log file $HM_DATA/mSMS.log. $HM_DATA is defined in your Env_system file. At ECMWF `$HM_DATA=$SCRATCH/hm_home/$EXP` where `$EXP` is your experiment name. Read more about where things happen further down.
 
-# Continue your experiment
+## Continue your experiment
 If your experiment have successfully completed and you would like to continue for another period you should write
 ```bash
 cd $HOME/hm_home/my_exp
@@ -73,7 +73,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie prod DTGEND=YYYYMMDDHH LL=12
 ```
 By using `prod` you tell the system that you are continuing the experiment and using the first guess from the previous cycle. The start date is take from a file progress.log created in your $HOME/hm_home/my_exp directory. If you would have used `start` the initial data would have been interpolated from the boundaries, a cold start in other words.
 
-# !Start/Restart of mXCdp
+## !Start/Restart of mXCdp
 To start the graphical window for mSMS on ecgb type
 ```bash
 cd $HOME/hm_home/my_exp
@@ -81,7 +81,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie mon
 ```
 The graphical window, mXCdp runs independently of the mSMS job and can be closed and restarted again with the same command. With the graphical interface you can control and view logfiles of each task. 
 
-# Making local changes
+## Making local changes
 
 Very soon you will find that you need to do changes in a script or in the source code. Once you have identified which file to edit you put it into the current $HOME/hm_home/my_exp directory, with exactly the same subdirectory structure as in the reference. e.g, if you want to modify a namelist setting 
 
@@ -93,7 +93,7 @@ vi nam/harmonie_namelists.pm                        # modify the namelist
 
 Next time you run your experiment the changed file will be used. You can also make changes in a running experiment. Make the change you wish and rerun the `InitRun` task in the mXCdp window. The !InitRun task copies all files from your local experiment directory to your working directory `$HM_DATA`. Once your `InitRun` task is complete your can rerun the task you are interested in. If you wish to recompile something you will also have to rerun the `Build` tasks. Read more about how to control and rerun tasks in mini-SMS from mXCdp [here](HarmonieSystemDocumentation/scripts/mXCdp).
 
-# Directory structure
+## Directory structure
 On most platforms HARMONIE compiles and produces all its output data under $HM_DATA (defined in ~/hm_home/my_exp/Env_system)
 ||= Description                            =||= Location                                                                                  =||
 || Binaries                                 ||$BINDIR (set in ecf/config_exp.h ), default is $HM_DATA/bin                                   ||
@@ -113,7 +113,7 @@ On most platforms HARMONIE compiles and produces all its output data under $HM_D
 || Verification (monitor) results           ||$HM_DATA/archive/extract/WebgraF                                                             ||
 || "Fail" directory                         ||$HM_DATA/YYYYMMDD_HH/Failed_Family_Task (look at ifs.stat, NODE.001_01, fort.4               ||
 
-# Archive contents
+## Archive contents
 $HM_DATA/archive/YYYY/MM/DD/HH is used to store "archived" output from HARMONIE cycles. The level of archiving depends on `ARSTRATEGY` in ecf/config_exp.h . The default setting is medium which will keep the following cycle data:
    * Surface analysis: ICMSHANAL+0000
    * Atmospheric analysis result: MXMIN1999+0000
@@ -123,7 +123,7 @@ $HM_DATA/archive/YYYY/MM/DD/HH is used to store "archived" output from HARMONIE 
    * GRIB files produced by the conversion of FA output files to GRIB if MAKEGRIB=yes in ecf/config_exp.h 
    * ODB databases and feedback information in odb_stuff.tar
  
-# Cleanup of old experiments
+## Cleanup of old experiments
 
 Once you have complete your experiment you may wish to remove code, scripts and data from the disks. Harmonie provides some simple tools to do this. First check the content of the different disks by
 

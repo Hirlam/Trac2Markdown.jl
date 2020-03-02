@@ -1,12 +1,9 @@
 using Documenter
 
-pages = [
-    "ConfigureYourExperiment.md",
-    "Harmonie-mSMS.md", 
-    "TheHarmonieScript.md",
-    "QuickStartLocal.md",
-    "UseofObservation.md",
-    "General.md"
+pages = [     
+    "System" => ["Harmonie-mSMS.md","TheHarmonieScript.md",  "QuickStartLocal.md"],
+    "Configuration" => "ConfigureYourExperiment.md",
+    "Observations" => "UseofObservation.md",
 ]
 
 

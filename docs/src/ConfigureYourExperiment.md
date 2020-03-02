@@ -1,13 +1,13 @@
 # Harmonie System Documentation
 ##  Experiment configuration
 
-# Introduction
+## Introduction
 
 There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3).
 
 Host specific paths and environment variables for your system are defined in Env_system. Read more [here](HarmonieSystemDocumentation/Installation).
 
-# Build options
+## Build options
 ```bash
 # **** Build and bin paths ****
 # Definitions about Build, should fit with hm_rev
@@ -26,7 +26,7 @@ COMPILE_DABYFA=${COMPILE_DABYFA-"no"}         # Compile FA/VC code (yes|no)
 SURFEX_OFFLINE_BINARIES="no"                  # Switch to compile and use offline SURFEX binaries
 ```
 
-# General settings
+## General settings
 ```bash
 # **** Misc, defined first because it's used later ****
 
@@ -36,7 +36,7 @@ WRK=$HM_DATA/$CYCLEDIR                  # Work directory
  * ''CNMEXP'': experiment identifier used by MASTERODB
  * ''WRK'' is the work directory. The suggested path on cca is $SCRATCH/hm_home/${EXP}/$CYCLEDIR
 
-# Archive settings (ECMWF)
+## Archive settings (ECMWF)
 Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](Harmonie/scr/Archive_host1?rev=release-43h2.beta.3) and [Archive_ecgb](Harmonie/scr/Archive_ecgb?rev=release-43h2.beta.3). 
 ```bash
 # **** Paths to archive ****
@@ -52,7 +52,7 @@ EXTRARCH=$ARCHIVE_ROOT/extract          # Archive for fld/obs-extractions
  * ''ECFSLOC'' Archiving site at ECMWF-ECFS  (__ectmp__|ec) **Note that files archived on ectmp will be lost after 90 days.** If you wish your files to stay longer you should set ECFSLOC=ec. 
  * ''ECFSGROUP'' Group in which to chgrp the ECMWF archive, (__hirald__|default)
 
-# Running Mode
+## Running Mode
 ```bash
 # **** Running mode ****
 RUNNING_MODE=research                   # Research or operational mode (research|operational)
@@ -64,7 +64,7 @@ SIMULATION_TYPE=nwp                     # Type of simulation (nwp|climate)
  * ''RUNNING_MODE'' can be __research__ or operational. Operational is more forgiving in the error handling and e.g. the assimilation will be skipped if Bator doesn't find any observations. Exceptions handled by the operational mode are written to `$HM_DATA/severe_warnings.txt`
  * ''SIMULATION_TYPE'' Switch between __nwp__ and climate type of simulation. The climate simulations are still in an experimental stage. [See HARMONIE-Climate for cy43h2 for more information](HarmonieClimate/HCLIM43)
 
-# Model domain settings
+## Model domain settings
 Horizontal domain settings. Further information is available here: [HarmonieSystemDocumentation/ModelDomain](HarmonieSystemDocumentation/ModelDomain)
 ```bash
 # **** Model geometry ****
@@ -76,7 +76,7 @@ GRID_TYPE=LINEAR                        # Type of grid (LINEAR|QUADRATIC|CUBIC)
  * ''TOPO_SOURCE'': Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography](HarmonieSystemDocumentation/How_to_use_hires_topography)
  * ''GRID_TYPE'': This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](Harmonie/scr/Cliamte?rev=release-43h2.beta.3) and [scr/Forecast](Harmonie/scr/Forecast?rev=release-43h2.beta.3)
 
-# Vertical levels
+## Vertical levels
 Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid](HarmonieSystemDocumentation/VerticalGrid)
 ```bash
 VLEV=65                                 # Vertical level definition name
@@ -87,7 +87,7 @@ VLEV=65                                 # Vertical level definition name
 
  * ''VLEV'' is the name of the vertical levels defined in [Vertical_levels.pl](Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (__65__). Further information is available here: [Vertical Grid](HarmonieSystemDocumentation/VerticalGrid). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](HarmonieSystemDocumentation/Structurefunctions)
 
-# Forecast model
+## Forecast model
 Higher level forecast model settings.
 ```bash
 # **** High level forecast options ****
@@ -118,7 +118,7 @@ LUNBC=yes                               # Apply upper nested boundary condition
  * ''LGRADSP'': Switch to apply vorticity dealiasing (__yes__|no)
  * ''LUNBC'': Switch to apply upper boundary conditions (__yes__|no)
 
-# Physics
+## Physics
 Physics options.
 ```bash
 # Highlighted physics switches
@@ -140,7 +140,7 @@ ALARO_VERSION=0                         # Alaro version (1|0)
  * ''ALARO_VERSION'': If ''PHYSICS'' is set to alaro select version of ALARO to use (__0__|1)
 
 
-# Assimilation
+## Assimilation
 Data assimilation settings. More assimilation related settings, in particular what observations to assimilate, can be found in [include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3)
 ```bash
 # **** Assimilation ****
@@ -177,7 +177,7 @@ JB_INTERPOL=no                          # Interpolation of structure functions f
  * ''LSMIXBC'' Spectral mixing of LBC0 file before assimilation (__no__|yes)
  * ''JB_INTERPOL'' Interpolation of structure functions from a pre-defined domain to your domain (__no__|yes). Note that this has to be used with some caution.
 
-# Observations
+## Observations
 ```bash
 # **** Observations ****
 OBDIR=$HM_DATA/observations             # Observation file directory
@@ -193,7 +193,7 @@ MSG_PATH=$SCRATCH/CLOUDS/               # Location of input MSG FA file, expecte
  * ''USE_MSG'': Use MSG data for adjustment of inital profiles, EXPERIMENTAL! (__no__|yes)
  * ''MSG_PATH'':  Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH. Note that the pre-processing software to generate input files is not yet included in HARMONIE
 
-# 4DVAR settings
+## 4DVAR settings
 4DVAR settings (experimental)
 ```bash
 # **** 4DVAR ****
@@ -209,7 +209,7 @@ AD_TEST=yes                             # Only active for playfile tlad_tests
  * ''TL_TEST'': Only active for playfile tlad_tests (__yes__|no)
  * ''AD_TEST'': Only active for playfile tlad_tests (__yes__|no)
 
-# Digital filter settings
+## Digital filter settings
 Digital filter initialization settings if DFI is not equal to "none"
 ```bash
 # **** DFI setting ****
@@ -221,7 +221,7 @@ TSPAN=5400                              # 7200s or 5400s
 
 
 
-# Boundaries and initial conditions
+## Boundaries and initial conditions
 Settings for generation of lateral boundaries conditions for HARMONIE. Further information is available here: [HarmonieSystemDocumentation/BoundaryFilePreparation](HarmonieSystemDocumentation/BoundaryFilePreparation)
 ```bash
 # **** Lateral boundary conditions ****
@@ -290,13 +290,13 @@ SURFEX_PREP="yes"                # Use offline surfex prep facility (Alt. gl + F
 
 Read more about the boundary file preparation [here](HarmonieSystemDocumentation/BoundaryFilePreparation).
 
-# Ensemble mode settings
+## Ensemble mode settings
 
 ```bash
 # *** Ensemble mode general settings. ***
 # *** For member specific settings use msms/harmonie.pm ***
 ENSMSEL=                                # Ensemble member selection, comma separated list, and/or range(s):
-                                        # m1,m2,m3-m4,m5-m6:step    mb-me # mb-me:1 mb,mb+1,mb+2,...,me
+                                        # m1,m2,m3-m4,m5-m6:step    mb-me ## mb-me:1 mb,mb+1,mb+2,...,me
                                         # 0=control. ENSMFIRST, ENSMLAST, ENSSIZE derived automatically from ENSMSEL.
 ENSINIPERT=                             # Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv.
 ENSCTL=                                 # Which member is my control member? Needed for ENSINIPERT=bnd. See harmonie.pm.
@@ -323,7 +323,7 @@ FESTAT=no                               # Extract differences and do Jb calculat
 ```
 
  * ''ENSMSEL''  Ensemble member selection, comma separated list, and/or range(s):
-    # m1,m2,m3-m4,m5-m6:step    mb-me # mb-me:1 mb,mb+1,mb+2,...,me
+    # m1,m2,m3-m4,m5-m6:step    mb-me ## mb-me:1 mb,mb+1,mb+2,...,me
     # 0=control. ENSMFIRST, ENSMLAST, ENSSIZE derived automatically from ENSMSEL.
  * ''ENSINIPERT'' Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv, slaf.
  * ''ENSMFAIL'' Failure tolerance for all members. Not yet implemented.
@@ -346,7 +346,7 @@ FESTAT=no                               # Extract differences and do Jb calculat
  * ''FESTAT'' Extract differences and do Jb calculations (__no__|yes). Read more about the procedure [here](HarmonieSystemDocumentation/Structurefunctions_ensys).
 
 
-# Climate file settings
+## Climate file settings
 Climate file generation settings. Further information is available here: [HarmonieSystemDocumentation/ClimateGeneration](HarmonieSystemDocumentation/ClimateGeneration)
 ```bash
 # **** Climate files ****
@@ -367,7 +367,7 @@ SOIL_TEXTURE_VERSION=FAO                # Soil texture input data FAO|HWSD_v2
  * ''ECOCLIMAP_VERSION'' is the version of ECOCLIMAP to be used with SURFEX. Available versions are 1.1-1.5,2.0,2.1,__2.2__. [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
  * ''SOIL_TEXTURE_VERSION'' Soil texture input data (__FAO__|HWSD_v2). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
 
-# Archiving settings
+## Archiving settings
 ```bash
 # **** Archiving settings ****
 ARCHIVE_ECMWF=yes                       # Archive to $ECFSLOC at ECMWF (yes|no)
@@ -390,7 +390,7 @@ ARCHIVE_ECMWF=yes                       # Archive to $ECFSLOC at ECMWF (yes|no)
 # fg : Required files to run the next cycle
 ```
 
-# Forecast output
+## Forecast output
 ```bash
 # **** Cycles to run, and their forecast length ****
 
@@ -405,7 +405,7 @@ TFLAG="h"                               # Time flag for model output. (h|min)
 
 # Writeup times of # history,surfex and fullpos files
 # Comma separated list, and/or range(s) like:
-# t1,t2,t3-t4,t5-t6:step    tb-te # tb-te:1 tb,tb+1,tb+2,...,te
+# t1,t2,t3-t4,t5-t6:step    tb-te ## tb-te:1 tb,tb+1,tb+2,...,te
 
 if [ -z "$ENSMSEL"] ; then
   # Standard deterministic run
@@ -520,7 +520,7 @@ More options on fullpos postprocessing can be found in [browser:trunk/harmonie/s
 More options on file conversion can be found in [browser:trunk/harmonie/scr/Makegrib scr/Makegrib]
 
 
-# Verification and monitoring
+## Verification and monitoring
 
 
 ```bash
@@ -539,7 +539,7 @@ VFLDEXP=$EXP                            # Experiment name on vfld files
 
 Read more about the verification package [here](HarmonieSystemDocumentation/PostPP/Verification)
 
- ## Field verification
+ ### Field verification
 
 ```bash
 # *** Field verification ***
@@ -553,7 +553,7 @@ FLDVER_HOURS="06 12 18 24 30 36 42 48"  # Hours for field verification
 
  More options on field verification can be found in [browser:trunk/harmonie/scr/Fldver Fldver] and [browser:trunk/harmonie/scr/AccuFldver AccuFldver]
 
- ## Observation monitoring and general diagnostics
+ ### Observation monitoring and general diagnostics
 
 ```bash
 # *** Observation monitoring ***
@@ -572,7 +572,7 @@ OBSMON_SYNC=no                          # Sync obsmn sqlite tables to ecgate (ye
 
  **Note that this is only active if ANAATMO != none**
 
- ## Field monitoring ( experimental )
+ ### Field monitoring ( experimental )
 
 Make various charts for daily monitoring
 

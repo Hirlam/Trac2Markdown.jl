@@ -1,7 +1,7 @@
 
 # Running Harmonie at ECMWF
 
-# Introduction
+## Introduction
 
 The Harmonie system runs through a number of steps to help you complete your experiment. The chain can be summarized like:
 
@@ -27,10 +27,10 @@ Following example shows the steps to launch an Harmonie experiment my_exp from e
 
 If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration).
 
-# Before you start ...
-## hirald group
+## Before you start ...
+### hirald group
 New Harmonie users will require membership of the hirald user group at ECMWF. Please contact the HIRLAM System Manager, Daniel Santos, to make this request on your behalf.
-## SHELL settings
+### SHELL settings
 The C shell, is no longer supported by ECMWF.  Check your shell on ecgate with:
 ```bash
 echo $SHELL
@@ -40,7 +40,7 @@ To change your shell use the changesh command:
 changesh
 ```
 
-# Configure your experiment
+## Configure your experiment
 
  * Create an experiment directory under $HOME/hm_home and use the master script Harmonie to set up a minimum environment for your experiment.
 ```bash
@@ -61,7 +61,7 @@ changesh
  * The rules for how to submit jobs on ecgb/cca are defined in  [Env_submit](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
  * If you experiment in data assimilation you might also want to change [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 
-# Start your experiment
+## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND
 ```bash
       ~hlam/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH
@@ -70,14 +70,14 @@ Launch the experiment by giving start time, DTG, end time, DTGEND
 
  If successful, Harmonie will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the ECFLOW log file $HM_DATA/ECF.log. $HM_DATA is defined in your Env_system file. At ECMWF `$HM_DATA=$SCRATCH/hm_home/$EXP` where `$EXP` is your experiment name. Read more about where things happen further down.
 
-# Continue your experiment
+## Continue your experiment
 If your experiment have successfully completed and you would like to continue for another period you should write
 ```bash
       ~hlam/Harmonie prod DTGEND=YYYYMMDDHH
 ```
 By using `prod` you tell the system that you are continuing the experiment and using the first guess from the previous cycle. The start date is take from a file progress.log created in your $HOME/hm_home/my_exp directory. If you would have used `start` the initial data would have been interpolated from the boundaries, a cold start in other words.
 
-# !Start/Restart of ecflowview
+## !Start/Restart of ecflowview
 
  To start the graphical window for ECFLOW on ecgb type
 
@@ -87,7 +87,7 @@ By using `prod` you tell the system that you are continuing the experiment and u
 
  The graphical window runs independently of the experiment and can be closed and restarted again with the same command. With the graphical interface you can control and view logfiles of each task. 
 
-# Making local changes
+## Making local changes
 
 Very soon you will find that you need to do changes in a script or in the source code. Once you have identified which file to edit you put it into the current $HOME/hm_home/my_exp directory, with exactly the same subdirectory structure as in the reference. e.g, if you want to modify a namelist setting 
 
@@ -98,8 +98,8 @@ Very soon you will find that you need to do changes in a script or in the source
 
 Next time you run your experiment the changed file will be used. You can also make changes in a running experiment. Make the change you wish and rerun the `InitRun` task from the viewer. The !InitRun task copies all files from your local experiment directory to your working directory `$HM_DATA`. Once your `InitRun` task is complete your can rerun the task you are interested in. If you wish to recompile something you will also have to rerun the `Build` tasks.
 
-# Directory structure
-## ecgb
+## Directory structure
+### ecgb
 On ecgb, you can follow the progress of the runs on **$SCRATCH/hm_home/my_exp**
    * Working directory for the current cycle under **YYYYMMDD_HH**
    * Archived files under are in **$SCRATCH/hm_home/my_exp/archive**
@@ -107,7 +107,7 @@ On ecgb, you can follow the progress of the runs on **$SCRATCH/hm_home/my_exp**
        * All logfiles under **archive/log**   
    * On ecgb log files per task are found under /cca/perm/ms/$COUNTRY/$USER/HARMONIE/my_exp. All logfiles are also gathered in html files named like e.g. HM_Date_YYYYMMDDHH.html which are archived in **$SCRATCH/hm_home/my_exp/archive/log** on ecgb.
    * Verification data available on the permanent disk /hpc/perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract     
-## cca
+### cca
 More complete results and the main data are available on cca:$SCRATCH/hm_home/my_exp. Under these directories you will find:
    * All binaries under **bin**
    * IFS libraries, object files and source code under **lib/src** if you build with makeup
@@ -120,7 +120,7 @@ More complete results and the main data are available on cca:$SCRATCH/hm_home/my
        * A **YYYY/MM/DD/HH** structure for per cycle data
         * ICMSHHARM+NNNN and ICMSHHARM+NNNN.sfx are atmospheric and surfex forecast output files
    * Verification input data under **extract**. This is also stored on the permanent disk /perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract
-## ECFS
+### ECFS
    * Since the disks on cca/ecgb are cleaned regularly we need to store data permanently on ECFS, the EC file system, as well. There are two options for ECFS, ectmp and ec. The latter is a permanent storage and first one is cleaned after 90 days. Which one you use is defined by the ECFSLOC variable. To view your data type e.g.
 ```bash
  els ectmp:/$USER/harmonie/my_exp
@@ -139,7 +139,7 @@ More complete results and the main data are available on cca:$SCRATCH/hm_home/my
    * Climate files are stored in the **climate** directory
    * One directory each for  **vfld** and **vobs** data respectively for verification data
  
-# Cleanup of old experiments
+## Cleanup of old experiments
 
 Once you have complete your experiment you may wish to remove code, scripts and data from the disks. Harmonie provides some simple tools to do this. First check the content of the different disks by
 
