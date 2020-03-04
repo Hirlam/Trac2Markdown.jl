@@ -1,12 +1,11 @@
 
 """
-replace(s::AbstractString, pat=>r; [count::Integer])
+replace(s::AbstractString, pat=>r)
 
 Search for the given pattern `pat` in `s` outside trac wiki code blocks, 
 and replace each occurrence with `r`.
-If `count` is provided, replace at most `count` occurrences.
 """
-function replace_outsidecodeblock(s::AbstractString, pat_f::Pair; count=typemax(Int))
+function replace_outsidecodeblock(s::AbstractString, pat_f::Pair)
 
     # Magic string
     const MS = "THISSTRINGWILLNOTAPPEARINTHEWIKI"
