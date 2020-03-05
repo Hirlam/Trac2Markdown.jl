@@ -39,15 +39,14 @@ and converts them to markdown
 
 The documentation can be create using 
 ```bash
-cd Trac2Markdown.jl/docs
+cd Trac2Markdown/docs
 julia make.jl
 ```
 
 The HTML pages are written to `docs/build`
 
 The same command is used by travis and runs on any push to github. 
-The `docs/build`  directory is deployed to the `gh-pages` branch which get  
-automatically served on `https://hirlam.github.io/Trac2Markdown.jl/dev/`
+The `docs/build`  directory is deployed to the `gh-pages` branch which get automatically served on `https://hirlam.github.io/Trac2Markdown.jl/dev/`
 
 
 
