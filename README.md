@@ -33,7 +33,6 @@ In the Julia package manager
 
 Or using the command line
 ```bash
-cd Trac2Markdown/docs
 julia --project --color=yes -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
 
