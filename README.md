@@ -26,7 +26,13 @@ git clone https://github.com/Hirlam/Trac2Markdown.jl Trac2Markdown
 In the Julia package manager
 
 ```julia
-(v1.3) pkg> test
+(v1.3) pkg> test Trac2Markdown
+```
+
+Or if the `Project.toml` from `Trac2Markdown` is your active environment 
+
+```julia
+(Trac2Markdown) pkg> test
 ```
 
 Or using the command line
@@ -41,7 +47,7 @@ Note: outside a domain recognized by hirlam.org run
 export HLUSER=<hirlam.org username>
 export HLPASSW=<hirlam.org password>
 ```
-before instantiating the Trac2Markdown package.
+before instantiating the `Trac2Markdown` package.
 
 ## Documention
 The documentation is created by 
