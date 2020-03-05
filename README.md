@@ -49,7 +49,7 @@ export HLPASSW=<hirlam.org password>
 ```
 before instantiating the `Trac2Markdown` package.
 
-## Documention
+## Documentation
 The documentation is created by 
 ```bash
 cd Trac2Markdown/docs
