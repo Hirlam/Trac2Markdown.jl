@@ -6,13 +6,15 @@ export trac2md,
        trac2markdown, 
        MARKDOWNDIR
 
-const user = "roel"
-const passw = readline("$(ENV["HOME"])/.hirlampassw")
+# Note `export HLUSER=<hluser>` and `export HLPASSW=<passwd> before using Trac2Markdown 
+const hluser = get(ENV,"HLUSER","")
+const hlpassw = get(ENV,"HLPASSW","")
 
 
 const MARKDOWNDIR   = joinpath(dirname(pathof(Trac2Markdown)), "../docs/src/")
-const wikiurl       = "https://$user:$passw@hirlam.org/trac/wiki/HarmonieSystemDocumentation/"
-const attachmenturl = "https://$user:$passw@hirlam.org/trac/raw-attachment/wiki/HarmonieSystemDocumentation/"
+const tracurl       = "https://$hluser:$hlpassw@hirlam.org/trac/"
+const wikiurl       = "$tracurl/wiki/HarmonieSystemDocumentation/"
+const attachmenturl = "$tracurl/raw-attachment/wiki/HarmonieSystemDocumentation/"
 
 """
     trac2markdown(relurl; getattachments)
