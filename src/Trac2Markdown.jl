@@ -48,7 +48,8 @@ function trac2markdown(relurl::String; getattachments=false)
     mdtxt  = trac2md(s)
 
     # write to file
-    # mkpath(joinpath(MARKDOWNDIR, relurl))
+    mkpath(dirname(joinpath(MARKDOWNDIR, relurl)))
+
     write(joinpath(MARKDOWNDIR, "$relurl.md"), mdtxt)
 
     return subwikis
@@ -57,6 +58,7 @@ end
 function trac2md(s::String) 
 
     subs =  [ 
+       r"= '''Harmonie System Documentation''' =" => s"",
        r"\[(https?://.+?) (.+?)\]"        => s"[\2](\1)",  # hrefs http and https
        r"\[wiki:(.+?) (.+?)\]"           => s"[\2](\1)",  # Wiki links 
        r"\[source:(.+?) (.+?)\]"         => s"[\2](\1)",  # Source links
@@ -65,15 +67,16 @@ function trac2md(s::String)
        r"\{\{\{"                         => s"```bash",   # Multiline code blocks (assumed to be bash)
        r"\}\}\}"                         => s"```",       # multiline code blocks
        r"=== (.+?) ==="                  => s"### \1",    # level 3 headers
+       r"== (.+?) =="                    => s"## \1",     # level 2 headers
        r"== '''(.+?)''' =="              => s"## \1",     # level 2 header (not bold in md)
        r"= '''(.+)''' ="                 => s"# \1",      # level 1 headers (not bold in md)
-       r"== (.+?) =="                    => s"## \1",     # level 2 headers
+       r"= (.+?) ="                      => s"# \1",      # level 1 headers 
        r"'''(.+?)'''"                    => s"**\1**",    # Bold 
        r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
        # r"([^ ]*?HM_DATA[^ ]*)"       => s"`\1`",      # if word contains HM_DATA fomat it as code
        # r"([^ ]*?hm_home/[^ ]*)"       => s"`\1`",      # if word contains cca/ fomat it as code
-       r"\[Back to the main page of the HARMONIE System Documentation\]\(HarmonieSystemDocumentation\)" => s"",
-       r"\[\[Center\(end\)\]\]"         => s"",        # This one doesn't end in \r\n
+       r"\[Back to the main page of the HARMONIE System Documentation\]\(HarmonieSystemDocumentation\)" => s"", 
+       r"\[\[Center\(end\)\]\]"         => s""        # This one doesn't end in \r\n
     ]
 
     return foldl(replace, subs, init = s)
