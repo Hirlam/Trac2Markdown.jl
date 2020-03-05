@@ -95,7 +95,7 @@ Next time you run your experiment the changed file will be used. You can also ma
 
 ## Directory structure
 On most platforms HARMONIE compiles and produces all its output data under $HM_DATA (defined in ~/hm_home/my_exp/Env_system)
-||= Description                            =||= Location                                                                                  =||
+||# Description                           ||# Location                                                                                 ||
 || Binaries                                 ||$BINDIR (set in ecf/config_exp.h ), default is $HM_DATA/bin                                   ||
 || libraries, object files & source code    ||$HM_DATA/lib/src if MAKEUP=yes, $HMDATA/gmkpack_build if MAKEUP=no                           ||
 || Scripts                                  ||$HM_DATA/lib/scr                                                                             ||

@@ -1,5 +1,5 @@
-# Harmonie System Documentation
-##  Experiment configuration
+
+## ** Experiment configuration**
 
 ## Introduction
 
