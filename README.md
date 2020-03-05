@@ -18,8 +18,6 @@ Or
 
 ```bash
 git clone https://github.com/Hirlam/Trac2Markdown.jl Trac2Markdown
-cd Trac2Markdown
-export JULIA_PROJECT=$PWD
 ```
 
 ## Usage
