@@ -1,5 +1,4 @@
 pages = [
-    "40h1.1.1",
     "StandaloneOdb",
     "ModelDomain",
     "TrainingCourses",

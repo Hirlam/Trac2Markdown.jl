@@ -19,13 +19,19 @@ using Test, Trac2Markdown
 
    # This should work basd on explicit list of Harmonie code keywords
    @test_broken trac2md("Hello ANAATMO ") == "Hello `ANAATMO` "
+end 
+
+@testset "Download from hirlam.org wiki"  begin
+   SRCDIR = dirname(pathof(Trac2Markdown))
+
+   include("$SRCDIR/pages2.jl")
+
+   # recursively get all subwikis (not used because of potential loops)
+   getall(page) = getall.(trac2markdown.(page))
 
    
+   trac2markdown.(pages, getattachments=false)
 
-
-
-
-
-
-
+   # If the above command succeeds we assume download worked
+   @test 1==1
 end
