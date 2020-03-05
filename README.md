@@ -33,11 +33,18 @@ Or using the command line
 ```bash
 julia --project --color=yes -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
-
 This will run the unit tests, downloads wiki pages from hirlam.org 
-and converts them to markdown 
+and converts them to markdown.
 
-The documentation can be create using 
+Note: outside a domain recognized by hirlam.org run 
+```bash
+export HLUSER=<hirlam.org username>
+export HLPASSW=<hirlam.org password>
+```
+before instantiating the Trac2Markdown package.
+
+## Documention
+The documentation is created by 
 ```bash
 cd Trac2Markdown/docs
 julia make.jl
