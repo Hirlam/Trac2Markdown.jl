@@ -10,6 +10,9 @@ using Test, Trac2Markdown
 
    # This should work because we will assume ecf/myfile is a path
    @test_broken trac2md("Hello ecf/myfile ") == "Hello `ecf/myfile` " 
+   
+   # Fixing the above should not break this  
+   @test trac2md("{{{ Hello ecf/myfile }}}") == "` Hello ecf/myfile `"
 
    # This should work because _ implies a code symbol 
    @test_broken trac2md("Hello config_exp.h ") == "Hello `config_exp.h` "
@@ -17,8 +20,7 @@ using Test, Trac2Markdown
    # This should work basd on explicit list of Harmonie code keywords
    @test_broken trac2md("Hello ANAATMO ") == "Hello `ANAATMO` "
 
-   # This 
-   @test trac2md("{{{ Hello ecf/myfile }}}") == "` Hello ecf/myfile `"
+   
 
 
 
