@@ -14,7 +14,7 @@ The Harmonie script is the main user interface to the harmonie system. It is use
   * DOMAIN is one of the predefined domains in ecf/config_exp.h 
   * LEVELS is one of the predefined level definitions in scr/Vertical_levels.pl
 
- * ` Harmonie start DTG=YYYYMMDDHH [ DTGEND=YYYYMMDDHH] [ optional environment variables] ` launches a cold start run.
+ * ` Harmonie start DTG# YYYYMMDDHH [ DTGENDYYYYMMDDHH] [ optional environment variables] ` launches a cold start run.
    * DTG is the initial time of your experiment
    * Several other optional variables can be given like
      * PLAYFILE=FILENAME use a different ecflow suite definition file. Default is harmonie.tdf

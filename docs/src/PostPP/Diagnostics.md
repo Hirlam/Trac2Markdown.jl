@@ -13,7 +13,7 @@
 
 ## DDH
 
-Diagnostics par Domaines Horizontaux (Diagnostics by Horizontal Domains) is a tool to create budgets of different processes in the model. Please read on in the gmap documentation: http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=DDH
+Diagnostics par Domaines Horizontaux (Diagnostics by Horizontal Domains) is a tool to create budgets of different processes in the model. Please read on in the gmap documentation: http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheDDH
 
 ## EZDIAG
 
@@ -52,7 +52,7 @@ ENDIF
 
 ```bash
 ! ADDITIONAL FIELDS FOR DIAGNOSTIC
-   NGFL_EZDIAG=1,          ! <=25
+   NGFL_EZDIAG# 1,          ! <25
    YEZDIAG_NL(1)%CNAME='YOURVAL',
    YEZDIAG_NL(1)%LADV=.F.,
 ```

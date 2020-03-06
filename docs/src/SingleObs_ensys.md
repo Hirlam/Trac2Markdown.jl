@@ -17,7 +17,7 @@ The results of single observation impact experiment provide useful information o
       1. Replace the file domain_prop.F90 with the corrected one attached at the bottom of this page.
       1. Launch the single observation impact experiment by standing in hm_home/38h12_sinob typing:
 ```bash
-   ~hlam/Harmonie start DTG=2012061003 DTGEND=2012061006 LL=03
+   ~hlam/Harmonie start DTG# 2012061003 DTGEND2012061006 LL=03
 ```
       1. The resulting analysis file be found on c2a (ssh c2a) under $TEMP/hm_home/38h12_sinob/archive/2012/06/10/06 and it will be called 'MXMIN1999+0000' and on and ectmp:/smx/harmonie/38h12_sinob/YYYY/MM/DD/06. To diagnose the 3D-VAR analysis increments of the 38h12_sinob-experiment, copy the files MXMIN1999+0000 (analysis) and ICMSHHARM+0003 (fg) to $TEMP. The first guess (background) file can be found on $TEMP/hm_home/38h12_sinob/archive/2012/06/10/03 and ectmp:/smx/harmonie/38h12_sinob/YYYY/MM/DD/03.  Convert from FA-file format to GRIB with the gl-software ($TEMP/hm_home/38h12_sinob/bin/gl) by typing './gl -p MXMIN1999+0000' and './gl -p ICMSHANAL+0000'. Then plot the difference between files file with your favourite software. Plot horizontal and vertical cross-sections of temperature and other variables using your favourite software (MetgraF or cross for example). 
 

@@ -20,7 +20,7 @@ Gmkpack is the ALADIN utility to compile ARPEGE/IFS
 A mainpack installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models). Generate a set of pre-compiled libraries (rootpack) and modules available for USE. 
 Each single user buils their own  local "target" pack, which synchronise local source modifications with the reference libraries.  
 
-[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack)
+[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchegmkpack)
 
 [gmkpack vs make](HarmonieSystemDocumentation/Gmkpack_vs_Make)
 
@@ -85,7 +85,7 @@ Identify your system in one of the config files in config-sh or write a new conf
  AUXLIBS/EMOSLIB  # Path to your external libraries
 ```
 
-Compare e.g. with [config.ecgb-cca](Harmonie/config-sh/config.ecgb-cca?rev=release-43h2.beta.3) or [config.krypton](Harmonie/config-sh/config.krypton?rev=release-43h2.beta.3).
+Compare e.g. with [config.ecgb-cca](Harmonie/config-sh/config.ecgb-cca?rev# release-43h2.beta.3) or [config.krypton](Harmonie/config-sh/config.krypton?revrelease-43h2.beta.3).
 
 You also have to identify your system for gmkpack in:
 
@@ -125,7 +125,7 @@ The scalar_list is the default one, meaning that any unspecified job will be run
 
 
 
-## Running the installation 
+## Running the installation
 
 Start the compilation of the rootpack :
 ```bash

@@ -31,18 +31,18 @@ cd $HOME/hm_home/newDomJb
  1. The ensemble that will be used to generate the structure functions needs to be defined in msms/harmonie.pm. An edited ensemble configuration file should define a four member ensemble that only varies the boundary memeber input (ENSBDMBR) as follows:
 ```bash
 %env = (
-#   'ANAATMO'  => { 0 => '3DVAR' },
-#   'HWRITUPTIMES' => { 0 => '00-21:3,24-60:6' },
-#   'SWRITUPTIMES' => { 0 => '00-06:3' },
-#   'HH_LIST' => { 0 => '00-21:3' },
-#   'LL_LIST' => { 0 => '36,3' },
-#   'LSMIXBC'  => { 0 => 'yes' },
-#   'ANASURF'  => { 0 => 'CANARI_OI_MAIN' },
+#   'ANAATMO'  # > { 0> '3DVAR' },
+#   'HWRITUPTIMES' # > { 0> '00-21:3,24-60:6' },
+#   'SWRITUPTIMES' # > { 0> '00-06:3' },
+#   'HH_LIST' # > { 0> '00-21:3' },
+#   'LL_LIST' # > { 0> '36,3' },
+#   'LSMIXBC'  # > { 0> 'yes' },
+#   'ANASURF'  # > { 0> 'CANARI_OI_MAIN' },
    'ENSCTL'   => [ '001', '002', '003', '004'],
 #   'OBSMONITOR' => [ 'obstat'],
 # SLAFLAG: Forecast length to pick your perturbation end point from
 # SLAFDIFF: Hours difference to pick your perturbation start point from
-# SLAFLAG=24, SLAFDIFF=6 will use +24 - +18
+# SLAFLAG# 24, SLAFDIFF6 will use +24 - +18
 # SLAFDIFF=SLAFLAG will retain the original SLAF construction
 # SLAFK should be tuned so that all members have the same perturbation size
    'ENSBDMBR' => [ 1,2,3,4],
@@ -57,9 +57,9 @@ cd $HOME/hm_home/newDomJb
  1. Run for two one-month (30 day) periods:
 ```bash
 cd $HOME/hm_home/newDomJb
-~hlam/Harmonie start DTG=2016060100 DTGEND=2016070100
+~hlam/Harmonie start DTG# 2016060100 DTGEND2016070100
 #
-#~hlam/Harmonie start DTG=2017010100 DTGEND=2017013100
+#~hlam/Harmonie start DTG# 2017010100 DTGEND2017013100
 ```
  1. Generate the statistics using festat offline:
  * Copy [Festat_offline](https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Structurefunctions_ensys/Festat_offline) to cca
@@ -78,18 +78,18 @@ cd $HOME/hm_home/newDomJb
  1. The ensemble that will be used to generate the structure functions needs to be defined in msms/harmonie.pm. An edited ensemble configuration file should define a four member ensemble that only varies the boundary memeber input (ENSBDMBR) as follows:
 ```bash
 %env = (
-#   'ANAATMO'  => { 0 => '3DVAR' },
-#   'HWRITUPTIMES' => { 0 => '00-21:3,24-60:6' },
-#   'SWRITUPTIMES' => { 0 => '00-06:3' },
-#   'HH_LIST' => { 0 => '00-21:3' },
-#   'LL_LIST' => { 0 => '36,3' },
-#   'LSMIXBC'  => { 0 => 'yes' },
-#   'ANASURF'  => { 0 => 'CANARI_OI_MAIN' },
+#   'ANAATMO'  # > { 0> '3DVAR' },
+#   'HWRITUPTIMES' # > { 0> '00-21:3,24-60:6' },
+#   'SWRITUPTIMES' # > { 0> '00-06:3' },
+#   'HH_LIST' # > { 0> '00-21:3' },
+#   'LL_LIST' # > { 0> '36,3' },
+#   'LSMIXBC'  # > { 0> 'yes' },
+#   'ANASURF'  # > { 0> 'CANARI_OI_MAIN' },
    'ENSCTL'   => [ '001', '002', '003', '004'],
 #   'OBSMONITOR' => [ 'obstat'],
 # SLAFLAG: Forecast length to pick your perturbation end point from
 # SLAFDIFF: Hours difference to pick your perturbation start point from
-# SLAFLAG=24, SLAFDIFF=6 will use +24 - +18
+# SLAFLAG# 24, SLAFDIFF6 will use +24 - +18
 # SLAFDIFF=SLAFLAG will retain the original SLAF construction
 # SLAFK should be tuned so that all members have the same perturbation size
    'ENSBDMBR' => [ 1,2,3,4],
@@ -104,9 +104,9 @@ cd $HOME/hm_home/newDomJb
  1. Run for two one-month (30 day) periods:
 ```bash
 cd $HOME/hm_home/newDomJb
-~hlam/Harmonie start DTG=2016060100 DTGEND=2016070100
+~hlam/Harmonie start DTG# 2016060100 DTGEND2016070100
 #
-#~hlam/Harmonie start DTG=2017010100 DTGEND=2017013100
+#~hlam/Harmonie start DTG# 2017010100 DTGEND2017013100
 ```
  1. Generate the statistics using festat offline:
  * Copy [Festat_offline](https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Structurefunctions_ensys/Festat_offline) to cca
@@ -129,10 +129,10 @@ qsub Festat_offline
        * set ENSMSEL=1-4,
        * set FESTAT=yes,
       1. Edit the msms/harmonie.pm file as follows: 
-       * set 'ANAATMO'  => { 0 => 'none', 1 => 'none' },
-       * set 'LSMIXBC'  => { 0 => 'no', 1 => 'no' },
-       * set 'ANASURF'  => { 0 => 'none', 1 => 'none' },
-       * set 'FCINT'    => { 0 => 12,       1 => 12 },
+       * set 'ANAATMO'  # > { 0> 'none', 1 => 'none' },
+       * set 'LSMIXBC'  # > { 0> 'no', 1 => 'no' },
+       * set 'ANASURF'  # > { 0> 'none', 1 => 'none' },
+       * set 'FCINT'    # > { 0> 12,       1 => 12 },
        * set 'ENSBDMBR' => [ 1, 2, 3, 4],
        * set 'PHYSICS'  => [ 'arome','arome','arome','arome'],
        * set 'ENSCTL'   => [ '001',  '002',  '003',  '004'],
@@ -142,11 +142,11 @@ qsub Festat_offline
 
   1. Launch of mini-sms ensemble experiment, Part 1 (example 1-15 January 2012, 6 h forecasts 06 and 18 UTC ):
 ```bash
-   ~hlam/Harmonie start DTG=2012010106 DTGEND=2012011518 LL=06
+   ~hlam/Harmonie start DTG# 2012010106 DTGEND2012011518 LL=06
 ``` 
   1. After that the Part 1 15 day experiment have finished (take a couple of days up to one week), launch mini-sms ensemble experiment, Part 2 (1-15 July 2012, 6 h forecasts 06 and 18 UTC, again run full July 1-31 when producing and not just testing):
 ```bash
-   ~hlam/Harmonie start DTG=2012070106 DTGEND=2012071518 LL=06
+   ~hlam/Harmonie start DTG# 2012070106 DTGEND2012071518 LL=06
 ``` 
   1. Taking care of results. After that both the first and the second part of the mini-sms ensemble experiment have finished the resulting background error statistics (structure functions will be found on cca:$SCRATCH/hm_home/your_exp/archive/extract/. The name of the files are stab_your_exp_2012070106_160.bal.gz, stab_your_exp_2012070106_160.cv.gz and stab_your_exp_2012070106_160.cvt.gz. (There are also files called  stab_your_exp_2012070106_80.bal.gz,stab_your_exp_2012070106_80.cv.gz and stab_your_exp_2012070106_80.cvt.gz, but these are based on forecast differences of the January period only and should be ignored).
 ## **Generating background error statistics with EDA cycling (using 38h1)**
@@ -164,16 +164,16 @@ qsub Festat_offline
        * set PERTATMO=CCMA
        * set PERTSURF="yes" 
       1. Edit the msms/harmonie.pm file as follows: 
-       * set 'LSMIXBC'  => { 0 => 'no', 1 => 'no' },
+       * set 'LSMIXBC'  # > { 0> 'no', 1 => 'no' },
        * set 'ENSBDMBR' => [ 1, 2, 3, 4, 5, 6, 7, 8],
        * set 'PHYSICS'  => [ 'arome','arome','arome','arome','arome','arome','arome','arome'],
        * set 'ENSCTL'   => [ '001',  '002',  '003',  '004','005','006','007','008' ],
        * set 'TSTEP'    => [  '75',  '75',  '75',  '75','75',  '75',  '75',  '75' ],
       1. in $HOME/hm_home/your_exp, edit 'Env_submit'. Edit this file
-       * set $nproc_festat=320=NPD*ND*NMB; where NPD is number of runs per day (4) x ND is number of days (10) x NMB is number of members (8).
+       * set $nproc_festat# 320NPD*ND*NMB; where NPD is number of runs per day (4) x ND is number of days (10) x NMB is number of members (8).
   1. Launch of mini-sms ensemble experiment
 ```bash
-   ~hlam/Harmonie start DTG=2013081500 DTGEND=2013082418 LL=6
+   ~hlam/Harmonie start DTG# 2013081500 DTGEND2013082418 LL=6
 ``` 
   1. After the EDA runs have finished, the resulting background error statistics (structure functions) will be found on cca:$SCRATCH/hm_home/your_exp/archive/extract/. The name of the files are stab_your_exp_2013081500_320.bal.gz, stab_your_exp_2013081500_320.cv.gz and stab_your_exp_2013081500_320.cvt.gz. 
 
@@ -246,10 +246,10 @@ cp -r ${SCRATCH}/jbdiagconv/diag ${SCRATCH}/jbdiagconv/diagEXP
       1. create hm_home/38h12_assim directory. Then cd $HOME/hm_home/38h12_assim.
       1. create experiment by typing '~hlam/Harmonie setup -r ~hlam/harmonie_release/tags/harmonie-38h1.2 -h ecgb-cca'.
       1. Check out the file include.ass by typing '~hlam/Harmonie co scr/include.ass' 
-      1. In include.ass set JBDIR=ec:/$uid/jbdata (uid being your userid, in this example 'ec:/smx/jbdata') and  f_JBCV='name of your .cv file in ec:/$uid/jbdata' (without .gz) and f_JBBAL is 'name of your .bal file in ec:/$uid/jbdata'  (without .gz)  (in this example ,f_JBCV=stab_your_exp_2012070106_160.cv, stab_your_exp_2012070106_160.bal).  Add these three lines instead of the three lines in include.ass that follows right after the elif statement:'elif [ "$DOMAIN" = DKCOEXP]; then'. If domain is other than 'DKCOEXP' one has to look for the alternative name of the domain. 
+      1. In include.ass set JBDIR# ec:/$uid/jbdata (uid being your userid, in this example 'ec:/smx/jbdata') and  f_JBCV'name of your .cv file in ec:/$uid/jbdata' (without .gz) and f_JBBAL is 'name of your .bal file in ec:/$uid/jbdata'  (without .gz)  (in this example ,f_JBCV# stab_your_exp_2012070106_160.cv, stab_your_exp_2012070106_160.bal).  Add these three lines instead of the three lines in include.ass that follows right after the elif statement:'elif [ "$DOMAIN" DKCOEXP]; then'. If domain is other than 'DKCOEXP' one has to look for the alternative name of the domain. 
       1. From $HOME/hm_home/38h12_assim launch experiment by typing
 ```bash
-   ~hlam/Harmonie start DTG=2012061003 DTGEND=2012061006 LL=03
+   ~hlam/Harmonie start DTG# 2012061003 DTGEND2012061006 LL=03
 ```
       1. The resulting analysis file be found on c2a (ssh c2a) under $SCRATCH/hm_home/38h12_assim/archive/2012/06/10/06 and it will be called 'MXMIN1999+0000' and on and ectmp:/smx/harmonie/38h12_assim/YYYY/MM/DD/06. To diagnose the 3D-VAR analysis increments of the 38h12_sinob-experiment, copy the files MXMIN1999+0000 (analysis) and ICMSHHARM+0003 (fg) to $SCRATCH. The first guess (background) file can be found on $SCRATCH/hm_home/38h12_assim/archive/2012/06/10/03 and ectmp:/smx/harmonie/38h12_assim/YYYY/MM/DD/03.  Convert from FA-file format to GRIB with the gl-software ($SCRATCH/hm_home/38h12_assim/bin/gl) by typing './gl -p MXMIN1999+0000' and './gl -p ICMSHANAL+0000'. Then plot the difference between files file with your favourite software. Plot horizontal and vertical cross-sections of temperature and other variables using your favourite software (MetgraF or cross for example).
       1. Now you have managed to insert the newly generated background error statistics to the assimilation system and managed to carry out a full scale data assimilation system and plot the analysis increments. The next natural step to further diagnose the background error statistics is to carry out a [single observation impact experiment](HarmonieSystemDocumentation/SingleObs_ensys), utilizing your newly generated background error statistics. Note the variables REDNMC and REDZONE in include.ass. REDNMC is the scaling factor for the background error statistics (default value 0.6/0.9 
@@ -270,7 +270,7 @@ Interpolation of background error statistics between different domains for techn
       1. Replace the file domain_prop.F90 with the corrected one attached at the bottom of this page.
       1. Launch the single observation impact experiment by standing in hm_home/38h12_jbint typing:
 ```bash
-   ~hlam/Harmonie start DTG=2012061003 DTGEND=2012061006 LL=03
+   ~hlam/Harmonie start DTG# 2012061003 DTGEND2012061006 LL=03
 ```
       1. The resulting analysis file be found on cca (ssh cca) under $SCRATCH/hm_home/38h12_jbint/archive/2012/06/10/06 and it will be called 'MXMIN1999+0000' and on and ectmp:/smx/harmonie/38h12_jbint/YYYY/MM/DD/06. To diagnose the 3D-VAR analysis increments of the 38h12_sinob-experiment, copy the files MXMIN1999+0000 (analysis) and ICMSHHARM+0003 (fg) to $SCRATCH. The first guess (background) file can be found on $SCRATCH/hm_home/38h12_jbint/archive/2012/06/10/03 and ectmp:/smx/harmonie/38h12_jbint/YYYY/MM/DD/03.  Convert from FA-file format to GRIB with the gl-software ($SCRATCH/hm_home/38h12_jbint/bin/gl) by typing './gl -p MXMIN1999+0000' and './gl -p ICMSHHARM+0003'. Then plot the difference between files file with your favourite software. Plot horizontal and vertical cross-sections of temperature and other variables using your favourite software (MetgraF or cross for example). The interpolated background error statistics for the MEDITERRANEAN domain will appear on cca in $SCRATCH/hm_home/38h12_jbint/lib/const/jb_data as stabfiltn_MEDITERRANEAN_65_jbconv.cv and stabfiltn_MEDITERRANEAN_65_jbconv.bal.
 

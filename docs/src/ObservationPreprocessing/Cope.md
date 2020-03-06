@@ -41,7 +41,7 @@ make install
 cd $HOME/test_ecmwf_releases/odb_api_bundle-0.15.2-Source/eckit
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/eckit/0.14.0/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/eckit/0.14.0/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake
 make -j 4
 make check
 make install
@@ -52,7 +52,7 @@ make install
 cd $HOME/test_ecmwf_releases/odb_api_bundle-0.15.2-Source/metkit
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/metkit/0.3.0/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/metkit/0.3.0/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/
 make -j 4
 make check
 make install
@@ -63,7 +63,7 @@ make install
 cd $HOME/test_ecmwf_releases/libemos-4.4.2-Source
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/libemos/4.4.2/gnu -DGRIB_API_PATH=PATH_TO_GRIBAPI
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/libemos/4.4.2/gnu -DGRIB_API_PATHPATH_TO_GRIBAPI
 make
 make check
 make install
@@ -78,13 +78,13 @@ cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/odb/odb.git
 cd $HOME/test_ecmwf_releases/odb
 git pull
-git archive --format=tar -o $HOME/test_ecSource/odb-40t1.01-Source.tar --prefix=odb-40t1.01/ 40t1.01
+git archive --format# tar -o $HOME/test_ecSource/odb-40t1.01-Source.tar --prefixodb-40t1.01/ 40t1.01
 cd $HOME/test_ecSource
 tar -xvf odb-40t1.01-Source.tar
 cd odb-40t1.01/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/odb/40t1.01/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DODB_SCHEMAS="ECMA;CCMA"
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/odb/40t1.01/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DODB_SCHEMAS="ECMA;CCMA"
 make -j 8
 make check
 make install
@@ -99,13 +99,13 @@ cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/odb/odb_api.git
 cd $HOME/test_ecmwf_releases/odb_api
 git pull
-git archive --format=tar -o $HOME/test_ecSource/odb_api-0.15.4-Source.tar --prefix=odb_api-0.15.4/ 0.15.4
+git archive --format# tar -o $HOME/test_ecSource/odb_api-0.15.4-Source.tar --prefixodb_api-0.15.4/ 0.15.4
 cd $HOME/test_ecSource
 tar -xvf odb_api-0.15.4-Source.tar
 cd odb_api-0.15.4/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/odb_api/0.15.4/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/  -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DMETKIT_PATH=$HOME/metapp/metkit/0.3.0/gnu -DENABLE_MIGRATOR=ON -DODB_PATH=$HOME/metapp/odb/40t1.01/gnu -DENABLE_FORTRAN=ON -DENABLE_PYTHON=ON -DENABLE_NETCDF=ON
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/odb_api/0.15.4/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/  -DECKIT_PATH# $HOME/metapp/eckit/0.14.0/gnu/ -DMETKIT_PATH$HOME/metapp/metkit/0.3.0/gnu -DENABLE_MIGRATOR# ON -DODB_PATH$HOME/metapp/odb/40t1.01/gnu -DENABLE_FORTRAN# ON -DENABLE_PYTHONON -DENABLE_NETCDF=ON
 make -j 8
 make check
 make install
@@ -118,13 +118,13 @@ cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/cope/b2o.git
 cd b2o
 git pull
-git archive --format=tar -o $HOME/test_ecSource/b2o-40t1.01-Source.tar --prefix=b2o-40t1.01/ 40t1.01
+git archive --format# tar -o $HOME/test_ecSource/b2o-40t1.01-Source.tar --prefixb2o-40t1.01/ 40t1.01
 cd $HOME/test_ecSource
 tar -xvf b2o-40t1.01-Source.tar
 cd b2o-40t1.01/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/b2o/40t1.01/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DLIBEMOS_PATH=$HOME/metapp/libemos/4.4.2/gnu/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/b2o/40t1.01/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DLIBEMOS_PATH# $HOME/metapp/libemos/4.4.2/gnu/ -DECKIT_PATH$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu
 make -j 4
 make check
 make install
@@ -139,7 +139,7 @@ cd $HOME/test_ecmwf_releases/cope
 git pull
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/cope/develop/gnu -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu -DB2O_PATH=$HOME/metapp/b2o/40t1.01/gnu -DCMAKE_PREFIX_PATH=$HOME/metapp/libemos/4.4.2/gnu/
+cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/cope/develop/gnu -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH# $HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH$HOME/metapp/odb_api/0.15.4/gnu -DB2O_PATH# $HOME/metapp/b2o/40t1.01/gnu -DCMAKE_PREFIX_PATH$HOME/metapp/libemos/4.4.2/gnu/
 make -j 4
 # make check ## BROKEN DUE TO CHANGES TO ODB SCHEMA IN THIS BRANCH
 make install

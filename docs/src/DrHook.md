@@ -67,7 +67,7 @@ export DR_HOOK=1
 
 This sets the Fortran-variable **LHOOK** to **.TRUE.**.
 
-By default all usual Unix-signals are caught (like SIGFPE=8, SIGSEGV=11, etc.).
+By default all usual Unix-signals are caught (like SIGFPE# 8, SIGSEGV11, etc.).
 Occasionally, during development, some of them can be turned off, e.g. SIGFPE:
 
 ```bash
@@ -119,7 +119,7 @@ Output is written to stdout. Controlling variables are:
 export DR_HOOK=1
 export DR_HOOK_TIMELINE=1
 #-- Optional:
-export DR_HOOK_TIMELINE_FREQ=1 # the default = 1000000
+export DR_HOOK_TIMELINE_FREQ# 1 # the default 1000000
 export DR_HOOK_TIMELINE_MB=1 # th default jump 1 MByte
 ```
 

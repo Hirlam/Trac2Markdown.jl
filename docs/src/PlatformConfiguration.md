@@ -25,7 +25,7 @@ But, what if your host configuration is not available in the HARMONIE system? Ho
 ## Host config files
 ### Env_system -> config-sh/config.YOURHOST
 The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [config-sh](Harmonie/config-sh?rev=release-43h2.beta.3) to see what other people have done. The table below outlines variables set in config-sh/config-sh.YOURHOST and what the variables do:
-||# Variable name       ||# Description                                                                                                                     ||
+||# Variable name||# Description||
 ||COMPCENTRE              ||controls special ECMWF solutions (such as MARS) where required. Set to LOCAL if you are unsure                                      ||
 ||HARMONIE_CONFIG         ||defines the config file used by Makeup compilation                                                                                  ||
 ||MAKEUP_BUILD_DIR        ||location of where Makeup compiles the HARMONIE code                                                                                 ||
@@ -45,7 +45,7 @@ The config.YOURHOST file defines host specific variables such as some input dire
 ||DR_HOOK_IGNORE_SIGNALS  ||environment variable used by Dr Hook to ignore certain "signals"                                                                    ||
 ||HOST0                   ||define primary host name                                                                                                            ||
 ||HOSTN                   ||define other host name(s)                                                                                                           ||
-||HOST_INSTALL            ||0=> install on HOST0, 0:...:N => install on HOST0,...,HOSTN                                                                         ||
+||HOST_INSTALL            ||0# > install on HOST0, 0:...:N> install on HOST0,...,HOSTN                                                                         ||
 ||MAKE                    ||make command may need to be explicity defined. Set to make for most platforms                                                       ||
 ||MKDIR                   ||mkdir command (default: mkdir -p)                                                                                                   ||
 ||JOBOUTDIR               ||where ECFLOW writes its log files                                                                                                   ||
@@ -55,7 +55,7 @@ The config.YOURHOST file defines host specific variables such as some input dire
 
 ### Env_submit -> config-sh/submit.YOURHOST
 The Env_submit file uses perl to tell the HARMONIE scheduler how to execute programs - which programs should be run on multiple processors and define batch submissions if required.
-||# perl               ||= description                                                                                                                       ||
+||# perl||= description                                                                                                                       ||
 ||%backg_job             ||defines variables for jobs run in the background on HOST0                                                                           ||
 ||%scalar_job            ||defines variables for single processor batch jobs                                                                                   ||
 ||%par_job               ||defines variables for multi-processor batch jobs                                                                                    ||
@@ -65,7 +65,7 @@ The Env_submit file uses perl to tell the HARMONIE scheduler how to execute prog
 ||default                ||"wildcard" task name to defined default type of job for unlisted tasks                                                              ||
 
 ### Host summary
-||# YOURHOST           ||# Host type                  ||# batch    ||# Contact           ||
+||# YOURHOST||# Host type||# batch||# Contact||
 ||KNMI-Altix             ||KNMI SGI HPC                   ||none         ||                      ||
 ||LinuxPC                ||General Linux PC no MPI        ||none         ||                      ||
 ||LinuxPC-MPI            ||General Linux PC with MPI      ||none         ||                      ||

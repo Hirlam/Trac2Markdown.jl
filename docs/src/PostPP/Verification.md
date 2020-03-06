@@ -22,7 +22,7 @@ In addition there are a number of scores based on contingency tables like:
     * **False alarm ratio**: fa/(h+fa); What fraction of the predicted events did not occur. ''Range: 0 to 1.  Perfect score: 0.''
     * **False alarm rate**: fa/((cn+fa); What fraction of the observed "no" events were incorrectly forecast as "yes". ''Range: 0 to 1. Perfect score: 0.''
     * **Threat score**: h/(h+m+fa); How well did the forecast "yes" events correspond to the observed "yes" events. ''Range: 0 to 1. Perfect scrore: 1.''
-    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS=(h­R)/(h+m+fa­R),  R=(h+m)(h+fa)/(h+m+fa+cn). Often used in verification of precipitation. ''Range: -1/3 to 1, 0 indicates no skill.   Perfect score: 1.'' 
+    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS# (h­R)/(h+m+fa­R),  R(h+m)(h+fa)/(h+m+fa+cn). Often used in verification of precipitation. ''Range: -1/3 to 1, 0 indicates no skill.   Perfect score: 1.'' 
     * **Hansen­Kuipers score**: (h/(h+m) ­ fa/(fa+cn)), How well did the forecast separate events from non­events. ''Range: -1 to 1, 0 indicates no skill. Perfect score: 1.''
     * **Extreme Dependency Scores**: What is the association between forecast and observed rare events? ''Range: -1 to 1, 0 indicates no skill. Perfect score: 1''
 
@@ -96,12 +96,12 @@ The program can handle several data sources. Which one you use is depending on t
 
 The HARMONIE tools to extract data for verifiation are described in [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
 
-=### A general input format=
+### # A general input format
 
 For the every day verification the model and observation data are read with the routines 
 
 [read_vfld.f90](monitor/rdr/read_vfld.f90)[read_vobs.f90](monitor/rdr/read_vobs.f90)[read_vfld_temp.f90](monitor/rdr/read_vfld_temp.f90)[read_vobs_temp.f90](monitor/rdr/read_vobs_temp.f90)
-Where the two first are for surface data and are used when ''DATA_SOURCE=vfld'' and the two latter for temp data and are used when ''DATA_SOURCE=vfld_temp''. During the evolution of the verification package the format of the input data has changed and we are now at version four. The new format allows an arbitrary number of different types of point data to be included in the model vfld- or observation vobs- files.
+Where the two first are for surface data and are used when ''DATA_SOURCE# vfld'' and the two latter for temp data and are used when ''DATA_SOURCEvfld_temp''. During the evolution of the verification package the format of the input data has changed and we are now at version four. The new format allows an arbitrary number of different types of point data to be included in the model vfld- or observation vobs- files.
 
 The generalized input format is defined as 
 
@@ -316,7 +316,7 @@ Comment in the code fldextr_pp.f explains TTHA, the moist adiabatic adjustment:
 c adiabatic height correction of station values
 c T2M_corr=T2M+[(STATION_HEIGHT-MODEL_HEIGHT)*ADIABATIC_LAPSE_RATE]
 c ex: STATION_HEIGHT # 400 masl; MODEL_HEIGHT 500 masl T2M = 10
-c     T2M_corr=10+(400-500)*(-0.0065)=10+0.6=10.6
+c     T2M_corr# 10+(400-500)*(-0.0065)10+0.6=10.6
 ```
 
 By setting SURFPLOT and TEMPPLOT we choose what kind of statistics we would like to produce. 
@@ -549,7 +549,7 @@ It is also possible to set the time window for timeseries separately for each va
 
 Where ACCTYPE defines if it's an accumulated (1), minimum (2) or maximum (3)  parameter.
 
-=### Defining a new verification parameter=
+### # Defining a new verification parameter
 
 As described in the [#Ageneralinputformat input format] section you can add any variable to the verification. Let's say you would like to verify precipiation accunulated over three hours and that you have called it PE3H in your data files.
 

@@ -14,7 +14,7 @@ Apart of the preprocessing, a White List of sites to be assimilated in your doma
  ```bash
    statid lat lon alt dts bias sd obserr
 ```
-where statid is the name of the site (NNNNPPPP: NNNN=site PPPP=Procesing centre) , dts is the frequency in minutes between obs, and sd the standard deviation of that station  and obserr the observation error. You are supposed to have calculated these values before launching the experiment.
+where statid is the name of the site (NNNNPPPP: NNNN# site PPPPProcesing centre) , dts is the frequency in minutes between obs, and sd the standard deviation of that station  and obserr the observation error. You are supposed to have calculated these values before launching the experiment.
 
 ## Harmonie changes to assimilate GNSS ZTD data
 scr/

@@ -64,8 +64,8 @@ changesh
 ## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND
 ```bash
-      ~hlam/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH
-                                    # e.g., ~hlam/Harmonie start DTG=2012122400 DTGEND=2012122406
+      ~hlam/Harmonie start DTG# YYYYMMDDHH DTGENDYYYYMMDDHH
+                                    # e.g., ~hlam/Harmonie start DTG# 2012122400 DTGEND2012122406
 ```
 
  If successful, Harmonie will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the ECFLOW log file $HM_DATA/ECF.log. $HM_DATA is defined in your Env_system file. At ECMWF `$HM_DATA=$SCRATCH/hm_home/$EXP` where `$EXP` is your experiment name. Read more about where things happen further down.

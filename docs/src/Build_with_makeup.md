@@ -269,8 +269,8 @@ From the file $HARMONIE_MAKEUP/configure you can also find how different files a
                    cma2odb|bufr2odb)                           files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    pandor/extrtovs|pandor/fcq|pandor/mandalay) files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    esac ;;
-         odbdummy) [[ "$i" != "lib"  ]] || files=$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
-          odbmain) [[ "$i" != "tools"]] || files=$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
+         odbdummy) [[ "$i" !# "lib"  ]] || files$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
+          odbmain) [[ "$i" !# "tools"]] || files$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
      esac
  elif [[ "$d" = @($case_odbs)]] ; then
    [[ "$i" != "ddl.$d"]] || {

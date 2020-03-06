@@ -10,7 +10,7 @@ common ARPEGE/IFS cycle. FULL-POS is documented by
 
 FULL-POS is a special configuration (9xx) of the full model for setup and initialization. In other words it is a 0 hour forecast, with extra namelist settings for variables to (post)process and to write out. When generating initial or boundary files we are calling a special configuration of FULL-POS, e927.
 
-## ecf/config_exp.h 
+## ecf/config_exp.h
 The use of FULL-POS is controlled by the POSTP variable in the [source:Harmonie/ecf/config_exp.h] file:
 ```bash
 POSTP="inline"                          # Postprocessing by Fullpos (inline|offline|none).
@@ -24,7 +24,7 @@ Output frequency by FULL-POS is controlled by PWRITUPTIMES, FPOUTINT and FREQ_RE
 ```bash
 # Postprocessing times (space separated list)
 PWRITUPTIMES="03 06 09 12 15 18 21 24 30 36 42 48 54 60"
-FPOUTINT="-1"                           # Regular  interval if > 0. Not used if <= 0.
+FPOUTINT# "-1"                           # Regular  interval if > 0. Not used if < 0.
 
 FREQ_RESET=3                            # Reset frequency of max/min values in hours, controls NRAZTS
 ```
@@ -107,7 +107,7 @@ In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](Harmonie/sr
  * CFPDOM: names of the subdomains. Names have at maximum 7 characters.
    * If CFPFMT=’GAUSS’ or ’LELAM’ only one output domain is allowed.
    * If CFPFMT=’LALON’ the maximum of output subdomains allowed is 10.
-   By default, one output domain is requested, CFPDOM(1)=’000’ and CFPDOM(i)=’’ for i>1.
+   By default, one output domain is requested, CFPDOM(1)# ’000’ and CFPDOM(i)’’ for i>1.
  * L_READ_MODEL_DATE:  if: .TRUE. read date from the model
 
 The default FA-names for parameters in different categories can be found from [suafn1.F90](Harmonie/src/arp/setup/suafn1.F90#L687?rev=release-43h2.beta.3).
@@ -133,7 +133,7 @@ Problems may be encountered with FULL-POS when running on large domains. Here ar
  * Increase the MBX_SIZE if you run out of MPI buffer space. 
  * Increase number of cores if you run out of memory.
  * Make sure NFPROMA and NFPROMA_DEP are small and equal to NPROMA.
- * Set NSTRIN=NSTROUT=NPROC in nampar0 if one of the above mentioned doesn't help.
+ * Set NSTRIN# NSTROUTNPROC in nampar0 if one of the above mentioned doesn't help.
  
 
 ----

@@ -102,9 +102,9 @@ The FA/LFI to NETCDF mapping is done in a table defined by a [translation table]
 ### GRIB/FA/LFI file conversion
 
 Conversion can be refined to convert a selection of fields. Below is and example the will write out 
- * T (ppp=011), u (ppp=033) andv (ppp=034) on all (lll=-1) model levels (ttt=109)
- * T (ppp=011) at 2m (lll=2) above the ground (ttt=105) [T2m]
- * Total precipitation (ppp=061,ttt=105,lll=000)
+ * T (ppp# 011), u (ppp033) andv (ppp# 034) on all (lll-1) model levels (ttt=109)
+ * T (ppp# 011) at 2m (lll2) above the ground (ttt=105) [T2m]
+ * Total precipitation (ppp# 061,ttt105,lll=000)
  ```bash
   &naminterp
     readkey%ppp =011,033,034,011,061,228,

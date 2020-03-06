@@ -42,7 +42,7 @@ The GUI can be started also if the scheduler is currently not running. In that c
 
 The master script [Harmonie](trunk/harmonie/config-sh/Harmonie) is the user's main interface to the system. `Harmonie` is a perl script, which will again usually invoke the old interface (sh) script [Main](trunk/harmonie/config-sh/Main). `Harmonie` recognizes a set of "actions" (as implemented in the scripts [Actions](trunk/harmonie/scr/Actions) and [Actions.pl](trunk/harmonie/scr/Actions.pl)). The most important actions will invoke the script [Start](trunk/harmonie/scr/Start). Finally, `Start` will invoke the mini-SMS script `mSMS.pl` with the correct arguments, and with the proper environment variables set. The user should normally never invoke the scripts `mSMS.pl` or `mXCdp.pl` herself.
 
-=### Script call sequence:=
+### # Script call sequence:
  * [[Color(blue, Harmonie)]] (top level script, perl)
   * [[Color(blue, Main)]] (old top level script, sh)
    *     * [[Color(blue, Start)]] (reads [config_exp.h](trunk/harmonie/sms/config_exp.h))
@@ -68,7 +68,7 @@ At ecgb, mSMS is now submitted as a batch job in a special queue minisms, with n
  * All containers should include the files [sms.h](trunk/harmonie/sms/sms.h) and [hosts.h](trunk/harmonie/sms/hosts.h) at the top, and [end.h](trunk/harmonie/sms/end.h) at the bottom.
  * By default all tasks start as soon as possible. We must include [[Color(blue, triggers)]] to specify dependencies between tasks, e.g. that one task must wait for another task to complete before it can start execution.
 
-=### (mini-)SMS variables=
+### # (mini-)SMS variables
  * In the definition file, variables may be defined and set by [[Color(green, edit)]] statements, e.g.:
 ```bash
  edit SMSTRIES 1
@@ -76,7 +76,7 @@ At ecgb, mSMS is now submitted as a batch job in a special queue minisms, with n
 ```
  * Variables are referred to by [[Color(blue, %VAR%)]]. Variables that start with SMS might have a special meaning to mSMS. Avoid such names if you need to create your own variable.
 
-=### mini-SMS task execution=
+### # mini-SMS task execution
 When mini-SMS decides it is time to execute a particular task (i.e., it is triggered) it first converts the [[Color(green, "task".sms)]] container script into a (sh) script [[Color(green, "task".job%SMSTRYNO%)]], where [[Color(blue, %SMSTRYNO%)]] is the attempt number of the task. %SMSTRYNO% runs from 1 to [[Color(blue, %SMSTRIES%)]] (default 1) for automatically submitted tasks, but %SMSTRIES% is ignored for tasks that are rerun through the GUI.
 
 Since jobs might have different requirements for memory, number of CPUs, host to run on, whether to run as a background job or be submitted to a batch queuing system etc., in Harmonie all jobs go through a second step, the so-called "Universal Job Submission Filter" (script [Submit.pl](trunk/harmonie/scr/Submit.pl)). This filter reads the [[Color(green, "task".job%SMSTRYNO%)]] file and the [[Color(green, Env_submit)]] file for this (sms)host, and then creates the final (sh) job file [[Color(green, "task".job%SMSTRYNO%-q)]]. In this file, headers (for the queueing system) and footers might have been added.
@@ -88,13 +88,13 @@ The various colors that the boxes get in the GUI correspond to the current state
 || [[Color2(blue, white, queued)]] || [[Color2(cyan, black, submitted)]] || [[Color2(green, black, active)]] || [[Color2(yellow, black, complete)]] || [[Color2(red, white, aborted)]] || [[Color2(orange, black, suspended)]] || [[Color2(brown, white, unknown)]] || [[Color2(magenta, black, halted)]] || [[Color2(black, white, shutdown)]] ||
 
 
-=### mini-SMS client/server communication=
+### # mini-SMS client/server communication
 
 Before changeset [13288] this signalling was always via files created in $SMSFLAGDIR (often $HM_DATA). The scheduler would remove these files as soon as the signals were registered. After [13288], it is also possible to configure the system so that signals are sent over http instead of using files. One possible drawback with http signals is that if the mSMS scheduler terminates while tasks are still submitted or active, signals can be lost. With files these signals would be picked up if the scheduler was restarted through the mXCdp interface, but this will not happen with http signals. Therefore, more user interaction might be necessary on systems with http signals. If you see errors like
 
 ```bash
 msms_client error for request
-'http://ecgb06:27965/_ctrl/set?t=/letkf_harmonEPS_38h11_v6_e1/Date/Hour/Cycle/Mbr000/PostAnalysis/Makegrib_an&s=1':
+'http://ecgb06:27965/_ctrl/set?t# /letkf_harmonEPS_38h11_v6_e1/Date/Hour/Cycle/Mbr000/PostAnalysis/Makegrib_an&s1':
 500 Can't connect to ecgb06:27965 (Connection refused)
 #################################################################
 # Failed to send signal 'complete' to mini-SMS!

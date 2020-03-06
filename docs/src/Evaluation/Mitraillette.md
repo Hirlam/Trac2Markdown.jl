@@ -1,7 +1,7 @@
 # Mitraillette - the ALADIN dynamical core testbed
 
 Mitraillette is a script designed to validate ALADIN configurations and is particularly useful to test a new cycle. This script uses a chain of jobs: when a job is finished it launches the following job, in a predetermined order. There are several documents describing the system on the 
-[gmapdoc site](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=mitraillette)
+[gmapdoc site](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchemitraillette)
 
 The latest version of mitraillette can be found on:
 

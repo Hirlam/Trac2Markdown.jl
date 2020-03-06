@@ -7,7 +7,7 @@
  * !ACADFA1D : Tool to generate initial and boundary data for MUSC
  * ADDPERT : Create initial perturbations
  * ADDSURF : Allows you to mix different files and add different fields
- * [ALTO](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=PINUTS) : Also known as PINUTS. Contains several diagnostic tools.
+ * [ALTO](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchePINUTS) : Also known as PINUTS. Contains several diagnostic tools.
  * BATOR : Generate ODB from observations in various formats
  * bl95.x : Blacklist compiler, help program to generate object files from the blacklist
  * BLEND : Mixes to files

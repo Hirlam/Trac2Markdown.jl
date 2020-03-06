@@ -15,7 +15,7 @@ In ecf/config_exp.h  a few changes are made.
 * No assimilation
 * Set BDDIR to your BD location
 
-Start the experiment in the same way as NWP e.g Harmonie start DTG=2012010100 DTGEND=2012060100
+Start the experiment in the same way as NWP e.g Harmonie start DTG# 2012010100 DTGEND2012060100
 
 **Nested runs**
 SURFEX is used in all climate simulations so HOST_SURFEX has to be true.

@@ -1,4 +1,4 @@
-= OBSOUL creation: Oulan=
+# OBSOUL creation: Oulan
 
 ## General Description
 The pre-processing step creates ODB (Observational Data Base) from various observation data files possibly in different formats.

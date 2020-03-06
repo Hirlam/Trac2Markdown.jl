@@ -25,18 +25,18 @@ Two new actions are implemented in the Harmonie script. Instead of start you can
 
 ```bash
 1. as start:
-${HM_REV}/config-sh/Harmonie obsmon DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH OBSMON_EXP_ARCHIVE_ROOT=PATH-TO-ARCHIVE-DIRECTORY-TO-MONITOR OBSMON_EXP=MY-LABEL
+${HM_REV}/config-sh/Harmonie obsmon DTG# YYYYMMDDHH DTGENDYYYYMMDDHH OBSMON_EXP_ARCHIVE_ROOT# PATH-TO-ARCHIVE-DIRECTORY-TO-MONITOR OBSMON_EXPMY-LABEL
 ```
 
 
 ```bash
 2. as prod:
-${HM_REV}/config-sh/Harmonie obsmonprod DTGEND=YYYYMMDDHH OBSMON_EXP_ARCHIVE_ROOT=PATH-TO-ARCHIVE-DIRECTORY-TO-MONITOR OBSMON_EXP=MY-LABEL
+${HM_REV}/config-sh/Harmonie obsmonprod DTGEND# YYYYMMDDHH OBSMON_EXP_ARCHIVE_ROOTPATH-TO-ARCHIVE-DIRECTORY-TO-MONITOR OBSMON_EXP=MY-LABEL
 ```
 
 If you want to monitor an experiment stored on ECFS, you should specify OBSMON_EXP_ARCHIVE_ROOT with the full address (ectmp:/$USER/..... or ec:/$USER/...) e.g. 
 ```bash
-OBSMON_EXP_ARCHIVE_ROOT=ectmp:/$USER/harmonie/MY-EXP OBSMON_EXP=MY-LABEL
+OBSMON_EXP_ARCHIVE_ROOT# ectmp:/$USER/harmonie/MY-EXP OBSMON_EXPMY-LABEL
 ```
 
 You can also monitor other users experiments as long as you have read-access to the data.
