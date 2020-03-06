@@ -1,7 +1,8 @@
 using Documenter
 
 
-include("pages.jl")
+
+include("../src/pages.jl")
 
 makedocs(
     sitename = "Harmonie wiki",
