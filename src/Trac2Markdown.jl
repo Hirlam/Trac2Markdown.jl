@@ -87,4 +87,7 @@ function trac2md(s::String)
     return foldl(replace, subs, init = s)
 end 
 
+include("getpages.jl")
+include("pages.jl")
+
 end # module

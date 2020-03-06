@@ -26,12 +26,11 @@ using Test, Trac2Markdown
 end 
 
 @testset "Download from hirlam.org wiki"  begin
-   SRCDIR = dirname(pathof(Trac2Markdown))
-
-   include("$SRCDIR/pages2.jl")
+   
+   pages = Trac2Markdown.getpages(Trac2Markdown.pages)
 
    # recursively get all subwikis (not used because of potential loops)
-   getall(page) = getall.(trac2markdown.(page))
+   #getall(page) = getall.(trac2markdown.(page))
 
    
    trac2markdown.(pages, getattachments=false)
