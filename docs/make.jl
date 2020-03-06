@@ -108,9 +108,6 @@ pages = [
     
 ]
 
-getpages(s::String) = s
-getpages(p::Pair) = getpages(p.second)
-getpages(a::Array) = getpages.(a)
 
 
 makedocs(
