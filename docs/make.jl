@@ -30,6 +30,8 @@ pages = [
         ],
         "Running at ECMWF" => "Harmonie-mSMS.md",  
         "The Harmonie Script" => "TheHarmonieScript.md",
+        "Profiling and Traceback" => "DrHook.md",
+        "File Formats" => "FileFormats.md",            
         "Testbed and Mitraillette" => [
            "Testbed" => "Evaluation/HarmonieTestbed.md",
            "Mitraillette" => "Evaluation/Mitraillette.md"
@@ -38,17 +40,15 @@ pages = [
         "Other" => [     
             "Binaries.md",
             "Fast_start_on_cca.md",
-            "PreviousVersions.md",
-            "DrHook.md",
+            # "PreviousVersions.md",            
             "Scalability_and_Refactoring.md",
             "HarmonieBenchMark.md",
             "MFaccess.md",
             "Phasing.md",   
-            "How_to_use_hires_topography.md",
-            "FileFormats.md",            
-            "PreviousModelOutputLists.md",           
-            "General.md",
-            "QuickStartLocal.md"
+            "How_to_use_hires_topography.md",            
+            # "PreviousModelOutputLists.md",           
+            "General Software Requirements" => "General.md",
+            "Quick start local" => "QuickStartLocal.md"
         ]
     ],
     "Input Data" => [
@@ -66,11 +66,11 @@ pages = [
             "ObservationHowto/Amv.md",
             "RadarData.md",
             "Preprocessing" => [
-                "ObservationPreprocessing.md" ,
+                # "ObservationPreprocessing.md" ,
                 "ObservationPreprocessing/ObservationData.md", 
-                "ObservationPreprocessing/Bator.md", 
-                "ObservationPreprocessing/Oulan.md", 
-                "ObservationPreprocessing/Cope.md"
+                "Bator" => "ObservationPreprocessing/Bator.md", 
+                "Oulan" => "ObservationPreprocessing/Oulan.md", 
+                "Cope" => "ObservationPreprocessing/Cope.md"
             ]
         ]
     ],
@@ -107,6 +107,10 @@ pages = [
     
     
 ]
+
+getpages(s::String) = s
+getpages(p::Pair) = getpages(p.second)
+getpages(a::Array) = getpages.(a)
 
 
 makedocs(
