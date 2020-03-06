@@ -68,11 +68,11 @@ function trac2md(s::String)
        r"\{\{\{([^\r\n]+?)\}\}\}"        => s"`\1`",      # Single line code blocks
        r"\{\{\{"                         => s"```bash",   # Multiline code blocks (assumed to be bash)
        r"\}\}\}"                         => s"```",       # multiline code blocks
-       r"=== (.+?) ==="                  => s"### \1",    # level 3 headers
-       r"== (.+?) =="                    => s"## \1",     # level 2 headers
-       r"== '''(.+?)''' =="              => s"## \1",     # level 2 header (not bold in md)
-       r"= '''(.+)''' ="                 => s"# \1",      # level 1 headers (not bold in md)
-       r"= (.+?) ="                      => s"# \1",      # level 1 headers 
+       r"===\s*(.+?)\s*==="              => s"### \1",    # level 3 headers
+       r"==\s*(.+?)\s*=="                    => s"## \1",     # level 2 headers
+       r"==\s*'''(.+?)'''\s*=="              => s"## \1",     # level 2 header (not bold in md)
+       r"=\s*'''(.+)'''\s*="                 => s"# \1",      # level 1 headers (not bold in md)
+       r"=\s*(.+?)\s*="                  => s"# \1",      # level 1 headers 
        r"'''(.+?)'''"                    => s"**\1**",    # Bold 
        r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
        # r"([^ ]*?HM_DATA[^ ]*)"       => s"`\1`",      # if word contains HM_DATA fomat it as code
