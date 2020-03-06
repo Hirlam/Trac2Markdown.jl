@@ -25,6 +25,19 @@ function trac2md(s::String)
        "[Back to the main page of the HARMONIE System Documentation](HarmonieSystemDocumentation)" => ""
        
     ]
+    
+    tables = [ 
+        # For tables we detect the first line and repeat it
+        r"(\r\n[^\|]*?\r\n)(\s*\|\|.*?)\r\n" => s"\1\2\r\n\2",
+
+        # We detect start off table again and on the second line 
+        # substitute the cell contents with --- 
+        r"(\r\n[^\|]*?\r\n\s*\|\|.*?\r\n\s*)(\|\|.*?\|\|)*?\r\n" => 
+          m -> startswith(m,'|') ? " --- " : "**",
+         
+    ]  
+    ] 
+
 
     return foldl(replace, subs, init = s)
 end 
