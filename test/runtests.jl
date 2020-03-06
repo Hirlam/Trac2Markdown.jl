@@ -23,6 +23,9 @@ using Test, Trac2Markdown
 
    # This should work basd on explicit list of Harmonie code keywords
    @test_broken trac2md("Hello ANAATMO ") == "Hello `ANAATMO` "
+
+   # Currently tables are not working 
+   @test_broken trac2md("|| h1 || h2||\r\n ||a1 ||a2 ") == "| h1 | h2 |\r\n | :--- | :--- | \r\n | a1 | a2 |"
 end 
 
 @testset "Download from hirlam.org wiki"  begin
