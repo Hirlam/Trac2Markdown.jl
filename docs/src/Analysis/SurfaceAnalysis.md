@@ -1,6 +1,6 @@
 
 ==
-#  Surface Data Assimilation in HARMONIE
+# Surface Data Assimilation in HARMONIE
 
 ## Surface related variables in ecf/config_exp.h :
 

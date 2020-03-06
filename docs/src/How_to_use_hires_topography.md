@@ -229,16 +229,16 @@ The topographic input used by the “Aladin” part of Harmonie (from Oro_Mean, 
 The directory $HM_CLDATA/GTOPT030 contains 9 files, 7 of which are derived in some way from the full GTOPO30 topography data set:
 
 
-||# File||# Field||# Unit||# Nb bits|| 
-|| Oro_Mean 		||  Mean orography (mean of Hmean)       ||      m     ||  16  || 
-|| Sigma 			||		Sub-grid std dev of Hmean 	||	 m 	||  16  ||
-|| Nb_Peaks 			||      Number of sub-grid peaks 	||		||   8   ||
-|| Hmax-HxH-Hmin_ov4 	||     mean of (Hmax-Hmean)(Hmean-Hmin)/4 ||  m^2^ 	||  32  ||
-|| Dh_over_Dx_Dh_over_Dy  ||   mean of dHmean/dx x dHmean/dy  ||   m^2^ km^-2^  ||  32  || 
-|| Dh_over_Dx_square 	||      mean of (dHmean/dx)^2^ 		||	 m^2^ km^-2^   ||  32  ||
-|| Dh_over_Dy_square 	||	mean of (dHmean/dy)^2^	                ||     m^2^ km^-2^     ||  32  ||
-|| Water_Percentage 		||	Land/Sea mask 	||				 % water ||  8  ||
-|| Urbanisation 		||	Fraction of urbanisation  	||		 % city  ||   8  ||
+|# File|# Field|# Unit|# Nb bits| 
+| Oro_Mean 		|  Mean orography (mean of Hmean)       |      m     |  16  | 
+| Sigma 			|		Sub-grid std dev of Hmean 	|	 m 	|  16  |
+| Nb_Peaks 			|      Number of sub-grid peaks 	|		|   8   |
+| Hmax-HxH-Hmin_ov4 	|     mean of (Hmax-Hmean)(Hmean-Hmin)/4 |  m^2^ 	|  32  |
+| Dh_over_Dx_Dh_over_Dy  |   mean of dHmean/dx x dHmean/dy  |   m^2^ km^-2^  |  32  | 
+| Dh_over_Dx_square 	|      mean of (dHmean/dx)^2^ 		|	 m^2^ km^-2^   |  32  |
+| Dh_over_Dy_square 	|	mean of (dHmean/dy)^2^	                |     m^2^ km^-2^     |  32  |
+| Water_Percentage 		|	Land/Sea mask 	|				 % water |  8  |
+| Urbanisation 		|	Fraction of urbanisation  	|		 % city  |   8  |
 
 2 of the files (Urbanisation, Water_Percentage) are from a NOAA/Navy Global95 dataset and are not related to GTOPO30 at all.  
 

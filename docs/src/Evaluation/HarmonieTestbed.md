@@ -122,43 +122,43 @@ The changes to msms/harmonie.pm are controlled with a special syntax, like in th
 The harmonie.pm key determines which keyword to find and replace. The list guarantees that the same keywords are not changed in e.g. ecf/config_exp.h .
 
 ## Testbed members
-||# Name||# DOMAIN||# DTGs||# Dependencies||# Description||# Active in||
-||AROME                  ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 2-D decomposition                  ||CY43        ||
-||AROME_1D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 1-D decomposition                  ||CY43        ||
-||AROME_2D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 2-D decomposition                  ||            ||
-||AROME_3DVAR            ||IRELAND150     ||!2017093018-!2017100100 ||None           ||AROME_3DVAR                                   ||CY43        ||
-||AROME_3DVAR_MARSOBS    ||IRELAND150     ||!2017093018-!2017100100 ||None           ||AROME_3DVAR including non-conventional observations from MARS ||CY43        ||
-||AROME_3DVAR_2P         ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME_3DVAR with two patches                  ||            ||
-||AROME_4DVAR            ||SCANDINAVIA    ||!2017093021-!2017100100 ||None           ||AROME_4DVAR                                   ||            ||
-||AROME_BD_ALA           ||TEST_8         ||!2017093018-!2017100100 ||ALARO          ||AROME with ALARO LBCs                         ||            ||
-||AROME_BD_ALA_ARO       ||TEST_2.5       ||!2017093018-!2017100100 ||AROME_BD_ALA   ||AROME with AROME LBCs                         ||            ||
-||AROME_BD_ARO           ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME with AROME LBCs, no IO-server           ||CY43        ||
-||AROME_BD_ARO_IO_SERV   ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME with AROME LBCs, with IO-server         ||CY43        ||
-||AROME_BD_ARO_2P        ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME two patches with AROME LBCs             ||            ||
-||AROME_CLIMSIM          ||TEST_11        ||!2012053100-!2012060200 ||None           ||AROME climate simulation                      ||            ||
-||AROME_EKF              ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with CANARI_EKF_SURFEX                  ||            ||
-||AROME_EPS_COMP         ||TEST_11        ||!2017093018-!2017100100 ||HarmonEPS      ||AROME_3DVAR comparison of EPS control         ||CY43        ||
-||AROME_MUSC             ||TEST_11        ||!2017093018-!2017100100 ||AROME          ||AROME MUSC                                    ||CY43        ||
-||AROME_NONE             ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME no SFC/UA DA                            ||            ||
-||AROME_NONE_2D          ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME no SFC/UA DA                            ||            ||
-||AROME_NONE_BD_ALA_NONE ||TEST_8         ||!2017093018-!2017100100 ||ALARO_NONE     ||AROME no SFC/UA DA with ALARO LBCs            ||            ||
-||AROME_NONE_BD_ARO_NONE ||TEST_8         ||!2017093018-!2017100100 ||AROME_NONE     ||AROME no SFC/UA DA with AROME LBCs            ||            ||
-||ARONE_JB               ||TEST_11        ||!2017093018-!2017100100 ||None           ||Generation of JB statistics                   ||CY43        ||
-||HarmonEPS              ||TEST_11        ||!2017093018-!2017100100 ||AROME_EPS_COMP ||HarmonEPS                                     ||CY43        ||
-||HarmonEPS_IFSENSBD     ||TEST_11        ||!2019111021-!2019111103 ||AROME_EPS_COMP ||HarmonEPS with IFSENS boundaries              ||CY43        ||
-||ALARO1_3DVAR_OLD       ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO1 with 3DVAR and old_surface             ||            ||
-||ALARO_1D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with 1-D decomposition                  ||            ||
-||ALARO_2D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with 2-D decomposition                  ||            ||
-||ALARO_3DVAR_OLD        ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO_3DVAR with old_surface                  ||            ||
-||ALARO_EKF              ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with CANARI_EKF_SURFEX                  ||            ||
-||ALARO_EPS_COMP         ||TEST_11        ||!2017093018-!2017100100 || ???           ||ALARO EPS?                                    ||            ||
-||ALARO_MF_60            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with VLEV=MF_60                         ||            ||
-||ALARO_MUSC             ||TEST_11        ||!2017093018-!2017100100 ||ALARO          ||ALARO MUSC                                    ||            ||
-||ALARO_NH_1D            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with NH dynamics and 1-D decomposition  ||            ||
-||ALARO_NH_2D            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with NH dynamics and 2-D decomposition  ||            ||
-||ALARO_NONE             ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with no SFC/UA DA                       ||            ||
-||ALARO_OLD              ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with old_surface                        ||            ||
-||ALARO_OLD_MUSC         ||TEST_11        ||!2017093018-!2017100100 ||ALARO          ||ALARO MUSC with old_surface                   ||            ||
+|# Name|# DOMAIN|# DTGs|# Dependencies|# Description|# Active in|
+|AROME                  |TEST_11        |!2017093018-!2017100100 |None           |AROME with 2-D decomposition                  |CY43        |
+|AROME_1D               |TEST_11        |!2017093018-!2017100100 |None           |AROME with 1-D decomposition                  |CY43        |
+|AROME_2D               |TEST_11        |!2017093018-!2017100100 |None           |AROME with 2-D decomposition                  |            |
+|AROME_3DVAR            |IRELAND150     |!2017093018-!2017100100 |None           |AROME_3DVAR                                   |CY43        |
+|AROME_3DVAR_MARSOBS    |IRELAND150     |!2017093018-!2017100100 |None           |AROME_3DVAR including non-conventional observations from MARS |CY43        |
+|AROME_3DVAR_2P         |TEST_11        |!2017093018-!2017100100 |None           |AROME_3DVAR with two patches                  |            |
+|AROME_4DVAR            |SCANDINAVIA    |!2017093021-!2017100100 |None           |AROME_4DVAR                                   |            |
+|AROME_BD_ALA           |TEST_8         |!2017093018-!2017100100 |ALARO          |AROME with ALARO LBCs                         |            |
+|AROME_BD_ALA_ARO       |TEST_2.5       |!2017093018-!2017100100 |AROME_BD_ALA   |AROME with AROME LBCs                         |            |
+|AROME_BD_ARO           |TEST_8         |!2017093018-!2017100100 |AROME          |AROME with AROME LBCs, no IO-server           |CY43        |
+|AROME_BD_ARO_IO_SERV   |TEST_8         |!2017093018-!2017100100 |AROME          |AROME with AROME LBCs, with IO-server         |CY43        |
+|AROME_BD_ARO_2P        |TEST_8         |!2017093018-!2017100100 |AROME          |AROME two patches with AROME LBCs             |            |
+|AROME_CLIMSIM          |TEST_11        |!2012053100-!2012060200 |None           |AROME climate simulation                      |            |
+|AROME_EKF              |TEST_11        |!2017093018-!2017100100 |None           |AROME with CANARI_EKF_SURFEX                  |            |
+|AROME_EPS_COMP         |TEST_11        |!2017093018-!2017100100 |HarmonEPS      |AROME_3DVAR comparison of EPS control         |CY43        |
+|AROME_MUSC             |TEST_11        |!2017093018-!2017100100 |AROME          |AROME MUSC                                    |CY43        |
+|AROME_NONE             |TEST_11        |!2017093018-!2017100100 |None           |AROME no SFC/UA DA                            |            |
+|AROME_NONE_2D          |TEST_11        |!2017093018-!2017100100 |None           |AROME no SFC/UA DA                            |            |
+|AROME_NONE_BD_ALA_NONE |TEST_8         |!2017093018-!2017100100 |ALARO_NONE     |AROME no SFC/UA DA with ALARO LBCs            |            |
+|AROME_NONE_BD_ARO_NONE |TEST_8         |!2017093018-!2017100100 |AROME_NONE     |AROME no SFC/UA DA with AROME LBCs            |            |
+|ARONE_JB               |TEST_11        |!2017093018-!2017100100 |None           |Generation of JB statistics                   |CY43        |
+|HarmonEPS              |TEST_11        |!2017093018-!2017100100 |AROME_EPS_COMP |HarmonEPS                                     |CY43        |
+|HarmonEPS_IFSENSBD     |TEST_11        |!2019111021-!2019111103 |AROME_EPS_COMP |HarmonEPS with IFSENS boundaries              |CY43        |
+|ALARO1_3DVAR_OLD       |TEST_11        |!2017093018-!2017100100 |None           |ALARO1 with 3DVAR and old_surface             |            |
+|ALARO_1D               |TEST_11        |!2017093018-!2017100100 |None           |ALARO with 1-D decomposition                  |            |
+|ALARO_2D               |TEST_11        |!2017093018-!2017100100 |None           |ALARO with 2-D decomposition                  |            |
+|ALARO_3DVAR_OLD        |TEST_11        |!2017093018-!2017100100 |None           |ALARO_3DVAR with old_surface                  |            |
+|ALARO_EKF              |TEST_11        |!2017093018-!2017100100 |None           |ALARO with CANARI_EKF_SURFEX                  |            |
+|ALARO_EPS_COMP         |TEST_11        |!2017093018-!2017100100 | ???           |ALARO EPS?                                    |            |
+|ALARO_MF_60            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with VLEV=MF_60                         |            |
+|ALARO_MUSC             |TEST_11        |!2017093018-!2017100100 |ALARO          |ALARO MUSC                                    |            |
+|ALARO_NH_1D            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with NH dynamics and 1-D decomposition  |            |
+|ALARO_NH_2D            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with NH dynamics and 2-D decomposition  |            |
+|ALARO_NONE             |TEST_11        |!2017093018-!2017100100 |None           |ALARO with no SFC/UA DA                       |            |
+|ALARO_OLD              |TEST_11        |!2017093018-!2017100100 |None           |ALARO with old_surface                        |            |
+|ALARO_OLD_MUSC         |TEST_11        |!2017093018-!2017100100 |ALARO          |ALARO MUSC with old_surface                   |            |
 
 ## Testbed domains
 

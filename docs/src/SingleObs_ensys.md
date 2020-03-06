@@ -1,11 +1,11 @@
 
 ==
-#  Single observation impact experiment 
+# Single observation impact experiment 
 
-## **General**
+## General
 The results of single observation impact experiment provide useful information of the observation operator and error statistics. Among others, it is a useful tool for diagnosing background error statistics. The procedure decribed below is the recommended one and it has been tested on HARMONIE cy38b1.1.beta1, from which version it is applicable. It is intended to replace [the older and more complicated procedure for carrying out single observation impact experiments](HarmonieSystemDocumentation/SingleObs). The illustration below with the new system is for a AROME domain covering Denmark (DKCOEXP). One single temperature observation 1K warmer than the corresponding background value and with and observation error standard deviation of 1 K is placed in the center of the domain.
 
-## **Illustrative example of single observation impact experiment on ecgb/cca, for area DKCOEXP**
+## Illustrative example of single observation impact experiment on ecgb/cca, for area DKCOEXP
       1. create hm_home/38h12_sinob directory. Then cd $HOME/hm_home/38h12_sinob.
       1. create experiment by typing '~hlam/Harmonie setup -r ~hlam/harmonie_release/tags/harmonie-38h1.2.beta.1 -h ecgb-cca'.
       1. Edit ecf/config_exp.h  as follows:

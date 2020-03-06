@@ -1,6 +1,6 @@
 
 
-## **The Harmonie main script**
+## The Harmonie main script
 
 The Harmonie script is the main user interface to the harmonie system. It is used to setup, start, check and control your experiment and environment. Below follows the most useful commands. There are other commands inherited from the HIRLAM environment that may or may not work. For a full list check
 [Start](Harmonie/scr/Start?rev=release-43h2.beta.3),

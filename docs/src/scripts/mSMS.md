@@ -85,7 +85,7 @@ All tasks emit [[Color(blue, signals)]] at certain stages of their execution, na
 
 The various colors that the boxes get in the GUI correspond to the current state of the actual family or task. The codes are as follows:
 
-|| [[Color2(blue, white, queued)]] || [[Color2(cyan, black, submitted)]] || [[Color2(green, black, active)]] || [[Color2(yellow, black, complete)]] || [[Color2(red, white, aborted)]] || [[Color2(orange, black, suspended)]] || [[Color2(brown, white, unknown)]] || [[Color2(magenta, black, halted)]] || [[Color2(black, white, shutdown)]] ||
+| [[Color2(blue, white, queued)]] | [[Color2(cyan, black, submitted)]] | [[Color2(green, black, active)]] | [[Color2(yellow, black, complete)]] | [[Color2(red, white, aborted)]] | [[Color2(orange, black, suspended)]] | [[Color2(brown, white, unknown)]] | [[Color2(magenta, black, halted)]] | [[Color2(black, white, shutdown)]] |
 
 
 ### # mini-SMS client/server communication

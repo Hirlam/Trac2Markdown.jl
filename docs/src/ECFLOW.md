@@ -1,6 +1,6 @@
 
 
-## ** Running Harmonie under ecFlow**
+## Running Harmonie under ecFlow
 
 ## Introduction
 

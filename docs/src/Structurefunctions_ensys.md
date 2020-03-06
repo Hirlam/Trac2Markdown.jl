@@ -1,8 +1,8 @@
 
 ==
-#  Derivation of Structure Functions 
+# Derivation of Structure Functions 
 
-## **General**
+## General
 For each new model domain, in order to carry out upper air data assimilation (3DVAR or 4DVAR) one needs to generate background error covariances (generally referred to as structure functions). 
 Within the HARMONIE community the derivation has been based on data generated with ensemble HARMONIE forecasts which downscale from ECMWF EPS runs. To alleviate spin-up issues the HARMONIE 
 forecasts are run up to 6 hours. Using the ECMWF LBC data, 6h HARMONIE ensemble forecasts are initiated from ECMWF 6h forecasts daily from 00 UTC and 12 UTC, with ECMWF forecasts as initial 
@@ -16,7 +16,7 @@ Note that under certain circumstances there is a method to technically run 3/4DV
 
 The procedure for generating structure functions from an ensemble of forecasts is described below for a AROME setup with 2.5 km horizontal resolution, 65 vertical level and a domain covering Denmark. The experiment is run for a winter-period of 10 days followed by a summer-period of 10 days on the ECMWF ecgb/cca computing system. Forecasts are run twice a day. In the section below detailed instructions on how to generate the structure functions are give..The other sections deals with how to diagnose the structure functions and how to interface the newly generated structure functions into the data assimilation. Finally something about recent and ongoing work and future development plans.
 
-## **Generating background error statistics (using 40h1)**
+## Generating background error statistics (using 40h1)
 The following instructions are valid for trunk and any 40h1.2 tags that have been created. These instructions will only work at ECMWF on ecgate and cca.
 ### New domain setup
 If you are creating structure functions for a new (or you are not sure):
@@ -115,7 +115,7 @@ cd $HOME/hm_home/newDomJb
 ```bash
 qsub Festat_offline
 ```
-## **Generating background error statistics (using 38h1)**
+## Generating background error statistics (using 38h1)
   1. Preparation of one mini-sms ensemble experiment for running 4 downscaled 6h forecasts. 
      1. On ecgb $HOME directory create hm_home/your_exp directory. Then cd $HOME/hm_home/your_exp.
      1. Create experiment by typing '~hlam/Harmonie setup -r ~hlam/harmonie_release/tags/harmonie-38h1.2' if you e.g. run harmonie-38h1.2.
@@ -149,7 +149,7 @@ qsub Festat_offline
    ~hlam/Harmonie start DTG# 2012070106 DTGEND2012071518 LL=06
 ``` 
   1. Taking care of results. After that both the first and the second part of the mini-sms ensemble experiment have finished the resulting background error statistics (structure functions will be found on cca:$SCRATCH/hm_home/your_exp/archive/extract/. The name of the files are stab_your_exp_2012070106_160.bal.gz, stab_your_exp_2012070106_160.cv.gz and stab_your_exp_2012070106_160.cvt.gz. (There are also files called  stab_your_exp_2012070106_80.bal.gz,stab_your_exp_2012070106_80.cv.gz and stab_your_exp_2012070106_80.cvt.gz, but these are based on forecast differences of the January period only and should be ignored).
-## **Generating background error statistics with EDA cycling (using 38h1)**
+## Generating background error statistics with EDA cycling (using 38h1)
   1. Preparation of one mini-sms ensemble experiment for running 8 EDA member 6h forecast cycling with 3DVAR 
      1. On ecgb $HOME directory create ~/hm_home/your_exp directory. Then cd $HOME/hm_home/your_exp.
      1. Create experiment by typing '~hlam/Harmonie setup -r ~hlam/harmonie_release/tags/harmonie-38h1.2' if you e.g. run harmonie-38h1.2.
@@ -178,7 +178,7 @@ qsub Festat_offline
   1. After the EDA runs have finished, the resulting background error statistics (structure functions) will be found on cca:$SCRATCH/hm_home/your_exp/archive/extract/. The name of the files are stab_your_exp_2013081500_320.bal.gz, stab_your_exp_2013081500_320.cv.gz and stab_your_exp_2013081500_320.cvt.gz. 
 
 
-## **Background error statistics on cca with EDA cycling for big areas**
+## Background error statistics on cca with EDA cycling for big areas
 
 If you want to compute the B-matrix (structure functions) for a big integration domain using FESTAT program you need to adjust the resources in ''Env_submit'' and in the script ''Festat''
  

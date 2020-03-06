@@ -1,6 +1,6 @@
 
 
-## **Screening**
+## Screening
 
 ## Introduction
 
@@ -72,23 +72,23 @@ A valuable summary about screening decisions can be found in HM_Date_YYYYMMDDHH.
 
 
 Screening Events listed under "EVENT SUMMARY OF REPORTS:"
-||# =|| Description                              =||
-||  1 ||NO DATA IN THE REPORT                       ||
-||  2 ||ALL DATA REJECTED                           ||
-||  3 ||BAD REPORTING PRACTICE                      ||
-||  4 ||REJECTED DUE TO RDB FLAG                    ||
-||  5 ||ACTIVATED DUE TO RDB FLAG                   ||
-||  6 ||ACTIVATED BY WHITELIST                      ||
-||  7 ||HORIZONTAL POSITION OUT OF RANGE            ||
-||  8 ||VERTICAL POSITION OUT OF RANGE              ||
-||  9 ||TIME OUT OF RANGE                           ||
-|| 10 ||REDUNDANT REPORT                            ||
-|| 11 ||REPORT OVER LAND                            ||
-|| 12 ||REPORT OVER SEA                             ||
-|| 13 ||MISSING STATION ALTITUDE                    ||
-|| 14 ||MODEL SUR. TOO FAR FROM STAT. ALT.          ||
-|| 15 ||REPORT REJECTED THROUGH THE NAMELIST        ||
-|| 16 ||FAILED QUALITY CONTROL                      ||
+|# =| Description                              =|
+|  1 |NO DATA IN THE REPORT                       |
+|  2 |ALL DATA REJECTED                           |
+|  3 |BAD REPORTING PRACTICE                      |
+|  4 |REJECTED DUE TO RDB FLAG                    |
+|  5 |ACTIVATED DUE TO RDB FLAG                   |
+|  6 |ACTIVATED BY WHITELIST                      |
+|  7 |HORIZONTAL POSITION OUT OF RANGE            |
+|  8 |VERTICAL POSITION OUT OF RANGE              |
+|  9 |TIME OUT OF RANGE                           |
+| 10 |REDUNDANT REPORT                            |
+| 11 |REPORT OVER LAND                            |
+| 12 |REPORT OVER SEA                             |
+| 13 |MISSING STATION ALTITUDE                    |
+| 14 |MODEL SUR. TOO FAR FROM STAT. ALT.          |
+| 15 |REPORT REJECTED THROUGH THE NAMELIST        |
+| 16 |FAILED QUALITY CONTROL                      |
 
 
 

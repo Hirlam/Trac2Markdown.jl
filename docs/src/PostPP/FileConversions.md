@@ -33,7 +33,7 @@ By default, **Makegrib** removes the biperiodic zone from FA files and creates G
 
 Forecast output is converted from FA to GRIB in [Makegrib](Harmonie/scr/Makegrib?rev=release-43h2.beta.3) using the following command:
 ```bash
-  $MPPGL $BINDIR/gl_grib_api -p $1 -o $2 -n namelist_makegrib${MG} || exit
+  $MPPGL $BINDIR/gl_grib_api -p $1 -o $2 -n namelist_makegrib${MG} | exit
 ```
 where 
  * $1 is the input HARMONIE FA-file (ICSMH${HARM}+${ffff}, $HARM is the 4-char experiment identifier, $ffff is the forecast step)

@@ -60,11 +60,11 @@ Listing of GRIB/ASIMOF/FA/LFI files.
 ```
 where FILE is in GRIB/ASIMOF/FA/LFI format
 
-||-l || input format is LFI      ||
-||-f || input format is FA       ||
-||   || -l and -f are equivalent ||
-||-g || print GRIB/FA/LFI header ||
-||-m ||print min/mean/max values ||
+|-l | input format is LFI      |
+|-f | input format is FA       |
+|   | -l and -f are equivalent |
+|-g | print GRIB/FA/LFI header |
+|-m |print min/mean/max values |
 
 ## GRIB/FA/LFI file conversion
 
@@ -75,8 +75,8 @@ gl_grib_api [-c] [-p] FILE [ -o OUTPUT_FILE] [ -n NAMELIST_FILE]
 ```
 
 where 
-||-c ||converts the full field (including extension zone) from FA to GRIB1 ||
-||-p ||converts field excluding the extension zone ("p" as in physical domain) from FA to GRIB1 ||
+|-c |converts the full field (including extension zone) from FA to GRIB1 |
+|-p |converts field excluding the extension zone ("p" as in physical domain) from FA to GRIB1 |
 
 The FA/LFI to GRIB mapping is done in a table defined by a [translation table](Harmonie/util/gl_grib_api/inc/trans_tab.h?rev=release-43h2.beta.3)
 
@@ -457,7 +457,7 @@ domain_prop_grib_api is used do extract various properties from a file.
 
 
 
-Climate:  $MPPGL $BINDIR/domain_prop_grib_api -DOMAIN_CHECK $LCLIMDIR/m$M1 -f || \
+Climate:  $MPPGL $BINDIR/domain_prop_grib_api -DOMAIN_CHECK $LCLIMDIR/m$M1 -f | \
 
 ### Check an existing domain with a namelist specification
 

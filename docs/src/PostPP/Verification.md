@@ -3,7 +3,7 @@
 
 
 
-## **Introduction**
+## Introduction
 
 The verification package in HARMONIE is designed to be a self contained stand alone package dealing with pre-extracted model and observational data. The package calculates several standard verification scores such as:
 
@@ -38,7 +38,7 @@ Other examples on how products from the verification package looks like today ca
 
 In the following we describe the different parts of the verification package. For preparation of verification data read more [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
 
-## **Getting and compiling the code**
+## Getting and compiling the code
 
 The verification code can be fetched from the hirlam code repository by
 
@@ -75,7 +75,7 @@ gmake ARCH=YOUR_ARCH
 
 The package has no external dependencies but relies on gnuplot for generation of the graphics.
 
-## **The verification step by step**
+## The verification step by step
 
 The strategy in the verification is to separate the data input from the calculations of the different scores. This allows as to go through the data several times using different filtering criteria. Of course keeping everything in memory sets a limit on how much data one can handle at the same time. In the way it's used in HARMONIE a typical sequence is:
 
@@ -180,7 +180,7 @@ Data is stored by:
 
  Early versions of the package was based on the ECMWF graphics package MAGICS. Due to the poor portability of MAGICS the package now a days produces text files that are parsed through a [script](monitor/scr/verobs2gnuplot.pl) that produces plots using gnuplot. It may not be the most elegant graphics package, but it is available almost everywhere. Some verification are also produced in form of tables. The contingency tables are parsed through [contingency2gnuplot.pl](monitor/scr/contingency2gnuplot.pl) to produce skill scores.
 
-## **HARMONIE user interface**
+## HARMONIE user interface
 
 In HARMONIE a set of scripts is build around the code for generation of plots and building the web page. There are two main scripts [Run_verobs_surface](monitor/scr/Run_verobs_surface) for verification of surface variables and [Run_verobs_temp](monitor/scr/Run_verobs_temp) for verification of radio sonde data. Both of them need a configuration file, Env_exp, as input:
 
@@ -630,7 +630,7 @@ Finally we can also do the selection based on meteorological criteria. In the ex
 
 All the above mentioned selections can of course be combined in any way you can imagine.
 
-## **WebgraF**
+## WebgraF
 
 One idea with the HARMONIE verification packages is that it should be easy to share you results with others. This is where WebgraF comes in. It was originally written to mimic the ECMWF "chart" facility like [here](http://www.ecmwf.int/research/demeter/d/inspect/catalog/research/era/diagnostics/fluxes/HBV/). The ECMWF solution is a perl based server solution and needs some installation and WebgraF is a javascript running locally which makes it more portable. The idea with WebgraF is that each page is defined by a simple definition file which spans the space of the menu axes on the page. 
 

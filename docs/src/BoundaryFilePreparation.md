@@ -1,5 +1,5 @@
 
-## **Preparation of initial and boundary files**
+## Preparation of initial and boundary files
 
 ## Introduction
 

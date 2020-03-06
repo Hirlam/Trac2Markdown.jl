@@ -49,11 +49,11 @@ Listing of GRIB/ASIMOF/FA/LFI files.
 ```
 where FILE is in GRIB/ASIMOF/FA/LFI format
 
-||-l || input format is LFI      ||
-||-f || input format is FA       ||
-||   || -l and -f are equivalent ||
-||-g || print GRIB/FA/LFI header ||
-||-m ||print min/mean/max values ||
+|-l | input format is LFI      |
+|-f | input format is FA       |
+|   | -l and -f are equivalent |
+|-g | print GRIB/FA/LFI header |
+|-m |print min/mean/max values |
 
 ## GRIB/FA/LFI file conversion
 
@@ -62,10 +62,10 @@ gl [-c|-nc|-p] [-ufn] FILE [ -o OUTPUT_FILE] [ -n NAMELIST_FILE]
 ```
 
 where 
-||-c ||converts the full field (including extension zone) from FA to GRIB ||
-||-p ||converts the field excluding the extension zone ("p" as in physical domain) from FA to GRIB ||
-||-nc ||converts the field excluding the extension zone ("p" as in physical domain) from FA to NETCDF ||
-||-ufn || Use the FA names in the output NETCDF file instead of the CF convention names ||
+|-c |converts the full field (including extension zone) from FA to GRIB |
+|-p |converts the field excluding the extension zone ("p" as in physical domain) from FA to GRIB |
+|-nc |converts the field excluding the extension zone ("p" as in physical domain) from FA to NETCDF |
+|-ufn | Use the FA names in the output NETCDF file instead of the CF convention names |
 
 The FA/LFI to GRIB mapping is done in a table defined by a [translation table](Harmonie/util/gl/inc/trans_tab.h?rev=release-43h2.beta.3)
 

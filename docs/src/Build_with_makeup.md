@@ -242,17 +242,17 @@ The trick to manage this with MAKEUP is to create a bunch of symbolic links poin
 
 ### Specific ODB-libraries, their meaning & the source files included
 
-|| **Library**   || **Description**                                 || **Source files**                   ||
-|| libodb          || ODB core library                                  || lib/ & aux/ : [a-z]*.F90 [a-z]*.c    ||
-||                 ||                                                           || module/ & pandor/module : *.F90      ||
-|| libodbport      || Interface between IFS (ARPEGE/ALADIN/AROME) & ODB || cma2odb/ & bufr2odb/ : *.F90         ||
-||                 || -- also contains BUFR2ODB routines                        || pandor/extrtovs & pandor/fcq & pandor/mandalay : *.F90 ||
-|| libodbdummy     || ODB-related dummies                                       || lib/   : [A-Z]*.F90 [A-Z]*.c         ||
-|| libodbmain      || ODB tools, main programs (C & Fortran)                    || tools/ : [A-Z]*.F90 *.c *.F          ||
-|| libPREODB       || ERA40 database (not needed, but good for debugging)       || ddl.PREODB/*.sql  , ddl.PREODB/*.ddl ||
-|| libCCMA         || Compressed Central Memory Array database (minimization)   || ddl.CCMA/*.sql    , ddl.CCMA/*.ddl   ||
-|| libECMA         || Extended Central Memory Array database (obs. screening)   || ddl.ECMA/*.sql    , ddl.ECMA/*.ddl   ||
-|| libECMASCR      || Carbon copy of ECMA for obs. load balancing between PEs || ddl.ECMASCR/*.sql , ddl.ECMASCR/*.ddl||
+| **Library**   | **Description**                                 | **Source files**                   |
+| libodb          | ODB core library                                  | lib/ & aux/ : [a-z]*.F90 [a-z]*.c    |
+|                 |                                                           | module/ & pandor/module : *.F90      |
+| libodbport      | Interface between IFS (ARPEGE/ALADIN/AROME) & ODB | cma2odb/ & bufr2odb/ : *.F90         |
+|                 | -- also contains BUFR2ODB routines                        | pandor/extrtovs & pandor/fcq & pandor/mandalay : *.F90 |
+| libodbdummy     | ODB-related dummies                                       | lib/   : [A-Z]*.F90 [A-Z]*.c         |
+| libodbmain      | ODB tools, main programs (C & Fortran)                    | tools/ : [A-Z]*.F90 *.c *.F          |
+| libPREODB       | ERA40 database (not needed, but good for debugging)       | ddl.PREODB/*.sql  , ddl.PREODB/*.ddl |
+| libCCMA         | Compressed Central Memory Array database (minimization)   | ddl.CCMA/*.sql    , ddl.CCMA/*.ddl   |
+| libECMA         | Extended Central Memory Array database (obs. screening)   | ddl.ECMA/*.sql    , ddl.ECMA/*.ddl   |
+| libECMASCR      | Carbon copy of ECMA for obs. load balancing between PEs | ddl.ECMASCR/*.sql , ddl.ECMASCR/*.ddl|
 
 
 From the file $HARMONIE_MAKEUP/configure you can also find how different files are nearly hand-picked for particular libraries. Search for block
@@ -269,11 +269,11 @@ From the file $HARMONIE_MAKEUP/configure you can also find how different files a
                    cma2odb|bufr2odb)                           files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    pandor/extrtovs|pandor/fcq|pandor/mandalay) files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    esac ;;
-         odbdummy) [[ "$i" !# "lib"  ]] || files$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
-          odbmain) [[ "$i" !# "tools"]] || files$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
+         odbdummy) [[ "$i" !# "lib"  ]] | files$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
+          odbmain) [[ "$i" !# "tools"]] | files$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
      esac
  elif [[ "$d" = @($case_odbs)]] ; then
-   [[ "$i" != "ddl.$d"]] || {
+   [[ "$i" != "ddl.$d"]] | {
        files=$(\ls -C1 *.ddl *.sql 2>/dev/null)
        mkdepend=$CMDROOT/sfmakedepend_ODB
    }

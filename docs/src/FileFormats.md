@@ -1,6 +1,6 @@
 
 
-## **File formats in HARMONIE**
+## File formats in HARMONIE
 
 ## Introduction
 

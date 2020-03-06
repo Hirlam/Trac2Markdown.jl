@@ -1,6 +1,6 @@
 
 
-## **Controlling the namelists in HARMONIE**
+## Controlling the namelists in HARMONIE
 
 ## Introduction
 

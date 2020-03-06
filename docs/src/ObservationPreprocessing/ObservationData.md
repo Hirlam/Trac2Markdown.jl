@@ -47,9 +47,9 @@ The variables above denote
 @@ -150,6 +166,10 @@
      #--- MARS queue
      if [ -f retrin]; then
-       mars retrin || { echo "MARS failed" ; exit 1 ; }
+       mars retrin | { echo "MARS failed" ; exit 1 ; }
 +      if [ $AIRCRAFT_OBS -eq 1];then
-+        mars filtin || { echo "MARS FILTER failed" ; exit 1 ; }
++        mars filtin | { echo "MARS FILTER failed" ; exit 1 ; }
 +        cat ${BUFRFILE}ai.146 >> $BUFRFILE
 +      fi
      else

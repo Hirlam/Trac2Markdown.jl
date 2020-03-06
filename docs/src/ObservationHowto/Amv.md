@@ -56,21 +56,21 @@ Depending on the satellite and channel you may have to add entries to the NADIRS
  * Bator defaults for MSG AMV data are set in [src/odb/pandor/module/bator_init_mod.F90](Harmonie/src/odb/pandor/module/bator_init_mod.F90#L648?rev=release-43h2.beta.3)
 ## Source code
 The reading of BUFR AMVs is taken care of by the [subroutine in [source:Harmonie/src/odb/pandor/module/bator_decodbufr_mod.F90?rev=release-43h2.beta.3 src/odb/pandor/module/bator_decodbufr_mod.F90](geowind]). This subroutine reads the following parameters defined in the param.cfg file:
-||# Name||# Description||
-|| Date and time     || derived from the tconfig(004001) - assumes month, day, hour and minute are in consecutive entries in the values array ||
-|| Location          || latitude and longitude are read from tconfig(005001) and tconfig(006001)                                              ||
-|| Satellite         || the satellite identifier is read from tconfig(001007)                                                                 ||
-|| Origin. center    || the originating center (of the AMV) is read from tconfig(001031)                                                      ||
-|| Compu. method     || the wind computation method (type of channel + cloudy/clear if WV) is read from tconfig(002023)                       ||
-|| Derivation method || the height assignment method is read from tconfig(002163) and the tracking method from tconfig (002164)               ||
-|| Channel frequency || the centre frequency of the satellite channel is read from tconfig(002153)                                            ||
-|| Height (pressure) || the height of the AMV observation is read from tconfig(007004)                                                        ||
-|| Wind              || the wind speed and direction  are read from tconfig(011002) and tconfig(011001)                                       ||
-|| Temperature       || the coldest cluster temperature is read from tconfig(012071)                                                          ||
-|| FG QI             || The QI (including FG consistency) for MSG AMVs is read from the first location where descriptor 033007 appears        ||
-|| noFG-QI           || The FG-independent QI for MSG AMVs is read from the first location where 033007 appears + offset(1)=24                ||
-|| Sat zenith angle  || the satellite zenith angle is read from tconfig(007024)                                                               ||
-|| Land/sea/coast    || a land/sea/coast qualifier is read from tconfig(008012)                                                               ||
+|# Name|# Description|
+| Date and time     | derived from the tconfig(004001) - assumes month, day, hour and minute are in consecutive entries in the values array |
+| Location          | latitude and longitude are read from tconfig(005001) and tconfig(006001)                                              |
+| Satellite         | the satellite identifier is read from tconfig(001007)                                                                 |
+| Origin. center    | the originating center (of the AMV) is read from tconfig(001031)                                                      |
+| Compu. method     | the wind computation method (type of channel + cloudy/clear if WV) is read from tconfig(002023)                       |
+| Derivation method | the height assignment method is read from tconfig(002163) and the tracking method from tconfig (002164)               |
+| Channel frequency | the centre frequency of the satellite channel is read from tconfig(002153)                                            |
+| Height (pressure) | the height of the AMV observation is read from tconfig(007004)                                                        |
+| Wind              | the wind speed and direction  are read from tconfig(011002) and tconfig(011001)                                       |
+| Temperature       | the coldest cluster temperature is read from tconfig(012071)                                                          |
+| FG QI             | The QI (including FG consistency) for MSG AMVs is read from the first location where descriptor 033007 appears        |
+| noFG-QI           | The FG-independent QI for MSG AMVs is read from the first location where 033007 appears + offset(1)=24                |
+| Sat zenith angle  | the satellite zenith angle is read from tconfig(007024)                                                               |
+| Land/sea/coast    | a land/sea/coast qualifier is read from tconfig(008012)                                                               |
 
 The geowind routine was adapted to handle MSG AMVs from MARS and its module [src/odb/pandor/module/bator_decodbufr_mod.F90](Harmonie/src/odb/pandor/module/bator_decodbufr_mod.F90?rev=release-43h2.beta.3) uploaded to the trunk (Mar 2017) .
 

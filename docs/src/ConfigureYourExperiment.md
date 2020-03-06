@@ -1,5 +1,5 @@
 
-## ** Experiment configuration**
+## Experiment configuration
 
 ## Introduction
 

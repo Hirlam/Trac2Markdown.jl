@@ -1,6 +1,6 @@
 
 
-## **General software requirements**
+## General software requirements
 
 This page outlines, in a general way, the software requirements for compiling HARMONIE on a non-ECMWF platform
 ### Download HARMONIE

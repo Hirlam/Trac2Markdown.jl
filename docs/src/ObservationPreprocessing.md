@@ -2,10 +2,10 @@
 ## Introduction
 The following figure shows different schematic steps in the HARMONIE data assimilation system.  
 It is worth to mention some differences between the observation pre-processing systems used by ECMWF/IFS (IFS), Météo France (MF),HARMONIE, and HIRLAM. Some of these differences are listed below:
-||                           ||# Météo France||# IFS||# HARMONIE||# HIRLAM||
-||# data format/content|| BUFR, but sometimes with own table           || BUFR with WMO code                        || BUFR with WMO code                           || BUFR with WMO code               ||
-||# creation of ODB database|| two steps using oulan and bator              || one step, use of complex package bufr2odb || two steps using oulan and bator              || no ODB for HIRLAM                ||
-||# blacklisting technique|| during the creation of the ODB and screening || (may be) only during screening            || during the creation of the ODB and screening || blacklist files read by hirvda.x ||
+|                           |# Météo France|# IFS|# HARMONIE|# HIRLAM|
+|# data format/content| BUFR, but sometimes with own table           | BUFR with WMO code                        | BUFR with WMO code                           | BUFR with WMO code               |
+|# creation of ODB database| two steps using oulan and bator              | one step, use of complex package bufr2odb | two steps using oulan and bator              | no ODB for HIRLAM                |
+|# blacklisting technique| during the creation of the ODB and screening | (may be) only during screening            | during the creation of the ODB and screening | blacklist files read by hirvda.x |
 
 
 ## Observation file preparation

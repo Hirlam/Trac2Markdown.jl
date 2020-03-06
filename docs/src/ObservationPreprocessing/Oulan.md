@@ -34,53 +34,53 @@ The splitting is done with the following command ($BUFRFILE is a file containing
 ## oulan
 oulan reads (primarily conventional observation) BUFR data and converts them into ASCII format OBSOUL files. Note, **we can make observation selection** in oulan. More details about how to do data selection can be found [here (Randriamampianina, ALADIN/HIRLAM Workshop 2005)](http://owww.met.hu/pages/seminars/ALADIN2005/28_Bp_workshop1n_n_RogerR.ppt)
   1. namelist description: 
-|| **NADIRS**          ||                                                                ||
-||ALANZA=90.,            ||If LZONEA is true then only extract observations south of 90N   ||
-||ALASZA=0.,             ||If LZONEA is true then only extract observations north of 0     ||
-||ALOEZA=-180.,          ||If LZONEA is true then only extract observations west of 180W   ||
-||ALOOZA=180.,           ||If LZONEA is true then only extract observations west of 180E   ||
-||LNEWSYNOPBUFR=.FALSE., ||Process new format BUFR SYNOP **experimental**                ||
-||LNEWSHIPBUFR=.FALSE.,  ||Process new format BUFR SHIP **experimental**                 ||
-||LNEWBUOYBUFR=.FALSE.,  ||Process new format BUFR BUOY **experimental**                 ||
-||LNEWTEMPBUFR=.FALSE.,  ||Process new format BUFR TEMP **experimental**                 ||
-||LACAR=.TRUE.,          ||Process ACARS BUFR data                                         ||
-||LAIREP=.TRUE.,         ||Process AIREP BUFR data                                         ||
-||LAMDAR=.TRUE.,         ||Process AMDAR BUFR data                                         ||
-||LBUOY=.TRUE.,          ||Process BUOY BUFR data                                          || 
-||LEUROPROFIL=.FALSE.,   ||Process European Profiler BUFR data                             || 
-||LPILOT=.TRUE.,         ||Process PILOT BUFR data                                         ||  
-||LRH2Q=.FALSE.,         ||Extract 2m RH from SYNOP, BUOY and TEMP BUFR data               ||
-||LSHIP=.TRUE.,          ||Process SHIP BUFR data                                          ||
-||LSYNOP=.TRUE.,         ||Process SYNOP BUFR data                                         ||
-||LTEMP=.TRUE.,          ||Process TEMP BUFR data                                          ||
-||LTEMPDROP=.TRUE.,      ||Process DROPTEMP BUFR data                                      ||
-||LTEMPSHIP=.TRUE.,      ||Process TEMPSHIP BUFR data                                      ||
-||LTOVSAMSUA=.FALSE.,    ||Process AMSUA data                                              ||
-||LTOVSAMSUB=.FALSE.,    ||Process AMSUB data                                              ||
-||LTOVSHIRS=.FALSE.,     ||Process HIRS data                                               ||
-||LZONEA=.TRUE.,         ||Switch to extract data in defined lat-lon domain (N,S,E,W)      || 
-||NDATE=DDATE,           ||OBSOUL Date                                                     ||
-||NDIFFM1=30,            ||Define analysis window (T-NDIFFM1)                              ||
-||NDIFFM2=300,           ||Define analysis window (T-NDIFFM2)                              ||
-||NDIFFP1=30,            ||Define analysis window (T+NDIFFP1)                              ||
-||NDIFFP2=259,           ||Define analysis window (T+NDIFFP2)                              ||
-||NINIT=0,               ||flag used by oulan to prevent writing if problem is found       || 
-||NRESO=HHOUR,           ||OBSOUL Hour                                                     ||
-|| **NANBOB**          ||Namelist to define number of observations to be extracted       ||
-||NBACAR=750000,         ||Number of ACAR obs                                              ||
-||NBAIREP=750000,        ||Number of AIREP obs                                             ||
-||NBAMDAR=750000,        ||Number of AMDAR obs                                             ||
-||NBBUOY=  4000,         ||Number of BUOY obs                                              ||  
-||NBEUROPROFIL= 15000,   ||Number of European profiler obs                                 || 
-||NBPILOT=  2000,        ||Number of PILOT obs                                             ||  
-||NBSHIP= 30000,         ||Number of SHIP obs                                              || 
-||NBSYNOP= 60000,        ||Number of SYNOP obs                                             ||  
-||NBTEMP=  2000,         ||Number of Land TEMP obs (since r14078)                          || 
-||NBTEMPDROP=  1000,     ||Number of DROPTEMP obs (since r14078)                           ||
-||NBTEMPSHIP=  1000,     ||Number of Ship TEMP obs (since r14078)                          ||
-||NBTOVSAMSUA= 80000,    ||Number of AMSUA obs                                             ||
-||NBTOVSAMSUB= 80000,    ||Number of AMSUB obs                                             ||
-||NBTOVSHIRS=  8000,     ||Number of HIRS obs                                              ||
+| **NADIRS**          |                                                                |
+|ALANZA=90.,            |If LZONEA is true then only extract observations south of 90N   |
+|ALASZA=0.,             |If LZONEA is true then only extract observations north of 0     |
+|ALOEZA=-180.,          |If LZONEA is true then only extract observations west of 180W   |
+|ALOOZA=180.,           |If LZONEA is true then only extract observations west of 180E   |
+|LNEWSYNOPBUFR=.FALSE., |Process new format BUFR SYNOP **experimental**                |
+|LNEWSHIPBUFR=.FALSE.,  |Process new format BUFR SHIP **experimental**                 |
+|LNEWBUOYBUFR=.FALSE.,  |Process new format BUFR BUOY **experimental**                 |
+|LNEWTEMPBUFR=.FALSE.,  |Process new format BUFR TEMP **experimental**                 |
+|LACAR=.TRUE.,          |Process ACARS BUFR data                                         |
+|LAIREP=.TRUE.,         |Process AIREP BUFR data                                         |
+|LAMDAR=.TRUE.,         |Process AMDAR BUFR data                                         |
+|LBUOY=.TRUE.,          |Process BUOY BUFR data                                          | 
+|LEUROPROFIL=.FALSE.,   |Process European Profiler BUFR data                             | 
+|LPILOT=.TRUE.,         |Process PILOT BUFR data                                         |  
+|LRH2Q=.FALSE.,         |Extract 2m RH from SYNOP, BUOY and TEMP BUFR data               |
+|LSHIP=.TRUE.,          |Process SHIP BUFR data                                          |
+|LSYNOP=.TRUE.,         |Process SYNOP BUFR data                                         |
+|LTEMP=.TRUE.,          |Process TEMP BUFR data                                          |
+|LTEMPDROP=.TRUE.,      |Process DROPTEMP BUFR data                                      |
+|LTEMPSHIP=.TRUE.,      |Process TEMPSHIP BUFR data                                      |
+|LTOVSAMSUA=.FALSE.,    |Process AMSUA data                                              |
+|LTOVSAMSUB=.FALSE.,    |Process AMSUB data                                              |
+|LTOVSHIRS=.FALSE.,     |Process HIRS data                                               |
+|LZONEA=.TRUE.,         |Switch to extract data in defined lat-lon domain (N,S,E,W)      | 
+|NDATE=DDATE,           |OBSOUL Date                                                     |
+|NDIFFM1=30,            |Define analysis window (T-NDIFFM1)                              |
+|NDIFFM2=300,           |Define analysis window (T-NDIFFM2)                              |
+|NDIFFP1=30,            |Define analysis window (T+NDIFFP1)                              |
+|NDIFFP2=259,           |Define analysis window (T+NDIFFP2)                              |
+|NINIT=0,               |flag used by oulan to prevent writing if problem is found       | 
+|NRESO=HHOUR,           |OBSOUL Hour                                                     |
+| **NANBOB**          |Namelist to define number of observations to be extracted       |
+|NBACAR=750000,         |Number of ACAR obs                                              |
+|NBAIREP=750000,        |Number of AIREP obs                                             |
+|NBAMDAR=750000,        |Number of AMDAR obs                                             |
+|NBBUOY=  4000,         |Number of BUOY obs                                              |  
+|NBEUROPROFIL= 15000,   |Number of European profiler obs                                 | 
+|NBPILOT=  2000,        |Number of PILOT obs                                             |  
+|NBSHIP= 30000,         |Number of SHIP obs                                              | 
+|NBSYNOP= 60000,        |Number of SYNOP obs                                             |  
+|NBTEMP=  2000,         |Number of Land TEMP obs (since r14078)                          | 
+|NBTEMPDROP=  1000,     |Number of DROPTEMP obs (since r14078)                           |
+|NBTEMPSHIP=  1000,     |Number of Ship TEMP obs (since r14078)                          |
+|NBTOVSAMSUA= 80000,    |Number of AMSUA obs                                             |
+|NBTOVSAMSUB= 80000,    |Number of AMSUB obs                                             |
+|NBTOVSHIRS=  8000,     |Number of HIRS obs                                              |
 
   1. make a namelist
 ```bash

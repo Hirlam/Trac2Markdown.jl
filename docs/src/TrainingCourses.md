@@ -1,7 +1,7 @@
 
-## **Training Courses**
+## Training Courses
 
-## **System Training Courses**
+## System Training Courses
 HIRLAM staff have offered training courses for new users of HARMONIE. Links to presentations and recordings made at these courses are available via the links below:
  * [ALADIN/HIRLAM  Common Training for Data Assimilation Budapest 2019](Training/HarmonieSystemTraining2019)
  * [HARMONIE System Training for verification and validation Copenhagen 2016](Training/HarmonieSystemTraining2016)

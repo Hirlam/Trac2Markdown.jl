@@ -95,23 +95,23 @@ Next time you run your experiment the changed file will be used. You can also ma
 
 ## Directory structure
 On most platforms HARMONIE compiles and produces all its output data under $HM_DATA (defined in ~/hm_home/my_exp/Env_system)
-||# Description||# Location||
-|| Binaries                                 ||$BINDIR (set in ecf/config_exp.h ), default is $HM_DATA/bin                                   ||
-|| libraries, object files & source code    ||$HM_DATA/lib/src if MAKEUP# yes, $HMDATA/gmkpack_build if MAKEUPno                           ||
-|| Scripts                                  ||$HM_DATA/lib/scr                                                                             ||
-|| config files (Env_system & Env_system    ||$HM_DATA/lib linked to files in $HM_DATA/config-sh                                           ||
-|| sms                                      ||$HM_DATA/lib/sms                                                                             ||
-|| msms definitions                         ||$HM_DATA/lib/msms                                                                            ||
-|| Utilities such as gmkpack, gl & monitor  ||$HM_DATA/lib/util                                                                            ||
-|| Climate files                            ||$HM_DATA/climate                                                                             ||
-|| Working directory for the current cycle  ||$HM_DATA/YYYYMMDD_HH                                                                         ||
-|| Archived files                           ||$HM_DATA/archive                                                                             ||
-|| Archived cycle output                    ||$HM_DATA/archive/YYYY/MM/DD/HH                                                               ||
-|| Archived log files                       ||$HM_DATA/archive/log/HM_TaskFamily_YYYYMMDDHH.html where !TaskFamily=!MakeCycleInput,Date,Postprocessing  ||
-|| Task log files                           ||$JOBOUTDIR (set in Env_system) usually $HM_DATA/sms_logfiles                                 ||
-|| Verification data (vfld/vobs/logmonitor) ||$HM_DATA/archive/extract                                                                     ||
-|| Verification (monitor) results           ||$HM_DATA/archive/extract/WebgraF                                                             ||
-|| "Fail" directory                         ||$HM_DATA/YYYYMMDD_HH/Failed_Family_Task (look at ifs.stat, NODE.001_01, fort.4               ||
+|# Description|# Location|
+| Binaries                                 |$BINDIR (set in ecf/config_exp.h ), default is $HM_DATA/bin                                   |
+| libraries, object files & source code    |$HM_DATA/lib/src if MAKEUP# yes, $HMDATA/gmkpack_build if MAKEUPno                           |
+| Scripts                                  |$HM_DATA/lib/scr                                                                             |
+| config files (Env_system & Env_system    |$HM_DATA/lib linked to files in $HM_DATA/config-sh                                           |
+| sms                                      |$HM_DATA/lib/sms                                                                             |
+| msms definitions                         |$HM_DATA/lib/msms                                                                            |
+| Utilities such as gmkpack, gl & monitor  |$HM_DATA/lib/util                                                                            |
+| Climate files                            |$HM_DATA/climate                                                                             |
+| Working directory for the current cycle  |$HM_DATA/YYYYMMDD_HH                                                                         |
+| Archived files                           |$HM_DATA/archive                                                                             |
+| Archived cycle output                    |$HM_DATA/archive/YYYY/MM/DD/HH                                                               |
+| Archived log files                       |$HM_DATA/archive/log/HM_TaskFamily_YYYYMMDDHH.html where !TaskFamily=!MakeCycleInput,Date,Postprocessing  |
+| Task log files                           |$JOBOUTDIR (set in Env_system) usually $HM_DATA/sms_logfiles                                 |
+| Verification data (vfld/vobs/logmonitor) |$HM_DATA/archive/extract                                                                     |
+| Verification (monitor) results           |$HM_DATA/archive/extract/WebgraF                                                             |
+| "Fail" directory                         |$HM_DATA/YYYYMMDD_HH/Failed_Family_Task (look at ifs.stat, NODE.001_01, fort.4               |
 
 ## Archive contents
 $HM_DATA/archive/YYYY/MM/DD/HH is used to store "archived" output from HARMONIE cycles. The level of archiving depends on `ARSTRATEGY` in ecf/config_exp.h . The default setting is medium which will keep the following cycle data:

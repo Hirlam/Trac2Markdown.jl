@@ -25,8 +25,8 @@ where:
  * chaine(j)             = not yet sure about what is read here ...
 Below is an excerpt from the Bator script showing how ''refdata'' is written for conventional (OBSOUL) and AMSUA (BUFR) observation data:
 ```bash
-     if [[ $SYNOP_OBS -eq 1 || $AIRCRAFT_OBS -eq 1 || \
-              $BUOY_OBS -eq 1  || $TEMP_OBS -eq 1     || $PILOT_OBS -eq 1]]; then
+     if [[ $SYNOP_OBS -eq 1 | $AIRCRAFT_OBS -eq 1 | \
+              $BUOY_OBS -eq 1  | $TEMP_OBS -eq 1     | $PILOT_OBS -eq 1]]; then
            echo "conv     OBSOUL   conv             ${YMD} ${HH}">> refdata
 	   ln -sf $WRK/oulan/OBSOUL ./OBSOUL.conv
      fi
