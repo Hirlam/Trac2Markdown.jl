@@ -42,7 +42,7 @@ pages = [
         "Climate Simulation" => "ClimateSimulation.md",
         "Hires topography" => "How_to_use_hires_topography.md"        
     ],        
-    "ECFlow taks" => [
+    "ECFlow tasks" => [
         "Climate" => "ClimateGeneration.md",
         "Observations" => [
             "UseofObservation.md",
