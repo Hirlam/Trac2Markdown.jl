@@ -5,11 +5,9 @@ Writes markdown file to $MARKDOWNDIR, and downloads attachment to $MARKDOWNDIR i
 Returns names of linked wikipages
 """
 function trac2markdown(relurl::String; getattachments=false)
-    @info "reading $relurl"
 
-    # Retrieve page from wiki
-    resp = HTTP.get("$wikiurl$relurl?format=txt")
-    s = String(resp.body)
+    s = isfile("$(Trac2Markdown.WIKIDIR)$relurl") ? getfromwikidir(relurl) : getfromhirlam(relurl)
+          
 
     ## download attachments
     if getattachments     
@@ -38,3 +36,18 @@ function trac2markdown(relurl::String; getattachments=false)
 
     return subwikis
 end
+
+function getfromwikidir(relurl)
+    @info "using $(Trac2Markdown.WIKIDIR)$relurl"
+    return read("$(Trac2Markdown.WIKIDIR)$relurl",String)
+end 
+
+function getfromhirlam(relurl)
+    @info "Retrieving $relurl"
+    resp = HTTP.get("$wikiurl$relurl?format=txt")
+    s = String(resp.body)
+
+    mkpath(dirname(joinpath(Trac2Markdown.WIKIDIR,relurl)))
+    write(joinpath(Trac2Markdown.WIKIDIR,relurl),s)
+    return s
+end 

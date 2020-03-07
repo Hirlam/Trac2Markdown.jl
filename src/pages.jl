@@ -97,7 +97,7 @@ pages = [
         "Screening" => "Screening.md",
         "Structure functions" => "Structurefunctions_ensys.md",
         "DFS" => "DFS.md",         
-        "Analysis" => "Analysis.md", 
+        # "Analysis" => "Analysis.md", 
         "Single Obs" => "SingleObs_ensys.md",
         "Conrad" => "Conrad.md"     
     ]
