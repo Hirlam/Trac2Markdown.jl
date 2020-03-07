@@ -7,7 +7,7 @@ include("../src/pages.jl")
 makedocs(
     sitename = "Harmonie wiki",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"), 
-    pages = pages,
+    pages = ["Home" => "index.md"; pages]
 )
 
 deploydocs(
