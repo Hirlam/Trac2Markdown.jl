@@ -1,6 +1,7 @@
 
 pages = [
     # "Overview" => ["index" => ["index.md"]],
+    "Home" => "index.md",  # this is not a hirlam page
     "Getting Started" => [
         "Running at ECMWF and local" => [
             "Running at ECMWF" => "Harmonie-mSMS.md",
