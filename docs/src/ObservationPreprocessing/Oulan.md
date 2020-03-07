@@ -34,7 +34,9 @@ The splitting is done with the following command ($BUFRFILE is a file containing
 ## oulan
 oulan reads (primarily conventional observation) BUFR data and converts them into ASCII format OBSOUL files. Note, **we can make observation selection** in oulan. More details about how to do data selection can be found [here (Randriamampianina, ALADIN/HIRLAM Workshop 2005)](http://owww.met.hu/pages/seminars/ALADIN2005/28_Bp_workshop1n_n_RogerR.ppt)
   1. namelist description: 
+
 | **NADIRS**          |                                                                |
+| --- | --- |
 |ALANZA=90.,            |If LZONEA is true then only extract observations south of 90N   |
 |ALASZA=0.,             |If LZONEA is true then only extract observations north of 0     |
 |ALOEZA=-180.,          |If LZONEA is true then only extract observations west of 180W   |

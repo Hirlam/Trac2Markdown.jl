@@ -27,7 +27,9 @@ The data base for SURFEX-file preparation is located under HM_CLDATA/PGD
  * clay_fao.* : Soil type distribution
 
 The generation of SURFEX physiography file (**PGD.lfi**) is done in [Prepare_pgd](Harmonie/scr/Prepare_pgd?rev# release-43h2.beta.3). The script creates the namelist OPTIONS.nam based on the ''DOMAIN'' settings in [Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?revrelease-43h2.beta.3). Note that the SURFEX domain is only created over the C+I area. In the namelist we set which scheme that should be activated for each tile.
- | ||||| Tile | 
+
+ | ||| Tile | 
+| --- | --- | --- | --- | --- | --- |
  |# PHYSICS|# Nature|# Sea|# Water|# Town|
  |AROME  |ISBA  |SEAFLX|WATFLX |TEB         |
  |ALARO  |ISBA  |SEAFLX|WATFLX |Town as rock|

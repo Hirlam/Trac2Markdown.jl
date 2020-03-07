@@ -60,7 +60,9 @@ Listing of GRIB/ASIMOF/FA/LFI files.
 ```
 where FILE is in GRIB/ASIMOF/FA/LFI format
 
+
 |-l | input format is LFI      |
+| --- | --- |
 |-f | input format is FA       |
 |   | -l and -f are equivalent |
 |-g | print GRIB/FA/LFI header |
@@ -75,7 +77,9 @@ gl_grib_api [-c] [-p] FILE [ -o OUTPUT_FILE] [ -n NAMELIST_FILE]
 ```
 
 where 
+
 |-c |converts the full field (including extension zone) from FA to GRIB1 |
+| --- | --- |
 |-p |converts field excluding the extension zone ("p" as in physical domain) from FA to GRIB1 |
 
 The FA/LFI to GRIB mapping is done in a table defined by a [translation table](Harmonie/util/gl_grib_api/inc/trans_tab.h?rev=release-43h2.beta.3)

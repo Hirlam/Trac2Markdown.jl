@@ -72,7 +72,9 @@ A valuable summary about screening decisions can be found in HM_Date_YYYYMMDDHH.
 
 
 Screening Events listed under "EVENT SUMMARY OF REPORTS:"
+
 |# =| Description                              =|
+| --- | --- |
 |  1 |NO DATA IN THE REPORT                       |
 |  2 |ALL DATA REJECTED                           |
 |  3 |BAD REPORTING PRACTICE                      |

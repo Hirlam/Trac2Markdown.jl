@@ -35,8 +35,9 @@ end
    # recursively get all subwikis (not used because of potential loops)
    #getall(page) = getall.(trac2markdown.(page))
 
+   pages_noext = getindex.(splitext.(pages),1)
    
-   trac2markdown.(pages, getattachments=false)
+   trac2markdown.(pages_noext, getattachments=false)
 
    # If the above command succeeds we assume download worked
    @test 1==1

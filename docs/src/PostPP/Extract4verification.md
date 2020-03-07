@@ -20,7 +20,9 @@ Before we can run the verification we need to extract data for each geographical
 ## Station lists used by verification
 [Fldextr](Harmonie/scr/Fldextr?rev=release-43h2.beta.3) links  synop.list to $HM_LIB/util/gl_grib_api/scr/allsynop.list  and temp.list to $HM_LIB/util/gl_grib_api/scr/alltemp.list. These station lists are based on information in WMO's ''Publication No. 9, Volume A, Observing Stations 
 and WMO Catalogue of Radiosondes''. This is regularly updated by the WMO. allsynop.list and alltemp.list are updated less frequently. There is also scope to include local stations in these lists that are not included in WMO's ''Publication No. 9''. The following 7-digit station identifiers are available to HIRLAM countries:
+
 |Norway       |!1000000 - !1099999 |
+| --- | --- |
 |Sweden       |!2000000 - !2099999 |
 |Estonia      |!2600000 - !2649999 |
 |Lithuania    |!2650000 - !2699999 |

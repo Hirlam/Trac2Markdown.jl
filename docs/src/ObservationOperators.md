@@ -41,7 +41,9 @@ $HOME/harmonie_releases/branches/refactor/harmonie-42R2/config-sh/Harmonie hop_d
 
 ## HOPOBS: amsua
 Currently there is only one observation type, AMSU-A (HOPOBS=amsua), available for testing with HOP_DRIVER. Alan Geer (ECMWF) has already carried out the refactoring of the HOP code related to AMSU-A observations. A single observation is provided in the ECMA and is used to test the refactoring of the HOP code. To carry out the testing of the amsua refactoring HOPOBS should be set to amsua in ecf/config_exp.h .
+
  |# reportype@hdr|# obstype@hdr|# sensor@hdr|# statid@hdr|# stalt@hdr|# date@hdr|# time@hdr|# degrees(lat)|# degrees(lon)|# report_status@hdr|# datum_status@body|# obsvalue@body|# varno@body|# vertco_type@body|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
  | 1007          | 7           | 3          | '        4' | 832800    | !20140131 | 215914   | -29.5906     | 0.3113       | 1                 | 12                | 173.28        | 119        | 3                |
  | 1007          | 7           | 3          | '        4' | 832800    | !20140131 | 215914   | -29.5906     | 0.3113       | 1                 | 12                | 158.86        | 119        | 3                |
  | 1007          | 7           | 3          | '        4' | 832800    | !20140131 | 215914   | -29.5906     | 0.3113       | 1                 | 3                 | 227.40        | 119        | 3                |

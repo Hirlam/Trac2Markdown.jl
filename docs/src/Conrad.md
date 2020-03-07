@@ -11,7 +11,9 @@ The need for radar data processing software, CONRAD:
 ## NMS details
 
 ### met.no
+
 | Input Format                   | Prorad XML                                                         |
+| --- | --- |
 | Conrad conversion executable   | proradpol2bufrpol.F90                              |
 | Scanning strategy              | Different elevation angles for reflectivity and wind observations. Different resolutions (see data below) |
 | Sensitivity and radar constant | Varies between radars, and might vary in time. Not available directly in the local files for all radars (yet). Note that the definition of these variables also varies between version of the radar software. |
@@ -22,7 +24,9 @@ The need for radar data processing software, CONRAD:
 ### met.ie
 
  * Met Éireann radar data is available in an OPERA BUFR format summarised in the table below:
+
 | Input Format                   | OPERA BUFR                                                         |
+| --- | --- |
 | Conrad conversion executable   | decodemetieopera.F90                                               |
 | Scanning strategy              | Different elevation angles and resolutions for reflectivity and wind observations. |
 | Sensitivity and radar constant | Varies between radars, and might vary in time. Not available directly in the local files for all radars.Currently hard-coded in decodemetieopera.F90 . |
@@ -30,7 +34,9 @@ The need for radar data processing software, CONRAD:
 | QC applied (dBz)               | Information to be added. |
 
  * Met Éireann radar data is now also available in an ODIM hdf5 format summarised in the table below:
+
 | Input Format                   | ODIM hdf5                                                         |
+| --- | --- |
 | Conrad conversion executable   | Not yet tested                                                    |
 | Scanning strategy              | Different elevation angles and resolutions for reflectivity and wind observations. |
 | Sensitivity and radar constant | Varies between radars, and might vary in time. Not available directly in the local files for all radars. |
@@ -42,7 +48,9 @@ The need for radar data processing software, CONRAD:
     - with python based wradlib software: [http://wradlib.bitbucket.org](http://wradlib.bitbucket.org) to produce nice polar plots
 
 ### KNMI
+
 | Input Format                   | KNMI hdf5 |
+| --- | --- |
 | Conrad conversion executable   | read_knmiradar.F90 |
 | Scanning strategy              | The two Dutch radars (De Bilt and Den Helder) have the same scanning strategy for both reflectivities and radial winds. The number of scanning angles is identical for all elevations, but the number of range bins is different. In the reading routine, however, the largest number of bins is used for all elevations with the missing values replaced by zero. |
 | Sensitivity and radar constant | Sensitivity is hard coded in the reading routine and radar constant is read from the local data-files. |

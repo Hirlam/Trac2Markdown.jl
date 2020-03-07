@@ -229,7 +229,9 @@ The topographic input used by the “Aladin” part of Harmonie (from Oro_Mean, 
 The directory $HM_CLDATA/GTOPT030 contains 9 files, 7 of which are derived in some way from the full GTOPO30 topography data set:
 
 
+
 |# File|# Field|# Unit|# Nb bits| 
+| --- | --- | --- | --- |
 | Oro_Mean 		|  Mean orography (mean of Hmean)       |      m     |  16  | 
 | Sigma 			|		Sub-grid std dev of Hmean 	|	 m 	|  16  |
 | Nb_Peaks 			|      Number of sub-grid peaks 	|		|   8   |
