@@ -13,7 +13,7 @@ A number of basic configurations have been defined in [Harmonie_configurations.p
 [config_exp.h](Harmonie/ecf/config_exp.h?rev# release-43h2.beta.3), [include.ass](Harmonie/scr/include.ass?revrelease-43h2.beta.3) and [harmonie.pm](Harmonie/suites/harmonie.pm?rev=release-43h2.beta.3). These configurations are controlled by the script 
 [Harmonie_testbed.pl](Harmonie/scr/Harmonie_testbed.pl?rev=release-43h2.beta.3). The script also contains a number of extra configurations tested from time to time. With the current settings, a test of AROME without 3DVAR would look like.
 
-```bash
+{{{
 
     # AROME no 3D-VAR but default blending of upper air from boundaries
     'AROME' => {
@@ -30,11 +30,11 @@ A number of basic configurations have been defined in [Harmonie_configurations.p
       'BDINT'       => '3',
     },
 
-```
+}}}
 
 The resulting output, in this case from AROME_BD_ARO running at ECMWF would look like:
 
-```bash
+{{{
 
  Using the configuration AROME_BD_ARO
 
@@ -84,11 +84,11 @@ The resulting output, in this case from AROME_BD_ARO running at ECMWF would look
  Change $nprocx# 8; to $nprocx2 
  Change $nprocy# 16; to $nprocy2 
 
-```
+}}}
 
 As seen from the example above the script also changes the submission rules. These rules can be defined, per host, at the end of the script. Other host specific settings may also be defined to allow local changes of the test environment. In Harmonie_testbed.pl we find e.g. changes for ecgate:
 
-```bash
+{{{
 
  'ecgate' => {
    'BINDIR'     => '$HM_COMDAT/'.$EXP.'/bin',
@@ -98,7 +98,7 @@ As seen from the example above the script also changes the submission rules. The
    'CLIMDIR'    => '$HM_DATA/../'.$EXP.'/climate/$DOMAIN/$PHYSICS',
   },
 
-```
+}}}
 
 The host dependent settings will be imposed on all configurations. If a setting in any configuration is in conflict with the host settings the configuration settings will be used.
 
@@ -106,7 +106,7 @@ The host dependent settings will be imposed on all configurations. If a setting 
 
 The changes to msms/harmonie.pm are controlled with a special syntax, like in the AROME_JB configuration.
 
-```bash
+{{{
    # AROME Structure function derivation
    'AROME_JB' => {
      'description' => 'Derive structure functions for AROME 3DVAR',
@@ -117,50 +117,48 @@ The changes to msms/harmonie.pm are controlled with a special syntax, like in th
         'SLAFLAG'     => '[0]',
     },
 
-```
+}}}
 
 The harmonie.pm key determines which keyword to find and replace. The list guarantees that the same keywords are not changed in e.g. ecf/config_exp.h .
 
 ## Testbed members
-
-|# Name|# DOMAIN|# DTGs|# Dependencies|# Description|# Active in|
-| --- | --- | --- | --- | --- | --- |
-|AROME                  |TEST_11        |!2017093018-!2017100100 |None           |AROME with 2-D decomposition                  |CY43        |
-|AROME_1D               |TEST_11        |!2017093018-!2017100100 |None           |AROME with 1-D decomposition                  |CY43        |
-|AROME_2D               |TEST_11        |!2017093018-!2017100100 |None           |AROME with 2-D decomposition                  |            |
-|AROME_3DVAR            |IRELAND150     |!2017093018-!2017100100 |None           |AROME_3DVAR                                   |CY43        |
-|AROME_3DVAR_MARSOBS    |IRELAND150     |!2017093018-!2017100100 |None           |AROME_3DVAR including non-conventional observations from MARS |CY43        |
-|AROME_3DVAR_2P         |TEST_11        |!2017093018-!2017100100 |None           |AROME_3DVAR with two patches                  |            |
-|AROME_4DVAR            |SCANDINAVIA    |!2017093021-!2017100100 |None           |AROME_4DVAR                                   |            |
-|AROME_BD_ALA           |TEST_8         |!2017093018-!2017100100 |ALARO          |AROME with ALARO LBCs                         |            |
-|AROME_BD_ALA_ARO       |TEST_2.5       |!2017093018-!2017100100 |AROME_BD_ALA   |AROME with AROME LBCs                         |            |
-|AROME_BD_ARO           |TEST_8         |!2017093018-!2017100100 |AROME          |AROME with AROME LBCs, no IO-server           |CY43        |
-|AROME_BD_ARO_IO_SERV   |TEST_8         |!2017093018-!2017100100 |AROME          |AROME with AROME LBCs, with IO-server         |CY43        |
-|AROME_BD_ARO_2P        |TEST_8         |!2017093018-!2017100100 |AROME          |AROME two patches with AROME LBCs             |            |
-|AROME_CLIMSIM          |TEST_11        |!2012053100-!2012060200 |None           |AROME climate simulation                      |            |
-|AROME_EKF              |TEST_11        |!2017093018-!2017100100 |None           |AROME with CANARI_EKF_SURFEX                  |            |
-|AROME_EPS_COMP         |TEST_11        |!2017093018-!2017100100 |HarmonEPS      |AROME_3DVAR comparison of EPS control         |CY43        |
-|AROME_MUSC             |TEST_11        |!2017093018-!2017100100 |AROME          |AROME MUSC                                    |CY43        |
-|AROME_NONE             |TEST_11        |!2017093018-!2017100100 |None           |AROME no SFC/UA DA                            |            |
-|AROME_NONE_2D          |TEST_11        |!2017093018-!2017100100 |None           |AROME no SFC/UA DA                            |            |
-|AROME_NONE_BD_ALA_NONE |TEST_8         |!2017093018-!2017100100 |ALARO_NONE     |AROME no SFC/UA DA with ALARO LBCs            |            |
-|AROME_NONE_BD_ARO_NONE |TEST_8         |!2017093018-!2017100100 |AROME_NONE     |AROME no SFC/UA DA with AROME LBCs            |            |
-|ARONE_JB               |TEST_11        |!2017093018-!2017100100 |None           |Generation of JB statistics                   |CY43        |
-|HarmonEPS              |TEST_11        |!2017093018-!2017100100 |AROME_EPS_COMP |HarmonEPS                                     |CY43        |
-|HarmonEPS_IFSENSBD     |TEST_11        |!2019111021-!2019111103 |AROME_EPS_COMP |HarmonEPS with IFSENS boundaries              |CY43        |
-|ALARO1_3DVAR_OLD       |TEST_11        |!2017093018-!2017100100 |None           |ALARO1 with 3DVAR and old_surface             |            |
-|ALARO_1D               |TEST_11        |!2017093018-!2017100100 |None           |ALARO with 1-D decomposition                  |            |
-|ALARO_2D               |TEST_11        |!2017093018-!2017100100 |None           |ALARO with 2-D decomposition                  |            |
-|ALARO_3DVAR_OLD        |TEST_11        |!2017093018-!2017100100 |None           |ALARO_3DVAR with old_surface                  |            |
-|ALARO_EKF              |TEST_11        |!2017093018-!2017100100 |None           |ALARO with CANARI_EKF_SURFEX                  |            |
-|ALARO_EPS_COMP         |TEST_11        |!2017093018-!2017100100 | ???           |ALARO EPS?                                    |            |
-|ALARO_MF_60            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with VLEV=MF_60                         |            |
-|ALARO_MUSC             |TEST_11        |!2017093018-!2017100100 |ALARO          |ALARO MUSC                                    |            |
-|ALARO_NH_1D            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with NH dynamics and 1-D decomposition  |            |
-|ALARO_NH_2D            |TEST_11        |!2017093018-!2017100100 |None           |ALARO with NH dynamics and 2-D decomposition  |            |
-|ALARO_NONE             |TEST_11        |!2017093018-!2017100100 |None           |ALARO with no SFC/UA DA                       |            |
-|ALARO_OLD              |TEST_11        |!2017093018-!2017100100 |None           |ALARO with old_surface                        |            |
-|ALARO_OLD_MUSC         |TEST_11        |!2017093018-!2017100100 |ALARO          |ALARO MUSC with old_surface                   |            |
+||# Name||# DOMAIN||# DTGs||# Dependencies||# Description||# Active in||
+||AROME                  ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 2-D decomposition                  ||CY43        ||
+||AROME_1D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 1-D decomposition                  ||CY43        ||
+||AROME_2D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with 2-D decomposition                  ||            ||
+||AROME_3DVAR            ||IRELAND150     ||!2017093018-!2017100100 ||None           ||AROME_3DVAR                                   ||CY43        ||
+||AROME_3DVAR_MARSOBS    ||IRELAND150     ||!2017093018-!2017100100 ||None           ||AROME_3DVAR including non-conventional observations from MARS ||CY43        ||
+||AROME_3DVAR_2P         ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME_3DVAR with two patches                  ||            ||
+||AROME_4DVAR            ||SCANDINAVIA    ||!2017093021-!2017100100 ||None           ||AROME_4DVAR                                   ||            ||
+||AROME_BD_ALA           ||TEST_8         ||!2017093018-!2017100100 ||ALARO          ||AROME with ALARO LBCs                         ||            ||
+||AROME_BD_ALA_ARO       ||TEST_2.5       ||!2017093018-!2017100100 ||AROME_BD_ALA   ||AROME with AROME LBCs                         ||            ||
+||AROME_BD_ARO           ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME with AROME LBCs, no IO-server           ||CY43        ||
+||AROME_BD_ARO_IO_SERV   ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME with AROME LBCs, with IO-server         ||CY43        ||
+||AROME_BD_ARO_2P        ||TEST_8         ||!2017093018-!2017100100 ||AROME          ||AROME two patches with AROME LBCs             ||            ||
+||AROME_CLIMSIM          ||TEST_11        ||!2012053100-!2012060200 ||None           ||AROME climate simulation                      ||            ||
+||AROME_EKF              ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME with CANARI_EKF_SURFEX                  ||            ||
+||AROME_EPS_COMP         ||TEST_11        ||!2017093018-!2017100100 ||HarmonEPS      ||AROME_3DVAR comparison of EPS control         ||CY43        ||
+||AROME_MUSC             ||TEST_11        ||!2017093018-!2017100100 ||AROME          ||AROME MUSC                                    ||CY43        ||
+||AROME_NONE             ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME no SFC/UA DA                            ||            ||
+||AROME_NONE_2D          ||TEST_11        ||!2017093018-!2017100100 ||None           ||AROME no SFC/UA DA                            ||            ||
+||AROME_NONE_BD_ALA_NONE ||TEST_8         ||!2017093018-!2017100100 ||ALARO_NONE     ||AROME no SFC/UA DA with ALARO LBCs            ||            ||
+||AROME_NONE_BD_ARO_NONE ||TEST_8         ||!2017093018-!2017100100 ||AROME_NONE     ||AROME no SFC/UA DA with AROME LBCs            ||            ||
+||ARONE_JB               ||TEST_11        ||!2017093018-!2017100100 ||None           ||Generation of JB statistics                   ||CY43        ||
+||HarmonEPS              ||TEST_11        ||!2017093018-!2017100100 ||AROME_EPS_COMP ||HarmonEPS                                     ||CY43        ||
+||HarmonEPS_IFSENSBD     ||TEST_11        ||!2019111021-!2019111103 ||AROME_EPS_COMP ||HarmonEPS with IFSENS boundaries              ||CY43        ||
+||ALARO1_3DVAR_OLD       ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO1 with 3DVAR and old_surface             ||            ||
+||ALARO_1D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with 1-D decomposition                  ||            ||
+||ALARO_2D               ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with 2-D decomposition                  ||            ||
+||ALARO_3DVAR_OLD        ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO_3DVAR with old_surface                  ||            ||
+||ALARO_EKF              ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with CANARI_EKF_SURFEX                  ||            ||
+||ALARO_EPS_COMP         ||TEST_11        ||!2017093018-!2017100100 || ???           ||ALARO EPS?                                    ||            ||
+||ALARO_MF_60            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with VLEV=MF_60                         ||            ||
+||ALARO_MUSC             ||TEST_11        ||!2017093018-!2017100100 ||ALARO          ||ALARO MUSC                                    ||            ||
+||ALARO_NH_1D            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with NH dynamics and 1-D decomposition  ||            ||
+||ALARO_NH_2D            ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with NH dynamics and 2-D decomposition  ||            ||
+||ALARO_NONE             ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with no SFC/UA DA                       ||            ||
+||ALARO_OLD              ||TEST_11        ||!2017093018-!2017100100 ||None           ||ALARO with old_surface                        ||            ||
+||ALARO_OLD_MUSC         ||TEST_11        ||!2017093018-!2017100100 ||ALARO          ||ALARO MUSC with old_surface                   ||            ||
 
 ## Testbed domains
 
@@ -171,15 +169,15 @@ The playfile used for the testbed is
 [testbed.tdf](Harmonie/msms/testbed.tdf?rev=release-43h2.beta.3). Here each configuration is defined with a trigger, a task to create and one to follow the child experiments. 
 Configurations inluded are listed in the TESTBED_LIST environment variable in ecf/config_exp.h 
 
-```bash
+{{{
  TESTBED_LIST="ALADIN ALADIN_3DVAR AROME"
-```
+}}}
 
 If the child experiment fails the Follow_exp task will also fail. When the child experiment problem has been corrected and the task restarted, the follow task should be restarted. When, finally, the child experiment is finished the test family will be completed and next test case will be triggered. We may choose to let the testbed launch a new experiment if the current child experiment fails. This is done by setting in ecf/config_exp.h  
 
-```bash
+{{{
  TESTBED_CONT_ON_FAILURE=1
-```
+}}}
 
 
 ## Input data
@@ -192,29 +190,29 @@ The standard testbed configuration is run over several. The domain and resolutio
  * Climate files
  * Forcing data for nested experiments
  
-Download the data to your machine and put it on the default location `$HM_REV/testbed_data` or define your location in [Harmonie_testbed.pl](Harmonie/scr/Harmonie_testbed.pl?rev=release-43h2.beta.3). If you wish to test the climate generation you simple redefine the location of the climate files or remove the existing ones in the climate directory of the testbed. The testbed data typically includes the following:
+Download the data to your machine and put it on the default location {{{$HM_REV/testbed_data}}} or define your location in [Harmonie_testbed.pl](Harmonie/scr/Harmonie_testbed.pl?rev=release-43h2.beta.3). If you wish to test the climate generation you simple redefine the location of the climate files or remove the existing ones in the climate directory of the testbed. The testbed data typically includes the following:
 
 ## Starting the testbed
 
 The testbed experiment is setup as any normal experiment with
 
-```bash
+{{{
 Harmonie setup -r REVISION -h HOST
-```
+}}}
 
 The testbed is launched by
 
-```bash
+{{{
 Harmonie testbed 
-```
+}}}
 
 Before you start the testbed you should define your reference experiment. The reference experiment is picked automatically as an experiment with the same name but with lower revision number. The reference experiment can also be defined by the by setting REFEXP in ecf/config_exp.h  as the full path to another testbed experiment:
 
-```bash
+{{{
 
 export REFEXP=/scratch/ms/spsehlam/hlam/hm_home/test_37h12
 
-```
+}}}
 
 
 ## Evaluation of the result
@@ -236,7 +234,7 @@ In addition the internal consistency is checked by comparing runs with
 
 The choice of internal consistency tests reflects the history of problems and inconsistencies encountered.
 
-```bash
+{{{
 
 HARMONIE testbed results from ecgb-vecf
 Sat Nov 16 20:41:27 GMT 2019
@@ -276,7 +274,7 @@ Testbed comparison complete
 
  For more details please check /scratch/ms/spsehlam/hlam/hm_home/ecgb_cca_testbed_develop_gnu_6147/testbed_comp_6147.log_details
 
-```
+}}}
 
 All the logs from any testbed experiment are posted to the testbed mailing list [https://hirlam.org/pipermail/testbed]. The test returns three different status signals
 

@@ -12,7 +12,7 @@ The process of using the MAKEUP system in stand-alone fashion is described next.
 
 Lets define two helper variables for the presentation purposes:
 
-The variable **$HARMONIE_SRC** refers to the directory, where the AROME source code is situated. Another variable **$HARMONIE_MAKEUP** refers to the directory, where build configuration files and MAKEUP's scripts are located. 
+The variable `**$HARMONIE_SRC**` refers to the directory, where the AROME source code is situated. Another variable `**$HARMONIE_MAKEUP**` refers to the directory, where build configuration files and MAKEUP's scripts are located. 
 
 
 ```bash
@@ -25,15 +25,15 @@ setenv HARMONIE_SRC /some/path/harmonie/src
 setenv HARMONIE_MAKEUP /some/path/harmonie/util/makeup
 ```
 
-Usually **$HARMONIE_MAKEUP** is **$HARMONIE_SRC/../util/makeup** , but it doesn't have to be (e.g. in FMI's production system the $HARMONIE_MAKEUP is situated on a separate disk than the source code $HARMONIE_SRC) -- and MAKEUP can handle this now.
+Usually `**$HARMONIE_MAKEUP**` is `**$HARMONIE_SRC/../util/makeup**` , but it doesn't have to be (e.g. in FMI's production system the `$HARMONIE_MAKEUP` is situated on a separate disk than the source code `$HARMONIE_SRC`) -- and MAKEUP can handle this now.
 
 The process of building HARMONIE executable contains just a few steps:
 
- 1. Goto directory $HARMONIE_MAKEUP and create/edit your configuration file (config.*). Beware of preferred naming convention:
+ 1. Goto directory `$HARMONIE_MAKEUP` and create/edit your configuration file (config.*). Beware of preferred naming convention:
 ```bash
 config.<MET-INSTITUTE>.<MACHINE-PLATFORM>.<COMPILER-NAME>.<FUNDAMENTAL-OPTIONS>.<OPTIONAL-OPTIONS>
-``` 
- 1. Run MAKEUP's configure script under $HARMONIE_SRC (for example):
+```
+ 1. Run MAKEUP's configure script under `$HARMONIE_SRC` (for example):
 ```bash
 #!sh
 cd $HARMONIE_SRC
@@ -45,7 +45,7 @@ $HARMONIE_MAKEUP/configure $HARMONIE_MAKEUP/config.FMI.cray_xt5m.pathscale.mpi+o
   module swap xt-mpt xt-mpt/3.5.0
   module swap xt-asyncpe/3.8 xt-asyncpe/3.4
 ```
- 1. Goto $HARMONIE_SRC directory and type make (or gmake, if make is non-GNU make). Redirect output to a file & terminal:
+ 1. Goto `$HARMONIE_SRC` directory and type make (or gmake, if make is non-GNU make). Redirect output to a file & terminal:
 ```bash
 #!sh
 cd $HARMONIE_SRC
@@ -65,7 +65,7 @@ $HARMONIE_MAKEUP/configure -E sources.crayxt $HARMONIE_MAKEUP/config.FMI.cray_xt
 gmake
 ```
 
-This will create extra libs (so called ´´MY_SYSLIBS´´) `libbufr.a`, `libgribex.a` and `librgb.a` and they will end up being linked into your executables, like MASTERODB.
+This will create extra libs (so called `´´MY_SYSLIBS´´`) `libbufr.a`, `libgribex.a` and `librgb.a` and they will end up being linked into your executables, like MASTERODB.
 
 ## Using MAKEUP to build also util/gl -tools
 
@@ -94,12 +94,12 @@ $HARMONIE_MAKEUP/configure -b monitor $HARMONIE_MAKEUP/config.FMI.cray_xt5m.path
 gmake
 ```
 
-## Building objects away from `$HARMONIE_SRC`-directory
+## Building objects away from ``$HARMONIE_SRC`-directory`
 
 If you do not want to pollute your source directories with objects and thus making it hard to recognize
 which files are under version handling system SVN and which ain't (... although SVN command `svn -q st` would tell ...),
-then use -P option. This will redirect compilations away from source code, under `$HARMONIE_SRC/../makeup.ZZZ`, where
-`ZZZ` is the suffix of your config-file, e.g. `FMI.cray_xt5m.pathscale.mpi+openmp`.
+then use -P option. This will redirect compilations away from source code, under ``$HARMONIE_SRC/../makeup.ZZZ``, where
+`ZZZ` is the suffix of your config-file, e.g. ``FMI.cray_xt5m.pathscale.mpi+openmp`.`
 
 The operation sequence is as follows:
 
@@ -142,7 +142,7 @@ gmake rsync
 Afterwards you can rerun configure as many times as you wish.  Please note that the very first time is always slowed (maybe 10 minutes) as interface blocks for arp/ and ald/ projects are generated.
 
 Usually running configure many times is not necessary -- not even when you have changed your config-file (!) -- except when interface blocks needs to be updated/re-created (-c or -g options). For example, when subroutine/function call argument list has changed.
-Then the whole config+build sequence can be run under $HARMONIE_SRC as follows:
+Then the whole config+build sequence can be run under `$HARMONIE_SRC` as follows:
 ```bash
 #!sh
 cd $HARMONIE_SRC
@@ -155,7 +155,7 @@ gmake
 
 ### Changing the number of tasks for compilation
 
-The number of tasks used for gmake-compilations is set by default to 8. See NPES parameter in $HARMONIE_MAKEUP/defaults.mk
+The number of tasks used for gmake-compilations is set by default to 8. See NPES parameter in `$HARMONIE_MAKEUP/defaults.mk`
 To change the default, you can have two choices:
 
  1. Add NPES to your config-file, for example set it to 2:
@@ -238,7 +238,7 @@ But at least you won't run out of disk space.
 
 The `Observational DataBase` (ODB) is a complicated beast for good reasons. Unlike any other project, which produce just one library per project, correct use of ODB in variational data assimilation requires several libraries.
 
-The trick to manage this with MAKEUP is to create a bunch of symbolic links pointing to $HARMONIE_SRC/odb/ -project directory. There will be one (additional) library for each link. And then we choose carefully the correct subdirectories and source codes therein to be compiled for each library.
+The trick to manage this with MAKEUP is to create a bunch of symbolic links pointing to `$HARMONIE_SRC/odb/` -project directory. There will be one (additional) library for each link. And then we choose carefully the correct subdirectories and source codes therein to be compiled for each library.
 
 ### Specific ODB-libraries, their meaning & the source files included
 
@@ -257,7 +257,7 @@ The trick to manage this with MAKEUP is to create a bunch of symbolic links poin
 | libECMASCR      | Carbon copy of ECMA for obs. load balancing between PEs | ddl.ECMASCR/*.sql , ddl.ECMASCR/*.ddl|
 
 
-From the file $HARMONIE_MAKEUP/configure you can also find how different files are nearly hand-picked for particular libraries. Search for block
+From the file `$HARMONIE_MAKEUP/configure` you can also find how different files are nearly hand-picked for particular libraries. Search for block
 
 ```bash
 #!sh
@@ -271,11 +271,11 @@ From the file $HARMONIE_MAKEUP/configure you can also find how different files a
                    cma2odb|bufr2odb)                           files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    pandor/extrtovs|pandor/fcq|pandor/mandalay) files=$(\ls -C1 *.F90 2>/dev/null) ;;
                    esac ;;
-         odbdummy) [[ "$i" !# "lib"  ]] | files$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
-          odbmain) [[ "$i" !# "tools"]] | files$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
+         odbdummy) [[ "$i" !# "lib"  ]] || files$(\ls -C1 [A-Z]*.F90 [A-Z]*.c 2>/dev/null) ;;
+          odbmain) [[ "$i" !# "tools"]] || files$(\ls -C1 [A-Z]*.F90 *.c *.F 2>/dev/null) ;;
      esac
  elif [[ "$d" = @($case_odbs)]] ; then
-   [[ "$i" != "ddl.$d"]] | {
+   [[ "$i" != "ddl.$d"]] || {
        files=$(\ls -C1 *.ddl *.sql 2>/dev/null)
        mkdepend=$CMDROOT/sfmakedepend_ODB
    }
@@ -298,7 +298,7 @@ Queries and data definition layouts (DDL-files) are always under <database>/ddl.
 ### Selective compilation
 
 It is very easy to deviate from the generic compilation options for certain source files or even projects.
-If you want to change compiler option (say) from **-O3** to **-O2** for routine `src/arp/pp_obs/pppmer.F90`, you can add the following
+If you want to change compiler option (say) from **-O3** to **-O2** for routine ``src/arp/pp_obs/pppmer.F90``, you can add the following
 lines at the end of your config-file:
 
 ```bash
@@ -316,7 +316,7 @@ routines `pppmertl.F90` and `pppmerad.F90`, not the routine `pppmer.F90` at all!
 
 Applying different compiler flags for project (say) **arp** only, then one can put the following at the end of config-file:
 
-```bash 
+```bash
 ifeq ($(PROJ),arp)
 %.o:  FCFLAGS := $(subst -O3,-O2,$(FCFLAGS))
 endif
@@ -349,10 +349,10 @@ gmake clean
 gmake PROJ=arp clean
 ```
 
-This clean does ''not'' wipe out makefiles i.e. you don't have to rerun configure
+This clean does *not* wipe out makefiles i.e. you don't have to rerun configure
 after this.
 
-### Restoring and cleaning up the state of `$HARMONIE_SRC`
+### Restoring and cleaning up the state of ``$HARMONIE_SRC``
 
 The following command you can run only once before issuing another configure command.
 It will remove all related object and executable files as well as generated makefiles, logfiles etc. stuff which
@@ -401,7 +401,7 @@ You can repeat this call, and it will just `rsync` the modified bits.
 ### Update/check your interface blocks outside `configure`
 
 The `configure` has options -c or -g to check up or enforce for (re-)creation of interface blocks of
-projects `arp}} and ```bashald`. To avoid full and lengthy `configure`-run, you can just do the following:
+projects `arp` and `ald`. To avoid full and lengthy `configure`-run, you can just do the following:
 
 ```bash
 #!sh

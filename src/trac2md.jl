@@ -7,9 +7,9 @@ function trac2md(s::String)
        r"\[wiki:(.+?) (.+?)\]"           => s"[\2](\1)",  # Wiki links 
        r"\[source:(.+?) (.+?)\]"         => s"[\2](\1)",  # Source links
        r"\[raw-attachment:(.+?) (.+?)\]" => s"[\2](\1)",  # Attachements        
-       r"\{\{\{([^\r\n]+?)\}\}\}"        => s"`\1`",      # Single line code blocks
-       "{{{"                             => "```bash",   # Multiline code blocks (assumed to be bash)
-       "}}}"                             => "```",       # multiline code blocks
+    #   r"\{\{\{([^\r\n]+?)\}\}\}"        => s"`\1`",      # Single line code blocks
+    #   "{{{"                             => "```bash",   # Multiline code blocks (assumed to be bash)
+    #   "}}}"                             => "```",       # multiline code blocks
        r"==\s*'''\s*(.+?)\s*'''\s*=="    => s"## \1",     # level 2 header (not bold in md)
        r"=\s*'''\s*(.+)\s*'''\s*="       => s"# \1",      # level 1 headers (not bold in md)
        r"===\s*(.+?)\s*==="              => s"### \1",    # level 3 headers
@@ -17,7 +17,8 @@ function trac2md(s::String)
       
        r"=\s*(.+?)\s*="                  => s"# \1",      # level 1 headers 
        r"'''\s*(.+?)\s*'''"                    => s"**\1**",    # Bold 
-       "||"                              => "|",         # For tables 
+       r"''\s*(.+?)\s*''"                    => s"*\1*",    # Italic  
+  #      "||"                              => "|",         # For tables 
        r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
        # r"([^ ]*?HM_DATA[^ ]*)"       => s"`\1`",      # if word contains HM_DATA fomat it as code
        # r"([^ ]*?hm_home/[^ ]*)"       => s"`\1`",      # if word contains cca/ fomat it as code
@@ -26,30 +27,11 @@ function trac2md(s::String)
        
     ]
     
-    function convert_tables(s::String)
-        lines = split(s,"\r\n")
-        out=String[]
-        intable=false
-        for line in lines
-           
-            if startswith(line, r"\s*\|\|") && !intable  # first row of table 
-                println("found table")
-                push!(out,"")   # empty line needed
-                push!(out,replace(line, "||" => "|" ))
-                push!(out, rstrip(replace(line, r"\s*(\|\|[^\|]*)" => "| --- ") , ['-', ' ']))
-                intable=true
-            elseif startswith(line, r"\s*\|\|") && intable # non first row of table
-                push!(out,replace(line, "||" => "|"))
-            else # normal text 
-                push!(out,line)
-                intable=false
-            end
-        end
-        return join(out,"\r\n")
-    end
-    
      
-    s2 = convert_tables(s)
 
-    return foldl(replace, subs, init = s2)
+    s2=  foldl(replace, subs, init = s)
+
+    s2 = replace_tables(s2)
+    s2 = replace_code(s2)
+    return s2
 end 

@@ -5,11 +5,11 @@ Digital Filter Initialization (DFI) is documented by Météo France here: [http:
 
 ## DFI
 
-The use (or not) of DFI is controlled by the variable DFI in [ecf/config_exp.h](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). By default it is set to "none". 
+The use (or not) of DFI is controlled by the variable DFI in [`ecf/config_exp.h`](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). By default it is set to "none". 
 
  * "idfi", incremental DFI
  * "fdfi", full DFI 
- * "__none__" - no initialization (default)
+ * `"__none__"` - no initialization (default)
 
 [scr/Dfi](Harmonie/scr/Dfi?rev=release-43h2.beta.3) is the script which calls the model in order to carry out DFI.
 

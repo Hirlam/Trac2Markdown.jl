@@ -7,7 +7,7 @@ ODB-API software is open source and released under an Apache licence. In the fut
 An e-mail should be sent to your ECMWF User Support contact to request access to the ODB-API Confluence page stating that you are working at an HIRLAM NMS and are using ODB data with your Harmonie experiments. 
 
 ### ODB
-''ODB stands for Observational !DataBase. It is database software to store and retrieve large amounts of meteorological numerical data in an efficient manner while used from within IFS. ODB software mimics relational database queries through its ODB/SQL -compiler and accesses data currently via a Fortran90 library interface.'' The original documentation is available here: [http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf)
+*ODB stands for Observational !DataBase. It is database software to store and retrieve large amounts of meteorological numerical data in an efficient manner while used from within IFS. ODB software mimics relational database queries through its ODB/SQL -compiler and accesses data currently via a Fortran90 library interface.* The original documentation is available here: [`http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf`](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf)
 
 ODB software is made available to member states under a stricter license and must be requested from Data Services at ECMWF. It might be best for your ECMWF Computer Representative to make this request on behalf of your institute. This request may take some time to be processed. The request (one per institute) can be made by e-mail to (data.services@ecmwf.int) with the following information:
 ```bash
@@ -26,7 +26,7 @@ Name:
 Title:
 e-mail:
 ```
- * After some time your ''person authorized to sign the licence on behalf of the organization'' will receive a software license agreement to be signed and returned to ECMWF.
+ * After some time your *person authorized to sign the licence on behalf of the organization* will receive a software license agreement to be signed and returned to ECMWF.
  * ....
 
 ## Building your ODB software
@@ -72,7 +72,7 @@ cmake $source_dir \
     -DODB_API_TOOLS=OFF \
     -DNETCDF_PATH=/opt/metlib/netcdf/4.1.3/gnu $@
 ```
- * No let's compile! (You should be in $HOME/odb_releases/Odb-1.0.0-Source)
+ * No let's compile! (You should be in `$HOME/odb_releases/Odb-1.0.0-Source`)
 ```bash
 mkdir build
 cd build
@@ -130,7 +130,7 @@ cmake $source_dir \
     -DBISON_EXECUTABLE=/usr/bin/bison \
     -DSWIG_EXECUTABLE=/usr/bin/swig
 ```
- * Now let's compile! (You should be in $HOME/odb_releases/OdbAPI-0.9.31-Source)
+ * Now let's compile! (You should be in `$HOME/odb_releases/OdbAPI-0.9.31-Source`)
 ```bash
 mkdir build
 cd build
@@ -140,7 +140,7 @@ make install  ## you may have to log in as root to carry out the final install
 ```
 # ODB data
 ## Convert ODB-1 to ODB-2
-Details on how to convert your ODB-1 (Harmonie experiment) databases to ODB-2 using odb_migrator are described here. I have used version 0.9.31 of ODB-API (I have had some problems with 0.9.32). I will use a Harmonie CCMA conventional ODB-1 database as an example:
+Details on how to convert your ODB-1 (Harmonie experiment) databases to ODB-2 using `odb_migrator` are described here. I have used version 0.9.31 of ODB-API (I have had some problems with 0.9.32). I will use a Harmonie CCMA conventional ODB-1 database as an example:
 ```bash
 tar -xvf odb_ccma.tar
 cd odb_ccma/CCMA/
@@ -158,7 +158,7 @@ odbsql -q "select * from desc,timeslot_index,hdr,body" | head -1
 ```
 
 ## Instructions for use on ecgb
-On ecgb I have installed ''odb_migrator'' in my own account. ODB developers have promise to provide a "system" installation of odb_migrator soon. The next version of ODB-API on ecgb should include ''odb_migrator''. My installation is here:
+On ecgb I have installed `*odb_migrator*` in my own account. ODB developers have promise to provide a "system" installation of `odb_migrator` soon. The next version of ODB-API on ecgb should include `*odb_migrator*.` My installation is here:
 ```bash
 /home/ms/ie/dui/odbapi/0.9.31
 ```

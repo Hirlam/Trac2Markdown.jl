@@ -6,11 +6,11 @@ The procedure to get access to MF servers and their read-only git repository is 
 
 ## First steps
  * Discuss your requirements for access to MF servers with the HIRLAM System project leader, Daniel Santos (dsantosm@aemet.es).
- * Download two forms ''"Undertaking for the use of Météo-France computer resources"'' and ''"Demande d'authorisation de conexion au résau de Météo Franc"'' from [http://www.cnrm.meteo.fr/aladin/spip.php?article157](http://www.cnrm.meteo.fr/aladin/spip.php?article157). 
-   - The ''"Undertaking for the use of Météo-France computer resources"'' form  is to be signed by you only
-   - The ''"Demande d'authorisation de conexion au résau de Météo Franc"'' must be signed by you and your department head. It must also include an institute stamp. You should enter details in ''Contacts'', ''Compte d'accesés aux machines du Centre de Cacul'' and at the bottom with authorization from you institute manager with institute stamp.   - A scan of both forms with a brief introductory note should be sent to Eric Escaliere (eric.escaliere@meteo.fr) and cc'ed to Daniel Santos (dsantosm@aemet.es) and Claude Fischer (claude.fischer@meteo.fr).
-   - Be careful with the ''"Machine du client"''. I had to specify the name and IP address of my institute's Firewall server as this is what the outside world sees when I access external servers from my PC.
- * Météo-France will send (by post) your username (''Identificateur'') and password (''Mot de passe'') for log into PARME
+ * Download two forms *"Undertaking for the use of Météo-France computer resources"* and *"Demande d'authorisation de conexion au résau de Météo Franc"* from [http://www.cnrm.meteo.fr/aladin/spip.php?article157](http://www.cnrm.meteo.fr/aladin/spip.php?article157). 
+   - The *"Undertaking for the use of Météo-France computer resources"* form  is to be signed by you only
+   - The *"Demande d'authorisation de conexion au résau de Météo Franc"* must be signed by you and your department head. It must also include an institute stamp. You should enter details in *Contacts*, *Compte d'accesés aux machines du Centre de Cacul* and at the bottom with authorization from you institute manager with institute stamp.   - A scan of both forms with a brief introductory note should be sent to Eric Escaliere (eric.escaliere@meteo.fr) and cc'ed to Daniel Santos (dsantosm@aemet.es) and Claude Fischer (claude.fischer@meteo.fr).
+   - Be careful with the *"Machine du client"*. I had to specify the name and IP address of my institute's Firewall server as this is what the outside world sees when I access external servers from my PC.
+ * Météo-France will send (by post) your username (*Identificateur*) and password (*Mot de passe*) for log into PARME
  * Now you are ready to access Météo-France's PARME for the first time:
 ```bash
 ewhelan@eddy:~> telnet parme.meteo.fr

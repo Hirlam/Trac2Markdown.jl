@@ -22,16 +22,16 @@ Each single user buils their own  local "target" pack, which synchronise local s
 
 [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchegmkpack)
 
-[gmkpack vs make](HarmonieSystemDocumentation/Gmkpack_vs_Make)
+[gmkpack vs `make](HarmonieSystemDocumentation/Gmkpack_vs_Make`)
 
 
-gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in Build_gmkpack, Build_rootpack and Build_pack
+gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in `Build_gmkpack`, `Build_rootpack` and `Build_pack`
 
 Available main packs on cca:/project/hirlam/harmonie/pack could look like:
 
-37h1_harmonEPS_11389.01.XLF130100000009.x 37h1_harmonEPS_11842.01.XLF130100000009.x 37h1_harmonEPS_11899.01.XLF130100000009.x 37h1_main.01.XLF130100000009.x 37h1_main.02.XLF130100000009.x 38h1_alpha.01.XLF130100000009.x 38h1_alpha.02.XLF130100000009.x 38h1_beta.01.XLF130100000009.x 
+37h1_harmonEPS_11389.01.XLF130100000009.x `37h1_harmonEPS_11842.01.XLF130100000009.x` `37h1_harmonEPS_11899.01.XLF130100000009.x` `37h1_main.01.XLF130100000009.x` `37h1_main.02.XLF130100000009.x` `38h1_alpha.01.XLF130100000009.x` `38h1_alpha.02.XLF130100000009.x` `38h1_beta.01.XLF130100000009.x` 
 
-ie. CYCLE_BRANCH.VERIONS.COMPILER_VERSION.OPTION
+ie. `CYCLE_BRANCH.VERIONS.COMPILER_VERSION.OPTION`
 For the latest available packs please check on cca.
 
  * [Supported platforms and compilers](Harmonie/util/gmkpack/arch?rev=release-43h2.beta.3)
@@ -42,7 +42,7 @@ For the latest available packs please check on cca.
 
 ## Configure your system
 
-We assume you have a copy of the repository under PATH_TO_HARMONIE. To start the build, create an experiment directory $HOME/hm_home/trunk and run
+We assume you have a copy of the repository under `PATH_TO_HARMONIE.` To start the build, create an experiment directory `$HOME/hm_home/trunk` and run
 
 ```bash
    PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
@@ -58,7 +58,7 @@ The above command creates the following files/directories under
 ```
 
 
-In ecf/config_exp.h  you may identify the options sent to gmkpack
+In `ecf/config_exp.h`  you may identify the options sent to gmkpack
 
 ```bash
 # Definitions about gmkpack, should fit with hm_rev
@@ -72,7 +72,7 @@ In ecf/config_exp.h  you may identify the options sent to gmkpack
       OTHER_PROGRAMS="soda pgd blend odbtools bator ioassign odbsql blendsur addsurf surfex mandalay prep lfitools sfxtools" # Other things to compile with gmkpack
 ```
 
-You could run something different than defined in hm_rev, but then there would be a mismatch between your source code and the pre-compiled libraries/modules.
+You could run something different than defined in `hm_rev`, but then there would be a mismatch between your source code and the pre-compiled libraries/modules.
 
 
 Identify your system in one of the config files in config-sh or write a new config.YOURHOST definition, make sure that some of the important optional settings are defined in this file:
@@ -110,14 +110,14 @@ The makefiles themselves should not have to be edited.
 ## Submission rules
 
 Next you have to identify your submit file in config-sh or write a new submit.YOURHOST file. This file defines how you submit your jobs in your local batch system. 
-The routine get_job is called from [submission.db](Harmonie/scr/submission.db?rev=release-43h2.beta.3) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
+The routine `get_job` is called from [submission.db](Harmonie/scr/submission.db?rev=release-43h2.beta.3) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
 
 On [ecgb-cca](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3) three list of jobs are created:
- * backg_list for jobs running as background jobs on ecgb
- * scalar_list single PE jobs on cca
- * par_list for parallel jobs on cca
+ * `backg_list` for jobs running as background jobs on ecgb
+ * `scalar_list` single PE jobs on cca
+ * `par_list` for parallel jobs on cca
 
-The scalar_list is the default one, meaning that any unspecified job will be run as a single PE job on HPCE. Default values are defined for each list. Special settings for special jobs can be set like:
+The `scalar_list` is the default one, meaning that any unspecified job will be run as a single PE job on HPCE. Default values are defined for each list. Special settings for special jobs can be set like:
 
 ```bash
  $job_list{'Prep_ini_surfex'}{'RESOURCES'} # $submit_type.'resources ConsumableCPUs(1) ConsumableMemory(6000 MB)' ;
@@ -137,24 +137,24 @@ The suite definition file used for the installation is
 
 Where are things happening
 
-- Build_gmkpack 
-- Build_rootpack
- - rsync the sources from HM_REV, HM_CMODS, HM_LIB
+- `Build_gmkpack` 
+- `Build_rootpack`
+ - rsync the sources from `HM_REV`, `HM_CMODS`, `HM_LIB`
  - cleanpack
  - compiles the ODB compiler
  - compiles IFS
  - locks the pack
 
-- Build_pack
- - build everything in the OTHER_PROGRAMS list. This is done inside HM_DATA/gmkpack_build
+- `Build_pack`
+ - build everything in the `OTHER_PROGRAMS` list. This is done inside `HM_DATA/gmkpack_build`
  - build the utilities (gl/verobs/oulan)
 
 When things goes wrong
 
- - ics_* can be run stand alone from the ROOTPACK or `$HM_DATA/gmkpack_build` directory
+ - `ics_*` can be run stand alone from the ROOTPACK or ``$HM_DATA/gmkpack_build`` directory
    - Turn off the compilation and linking
-   - build the libraries by running the ics_* file by hand
-   - BUILD_ROOTPACK=no, put the corrections to the failing code in your experiment
+   - build the libraries by running the `ics_*` file by hand
+   - `BUILD_ROOTPACK=no`, put the corrections to the failing code in your experiment
    - rerun Harmonie install
 
 

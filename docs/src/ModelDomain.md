@@ -3,39 +3,39 @@
 ## Model Domain
 
 ## Introduction
-There are four projections available in HARMONIE, polar stereographic, lambert, mercator and rotated mercator. The model itself chooses the best (least distortion) projection among the first three given your domain specifications. The rotated mercator projection is selected through the variable ''LROTMER''. Note that the polar stereographic project is defined at 90^o^N(S) whereas in GRIB1 it is defined at 60^o^ N(S).
+There are four projections available in HARMONIE, polar stereographic, lambert, mercator and rotated mercator. The model itself chooses the best (least distortion) projection among the first three given your domain specifications. The rotated mercator projection is selected through the variable *LROTMER*. Note that the polar stereographic project is defined at 90^o^N(S) whereas in GRIB1 it is defined at 60^o^ N(S).
 
 Polar stereographic, Lambert and Mercator projectionRotated mercator projection
 ## Model domain settings
 
 For each domain we set variables related to the geometry and the resolution like:
 
-HARMONIE model domains are defined in settings in [Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). The following variables related to the geometry and the resolution are required:
+HARMONIE model domains are defined in settings in [`Harmonie_domains.pm`](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). The following variables related to the geometry and the resolution are required:
 
- * ''TSTEP'' is model timestep in seconds
- * ''NLON'' is number of points in x-direction.
- * ''NLAT'' is number of points in y-direction.
- * ''LONC'' is the longitude of domain centre in degrees.
- * ''LATC'' is the latitude of domain center in degrees.
- * ''LON0'' is the reference longitude of the projection in degrees.
- * ''LAT0'' is the reference latitude of the projection in degrees. __If ''LAT0'' is set to 90, the projection is **polar stereographic**. If ''LAT0'' < 90, the projection is **lambert** unless LMRT=.TRUE..___  
- * ''GSIZE'' is grid size in meters in both x- and y-direction.
- * ''EZONE'' is number of points over extension zone in both x- and y-direction. Default value 11. 
- * ''LMRT'' switch for rotated Mercator projection. If LMRT=.TRUE. LAT0 should be zero.
+ * *TSTEP* is model timestep in seconds
+ * *NLON* is number of points in x-direction.
+ * *NLAT* is number of points in y-direction.
+ * *LONC* is the longitude of domain centre in degrees.
+ * *LATC* is the latitude of domain center in degrees.
+ * *LON0* is the reference longitude of the projection in degrees.
+ * *LAT0* is the reference latitude of the projection in degrees. `__If` *LAT0* is set to 90, the projection is **polar stereographic**. If *LAT0* < 90, the projection is **lambert** unless `LMRT=.TRUE..___`  
+ * *GSIZE* is grid size in meters in both x- and y-direction.
+ * *EZONE* is number of points over extension zone in both x- and y-direction. Default value 11. 
+ * *LMRT* switch for rotated Mercator projection. If LMRT=.TRUE. LAT0 should be zero.
 
-''NLON'' and ''NLAT'' should satisfy the equation 5^b^ * 3^d^ * 2^e^, where a-e are integers >= 0.
+*NLON* and *NLAT* should satisfy the equation 5^b^ * 3^d^ * 2^e^, where a-e are integers >= 0.
 
- * ~~''BDNLON'' is number of points in x-direction for intermediate climate file. ''BDNLON'' > ''NLON''.~~
- * ~~''BDNLAT'' is number of points in y-direction for intermediate climate file. ''BDNLAT'' > ''NLAT''.~~
+ * ~~*BDNLON* is number of points in x-direction for intermediate climate file. *BDNLON* > *NLON*.~~
+ * ~~*BDNLAT* is number of points in y-direction for intermediate climate file. *BDNLAT* > *NLAT*.~~
 
-The default area is the Denmark domain (DKCOECP). The following values for C+I zone and truncation are calculated in [Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) from the values above. 
+The default area is the Denmark domain (DKCOECP). The following values for C+I zone and truncation are calculated in [`Harmonie_domains.pm`](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) from the values above. 
 
- * ''NDLUXG'' is number of points in x-direction without extension (E) zone.
- * ''NDGUXG'' is number of points in y-direction without extension (E) zone.
- * ''NMSMAX_LINE'' is truncation order in longitude. By default (''NLON''-2)/2. 
- * ''NSMAX_LINE'' is truncation order in latitude. By default (''NLAT''-2)/2. 
- * ''NMSMAX_QUAD'' is truncation order in longitude. By default (''NLON''-2)/3. It is used to create filtered orography with lower resolution.
- * ''NSMAX_QUAD'' is truncation order in latitude. By default (''NLAT''-2)/3. It is used to create filtered orography with lower resolution.
+ * *NDLUXG* is number of points in x-direction without extension (E) zone.
+ * *NDGUXG* is number of points in y-direction without extension (E) zone.
+ * `*NMSMAX_LINE*` is truncation order in longitude. By default (*NLON*-2)/2. 
+ * `*NSMAX_LINE*` is truncation order in latitude. By default (*NLAT*-2)/2. 
+ * `*NMSMAX_QUAD*` is truncation order in longitude. By default (*NLON*-2)/3. It is used to create filtered orography with lower resolution.
+ * `*NSMAX_QUAD*` is truncation order in latitude. By default (*NLAT*-2)/3. It is used to create filtered orography with lower resolution.
 
 ~~Note that to run with LSPSMORO=yes you have to use a linear grid. I.e. NLON/NLAT must satisfy~~
 
@@ -49,7 +49,7 @@ on a map, see figure below.
 At present, it only works for Lambert and polar stereographic projection, not rotated mercator.
 
 ## Creating a new domain
-If you are happy with your new domain created with the help of the domain creation tool you can add it to [Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) for your experiment, my_exp (assuming you have set up the experiment):
+If you are happy with your new domain created with the help of the domain creation tool you can add it to [`Harmonie_domains.pm`](Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) for your experiment, `my_exp` (assuming you have set up the experiment):
 ```bash
 cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie co scr/Harmonie_domains.pm

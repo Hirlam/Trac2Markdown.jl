@@ -95,7 +95,7 @@ Modify to fit your needs or add your own host with the current definitions as a 
 **NPROMA**
 
 
-None of the NPROMA settings are changed in the namelists. The current values are suitable for tori (NEC vector) but probably not for other machines. There is a small script, mitraille/util/Parse_nproma.pl, that changes all different values to one in the namelists.
+None of the NPROMA settings are changed in the namelists. The current values are suitable for tori (NEC vector) but probably not for other machines. There is a small script, `mitraille/util/Parse_nproma.pl`, that changes all different values to one in the namelists.
 
 ## c2a instructions based on cy40
 The following instructions will instruct the user on how to build the code to be evaluated by mitraillette using the Harmonie build system and how to use mitraillette.
@@ -141,7 +141,7 @@ cd $PERM/mitraille
 ./mitraillette_v012014.x AL40T1 PRO_FILE.al40t1_hirlam_mono mono
 ./test.xNNNN
 ```
-This PRO_FILE points to  /perm/ms/ie/dui/HarmBin/cy40ald/MASTERODB copied above. The mitraillette.x script will have created a test script called test.xNNNN where NNNN is an integer. Let's run the test script:
+This `PRO_FILE` points to  /perm/ms/ie/dui/HarmBin/cy40ald/MASTERODB copied above. The mitraillette.x script will have created a test script called test.xNNNN where NNNN is an integer. Let's run the test script:
 ```bash
 ./test.xNNNN
 ```
@@ -160,7 +160,7 @@ I have to see if my tests have succeeded!
 ## Quick start on c1a
 
  * Check out the script and put i under $HOME/mitraille on c1a. 
- * Modify PRO_FILE.al37.c1a to point to your binary
+ * Modify `PRO_FILE.al37.c1a` to point to your binary
  * Create directory al37
  * Create a multi job chain by
 ```bash

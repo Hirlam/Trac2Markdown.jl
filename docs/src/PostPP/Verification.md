@@ -17,23 +17,23 @@ The verification package in HARMONIE is designed to be a self contained stand al
 
 In addition there are a number of scores based on contingency tables like:
 
-    * **Frequency bias (bias score)**: (h+fa)/(h+m); Compares the frequency of predicted events to the frequency of observed events. ''Range: 0 -> infinite. Perfect score: 1''
-    * **Hit rate (probability of detection)**: h/(h+m); What fraction of the observed events were correctly forecast. ''Range: 0 to 1.  Perfect score: 1.'' 
-    * **False alarm ratio**: fa/(h+fa); What fraction of the predicted events did not occur. ''Range: 0 to 1.  Perfect score: 0.''
-    * **False alarm rate**: fa/((cn+fa); What fraction of the observed "no" events were incorrectly forecast as "yes". ''Range: 0 to 1. Perfect score: 0.''
-    * **Threat score**: h/(h+m+fa); How well did the forecast "yes" events correspond to the observed "yes" events. ''Range: 0 to 1. Perfect scrore: 1.''
-    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS# (h­R)/(h+m+fa­R),  R(h+m)(h+fa)/(h+m+fa+cn). Often used in verification of precipitation. ''Range: -1/3 to 1, 0 indicates no skill.   Perfect score: 1.'' 
-    * **Hansen­Kuipers score**: (h/(h+m) ­ fa/(fa+cn)), How well did the forecast separate events from non­events. ''Range: -1 to 1, 0 indicates no skill. Perfect score: 1.''
-    * **Extreme Dependency Scores**: What is the association between forecast and observed rare events? ''Range: -1 to 1, 0 indicates no skill. Perfect score: 1''
+    * **Frequency bias (bias score)**: (h+fa)/(h+m); Compares the frequency of predicted events to the frequency of observed events. *Range: 0 -> infinite. Perfect score: 1*
+    * **Hit rate (probability of detection)**: h/(h+m); What fraction of the observed events were correctly forecast. *Range: 0 to 1.  Perfect score: 1.* 
+    * **False alarm ratio**: fa/(h+fa); What fraction of the predicted events did not occur. *Range: 0 to 1.  Perfect score: 0.*
+    * **False alarm rate**: fa/((cn+fa); What fraction of the observed "no" events were incorrectly forecast as "yes". *Range: 0 to 1. Perfect score: 0.*
+    * **Threat score**: h/(h+m+fa); How well did the forecast "yes" events correspond to the observed "yes" events. *Range: 0 to 1. Perfect scrore: 1.*
+    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS# (h­R)/(h+m+fa­R),  R(h+m)(h+fa)/(h+m+fa+cn). Often used in verification of precipitation. *Range: -1/3 to 1, 0 indicates no skill.   Perfect score: 1.* 
+    * **Hansen­Kuipers score**: (h/(h+m) ­ fa/(fa+cn)), How well did the forecast separate events from non­events. *Range: -1 to 1, 0 indicates no skill. Perfect score: 1.*
+    * **Extreme Dependency Scores**: What is the association between forecast and observed rare events? *Range: -1 to 1, 0 indicates no skill. Perfect score: 1*
 
 A more detailed explanation about verification can found at [http://www.cawcr.gov.au/projects/verification/]
 
 The scores can be presented per station for the whole data set or filtered through different selection criteria based on e.g. a geographical domain or properties of the data itself. One key feature missing in earlier HIRLAM verification packages is that the comparison is done over exactly the same set of data ( in time and space ) when comparing different experiments or models. The scores are finally presented with a portable web interface, [#WebgraF WebgraF], that allows you to easily share the information with others. Since the verification is station based it is less suitable for moving platforms or fields.
 
 Other examples on how products from the verification package looks like today can be found here:
-    * [The monitor test data set](https://hirlam.org/portal/smhi/WebgraF_test_data/)
+    * [The monitor test data `set](https://hirlam.org/portal/smhi/WebgraF_test_data/`)
     * [FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/)
-    * [Mast verification](http://fminwp.fmi.fi/mastverif_stats/SODA_2012_JJA_export/)
+    * [Mast `verification](http://fminwp.fmi.fi/mastverif_stats/SODA_2012_JJA_export/`)
     * [HIRLAM verification portal](https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/)
 
 In the following we describe the different parts of the verification package. For preparation of verification data read more [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
@@ -59,7 +59,7 @@ The checkout gives you the following directories:
  * **cmastat**: for assimilation monitoring, not covered here
  * **config**: configuration files for different platforms
  * **doc**: README files
- * **mod**: Different modules. module_data.f90 contains all namelist variables
+ * **mod**: Different modules. `module_data.f90` contains all namelist variables
  * **prg**: Main programs
  * **rdr**: Routines for reading data
  * **scr**: Scripts
@@ -80,7 +80,7 @@ The package has no external dependencies but relies on gnuplot for generation of
 The strategy in the verification is to separate the data input from the calculations of the different scores. This allows as to go through the data several times using different filtering criteria. Of course keeping everything in memory sets a limit on how much data one can handle at the same time. In the way it's used in HARMONIE a typical sequence is:
 
  - Read namelist
- - Call my_choices
+ - Call `my_choices`
      - Read observations
      - Read model data
      - Perform quality control
@@ -92,7 +92,7 @@ The strategy in the verification is to separate the data input from the calculat
 
 ### Reading the data
 
-The program can handle several data sources. Which one you use is depending on the value of ''DATA_SOURCE'' and is controlled in the routine [my_choices.f90](monitor/rdr/my_choices.f90). At namelist level we also control which experiments we should read, the period (''SDATE'',''EDATE''), interval between cycles (''FCINT''), which forecasts (''FCLEN'') and the interval of the observations (''OBINT''). We can also already at this point select which stations to use by specifying a station list (''STNLIST''). 
+The program can handle several data sources. Which one you use is depending on the value of `*DATA_SOURCE*` and is controlled in the routine [`my_choices.f90`](monitor/rdr/my_choices.f90). At namelist level we also control which experiments we should read, the period (*SDATE*,*EDATE*), interval between cycles (*FCINT*), which forecasts (*FCLEN*) and the interval of the observations (*OBINT*). We can also already at this point select which stations to use by specifying a station list (*STNLIST*). 
 
 The HARMONIE tools to extract data for verifiation are described in [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
 
@@ -101,7 +101,7 @@ The HARMONIE tools to extract data for verifiation are described in [here](Harmo
 For the every day verification the model and observation data are read with the routines 
 
 [read_vfld.f90](monitor/rdr/read_vfld.f90)[read_vobs.f90](monitor/rdr/read_vobs.f90)[read_vfld_temp.f90](monitor/rdr/read_vfld_temp.f90)[read_vobs_temp.f90](monitor/rdr/read_vobs_temp.f90)
-Where the two first are for surface data and are used when ''DATA_SOURCE# vfld'' and the two latter for temp data and are used when ''DATA_SOURCEvfld_temp''. During the evolution of the verification package the format of the input data has changed and we are now at version four. The new format allows an arbitrary number of different types of point data to be included in the model vfld- or observation vobs- files.
+Where the two first are for surface data and are used when `*DATA_SOURCE#` vfld* and the two latter for temp data and are used when `*DATA_SOURCEvfld_temp*.` During the evolution of the verification package the format of the input data has changed and we are now at version four. The new format allows an arbitrary number of different types of point data to be included in the model vfld- or observation vobs- files.
 
 The generalized input format is defined as 
 
@@ -140,14 +140,14 @@ The accumulation time allows us to e.g. easily include different precipitation a
 
 ### Quality control
 
-The quality control is activated by the namelist flag ''LQUALITY_CONTROL''. It is mainly there as a gross error check to remove the unrealistic observations. The check has the following features:
+The quality control is activated by the namelist flag `*LQUALITY_CONTROL*.` It is mainly there as a gross error check to remove the unrealistic observations. The check has the following features:
 
- * The forecast lengths used for quality control can be set by namelist variable QC_FCLEN. If QC_FCLEN is not set The forecasts < FORECAST_INTERVAL will be used.
- * An observation is accepted if ABS(mod - exp) < err_limit for **ANY** experiment used in the verification. 
- * The quality control limits can be set explicitly in namelist by VARPROP%LIM for any variable or by QC_LIM for all variables. See the section about [ #Settingsfordifferentmeteorologicalparameters parmeter settings] for further instructions.
- * By setting ESTIMATE_QC_LIMIT the QC_LIM will be set as SCALE_QC_LIM * STDV for the forecasts in QC_FCLEN.
+ * The forecast lengths used for quality control can be set by namelist variable `QC_FCLEN.` If `QC_FCLEN` is not set The forecasts < `FORECAST_INTERVAL` will be used.
+ * An observation is accepted if ABS(mod - exp) < `err_limit` for **ANY** experiment used in the verification. 
+ * The quality control limits can be set explicitly in namelist by VARPROP%LIM for any variable or by `QC_LIM` for all variables. See the section about [ #Settingsfordifferentmeteorologicalparameters parmeter settings] for further instructions.
+ * By setting `ESTIMATE_QC_LIMIT` the `QC_LIM` will be set as `SCALE_QC_LIM` * STDV for the forecasts in `QC_FCLEN.`
 
-QC diagnostic information output may be controlled by PRINT_QC={0,1,2}. It is also possible to blacklist stations through the ''STNLIST_BL'' parameter.
+QC diagnostic information output may be controlled by `PRINT_QC={0`,1,2}. It is also possible to blacklist stations through the `*STNLIST_BL*` parameter.
 
 In the HARMONIE implementation all quality control levels are estimated on the fly with a limit where the standard deviation is scaled by 5.
 
@@ -155,16 +155,16 @@ In the HARMONIE implementation all quality control levels are estimated on the f
 
 Before we run through the actual comparison of data we can select a subset of the data depending on different criteria.
 
- * Initial time of the forecast (''INI_HOURS'')
- * Select data that are valid at a certain hour (''SHOW_TIMES'') 
- * Pick only some of the forecast lengths in memory (''USE_FCLEN'')
- * Selection using a station list (''STNLIST'')
- * Select to produce statistics for some selected stations in addition to the overall statistics (''STNLIST_PLOT'')
- * Define a geographical box through the definition of the corners (''CBOX%ACTIVE,CBOX%S,CBOX%W,CBOX%N,CBOX%E'').
- * Use an area defined by a polygon (''LPOLY,POLYFILE'')
- * Select by station height (''HGT_LLIM,HGT_ULIM'')
+ * Initial time of the forecast (`*INI_HOURS*`)
+ * Select data that are valid at a certain hour (`*SHOW_TIMES*`) 
+ * Pick only some of the forecast lengths in memory (`*USE_FCLEN*`)
+ * Selection using a station list (*STNLIST*)
+ * Select to produce statistics for some selected stations in addition to the overall statistics (`*STNLIST_PLOT*`)
+ * Define a geographical box through the definition of the corners (*CBOX%ACTIVE,CBOX%S,CBOX%W,CBOX%N,CBOX%E*).
+ * Use an area defined by a polygon (*LPOLY,POLYFILE*)
+ * Select by station height (`*HGT_LLIM`,HGT_ULIM*)
  * Conditions given by the data (described later)
- * Reverse all selections but the conditional (''REVERSE_SELECTION'')
+ * Reverse all selections but the conditional (`*REVERSE_SELECTION*`)
 
 Of course all the selections can be combined.
 
@@ -182,14 +182,14 @@ Data is stored by:
 
 ## HARMONIE user interface
 
-In HARMONIE a set of scripts is build around the code for generation of plots and building the web page. There are two main scripts [Run_verobs_surface](monitor/scr/Run_verobs_surface) for verification of surface variables and [Run_verobs_temp](monitor/scr/Run_verobs_temp) for verification of radio sonde data. Both of them need a configuration file, Env_exp, as input:
+In HARMONIE a set of scripts is build around the code for generation of plots and building the web page. There are two main scripts [`Run_verobs_surface`](monitor/scr/Run_verobs_surface) for verification of surface variables and [`Run_verobs_temp`](monitor/scr/Run_verobs_temp) for verification of radio sonde data. Both of them need a configuration file, `Env_exp`, as input:
 
 ```bash
 ./Run_verobs_surface MY_ENV_EXP
 ./Run_verobs_temp MY_ENV_EXP
 ```
 
-There is also a master script [Run_verobs_all](monitor/scr/Run_verobs_all) which cleans the webpage, runs through both types of verification and creates a tar file suitable to add to an existing WebgraF page. It is used in the same way like:
+There is also a master script [`Run_verobs_all`](monitor/scr/Run_verobs_all) which cleans the webpage, runs through both types of verification and creates a tar file suitable to add to an existing WebgraF page. It is used in the same way like:
 
 ```bash
 ./Run_verobs_all MY_ENV_EXP
@@ -198,7 +198,7 @@ There is also a master script [Run_verobs_all](monitor/scr/Run_verobs_all) which
 
 ### The main configuration file
 
-For most of the cases you can configure your verification by just editing the configuration file, [Env_exp](monitor/scr/Env_exp). The above mentioned script can take files with any name so it's a good idea to have different files for different sets of experiments. First you have to identify your experiments and their location. 
+For most of the cases you can configure your verification by just editing the configuration file, [`Env_exp`](monitor/scr/Env_exp). The above mentioned script can take files with any name so it's a good idea to have different files for different sets of experiments. First you have to identify your experiments and their location. 
 
 ```bash
 # Experiment names and paths,should be space separated
@@ -211,14 +211,14 @@ P2=$DBASE/C22/
 MODPATH="$P1 $P2"
 ```
 
-The experiment name should of course match the name on the vfld files. At the moment there is an upper limit of ten experiments, but already at five the plots starts to get pretty messy. It is possible to disply more meaningful names by setting DISPLAY_EXP to something different.
+The experiment name should of course match the name on the vfld files. At the moment there is an upper limit of ten experiments, but already at five the plots starts to get pretty messy. It is possible to disply more meaningful names by setting `DISPLAY_EXP` to something different.
 
 From harmonie-40h1.1.1.rc1 the output from the verification for the initial setup has changed so that 
 
 * vfldEXPYYYYMMDDHH represents analysis data
 * vfldEXPYYYYMMDDHHLL represents output from the forecast model at +00
 
-To handle this USE_ANALYSIS has been introduced to allow different choices and combination of the new and old convention.
+To handle this `USE_ANALYSIS` has been introduced to allow different choices and combination of the new and old convention.
 
 ```bash
 
@@ -240,7 +240,7 @@ HELP="Observation verification comparison between \
      "
 ```
 
-By having several configuration files with different PROJECT names you can gather all your verification plots under one web page. In next section we define the verification period. We can also say if we would like to verify the full period in one go or in monthly pieces by setting PERIOD_TYPE.
+By having several configuration files with different PROJECT names you can gather all your verification plots under one web page. In next section we define the verification period. We can also say if we would like to verify the full period in one go or in monthly pieces by setting `PERIOD_TYPE.`
 
 ```bash
 # Date handling
@@ -257,7 +257,7 @@ EDATE=20080905
 IDATE=$SDATE
 ```
 
-For operational runs it might be useful to set PERIOD_TYPE=2 like [FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/) has done.
+For operational runs it might be useful to set `PERIOD_TYPE=2` like [FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/) has done.
 
 If you would like to monitor some special stations you can list them by station number.
 
@@ -308,9 +308,9 @@ SURFPAR="PS FF FX GG GX DD TT TN TX TD RH QQ NN PE"
 
 ```
 
-Note that not all parameters are available in the vfld files for HARMONIE yet. The number of levels to be used for TEMP is set in LEV_LST.
+Note that not all parameters are available in the vfld files for HARMONIE yet. The number of levels to be used for TEMP is set in `LEV_LST.`
 
-Comment in the code fldextr_pp.f explains TTHA, the moist adiabatic adjustment:
+Comment in the code `fldextr_pp.f` explains TTHA, the moist adiabatic adjustment:
 
 ```bash
 c adiabatic height correction of station values
@@ -384,11 +384,11 @@ OUTPUT_TYPE=2
 
 ```
 
-The difference between the first OUTPUT_TYPE and the others is that in the first case gnuplot will produce postscript files that will be converted to PNG files and both files will be available on the web page. The SVG format (Scalable Vector Graphics) should allow plots with zoom functionality, but this does not yet work in the web interface. 
+The difference between the first `OUTPUT_TYPE` and the others is that in the first case gnuplot will produce postscript files that will be converted to PNG files and both files will be available on the web page. The SVG format (Scalable Vector Graphics) should allow plots with zoom functionality, but this does not yet work in the web interface. 
 
 ### Setting parameters for different types of plots
 
-If the settings in the main configuration file does not cover your needs you go to next level of the definition files. The namelists defining your verification run is build by [Build_namelist.pl](monitor/scr/Build_namelist.pl) by using your configuration file and three perl modules defining different parts. The logics behind the GEN, MAP, TIME switches are hidden in [maindefs.pm](monitor/scr/maindefs.pm). The first part defines the reading part:
+If the settings in the main configuration file does not cover your needs you go to next level of the definition files. The namelists defining your verification run is build by [`Build_namelist.pl`](monitor/scr/Build_namelist.pl) by using your configuration file and three perl modules defining different parts. The logics behind the GEN, MAP, TIME switches are hidden in [maindefs.pm](monitor/scr/maindefs.pm). The first part defines the reading part:
 
 ```bash
 
@@ -399,7 +399,7 @@ If the settings in the main configuration file does not cover your needs you go 
     'NEXP'    => $nexp,
     'EXPNAME' => $exp,
     'MODPATH' => $modpath,
-    'OBSPATH' => '\''.$ENV{OBSPATH}.'\'',
+    'OBSPATH' => '\*.$ENV{OBSPATH}.'\*,
     'LQUALITY_CONTROL' => 'T',
     'ESTIMATE_QC_LIMIT'=> 'T',
     'MAXSTN'           => 5000,
@@ -434,7 +434,7 @@ The next one is GEN:
 
 ```
 
-Here we set things for standard forecast length verification. We can choose to show bias, rmse and stdv by the SHOW_* variable. If SHOW_VAR is set plots comparing the model variability to the observed one will be produced. The significance of the difference between different experiments can be shown by setting LSIGN_TEST.
+Here we set things for standard forecast length verification. We can choose to show bias, rmse and stdv by the `SHOW_*` variable. If `SHOW_VAR` is set plots comparing the model variability to the observed one will be produced. The significance of the difference between different experiments can be shown by setting `LSIGN_TEST.`
 
 The next section handles the production of bias maps
 
@@ -467,7 +467,7 @@ Time serie statistics of the observed values and departures are produced by the 
 
 ```
 
-Note that we explicitly set the forecast lengths we use. As for the GEN part the activation of bias, rmse and stdv plots are controlled by the SHOW_* parameters. The averaging period for time series are controlled per variable through the ''TWIND_SURF'' and ''TWIND_TEMP'' parameters in [plotdefs.pm](monitor/scr/plotdefs.pm).
+Note that we explicitly set the forecast lengths we use. As for the GEN part the activation of bias, rmse and stdv plots are controlled by the `SHOW_*` parameters. The averaging period for time series are controlled per variable through the `*TWIND_SURF*` and `*TWIND_TEMP*` parameters in [plotdefs.pm](monitor/scr/plotdefs.pm).
 
 Scatter plots and contingency tables are set in
 
@@ -482,9 +482,9 @@ Scatter plots and contingency tables are set in
 
 ```
 
-By setting LPREP_XML we will get a list of stations sorted by decreasing rmse on the web page. This allows you to find the worst stations for different variables. The contingency part of this is defined in [plotdefs.pm](monitor/scr/plotdefs.pm). It is possible to create cross variable scatter plots where we compare different model parameters against each other or the observations. This is however not a part of the script system but be defined on the low level. Read more in [here](monitor/doc/README_verobs#L250).
+By setting `LPREP_XML` we will get a list of stations sorted by decreasing rmse on the web page. This allows you to find the worst stations for different variables. The contingency part of this is defined in [plotdefs.pm](monitor/scr/plotdefs.pm). It is possible to create cross variable scatter plots where we compare different model parameters against each other or the observations. This is however not a part of the script system but be defined on the low level. Read more in [`here](monitor/doc/README_verobs#L250`).
 
-In some cases it's interesting to see how the model handles the daily cycle. In DAYVAR we define the flags to get this. The LFCVER tell the program that we should organize the statistics by time of day rather than by forecast length. We have also chosen to allow for a special set of forecast length here through the environment variable FCLEN_DAYVAR set in your configuration file
+In some cases it's interesting to see how the model handles the daily cycle. In DAYVAR we define the flags to get this. The LFCVER tell the program that we should organize the statistics by time of day rather than by forecast length. We have also chosen to allow for a special set of forecast length here through the environment variable `FCLEN_DAYVAR` set in your configuration file
 
 ```bash
 
@@ -500,7 +500,7 @@ In some cases it's interesting to see how the model handles the daily cycle. In 
 
 ```
 
-The final part of [maindefs.pm](monitor/scr/maindefs.pm) deals with the vertical profiles. LPLOT_VERT is the flag telling us that we are doing a vertical profile. The major difference between this and GEN is that here we have chosen to split between night and daytime soundings by setting SHOW_TIMES.
+The final part of [maindefs.pm](monitor/scr/maindefs.pm) deals with the vertical profiles. `LPLOT_VERT` is the flag telling us that we are doing a vertical profile. The major difference between this and GEN is that here we have chosen to split between night and daytime soundings by setting `SHOW_TIMES.`
 
 Any valid namelist variable added to these sections will be picked up and used in the verification. 
  
@@ -519,7 +519,7 @@ Any valid namelist variable added to these sections will be picked up and used i
 
 ```
 
- The TWIND_* parameter sets the time averaging window for time series for surface data and temp respectively. QC_LIM_SCALE is the scaling factor for the stdv used in the quality control. The TEXT variables sets the text for the title in the plots and the web page. For e.g. the cloud cover we have defined the classes for the contingency tables by setting CONT_CLASS and CONT_LIM. MAP_BIAS_INTERVAL set, as the name indicates, the intervals for the bias maps.
+ The `TWIND_*` parameter sets the time averaging window for time series for surface data and temp respectively. `QC_LIM_SCALE` is the scaling factor for the stdv used in the quality control. The TEXT variables sets the text for the title in the plots and the web page. For e.g. the cloud cover we have defined the classes for the contingency tables by setting `CONT_CLASS` and `CONT_LIM.` `MAP_BIAS_INTERVAL` set, as the name indicates, the intervals for the bias maps.
 
 ```bash
 
@@ -619,13 +619,13 @@ Finally we can also do the selection based on meteorological criteria. In the ex
   },
 ```
 
-''Example of conditional selection''
+*Example of conditional selection*
 
  * COND%IND sets the parameters
  * COND%LLIM sets the lower limits
  * COND%ULIM sets the upper limits
  * COND%LOBS T means apply condition on observations, F applies condition on model data
- * COND%ALL_MOD, T means condition is required for ALL models, F for ANY model
+ * `COND%ALL_MOD`, T means condition is required for ALL models, F for ANY model
 
 
 All the above mentioned selections can of course be combined in any way you can imagine.
@@ -636,16 +636,16 @@ One idea with the HARMONIE verification packages is that it should be easy to sh
 
 Examples :
       * [GLAMEPS](https://glameps.hirlam.org/forecasted) [Definition file](https://glameps.hirlam.org/forecasted/AccPcp3h.js)
-      * [Daily maps](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/) [Definition file](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/Surface.js)
+      * [Daily `maps](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/`) [Definition `file](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/Surface.js`)
 
 
-At the end of both of the scripts Run_verobs_surface/Run_verobs_temp there is a call to [Create_ver_js.pl](monitor/scr/Create_ver_js.pl) that builds the webpage depending on your configuration file. It is also possible to (re)generate the webpage directly by running:
+At the end of both of the scripts `Run_verobs_surface/Run_verobs_temp` there is a call to [`Create_ver_js.pl`](monitor/scr/Create_ver_js.pl) that builds the webpage depending on your configuration file. It is also possible to (re)generate the webpage directly by running:
 
 ```bash
 Create_ver_js YOUR_CONFIG_FILE
 ```
 
-The WebgraF page is controlled by the [WebgraF script](monitor/WebgraF/bin/WebgraF). It has commands to e.g. list, add, remove the content of a page. To start mastering your own page you first have to let the script know the location of the page by setting the environment variable WEBGRAF_BASE 
+The WebgraF page is controlled by the [WebgraF script](monitor/WebgraF/bin/WebgraF). It has commands to e.g. list, add, remove the content of a page. To start mastering your own page you first have to let the script know the location of the page by setting the environment variable `WEBGRAF_BASE` 
 ```bash
 in bash
 export WEBGRAF_BASE=SOME_PATH/monitor/WebgraF
@@ -659,14 +659,14 @@ Now you can list the content of you page by
 WebgraF/bin/WebgraF -l 
 ```
 
-A more comprehensive list of commands can be found in the [README file](monitor/doc/README_WebgraF). The rules and functions available for your definition file is found [here](monitor/WebgraF/src/input.html).
+A more comprehensive list of commands can be found in the [README `file](monitor/doc/README_WebgraF`). The rules and functions available for your definition file is found [here](monitor/WebgraF/src/input.html).
 
 Two useful tools is the export and transport commands. Both creates an portable extraction of your verification page but in two different ways.
 
  * The export.tar file is a stand alone web page that you can untar anywhere and open in your browser.
  * The transport.tar file is suitable to add to an already existing WebgraF page by  ` WebgraF -a TARFILE `
 
-Both are accessible through the script [Transport_ver](monitor/scr/Transport_ver) which is used like
+Both are accessible through the script [`Transport_ver`](monitor/scr/Transport_ver) which is used like
 
 ```bash
 Transport_ver YOUR_CONFIG_FILE

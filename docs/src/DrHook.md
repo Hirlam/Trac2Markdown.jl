@@ -98,10 +98,10 @@ output to the stderr.
 The latter defines the profile files' location. The **%d** will be replaced with
 MPL-task id (= MPI-task plus 1).
 
-Sometimes it is necessary to turn Dr.Hook off and ''also'' make sure no signals are caught
-by Dr.Hook -- as this the (unfortunate?) default due to function call to **C_DRHOOK_INIT_SIGNALS** in **arp/setup/sumpini.F**.
-Now there is a new environment variable **DR_HOOK_INIT_SIGNALS** to prevent this. So, to make sure Dr.Hook does ''not''
-interfere your run ''at all'', give:
+Sometimes it is necessary to turn Dr.Hook off and *also* make sure no signals are caught
+by Dr.Hook -- as this the (unfortunate?) default due to function call to `**C_DRHOOK_INIT_SIGNALS**` in **arp/setup/sumpini.F**.
+Now there is a new environment variable `**DR_HOOK_INIT_SIGNALS**` to prevent this. So, to make sure Dr.Hook does *not*
+interfere your run *at all*, give:
 
 ```bash
 #!sh
@@ -123,13 +123,13 @@ export DR_HOOK_TIMELINE_FREQ# 1 # the default 1000000
 export DR_HOOK_TIMELINE_MB=1 # th default jump 1 MByte
 ```
 
-Upon each **DR_HOOK_TIMELINE_FREQ**-call to **DR_HOOK** this will check for one MByte (or **DR_HOOK_TIMELINE_MB**) jumps in
+Upon each `**DR_HOOK_TIMELINE_FREQ**-call` to `**DR_HOOK**` this will check for one MByte (or `**DR_HOOK_TIMELINE_MB**`) jumps in
 resident memory usage, and will print a line containing cumulutive wall clock time since start, resident memory size right now, high water mark so far, routine name (instrumented to Dr.Hook).
 ----
 
 ### Implicit MPL-library (and MPI) initialization
 
-Be aware that the very first call to **DR_HOOK** also attempts to initialize MPL-library for you. Sometimes this is not desired
+Be aware that the very first call to `**DR_HOOK**` also attempts to initialize MPL-library for you. Sometimes this is not desired
 or causes some hard to understand failures, especially with programs where MPI is not involved, but Dr.Hook calls are present.
 To turn this initialization off, set
 
@@ -138,7 +138,7 @@ To turn this initialization off, set
 export DR_HOOK_NOT_MPI=1
 ```
 
-For example, asyncronous I/O module **SAMIO** does that -- from within its Fortran. It calls ''before first Dr.Hook call''
+For example, asyncronous I/O module **SAMIO** does that -- from within its Fortran. It calls *before first Dr.Hook call*
 function
 
 ```bash
@@ -161,7 +161,7 @@ IF (LHOOK) CALL DR_HOOK('SOME_UTILGL_TOOL',1,ZHOOK_HANDLE)
 
 ## Overheads
 
-The **DR_HOOK=1** has practically no overhead on a scalar machine.
-Profiling with **DR_HOOK_OPT=prof** causes some 5% overhead.
+The `**DR_HOOK=1**` has practically no overhead on a scalar machine.
+Profiling with `**DR_HOOK_OPT=prof**` causes some 5% overhead.
 
 On a vector machine overhead are so big that Dr.Hook should not be used there, unfortunately.

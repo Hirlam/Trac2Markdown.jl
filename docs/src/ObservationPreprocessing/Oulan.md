@@ -2,7 +2,7 @@
 
 ## General Description
 The pre-processing step creates ODB (Observational Data Base) from various observation data files possibly in different formats.
- * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the ARPEGE/ALADIN/HARMONIE analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, 2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite BUFR/GRIB/BIN files and the OBSOUL one.
+ * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the ARPEGE/ALADIN/HARMONIE analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, `2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf`). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite BUFR/GRIB/BIN files and the OBSOUL one.
  * Compilation: oulan, Shufflebufr are compiled using gmakpack or makeup.
  * Scripts: Oulan
  * Input/output
@@ -32,7 +32,7 @@ The splitting is done with the following command ($BUFRFILE is a file containing
       $BINDIR/ShuffleBufr -i ${BUFRFILE} -s3 -a 
 ```
 ## oulan
-oulan reads (primarily conventional observation) BUFR data and converts them into ASCII format OBSOUL files. Note, **we can make observation selection** in oulan. More details about how to do data selection can be found [here (Randriamampianina, ALADIN/HIRLAM Workshop 2005)](http://owww.met.hu/pages/seminars/ALADIN2005/28_Bp_workshop1n_n_RogerR.ppt)
+oulan reads (primarily conventional observation) BUFR data and converts them into ASCII format OBSOUL files. Note, **we can make observation selection** in oulan. More details about how to do data selection can be found [here (Randriamampianina, ALADIN/HIRLAM Workshop `2005)](http://owww.met.hu/pages/seminars/ALADIN2005/28_Bp_workshop1n_n_RogerR.ppt`)
   1. namelist description: 
 
 | **NADIRS**          |                                                                |
@@ -104,7 +104,7 @@ oulan reads (primarily conventional observation) BUFR data and converts them int
 ```bash
     $BINDIR/oulan 
 ```
-  1. process GNSS data. If $GNSS_OBS is set to 1 then GNSS observations are added to the OBSOUL file and whitelisting is carried out using PREGPSSOL
+  1. process GNSS data. If `$GNSS_OBS` is set to 1 then GNSS observations are added to the OBSOUL file and whitelisting is carried out using PREGPSSOL
 ### New BUFR templates
 **Valid for HARMONIE 40h1 and later**
 

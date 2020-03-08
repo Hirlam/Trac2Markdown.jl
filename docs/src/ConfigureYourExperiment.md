@@ -3,9 +3,9 @@
 
 ## Introduction
 
-There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](Harmonie/ecf/config_exp.h?rev# release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](Harmonie/ecf/config_exp.h?revrelease-43h2.beta.3).
+There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [`config_exp.h`](Harmonie/ecf/config_exp.h?rev# release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [`config_exp.h`](Harmonie/ecf/config_exp.h?revrelease-43h2.beta.3).
 
-Host specific paths and environment variables for your system are defined in Env_system. Read more [here](HarmonieSystemDocumentation/Installation).
+Host specific paths and environment variables for your system are defined in `Env_system.` Read more [here](HarmonieSystemDocumentation/Installation).
 
 ## Build options
 ```bash
@@ -13,12 +13,12 @@ Host specific paths and environment variables for your system are defined in Env
 # Definitions about Build, should fit with hm_rev
 BUILD=${BUILD-yes}                     # Turn on or off the compilation and binary build (yes|no)
 ```
-''BUILD'' is a switch for compiling HARMONIE code (__yes__|no).
+*BUILD* is a switch for compiling HARMONIE code (`__yes__|no`).
 
 ```bash
 BINDIR=${BINDIR-$HM_DATA/bin}                 # Binary directory
 ```
-''BINDIR'' is the location of where your HARMONIE binaries will be installed. You can use this to point to binaries outside of your experiment. A few other options for non default configurations exists as well:
+*BINDIR* is the location of where your HARMONIE binaries will be installed. You can use this to point to binaries outside of your experiment. A few other options for non default configurations exists as well:
 
 ```bash
 COMPILE_ENKF=${COMPILE_ENKF-"no"}             # Compile LETKF code (yes|no)
@@ -33,11 +33,11 @@ SURFEX_OFFLINE_BINARIES="no"                  # Switch to compile and use offlin
 CNMEXP=HARM                             # Four character experiment identifier
 WRK=$HM_DATA/$CYCLEDIR                  # Work directory
 ```
- * ''CNMEXP'': experiment identifier used by MASTERODB
- * ''WRK'' is the work directory. The suggested path on cca is $SCRATCH/hm_home/${EXP}/$CYCLEDIR
+ * *CNMEXP*: experiment identifier used by MASTERODB
+ * *WRK* is the work directory. The suggested path on cca is `$SCRATCH/hm_home/${EXP}/$CYCLEDIR`
 
 ## Archive settings (ECMWF)
-Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](Harmonie/scr/Archive_host1?rev# release-43h2.beta.3) and [Archive_ecgb](Harmonie/scr/Archive_ecgb?revrelease-43h2.beta.3). 
+Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [`Archive_host1`](Harmonie/scr/Archive_host1?rev# release-43h2.beta.3) and [`Archive_ecgb`](Harmonie/scr/Archive_ecgb?revrelease-43h2.beta.3). 
 ```bash
 # **** Paths to archive ****
 # We need to define ARCHIVE early since it might be used further down
@@ -47,10 +47,10 @@ ECFSLOC=ectmp                           # Archiving site at ECMWF-ECFS: "ec" or 
 ECFSGROUP=hirald                        # Group in which to chgrp the ECMWF archive, "default" or "hirald"
 EXTRARCH=$ARCHIVE_ROOT/extract          # Archive for fld/obs-extractions
 ```
- * ''ARCHIVE_ROOT'' is the path to forecast file archive. **Note that at ECMWF this directory is not a permanent storage**
- * ''EXTRARCH'' is the path to field extraction archive. **Note that at ECMWF this directory is not a permanent storage**
- * ''ECFSLOC'' Archiving site at ECMWF-ECFS  (__ectmp__|ec) **Note that files archived on ectmp will be lost after 90 days.** If you wish your files to stay longer you should set ECFSLOC=ec. 
- * ''ECFSGROUP'' Group in which to chgrp the ECMWF archive, (__hirald__|default)
+ * `*ARCHIVE_ROOT*` is the path to forecast file archive. **Note that at ECMWF this directory is not a permanent storage**
+ * *EXTRARCH* is the path to field extraction archive. **Note that at ECMWF this directory is not a permanent storage**
+ * *ECFSLOC* Archiving site at ECMWF-ECFS  (`__ectmp__|ec`) **Note that files archived on ectmp will be lost after 90 days.** If you wish your files to stay longer you should set ECFSLOC=ec. 
+ * *ECFSGROUP* Group in which to chgrp the ECMWF archive, (`__hirald__|default`)
 
 ## Running Mode
 ```bash
@@ -61,8 +61,8 @@ RUNNING_MODE=research                   # Research or operational mode (research
 
 SIMULATION_TYPE=nwp                     # Type of simulation (nwp|climate)
 ```
- * ''RUNNING_MODE'' can be __research__ or operational. Operational is more forgiving in the error handling and e.g. the assimilation will be skipped if Bator doesn't find any observations. Exceptions handled by the operational mode are written to `$HM_DATA/severe_warnings.txt`
- * ''SIMULATION_TYPE'' Switch between __nwp__ and climate type of simulation. The climate simulations are still in an experimental stage. [See HARMONIE-Climate for cy43h2 for more information](HarmonieClimate/HCLIM43)
+ * `*RUNNING_MODE*` can be `__research__` or operational. Operational is more forgiving in the error handling and e.g. the assimilation will be skipped if Bator doesn't find any observations. Exceptions handled by the operational mode are written to ``$HM_DATA/severe_warnings.txt``
+ * `*SIMULATION_TYPE*` Switch between `__nwp__` and climate type of simulation. The climate simulations are still in an experimental stage. [See HARMONIE-Climate for cy43h2 for more information](HarmonieClimate/HCLIM43)
 
 ## Model domain settings
 Horizontal domain settings. Further information is available here: [HarmonieSystemDocumentation/ModelDomain](HarmonieSystemDocumentation/ModelDomain)
@@ -72,9 +72,9 @@ DOMAIN=DKCOEXP                          # See definitions in scr/Harmonie_domain
 TOPO_SOURCE=gmted2010                   # Input source for orography. Available are (gmted2010|gtopo30)
 GRID_TYPE=LINEAR                        # Type of grid (LINEAR|QUADRATIC|CUBIC)
 ```
- * ''DOMAIN'' defines your domain according to the settings in [scr/Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?rev# release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](Harmonie/scr/Harmonie_domains.pm?revrelease-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain](HarmonieSystemDocumentation/ModelDomain)
- * ''TOPO_SOURCE'': Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography](HarmonieSystemDocumentation/How_to_use_hires_topography)
- * ''GRID_TYPE'': This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](Harmonie/scr/Cliamte?rev# release-43h2.beta.3) and [scr/Forecast](Harmonie/scr/Forecast?revrelease-43h2.beta.3)
+ * *DOMAIN* defines your domain according to the settings in [`scr/Harmonie_domains.pm`](Harmonie/scr/Harmonie_domains.pm?rev# release-43h2.beta.3) (`__DKCOEXP__`). The spectral truncation for your domain is determined from NLON and NLAT by [`scr/Harmonie_domains.pm`](Harmonie/scr/Harmonie_domains.pm?revrelease-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain](HarmonieSystemDocumentation/ModelDomain)
+ * `*TOPO_SOURCE*:` Defines input source for model orography (`__gmted2010__|gtopo30`). Further information available here: [hi-res `topography](HarmonieSystemDocumentation/How_to_use_hires_topography`)
+ * `*GRID_TYPE*:` This variable is used to define the spectral truncation used (`__LINEAR__|QUADRATIC|CUBIC`). `GRID_TYPE` is used in [scr/Climate](Harmonie/scr/Cliamte?rev# release-43h2.beta.3) and [scr/Forecast](Harmonie/scr/Forecast?revrelease-43h2.beta.3)
 
 ## Vertical levels
 Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid](HarmonieSystemDocumentation/VerticalGrid)
@@ -85,7 +85,7 @@ VLEV=65                                 # Vertical level definition name
                                         # See the other choices from scr/Vertical_levels.pl
 ```
 
- * ''VLEV'' is the name of the vertical levels defined in [Vertical_levels.pl](Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (__65__). Further information is available here: [Vertical Grid](HarmonieSystemDocumentation/VerticalGrid). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](HarmonieSystemDocumentation/Structurefunctions)
+ * *VLEV* is the name of the vertical levels defined in [`Vertical_levels.pl`](Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (`__65__`). Further information is available here: [Vertical Grid](HarmonieSystemDocumentation/VerticalGrid). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](HarmonieSystemDocumentation/Structurefunctions)
 
 ## Forecast model
 Higher level forecast model settings.
@@ -108,15 +108,15 @@ LSPBDC=no                               # Spectral boundary contions option off(
 LGRADSP=yes                             # Apply Wedi/Hortal vorticity dealiasing
 LUNBC=yes                               # Apply upper nested boundary condition
 ```
- * ''NAMELIST_BASE'': Two different namelist sets are available (__harmonie__|alaro).
- * ''DYNAMICS'': Hydrostatic or non-hydrostatic dynamics (h|__nh__)
- * ''VERT_DISC'': Vertical discretization (__vfd__,vfe)
- * ''PHYSICS'': HARMONIE uses either AROME or ALARO for its forecast model physics (__arome__|alaro)
- * ''SURFACE'': Surface physics flag to use either the SURFEX or the ALADIN surface scheme(__surfex__|old_surface)
- * ''DFI'': Digital filter initialization switch (idfi|fdfi|__none__). idfi - incremental dfi, fdfi - full dfi, none - no initialization. See [Digital filter](HarmonieSystemDocumentation/ConfigureYourExperiment#Digitalfilter) for more information
- * ''LSPBDC'': Specify whether the boundary conditions are spectral or not (yes|__no__)
- * ''LGRADSP'': Switch to apply vorticity dealiasing (__yes__|no)
- * ''LUNBC'': Switch to apply upper boundary conditions (__yes__|no)
+ * `*NAMELIST_BASE*:` Two different namelist sets are available (`__harmonie__|alaro`).
+ * *DYNAMICS*: Hydrostatic or non-hydrostatic dynamics (`h|__nh__`)
+ * `*VERT_DISC*:` Vertical discretization (`__vfd__`,vfe)
+ * *PHYSICS*: HARMONIE uses either AROME or ALARO for its forecast model physics (`__arome__|alaro`)
+ * *SURFACE*: Surface physics flag to use either the SURFEX or the ALADIN surface `scheme(__surfex__|old_surface`)
+ * *DFI*: Digital filter initialization switch (`idfi|fdfi|__none__`). idfi - incremental dfi, fdfi - full dfi, none - no initialization. See [Digital filter](HarmonieSystemDocumentation/ConfigureYourExperiment#Digitalfilter) for more information
+ * *LSPBDC*: Specify whether the boundary conditions are spectral or not (`yes|__no__`)
+ * *LGRADSP*: Switch to apply vorticity dealiasing (`__yes__|no`)
+ * *LUNBC*: Switch to apply upper boundary conditions (`__yes__|no`)
 
 ## Physics
 Physics options.
@@ -132,12 +132,12 @@ MASS_FLUX_SCHEME=edmfm                  # Version of EDMF scheme (edkf|edmfm)
 HARATU="yes"                            # Switch for HARATU turbulence scheme (no|yes)
 ALARO_VERSION=0                         # Alaro version (1|0)
 ```
- * ''CISBA'': If ''SURFACE'' is set to surfex this selects the type of ISBA scheme to use in SURFEX. (__3-L__|2-L). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
- * ''CROUGH'': If ''SURFACE'' is set to surfex this selects the sub-grid scale orography scheme used in SURFEX. (__NONE__|Z01D|BE04). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
- * ''SURFEX_SEA_ICE'': Treatment of sea ice in surfex (none|sice). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
- * ''MASS_FLUX_SCHEME'': If ''PHYSICS'' is set to arome choose the mass flux scheme to be used by AROME; edkf to use the AROME-MF scheme or edmfm to use the KNMI developed scheme
- * ''HARATU'': Switch to use the ''HARATU'' turbulence scheme
- * ''ALARO_VERSION'': If ''PHYSICS'' is set to alaro select version of ALARO to use (__0__|1)
+ * *CISBA*: If *SURFACE* is set to surfex this selects the type of ISBA scheme to use in SURFEX. (`__3-L__|2-L`). [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
+ * *CROUGH*: If *SURFACE* is set to surfex this selects the sub-grid scale orography scheme used in SURFEX. (`__NONE__|Z01D|BE04`). [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
+ * `*SURFEX_SEA_ICE*:` Treatment of sea ice in surfex (none|sice). [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
+ * `*MASS_FLUX_SCHEME*:` If *PHYSICS* is set to arome choose the mass flux scheme to be used by AROME; edkf to use the AROME-MF scheme or edmfm to use the KNMI developed scheme
+ * *HARATU*: Switch to use the *HARATU* turbulence scheme
+ * `*ALARO_VERSION*:` If *PHYSICS* is set to alaro select version of ALARO to use (`__0__|1`)
 
 
 ## Assimilation
@@ -167,15 +167,15 @@ LSMIXBC=no                              # Spectral mixing of LBC0 file before as
 JB_INTERPOL=no                          # Interpolation of structure functions from a pre-defined domain to your domain
 
 ```
- * ''ANAATMO'': Atmospheric analysis (__3DVAR__|4DVAR|blending|none)
- * ''ANASURF'': Surface analysis (CANARI|__CANARI_OI_MAIN__|CANARI_EKF_SURFEX|none). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
- * ''ANASURF_MODE'':When the surface should be called (__before__|after|both)
- * ''INCV'': Active EKF control variables. 1# WG2 2WG1 3# TG2 4TG1 (0|1)
- * ''INCO'': Active EKF observation types (Element 1# T2m, element 2RH2m and element 3=Soil moisture) (0|1)
- * ''MAKEODB2'': Option to convert ODB-1 databases to ODB-2 files for DA monitoring
- * ''SST'': which sea surface temperature field to use in the surface analysis
- * ''LSMIXBC'' Spectral mixing of LBC0 file before assimilation (__no__|yes)
- * ''JB_INTERPOL'' Interpolation of structure functions from a pre-defined domain to your domain (__no__|yes). Note that this has to be used with some caution.
+ * *ANAATMO*: Atmospheric analysis (`__3DVAR__|4DVAR|blending|none`)
+ * *ANASURF*: Surface analysis (`CANARI|__CANARI_OI_MAIN__|CANARI_EKF_SURFEX|none`). [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
+ * `*ANASURF_MODE*:When` the surface should be called (`__before__|after|both`)
+ * *INCV*: Active EKF control variables. 1# WG2 2WG1 3# TG2 4TG1 (0|1)
+ * *INCO*: Active EKF observation types (Element 1# T2m, element 2RH2m and element 3=Soil moisture) (0|1)
+ * *MAKEODB2*: Option to convert ODB-1 databases to ODB-2 files for DA monitoring
+ * *SST*: which sea surface temperature field to use in the surface analysis
+ * *LSMIXBC* Spectral mixing of LBC0 file before assimilation (`__no__|yes`)
+ * `*JB_INTERPOL*` Interpolation of structure functions from a pre-defined domain to your domain (`__no__|yes`). Note that this has to be used with some caution.
 
 ## Observations
 ```bash
@@ -187,11 +187,11 @@ SINGLEOBS=no                            # Run single obs experiment with observa
 USE_MSG=no                              # Use MSG data for adjustment of inital profiles, EXPERIMENTAL! (no|yes)
 MSG_PATH=$SCRATCH/CLOUDS/               # Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH
 ```
- * ''OBDIR'': Defines the directory that your (BUFR) observation files (obYYYYMMDDHH) are to read from
- * ''RADARDIR'': Defines the directory that your (OPERA HDF5) radar observation files are to be read from. BALTRAD OPERA HDF5, MF BUFR and LOCAL files are treated in [scr/Prepradar](Harmonie/scr/Prepradar?rev=release-43h2.beta.3)
- * ''SINGLEOBS'' Run single obs experiment with synthetic observation created by [source:Harmonie/scr/Create_single_obs scr/Create_single_obs) (__no__|yes)
- * ''USE_MSG'': Use MSG data for adjustment of inital profiles, EXPERIMENTAL! (__no__|yes)
- * ''MSG_PATH'':  Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH. Note that the pre-processing software to generate input files is not yet included in HARMONIE
+ * *OBDIR*: Defines the directory that your (BUFR) observation files (obYYYYMMDDHH) are to read from
+ * *RADARDIR*: Defines the directory that your (OPERA HDF5) radar observation files are to be read from. BALTRAD OPERA HDF5, MF BUFR and LOCAL files are treated in [scr/Prepradar](Harmonie/scr/Prepradar?rev=release-43h2.beta.3)
+ * *SINGLEOBS* Run single obs experiment with synthetic observation created by [`source:Harmonie/scr/Create_single_obs` `scr/Create_single_obs`) (`__no__|yes`)
+ * `*USE_MSG*:` Use MSG data for adjustment of inital profiles, EXPERIMENTAL! (`__no__|yes`)
+ * `*MSG_PATH*:`  Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH. Note that the pre-processing software to generate input files is not yet included in HARMONIE
 
 ## 4DVAR settings
 4DVAR settings (experimental)
@@ -203,11 +203,11 @@ TSTEP4D=360,360                         # Timestep length (seconds) of outer loo
 TL_TEST=yes                             # Only active for playfile tlad_tests
 AD_TEST=yes                             # Only active for playfile tlad_tests
 ```
- * ''NOUTERLOOP'': Number of outer loops, need to be 1 at present
- * ''ILRES'':  Resolution (in parts of full) of outer loops
- * ''TSTEP4D'': Timestep length (seconds) of outer loops TL+AD
- * ''TL_TEST'': Only active for playfile tlad_tests (__yes__|no)
- * ''AD_TEST'': Only active for playfile tlad_tests (__yes__|no)
+ * *NOUTERLOOP*: Number of outer loops, need to be 1 at present
+ * *ILRES*:  Resolution (in parts of full) of outer loops
+ * *TSTEP4D*: Timestep length (seconds) of outer loops TL+AD
+ * `*TL_TEST*:` Only active for playfile `tlad_tests` (`__yes__|no`)
+ * `*AD_TEST*:` Only active for playfile `tlad_tests` (`__yes__|no`)
 
 ## Digital filter settings
 Digital filter initialization settings if DFI is not equal to "none"
@@ -216,8 +216,8 @@ Digital filter initialization settings if DFI is not equal to "none"
 TAUS=5400                               # cut-off frequency in second
 TSPAN=5400                              # 7200s or 5400s
 ```
- * ''TAUS'' cut-off frequency in seconds 
- * ''TSPAN'' length of DFI run in seconds
+ * *TAUS* cut-off frequency in seconds 
+ * *TSPAN* length of DFI run in seconds
 
 
 
@@ -270,23 +270,23 @@ BDINT=1                         # Boundary interval in hours
 
 SURFEX_PREP="yes"                # Use offline surfex prep facility (Alt. gl + Fullpos + prep )
 ```
- * ''HOST_MODEL'' defines the host model that provides the lateral boundaries conditions for your experiment
+ * `*HOST_MODEL*` defines the host model that provides the lateral boundaries conditions for your experiment
    * hir for HIRLAM.
    * ald for ALADIN 
    * ala for ALARO
    * aro for AROME
    * ifs for ECMWF-IFS. 
- * ''HOST_SURFEX'' Set to yes if host model runs with SURFEX. (__no__|yes)
- * ''SURFEX_INPUT_FORMAT'' Input format for host model run with surfex (__lfi__|fa)
+ * `*HOST_SURFEX*` Set to yes if host model runs with SURFEX. (`__no__|yes`)
+ * `*SURFEX_INPUT_FORMAT*` Input format for host model run with surfex (`__lfi__|fa`)
 
- * ''BDLIB'' is the experiment to be used as boundaries. Possible values, __ECMWF__ for IFS from MARS (default), __RCRa__ for HIRLAM-RCR from ECFS or other __HARMONIE experiment__. 
- * ''BDDIR'' is the boundary file directory. The possible date information in the path must be given by using UPPER CASE letters (@YYYY@# year,@MM@month,@DD@# day,@HH@hour,@FFF@=forecast length).  
- * ''BDSTRATEGY'' Which boundary strategy to follow i.e. How to find the right boundaries with the right age and location. [Read more](HarmonieSystemDocumentation/BoundaryFilePreparation#Boundarystrategies)
- * ''BDINT'' is boundary interval in hours.
- * ''BDCLIM'' is the path to climate files corresponding the boundary files, when nesting HARMONIE to HARMONIE.
- * ''INT_BDFILE'' is the name and location of the interpolated boundary files. These files are removed every cycle, but if you wish to save them you can specify a more permanent location here. By setting INT_BDFILE=$ARCHIVE the interpolated files will be stored in your archive directory.
- * ''NBDMAX'' Number of parallel boundary interpolation tasks in mSMS. The current default value is 12.
- * ''SURFEX_PREP'' Use SURFEX tool PREP instead of gl+FULLPOS to prepare SURFEX initial conditions. This is now the default. The gl+FULLPOS version is still working but will not be maintained in the future (no|__yes__)
+ * *BDLIB* is the experiment to be used as boundaries. Possible values, `__ECMWF__` for IFS from MARS (default), `__RCRa__` for HIRLAM-RCR from ECFS or other `__HARMONIE` `experiment__.` 
+ * *BDDIR* is the boundary file directory. The possible date information in the path must be given by using UPPER CASE letters (@YYYY@# year,@MM@month,@DD@# day,@HH@hour,@FFF@=forecast length).  
+ * *BDSTRATEGY* Which boundary strategy to follow i.e. How to find the right boundaries with the right age and location. [Read more](HarmonieSystemDocumentation/BoundaryFilePreparation#Boundarystrategies)
+ * *BDINT* is boundary interval in hours.
+ * *BDCLIM* is the path to climate files corresponding the boundary files, when nesting HARMONIE to HARMONIE.
+ * `*INT_BDFILE*` is the name and location of the interpolated boundary files. These files are removed every cycle, but if you wish to save them you can specify a more permanent location here. By setting `INT_BDFILE=$ARCHIVE` the interpolated files will be stored in your archive directory.
+ * *NBDMAX* Number of parallel boundary interpolation tasks in mSMS. The current default value is 12.
+ * `*SURFEX_PREP*` Use SURFEX tool PREP instead of gl+FULLPOS to prepare SURFEX initial conditions. This is now the default. The gl+FULLPOS version is still working but will not be maintained in the future (`no|__yes__`)
 
 Read more about the boundary file preparation [here](HarmonieSystemDocumentation/BoundaryFilePreparation).
 
@@ -322,28 +322,28 @@ FESTAT=no                               # Extract differences and do Jb calculat
 
 ```
 
- * ''ENSMSEL''  Ensemble member selection, comma separated list, and/or range(s):
+ * *ENSMSEL*  Ensemble member selection, comma separated list, and/or range(s):
     # m1,m2,m3-m4,m5-m6:step    mb-me ## mb-me:1 mb,mb+1,mb+2,...,me
     # 0=control. ENSMFIRST, ENSMLAST, ENSSIZE derived automatically from ENSMSEL.
- * ''ENSINIPERT'' Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv, slaf.
- * ''ENSMFAIL'' Failure tolerance for all members. Not yet implemented.
- * ''ENSMDAFAIL'' Failure tolerance for members doing own DA. Not yet implemented.
- * ''ENSCTL'' Which member is my control member? Needed for ENSINIPERT=bnd. See harmonie.pm.
- * ''ENSBDMBR'' Which host member is used for my boundaries? Use harmonie.pm to set.
- * ''SLAFK'' Perturbation coefficients for SLAF, experimental
- * ''SLAFLAG'' Time lag for boundaries in SLAG, experimental
+ * *ENSINIPERT* Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv, slaf.
+ * *ENSMFAIL* Failure tolerance for all members. Not yet implemented.
+ * *ENSMDAFAIL* Failure tolerance for members doing own DA. Not yet implemented.
+ * *ENSCTL* Which member is my control member? Needed for ENSINIPERT=bnd. See harmonie.pm.
+ * *ENSBDMBR* Which host member is used for my boundaries? Use harmonie.pm to set.
+ * *SLAFK* Perturbation coefficients for SLAF, experimental
+ * *SLAFLAG* Time lag for boundaries in SLAG, experimental
 
  For member dependent settings see [msms/harmonie.pm](Harmonie/msms/harmonie.pm?rev=release-43h2.beta.3).
 
- * ''PERTATMO'' Observation perturbation with three options 
+ * *PERTATMO* Observation perturbation with three options 
    * ECMA: In-line observation perturbation using the default IFS way.
    * CCMA    : Perturbation of the active observations only (CCMA content) before the Minimization, using the PERTCMA executable.
    * none    : no perturbation of upper-air observations
 
-  * ''PERTSURF'' Perturbation of surface observations before Canari (recommended for EDA to have full perturbation of the initial state) (__no__|yes).
+  * *PERTSURF* Perturbation of surface observations before Canari (recommended for EDA to have full perturbation of the initial state) (`__no__|yes`).
 
 
- * ''FESTAT'' Extract differences and do Jb calculations (__no__|yes). Read more about the procedure [here](HarmonieSystemDocumentation/Structurefunctions_ensys).
+ * *FESTAT* Extract differences and do Jb calculations (`__no__|yes`). Read more about the procedure [`here](HarmonieSystemDocumentation/Structurefunctions_ensys`).
 
 
 ## Climate file settings
@@ -361,11 +361,11 @@ ECOCLIMAP_VERSION=2.2                   # Version of ECOCLIMAP for surfex (1,2)
                                         # Available versions are 1.1-1.5,2.0-2.2
 SOIL_TEXTURE_VERSION=FAO                # Soil texture input data FAO|HWSD_v2
 ```
- * ''CREATE_CLIMATE'': Run climate generation (__yes__|no). If you already have a full set of climate files generated in CLIMDIR you can set this flag to no for a faster run.
- * ''CLIMDIR'': path to the generated climate files for your specific domain. The input data for the climate generation is defined by HM_CLDATA defined in Env_system -> config-sh/config.YOURHOST
- * ''BDCLIM'': path to intermediate climate files
- * ''ECOCLIMAP_VERSION'' is the version of ECOCLIMAP to be used with SURFEX. Available versions are 1.1-1.5,2.0,2.1,__2.2__. [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
- * ''SOIL_TEXTURE_VERSION'' Soil texture input data (__FAO__|HWSD_v2). [See surfex_namelists.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm)
+ * `*CREATE_CLIMATE*:` Run climate generation (`__yes__|no`). If you already have a full set of climate files generated in CLIMDIR you can set this flag to no for a faster run.
+ * *CLIMDIR*: path to the generated climate files for your specific domain. The input data for the climate generation is defined by `HM_CLDATA` defined in `Env_system` -> config-sh/config.YOURHOST
+ * *BDCLIM*: path to intermediate climate files
+ * `*ECOCLIMAP_VERSION*` is the version of ECOCLIMAP to be used with SURFEX. Available versions are `1.1-1.5,2.0,2.1,__2.2__.` [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
+ * `*SOIL_TEXTURE_VERSION*` Soil texture input data (`__FAO__|HWSD_v2`). [See `surfex_namelists.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_namelists.pm`)
 
 ## Archiving settings
 ```bash
@@ -459,11 +459,11 @@ fi
 
 The writeup times of model output can be defined as a space separated list or as a fixed frequency for model history files, surfex files and postprocessed files respectively. The unit of the steps of WRITUPTIMES, SWRITUPTIMES, PWRITUPTIMES and OUTINT should be in hours or minutes depending on the **TFLAG** Regular output interval can be switched on by setting OUTINT>0. Consequently, OUTINT will override the WRITUPTIMES lists!
 
- * ''TFLAG'': Time flag for model output. Hourly or minute-based output (__h__|min)
- * ''HWRITUPTIMES'':  Output list for history files. Default is "00-21:3,24-60:6" which will output files every 3 hours for 00-21 and every 6 hours for 24-60.
- * ''VERITIMES'':  Output list for verification files. Default is "00-60:1" which will produce file every 1 hour for 00-60
- * ''SWRITUPTIMES''  Output list for surfex files. Default is "00-06:3" which output a  SURFEX file every 3 hours for 00-06.
- * ''PWRITUPTIMES''  Output list for fullpos (post-processed) files. Default is "00-21:3,24-60:6" which will output files every 3 hours for 00-21 and every 6 hours for 24-60.
+ * *TFLAG*: Time flag for model output. Hourly or minute-based output (`__h__|min`)
+ * *HWRITUPTIMES*:  Output list for history files. Default is "00-21:3,24-60:6" which will output files every 3 hours for 00-21 and every 6 hours for 24-60.
+ * *VERITIMES*:  Output list for verification files. Default is "00-60:1" which will produce file every 1 hour for 00-60
+ * *SWRITUPTIMES*  Output list for surfex files. Default is "00-06:3" which output a  SURFEX file every 3 hours for 00-06.
+ * *PWRITUPTIMES*  Output list for fullpos (post-processed) files. Default is "00-21:3,24-60:6" which will output files every 3 hours for 00-21 and every 6 hours for 24-60.
 
 
 
@@ -489,13 +489,13 @@ FREQ_RESET_GUST=1                       # Reset frequency of max/min gust values
 
 ```
 
- * ''SURFEX_LSELECT'': Switch to write a selection of fields in SURFEX output files (__yes__|no). [See surfex_selected_output.pm for more info.](HarmonieSystemDocumentation/Namelists#surfex_selected_output.pm)
+ * `*SURFEX_LSELECT*:` Switch to write a selection of fields in SURFEX output files (`__yes__|no`). [See `surfex_selected_output.pm` for more `info.](HarmonieSystemDocumentation/Namelists#surfex_selected_output.pm`)
 
- * ''INT_SINI_FILE'': name and location of the initial SURFEX file
- * ''ARCHIVE_ECMWF'': archive files to ECFSLOC at ECMWF (__yes__|no)
- * ''IO_SERVER'': Use IO server (yes|__no__). If set to "yes" changes may be required in Env_submit -> config-sh/submit.YOURHOUST
- * ''POSTP'': Postprocessing by Fullpos (__inline__|offline|none).
- * ''FREQ_RESET_[TEMP|GUST]'': Reset frequency of max/min values in hours, controls NRAZTS. Default is every 3/1 hours
+ * `*INT_SINI_FILE*:` name and location of the initial SURFEX file
+ * `*ARCHIVE_ECMWF*:` archive files to ECFSLOC at ECMWF (`__yes__|no`)
+ * `*IO_SERVER*:` Use IO server (`yes|__no__`). If set to "yes" changes may be required in `Env_submit` -> config-sh/submit.YOURHOUST
+ * *POSTP*: Postprocessing by Fullpos (`__inline__|offline|none`).
+ * `*FREQ_RESET_[TEMP|GUST`]*: Reset frequency of max/min values in hours, controls NRAZTS. Default is every 3/1 hours
 
 
 ```bash
@@ -510,12 +510,12 @@ MAKEGRIB_LISTENERS=1                    # Number of parallel listeners for Makeg
 
 ```
 
-More options on fullpos postprocessing can be found in [browser:trunk/harmonie/scr/Select_posp.pl Select_postp.pl]
+More options on fullpos postprocessing can be found in [`browser:trunk/harmonie/scr/Select_posp.pl` `Select_postp.pl`]
 
- * ''CONVERTFA'': Conversion of FA files to GRIB or NetCDF (__yes__|no)
- * ''ARCHIVE_FORMAT'': Format of archive files (__GRIB1__|nc). NetCDF format yet only available in climate mode
- * ''RCR_POSTP'' Produce a subset of fields from the history file for RCR monitoring (yes|__no__). This is only applicable if ARCHIVE_FORMAT=GRIB1|GRIB2
- * ''MAKEGRIB_LISTENERS'': Number of parallel listeners for Makegrib. Only applicable if ARCHIVE_FORMAT=GRIB1|GRIB2
+ * *CONVERTFA*: Conversion of FA files to GRIB or NetCDF (`__yes__|no`)
+ * `*ARCHIVE_FORMAT*:` Format of archive files (`__GRIB1__|nc`). NetCDF format yet only available in climate mode
+ * `*RCR_POSTP*` Produce a subset of fields from the history file for RCR monitoring (`yes|__no__`). This is only applicable if `ARCHIVE_FORMAT=GRIB1|GRIB2`
+ * `*MAKEGRIB_LISTENERS*:` Number of parallel listeners for Makegrib. Only applicable if `ARCHIVE_FORMAT=GRIB1|GRIB2`
 
 More options on file conversion can be found in [browser:trunk/harmonie/scr/Makegrib scr/Makegrib]
 
@@ -532,10 +532,10 @@ VFLDEXP=$EXP                            # Experiment name on vfld files
 ```
 
 
- * ''OBSEXTR'': Extract observations for verification from BUFR (__yes__|no)
- * ''FLDEXTR'' Extract model data for verification from model files (__yes__|no)
- * ''FLDEXTR_TASKS'': Number of parallel tasks for field extraction
- * ''VFLDEXP'':
+ * *OBSEXTR*: Extract observations for verification from BUFR (`__yes__|no`)
+ * *FLDEXTR* Extract model data for verification from model files (`__yes__|no`)
+ * `*FLDEXTR_TASKS*:` Number of parallel tasks for field extraction
+ * *VFLDEXP*:
 
 Read more about the verification package [here](HarmonieSystemDocumentation/PostPP/Verification)
 
@@ -548,8 +548,8 @@ FLDVER_HOURS="06 12 18 24 30 36 42 48"  # Hours for field verification
 
 ```
 
- * ''FLDVER'' Main switch for field verification (yes|__no__). The field verification extracts some selected variables for calculation of bias, rmse, stdv and averages on the model grid.
- * ''FLDVER_HOURS'' Hours for field verification
+ * *FLDVER* Main switch for field verification (`yes|__no__`). The field verification extracts some selected variables for calculation of bias, rmse, stdv and averages on the model grid.
+ * `*FLDVER_HOURS*` Hours for field verification
 
  More options on field verification can be found in [browser:trunk/harmonie/scr/Fldver Fldver] and [browser:trunk/harmonie/scr/AccuFldver AccuFldver]
 
@@ -566,7 +566,7 @@ OBSMONITOR=obstat                       # Create Observation statistics plots
 OBSMON_SYNC=no                          # Sync obsmn sqlite tables to ecgate (yes|no)
 ```
 
- ''OBSMONITOR'' Selection for observation statistics plots
+ *OBSMONITOR* Selection for observation statistics plots
     * obstat Observations usage. Read more [here](HarmonieSystemDocumentation/PostPP/Obsmon).
     * no No monitoring
 
@@ -586,8 +586,8 @@ MAPBIN=$HM_DATA/lib/util/mapbin
 
 ```
 
- * ''FIELDMONITOR'' Main switch (__no__|yes)
- * ''MAPBIN'' Path to plotting settings. Read more in [source:Harmonie/scr/Monitoring_maps]
+ * *FIELDMONITOR* Main switch (`__no__|yes`)
+ * *MAPBIN* Path to plotting settings. Read more in [`source:Harmonie/scr/Monitoring_maps`]
 
 
 ----

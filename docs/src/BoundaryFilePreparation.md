@@ -5,24 +5,24 @@
 
 HARMONIE can be coupled with external models as IFS, ARPEGE, HIRLAM. Internally it is possible to nest the different ALADIN/ALARO/AROME with some restrictions. In the following we describe the host initial and boundary files are generated depending on different configurations. Boundary file preparation basically includes two parts: forecast file fetching and boundary file generation.
 
-''The ECFLOW tasks for initial and boundary preparation''
+*The ECFLOW tasks for initial and boundary preparation*
 
 ## Boundary strategies
 
-There are a number of ways to chose which forecast lengths you use as boundaries. The strategy is determined by BDSTRATEGY in ecf/config_exp.h  and there are a number of strategies implemented.
+There are a number of ways to chose which forecast lengths you use as boundaries. The strategy is determined by BDSTRATEGY in `ecf/config_exp.h`  and there are a number of strategies implemented.
 
  * available            : Search for available files in BDDIR adn try to keep forecast consistency. This is ment to be used operationally since it will at least keep your run going, but with old boundaries, if no new boundaries are available.
-* simulate_operational : Mimic the behaviour of the operational runs using ECMWF 6h old boundaries.
-* same_forecast        : Use all boundaries from the same forecast, start from analysis
-* analysis_only        : Use only analyses as boundaries. Note that BDINT cannot be shorter than the frequency of the analyses.
+* `simulate_operational` : Mimic the behaviour of the operational runs using ECMWF 6h old boundaries.
+* `same_forecast`        : Use all boundaries from the same forecast, start from analysis
+* `analysis_only`        : Use only analyses as boundaries. Note that BDINT cannot be shorter than the frequency of the analyses.
 * latest               : Use the latest possible boundary with the shortest forecast length
-* RCR_operational      : Mimic the behaviour of the RCR runs, ie
+* `RCR_operational`      : Mimic the behaviour of the RCR runs, ie
   * 12h old boundaries at 00 and 12 and
   * 06h old boundaries at 06 and 18
-* jb_ensemble          : Same as same_forecast but used for JB-statistics generation. With this you should export JB_ENS_MEMBER=some_number
-* eps_ec               : ECMWF EPS members (on reduced Gaussian grid). It is only meaningful with ENSMSEL non-empty, i.e., ENSSIZE > 0
+* `jb_ensemble`          : Same as `same_forecast` but used for JB-statistics generation. With this you should export `JB_ENS_MEMBER=some_number`
+* `eps_ec`               : ECMWF EPS members (on reduced Gaussian grid). It is only meaningful with ENSMSEL non-empty, i.e., ENSSIZE > 0
 
-All the strategies are defined in [Boundary_strategy.pl](Harmonie/scr/Boundary_strategy.pl?rev=release-43h2.beta.3). The script generates a file bdstrategy in your working directory that could look like:
+All the strategies are defined in [`Boundary_strategy.pl`](Harmonie/scr/Boundary_strategy.pl?rev=release-43h2.beta.3). The script generates a file bdstrategy in your working directory that could look like:
 
 ```bash
  Boundary strategy
@@ -51,7 +51,7 @@ SURFEX_INI| /cca/tmp/ms/se/snh/hm_home/alaro_37h1_trunk/20110906_18/SURFXINI.lfi
 ...
 ```
 
-Meaning that the if the boundary file is not found under BDDIR the command `MARS_umbrella -d YYYYMMDD -h HH -l LLL -t BDDIR` will be executed. A local interpretation could be to search for external data if your file is not on BDDIR. Like the example from SMHI:
+Meaning that the if the boundary file is not found under BDDIR the command ``MARS_umbrella` -d YYYYMMDD -h HH -l LLL -t BDDIR` will be executed. A local interpretation could be to search for external data if your file is not on BDDIR. Like the example from SMHI:
 
 ```bash
  Boundary strategy
@@ -82,9 +82,9 @@ SURFEX_INI| /nobackup/smhid9/sm_esbol/hm_home/ice_36h1_4/20110901_12/SURFXINI.lf
 003|2011090115 /nobackup/smhid9/sm_esbol/hm_home/ice_36h1_4/20110901_12/ELSCFHARMALBC001 /nobackup/smhid9/sm_esbol/hm_home/ice_36h1_4/g05a/archive/2011/09/01/12/fc20110901_12+003 scp smhi:/data/arkiv/field/f_archive/hirlam/G05_60lev/201109/G05_201109011200+003H00M 
 ```
 
-In this example an scp from smhi will be executed if the expected file is not in BDDIR. There are a few environment variables that one can play with in sms/confi_exp.h that deals with the initial and boundary files
+In this example an scp from smhi will be executed if the expected file is not in BDDIR. There are a few environment variables that one can play with in `sms/confi_exp.h` that deals with the initial and boundary files
 
- * HOST_MODEL : Tells the origin of your boundary data
+ * `HOST_MODEL` : Tells the origin of your boundary data
         * ifs : ecmwf data
         * hir : hirlam data
         * ald : Output from aladin physics, this also covers arpege data after fullpos processing.
@@ -95,23 +95,23 @@ In this example an scp from smhi will be executed if the expected file is not in
      * ECMWF to use MARS data
      * RCRa  to use RCRa data from ECFS
      * Other HARMONIE/HIRLAM experiment
- * BDDIR : The path to the boundary file. In the default location ` BDDIR=$HM_DATA/${BDLIB}/archive/@YYYY@/@MM@/@DD@/@HH@ ` the file retrieved from e.g. MARS will be stored in a separate directory. On could also consider to configure this so that all the retrieved files are located in your working directory ` $WRK `. Locally this points to the directory where you have all your common boundary HIRLAM or ECMWF files.
- * INT_BDFILE : is the full path of the interpolated boundary files. The default setting is to let the boundary file be removed by directing it to `$WRK`.
- * INT_SINI_FILE : The full path of the initial surfex file. 
+ * BDDIR : The path to the boundary file. In the default location ` `BDDIR=$HM_DATA/${BDLIB}/archive/@YYYY@/@MM@/@DD@/@HH@` ` the file retrieved from e.g. MARS will be stored in a separate directory. On could also consider to configure this so that all the retrieved files are located in your working directory ` $WRK `. Locally this points to the directory where you have all your common boundary HIRLAM or ECMWF files.
+ * `INT_BDFILE` : is the full path of the interpolated boundary files. The default setting is to let the boundary file be removed by directing it to `$WRK`.
+ * `INT_SINI_FILE` : The full path of the initial surfex file. 
  
-There are a few optional environment variables that could be used that are not visible in config_exp.h 
+There are a few optional environment variables that could be used that are not visible in `config_exp.h` 
 
- * EXT_BDDIR : External location of boundary data. If not set rules are depending on HOST_MODEL
- * EXT_ACCESS : Method for accessing external data. If not set rules are depending on HOST_MODEL
+ * `EXT_BDDIR` : External location of boundary data. If not set rules are depending on `HOST_MODEL`
+ * `EXT_ACCESS` : Method for accessing external data. If not set rules are depending on `HOST_MODEL`
  * BDCYCLE : Assimilation cycle interval of forcing data, default is 6h.
 
-More about this can be bounds in the Boundary_strategy.pl script.
+More about this can be bounds in the `Boundary_strategy.pl` script.
 
 
 The bdstrategy file is parsed by the script ExtractBD. 
 
- * [ExtractBD](Harmonie/scr/ExtractBD?rev=release-43h2.beta.3) Checks if data are on ''BDDIR'' otherwise copy from EXT_BDDIR. 
-   The operation performed can be different depending on HOST and HOST_MODEL. IFS data at ECMWF are extracted from MARS, RCR data are copied from ECFS.
+ * [ExtractBD](Harmonie/scr/ExtractBD?rev=release-43h2.beta.3) Checks if data are on *BDDIR* otherwise copy from `EXT_BDDIR.` 
+   The operation performed can be different depending on HOST and `HOST_MODEL.` IFS data at ECMWF are extracted from MARS, RCR data are copied from ECFS.
    * Input parameters: Forecast hour
    * Executables: none.
 
@@ -132,13 +132,13 @@ To be able to start the model we need the variables defining the model state.
 For the surface we need the different state variables for the different tiles. The scheme selected determines the variables.
  
 Boundary files (coupling files) for HARMONIE are prepared in two different ways depending on the 
-nesting procedure defined by ''HOST_MODEL''.
+nesting procedure defined by `*HOST_MODEL*.`
 
 ### Using gl
 
-If you use data from HIRLAM or ECMWF gl_grib_api will be called to generate boundaries. The generation can be summarized in the following steps:
+If you use data from HIRLAM or ECMWF `gl_grib_api` will be called to generate boundaries. The generation can be summarized in the following steps:
 
- * Setup geometry and what kind of fields to read depending on HOST_MODEL
+ * Setup geometry and what kind of fields to read depending on `HOST_MODEL`
  * Read the necessary climate data from a climate file
  * Translate and interpolate the surface variables horizontally if the file is to be used as an initial file. All interpolation respects land sea mask properties. The soil water is not interpolated directly but interpolated using the Soil Wetness Index to preserve the properties of the soil between different models. The treatment of the surface fields is only done for the initial file.
  * Horizontal interpolation of upper air fields as well as restaggering of winds.
@@ -147,11 +147,11 @@ If you use data from HIRLAM or ECMWF gl_grib_api will be called to generate boun
    * Conserve integrated quantities
  * Output to an FA file ( partly in spectral space )
 
- gl_grib_api is called by the script [gl_bd](Harmonie/scr/gl_bd?rev=release-43h2.beta.3) where we make different choices depending on **PHYSICS** and **HOST_MODEL**
+ `gl_grib_api` is called by the script [`gl_bd`](Harmonie/scr/gl_bd?rev=release-43h2.beta.3) where we make different choices depending on **PHYSICS** and `**HOST_MODEL**`
 
- When starting a forecast there are options to whether e.g. cloud properties and TKE should be read from the initial/boundary file through ''NREQIN'' and ''NCOUPLING''. At the moment these fields are read from the initial file but not coupled to. gl reads them if they are available in the input files and sets them to zero otherwise. For a Non-Hydrostatic run the non-hydrostatic pressure departure and the vertical divergence are demanded as an initial field. The pressure departure is by definition zero if you start from a non-hydrostatic mode and since the error done when disregarding the vertical divergence is small it is also set to zero in gl. There are also a choice in the forecast model to run with Q in gridpoint or in spectral space.
+ When starting a forecast there are options to whether e.g. cloud properties and TKE should be read from the initial/boundary file through *NREQIN* and *NCOUPLING*. At the moment these fields are read from the initial file but not coupled to. gl reads them if they are available in the input files and sets them to zero otherwise. For a Non-Hydrostatic run the non-hydrostatic pressure departure and the vertical divergence are demanded as an initial field. The pressure departure is by definition zero if you start from a non-hydrostatic mode and since the error done when disregarding the vertical divergence is small it is also set to zero in gl. There are also a choice in the forecast model to run with Q in gridpoint or in spectral space.
 
-It's possible to use an input file without e.g. the uppermost levels. By setting `LDEMAND_ALL_LEVELS=.FALSE. ` the missing levels will be ignored. This is used at some institutes to reduce the amount of data transferred for the operational runs. 
+It's possible to use an input file without e.g. the uppermost levels. By setting ``LDEMAND_ALL_LEVELS=.FALSE.` ` the missing levels will be ignored. This is used at some institutes to reduce the amount of data transferred for the operational runs. 
 
 ### Using fullpos
 
@@ -165,7 +165,7 @@ In HARMONIE it is done by the script [E927](Harmonie/scr/E927?rev=release-43h2.b
  * Set different moist variables in the namelists depending if your run AROME or ALADIN/ALARO.
  * Check if input data has Q in gridpoint or spectral space.
  * Demand NH variables if we run NH.
- * Determine the number of levels in the input file and extract the correct levels from the definition in [source:Harmonie/scr/Vertical_level.pl]
+ * Determine the number of levels in the input file and extract the correct levels from the definition in [`source:Harmonie/scr/Vertical_level.pl`]
 
  * Run fullpos
 
@@ -173,7 +173,7 @@ In HARMONIE it is done by the script [E927](Harmonie/scr/E927?rev=release-43h2.b
 
 ### Generation of initial data for SURFEX
 
- For SURFEX we have to fill the different tiles with correct information from the input data. This is called the PREP step in the SURFEX context. [Prep_ini_surfex](Harmonie/scr/Prep_ini_surfex?rev# release-43h2.beta.3) creates an initial SURFEX file from an FA file if you run with SURFACEsurfex. 
+ For SURFEX we have to fill the different tiles with correct information from the input data. This is called the PREP step in the SURFEX context. [`Prep_ini_surfex`](Harmonie/scr/Prep_ini_surfex?rev# release-43h2.beta.3) creates an initial SURFEX file from an FA file if you run with SURFACEsurfex. 
 
  [Read more about SURFEX](http://www.cnrm.meteo.fr/surfex/)
 

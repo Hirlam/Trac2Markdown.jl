@@ -14,15 +14,15 @@ Launch the experiment in the usual manner by giving start time, DTG, end time, D
       ~hlam/Harmonie start DTG=YYYYMMDDHH
 ```
 
-If successful, ecFlow will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the ecFlow log file $HM_DATA/ECF.log. $HM_DATA is defined in your Env_system file. At ECMWF `$HM_DATA=$SCRATCH/hm_home/$EXP` where `$EXP` is your experiment name.
+If successful, ecFlow will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the ecFlow log file `$HM_DATA/ECF.log.` `$HM_DATA` is defined in your `Env_system` file. At ECMWF ``$HM_DATA=$SCRATCH/hm_home/$EXP`` where `$EXP` is your experiment name.
 
 The ecflow viewer stars automatically. To view any suite for your server or other servers, the server must be added to ecflowview Edit/Preferences/Servers and selected in Servers. See below on how to find the port and server name.
 
  * More than one experiment is not allowed with the same name monitored in the same server so Harmonie will start the server and delete previous non-active suite for you.
- * For deleting a suite manually using ecflow_client --port XXXX --host XXXX --delete force yes /suite or using the GUI Collector node+CTRL+click1 selecting ###ecflow_client --delete force yes <full_name>
+ * For deleting a suite manually using `ecflow_client` --port XXXX --host XXXX --delete force yes /suite or using the GUI Collector node+CTRL+click1 selecting `###ecflow_client` --delete force yes `<full_name>`
  * If other manual intervention in server or client is needed you can use ecflow commands [https://software.ecmwf.int/wiki/display/ECFLOW/Home].
 
-At ECMWF there are two server options ECF_HOST# ecgate or ECF_HOSTecgb-vecf where the latter available since release-43h2.beta.5. Set ECF_HOST in Env_system to choose between the servers.
+At ECMWF there are two server options `ECF_HOST#` ecgate or `ECF_HOSTecgb-vecf` where the latter available since release-43h2.beta.5. Set `ECF_HOST` in `Env_system` to choose between the servers.
 
 ## ecFlow control
 
@@ -30,11 +30,11 @@ At ECMWF there are two server options ECF_HOST# ecgate or ECF_HOSTecgb-vecf wher
 
 Information about server variables can be found by running
 
-```bash 
+```bash
       ecflow_server status 
 ```
 
-At ECMWF you can also find ECF_PORT/ECF_HOST by checking the files under /hpc/perm/ms/$GROUP/$USER/HARMONIE, like 
+At ECMWF you can also find `ECF_PORT/ECF_HOST` by checking the files under /hpc/perm/ms/$GROUP/$USER/HARMONIE, like 
 
 ```bash
 hlam@ecgb11:~/hm_home/43_aug> ls -rlt /hpc/perm/ms/spsehlam/hlam/HARMONIE/*.ecf.*
@@ -64,7 +64,7 @@ If you know that your ecFlow server is running but you have no viewer attached t
 ecflowview  &
 ```
 
-Alternatively `ecflow_ui` (the successor of ecflowview at ECMWF) can be used 
+Alternatively ``ecflow_ui`` (the successor of ecflowview at ECMWF) can be used 
 
 ```bash
 ecflow_ui &
@@ -143,13 +143,13 @@ By default, the port is set by
 ```bash
 export ECF_PORT=$((1500+usernumber))
 ```
-in mSMS.job (40h1.1), or Start_ecFlow.sh (trunk). 
+in mSMS.job (40h1.1), or `Start_ecFlow.sh` (trunk). 
 
-If you want to change this number (for example, if that port is in use already), you will also need to add a -p flag when calling ecflow_start.sh as follows:
+If you want to change this number (for example, if that port is in use already), you will also need to add a -p flag when calling `ecflow_start.sh` as follows:
 ```bash
 ecflow_start.sh -p $ECF_PORT -d $JOBOUTDIR
 ```
-Otherwise, ecflow_start.sh tries to open the default port. 
+Otherwise, `ecflow_start.sh` tries to open the default port. 
 
 Note: if you already have an ecFlow server running at your new port number before launching an experiment, this won't be an issue. 
 

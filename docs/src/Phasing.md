@@ -4,7 +4,7 @@ Version (trunk,[40h1.1](HarmonieSystemDocumentation/40h1.1/Phasing))
 
 ## Introduction
 
-In the following we describe the procedure to interface the HIRLAM subversion repository to the git repository at Météo France. Further on, the tasks of the phasers and procedure to create a new branch are described. A course was held at Météo France in 2010 on the subject of ''Maintenance Training''. Some of the presentations made at this ''Maintenance Training'' course may still be of use. They are available from this !GmapDoc web page: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&lang# en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&langen)
+In the following we describe the procedure to interface the HIRLAM subversion repository to the git repository at Météo France. Further on, the tasks of the phasers and procedure to create a new branch are described. A course was held at Météo France in 2010 on the subject of *Maintenance Training*. Some of the presentations made at this *Maintenance Training* course may still be of use. They are available from this !GmapDoc web page: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&lang# en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&langen)
 
 ## Access to external Meteo France git repository
 
@@ -19,7 +19,7 @@ Note that this is only for read access. To arrange access to the repository plea
 ## git -> subversion merging 
 
 This section of the phasing documentation provides instructions on how to retrieve . In here we assume you have the access rights and the knowledge to connect to the right computers (Météo France git repositories can be accessed from 'merou'). Details on how to access Météo France servers are available here: [wiki:HarmonieSystemDocumentation/MFaccess](HarmonieSystemDocumentation/MFaccess).
- * Set up git for the first time: Météo France provide documentation on how to set up and use their git repository here: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang# en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_langen). A git user account must be requested from gco at Météo France. 
+ * Set up git for the first time: Météo France provide documentation on how to set up and use their git repository here: [`http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang#` `en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_langen`). A git user account must be requested from gco at Météo France. 
 
 Add the following lines to your $HOME/.bashrc file (replacing **yourusername** with your user name):
 ```bash
@@ -32,7 +32,7 @@ export PATH=/home/marp001/git-install/default/bin:/home/marp001/git-install/defa
 bin:$PATH
 ```
 
-I issued the **git_start** command (in /home/marp001/git-install/client/default/bin) to initialize a git repository in my own account on merou:
+I issued the `**git_start**` command (in /home/marp001/git-install/client/default/bin) to initialize a git repository in my own account on merou:
 
 ```bash
 git_start    ### this will require your git userid and password
@@ -53,9 +53,9 @@ gzip /home/mrpe/whelane/CY40_t1.04.tar
 
 ### Merge into vendor branch
 
-To import source code from an external vendor we use the script auto_svn_load_dirs.pl in contrib/util.
+To import source code from an external vendor we use the script `auto_svn_load_dirs.pl` in contrib/util.
 
-Unpack your tar file in a directory with a proper name, e.g. CY40_t1.04, and rename the standard projects and remove some projects not used by Harmonie. (Further details on the !ClearCase/GIT/PERFORCE project naming are available here:
+Unpack your tar file in a directory with a proper name, e.g. `CY40_t1.04`, and rename the standard projects and remove some projects not used by Harmonie. (Further details on the !ClearCase/GIT/PERFORCE project naming are available here:
 [http://www.cnrm.meteo.fr/gmapdoc/IMG/pdf/ykarchi40.pdf](http://www.cnrm.meteo.fr/gmapdoc/IMG/pdf/ykarchi40.pdf)).
 ```bash
 gunzip CY40_t1.04.tar.gz 
@@ -109,7 +109,7 @@ If you pick the wrong version you could miss changes. Postpone every conflict by
 svn merge https://svn.hirlam.org/vendor/aladin/<previous-tag> https://svn.hirlam.org/vendor/aladin/current working-copy/src
 ```
 
-Resolve the conflicts by using the script [svn_resolve.pl](trunk/contrib/util/svn_resolve.pl) (available in [contrib/util](trunk/contrib/util)):
+Resolve the conflicts by using the script [`svn_resolve.pl`](trunk/contrib/util/svn_resolve.pl) (available in [contrib/util](trunk/contrib/util)):
 ```bash
 cd working-copy
 svn_resolve.pl
@@ -142,7 +142,7 @@ If you pick the wrong version you could miss changes. Postpone every conflict by
 svn merge https://svn.hirlam.org/vendor/aladin/<previous-tag> https://svn.hirlam.org/vendor/aladin/current working-copy/src
 ```
 
-Resolve the conflicts by using the script [svn_resolve.pl](trunk/contrib/util/svn_resolve.pl) (available in [contrib/util](trunk/contrib/util)):
+Resolve the conflicts by using the script [`svn_resolve.pl`](trunk/contrib/util/svn_resolve.pl) (available in [contrib/util](trunk/contrib/util)):
 ```bash
 cd working-copy
 svn_resolve.pl
@@ -183,7 +183,7 @@ Create a "send" branch based on the latest tagged vendor version. In the example
 svn cp https://svn.hirlam.org/vendor/aladin/cy40t1.04 https://svn.hirlam.org/branches/phasing/cy40_send2
 ```
 
-Commit agreed contributions from the Harmonie phasing branch to the send branch, cy40_send2 for example.
+Commit agreed contributions from the Harmonie phasing branch to the send branch, `cy40_send2` for example.
 
 ### Create MF git branch(es) containing HIRLAM contributions
 
@@ -261,9 +261,9 @@ git_post
 ### Send GCO an e-mail relating to HIRLAM contributions
 MF request that each contribution branch is accompanied with an e-mail (To:gco@meteo.fr cc: claude.fischer@meteo.fr, Ulf.Andrae@smhi.se) containing the following information:
 
- * Title/header of email should read like:  "dev"  name_of_target_cycle  short_title
-   - name_of_target_cycle  should be CY40 or CY40T1 etc ...
-   - short_title  can be either to announce that this is a bugfix or a specific contribution for R&D: "Correction of a bug in Full-Pos"   or  "Additional code for handling Aeolus in ODB"   or  "Hirlam contribution to CY40"   etc ...
+ * Title/header of email should read like:  "dev"  `name_of_target_cycle`  `short_title`
+   - `name_of_target_cycle`  should be CY40 or CY40T1 etc ...
+   - `short_title`  can be either to announce that this is a bugfix or a specific contribution for R&D: "Correction of a bug in Full-Pos"   or  "Additional code for handling Aeolus in ODB"   or  "Hirlam contribution to CY40"   etc ...
 
  * Date and name of Contributor:
 dd/mm/yyyy Name (MF Service, Aladin or Hirlam partner)
@@ -274,10 +274,10 @@ dd/mm/yyyy Name (MF Service, Aladin or Hirlam partner)
 
  * Context and cycle:
    - context: oper, double, dev   # > refers to MF environment. dev> for partners
-   - cycle example: 40_op1 (MF only), 40_bf.01 (bugfix), 40_t1 (pre-cycle during phasing)
+   - cycle example: `40_op1` (MF only), `40_bf.01` (bugfix), `40_t1` (pre-cycle during phasing)
 
  * Type of file/resource to be modified:
-Namelist, Binary, climatology file, file of constant fields (sigma_b, ...), blacklist, ...   => mostly "Binary" (i.e. code changes) and "namelist" seem relevant for partners
+Namelist, Binary, climatology file, file of constant fields (`sigma_b`, ...), blacklist, ...   => mostly "Binary" (i.e. code changes) and "namelist" seem relevant for partners
 
  * Description of the set of modifications:
 ... a more or less detailed text about the code changes: purpose, how it was done, what is the impact on results or performances, options still under work ...
@@ -318,7 +318,7 @@ To actually get the namelists, run the command **gget**
 ```bash
 mrpe726@yuki:~> gget al35t2_arome-op1.16.nam
 ```
-You get a lot of namelists in a directory named $NAMELIST_AROME
+You get a lot of namelists in a directory named `$NAMELIST_AROME`
 ```bash
 mrpe726@yuki:~> cd al35t2_arome-op1.16.nam/
 mrpe726@yuki:~/al35t2_arome-op1.16.nam> ls
@@ -379,7 +379,7 @@ The final task at the end of the phasing is to tag the documentation with the cu
 trac-admin /data/www/trac_hirlam_env/ wiki load MYDIR
 ```
 
-where MYDIR is a directory containing the revised wiki pages. You must have TRAC_ADMIN permissions to be able to use the trac-admin tool.
+where MYDIR is a directory containing the revised wiki pages. You must have `TRAC_ADMIN` permissions to be able to use the trac-admin tool.
 
 
 ----

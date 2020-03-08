@@ -1,8 +1,8 @@
 # Observation data
 In off-line experiments the Oulan script extracts observations from a data archive, e.g from MARS archive at ECMWF platform, or from existing observation files (BUFR/GRIB [seviri]/HDF5 [radar]) available locally.
 # ECMWF
-At ECMWF, the HARMONIE script [prepares the retrieval (retrin) file for MARS request. [source:Harmonie/scr/WriteMARSreq](Harmonie/scr/WriteMARSreq]) is executed by [source:Harmonie/scr/Prepare_ob].
-```bash  
+At ECMWF, the HARMONIE script [prepares the retrieval (retrin) file for MARS request. [source:Harmonie/scr/WriteMARSreq](Harmonie/scr/WriteMARSreq]) is executed by [`source:Harmonie/scr/Prepare_ob`].
+```bash
     WriteMARSreq -d $DATE -t $TIME -r $RANGE -o $OBSLIST -m ./retrin -z $BUFRFILE -g $GEOL
 ```
 The variables above denote
@@ -20,7 +20,7 @@ The variables above denote
      SOUTHEC=$( tail -4 foo | head -1 | sed 's/ //g' )
 ```
 ## MARS contents
-**Note:** by default, MARS observations are retrieved from the MARS TYPE# OB stream. ECMWF add late observations into MARS on a daily basis. MARS OB observations may also be updated with new observation types by ECMWF staff from time to time. eg E-AMDAR BUFR data were added at the end of June 2015 to TYPEOB data (observations from November 2014 - June 2015).Here are changes made to [source:Harmonie/scr/Prepare_ob] to retrieve E-AMDAR (OBSTYPE=146) data from AI/LWDA MARS BUFR:
+**Note:** by default, MARS observations are retrieved from the MARS TYPE# OB stream. ECMWF add late observations into MARS on a daily basis. MARS OB observations may also be updated with new observation types by ECMWF staff from time to time. eg E-AMDAR BUFR data were added at the end of June 2015 to TYPEOB data (observations from November 2014 - June 2015).Here are changes made to [`source:Harmonie/scr/Prepare_ob`] to retrieve E-AMDAR (OBSTYPE=146) data from AI/LWDA MARS BUFR:
 ```bash
 
      # Write request for Conventional data
@@ -47,9 +47,9 @@ The variables above denote
 @@ -150,6 +166,10 @@
      #--- MARS queue
      if [ -f retrin]; then
-       mars retrin | { echo "MARS failed" ; exit 1 ; }
+       mars retrin || { echo "MARS failed" ; exit 1 ; }
 +      if [ $AIRCRAFT_OBS -eq 1];then
-+        mars filtin | { echo "MARS FILTER failed" ; exit 1 ; }
++        mars filtin || { echo "MARS FILTER failed" ; exit 1 ; }
 +        cat ${BUFRFILE}ai.146 >> $BUFRFILE
 +      fi
      else
@@ -58,5 +58,5 @@ The variables above denote
 ```
 
 # Local implementation
-Otherwise, this step consists of fetching (or waiting for) the observations stored in $OBDIR defined in ecf/config_exp.h . In that case one can use the command “cat” to merge different observations into one BUFR file, ob${DTG}.  
+Otherwise, this step consists of fetching (or waiting for) the observations stored in $OBDIR defined in `ecf/config_exp.h` . In that case one can use the command “cat” to merge different observations into one BUFR file, ob${DTG}.  
  

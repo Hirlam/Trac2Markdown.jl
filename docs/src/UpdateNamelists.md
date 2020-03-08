@@ -24,16 +24,16 @@ Create namelist hash 4dvar.pm
 Create updated empty namelist hash empty_4dvar.pm for 4dvar
 ```
 
-We have now created a perl module for the new namelists. One with empty namelist entries, 4dvar_empty.pm, and one with all namelists in the right format, 4dvar.pm. To get one of your namelists back ( sorted ) you can write:
+We have now created a perl module for the new namelists. One with empty namelist entries, `4dvar_empty.pm`, and one with all namelists in the right format, 4dvar.pm. To get one of your namelists back ( sorted ) you can write:
 ```bash
 ./gen_namlist.pl -n 4dvar_empty.pm -n 4dvar.pm namscreen_dat_4d
 ```
 
-To get the module integrated in the system the module has to be merged with the conventions in harmonie_namelists.pm, but as a start the full namelists can be used. Copy the new empty*.pm to empty.pm to get the updated list of empty namelists.
+To get the module integrated in the system the module has to be merged with the conventions in `harmonie_namelists.pm`, but as a start the full namelists can be used. Copy the new empty*.pm to empty.pm to get the updated list of empty namelists.
 
 ## Create the new namelist
 
-Add the new namelists to the script [Get_namelist](Harmonie/scr/Get_namelist?rev=release-43h2.beta.3). In this case we would add a new case for 4dvar
+Add the new namelists to the script [`Get_namelist`](Harmonie/scr/Get_namelist?rev=release-43h2.beta.3). In this case we would add a new case for 4dvar
 
 ```bash
 4dvartraj) 

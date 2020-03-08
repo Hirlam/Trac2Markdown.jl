@@ -11,17 +11,17 @@ Raw data from GNSS sites are collected by a number of GNSS analysis centers, whi
 The preprocessing of these data should be local, depending if you want to have them in BUFR or ASCII format.  ASCII option needs a local script to get the files from Metoffice server and transform them from COST format (EGVAP) into OBSOUL format. (In this case there is an optional script inside scr directory in Harmonie called GNSStoOBSOUL that could transforms ascii into OBSOUL format).
 
 Apart of the preprocessing, a White List of sites to be assimilated in your domain is needed. It will contain the values of:
- ```bash
+```bash
    statid lat lon alt dts bias sd obserr
 ```
 where statid is the name of the site (NNNNPPPP: NNNN# site PPPPProcesing centre) , dts is the frequency in minutes between obs, and sd the standard deviation of that station  and obserr the observation error. You are supposed to have calculated these values before launching the experiment.
 
 ## Harmonie changes to assimilate GNSS ZTD data
 scr/
-* Bator and Fetch_assim_data have the white list path.
+* Bator and `Fetch_assim_data` have the white list path.
 * Oulan : has the white list and gnss observation files paths and cat this one to the rest of conventional observation file.   
 * include.ass: 
-This script has two options about gnss bias correction: static bias correction (LSTATIC_BIAS) or variational bias correction (LVARBC_GNSS). 
+This script has two options about gnss bias correction: static bias correction (`LSTATIC_BIAS`) or variational bias correction (`LVARBC_GNSS`). 
 For the first case, a fix bias value from each site is read from the White List and then substracted from the corresponding observation value. For the second case, VarBC, it is also  needed to set in this script the  cold start option.
 ```bash
  export GNSS_OBS=1            #GNSS
@@ -35,5 +35,5 @@ nam/
 /src/arpifs/obs_preproc/
 * redgps.F90 : This routine is where the horizontal thinning is done (Cy40) , so the thinning distance  could be selected here.
 /src/blacklist/
-* mf_blacklist.b: here is posible to blacklist the gnss observations so to calculate the varbc coefficients. It can be done tuning to experimental the ''apdss'' variable.
+* `mf_blacklist.b:` here is posible to blacklist the gnss observations so to calculate the varbc coefficients. It can be done tuning to experimental the *apdss* variable.
 

@@ -14,11 +14,11 @@ In the following we describe the geometrical routines in gl. gl can handle the f
 
 ## Interpolation
 
- All interpolations are handled within the module [module_interpol.f90](Harmonie/util/gl/mod/module_interpol.f90?rev=release-43h2.beta.3). The module contains 
+ All interpolations are handled within the module [`module_interpol.f90`](Harmonie/util/gl/mod/module_interpol.f90?rev=release-43h2.beta.3). The module contains 
 
- * clear_interpol to clear the interpolation setup
- * setup_interpol where the position of the output gridpoints in the input grid are calculated
- * setup_weights where we calculate the interpolation weights. Interpolation can be nearest gridpoint or bilinear. The interpolation can be masked with a field
+ * `clear_interpol` to clear the interpolation setup
+ * `setup_interpol` where the position of the output gridpoints in the input grid are calculated
+ * `setup_weights` where we calculate the interpolation weights. Interpolation can be nearest gridpoint or bilinear. The interpolation can be masked with a field
    that tells which gridpoints from the input fields that can be used. 
 
  The setup routines are only called once.
@@ -33,15 +33,15 @@ In the following we describe the geometrical routines in gl. gl can handle the f
 
 ## Rotations
 
- All rotations are handled within the module [module_rotations.f90](Harmonie/util/gl/mod/module_rotations.f90?rev=release-43h2.beta.3). The module contains 
+ All rotations are handled within the module [`module_rotations.f90`](Harmonie/util/gl/mod/module_rotations.f90?rev=release-43h2.beta.3). The module contains 
 
- * clear_rotation to clear the rotation setup
- * prepare_rotation prepare rotations from input geometry to output geometry via north south components.
- * rotate_winds runs the actual rotation.
+ * `clear_rotation` to clear the rotation setup
+ * `prepare_rotation` prepare rotations from input geometry to output geometry via north south components.
+ * `rotate_winds` runs the actual rotation.
 
 ## Staggering
 
- The staggering of an input file is based on the knowledge about the model and is set [here](Harmonie/util/gl/mod/module_griblist.f90?rev=release-43h2.beta.3). 
+ The staggering of an input file is based on the knowledge about the model and is set [`here](Harmonie/util/gl/mod/module_griblist.f90?rev=release-43h2.beta.3`). 
  The restaggering is done in [restag.f90](Harmonie/util/gl/grb/restag.f90?rev=release-43h2.beta.3) as a simple average between gridpoints. The staggering of the output geomtery
  is defined by `OUTGEO@ARKAWA`, where A and C are available options.
 

@@ -1,6 +1,6 @@
 # Redhat 7 instructions
 ## Requirements
-This is a ''HOWTO'' for building and running Harmonie on a Redhat 7 server with GNU compilers using Open MPI. This should probably work on a CentOS 7 PCs too.
+This is a *HOWTO* for building and running Harmonie on a Redhat 7 server with GNU compilers using Open MPI. This should probably work on a CentOS 7 PCs too.
 
 ### 64-bit OS
 Enter the following command in a terminal to check you actually have a 64-bit Linux PC:
@@ -104,7 +104,7 @@ cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie setup -r $HOME/harmonie_releases/trunk -h METIE.LinuxRH7gnu
 ```
 
-Local changes that may be required ... in the Env_system:
+Local changes that may be required ... in the `Env_system:`
 ```bash
 :
 :
@@ -120,7 +120,7 @@ export JBDIR=/data/nwp/harmonie_jbdata
 export SMSTASKMAX=4
 ```
 
-Local changes that may be required ... in the Env_submit:
+Local changes that may be required ... in the `Env_submit:`
 ```bash
   $nprocy=2; # instead of 8 if you only have a dual-/quad-core PC
 ```
@@ -130,11 +130,11 @@ Now use the Harmonie system to build the software:
 cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie Install
 ```
-This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [wiki:HarmonieSystemDocumentation/Build_with_makeup](HarmonieSystemDocumentation/Build_with_makeup)
+This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [`wiki:HarmonieSystemDocumentation/Build_with_makeup`](HarmonieSystemDocumentation/Build_with_makeup)
 
 ## Run an experiment
 Instructions for testbed and/or local experiment are detailed here:
- * Your first experiment will require changes to be made to the default settings in $HOME/hm_home/trunkexp/ecf/config_exp.h :
+ * Your first experiment will require changes to be made to the default settings in `$HOME/hm_home/trunkexp/ecf/config_exp.h` :
 ```bash
 DOMAIN=IRELAND150       ## choose a small domain to run on your limited PC.
                         ## See $HOME/harmonie_releases/trunk/scr/Harmonie_domains.pm for existing definitions

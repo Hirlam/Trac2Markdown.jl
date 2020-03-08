@@ -8,9 +8,9 @@ In climate mode, the model makes montly restarts. Only historical simulations dr
 SST is forced as a lower boundary and is updated at the same time as the lateral boundaries.
 
 **Experiment Settings**
-In ecf/config_exp.h  a few changes are made.
+In `ecf/config_exp.h`  a few changes are made.
 
-* SIMULATION_TYPE=climate
+* `SIMULATION_TYPE=climate`
 * BDSTRATEGY=era
 * No assimilation
 * Set BDDIR to your BD location
@@ -18,13 +18,13 @@ In ecf/config_exp.h  a few changes are made.
 Start the experiment in the same way as NWP e.g Harmonie start DTG# 2012010100 DTGEND2012060100
 
 **Nested runs**
-SURFEX is used in all climate simulations so HOST_SURFEX has to be true.
-Use SURFEX_PREP to interpolate SURFEX data to the inner domain.
+SURFEX is used in all climate simulations so `HOST_SURFEX` has to be true.
+Use `SURFEX_PREP` to interpolate SURFEX data to the inner domain.
 
-* HOST_SURFEX="yes"
-* BDSTRATEGY=same_forecast
+* `HOST_SURFEX="yes"`
+* `BDSTRATEGY=same_forecast`
 Optional
-* SURFEX_PREP="yes"
+* `SURFEX_PREP="yes"`
 
 **Ongoing work**
 In SURFEX there are some settings that are not tested but planned to be used as default values.

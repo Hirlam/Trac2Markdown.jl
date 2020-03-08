@@ -50,7 +50,7 @@ If they are already on your system, verify they have been made with the correct 
  * First build BLAS (untarring blas.tgz places it in the BLAS directory). Go to that directory, and edit make.inc to set the compiler and linker to **gfortran**. Then type 'make'.
  * Subsequenty, for LAPACK, after untarring lapack-lite-3.1.1.tgz, go to the lapack-lite-3.1.1 directory.
  * Copy make.inc.example to make.inc.
- * Edit make.inc to point to the proper compiler/loader (**gfortran**) and to put the variable PLAT to the empty string. Set TIMER to INT_ETIME.
+ * Edit make.inc to point to the proper compiler/loader (**gfortran**) and to put the variable PLAT to the empty string. Set TIMER to `INT_ETIME.`
  * Copy the blas.a library from the BLAS directory to the lapack-lite-3.1.1 directory, run ranlib on it, then type 'make'.
  * Then copy the libraries in **/usr/local/lib** with names libblas.a and liblapack.a, respectively, otherwise the default configuration will not find them. Run ranlib on them.
 
@@ -75,8 +75,8 @@ The old software for reading GRIB1 and BUFR is included in the HARMONIE system a
 
 In addition there are some extra support libraries.
 
- * dummies_006
- * rgb_001
+ * `dummies_006`
+ * `rgb_001`
 
 [Makeup](HarmonieSystemDocumentation/Build_with_makeup) build these libraries for you. 
 

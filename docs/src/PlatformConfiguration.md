@@ -4,7 +4,7 @@
 This wiki page outlines the configuration files required by HARMONIE for successful compilation and running of the system.
 
 ## Basic requirements
-All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick start](HarmonieSystemDocumentation/QuickStartLocal) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to PATH_TO_HARMONIE one must issue the following command:
+All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick start](HarmonieSystemDocumentation/QuickStartLocal) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to `PATH_TO_HARMONIE` one must issue the following command:
 ```bash
 cd hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
@@ -21,9 +21,9 @@ Env_system -> config-sh/config.YOURHOST           ## YOURHOST task submission se
 ./ecf/config_exp.h                                ## your experiment definition (scientific type options)
 ./scr/include.ass                                 ## assimilation specific settings
 ```
-But, what if your host configuration is not available in the HARMONIE system? Host specific configuration files in PATH_TO_HARMONIE/config-sh must be available for your host and configuration files for the compilation of the code must be available. This documentation attempts to describe what is required.
+But, what if your host configuration is not available in the HARMONIE system? Host specific configuration files in `PATH_TO_HARMONIE/config-sh` must be available for your host and configuration files for the compilation of the code must be available. This documentation attempts to describe what is required.
 ## Host config files
-### Env_system -> config-sh/config.YOURHOST
+### `Env_system` -> config-sh/config.YOURHOST
 The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [config-sh](Harmonie/config-sh?rev=release-43h2.beta.3) to see what other people have done. The table below outlines variables set in config-sh/config-sh.YOURHOST and what the variables do:
 
 |# Variable name|# Description|
@@ -55,8 +55,8 @@ The config.YOURHOST file defines host specific variables such as some input dire
 |BUFR_TABLES             |location of local BUFR tables                                                                                                       |
 
 
-### Env_submit -> config-sh/submit.YOURHOST
-The Env_submit file uses perl to tell the HARMONIE scheduler how to execute programs - which programs should be run on multiple processors and define batch submissions if required.
+### `Env_submit` -> config-sh/submit.YOURHOST
+The `Env_submit` file uses perl to tell the HARMONIE scheduler how to execute programs - which programs should be run on multiple processors and define batch submissions if required.
 
 |# perl|= description                                                                                                                       |
 | --- | --- |
@@ -95,7 +95,7 @@ The Env_submit file uses perl to tell the HARMONIE scheduler how to execute prog
 ### Makeup
 config files required for compilation of code using Makeup ...
 
-More information on Makeup is available here: [Build with Makeup](HarmonieSystemDocumentation/Build_with_makeup)
+More information on Makeup is available here: [Build with `Makeup](HarmonieSystemDocumentation/Build_with_makeup`)
 ### Obsmon
 For config files required for compilation of obsmon check [here](Harmonie/util/obsmon/config?rev=release-43h2.beta.3)
 

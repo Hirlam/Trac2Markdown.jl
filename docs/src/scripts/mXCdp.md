@@ -19,24 +19,24 @@ The mXCdp client is started by typing `'Hirlam mxcdp'` or `'Harmonie mxcdp'` fro
 
 The look and feel of the new client is very similar to the old one. The only slight disadvantage of the new client is that the status of the various tasks and families is not immediately updated as in the old solution, but instead every time the client polls the server. By default this is every 10 seconds (it can be changed via the menus of mXCdp). In practice this is frequent enough to not be of much annoyance. A new icon on the menu bar will indicate the status of the communication. The meaning is as follows:
 
- * [[Image(no_server.png)]] There is no running mini-SMS server for the experiment.
- * [[Image(no_comm.png)]] mini-SMS is alive, but no communication is taking place right now.
- * [[Image(comm_active.png)]] Communication between the mini-SMS server and the mXCdp client is ongoing.
+ * [`[Image(no_server.png`)]] There is no running mini-SMS server for the experiment.
+ * [`[Image(no_comm.png`)]] mini-SMS is alive, but no communication is taking place right now.
+ * [`[Image(comm_active.png`)]] Communication between the mini-SMS server and the mXCdp client is ongoing.
 
 If the server is alive its URL (see below) will be displayed in a tooltip if you pass your cursor over the status icon.
 
 ## How to activate / disable
 
-The usage of the new client/server solution is controlled by the environment variable `mSMS_WEBPORT`, which is expected to be an integer. It is interpreted as follows:
+The usage of the new client/server solution is controlled by the environment variable ``mSMS_WEBPORT``, which is expected to be an integer. It is interpreted as follows:
 
- * If mSMS_WEBPORT <# 0, the web server is disabled, and the old monitor can still be used (unless mXCdpDISABLE).
- * If 1 <# mSMS_WEBPORT < 1024, the port that the server will listen on is selected at random, in the range 10000 to 30000. If mSMS_WEBPORT1 (the default), the new mXCdp client will start automatically whenever `Hirlam` or `Harmonie` is started or resumed/prodded. If you don't want automatic startup of the client (e.g., for batch queue submitted runs), but still want a random port, set e.g. mSMS_WEBPORT=2.
- * If mSMS_WEBPORT >= 1024 (i.e., a non-privileged port), the mSMS server will try to listen on the given port.
+ * If `mSMS_WEBPORT` <# 0, the web server is disabled, and the old monitor can still be used (unless mXCdpDISABLE).
+ * If 1 <# `mSMS_WEBPORT` < 1024, the port that the server will listen on is selected at random, in the range 10000 to 30000. If `mSMS_WEBPORT1` (the default), the new mXCdp client will start automatically whenever `Hirlam` or `Harmonie` is started or resumed/prodded. If you don't want automatic startup of the client (e.g., for batch queue submitted runs), but still want a random port, set e.g. `mSMS_WEBPORT=2.`
+ * If `mSMS_WEBPORT` >= 1024 (i.e., a non-privileged port), the mSMS server will try to listen on the given port.
 
-If mSMS_WEBPORT >=1 (i.e., the web server is enabled), the old monitor is disabled. In other words, both solutions should not be active at the same time (although technically possible), to avoid confusion.
+If `mSMS_WEBPORT` >=1 (i.e., the web server is enabled), the old monitor is disabled. In other words, both solutions should not be active at the same time (although technically possible), to avoid confusion.
 
 ## Security
-The URL (which could be something like `'http://ecgb:12345/'`) of the mSMS web server is written to a file `.webserver` in the mSMS working directory. This directory is `$HL_DATA` for Hirlam and `$HM_DATA` for Harmonie. The file has permissions 0600, i.e., it is only readable by the owner of the experiment. This is because there is no mechanism to prevent other users from connecting to your server's port and trying to control your experiment. So with a port chosen at random you will at least have security comparable to that of the pin code on your bank card. If you're not satisfied with that, or for some reason want a fixed port to listen on (e.g. to set up an ssh tunnel from a remote machine), more security is possible. You can place a file in your experiment directory (`~/hl_home/$EXP` or `~/hm_home/$EXP`) called `.htpasswd`, containing username/password combinations generated with the `htpasswd` utility. In this case any action that implies control over the mSMS server (status changes, job submission, termination etc.) will request authentication. If successfully authenticated, your credentials will be remembered for the duration of the monitoring session.
+The URL (which could be something like `'http://ecgb:12345/'`) of the mSMS web server is written to a file `.webserver` in the mSMS working directory. This directory is ``$HL_DATA`` for Hirlam and ``$HM_DATA`` for Harmonie. The file has permissions 0600, i.e., it is only readable by the owner of the experiment. This is because there is no mechanism to prevent other users from connecting to your server's port and trying to control your experiment. So with a port chosen at random you will at least have security comparable to that of the pin code on your bank card. If you're not satisfied with that, or for some reason want a fixed port to listen on (e.g. to set up an ssh tunnel from a remote machine), more security is possible. You can place a file in your experiment directory (``~/hl_home/$EXP`` or ``~/hm_home/$EXP``) called `.htpasswd`, containing username/password combinations generated with the `htpasswd` utility. In this case any action that implies control over the mSMS server (status changes, job submission, termination etc.) will request authentication. If successfully authenticated, your credentials will be remembered for the duration of the monitoring session.
 
 ## Local installation
 If your local computer platform has a fairly recent perl version, you should not have to do anything special in order to use the new client / server solution. The code is built on the perl `libwww` library, which is now included in the base perl installation. More specifically, the server is built upon the module `HTTP::Daemon` and the client around `LWP::UserAgent`. The graphical part of the client uses the

@@ -10,8 +10,8 @@ common ARPEGE/IFS cycle. FULL-POS is documented by
 
 FULL-POS is a special configuration (9xx) of the full model for setup and initialization. In other words it is a 0 hour forecast, with extra namelist settings for variables to (post)process and to write out. When generating initial or boundary files we are calling a special configuration of FULL-POS, e927.
 
-## ecf/config_exp.h
-The use of FULL-POS is controlled by the POSTP variable in the [source:Harmonie/ecf/config_exp.h] file:
+## `ecf/config_exp.h`
+The use of FULL-POS is controlled by the POSTP variable in the [`source:Harmonie/ecf/config_exp.h`] file:
 ```bash
 POSTP="inline"                          # Postprocessing by Fullpos (inline|offline|none).
                                         # See Setup_postp.pl for selection of fields.
@@ -20,7 +20,7 @@ POSTP="inline"                          # Postprocessing by Fullpos (inline|offl
 ```
 "inline" is the default which means FULL-POS postprocessing is called from the forecast model as it runs. If you select "offline" the model is called independently of the running forecast model using the forecast model output files as inputs to be postprocessed. By selecting "none" no FULL-POS postprocessing will be carried out.
 
-Output frequency by FULL-POS is controlled by PWRITUPTIMES, FPOUTINT and FREQ_RESET:
+Output frequency by FULL-POS is controlled by PWRITUPTIMES, FPOUTINT and `FREQ_RESET:`
 ```bash
 # Postprocessing times (space separated list)
 PWRITUPTIMES="03 06 09 12 15 18 21 24 30 36 42 48 54 60"
@@ -59,11 +59,11 @@ You can define the levels you wish to output using the following variable:
  * **RFP3I**: temperature levels to postprocess
 
 ## Add new output
-This section provides a simple example on how to add a new parameter/vertical level for postprocessing in [Select_postp.pl](Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3).
+This section provides a simple example on how to add a new parameter/vertical level for postprocessing in [`Select_postp.pl`](Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3).
 
 To add new "height above ground" output at 150m to the FULL-POS output, two changes are required:
  * Add the new height, 150., to the RFP3H array
- * Add level array number to the @namfpdyh_lev level selection
+ * Add level array number to the `@namfpdyh_lev` level selection
 
 ```bash
 cd $HOME/hm_home/levexp
@@ -108,7 +108,7 @@ In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](Harmonie/sr
    * If CFPFMT=’GAUSS’ or ’LELAM’ only one output domain is allowed.
    * If CFPFMT=’LALON’ the maximum of output subdomains allowed is 10.
    By default, one output domain is requested, CFPDOM(1)# ’000’ and CFPDOM(i)’’ for i>1.
- * L_READ_MODEL_DATE:  if: .TRUE. read date from the model
+ * `L_READ_MODEL_DATE:`  if: .TRUE. read date from the model
 
 The default FA-names for parameters in different categories can be found from [suafn1.F90](Harmonie/src/arp/setup/suafn1.F90#L687?rev=release-43h2.beta.3).
 
@@ -130,9 +130,9 @@ It's worth mentioning some of the variables postprocessed by FULL-POS
 
 ## Problems
 Problems may be encountered with FULL-POS when running on large domains. Here are some things to look out for:
- * Increase the MBX_SIZE if you run out of MPI buffer space. 
+ * Increase the `MBX_SIZE` if you run out of MPI buffer space. 
  * Increase number of cores if you run out of memory.
- * Make sure NFPROMA and NFPROMA_DEP are small and equal to NPROMA.
+ * Make sure NFPROMA and `NFPROMA_DEP` are small and equal to NPROMA.
  * Set NSTRIN# NSTROUTNPROC in nampar0 if one of the above mentioned doesn't help.
  
 

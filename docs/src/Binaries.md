@@ -13,12 +13,12 @@
  * BLEND : Mixes to files
  * BLENDSUR : Mixes to files
  * cluster : Cluster ensemble members
- * CONVERT_ECOCLIMAP_PARAM : Generate binary files from ECOCLIMAP ascii files
+ * `CONVERT_ECOCLIMAP_PARAM` : Generate binary files from ECOCLIMAP ascii files
  * dcagen : ODB handling tool
- * domain_prop_grib_api : Helper program to return various model domain properties
+ * `domain_prop_grib_api` : Helper program to return various model domain properties
  * FESTAT : Background error covariance calculations.
- * [fldextr_grib_api](HarmonieSystemDocumentation/PostPP/Extract4verification) : Extracts data for verification from model history files. Reads FA from HARMONIE and GRIB from ECMWF/HIRLAM.
- * [gl_grib_api](HarmonieSystemDocumentation/PostPP/gl_grib_api) : Converts/interpolates between different file formats and projections. Used for boundary interpolation.
+ * [`fldextr_grib_api`](HarmonieSystemDocumentation/PostPP/Extract4verification) : Extracts data for verification from model history files. Reads FA from HARMONIE and GRIB from ECMWF/HIRLAM.
+ * [`gl_grib_api`](HarmonieSystemDocumentation/PostPP/gl_grib_api) : Converts/interpolates between different file formats and projections. Used for boundary interpolation.
  * IOASSIGN/ioassign : ODB IO setup
  * LSMIX : Scale dependent mixing of two model states.
  * jbconv : Interpolates/extrapolates background error statistics files. For technical experimentation
@@ -41,8 +41,8 @@
  * [SODA](http://www.cnrm.meteo.fr/surfex/) : Surfex offline data assimilation
  * SPG : Stochastic pattern generator, https://github.com/gayfulin/SPG
  * [SURFEX](http://www.cnrm.meteo.fr/surfex/) : The SURFEX offline model. Also called OFFLINE
- * tot_energy : Calculates the total energy of a model state. Is used for boundary perturbation scaling.
- * [xtool_grib_api](HarmonieSystemDocumentation/PostPP/gl_grib_api#xtool) : Compares two FA/LFI/GRIB files.
+ * `tot_energy` : Calculates the total energy of a model state. Is used for boundary perturbation scaling.
+ * [`xtool_grib_api`](HarmonieSystemDocumentation/PostPP/gl_grib_api#xtool) : Compares two FA/LFI/GRIB files.
 
 
 ----

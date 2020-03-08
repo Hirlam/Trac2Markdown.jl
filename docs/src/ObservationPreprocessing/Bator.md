@@ -1,7 +1,7 @@
 # ODB creation: Bator
 ## General Description
 The pre-processing step creates ODB (Observational Data Base) from various observation data files possibly in different formats.
- * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the ARPEGE/ALADIN/HARMONIE analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, 2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite BUFR/GRIB/BIN files and the OBSOUL one.
+ * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the ARPEGE/ALADIN/HARMONIE analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, `2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf`). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite BUFR/GRIB/BIN files and the OBSOUL one.
  * Compilation: BATOR is compiled using gmakpack or makeup.
  * Scripts: Bator.
  * Input: OBSOUL (ASCII-formated) and BUFR/GRIB/BIN files
@@ -10,23 +10,23 @@ The pre-processing step creates ODB (Observational Data Base) from various obser
 ## BATOR
 BATOR creates the ODB files using OBSOUL and other (satellite) data in BUFR/GRIB/BIN format. BATOR also includes filtering (blacklisting) of parameters from stations of different observation types. To run the BATOR program one needs files containing blacklist rules/information, namelist(s), file containing information about observations and their format – refdata -, and some setting for the ODB environment.
 ### refdata
-The ''refdata'' file tells BATOR what observations types are to be processed.  ''refdata'' is written by the Bator script using environment variable defining observation types to be assimilated (set in scr/include.ass). The format of ''refdat'' is strictly defined and white space is important! The READ statement used to read the ''refdata'' file is:
+The *refdata* file tells BATOR what observations types are to be processed.  *refdata* is written by the Bator script using environment variable defining observation types to be assimilated (set in scr/include.ass). The format of *refdat* is strictly defined and white space is important! The READ statement used to read the *refdata* file is:
 ```bash
  READ(NULOBI,'(a8,1x,a8,1x,a16,1x,i8,1x,i2,1x,a200)',IOSTAT=iret) &
      & TREF_FICOBS(j)%nomfic,TREF_FICOBS(j)%format,TREF_FICOBS(j)%type, &
      & TREF_FICOBS(j)%date,TREF_FICOBS(j)%heure,chaine(j)
 ```
 where:
- * TREF_FICOBS(j)%nomfic = filename suffix
- * TREF_FICOBS(j)%format = input format (OBSOUL/BUFR/GRIB/HDF5)
- * TREF_FICOBS(j)%type   = observation type
- * TREF_FICOBS(j)%date   = date (YYYYMMDD)
- * TREF_FICOBS(j)%heure  = hour (HH)
+ * `TREF_FICOBS(j`)%nomfic = filename suffix
+ * `TREF_FICOBS(j`)%format = input format (OBSOUL/BUFR/GRIB/HDF5)
+ * `TREF_FICOBS(j`)%type   = observation type
+ * `TREF_FICOBS(j`)%date   = date (YYYYMMDD)
+ * `TREF_FICOBS(j`)%heure  = hour (HH)
  * chaine(j)             = not yet sure about what is read here ...
-Below is an excerpt from the Bator script showing how ''refdata'' is written for conventional (OBSOUL) and AMSUA (BUFR) observation data:
+Below is an excerpt from the Bator script showing how *refdata* is written for conventional (OBSOUL) and AMSUA (BUFR) observation data:
 ```bash
-     if [[ $SYNOP_OBS -eq 1 | $AIRCRAFT_OBS -eq 1 | \
-              $BUOY_OBS -eq 1  | $TEMP_OBS -eq 1     | $PILOT_OBS -eq 1]]; then
+     if [[ $SYNOP_OBS -eq 1 || $AIRCRAFT_OBS -eq 1 || \
+              $BUOY_OBS -eq 1  || $TEMP_OBS -eq 1     || $PILOT_OBS -eq 1]]; then
            echo "conv     OBSOUL   conv             ${YMD} ${HH}">> refdata
 	   ln -sf $WRK/oulan/OBSOUL ./OBSOUL.conv
      fi
@@ -44,7 +44,7 @@ Below is an excerpt from the Bator script showing how ''refdata'' is written for
 ```
 
 ### param.cfg
-BATOR reads BUFR data according to definitions describing BUFR templates in the ''param.cfg'' file. The general layout of definitions in the ''param.cfg'' file is as follows:
+BATOR reads BUFR data according to definitions describing BUFR templates in the *param.cfg* file. The general layout of definitions in the *param.cfg* file is as follows:
 ```bash
 BEGIN sensor
 a b c d
@@ -64,8 +64,8 @@ END sensor
 ```
 where: 
  * a: number of unexpanded descriptors (NTDLEN if you are familiar with bufrdc software).
- * b: number of "control" entries - "control" values used by src/odb/pandor/module/bator_decodbufr_mod.F90
- * c: number of "offset" entries - "jump" values used by src/odb/pandor/module/bator_decodbufr_mod.F90
+ * b: number of "control" entries - "control" values used by `src/odb/pandor/module/bator_decodbufr_mod.F90`
+ * c: number of "offset" entries - "jump" values used by `src/odb/pandor/module/bator_decodbufr_mod.F90`
  * d: number of "values" entries - bufrdc VALUES array indices of parameters
  * codage desc: FXY's of NTDLST array values
  * values desc: FXY's of NTDEXP array values
@@ -99,7 +99,7 @@ values    39  011002  Wind speed
 END temp
 ```
 ### Namelists
-  * Namelists are needed for BATOR to deal with observations having format structure different than that of MF. For example to read local Seviri data in grib format, one should set some parameters (NLON_GRIB and NLAT_GRIB) in the NADIRS group. Note: If my last modifications will be accepted, we will need to set parameters in the mentioned group, so the use of this namelist become obligatory for “local” (outside MF) HARMONIE system. The namelist looks like this:
+  * Namelists are needed for BATOR to deal with observations having format structure different than that of MF. For example to read local Seviri data in grib format, one should set some parameters (`NLON_GRIB` and `NLAT_GRIB`) in the NADIRS group. Note: If my last modifications will be accepted, we will need to set parameters in the mentioned group, so the use of this namelist become obligatory for “local” (outside MF) HARMONIE system. The namelist looks like this:
 ```bash
  &NADIRS
    LMFBUFR=.FALSE.,                                         # we are not using Météo France BUFR
@@ -128,7 +128,7 @@ END temp
  /
 
 ```
-  * Namelist to activate (bator) LAMFLAG (needed to extract the observations for the model + extension zone domain): one needs to fetch the bator_lamflag namelist using the following command
+  * Namelist to activate (bator) LAMFLAG (needed to extract the observations for the model + extension zone domain): one needs to fetch the `bator_lamflag` namelist using the following command
 ```bash
         lamflag_namelist VAR
 ```

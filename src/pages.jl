@@ -25,7 +25,7 @@ pages = [
             "mSMS" => "scripts/mSMS.md"
         ],
         "Testbed and Mitraillette" => [
-            "Testbed" => "Evaluation/HarmonieTestbed.md",
+            #"Testbed" => "Evaluation/HarmonieTestbed.md",
             "Mitraillette" => "Evaluation/Mitraillette.md"
         ],
         "Directories  and Binaries" => [

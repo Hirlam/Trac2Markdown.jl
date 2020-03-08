@@ -1,16 +1,16 @@
 # ODB creation (COPE)
 ## General Description
-HIRLAM, ALADIN and Météo France are working together with ECMWF to develop COPE, Continuous Observation Pre-processing Environment, to replace !Oulan/Bator (and BUFR2ODB at ECMWF), to improve the pre-processing of observations for use in NWP. COPE developments are made in ECMWF's git repository. A COPE [40h1 HARMONIE branch](branches/harmonie_40h1_cope) has been created to test COPE in the HARMONIE framework.
+HIRLAM, ALADIN and Météo France are working together with ECMWF to develop COPE, Continuous Observation Pre-processing Environment, to replace !Oulan/Bator (and BUFR2ODB at ECMWF), to improve the pre-processing of observations for use in NWP. COPE developments are made in ECMWF's git repository. A COPE [40h1 HARMONIE `branch](branches/harmonie_40h1_cope`) has been created to test COPE in the HARMONIE framework.
 
 Here are some links that may be of interest:
  * [https://software.ecmwf.int/wiki/display/COPE/COPE](https://software.ecmwf.int/wiki/display/COPE/COPE): COPE wiki (restricted access)
- * [http://www.rclace.eu/File/Data_Assimilation/2014/201406_COPE_Reading_report.pdf](http://www.rclace.eu/File/Data_Assimilation/2014/201406_COPE_Reading_report.pdf): **Report on the COPE technical meeting**, ''Alena Trojáková''.  ECMWF, Reading 9-12, June 2014
- * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/copeovervieweoinwhelan.pdf](http://www.cnrm.meteo.fr/aladin/IMG/pdf/copeovervieweoinwhelan.pdf): **Overview of COPE**, ''Eoin Whelan''. Joint 24th ALADIN Workshop & HIRLAM All Staff Meeting 2014, 7-11 April 2014, Romania.
+ * [`http://www.rclace.eu/File/Data_Assimilation/2014/201406_COPE_Reading_report.pdf`](http://www.rclace.eu/File/Data_Assimilation/2014/201406_COPE_Reading_report.pdf): **Report on the COPE technical meeting**, *Alena Trojáková*.  ECMWF, Reading 9-12, June 2014
+ * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/copeovervieweoinwhelan.pdf](http://www.cnrm.meteo.fr/aladin/IMG/pdf/copeovervieweoinwhelan.pdf): **Overview of COPE**, *Eoin Whelan*. Joint 24th ALADIN Workshop & HIRLAM All Staff Meeting 2014, 7-11 April 2014, Romania.
 
 ## "Support" software packages
 This section provides a step-by-step set of instruction on how to compile COPE and COPE related software.
 ### Preparation
-These instructions rely on the ODB API source code bundle [odb_api_bundle-0.15.2-Source.tar.gz](https://software.ecmwf.int/wiki/display/ODBAPI/Releases) and emoslib [libemos-4.4.2-Source.tar.gz](https://software.ecmwf.int/wiki/display/EMOS/Releases). The default install location for software packages is in ''$HOME/metapp/''.
+These instructions rely on the ODB API source code bundle [`odb_api_bundle-0.15.2-Source.tar.gz`](https://software.ecmwf.int/wiki/display/ODBAPI/Releases) and emoslib [libemos-4.4.2-Source.tar.gz](https://software.ecmwf.int/wiki/display/EMOS/Releases). The default install location for software packages is in *$HOME/metapp/*.
 ```bash
 mkdir -p $HOME/test_ecmwf_releases
 mkdir -p $HOME/test_ecSource
@@ -70,7 +70,7 @@ make install
 ```
 
 ## "Main" software packages
-These instructions assume you have access to the ODB-API and COPE ECMWF git repositories. The default install location for software packages is in ''$HOME/metapp/''.
+These instructions assume you have access to the ODB-API and COPE ECMWF git repositories. The default install location for software packages is in *$HOME/metapp/*.
 ### odb (40t1.01)
 ECMWF maintain a "standalone" version of ODB software that is compiled with cmake. A 40t1 tag, 40t1.01, has been created to support the flavour of ODB used by harmonie-40h1.1.
 ```bash
@@ -146,13 +146,13 @@ make install
 ```
 
 ## COPE in HARMONIE system
-COPE is currently only available in [branches/harmonie_40h1_cope](branches/harmonie_40h1_cope) and has only been tested on a local Linux server.
+COPE is currently only available in [`branches/harmonie_40h1_cope`](branches/harmonie_40h1_cope) and has only been tested on a local Linux server.
 
 The use of COPE in HARMONIE relies on ODB-API, b2o and COPE itself. 
  * ODB-API tools must be included in PATH
  * The ECMA.sch used by COPE is maintained in the b2o version described above. 
- * "mf_vertco_type" specific changes are included in the feature/mf_vertco_type branch of COPE
- * scr/Cope includes the setting of the following environment variables which rely on COPE_DIR and B2O_DIR. These can be set in your Env_system file.
+ * `"mf_vertco_type"` specific changes are included in the `feature/mf_vertco_type` branch of COPE
+ * scr/Cope includes the setting of the following environment variables which rely on `COPE_DIR` and `B2O_DIR.` These can be set in your `Env_system` file.
 ```bash
 export COPE_DEFINITIONS_PATH=${COPE_DIR}/share/cope
 export ODB_SCHEMA_FILE=${B2O_DIR}/share/b2o/ECMA.sch

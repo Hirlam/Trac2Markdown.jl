@@ -9,7 +9,7 @@ This page describes the current situation for harmonie as a benchmarking tool. D
 
 The package is under preparation and is based on [harmonie-38h1.alpha.2](tags/harmonie-38h1.alpha.2) plus [11688] and [11708].
 
-The second, version is available here: [https://hirlam.org/portal/download/benchmark/src/HMbench_cy38a2_export.tar.gz].
+The second, version is available here: [`https://hirlam.org/portal/download/benchmark/src/HMbench_cy38a2_export.tar.gz`].
 
 Input data and some simple scripts can also be found on hirlam.org [https://hirlam.org/portal/download/benchmark/data/cy38].
 
@@ -51,17 +51,17 @@ Please note that it is crucial to have right namelist settings to enable reprodu
    TSTEP=60
 ```
 
-You will also need the files [covers.tar](https://hirlam.org/portal/download/benchmark/data/cy38/covers.tar) and [rrtm_const.tar](https://hirlam.org/portal/download/benchmark/data/cy38/rrtm_const.tar).
+You will also need the files [covers.tar](https://hirlam.org/portal/download/benchmark/data/cy38/covers.tar) and [`rrtm_const.tar`](https://hirlam.org/portal/download/benchmark/data/cy38/rrtm_const.tar).
 
 ## Status
 
  * The model is not reproducible for different NPROCX/NRPOCY with the default HARMONIE edmfm scheme. Until solved reproducibility can be achieved by removing from `&NAMPARAR`:
 
-   ```bash
+```bash
    CMF_CLOUD='STAT',
    CMF_UPDRAFT='DUAL',
    LMIXUV=.TRUE.,
-   ```
+```
 
 
     * This makes the the code reproducible on c2a(IBMP7) with the default compilation flags. UPDATE: also with multiple OpenMP threads. 
@@ -71,6 +71,6 @@ You will also need the files [covers.tar](https://hirlam.org/portal/download/ben
  * OpenMP now also tested with ifort 13.0.1 on Sandy Bridge (not using -xAVX flag). Still reproducibility cannot be achieved with any combination of (the many!) compiler flags and environment variable settings tested.
    * If linked without MKL libraries reproducibility is retained.
 
- * Gfortran 4.6.3 on an Ubuntu 12.04 workstation, domain XS, gives full reproducibility against variations in NPROCX, NPROCY and OMP_NUM_THREADS.
+ * Gfortran 4.6.3 on an Ubuntu 12.04 workstation, domain XS, gives full reproducibility against variations in NPROCX, NPROCY and `OMP_NUM_THREADS.`
 
 

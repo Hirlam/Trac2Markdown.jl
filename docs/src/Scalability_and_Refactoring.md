@@ -1,5 +1,5 @@
 # Scalability and refactoring
-''Preliminary docs, presentations and links''
+*Preliminary docs, presentations and links*
 
 
 ## Purpose
@@ -11,16 +11,16 @@ Create a reference webpage for docs, presentations and web links related with co
 [ESCAPE](http://www.hpc-escape.eu/home) stands for Energy-efficient Scalable Algorithms for Weather Prediction at Exascale.
 
 - [1st ESCAPE Dissemination and Training Workshop](http://www.hpc-escape.eu/media-hub/escape-events/1st-dissemination-workshop)
-- [Atlas documentation](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/atlas-0.6-userguide.pdf)
+- [Atlas `documentation](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/atlas-0.6-userguide.pdf`)
 - [Pantarhei project for development of non-hydrostatic IFS related to ESCAPE and ATLAS](http://www.ecmwf.int/en/research/projects/pantarhei)
 
 ## HPC for Meteorology
 
 [http://www.ecmwf.int/en/learning/workshops-and-seminars/17th-workshop-high-performance-computing-meteorology]
 
-- AROME France Optimizations [Philippe Marguinaud AROME Single Precision and New IO server](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/16796-optimizations-arpege-and-arome.pdf)
+- AROME France Optimizations [Philippe Marguinaud AROME Single Precision and New IO `server](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/16796-optimizations-arpege-and-arome.pdf`)
 
-- ecProof vs Dr Hook [ecProof profiling tool](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/16809-ecprof-meets-high-resolution-ifs-forecast-model-ecmwf.pdf)
+- ecProof vs Dr Hook [ecProof profiling `tool](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/16809-ecprof-meets-high-resolution-ifs-forecast-model-ecmwf.pdf`)
 
 ## OOPS and C++
 
@@ -29,12 +29,12 @@ Create a reference webpage for docs, presentations and web links related with co
 
 During the 2016 OOPS Seminar at ECMWF, were given some presentations of the recent changes in IFS in the OOPS re-factoring context :
 
-- OOPS refactoring in IFS-Arpège Fortran - Cycles CY42-CY43, Deborah Salmon [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_deborah.pdf)
-- MISO : Modifying the Ifs Source for Oops, Olivier Marsden [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/rd_pres_feb16_olivier.pdf)
-- OOPS observation cleaning (new HOP code + TL/AD) , Alan Geer, Peter Lean, Deborah Salmond, Thibaut Montmerle, Christophe Payan [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/pre_oops_20160202_alan.pdf)
-- A new framework for working with observational data in IFS (new IFS/ODB interfaces), Peter Lean, Alan Geer, Deborah Salmond [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/lean_oops_seminar_2016.pdf)
-- OOPS Jb Changes, Mike Fisher [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_20160202_mike.pdf)
-- New fields storage in IFS (GMV/GFL), Tomas Wilhelmsson [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/new-fields-tomas.pdf)
+- OOPS refactoring in IFS-Arpège Fortran - Cycles CY42-CY43, Deborah Salmon [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_deborah.pdf`)
+- MISO : Modifying the Ifs Source for Oops, Olivier Marsden [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/rd_pres_feb16_olivier.pdf`)
+- OOPS observation cleaning (new HOP code + TL/AD) , Alan Geer, Peter Lean, Deborah Salmond, Thibaut Montmerle, Christophe Payan [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/pre_oops_20160202_alan.pdf`)
+- A new framework for working with observational data in IFS (new IFS/ODB interfaces), Peter Lean, Alan Geer, Deborah Salmond [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/lean_oops_seminar_2016.pdf`)
+- OOPS Jb Changes, Mike Fisher [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_20160202_mike.pdf`)
+- New fields storage in IFS (GMV/GFL), Tomas Wilhelmsson [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/new-fields-tomas.pdf`)
 
 ## Benchmarking
 
@@ -46,10 +46,10 @@ During the 2016 OOPS Seminar at ECMWF, were given some presentations of the rece
 ## Technical Videoconferences IFS/Arpege
 
 
-- Minutes 20161013 [pdf ](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20161013.pdf) 
-- Minutes 20160606 [pdf ](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20160606_V1.pdf)
-- Minutes 20160121 [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20160121_V3.pdf)
-- Table 20161018 [pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/table_20161018_Update.pdf)
+- Minutes 20161013 [pdf `](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20161013.pdf`) 
+- Minutes 20160606 [pdf `](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20160606_V1.pdf`)
+- Minutes 20160121 [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20160121_V3.pdf`)
+- Table 20161018 [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/table_20161018_Update.pdf`)
 
 ## Atlas documentation
 
@@ -57,4 +57,4 @@ During the 2016 OOPS Seminar at ECMWF, were given some presentations of the rece
 
 ## System Videoconference
 
-- [System Status Presentation](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/HIRLAM%20System-core%20Videoconf%20%2020161107.pptx)
+- [System Status `Presentation](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/HIRLAM%20System-core%20Videoconf%20%2020161107.pptx`)

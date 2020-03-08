@@ -2,7 +2,7 @@
 ## Verification preparation
 ## Introduction
 
-Before we can run the verification we need to extract data for each geographical point and produce files in a format that the verification program can use. In HARMONIE there are two programs, one fore extracting model data (fldextr_grib_api) and one for observations ( obsextr ). Both are part of the [gl_grib_api package](Harmonie/util/gl_grib_api?rev=release-43h2.beta.3). 
+Before we can run the verification we need to extract data for each geographical point and produce files in a format that the verification program can use. In HARMONIE there are two programs, one fore extracting model data (`fldextr_grib_api`) and one for observations ( obsextr ). Both are part of the [`gl_grib_api` `package](Harmonie/util/gl_grib_api?rev=release-43h2.beta.3`). 
 
   fldextr is capable of extracting data from several sources (HARMONIE/HIRLAM/IFS and produces so called vfld-files in ASCII format. The main tasks of the program is to:
 
@@ -15,11 +15,11 @@ Before we can run the verification we need to extract data for each geographical
   obsextr extracts conventional observations from BUFR data and creates a vobs file similar to the vfld file. It:
 
    - Reads SYNOP and TEMP
-   - LUSE_LIST controls the usage of a station list
+   - `LUSE_LIST` controls the usage of a station list
 
 ## Station lists used by verification
-[Fldextr](Harmonie/scr/Fldextr?rev=release-43h2.beta.3) links  synop.list to $HM_LIB/util/gl_grib_api/scr/allsynop.list  and temp.list to $HM_LIB/util/gl_grib_api/scr/alltemp.list. These station lists are based on information in WMO's ''Publication No. 9, Volume A, Observing Stations 
-and WMO Catalogue of Radiosondes''. This is regularly updated by the WMO. allsynop.list and alltemp.list are updated less frequently. There is also scope to include local stations in these lists that are not included in WMO's ''Publication No. 9''. The following 7-digit station identifiers are available to HIRLAM countries:
+[Fldextr](Harmonie/scr/Fldextr?rev=release-43h2.beta.3) links  synop.list to `$HM_LIB/util/gl_grib_api/scr/allsynop.list`  and temp.list to `$HM_LIB/util/gl_grib_api/scr/alltemp.list.` These station lists are based on information in WMO's ''Publication No. 9, Volume A, Observing Stations 
+and WMO Catalogue of Radiosondes*. This is regularly updated by the WMO. allsynop.list and alltemp.list are updated less frequently. There is also scope to include local stations in these lists that are not included in WMO's*Publication No. 9''. The following 7-digit station identifiers are available to HIRLAM countries:
 
 |Norway       |!1000000 - !1099999 |
 | --- | --- |
@@ -44,7 +44,7 @@ needed in basic verification.
  * Data: Forecast files.
  * Namelists: Station lists for surface data (ewglam.list) and radiosounding data (temp.list).
  * Executables: fldextr.
- * Output: Field extraction files (vfld${EXP}${DTG}), which are placed in ''EXTRARCH''.
+ * Output: Field extraction files (vfld${EXP}${DTG}), which are placed in *EXTRARCH*.
 
 ## Extract observations
 
@@ -53,9 +53,9 @@ extraction for verification. First, the observation BUFR-file is fetched from th
 then all the needed data is extracted from the BUFR-files.
 
  * Input parameters: none.  
- * Data:  Station lists for surface data (ewglam.list) and radiosounding data (temp.list). These shoud be found from ''SCRDIR''  
+ * Data:  Station lists for surface data (ewglam.list) and radiosounding data (temp.list). These shoud be found from *SCRDIR*  
  * Executables: mars, obsextr.  
- * Output: Field extraction files (vobs*), which are placed in ''EXTRARCH''.
+ * Output: Field extraction files (vobs*), which are placed in *EXTRARCH*.
 
 For the continuous monitoring on hirlam.org the most recent data are kept online at ECMWF under `ecgb:/scratch/ms/dk/nhz/OBS`.
 

@@ -5,7 +5,7 @@
 **Please note: the version of gcc/gfortran available on CentOS/Redhat 6 platforms ((GCC) 4.4.7 !20120313 (Red Hat 4.4.7-16)) is not recent enough to compile harminie-40h1 code. gcc/gfortran, netCDF and HDF5 must be installed locally (from source).**
 
 ## Requirements
-This is a ''HOWTO'' for building and running Harmonie on a CentOS 6 PC with GNU compilers. This should probably work on a Redhat 6 PCs too. harmonie-38h1 code was used to develop this documentation.
+This is a *HOWTO* for building and running Harmonie on a CentOS 6 PC with GNU compilers. This should probably work on a Redhat 6 PCs too. harmonie-38h1 code was used to develop this documentation.
 
 ### 64-bit OS
 Enter the following command in a terminal to check you actually have a 64-bit Linux PC:
@@ -79,7 +79,7 @@ cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie setup -r $HOME/harmonie_releases/trunk -h METIE.LinuxPC
 ```
 
-Local changes that may be required ... in the Env_system:
+Local changes that may be required ... in the `Env_system:`
 ```bash
 :
 :
@@ -97,7 +97,7 @@ export JBDIR=/opt/metdata/harmonie_jbdata
 export SMSTASKMAX=4
 ```
 
-Local changes that may be required ... in the Env_submit:
+Local changes that may be required ... in the `Env_submit:`
 ```bash
   $nprocy=2; # instead of 8 if you only have a dual-/quad-core PC
 ```
@@ -107,11 +107,11 @@ Now use the Harmonie system to build the software:
 cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie Install
 ```
-This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [wiki:HarmonieSystemDocumentation/Build_with_makeup](HarmonieSystemDocumentation/Build_with_makeup)
+This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [`wiki:HarmonieSystemDocumentation/Build_with_makeup`](HarmonieSystemDocumentation/Build_with_makeup)
 
 ## Run an experiment
 Instructions for testbed and/or local experiment are detailed here:
- * Your first experiment will require changes to be made to the default settings in $HOME/hm_home/trunkexp/ecf/config_exp.h :
+ * Your first experiment will require changes to be made to the default settings in `$HOME/hm_home/trunkexp/ecf/config_exp.h` :
 ```bash
 DOMAIN=IRELAND150       ## choose a small domain to run on your limited PC.
                         ## See $HOME/harmonie_releases/trunk/scr/Harmonie_domains.pm for existing definitions

@@ -74,7 +74,7 @@ Below is a simple example of how to use **xtool**. You may also check the [field
   PPPKEY%lll = 000,
   PPPKEY%ttt = 103,
 /
-``` 
+```
 
  2. Run xtool.
 
@@ -91,7 +91,7 @@ xtool -sdtg1 2008080100 -edtg1 2008083000 -ll1 48 \
   * **-sdtg2**, **-edtg2**, **-ll2**: The cycles to look for the +24h forecast.
   * **-p1**, **-p2**: Naming rules for the files in cycle 1 and 2, respectively.
   * **-fcint**: Interval between forecast cycles.
-  * **-op**: Operation to be applied. Possible choices ''DIFF'', ''SUM'', ''AVE'', ''STDV'' or ''SAL''
+  * **-op**: Operation to be applied. Possible choices *DIFF*, *SUM*, *AVE*, *STDV* or *SAL*
   * **-n**: Namelist file.
   * **-o**: Name of the output grib file.
 
@@ -105,13 +105,13 @@ xtool -sdtg1 2008080100 -edtg1 2008083000 -ll1 48 \
  * **A**: Measure of strength of the precipitation (-2 - +2). Large **A**, if model predicts too intense precipitation.
  * **L**: Measure of location of the precipitation object (0 - +2). Large **L**, if modelled precipitation objects are far from the observed conterparts. 
 
- * **SAL** can be activated in **xtool** by using ''-op SAL'' option. e.g.
+ * **SAL** can be activated in **xtool** by using *-op SAL* option. e.g.
 
 ```bash
  xtool -f1 model.grib -f2 observation.grib -op SAL -n namelist
 ```
 
  * Output of the **SAL** are 2 simple ascii-files:
-  1. ''scatter_plot.dat'' containing date, **S**,**A** and **L** parameters.
-  2. ''sal_output.dat'' containing more detailed statistics collected during the verification (location of center of mass, number of objects, measure of object size etc.).
+  1. `*scatter_plot.dat*` containing date, **S**,**A** and **L** parameters.
+  2. `*sal_output.dat*` containing more detailed statistics collected during the verification (location of center of mass, number of objects, measure of object size etc.).
 

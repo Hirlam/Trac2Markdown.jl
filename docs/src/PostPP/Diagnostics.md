@@ -40,7 +40,7 @@ IF (KNDIAG.GE.1) THEN
 ENDIF
 ```
 
-  or anything you wish. Note that the variable YOURVAL is now stored in NGFL_EZDIAG=1.
+  or anything you wish. Note that the variable YOURVAL is now stored in `NGFL_EZDIAG=1.`
 
   You can store this way up to 25 diagnostic 3D fields in the historic files.
 
@@ -57,7 +57,7 @@ ENDIF
    YEZDIAG_NL(1)%LADV=.F.,
 ```
 
-  If you add more fields (e.g. you set NGFL_EZDIAG=4), I think you will also need to set the grib parameter, e.g.
+  If you add more fields (e.g. you set `NGFL_EZDIAG=4`), I think you will also need to set the grib parameter, e.g.
   (the default is 999, that you can leave for the first one).
 
 ```bash
@@ -66,6 +66,6 @@ ENDIF
    YEZDIAG_NL(4)%IGRBCODE=996,
 ```
 
-  Note that the two first places are already defined in harmonie_namelist.pm.
+  Note that the two first places are already defined in `harmonie_namelist.pm.`
 
- 4. In order to have your variable converted from FA to grib, add the new variable in util/gl/inc/trans_tab.h
+ 4. In order to have your variable converted from FA to grib, add the new variable in `util/gl/inc/trans_tab.h`
