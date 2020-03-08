@@ -17,26 +17,26 @@ The verification package in HARMONIE is designed to be a self contained stand al
 
 In addition there are a number of scores based on contingency tables like:
 
-    * **Frequency bias (bias score)**: (h+fa)/(h+m); Compares the frequency of predicted events to the frequency of observed events. *Range: 0 -> infinite. Perfect score: 1*
-    * **Hit rate (probability of detection)**: h/(h+m); What fraction of the observed events were correctly forecast. *Range: 0 to 1.  Perfect score: 1.* 
-    * **False alarm ratio**: fa/(h+fa); What fraction of the predicted events did not occur. *Range: 0 to 1.  Perfect score: 0.*
-    * **False alarm rate**: fa/((cn+fa); What fraction of the observed "no" events were incorrectly forecast as "yes". *Range: 0 to 1. Perfect score: 0.*
-    * **Threat score**: h/(h+m+fa); How well did the forecast "yes" events correspond to the observed "yes" events. *Range: 0 to 1. Perfect scrore: 1.*
-    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS# (h­R)/(h+m+fa­R),  R(h+m)(h+fa)/(h+m+fa+cn). Often used in verification of precipitation. *Range: -1/3 to 1, 0 indicates no skill.   Perfect score: 1.* 
-    * **Hansen­Kuipers score**: (h/(h+m) ­ fa/(fa+cn)), How well did the forecast separate events from non­events. *Range: -1 to 1, 0 indicates no skill. Perfect score: 1.*
+    * **Frequency bias (bias score)**: (`h+fa)/(h+m`); Compares the frequency of predicted events to the frequency of observed events. *Range: 0 -> infinite. Perfect score: 1*
+    * **Hit rate (probability of detection)**: `h/(h+m`); What fraction of the observed events were correctly forecast. *Range: 0 to 1.  Perfect score: 1.* 
+    * **False alarm ratio**: `fa/(h+fa`); What fraction of the predicted events did not occur. *Range: 0 to 1.  Perfect score: 0.*
+    * **False alarm rate**: `fa/((cn+fa`); What fraction of the observed "no" events were incorrectly forecast as "yes". *Range: 0 to 1. Perfect score: 0.*
+    * **Threat score**: `h/(h+m+fa`); How well did the forecast "yes" events correspond to the observed "yes" events. *Range: 0 to 1. Perfect scrore: 1.*
+    * **The Equitable threat score** takes into account the number of random hits (R) and is less sensitive to climatology: ETS# (`h­R)/(h+m+fa­R`),  `R(h+m)(h+fa)/(h+m+fa+cn`). Often used in verification of precipitation. *Range: `-1/3` to 1, 0 indicates no skill.   Perfect score: 1.* 
+    * **Hansen­Kuipers score**: (`h/(h+m`) ­ `fa/(fa+cn`)), How well did the forecast separate events from non­events. *Range: -1 to 1, 0 indicates no skill. Perfect score: 1.*
     * **Extreme Dependency Scores**: What is the association between forecast and observed rare events? *Range: -1 to 1, 0 indicates no skill. Perfect score: 1*
 
-A more detailed explanation about verification can found at [http://www.cawcr.gov.au/projects/verification/]
+A more detailed explanation about verification can found at [`http://www.cawcr.gov.au/projects/verification/`]
 
 The scores can be presented per station for the whole data set or filtered through different selection criteria based on e.g. a geographical domain or properties of the data itself. One key feature missing in earlier HIRLAM verification packages is that the comparison is done over exactly the same set of data ( in time and space ) when comparing different experiments or models. The scores are finally presented with a portable web interface, [#WebgraF WebgraF], that allows you to easily share the information with others. Since the verification is station based it is less suitable for moving platforms or fields.
 
 Other examples on how products from the verification package looks like today can be found here:
     * [The monitor test data `set](https://hirlam.org/portal/smhi/WebgraF_test_data/`)
-    * [FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/)
+    * [`FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/`)
     * [Mast `verification](http://fminwp.fmi.fi/mastverif_stats/SODA_2012_JJA_export/`)
-    * [HIRLAM verification portal](https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/)
+    * [HIRLAM verification `portal](https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/`)
 
-In the following we describe the different parts of the verification package. For preparation of verification data read more [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
+In the following we describe the different parts of the verification package. For preparation of verification data read more [`here](HarmonieSystemDocumentation/PostPP/Extract4verification`).
 
 ## Getting and compiling the code
 
@@ -94,7 +94,7 @@ The strategy in the verification is to separate the data input from the calculat
 
 The program can handle several data sources. Which one you use is depending on the value of `*DATA_SOURCE*` and is controlled in the routine [`my_choices.f90`](monitor/rdr/my_choices.f90). At namelist level we also control which experiments we should read, the period (*SDATE*,*EDATE*), interval between cycles (*FCINT*), which forecasts (*FCLEN*) and the interval of the observations (*OBINT*). We can also already at this point select which stations to use by specifying a station list (*STNLIST*). 
 
-The HARMONIE tools to extract data for verifiation are described in [here](HarmonieSystemDocumentation/PostPP/Extract4verification).
+The HARMONIE tools to extract data for verifiation are described in [`here](HarmonieSystemDocumentation/PostPP/Extract4verification`).
 
 ### # A general input format
 
@@ -136,7 +136,7 @@ stid_2 lat lon hgt
 ...
 ```
 
-The accumulation time allows us to e.g. easily include different precipitation accumulation intervals. Any variable can be included in the file and verified without any code changes. Once you have defined a variable in your data you have to describe its properties in the [plotdefs.pm](monitor/scr/plotdefs.pm) described in the [#Settingsfordifferentmeteorologicalparameters parameter setting section].
+The accumulation time allows us to e.g. easily include different precipitation accumulation intervals. Any variable can be included in the file and verified without any code changes. Once you have defined a variable in your data you have to describe its properties in the [`plotdefs.pm](monitor/scr/plotdefs.pm`) described in the [#Settingsfordifferentmeteorologicalparameters parameter setting section].
 
 ### Quality control
 
@@ -178,7 +178,7 @@ Data is stored by:
 
 ### Output format
 
- Early versions of the package was based on the ECMWF graphics package MAGICS. Due to the poor portability of MAGICS the package now a days produces text files that are parsed through a [script](monitor/scr/verobs2gnuplot.pl) that produces plots using gnuplot. It may not be the most elegant graphics package, but it is available almost everywhere. Some verification are also produced in form of tables. The contingency tables are parsed through [contingency2gnuplot.pl](monitor/scr/contingency2gnuplot.pl) to produce skill scores.
+ Early versions of the package was based on the ECMWF graphics package MAGICS. Due to the poor portability of MAGICS the package now a days produces text files that are parsed through a [`script](monitor/scr/verobs2gnuplot.pl`) that produces plots using gnuplot. It may not be the most elegant graphics package, but it is available almost everywhere. Some verification are also produced in form of tables. The contingency tables are parsed through [`contingency2gnuplot.pl](monitor/scr/contingency2gnuplot.pl`) to produce skill scores.
 
 ## HARMONIE user interface
 
@@ -257,7 +257,7 @@ EDATE=20080905
 IDATE=$SDATE
 ```
 
-For operational runs it might be useful to set `PERIOD_TYPE=2` like [FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/) has done.
+For operational runs it might be useful to set `PERIOD_TYPE=2` like [`FMI](http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/`) has done.
 
 If you would like to monitor some special stations you can list them by station number.
 
@@ -365,7 +365,7 @@ SCORETYPES="classes thresholds"
 
 The meaning of the different abbreviations will be given in next section.
 
-A selection of data is done by SURFSELECTION and TEMPSELECTION. The name in these list refers to definitions in [selection.pm](monitor/scr/selection.pm). We also select time and forecast interval by the OBINT, FCINT and FCLEN parameters.
+A selection of data is done by SURFSELECTION and TEMPSELECTION. The name in these list refers to definitions in [`selection.pm](monitor/scr/selection.pm`). We also select time and forecast interval by the OBINT, FCINT and FCLEN parameters.
 
 At the end you would possibly like to change the graphics format of the output files.
 
@@ -388,7 +388,7 @@ The difference between the first `OUTPUT_TYPE` and the others is that in the fir
 
 ### Setting parameters for different types of plots
 
-If the settings in the main configuration file does not cover your needs you go to next level of the definition files. The namelists defining your verification run is build by [`Build_namelist.pl`](monitor/scr/Build_namelist.pl) by using your configuration file and three perl modules defining different parts. The logics behind the GEN, MAP, TIME switches are hidden in [maindefs.pm](monitor/scr/maindefs.pm). The first part defines the reading part:
+If the settings in the main configuration file does not cover your needs you go to next level of the definition files. The namelists defining your verification run is build by [`Build_namelist.pl`](monitor/scr/Build_namelist.pl) by using your configuration file and three perl modules defining different parts. The logics behind the GEN, MAP, TIME switches are hidden in [`maindefs.pm](monitor/scr/maindefs.pm`). The first part defines the reading part:
 
 ```bash
 
@@ -415,7 +415,7 @@ If the settings in the main configuration file does not cover your needs you go 
 
 ```
 
-Any new variable added here will also be set in the reading part of the namelist. The next part, def, defines values that are reset every time we loop through the verification and reads a new namelist. In the selectionloop part  we find the magic switches for the different SURFPLOT/TEMPPLOT keywords. The first one SEAS is only interesting if you run with a few parameters over several seasons. In the normal case several years of data doesn't fit in the memory so this is left for the experienced user.
+Any new variable added here will also be set in the reading part of the namelist. The next part, def, defines values that are reset every time we loop through the verification and reads a new namelist. In the selectionloop part  we find the magic switches for the different `SURFPLOT/TEMPPLOT` keywords. The first one SEAS is only interesting if you run with a few parameters over several seasons. In the normal case several years of data doesn't fit in the memory so this is left for the experienced user.
 
 The next one is GEN:
 
@@ -453,7 +453,7 @@ The next section handles the production of bias maps
 
 ```
 
-Here we can show decide to show any of bias,rmse and stdv maps. The bias intervals for a given parameter are defined in [plotdefs.pm](monitor/scr/plotdefs.pm) discussed later. Here we have chosen to show only the 00 and 12 UTC maps.
+Here we can show decide to show any of bias,rmse and stdv maps. The bias intervals for a given parameter are defined in [`plotdefs.pm](monitor/scr/plotdefs.pm`) discussed later. Here we have chosen to show only the 00 and 12 UTC maps.
 
 Time serie statistics of the observed values and departures are produced by the TIME section.
 
@@ -467,7 +467,7 @@ Time serie statistics of the observed values and departures are produced by the 
 
 ```
 
-Note that we explicitly set the forecast lengths we use. As for the GEN part the activation of bias, rmse and stdv plots are controlled by the `SHOW_*` parameters. The averaging period for time series are controlled per variable through the `*TWIND_SURF*` and `*TWIND_TEMP*` parameters in [plotdefs.pm](monitor/scr/plotdefs.pm).
+Note that we explicitly set the forecast lengths we use. As for the GEN part the activation of bias, rmse and stdv plots are controlled by the `SHOW_*` parameters. The averaging period for time series are controlled per variable through the `*TWIND_SURF*` and `*TWIND_TEMP*` parameters in [`plotdefs.pm](monitor/scr/plotdefs.pm`).
 
 Scatter plots and contingency tables are set in
 
@@ -482,7 +482,7 @@ Scatter plots and contingency tables are set in
 
 ```
 
-By setting `LPREP_XML` we will get a list of stations sorted by decreasing rmse on the web page. This allows you to find the worst stations for different variables. The contingency part of this is defined in [plotdefs.pm](monitor/scr/plotdefs.pm). It is possible to create cross variable scatter plots where we compare different model parameters against each other or the observations. This is however not a part of the script system but be defined on the low level. Read more in [`here](monitor/doc/README_verobs#L250`).
+By setting `LPREP_XML` we will get a list of stations sorted by decreasing rmse on the web page. This allows you to find the worst stations for different variables. The contingency part of this is defined in [`plotdefs.pm](monitor/scr/plotdefs.pm`). It is possible to create cross variable scatter plots where we compare different model parameters against each other or the observations. This is however not a part of the script system but be defined on the low level. Read more in [`here](monitor/doc/README_verobs#L250`).
 
 In some cases it's interesting to see how the model handles the daily cycle. In DAYVAR we define the flags to get this. The LFCVER tell the program that we should organize the statistics by time of day rather than by forecast length. We have also chosen to allow for a special set of forecast length here through the environment variable `FCLEN_DAYVAR` set in your configuration file
 
@@ -500,13 +500,13 @@ In some cases it's interesting to see how the model handles the daily cycle. In 
 
 ```
 
-The final part of [maindefs.pm](monitor/scr/maindefs.pm) deals with the vertical profiles. `LPLOT_VERT` is the flag telling us that we are doing a vertical profile. The major difference between this and GEN is that here we have chosen to split between night and daytime soundings by setting `SHOW_TIMES.`
+The final part of [`maindefs.pm](monitor/scr/maindefs.pm`) deals with the vertical profiles. `LPLOT_VERT` is the flag telling us that we are doing a vertical profile. The major difference between this and GEN is that here we have chosen to split between night and daytime soundings by setting `SHOW_TIMES.`
 
 Any valid namelist variable added to these sections will be picked up and used in the verification. 
  
 ### Settings for different meteorological parameters
 
- The different treatment of the different meteorological variables are done in [plotdefs.pm](monitor/scr/plotdefs.pm). In the first section we define the default values for all variables.
+ The different treatment of the different meteorological variables are done in [`plotdefs.pm](monitor/scr/plotdefs.pm`). In the first section we define the default values for all variables.
 
 ```bash
 
@@ -533,7 +533,7 @@ Any valid namelist variable added to these sections will be picked up and used i
 
 ```
 
-It is also possible to set the time window for timeseries separately for each variables like it is done for e.g. precipitation (PE). For accumulated and max/min parameters we also need to set the accumulation period. E.g. the maximum temperature for the past 12 hours is defined as
+It is also possible to set the time window for timeseries separately for each variables like it is done for e.g. precipitation (PE). For accumulated and `max/min` parameters we also need to set the accumulation period. E.g. the maximum temperature for the past 12 hours is defined as
 
 ```bash
 
@@ -567,7 +567,7 @@ Where TEXT is the description to be displayed on the plot and the webpage, ACC i
 
 ### Selection options
  
-It easy to select a subset of your data for verification and we have already discussed how it can be done by setting a list of stations or select different forecast lengths. In [selection.pm](monitor/selection.pm) a number of different kind of selections have been defined. Several of them are just a list of stations like e.g. the well known (but perhaps not so well defined) EWGLAM list. An example of how a box can be defined is found for the Netherlands.
+It easy to select a subset of your data for verification and we have already discussed how it can be done by setting a list of stations or select different forecast lengths. In [`selection.pm](monitor/selection.pm`) a number of different kind of selections have been defined. Several of them are just a list of stations like e.g. the well known (but perhaps not so well defined) EWGLAM list. An example of how a box can be defined is found for the Netherlands.
 
 ```bash
 
@@ -632,10 +632,10 @@ All the above mentioned selections can of course be combined in any way you can 
 
 ## WebgraF
 
-One idea with the HARMONIE verification packages is that it should be easy to share you results with others. This is where WebgraF comes in. It was originally written to mimic the ECMWF "chart" facility like [here](http://www.ecmwf.int/research/demeter/d/inspect/catalog/research/era/diagnostics/fluxes/HBV/). The ECMWF solution is a perl based server solution and needs some installation and WebgraF is a javascript running locally which makes it more portable. The idea with WebgraF is that each page is defined by a simple definition file which spans the space of the menu axes on the page. 
+One idea with the HARMONIE verification packages is that it should be easy to share you results with others. This is where WebgraF comes in. It was originally written to mimic the ECMWF "chart" facility like [`here](http://www.ecmwf.int/research/demeter/d/inspect/catalog/research/era/diagnostics/fluxes/HBV/`). The ECMWF solution is a perl based server solution and needs some installation and WebgraF is a javascript running locally which makes it more portable. The idea with WebgraF is that each page is defined by a simple definition file which spans the space of the menu axes on the page. 
 
 Examples :
-      * [GLAMEPS](https://glameps.hirlam.org/forecasted) [Definition file](https://glameps.hirlam.org/forecasted/AccPcp3h.js)
+      * [`GLAMEPS](https://glameps.hirlam.org/forecasted`) [Definition `file](https://glameps.hirlam.org/forecasted/AccPcp3h.js`)
       * [Daily `maps](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/`) [Definition `file](https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/Surface.js`)
 
 
@@ -645,7 +645,7 @@ At the end of both of the scripts `Run_verobs_surface/Run_verobs_temp` there is 
 Create_ver_js YOUR_CONFIG_FILE
 ```
 
-The WebgraF page is controlled by the [WebgraF script](monitor/WebgraF/bin/WebgraF). It has commands to e.g. list, add, remove the content of a page. To start mastering your own page you first have to let the script know the location of the page by setting the environment variable `WEBGRAF_BASE` 
+The WebgraF page is controlled by the [WebgraF `script](monitor/WebgraF/bin/WebgraF`). It has commands to e.g. list, add, remove the content of a page. To start mastering your own page you first have to let the script know the location of the page by setting the environment variable `WEBGRAF_BASE` 
 ```bash
 in bash
 export WEBGRAF_BASE=SOME_PATH/monitor/WebgraF
@@ -659,7 +659,7 @@ Now you can list the content of you page by
 WebgraF/bin/WebgraF -l 
 ```
 
-A more comprehensive list of commands can be found in the [README `file](monitor/doc/README_WebgraF`). The rules and functions available for your definition file is found [here](monitor/WebgraF/src/input.html).
+A more comprehensive list of commands can be found in the [README `file](monitor/doc/README_WebgraF`). The rules and functions available for your definition file is found [`here](monitor/WebgraF/src/input.html`).
 
 Two useful tools is the export and transport commands. Both creates an portable extraction of your verification page but in two different ways.
 

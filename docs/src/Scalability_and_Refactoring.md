@@ -10,9 +10,9 @@ Create a reference webpage for docs, presentations and web links related with co
 
 [ESCAPE](http://www.hpc-escape.eu/home) stands for Energy-efficient Scalable Algorithms for Weather Prediction at Exascale.
 
-- [1st ESCAPE Dissemination and Training Workshop](http://www.hpc-escape.eu/media-hub/escape-events/1st-dissemination-workshop)
+- [1st ESCAPE Dissemination and Training `Workshop](http://www.hpc-escape.eu/media-hub/escape-events/1st-dissemination-workshop`)
 - [Atlas `documentation](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/atlas-0.6-userguide.pdf`)
-- [Pantarhei project for development of non-hydrostatic IFS related to ESCAPE and ATLAS](http://www.ecmwf.int/en/research/projects/pantarhei)
+- [Pantarhei project for development of non-hydrostatic IFS related to ESCAPE and `ATLAS](http://www.ecmwf.int/en/research/projects/pantarhei`)
 
 ## HPC for Meteorology
 
@@ -24,26 +24,26 @@ Create a reference webpage for docs, presentations and web links related with co
 
 ## OOPS and C++
 
-- [C++ and OOPS training ](https://hirlam.org/trac/wiki/OOPS/C%2B%2BOOPSTraining201210)
+- [C++ and OOPS training `](https://hirlam.org/trac/wiki/OOPS/C%2B%2BOOPSTraining201210`)
 - Technical presentations of recent IFS changes (OOPS re-factoring), February 2016
 
 During the 2016 OOPS Seminar at ECMWF, were given some presentations of the recent changes in IFS in the OOPS re-factoring context :
 
 - OOPS refactoring in IFS-Arpège Fortran - Cycles CY42-CY43, Deborah Salmon [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_deborah.pdf`)
 - MISO : Modifying the Ifs Source for Oops, Olivier Marsden [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/rd_pres_feb16_olivier.pdf`)
-- OOPS observation cleaning (new HOP code + TL/AD) , Alan Geer, Peter Lean, Deborah Salmond, Thibaut Montmerle, Christophe Payan [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/pre_oops_20160202_alan.pdf`)
-- A new framework for working with observational data in IFS (new IFS/ODB interfaces), Peter Lean, Alan Geer, Deborah Salmond [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/lean_oops_seminar_2016.pdf`)
+- OOPS observation cleaning (new HOP code + `TL/AD`) , Alan Geer, Peter Lean, Deborah Salmond, Thibaut Montmerle, Christophe Payan [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/pre_oops_20160202_alan.pdf`)
+- A new framework for working with observational data in IFS (new `IFS/ODB` interfaces), Peter Lean, Alan Geer, Deborah Salmond [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/lean_oops_seminar_2016.pdf`)
 - OOPS Jb Changes, Mike Fisher [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/oops_20160202_mike.pdf`)
-- New fields storage in IFS (GMV/GFL), Tomas Wilhelmsson [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/new-fields-tomas.pdf`)
+- New fields storage in IFS (`GMV/GFL`), Tomas Wilhelmsson [`pdf](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/new-fields-tomas.pdf`)
 
 ## Benchmarking
 
-- [RAPS](http://www.ecmwf.int/sites/default/files/elibrary/2012/14020-raps-introduction.pdf)
+- [`RAPS](http://www.ecmwf.int/sites/default/files/elibrary/2012/14020-raps-introduction.pdf`)
 - Vtune 
-- [PMU Intel](https://software.intel.com/en-us/articles/intel-performance-counter-monitor)
+- [PMU `Intel](https://software.intel.com/en-us/articles/intel-performance-counter-monitor`)
 - PAPI CUDA 
 
-## Technical Videoconferences IFS/Arpege
+## Technical Videoconferences `IFS/Arpege`
 
 
 - Minutes 20161013 [pdf `](https://hirlam.org/trac/attachment/wiki/Scalability_and_Refactoring/minutes_20161013.pdf`) 

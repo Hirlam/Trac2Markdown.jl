@@ -4,7 +4,7 @@
 
 ## Background
 
-Makeup is an alternative mechanism to build the HARMONIE system Instead of using GMKPACK to build the libraries and binaries, standard GNU make (gmake) procedures are used, making build of executables an easier task. Also parallel make comes for free, thus enhanced turn-around time for build process. Furthermore, rebuilds and change of compiler flags -- either per project and/or per source files basis -- are now trivial to do.
+Makeup is an alternative mechanism to build the HARMONIE system Instead of using GMKPACK to build the libraries and binaries, standard GNU make (gmake) procedures are used, making build of executables an easier task. Also parallel make comes for free, thus enhanced turn-around time for build process. Furthermore, rebuilds and change of compiler flags -- either per project `and/or` per source files basis -- are now trivial to do.
 
 ## MAKEUP very quickly
 
@@ -29,7 +29,7 @@ Usually `**$HARMONIE_MAKEUP**` is `**$HARMONIE_SRC/../util/makeup**` , but it do
 
 The process of building HARMONIE executable contains just a few steps:
 
- 1. Goto directory `$HARMONIE_MAKEUP` and create/edit your configuration file (config.*). Beware of preferred naming convention:
+ 1. Goto directory `$HARMONIE_MAKEUP` and `create/edit` your configuration file (config.*). Beware of preferred naming convention:
 ```bash
 config.<MET-INSTITUTE>.<MACHINE-PLATFORM>.<COMPILER-NAME>.<FUNDAMENTAL-OPTIONS>.<OPTIONAL-OPTIONS>
 ```
@@ -67,9 +67,9 @@ gmake
 
 This will create extra libs (so called `´´MY_SYSLIBS´´`) `libbufr.a`, `libgribex.a` and `librgb.a` and they will end up being linked into your executables, like MASTERODB.
 
-## Using MAKEUP to build also util/gl -tools
+## Using MAKEUP to build also `util/gl` -tools
 
-HARMONIE utility package GL as located in util/gl directory can also be built as part of MAKEUP process,
+HARMONIE utility package GL as located in `util/gl` directory can also be built as part of MAKEUP process,
 if option -G is also given to the configure:
 
 ```bash
@@ -79,7 +79,7 @@ $HARMONIE_MAKEUP/configure -G $HARMONIE_MAKEUP/config.FMI.cray_xt5m.pathscale.mp
 gmake
 ```
 
-## Using MAKEUP to build also Oulan and/or Monitor -tools
+## Using MAKEUP to build also Oulan `and/or` Monitor -tools
 
 HARMONIE utility package MONITOR and obs-preprocessor OULAN can also be build with MAKEUP. If you add option -B , then you will get Oulan and Monitor executables built, too. Or you can be more selective and oopt only for oulan with -b oulan, or just monitor -b monitor :
 ```bash
@@ -125,7 +125,7 @@ cd /working/path/src
 gmake
 ```
 
-Now, it is important to understand that this `/working/path` has no connection to version handling i.e. if you change something 
+Now, it is important to understand that this ``/working/path`` has no connection to version handling i.e. if you change something 
 in your master copy (say : issue a `svn up`-command), then your working directory remains unaltered. To synchronize it, do the following:
 
 ```bash
@@ -139,9 +139,9 @@ gmake rsync
 
 ### Re-running configure
 
-Afterwards you can rerun configure as many times as you wish.  Please note that the very first time is always slowed (maybe 10 minutes) as interface blocks for arp/ and ald/ projects are generated.
+Afterwards you can rerun configure as many times as you wish.  Please note that the very first time is always slowed (maybe 10 minutes) as interface blocks for `arp/` and `ald/` projects are generated.
 
-Usually running configure many times is not necessary -- not even when you have changed your config-file (!) -- except when interface blocks needs to be updated/re-created (-c or -g options). For example, when subroutine/function call argument list has changed.
+Usually running configure many times is not necessary -- not even when you have changed your config-file (!) -- except when interface blocks needs to be `updated/re-created` (-c or -g options). For example, when `subroutine/function` call argument list has changed.
 Then the whole config+build sequence can be run under `$HARMONIE_SRC` as follows:
 ```bash
 #!sh
@@ -171,14 +171,14 @@ gmake NPES=10
 
 ### Inserting DRHOOK for Meso-projects
 
-To insert `DrHook` profiling automatically for mpa/ and mse/ projects, reconfigure with -H option:
+To insert `DrHook` profiling automatically for `mpa/` and `mse/` projects, reconfigure with -H option:
 ```bash
 #!sh
 cd $HARMONIE_SRC
 $HARMONIE_MAKEUP/configure -H $HARMONIE_MAKEUP/config.FMI.cray_xt5m.pathscale.mpi+openmp
 ```
 
-You can also pick and choose either mpa/ or mse/ projects with -h option (can be supplied several times):
+You can also pick and choose either `mpa/` or `mse/` projects with -h option (can be supplied several times):
 
 ```bash
 #!sh
@@ -195,7 +195,7 @@ done in the `svn` (version handling) level.
 
 ### Speeding up compilations by use of RAM-disk
 
-To further speedup compilation and if you have several GBytes of Linux RAM-disk (/dev/shm) available, do the following:
+To further speedup compilation and if you have several GBytes of Linux RAM-disk (`/dev/shm`) available, do the following:
 
  1. Create your personal RAM-disk subdirectory and check available disk space
 ```bash
@@ -208,7 +208,7 @@ df -kh /dev/shm/$USER
 cd $HARMONIE_SRC
 $HARMONIE_MAKEUP/configure -L /dev/shm/$USER $HARMONIE_MAKEUP/config.FMI.cray_xt5m.pathscale.mpi+openmp
 ```
- 1. Also define TMPDIR to point to /dev/shm/$USER to allow compiler specific temporary files on RAM-disk
+ 1. Also define TMPDIR to point to `/dev/shm/$USER` to allow compiler specific temporary files on RAM-disk
 ```bash
 #!sh
 # In ksh/bash-shells:
@@ -223,7 +223,7 @@ Please note that the step-2 creates all libraries AND executablus under the dire
 
 ### What if you run out of RAM-disk space ?
 
-Sometimes you may find that the disk space becomes limited in /dev/shm/$USER. Then you have an option to supply LIBDISK parameter directly to gmake-command without need to reconfigure:
+Sometimes you may find that the disk space becomes limited in `/dev/shm/$USER.` Then you have an option to supply LIBDISK parameter directly to gmake-command without need to reconfigure:
 
 ```bash
 #!sh
@@ -245,16 +245,16 @@ The trick to manage this with MAKEUP is to create a bunch of symbolic links poin
 
 | **Library**   | **Description**                                 | **Source files**                   |
 | --- | --- | --- |
-| libodb          | ODB core library                                  | lib/ & aux/ : [a-z]*.F90 [a-z]*.c    |
-|                 |                                                           | module/ & pandor/module : *.F90      |
-| libodbport      | Interface between IFS (ARPEGE/ALADIN/AROME) & ODB | cma2odb/ & bufr2odb/ : *.F90         |
-|                 | -- also contains BUFR2ODB routines                        | pandor/extrtovs & pandor/fcq & pandor/mandalay : *.F90 |
-| libodbdummy     | ODB-related dummies                                       | lib/   : [A-Z]*.F90 [A-Z]*.c         |
-| libodbmain      | ODB tools, main programs (C & Fortran)                    | tools/ : [A-Z]*.F90 *.c *.F          |
-| libPREODB       | ERA40 database (not needed, but good for debugging)       | ddl.PREODB/*.sql  , ddl.PREODB/*.ddl |
-| libCCMA         | Compressed Central Memory Array database (minimization)   | ddl.CCMA/*.sql    , ddl.CCMA/*.ddl   |
-| libECMA         | Extended Central Memory Array database (obs. screening)   | ddl.ECMA/*.sql    , ddl.ECMA/*.ddl   |
-| libECMASCR      | Carbon copy of ECMA for obs. load balancing between PEs | ddl.ECMASCR/*.sql , ddl.ECMASCR/*.ddl|
+| libodb          | ODB core library                                  | `lib/` & `aux/` : [a-z]*.F90 [a-z]*.c    |
+|                 |                                                           | `module/` & `pandor/module` : *.F90      |
+| libodbport      | Interface between IFS (`ARPEGE/ALADIN/AROME`) & ODB | `cma2odb/` & `bufr2odb/` : *.F90         |
+|                 | -- also contains BUFR2ODB routines                        | `pandor/extrtovs` & `pandor/fcq` & `pandor/mandalay` : *.F90 |
+| libodbdummy     | ODB-related dummies                                       | `lib/`   : [A-Z]*.F90 [A-Z]*.c         |
+| libodbmain      | ODB tools, main programs (C & Fortran)                    | `tools/` : [A-Z]*.F90 *.c *.F          |
+| libPREODB       | ERA40 database (not needed, but good for debugging)       | `ddl.PREODB/*.sql`  , `ddl.PREODB/*.ddl` |
+| libCCMA         | Compressed Central Memory Array database (minimization)   | `ddl.CCMA/*.sql`    , `ddl.CCMA/*.ddl`   |
+| libECMA         | Extended Central Memory Array database (obs. screening)   | `ddl.ECMA/*.sql`    , `ddl.ECMA/*.ddl`   |
+| libECMASCR      | Carbon copy of ECMA for obs. load balancing between PEs | `ddl.ECMASCR/*.sql` , `ddl.ECMASCR/*.ddl|`
 
 
 From the file `$HARMONIE_MAKEUP/configure` you can also find how different files are nearly hand-picked for particular libraries. Search for block
@@ -285,10 +285,10 @@ From the file `$HARMONIE_MAKEUP/configure` you can also find how different files
 
 ### Handling SQL-query and data layout files
 
-For SQL-query compilations (ODB/SQL queries are translated into C-code for greater performance),
+For SQL-query compilations (`ODB/SQL` queries are translated into C-code for greater performance),
 `odb98.x` SQL-compiler executable is also built as a first thing in the MAKEUP process.
 
-Queries and data definition layouts (DDL-files) are always under <database>/ddl.<database>/ directory.
+Queries and data definition layouts (DDL-files) are always under `<database>/ddl.<database>/` directory.
 
 ----
 
@@ -393,12 +393,12 @@ or precompiled installation as follows:
 gmake PRECOMPILED=/a/precompiled/rootdir precompiled
 ```
 
-After this the stuff you just compiled ends up in directory `/a/precompiled/rootdir` with
-two subdirectories : `src/` and `util/`. All executables are currently removed.
+After this the stuff you just compiled ends up in directory ``/a/precompiled/rootdir`` with
+two subdirectories : ``src/`` and ``util/`.` All executables are currently removed.
 
 You can repeat this call, and it will just `rsync` the modified bits.
 
-### Update/check your interface blocks outside `configure`
+### `Update/check` your interface blocks outside `configure`
 
 The `configure` has options -c or -g to check up or enforce for (re-)creation of interface blocks of
 projects `arp` and `ald`. To avoid full and lengthy `configure`-run, you can just do the following:

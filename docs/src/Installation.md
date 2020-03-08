@@ -10,14 +10,14 @@ In the following the installation and compilation of system is described. Read m
 
 ## Rootpack Installation
 
-Gmkpack is the ALADIN utility to compile ARPEGE/IFS
+Gmkpack is the ALADIN utility to compile `ARPEGE/IFS`
 
- - Handle dependencies (includes/modules)
+ - Handle dependencies (`includes/modules`)
  - Handle exceptions
  - Compile the code
  - Build the binaries
 
-A mainpack installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models). Generate a set of pre-compiled libraries (rootpack) and modules available for USE. 
+A mainpack installs and builds a complete HARMONIE source (`ALADIN/HIRALD/ALARO/AROME` models). Generate a set of pre-compiled libraries (rootpack) and modules available for USE. 
 Each single user buils their own  local "target" pack, which synchronise local source modifications with the reference libraries.  
 
 [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchegmkpack)
@@ -27,14 +27,14 @@ Each single user buils their own  local "target" pack, which synchronise local s
 
 gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in `Build_gmkpack`, `Build_rootpack` and `Build_pack`
 
-Available main packs on cca:/project/hirlam/harmonie/pack could look like:
+Available main packs on `cca:/project/hirlam/harmonie/pack` could look like:
 
 37h1_harmonEPS_11389.01.XLF130100000009.x `37h1_harmonEPS_11842.01.XLF130100000009.x` `37h1_harmonEPS_11899.01.XLF130100000009.x` `37h1_main.01.XLF130100000009.x` `37h1_main.02.XLF130100000009.x` `38h1_alpha.01.XLF130100000009.x` `38h1_alpha.02.XLF130100000009.x` `38h1_beta.01.XLF130100000009.x` 
 
 ie. `CYCLE_BRANCH.VERIONS.COMPILER_VERSION.OPTION`
 For the latest available packs please check on cca.
 
- * [Supported platforms and compilers](Harmonie/util/gmkpack/arch?rev=release-43h2.beta.3)
+ * [Supported platforms and `compilers](Harmonie/util/gmkpack/arch?rev=release-43h2.beta.3`)
     - IBM power 7, xlf95
     - Intel (g95, gfortran, intel)
     - NEC
@@ -48,7 +48,7 @@ We assume you have a copy of the repository under `PATH_TO_HARMONIE.` To start t
    PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
 ```
 
-The above command creates the following files/directories under
+The above command creates the following `files/directories` under
 ```bash
    config-sh/hm_rev                         # gives the path to the reference installation, similar to hl_rev in synoptic-Hirlam
    config-sh/Main                           # a script to enable start Harmonie, similar to Start in synoptic-Hirlam
@@ -72,7 +72,7 @@ In `ecf/config_exp.h`  you may identify the options sent to gmkpack
       OTHER_PROGRAMS="soda pgd blend odbtools bator ioassign odbsql blendsur addsurf surfex mandalay prep lfitools sfxtools" # Other things to compile with gmkpack
 ```
 
-You could run something different than defined in `hm_rev`, but then there would be a mismatch between your source code and the pre-compiled libraries/modules.
+You could run something different than defined in `hm_rev`, but then there would be a mismatch between your source code and the pre-compiled `libraries/modules.`
 
 
 Identify your system in one of the config files in config-sh or write a new config.YOURHOST definition, make sure that some of the important optional settings are defined in this file:
@@ -85,7 +85,7 @@ Identify your system in one of the config files in config-sh or write a new conf
  AUXLIBS/EMOSLIB  # Path to your external libraries
 ```
 
-Compare e.g. with [config.ecgb-cca](Harmonie/config-sh/config.ecgb-cca?rev# release-43h2.beta.3) or [config.krypton](Harmonie/config-sh/config.krypton?revrelease-43h2.beta.3).
+Compare e.g. with [`config.ecgb-cca](Harmonie/config-sh/config.ecgb-cca?rev#` release-43h2.beta.3) or [`config.krypton](Harmonie/config-sh/config.krypton?revrelease-43h2.beta.3`).
 
 You also have to identify your system for gmkpack in:
 
@@ -94,7 +94,7 @@ You also have to identify your system for gmkpack in:
 ```
 
 
-The source code for utilities not compiled with gmkpack you find under util. There should be five config files created/edited.
+The source code for utilities not compiled with gmkpack you find under util. There should be five config files `created/edited.`
 
 ```bash
         util/gl/config/config.HARMONIE_CONFIG
@@ -110,9 +110,9 @@ The makefiles themselves should not have to be edited.
 ## Submission rules
 
 Next you have to identify your submit file in config-sh or write a new submit.YOURHOST file. This file defines how you submit your jobs in your local batch system. 
-The routine `get_job` is called from [submission.db](Harmonie/scr/submission.db?rev=release-43h2.beta.3) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
+The routine `get_job` is called from [`submission.db](Harmonie/scr/submission.db?rev=release-43h2.beta.3`) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
 
-On [ecgb-cca](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3) three list of jobs are created:
+On [`ecgb-cca](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3`) three list of jobs are created:
  * `backg_list` for jobs running as background jobs on ecgb
  * `scalar_list` single PE jobs on cca
  * `par_list` for parallel jobs on cca
@@ -147,7 +147,7 @@ Where are things happening
 
 - `Build_pack`
  - build everything in the `OTHER_PROGRAMS` list. This is done inside `HM_DATA/gmkpack_build`
- - build the utilities (gl/verobs/oulan)
+ - build the utilities (`gl/verobs/oulan`)
 
 When things goes wrong
 

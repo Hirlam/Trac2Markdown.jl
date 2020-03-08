@@ -3,10 +3,10 @@
 ## Introduction
 
 FULL-POS is a powerful postprocessing package, which is part of the 
-common ARPEGE/IFS cycle. FULL-POS is documented by 
- * [Yessad (2011)](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article157): This documentation describes the software FULL-POS doing post-processing on different kind of vertical levels. In particular, post-processable variables and organigramme are given. Some aspects of horizontal and vertical interpolators (which may be used in some other applications) are also described.
- * [ykfpos38.pdf](http://www.cnrm.meteo.fr/gmapdoc/IMG/pdf/ykfpos38.pdf): FULL-POS in cycle 38
- * [El Khatib (2002)](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article17): Older documentation with a link to an old FULL-POS website.
+common `ARPEGE/IFS` cycle. FULL-POS is documented by 
+ * [Yessad (`2011)](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article157`): This documentation describes the software FULL-POS doing post-processing on different kind of vertical levels. In particular, post-processable variables and organigramme are given. Some aspects of horizontal and vertical interpolators (which may be used in some other applications) are also described.
+ * [`ykfpos38.pdf](http://www.cnrm.meteo.fr/gmapdoc/IMG/pdf/ykfpos38.pdf`): FULL-POS in cycle 38
+ * [El Khatib (`2002)](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article17`): Older documentation with a link to an old FULL-POS website.
 
 FULL-POS is a special configuration (9xx) of the full model for setup and initialization. In other words it is a 0 hour forecast, with extra namelist settings for variables to (post)process and to write out. When generating initial or boundary files we are calling a special configuration of FULL-POS, e927.
 
@@ -35,9 +35,9 @@ The use of FULL-POS is controlled by the following namelists: NAMFPPHY, NAMFPDY2
 NAMFPDYH, NAMFPDYI, NAMFPDYV, NAMFPDYT and NAMFPDYS. These namelists can be used to make an accurate list of post-
 processed fields. It is possible to call FULL-POS when running the model. In such a configuration we can configure HARMONIE to write some parameters with a different frequency than the standard historical files produced. 
 
-However, with "inline" postprocessing, it is possible to get, at each post-processing time step, exactly the fields you wish. In this case, you have to make other namelists file which will contain the selection of the fields you wish to get. First, you have to set in NAMCT0 the variable CNPPATH as the directory where the selection files will be. Under this directory, the name of a selection file must be xxtDDDDHHMM, where DDDDHHMM specifies the date/time of the post-processing time step.
+However, with "inline" postprocessing, it is possible to get, at each post-processing time step, exactly the fields you wish. In this case, you have to make other namelists file which will contain the selection of the fields you wish to get. First, you have to set in NAMCT0 the variable CNPPATH as the directory where the selection files will be. Under this directory, the name of a selection file must be xxtDDDDHHMM, where DDDDHHMM specifies the `date/time` of the post-processing time step.
 
-The [Postpp](Harmonie/scr/Postpp?rev=release-43h2.beta.3) script executes the "offline" FULL-POS postprocessing in HARMONIE system. 
+The [`Postpp](Harmonie/scr/Postpp?rev=release-43h2.beta.3`) script executes the "offline" FULL-POS postprocessing in HARMONIE system. 
 
 
 The management of FULL-POS and the creation of selection files is made easier for the user by the 
@@ -59,7 +59,7 @@ You can define the levels you wish to output using the following variable:
  * **RFP3I**: temperature levels to postprocess
 
 ## Add new output
-This section provides a simple example on how to add a new parameter/vertical level for postprocessing in [`Select_postp.pl`](Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3).
+This section provides a simple example on how to add a new `parameter/vertical` level for postprocessing in [`Select_postp.pl`](Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3).
 
 To add new "height above ground" output at 150m to the FULL-POS output, two changes are required:
  * Add the new height, 150., to the RFP3H array
@@ -82,7 +82,7 @@ diff scr/Select_postp.pl scr/Select_postp.pl.ori
 ```
 ## Expert users
 
-In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](Harmonie/src/arp/module/yomfpc.F90?rev=release-43h2.beta.3)), the variables are placed into different categories:
+In the FULL-POS namelist NAMFPC (variables explained in [`yomfpc.F90](Harmonie/src/arp/module/yomfpc.F90?rev=release-43h2.beta.3`)), the variables are placed into different categories:
 
  * LFPCAPEX: if true XFU fields used for CAPE and CIN computation (with NFPCAPE).
  * LFPMOIS: month allowed for climatology usage:
@@ -103,14 +103,14 @@ In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](Harmonie/sr
    * ’GAUSS’ for output in grid-point space on Gaussian grid (covering the global sphere).
    * ’LELAM’ for output on a grid of kind ’ALADIN’ (spectral or grid-point coefficients).
    * ’LALON’ for a grid of kind "latitudes * longitudes".
-  Default is ’GAUSS’ in ARPEGE/IFS, ’LELAM’ in ALADIN.
+  Default is ’GAUSS’ in `ARPEGE/IFS`, ’LELAM’ in ALADIN.
  * CFPDOM: names of the subdomains. Names have at maximum 7 characters.
    * If CFPFMT=’GAUSS’ or ’LELAM’ only one output domain is allowed.
    * If CFPFMT=’LALON’ the maximum of output subdomains allowed is 10.
    By default, one output domain is requested, CFPDOM(1)# ’000’ and CFPDOM(i)’’ for i>1.
  * `L_READ_MODEL_DATE:`  if: .TRUE. read date from the model
 
-The default FA-names for parameters in different categories can be found from [suafn1.F90](Harmonie/src/arp/setup/suafn1.F90#L687?rev=release-43h2.beta.3).
+The default FA-names for parameters in different categories can be found from [`suafn1.F90](Harmonie/src/arp/setup/suafn1.F90#L687?rev=release-43h2.beta.3`).
 
 It's worth mentioning some of the variables postprocessed by FULL-POS
  * True vertical velocity w [VW] (for NH ALADIN only).

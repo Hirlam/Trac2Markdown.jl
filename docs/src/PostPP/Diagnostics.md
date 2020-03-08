@@ -13,7 +13,7 @@
 
 ## DDH
 
-Diagnostics par Domaines Horizontaux (Diagnostics by Horizontal Domains) is a tool to create budgets of different processes in the model. Please read on in the gmap documentation: http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheDDH
+Diagnostics par Domaines Horizontaux (Diagnostics by Horizontal Domains) is a tool to create budgets of different processes in the model. Please read on in the gmap documentation: `http://www.cnrm.meteo.fr/gmapdoc/spip.php?page#` recherche&rechercheDDH
 
 ## EZDIAG
 

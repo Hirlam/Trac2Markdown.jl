@@ -4,7 +4,7 @@
 
 Before we can run the verification we need to extract data for each geographical point and produce files in a format that the verification program can use. In HARMONIE there are two programs, one fore extracting model data (`fldextr_grib_api`) and one for observations ( obsextr ). Both are part of the [`gl_grib_api` `package](Harmonie/util/gl_grib_api?rev=release-43h2.beta.3`). 
 
-  fldextr is capable of extracting data from several sources (HARMONIE/HIRLAM/IFS and produces so called vfld-files in ASCII format. The main tasks of the program is to:
+  fldextr is capable of extracting data from several sources (`HARMONIE/HIRLAM/IFS` and produces so called vfld-files in ASCII format. The main tasks of the program is to:
 
    - Recalculates rh,td to be over water
    - Interpolates to geographical points according to a synop.list and temp.list
@@ -57,7 +57,7 @@ then all the needed data is extracted from the BUFR-files.
  * Executables: mars, obsextr.  
  * Output: Field extraction files (vobs*), which are placed in *EXTRARCH*.
 
-For the continuous monitoring on hirlam.org the most recent data are kept online at ECMWF under `ecgb:/scratch/ms/dk/nhz/OBS`.
+For the continuous monitoring on hirlam.org the most recent data are kept online at ECMWF under ``ecgb:/scratch/ms/dk/nhz/OBS`.`
 
 ## A general input format
 

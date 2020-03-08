@@ -11,14 +11,14 @@ The generation of climate files includes two parts. The first part is the genera
 *Climate generation in mSMS*
 
 ## Input data for climate generation
-The location of your input data for the climate generation is defined by the `**HM_CLDATA**` environment variable defined in the [config.yourhost](Harmonie/config-sh/config.ecgb-cca?rev=release-43h2.beta.3) file. At ECMWF the climate data is stored on cca here:
+The location of your input data for the climate generation is defined by the `**HM_CLDATA**` environment variable defined in the [`config.yourhost](Harmonie/config-sh/config.ecgb-cca?rev=release-43h2.beta.3`) file. At ECMWF the climate data is stored on cca here:
 ` `cca:/ms_perm/hirlam/harmonie_climate` `
 
 Information on what data to download is available here: [wiki:HarmonieSystemDocumentation#Downloadinputdata]. The input data contains physiography data, topography information and climatological values determined from a one year ARPEGE assimilation experiment with a resolution of T79. 
 
 ## Preparation of SURFEX physiography file
 
-At present the most applied configuration is to run with SURFEX as the surface scheme. SURFEX needs information about the distribution of different available tiles like nature, sea, water and town. The nature tile also needs information about type of vegetation and soiltypes. The main input sources for this are found at [SURFEX physiographic maps](http://www.cnrm-game-meteo.fr/surfex/spip.php?rubrique14).
+At present the most applied configuration is to run with SURFEX as the surface scheme. SURFEX needs information about the distribution of different available tiles like nature, sea, water and town. The nature tile also needs information about type of vegetation and soiltypes. The main input sources for this are found at [SURFEX physiographic `maps](http://www.cnrm-game-meteo.fr/surfex/spip.php?rubrique14`).
 
 The data base for SURFEX-file preparation is located under `HM_CLDATA/PGD`
  * `ecoclimats_v2.*` : Landtypes

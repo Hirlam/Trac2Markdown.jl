@@ -72,7 +72,7 @@ The final namelists are build through the rules given in [`Get_namelist`](Harmon
 
 ## `surfex_namelists.pm`
 
-All possible SURFEX namelist setting are documented at the [SURFEX web site](http://www.cnrm-game-meteo.fr/surfex). Use the search text area in the upper right corner to search for a specific namelist or namelist option. Please, keep in mind that the SURFEX web site documents the latest SURFEX version, i.e. SURFEXv8, while in cy40h SURFEXv7.3 is used. Therefore, some of the settings may be different or not available.
+All possible SURFEX namelist setting are documented at the [SURFEX web `site](http://www.cnrm-game-meteo.fr/surfex`). Use the search text area in the upper right corner to search for a specific namelist or namelist option. Please, keep in mind that the SURFEX web site documents the latest SURFEX version, i.e. SURFEXv8, while in cy40h SURFEXv7.3 is used. Therefore, some of the settings may be different or not available.
 
 ---------------------------------
 
@@ -115,7 +115,7 @@ The section used here is decided by setting `CISBA="3-L"` (default) in [`config_
 );
 ```
 
-The clay/sand used is decided by setting ``SOIL_TEXTURE_VERSION=FAO`` (default) in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). "FAO" corresponds to 10 km resolution clay/sand according to [SURFEX Soil texture description](http://www.cnrm-game-meteo.fr/surfex//spip.php?article135). The 1 km `HWSD_v2` is not used by default since is shows strange vales over Scandinavia.
+The `clay/sand` used is decided by setting ``SOIL_TEXTURE_VERSION=FAO`` (default) in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). "FAO" corresponds to 10 km resolution `clay/sand` according to [SURFEX Soil texture `description](http://www.cnrm-game-meteo.fr/surfex//spip.php?article135`). The 1 km `HWSD_v2` is not used by default since is shows strange vales over Scandinavia.
 
 --------------------------------------
 
@@ -164,7 +164,7 @@ The clay/sand used is decided by setting ``SOIL_TEXTURE_VERSION=FAO`` (default) 
 
 Most options here are specified in different scripts and are normally not supposed to be modified. Exceptions are e.g.
 
- * ECOCLIMAP version used (YCOVER) is decided by setting ``ECOCLIMAP_VERSION=2.2`` (default) in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). Available ECOCLIMAP versions provided via the SURFEX team are documented in [SURFEX Land use description](http://www.cnrm-game-meteo.fr/surfex//spip.php?article136). Some of these can be available on your system, see your ``$HM_CLDATA`` setting.
+ * ECOCLIMAP version used (YCOVER) is decided by setting ``ECOCLIMAP_VERSION=2.2`` (default) in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). Available ECOCLIMAP versions provided via the SURFEX team are documented in [SURFEX Land use `description](http://www.cnrm-game-meteo.fr/surfex//spip.php?article136`). Some of these can be available on your system, see your ``$HM_CLDATA`` setting.
  * Orography version used (YTOPO) is decided by setting ``TOPO_SOURCE=gmted2010`` (default) in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment).
 
 
@@ -226,7 +226,7 @@ The default PREP settings are listed here. Some modifications can be done for sp
  * `LSIC_DRIVEN_THICKNESS` : use ice fraction to estimate ice thickness. **Untested, should be set to .FALSE.**
  * `XSIC_DRIVEN_MAX_THICKNESS` : unused if ``LSIC_DRIVEN_THICKNESS` == .FALSE.`
 
- * `LINIT_FROM_SST` : use composite SST/SIST field to initialize sea ice temperatures
+ * `LINIT_FROM_SST` : use composite `SST/SIST` field to initialize sea ice temperatures
 
 This part represents settings connected to the Simple Sea-ice Scheme (SICE) by Yurii Batrak. Please note that SICE is not yet an official contribution to SURFEX and therefore you will not find any documentation of SICE via the SURFEX web site. 
 
@@ -254,7 +254,7 @@ This part represents settings connected to the Simple Sea-ice Scheme (SICE) by Y
  * `LISBA_CANOPY` : activates surface boundary multi layer scheme over vegetation
  * `LEXTRAP_XX` : extrapolate XX points where LSM < 0.5 (buffer only)
  * `NDIM_EXTRAP` : Size of search domain for extrapolation (not in official SURFEX)
- * LSWEMAX : logical switch to set an upper limit on initial snow water equivalent (set by XSWEMAX (=500 kg/m2 default) ).
+ * LSWEMAX : logical switch to set an upper limit on initial snow water equivalent (set by XSWEMAX (=500 `kg/m2` default) ).
 
 ------------------------------
 
@@ -396,7 +396,7 @@ This part represents settings connected to the Simple Sea-ice Scheme (SICE) by Y
  * N2M : flag to compute surface boundary layer characteristics (# 0 default). N2M2 computes temperature at 2 m, specific humidity at 2 m, relative humidity, zonal and meridian wind at 10 m, and Richardson number. 2m and 10m quantities are calculated interpolating between atmospheric forcing variables and surface temperature and humidity. Please note that if the surface boundary multi layer scheme is activated over any tile (as with `LISBA_CANOPY=T` over land) it overrides the diagnostic N2M method. 
  * LT2MMW : Alternative weighting of grid average T2M giving more weight to the land tile (=FALSE default).
  * CROUGH: type of orographic roughness length. CROUGH is decided by setting `CROUGH="NONE"` in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment) which means that no orographic treatment is applied.
- * XFRACZ0 : Z0# Min(Z0, Href/XFRACZ0). Not applied here since CROUGH"NONE".
+ * XFRACZ0 : Z0# Min(Z0, `Href/XFRACZ0`). Not applied here since CROUGH"NONE".
  * LPERTFLUX: multiplicative perturbation of Ecume fluxes for ensemble forecasting. In HARMONIE this is set in a number of scripts under scr.
  * LPERTSURF: if .True. modification of surface fluxes for ensemble forecasting. In HARMONIE this is set in a number of scripts under scr.
  * `LCANOPY_DRAG:` drag activated in SBL scheme within the canopy.
@@ -492,7 +492,7 @@ This part represents settings connected to the Simple Sea-ice Scheme (SICE) by Y
 
 ## `surfex_selected_output.pm`
 
-The output from SURFEX to the .sfx fa-files (e.g. `ICMSHHARM+0002.sfx`) is in general decided by SURFEX `NAM_DIAG` namelist settings. These settings activate or deactivate groups of variables in output files. When one or more such groups are activated it is possible to limit the output to a specific list of variables by the use of the LSELECT/CSELECT options in SURFEX. This way of specifying output from SURFEX is the default way in cy40h. The setting is ``SURFEX_LSELECT#` "yes"` in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). When `SURFEX_LSELECT"yes"` the namelist [`surfex_selected_output.pm`](Harmonie/nam/surfex_selected_output.pm?rev=release-43h2.beta.3) is used to specify the output variables. The style of `surfex_selected_output.pm` is
+The output from SURFEX to the .sfx fa-files (e.g. `ICMSHHARM+0002.sfx`) is in general decided by SURFEX `NAM_DIAG` namelist settings. These settings activate or deactivate groups of variables in output files. When one or more such groups are activated it is possible to limit the output to a specific list of variables by the use of the `LSELECT/CSELECT` options in SURFEX. This way of specifying output from SURFEX is the default way in cy40h. The setting is ``SURFEX_LSELECT#` "yes"` in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment). When `SURFEX_LSELECT"yes"` the namelist [`surfex_selected_output.pm`](Harmonie/nam/surfex_selected_output.pm?rev=release-43h2.beta.3) is used to specify the output variables. The style of `surfex_selected_output.pm` is
 
 ```bash
 %surfex_output=(
@@ -527,7 +527,7 @@ SFX.WS_ROAD     > 001:024-  950-105@20160301_15:00+002h00m tri:000 000 WS_ROAD
 
 You get the corresponding SURFEX names by removing "SFX." or "X001" at the beginning of these fa-names.
 
-The .sfx files are used as first guess for next forecast. However, the first guess needs ALL SURFEX variables and not only a subset as defined by LSELECT/CSELECT. Therefore, a full .sfx file (e.g. `ICMSHFULL+0003.sfx`) is created for each assimilation cycle hour in addition to the corresponding limited file `ICMSHHARM+0003.sfx`. The output frequency of full files is defined by ``SURFEX_DUMP_STATE_STEPS=""`` in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment).
+The .sfx files are used as first guess for next forecast. However, the first guess needs ALL SURFEX variables and not only a subset as defined by `LSELECT/CSELECT.` Therefore, a full .sfx file (e.g. `ICMSHFULL+0003.sfx`) is created for each assimilation cycle hour in addition to the corresponding limited file `ICMSHHARM+0003.sfx`. The output frequency of full files is defined by ``SURFEX_DUMP_STATE_STEPS=""`` in [`config_exp.h`](HarmonieSystemDocumentation/ConfigureYourExperiment).
 
 The content of the FULL-files can be used to identify additional variables to add to `surfex_selected_output.pm.`
 
@@ -538,7 +538,7 @@ There are several ways of changing namelists generated from the dictionary.
 
 * Copy the `harmonie_namelist.pm` file to your local experiment directory and change the right section like for any source or script modification.
 
-* If you feel uncertain where to change in the dictionary you can copy the actual namelist used in your run. Every namelist used is listed in the logfile so copy it from there and put it under the `nam` directory in your local experiment. Make sure you give it a unique name. You must then also change the script(s) using this namelist like in the [Forecast](Harmonie/scr/Forecast?rev=release-43h2.beta.3) script.
+* If you feel uncertain where to change in the dictionary you can copy the actual namelist used in your run. Every namelist used is listed in the logfile so copy it from there and put it under the `nam` directory in your local experiment. Make sure you give it a unique name. You must then also change the script(s) using this namelist like in the [`Forecast](Harmonie/scr/Forecast?rev=release-43h2.beta.3`) script.
 
 ```bash
 #  Get namelist name

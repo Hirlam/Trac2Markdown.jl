@@ -1,7 +1,7 @@
 # Mitraillette - the ALADIN dynamical core testbed
 
 Mitraillette is a script designed to validate ALADIN configurations and is particularly useful to test a new cycle. This script uses a chain of jobs: when a job is finished it launches the following job, in a predetermined order. There are several documents describing the system on the 
-[gmapdoc site](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchemitraillette)
+[gmapdoc `site](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page#` recherche&recherchemitraillette)
 
 The latest version of mitraillette can be found on:
 
@@ -19,7 +19,7 @@ Due to current access limitations to tori, this version will not necessarily be 
 svn co https://svn.hirlam.org/trunk/contrib/mitraille
 ```
 
-Before your start using mitraillette please read the general instructions in [here](http://www.cnrm.meteo.fr/gmapdoc/meshtml/mitraillette.html)
+Before your start using mitraillette please read the general instructions in [`here](http://www.cnrm.meteo.fr/gmapdoc/meshtml/mitraillette.html`)
 
 ## Configure the system for your host.
 
@@ -129,7 +129,7 @@ cd mitraille_releases
 svn co https://svn.hirlam.org/trunk/contrib/mitraille
 rsync -tvaz --exclude=.svn mitraille /cca/perm/ms/ie/dui # please insert correct PATH to your PERM directory
 ```
-The next few instructions are a bit messy - I am waiting for access to MF mitraille before I update trunk/contrib/mitraille properly. In the meantime ...Make a copy of the Harmonie executables in $PERM on c2a:
+The next few instructions are a bit messy - I am waiting for access to MF mitraille before I update `trunk/contrib/mitraille` properly. In the meantime ...Make a copy of the Harmonie executables in $PERM on c2a:
 ```bash
 mkdir -p $PERM/HarmBin/cy40ald/
 cp $TEMP/hm_home/cy40_main_makeup_c2a/bin/MASTERODB $PERM/HarmBin/cy40ald/
@@ -141,7 +141,7 @@ cd $PERM/mitraille
 ./mitraillette_v012014.x AL40T1 PRO_FILE.al40t1_hirlam_mono mono
 ./test.xNNNN
 ```
-This `PRO_FILE` points to  /perm/ms/ie/dui/HarmBin/cy40ald/MASTERODB copied above. The mitraillette.x script will have created a test script called test.xNNNN where NNNN is an integer. Let's run the test script:
+This `PRO_FILE` points to  `/perm/ms/ie/dui/HarmBin/cy40ald/MASTERODB` copied above. The mitraillette.x script will have created a test script called test.xNNNN where NNNN is an integer. Let's run the test script:
 ```bash
 ./test.xNNNN
 ```
@@ -154,12 +154,12 @@ ls -ltr
 ```
 
 ### MORE TO FOLLOW
-**Please note: I have yet to merge the cycle 40 mitraillette updates into trunk/contrib. I want to get these updates from MF myself**
+**Please note: I have yet to merge the cycle 40 mitraillette updates into `trunk/contrib.` I want to get these updates from MF myself**
 I have to see if my tests have succeeded! 
 
 ## Quick start on c1a
 
- * Check out the script and put i under $HOME/mitraille on c1a. 
+ * Check out the script and put i under `$HOME/mitraille` on c1a. 
  * Modify `PRO_FILE.al37.c1a` to point to your binary
  * Create directory al37
  * Create a multi job chain by
@@ -171,7 +171,7 @@ I have to see if my tests have succeeded!
 
 **Utilities**
 
-A set of exmple scripts used to compare different runs are gathered under util. Read more in the util/README. Please fill with your own tools!
+A set of exmple scripts used to compare different runs are gathered under util. Read more in the `util/README.` Please fill with your own tools!
 
 ----
 

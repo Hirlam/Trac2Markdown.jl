@@ -21,7 +21,7 @@ ecgb:/home/ms/spsehlam/hlam/harmonie_release/develop
 
 ### Compilers and standard software
 
-The system requires the following standard unix/linux software 
+The system requires the following standard `unix/linux` software 
 
  * A fortran compiler
  * A C compiler
@@ -30,7 +30,7 @@ The system requires the following standard unix/linux software
  * perl
  * python
 
-Read more about the tested compilers under [installation](HarmonieSystemDocumentation/Installation).
+Read more about the tested compilers under [`installation](HarmonieSystemDocumentation/Installation`).
 
 ### MPI and OpenMP
 
@@ -43,28 +43,28 @@ The system can be compiled without support for MPI, but not all parts of the sys
 
 ### BLAS and LAPACK libraries
 
-You need [BLAS and LAPACK-lite](http://netlib.org/) libraries.
+You need [BLAS and `LAPACK-lite](http://netlib.org/`) libraries.
 
 If they are already on your system, verify they have been made with the correct compiler, or rebuild them. Instructions on how to (re-)build BLAS and LAPACK follow below:
- * Download [BLAS](http://www.netlib.org/blas/index.html) and [LAPACK](http://www.netlib.org/lapack/index.html)
+ * Download [`BLAS](http://www.netlib.org/blas/index.html`) and [`LAPACK](http://www.netlib.org/lapack/index.html`)
  * First build BLAS (untarring blas.tgz places it in the BLAS directory). Go to that directory, and edit make.inc to set the compiler and linker to **gfortran**. Then type 'make'.
  * Subsequenty, for LAPACK, after untarring lapack-lite-3.1.1.tgz, go to the lapack-lite-3.1.1 directory.
  * Copy make.inc.example to make.inc.
- * Edit make.inc to point to the proper compiler/loader (**gfortran**) and to put the variable PLAT to the empty string. Set TIMER to `INT_ETIME.`
+ * Edit make.inc to point to the proper `compiler/loader` (**gfortran**) and to put the variable PLAT to the empty string. Set TIMER to `INT_ETIME.`
  * Copy the blas.a library from the BLAS directory to the lapack-lite-3.1.1 directory, run ranlib on it, then type 'make'.
- * Then copy the libraries in **/usr/local/lib** with names libblas.a and liblapack.a, respectively, otherwise the default configuration will not find them. Run ranlib on them.
+ * Then copy the libraries in `**/usr/local/lib**` with names libblas.a and liblapack.a, respectively, otherwise the default configuration will not find them. Run ranlib on them.
 
 ### NETCDF
 
  Netcdf is required for some routines. Make sure you have the development version installed on your system.
 
- http://www.unidata.ucar.edu/software/netcdf
+ `http://www.unidata.ucar.edu/software/netcdf`
 
 ### ecCodes
 
- ecCodes is used to access GRIB1/GRIB2
+ ecCodes is used to access `GRIB1/GRIB2`
 
- https://confluence.ecmwf.int/display/ECC 
+ `https://confluence.ecmwf.int/display/ECC` 
 
 ### GRIB, BUFR and auxiliary software
 

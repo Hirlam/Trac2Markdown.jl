@@ -2,12 +2,12 @@
 ## Get the software
 To make best use of ODB information produced by your Harmonie experiment one should use ODB and ODB-API software developed by ECMWF. Below are instruction on how to obtain the software from ECMWF.
 ### ODB-API
-ODB-API software is open source and released under an Apache licence. In the future the ODB Confluence page [https://software.ecmwf.int/wiki/display/ODB/ODB+Home](https://software.ecmwf.int/wiki/display/ODB/ODB+Home) will be open to the public and everybody will be allowed to download ODB-API source code from it and use it. Until then, ECMWF have said they are happy to give access to the page on case by case basis to interested member states/HIRLAM partners, so they have always access to the latest releases and release notes. Requesting access to ODB API from Data Services is not necessary.
+ODB-API software is open source and released under an Apache licence. In the future the ODB Confluence page [`https://software.ecmwf.int/wiki/display/ODB/ODB+Home`](https://software.ecmwf.int/wiki/display/ODB/ODB+Home) will be open to the public and everybody will be allowed to download ODB-API source code from it and use it. Until then, ECMWF have said they are happy to give access to the page on case by case basis to interested member `states/HIRLAM` partners, so they have always access to the latest releases and release notes. Requesting access to ODB API from Data Services is not necessary.
 
 An e-mail should be sent to your ECMWF User Support contact to request access to the ODB-API Confluence page stating that you are working at an HIRLAM NMS and are using ODB data with your Harmonie experiments. 
 
 ### ODB
-*ODB stands for Observational !DataBase. It is database software to store and retrieve large amounts of meteorological numerical data in an efficient manner while used from within IFS. ODB software mimics relational database queries through its ODB/SQL -compiler and accesses data currently via a Fortran90 library interface.* The original documentation is available here: [`http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf`](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf)
+*ODB stands for Observational !DataBase. It is database software to store and retrieve large amounts of meteorological numerical data in an efficient manner while used from within IFS. ODB software mimics relational database queries through its `ODB/SQL` -compiler and accesses data currently via a Fortran90 library interface.* The original documentation is available here: [`http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf`](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf)
 
 ODB software is made available to member states under a stricter license and must be requested from Data Services at ECMWF. It might be best for your ECMWF Computer Representative to make this request on behalf of your institute. This request may take some time to be processed. The request (one per institute) can be made by e-mail to (data.services@ecmwf.int) with the following information:
 ```bash
@@ -30,11 +30,11 @@ e-mail:
  * ....
 
 ## Building your ODB software
-Both ODB and ODB-API use cmake [http://www.cmake.org](http://www.cmake.org) to configure the makefiles used to compile the software. You may have to build your own (more up to date) copy of cmake depending on your PC operating system.
+Both ODB and ODB-API use cmake [`http://www.cmake.org`](http://www.cmake.org) to configure the makefiles used to compile the software. You may have to build your own (more up to date) copy of cmake depending on your PC operating system.
 
 ### ODB
 Instructions on how to build ODB:
- * Get ODB software once ECMWF have provided your institute with a software license from [https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases](https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases)
+ * Get ODB software once ECMWF have provided your institute with a software license from [`https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases`](https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases)
 ```bash
 cd $HOME
 mkdir odb_releases
@@ -83,7 +83,7 @@ make install  ## you may have to log in as root to carry out the final install
 
 ### ODB-API
 Instructions on how to build ODB-API:
- * Download the latest version of ODB-API from [https://software.ecmwf.int/wiki/display/ODB/Releases](https://software.ecmwf.int/wiki/display/ODB/Releases)
+ * Download the latest version of ODB-API from [`https://software.ecmwf.int/wiki/display/ODB/Releases`](https://software.ecmwf.int/wiki/display/ODB/Releases)
 ```bash
 cd $HOME
 mkdir -p odb_releases
@@ -151,7 +151,7 @@ which odb_migrator
 /opt/metlib/odb_api/0.9.31/gnu/bin/odb_migrator -addcolumns "expver# '    38h1',class2,stream# 1025,type264" odb_ccma/CCMA ../conv.38h1.sql var${DTG}.odb
 ls -l var${DTG}.odb
 ```
-Here is the SQL file used: [conv.38h1.sql](https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/StandaloneOdb/conv.38h1.sql). To construct my conv.38h1.sql file did carried out the following commands:
+Here is the SQL file used: [`conv.38h1.sql](https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/StandaloneOdb/conv.38h1.sql`). To construct my conv.38h1.sql file did carried out the following commands:
 ```bash
 cd odb_ccma/CCMA/
 odbsql -q "select * from desc,timeslot_index,hdr,body" | head -1 

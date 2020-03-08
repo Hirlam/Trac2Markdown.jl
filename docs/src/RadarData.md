@@ -2,7 +2,7 @@
 This documentation outlines how to retrieve, process and assimilate HDF5 radar data
 
 ## HARMONIE compilation
-HIRLAM have made code changes to BATOR to allow the direct reading of HDF5 radar data and conversion to ODB suitable for use in the HARMONIE data assimilation system. If you wish to use these changes you must compile HARMONIE with support for HDF5. This requires the addition of `*-DUSE_HDF5*` to the FDEFS in your makeup config file as well has adding hdf5 to EXTMODS. [source:tags/harmonie-38h1.2/util/makeup/config.cca.gnu](tags/harmonie-38h1.2/util/makeup/config.cca.gnu) is an example of a makeup config file 
+HIRLAM have made code changes to BATOR to allow the direct reading of HDF5 radar data and conversion to ODB suitable for use in the HARMONIE data assimilation system. If you wish to use these changes you must compile HARMONIE with support for HDF5. This requires the addition of `*-DUSE_HDF5*` to the FDEFS in your makeup config file as well has adding hdf5 to EXTMODS. [`source:tags/harmonie-38h1.2/util/makeup/config.cca.gnu`](tags/harmonie-38h1.2/util/makeup/config.cca.gnu) is an example of a makeup config file 
 
 ## Format
  The BATOR code assumes the HDF5 radar data being read uses the OPERA Data Information Model (ODIM). See [`http://www.eumetnet.eu/sites/default/files/OPERA2014_O4_ODIM_H5-v2.2.pdf`](http://www.eumetnet.eu/sites/default/files/OPERA2014_O4_ODIM_H5-v2.2.pdf) for further information.

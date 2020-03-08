@@ -52,7 +52,7 @@ yum install gcc-gfortran.x86_64 libgfortran.x86_64 libquadmath.x86_64 libquadmat
 yum install ksh
 ```
 
- * Get yacc/bison
+ * Get `yacc/bison`
 ```bash
 yum install flex.x86_64
 yum install bison.x86_64 byacc.x86_64
@@ -70,7 +70,7 @@ wget https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rp
 yum install epel-release-7-5.noarch.rpm
 ```
 
- * Get BLAS/LAPACK (the requirement to create soft-links for BLAS and LAPACK may be corrected in EPEL at some stage).
+ * Get `BLAS/LAPACK` (the requirement to create soft-links for BLAS and LAPACK may be corrected in EPEL at some stage).
 ```bash
 yum install blas.x86_64 blas-devel.x86_64
 yum install lapack.x86_64 lapack-devel.x86_64
@@ -133,7 +133,7 @@ $HOME/harmonie_releases/trunk/config-sh/Harmonie Install
 This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [`wiki:HarmonieSystemDocumentation/Build_with_makeup`](HarmonieSystemDocumentation/Build_with_makeup)
 
 ## Run an experiment
-Instructions for testbed and/or local experiment are detailed here:
+Instructions for testbed `and/or` local experiment are detailed here:
  * Your first experiment will require changes to be made to the default settings in `$HOME/hm_home/trunkexp/ecf/config_exp.h` :
 ```bash
 DOMAIN=IRELAND150       ## choose a small domain to run on your limited PC.
@@ -153,4 +153,4 @@ cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie start DTG# 2014040100 DTGEND2014040112 LL# 03 BUILDno
 ```
 
-Further details on how to use the Harmonie mini-SMS script system are available here: [wiki:HarmonieSystemDocumentation/Harmonie-mSMS](HarmonieSystemDocumentation/Harmonie-mSMS)
+Further details on how to use the Harmonie mini-SMS script system are available here: [`wiki:HarmonieSystemDocumentation/Harmonie-mSMS`](HarmonieSystemDocumentation/Harmonie-mSMS)

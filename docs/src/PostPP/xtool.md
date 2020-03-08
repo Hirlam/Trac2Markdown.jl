@@ -3,7 +3,7 @@
 
 ## xtool
 
-**Xtool**, part of the **gl** package, provides a utility to calculate differences between GRIB/FA files and produce the result in a new GRIB file. See xtool part of [gl-README](Harmonie/util/gl/README#L221?rev=release-43h2.beta.3). The main commands are:
+**Xtool**, part of the **gl** package, provides a utility to calculate differences between `GRIB/FA` files and produce the result in a new GRIB file. See xtool part of [`gl-README](Harmonie/util/gl/README#L221?rev=release-43h2.beta.3`). The main commands are:
 
 ```bash
  
@@ -60,9 +60,9 @@ One of the things xtool is useful for is to check if the result from two differe
  xtool [-f] -f1 FILE1 -f2 FILE2 -of SCREEN
 ```
 
-The is heavily used in the [Harmonie testbed](HarmonieSystemDocumentation/Evaluation/HarmonieTestbed) to check the difference between versions of the system.
+The is heavily used in the [Harmonie `testbed](HarmonieSystemDocumentation/Evaluation/HarmonieTestbed`) to check the difference between versions of the system.
 
-Below is a simple example of how to use **xtool**. You may also check the [field extraction](Harmonie/scr/Fldver?rev=release-43h2.beta.3) to find examples. 
+Below is a simple example of how to use **xtool**. You may also check the [field `extraction](Harmonie/scr/Fldver?rev=release-43h2.beta.3`) to find examples. 
 
  What is the difference between +24h and +48h MSLP forecasts during August 2008?
 
@@ -99,7 +99,7 @@ xtool -sdtg1 2008080100 -edtg1 2008083000 -ll1 48 \
 
 ## SAL
 
-**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., 2008](http://ams.allenpress.com/perlserv/?request# get-abstract&doi10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
+**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., `2008](http://ams.allenpress.com/perlserv/?request#` get-abstract&doi10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
 
  * **S**: Measure of structure of the precipitation area (-2 - +2). Large **S**, if model predicts too large precipitation areas.
  * **A**: Measure of strength of the precipitation (-2 - +2). Large **A**, if model predicts too intense precipitation.

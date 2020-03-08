@@ -9,7 +9,7 @@ The Harmonie script is the main user interface to the harmonie system. It is use
 
  * ` Harmonie setup [ -r REVISION] [ -h HOST] [ -d DOMAIN] [ -c CONFIGURATION] [ -l LEVELS] ` where:
   * REVISION is the path to the version of harmonie you are working with.
-  * HOST is the name of the host you are working on. There should exist corresponding config-sh/config.HOST. 
+  * HOST is the name of the host you are working on. There should exist corresponding `config-sh/config.HOST.` 
   * CONFIGURATION is one of the predefined configurations in `scr/Harmonie_testbed.pl.` It a fast way to setup your favourite configuration.
   * DOMAIN is one of the predefined domains in `ecf/config_exp.h` 
   * LEVELS is one of the predefined level definitions in `scr/Vertical_levels.pl`
@@ -26,15 +26,15 @@ The Harmonie script is the main user interface to the harmonie system. It is use
 
  * ` Harmonie mon ` will restart your `ecflow_ui` window and try to connect to an existing ecflow server.
 
- * ` Harmonie co [FILE|PATH/FILE] ` will copy the request file from the version chosen in your setup ( as pointed out in the `config-sh/hm_rev` file ) to your local directory. If the PATH is not given a search will be done. If the name matches several files you will be given a list to choose from.
+ * ` Harmonie co [`FILE|PATH/FILE`] ` will copy the request file from the version chosen in your setup ( as pointed out in the `config-sh/hm_rev` file ) to your local directory. If the PATH is not given a search will be done. If the name matches several files you will be given a list to choose from.
 
  * ` Harmonie install ` will build your libraries and binaries but not start any experiment
 
- * ` Harmonie testbed ` will launch the [Harmonie testbed](HarmonieSystemDocumentation/Evaluation/HarmonieTestbed)
+ * ` Harmonie testbed ` will launch the [Harmonie `testbed](HarmonieSystemDocumentation/Evaluation/HarmonieTestbed`)
 
  * ` Harmonie diff [--xxdiff] ` will look for differences between the revision in `config-sh/hm_rev` and `HM_LIB.`
 
- * ` Harmonie CleanUp -ALL -go ` will clean the following directories: `HM_DATA`,HM_LIB,HM_EXP. Instructions from [Actions.pl](Harmonie/scr/Actions.pl?rev=release-43h2.beta.3):
+ * ` Harmonie CleanUp -ALL -go ` will clean the following directories: `HM_DATA`,HM_LIB,HM_EXP. Instructions from [`Actions.pl](Harmonie/scr/Actions.pl?rev=release-43h2.beta.3`):
 
 ```bash
 # args: if -go: remove, (default is to list but not remove the matching files)

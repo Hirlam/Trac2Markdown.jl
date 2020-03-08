@@ -2,7 +2,7 @@
 
 # INFORMATION
 
-**Please note: the version of gcc/gfortran available on CentOS/Redhat 6 platforms ((GCC) 4.4.7 !20120313 (Red Hat 4.4.7-16)) is not recent enough to compile harminie-40h1 code. gcc/gfortran, netCDF and HDF5 must be installed locally (from source).**
+**Please note: the version of `gcc/gfortran` available on `CentOS/Redhat` 6 platforms ((GCC) 4.4.7 !20120313 (Red Hat 4.4.7-16)) is not recent enough to compile harminie-40h1 code. `gcc/gfortran`, netCDF and HDF5 must be installed locally (from source).**
 
 ## Requirements
 This is a *HOWTO* for building and running Harmonie on a CentOS 6 PC with GNU compilers. This should probably work on a Redhat 6 PCs too. harmonie-38h1 code was used to develop this documentation.
@@ -29,12 +29,12 @@ yum install openmpi.x86_64
 yum install openmpi-devel.x86_64
 ```
 
- * Get yacc/bison
+ * Get `yacc/bison`
 ```bash
 yum install byacc.x86_64 bison.x86_64 bison-devel.x86_64
 ```
 
- * Get BLAS/LAPACK
+ * Get `BLAS/LAPACK`
 ```bash
 yum install blas.x86_64 blas-devel.x86_64
 yum install lapack.x86_64 lapack-devel.x86_64
@@ -110,7 +110,7 @@ $HOME/harmonie_releases/trunk/config-sh/Harmonie Install
 This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [`wiki:HarmonieSystemDocumentation/Build_with_makeup`](HarmonieSystemDocumentation/Build_with_makeup)
 
 ## Run an experiment
-Instructions for testbed and/or local experiment are detailed here:
+Instructions for testbed `and/or` local experiment are detailed here:
  * Your first experiment will require changes to be made to the default settings in `$HOME/hm_home/trunkexp/ecf/config_exp.h` :
 ```bash
 DOMAIN=IRELAND150       ## choose a small domain to run on your limited PC.
@@ -130,4 +130,4 @@ cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie start DTG# 2014040100 DTGEND2014040112 LL# 03 BUILDno
 ```
 
-Further details on how to use the Harmonie mini-SMS script system are available here: [wiki:HarmonieSystemDocumentation/Harmonie-mSMS](HarmonieSystemDocumentation/Harmonie-mSMS)
+Further details on how to use the Harmonie mini-SMS script system are available here: [`wiki:HarmonieSystemDocumentation/Harmonie-mSMS`](HarmonieSystemDocumentation/Harmonie-mSMS)

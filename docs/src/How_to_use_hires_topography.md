@@ -14,13 +14,13 @@ The standard topographic data set currently used by Harmonie is the global “GT
 
 It is possible now to overcome this limitation of the relatively coarse GTOPO30 topography by replacing it with a much finer-scale DEM.  One such DEM representation of the earth’s surface has been available since Oct. 2011.  This is version 2 of the DEM derived from the Aster instrument on board the Terra satellite, as part of the collaboration between Japan’s Ministry of Economy, Trade and Industry (METI), and NASA in the U.S.  In the Aster dataset, surface elevations are reported at a horizontal resolution of approx. 30m. Thus the Aster data is about 900 times denser than GTOPO30, i.e., has about 30 times higher resolution in each horizontal dimension.  The average error in the vertical elevation estimates is approx. 6-10m (I think of this as the typical height of a tree or a house – the kind of things that can confuse the satellite radiometer into reporting a false surface elevation).  
 
-More information about the Aster DEM is available at http://asterweb.jpl.nasa.gov/gdem.asp .  
+More information about the Aster DEM is available at `http://asterweb.jpl.nasa.gov/gdem.asp` .  
 
 Even for “relatively” coarse Harmonie grids (perhaps even 2.5km meshes), the “slope”, “roughness”, “silhouette” and other physical attributes of the topography used by Harmonie can be provided much more accurately by Aster data than by GTOPO30.
 
 ## Obtaining ASTER high-resolution DEM data
 
-The data are publicly and freely available from NASA’s “reverb” web-site (http://reverb.echo.nasa.gov/reverb/).   Since the resolution is so fine, the complete dataset is quite voluminous: the compressed file for each 1^o^ x 1^o^ (longitude-latitude) tile or “granule” at 50^o^ N is about 15MB if totally land-covered.  To obtain the data you want:
+The data are publicly and freely available from NASA’s “reverb” web-site (`http://reverb.echo.nasa.gov/reverb/`).   Since the resolution is so fine, the complete dataset is quite voluminous: the compressed file for each 1^o^ x 1^o^ (longitude-latitude) tile or “granule” at 50^o^ N is about 15MB if totally land-covered.  To obtain the data you want:
 
  1. Draw a bounding rectangle around your domain of interest (even all of Europe!) at that “reverb” web-site;
  2. Select“ASTER Global Digital Elevation Model V0002” from the list of data sets further down the same web-page;
@@ -41,7 +41,7 @@ This information can help to identify those regions where the Aster values may n
 
 For the purposes of formatting the DEM data for Harmonie, the first step is to extract the (longitude, latitude, elevation) triplet for each “pixel” (or  “grid-point”) from the ``ASTGM2_*_dem.tif``  files.  
 
-This can be done using software such as the Geospatial Data Abstraction Library (**GDA**L) open-source tools, available from http://www.gdal.org.  Once installed, these can be used to read, merge, and otherwise manipulate geoTIFF files.
+This can be done using software such as the Geospatial Data Abstraction Library (**GDA**L) open-source tools, available from `http://www.gdal.org.`  Once installed, these can be used to read, merge, and otherwise manipulate geoTIFF files.
 
 The command I used to generate a simple text file containing longitude, latitude and elevation from an ``ASTGM2_*_dem.tif`` file is, e.g.,
 
@@ -63,7 +63,7 @@ done
 
 To obtain some information about any particular tif file, use the **gdalinfo** command.  
 
-Next, the data from each separate 1^o^ x 1^o^ text file were combined into a single flat unformatted little-endian binary file consisting of surface elevation every 30m or so encompassing the entire Harmonie domain.  For an Ireland/UK domain, bounded between latitudes 49 and 60 deg. N, and between longitudes 11 deg. W and 3 deg. E, this contains approx. 40,000 (latitude) x 50,000 (longitude) data points – or about 2 billion points altogether.  (2 billion points stored in 2-byte integer format use about 4GB of storage).  A domain like this can easily be extended to the west and north, where there is no land and where sea-level elevation is simply zero.  In order to extend it to the south or east, however, where there is land, extra Aster granules would be required.  See the attached standalone program (or [`wiki:hires_topog_gather_tiles.f`]) for the details of what I did (crude but effective; nothing fancy and probably not the best way, but simple and it works).  The file is written with the first element at the northwest corner, progressing eastwards, then south, with the last element at the southeast corner.
+Next, the data from each separate 1^o^ x 1^o^ text file were combined into a single flat unformatted little-endian binary file consisting of surface elevation every 30m or so encompassing the entire Harmonie domain.  For an `Ireland/UK` domain, bounded between latitudes 49 and 60 deg. N, and between longitudes 11 deg. W and 3 deg. E, this contains approx. 40,000 (latitude) x 50,000 (longitude) data points – or about 2 billion points altogether.  (2 billion points stored in 2-byte integer format use about 4GB of storage).  A domain like this can easily be extended to the west and north, where there is no land and where sea-level elevation is simply zero.  In order to extend it to the south or east, however, where there is land, extra Aster granules would be required.  See the attached standalone program (or [`wiki:hires_topog_gather_tiles.f`]) for the details of what I did (crude but effective; nothing fancy and probably not the best way, but simple and it works).  The file is written with the first element at the northwest corner, progressing eastwards, then south, with the last element at the southeast corner.
 
 ## Errors and Data Gaps
 
@@ -87,7 +87,7 @@ cols: 43200
 recordtype: integer 16 bytes
 ```
 
-Note that this file specifies a global domain.  To use Aster data for the Ireland/UK domain, this content ended up being replaced with:
+Note that this file specifies a global domain.  To use Aster data for the `Ireland/UK` domain, this content ended up being replaced with:
 
 ```bash
 ASTER orography model, starting UL
@@ -172,12 +172,12 @@ Note the explicit conversion to big-endian (so no “`-convert big-endian`” co
 
 Note too that when using Intel compilers, the “`-assume byterecl`” option must be used so that record lengths are in bytes instead of (4-byte) words.
 
-Once those simple programs are run to perform straightforward file-format conversions, the resulting gtopo30.hdr and gtopo30.dir files (containing Aster data) can be used directly in $CLDATA/PGD in place of the original “real” ones (containing GTOPO30 data). 
+Once those simple programs are run to perform straightforward file-format conversions, the resulting gtopo30.hdr and gtopo30.dir files (containing Aster data) can be used directly in `$CLDATA/PGD` in place of the original “real” ones (containing GTOPO30 data). 
 Those files are read by Harmonie during the “Climate” phase, and generate reference “climate” files PGD.lfi and PGD.fa.  These remain constant and are not generated again for each Harmonie installation.  They are read in by the surfex module during each Forecast phase, and used wherever surface topographic data is needed.
 
 ## Do it all inside HARMONIE
 
-We discovered that there are a lot of "holes" in the ASTER data over Scandinavia, so instead we focused on the GMTED2010 data set (`http://topotools.cr.usgs.gov/gmted_viewer/`). This almost global dataset is compiled of different high resolution DEM sources and the highest available resolution is 7.5 arc seconds (~250 meters). It is used by Meteo-France for their 1.3 km domain. This data also comes in tiles of big tif-files like the ASTER data so a similar method described above can be used on this dataset. The different tiles cover an area that is 30 by 20 degrees longitude/latitude. There are no valid data north of 84 degrees north and south of 56 degrees south. The two steps described above have been streamlined in harmonie-40h1 and the main tasks have been gathered in `Prepare_gmted` which is called from `Prepare_pgd.` What's required from the user is to download (`http://topotools.cr.usgs.gov/gmted_viewer/viewer.htm`) the GMTED2010 data and locate them in the appropriate location and point the following variable in `Env_system` to the location:
+We discovered that there are a lot of "holes" in the ASTER data over Scandinavia, so instead we focused on the GMTED2010 data set (`http://topotools.cr.usgs.gov/gmted_viewer/`). This almost global dataset is compiled of different high resolution DEM sources and the highest available resolution is 7.5 arc seconds (~250 meters). It is used by Meteo-France for their 1.3 km domain. This data also comes in tiles of big tif-files like the ASTER data so a similar method described above can be used on this dataset. The different tiles cover an area that is 30 by 20 degrees `longitude/latitude.` There are no valid data north of 84 degrees north and south of 56 degrees south. The two steps described above have been streamlined in harmonie-40h1 and the main tasks have been gathered in `Prepare_gmted` which is called from `Prepare_pgd.` What's required from the user is to download (`http://topotools.cr.usgs.gov/gmted_viewer/viewer.htm`) the GMTED2010 data and locate them in the appropriate location and point the following variable in `Env_system` to the location:
 ```bash
    export GMTED2010_INPUT_PATH=/project/hirlam/harmonie/climate/GMTED2010
 ```
@@ -188,9 +188,9 @@ To use the GMTED2010 data and not GTOPO30 we have to define the input source, on
    TOPO_SOURCE=gmted2010
 ```
 
-The `Prepare_gmted` script checks for the chosen domain size and selects the necessary tiles and then combines them together into one geotiff file under $CLIMDIR. Small python script tif2bin.py then converts the new geotiff to the binary (dir/hdr) format needed for PGD generation.
+The `Prepare_gmted` script checks for the chosen domain size and selects the necessary tiles and then combines them together into one geotiff file under $CLIMDIR. Small python script tif2bin.py then converts the new geotiff to the binary (`dir/hdr`) format needed for PGD generation.
 
-On cca (ECMWF) the following input files are available under /project/hirlam/harmonie/climate/GMTED2010:
+On cca (ECMWF) the following input files are available under `/project/hirlam/harmonie/climate/GMTED2010:`
 
 ```bash
  10N030W_20101117_gmted_mea075.tif
@@ -235,20 +235,20 @@ The directory `$HM_CLDATA/GTOPT030` contains 9 files, 7 of which are derived in 
 | `Oro_Mean` 		|  Mean orography (mean of Hmean)       |      m     |  16  | 
 | Sigma 			|		Sub-grid std dev of Hmean 	|	 m 	|  16  |
 | `Nb_Peaks` 			|      Number of sub-grid peaks 	|		|   8   |
-| `Hmax-HxH-Hmin_ov4` 	|     mean of (Hmax-Hmean)(Hmean-Hmin)/4 |  m^2^ 	|  32  |
-| `Dh_over_Dx_Dh_over_Dy`  |   mean of dHmean/dx x dHmean/dy  |   m^2^ km^-2^  |  32  | 
-| `Dh_over_Dx_square` 	|      mean of (dHmean/dx)^2^ 		|	 m^2^ km^-2^   |  32  |
-| `Dh_over_Dy_square` 	|	mean of (dHmean/dy)^2^	                |     m^2^ km^-2^     |  32  |
-| `Water_Percentage` 		|	Land/Sea mask 	|				 % water |  8  |
+| `Hmax-HxH-Hmin_ov4` 	|     mean of (`Hmax-Hmean)(Hmean-Hmin)/4` |  m^2^ 	|  32  |
+| `Dh_over_Dx_Dh_over_Dy`  |   mean of `dHmean/dx` x `dHmean/dy`  |   m^2^ km^-2^  |  32  | 
+| `Dh_over_Dx_square` 	|      mean of (`dHmean/dx`)^2^ 		|	 m^2^ km^-2^   |  32  |
+| `Dh_over_Dy_square` 	|	mean of (`dHmean/dy`)^2^	                |     m^2^ km^-2^     |  32  |
+| `Water_Percentage` `		|	Land/Sea` mask 	|				 % water |  8  |
 | Urbanisation 		|	Fraction of urbanisation  	|		 % city  |   8  |
 
-2 of the files (Urbanisation, `Water_Percentage`) are from a NOAA/Navy Global95 dataset and are not related to GTOPO30 at all.  
+2 of the files (Urbanisation, `Water_Percentage`) are from a `NOAA/Navy` Global95 dataset and are not related to GTOPO30 at all.  
 
 The other 7 files each contain information derived from 5x5 sub-grid boxes of the main gtopo30.dir.  (So each is 25 times smaller than gtopo30.dir, accounting for data-type).
 
 The word "mean" in the table above means "averaged over the GTOPO30 pixels contained in one 2'30" box (usually 5x5 GTOPO30 pixels)".   
 
-All these files are read in by `ald/c9xx/eincli1.F90` .  At run-time, the files are only read during the "Climate" phase of each run, and the information in them ultimately written out to the m01, m02, etc. monthly files.
+All these files are read in by ``ald/c9xx/eincli1.F90`` .  At run-time, the files are only read during the "Climate" phase of each run, and the information in them ultimately written out to the m01, m02, etc. monthly files.
 
 After that, however, these files have no effect whatsoever on Forecast output.  
 
@@ -266,7 +266,7 @@ In my understanding, the 7 secondary files are used to derive the following thre
  SURFVAR.GEOP.DIR> 001:222-00000-105@   10115_00:00+0000 000 Direction of main axis of topo  -1.571E+000   96.202E-003    1.939E+000  661.270E-003
 ```
 
-These are used by the ALADIN/ALARO buoyancy wave parametrization for generation and dissipation of subgrid-scale waves due to orography. Such a parametrization is not applied in AROME, thus these fields are not used there and do not have any influence on AROME results. However, these or similar variables can be found also in the PGD file, among other orography-related variables derived from GTOPO30 (another example of gl listing of some PGD.lfi):
+These are used by the `ALADIN/ALARO` buoyancy wave parametrization for generation and dissipation of subgrid-scale waves due to orography. Such a parametrization is not applied in AROME, thus these fields are not used there and do not have any influence on AROME results. However, these or similar variables can be found also in the PGD file, among other orography-related variables derived from GTOPO30 (another example of gl listing of some PGD.lfi):
 
 ```bash
  ZS              > 001:008-00000-105@20051219_00:00+0000 000 Oro hgt.     0.000E+000  137.923E+000    1.354E+003  152.975E+000

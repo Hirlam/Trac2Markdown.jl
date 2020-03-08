@@ -2,24 +2,24 @@
 
 ## Background Information
    * [ODBusage2.pdf](ODBusage2.pdf) Anne Fouilloux's (ECMWF) review presentation about ODB
-   * [http://apps.ecmwf.int/odbgov](http://apps.ecmwf.int/odbgov) ECMWF's ODB governance pages - useful for looking up ODB and BUFR definintions
+   * [`http://apps.ecmwf.int/odbgov`](http://apps.ecmwf.int/odbgov) ECMWF's ODB governance pages - useful for looking up ODB and BUFR definintions
    * [`http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf`](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf) The ODB bible - Sami Saarinen's ODB user guide (2004)
    * [`http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf`](http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf) Sandor's document about observation dataflow in ALADIN 
 
 ## Observation types
-The observation types used by Harmonie (upper-air) data assimilation are defined in [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
+The observation types used by Harmonie (upper-air) data assimilation are defined in [`scr/include.ass`](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 ### SYNOP
 By default all SYNOP observation types (including SHIP) are used. 
 ```bash
 export SYNOP_OBS=1             # All synop
 ```
-To blacklist SYNOP observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [`nam/LISTE_NOIRE_DIAP`](Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist 10m winds from Valentia Automatic SYNOP (03953) from the 10th of November 2012 enter the following line to `LISTE_NOIRE_DIAP:`
+To blacklist SYNOP observations add blacklisted "ODB observation `type/ASCII` `type/ODB` code `type/ODB` variable `number/station` `identifier/date` to blacklist from" to [`nam/LISTE_NOIRE_DIAP`](Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist 10m winds from Valentia Automatic SYNOP (03953) from the 10th of November 2012 enter the following line to `LISTE_NOIRE_DIAP:`
 ```bash
  1 SYNOP       14  41 03953    10112012
 ```
 (Note: please don't add Valentia to your blacklist - the observations from there are pretty good!)
 
-For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/](http://apps.ecmwf.int/odbgov/obstype/)
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [`http://apps.ecmwf.int/odbgov/obstype/`](http://apps.ecmwf.int/odbgov/obstype/)
 ### SHIP
 See information provided above on SYNOP observations.
 ### BUOY
@@ -27,13 +27,13 @@ By default all BUOY observation types are used.
 ```bash
 export BUOY_OBS=1              # Buoy
 ```
-To blacklist BUOY observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [`nam/LISTE_NOIRE_DIAP`](Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist surface temperatures from BUOY M5 (62094) from the 10th of November 2012 enter the following line to `LISTE_NOIRE_DIAP:`
+To blacklist BUOY observations add blacklisted "ODB observation `type/ASCII` `type/ODB` code `type/ODB` variable `number/station` `identifier/date` to blacklist from" to [`nam/LISTE_NOIRE_DIAP`](Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist surface temperatures from BUOY M5 (62094) from the 10th of November 2012 enter the following line to `LISTE_NOIRE_DIAP:`
 ```bash
  4 BUOY        165  11 62094    10112012
 ```
 (Note: please don't add M4 to your blacklist - the observations from there are pretty good too!)
 
-For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://apps.ecmwf.int/odbgov/obstype/](http://apps.ecmwf.int/odbgov/obstype/)
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [`http://apps.ecmwf.int/odbgov/obstype/`](http://apps.ecmwf.int/odbgov/obstype/)
 ### AIRCRAFT
 By default all AIRCRAFT observation types (including AMDAR, AIREP, ACARS) are used. 
 ```bash
@@ -68,7 +68,7 @@ By default all AMSUA observation types are not used.
 ```bash
 export AMSUA_OBS=0             # AMSU-A
 ```
-To use locally received AMSUA data provided by EUMETCast set `ATOVS_SOURCE` to local in [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3):
+To use locally received AMSUA data provided by EUMETCast set `ATOVS_SOURCE` to local in [`scr/include.ass`](Harmonie/scr/include.ass?rev=release-43h2.beta.3):
 ```bash
 export ATOVS_SOURCE=mars       # local: EUMETCast; 
                                # mars: data from MARS
@@ -77,7 +77,7 @@ export ATOVS_SOURCE=mars       # local: EUMETCast;
 
 ### AMV (aka SATOB, GEOWIND)
 
-For AMVs there is a [HOW-TO page](HarmonieSystemDocumentation/ObservationHowto/Amv).
+For AMVs there is a [HOW-TO `page](HarmonieSystemDocumentation/ObservationHowto/Amv`).
 
 ### Other observation types ...
 More documentation to follow ...

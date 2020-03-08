@@ -32,16 +32,16 @@ The default area is the Denmark domain (DKCOECP). The following values for C+I z
 
  * *NDLUXG* is number of points in x-direction without extension (E) zone.
  * *NDGUXG* is number of points in y-direction without extension (E) zone.
- * `*NMSMAX_LINE*` is truncation order in longitude. By default (*NLON*-2)/2. 
- * `*NSMAX_LINE*` is truncation order in latitude. By default (*NLAT*-2)/2. 
- * `*NMSMAX_QUAD*` is truncation order in longitude. By default (*NLON*-2)/3. It is used to create filtered orography with lower resolution.
- * `*NSMAX_QUAD*` is truncation order in latitude. By default (*NLAT*-2)/3. It is used to create filtered orography with lower resolution.
+ * `*NMSMAX_LINE*` is truncation order in longitude. By default (`*NLON*-2)/2.` 
+ * `*NSMAX_LINE*` is truncation order in latitude. By default (`*NLAT*-2)/2.` 
+ * `*NMSMAX_QUAD*` is truncation order in longitude. By default (`*NLON*-2)/3.` It is used to create filtered orography with lower resolution.
+ * `*NSMAX_QUAD*` is truncation order in latitude. By default (`*NLAT*-2)/3.` It is used to create filtered orography with lower resolution.
 
-~~Note that to run with LSPSMORO=yes you have to use a linear grid. I.e. NLON/NLAT must satisfy~~
+~~Note that to run with LSPSMORO=yes you have to use a linear grid. I.e. `NLON/NLAT` must satisfy~~
 
 ## Domain creation tool
 
-To help with the design of a new domain, there is an [interactive tool](https://www.hirlam.org/nwptools/domain.html)
+To help with the design of a new domain, there is an [interactive `tool](https://www.hirlam.org/nwptools/domain.html`)
 that lets you experiment with the grid parameters described above, and visualize the resulting domain immediately
 on a map, see figure below.
 

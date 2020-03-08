@@ -14,7 +14,7 @@ heavy drug use!
 
 In about week or so late 2003 the first version of Dr.Hook saw daylight. It turned out
 nearly immediately that we could try to gather information for profiling purposes, too,
-like wall & CPU clock times, possibly MFlop/s and memory consumption information.
+like wall & CPU clock times, possibly `MFlop/s` and memory consumption information.
 
 One drawback with Dr.Hook was that (initially just) Fortran code needed to be instrumented
 by subroutine calls, which was a bother. However, for IFS code and automatique insertion 
@@ -99,7 +99,7 @@ The latter defines the profile files' location. The **%d** will be replaced with
 MPL-task id (= MPI-task plus 1).
 
 Sometimes it is necessary to turn Dr.Hook off and *also* make sure no signals are caught
-by Dr.Hook -- as this the (unfortunate?) default due to function call to `**C_DRHOOK_INIT_SIGNALS**` in **arp/setup/sumpini.F**.
+by Dr.Hook -- as this the (unfortunate?) default due to function call to `**C_DRHOOK_INIT_SIGNALS**` in `**arp/setup/sumpini.F**.`
 Now there is a new environment variable `**DR_HOOK_INIT_SIGNALS**` to prevent this. So, to make sure Dr.Hook does *not*
 interfere your run *at all*, give:
 
@@ -138,14 +138,14 @@ To turn this initialization off, set
 export DR_HOOK_NOT_MPI=1
 ```
 
-For example, asyncronous I/O module **SAMIO** does that -- from within its Fortran. It calls *before first Dr.Hook call*
+For example, asyncronous `I/O` module **SAMIO** does that -- from within its Fortran. It calls *before first Dr.Hook call*
 function
 
 ```bash
 CALL C_DRHOOK_NOT_MPI()
 ```
 
-Thus, this can be used elsewhere, too (like in **util/gl** tools):
+Thus, this can be used elsewhere, too (like in `**util/gl**` tools):
 
 ```bash
 PROGRAM SOME_UTILGL_TOOL

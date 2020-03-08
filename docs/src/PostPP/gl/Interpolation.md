@@ -6,8 +6,8 @@
 
 In the following we describe the geometrical routines in gl. gl can handle the following projections
 
- * lat/lon
- * Rotated lat/lon
+ * `lat/lon`
+ * Rotated `lat/lon`
  * Lambert
  * Polar stereographic
  * Rotated Mercator
@@ -26,9 +26,9 @@ In the following we describe the geometrical routines in gl. gl can handle the f
  * interpolate runs the interpolation
  * resample works like the interpolation if the input grid is coarser than the output grid. If reversed it takes the averages of the input gridpoints belonging to each output gridpoit.
 
- Interpolation can be done between different projections as wall as to geographical points. The most general exmple on the usage of the interpolatin can be found in  [any2any.F90](Harmonie/util/gl/grb/any2any.F90?rev=release-43h2.beta.3).
+ Interpolation can be done between different projections as wall as to geographical points. The most general exmple on the usage of the interpolatin can be found in  [`any2any.F90](Harmonie/util/gl/grb/any2any.F90?rev=release-43h2.beta.3`).
 
- For practical usage see the section about [postprocessing](HarmonieSystemDocumentation/PostPP/gl)
+ For practical usage see the section about [`postprocessing](HarmonieSystemDocumentation/PostPP/gl`)
 
 
 ## Rotations
@@ -42,7 +42,7 @@ In the following we describe the geometrical routines in gl. gl can handle the f
 ## Staggering
 
  The staggering of an input file is based on the knowledge about the model and is set [`here](Harmonie/util/gl/mod/module_griblist.f90?rev=release-43h2.beta.3`). 
- The restaggering is done in [restag.f90](Harmonie/util/gl/grb/restag.f90?rev=release-43h2.beta.3) as a simple average between gridpoints. The staggering of the output geomtery
+ The restaggering is done in [`restag.f90](Harmonie/util/gl/grb/restag.f90?rev=release-43h2.beta.3`) as a simple average between gridpoints. The staggering of the output geomtery
  is defined by `OUTGEO@ARKAWA`, where A and C are available options.
 
 

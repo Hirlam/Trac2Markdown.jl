@@ -1,4 +1,50 @@
 
+Configuration = [
+    "Experiment" => "ConfigureYourExperiment.md",
+    "Platform" => "PlatformConfiguration.md",       
+    "Namelist" => "Namelists.md",
+    "Update Namelist" => "UpdateNamelists.md",
+    "Model Domain" => "ModelDomain.md",        
+    "Vertical Grid" => "VerticalGrid.md",
+    "Climate Simulation" => "ClimateSimulation.md",
+    "Hires topography" => "How_to_use_hires_topography.md"
+]
+
+ECFLOW_TASKS = [
+    "Climate" => "ClimateGeneration.md",
+    "Observations" => [
+        "UseofObservation.md",
+        "ObservationOperators.md",
+        "ObservationHowto/GNSS.md",
+        "ObservationHowto/Amv.md",
+        "RadarData.md",
+        "Preprocessing" => [
+         # "ObservationPreprocessing.md" ,
+            "ObservationPreprocessing/ObservationData.md", 
+            "Bator" => "ObservationPreprocessing/Bator.md", 
+            "Oulan" => "ObservationPreprocessing/Oulan.md", 
+            "Cope" => "ObservationPreprocessing/Cope.md"
+         ]
+    ],            
+    "Bator" => "ObservationPreprocessing/Bator.md", 
+    "Oulan" => "ObservationPreprocessing/Oulan.md",
+    "Boundaries" => "BoundaryFilePreparation.md",
+    "Screening" => "Screening.md",
+    "Surface Analysis" => "Analysis/SurfaceAnalysis.md", 
+    "DFI" => "DigitialFilterInitialization.md",
+    "Forecast" => "Forecast.md",
+    "Post Processing" => [
+        "Obsmon" => "PostPP/Obsmon.md", 
+        "Diagnostics" => "PostPP/Diagnostics.md", 
+        "xtool" => "PostPP/xtool.md", 
+        "GL interpolation" => "PostPP/gl/Interpolation.md",
+        "Verification" => [ "PostPP/Verification.md", "PostPP/Extract4verification.md"],
+        "Fullpos" => "PostPP/Fullpos.md",
+        "FileConversion" => "PostPP/FileConversions.md",
+        "gl_grib_api" => "PostPP/gl_grib_api.md",
+    ] 
+]   
+
 pages = [
     # "Overview" => ["index" => ["index.md"]],
     
@@ -31,76 +77,34 @@ pages = [
         "Directories  and Binaries" => [
             "Directories" => "Content.md", 
             "Binaries" => "Binaries.md"
-        ]
-    ],
-    "Configuration" => [
-        "Experiment" => "ConfigureYourExperiment.md",
-        "Platform" => "PlatformConfiguration.md",       
-        "Namelist" => "Namelists.md",
-        "Update Namelist" => "UpdateNamelists.md",
-        "Model Domain" => "ModelDomain.md",        
-        "Vertical Grid" => "VerticalGrid.md",
-        "Climate Simulation" => "ClimateSimulation.md",
-        "Hires topography" => "How_to_use_hires_topography.md"        
-    ],        
-    "ECFlow tasks" => [
-        "Climate" => "ClimateGeneration.md",
-        "Observations" => [
-            "UseofObservation.md",
-            "ObservationOperators.md",
-            "ObservationHowto/GNSS.md",
-            "ObservationHowto/Amv.md",
-            "RadarData.md",
-            "Preprocessing" => [
-                # "ObservationPreprocessing.md" ,
-                "ObservationPreprocessing/ObservationData.md", 
-                "Bator" => "ObservationPreprocessing/Bator.md", 
-                "Oulan" => "ObservationPreprocessing/Oulan.md", 
-                "Cope" => "ObservationPreprocessing/Cope.md"
-            ]
-        ],            
-        "Bator" => "ObservationPreprocessing/Bator.md", 
-        "Oulan" => "ObservationPreprocessing/Oulan.md",
-        "Boundaries" => "BoundaryFilePreparation.md",
-        "Screening" => "Screening.md",
-        "Surface Analysis" => "Analysis/SurfaceAnalysis.md", 
-        "DFI" => "DigitialFilterInitialization.md",
-        "Forecast" => "Forecast.md",
-        "Post Processing" => [
-            "Obsmon" => "PostPP/Obsmon.md", 
-            "Diagnostics" => "PostPP/Diagnostics.md", 
-            "xtool" => "PostPP/xtool.md", 
-            "GL interpolation" => "PostPP/gl/Interpolation.md",
-            "Verification" => [ "PostPP/Verification.md", "PostPP/Extract4verification.md"],
-            "Fullpos" => "PostPP/Fullpos.md",
-            "FileConversion" => "PostPP/FileConversions.md",
-            "gl_grib_api" => "PostPP/gl_grib_api.md",
-        ]    
-    ],       
-    "Other" => [          
+        ],
+        "Configuration" => Configuration,                
+        "ECFlow tasks" => ECFLOW_TASKS, 
+        "Other" => [          
        
             # "PreviousVersions.md",            
-        "Scalability_and_Refactoring.md",
-        "HarmonieBenchMark.md",
-        "MFaccess.md",
-        "Phasing.md",   
+            "Scalability_and_Refactoring.md",
+            "HarmonieBenchMark.md",
+            "MFaccess.md",
+            "Phasing.md" 
                   
        # "PreviousModelOutputLists.md",           
             
+        ]
     ],
-    "Input Data" => [
-        "Climate" => "ClimateGeneration.md",
-        "Boundaries" => "BoundaryFilePreparation.md",
+    #"Input Data" => [
+    #    "Climate" => "ClimateGeneration.md",
+    #    "Boundaries" => "BoundaryFilePreparation.md",
         
-    ],
-    "Data Assimilation" => [
-        "Screening" => "Screening.md",
-        "Structure functions" => "Structurefunctions_ensys.md",
-        "DFS" => "DFS.md",         
+    #],
+    #"Data Assimilation" => [
+    #    "Screening" => "Screening.md",
+    #    "Structure functions" => "Structurefunctions_ensys.md",
+    #    "DFS" => "DFS.md",         
         # "Analysis" => "Analysis.md", 
-        "Single Obs" => "SingleObs_ensys.md",
-        "Conrad" => "Conrad.md"     
-    ]
+    #    "Single Obs" => "SingleObs_ensys.md",
+    #    "Conrad" => "Conrad.md"     
+    #]
          
     # "TrainingCourses.md",
     

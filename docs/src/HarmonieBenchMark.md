@@ -3,15 +3,15 @@
 
 ## Background
 
-This page describes the current situation for harmonie as a benchmarking tool. During 2013 several HIRLAM countries will start the procurement for new computers. We hope that by coordinating the efforts we can make a win-win situation for all concerned parties, both vendors and institutes. The benchmarkers on the vendors' side will be able to concentrate their efforts on a single source code base for better productivity and enhanced feedback to the community. Moreover, we believe that the efforts with a common benchmark package will improve the model and might be found useful also in other Harmonie institutes. For the current effort cy38h1 have been chosen as the baseline version. The cycle is currently under preparation and evaluation within the ALADIN/HIRLAM community.
+This page describes the current situation for harmonie as a benchmarking tool. During 2013 several HIRLAM countries will start the procurement for new computers. We hope that by coordinating the efforts we can make a win-win situation for all concerned parties, both vendors and institutes. The benchmarkers on the vendors' side will be able to concentrate their efforts on a single source code base for better productivity and enhanced feedback to the community. Moreover, we believe that the efforts with a common benchmark package will improve the model and might be found useful also in other Harmonie institutes. For the current effort cy38h1 have been chosen as the baseline version. The cycle is currently under preparation and evaluation within the `ALADIN/HIRLAM` community.
 
 ## Getting the package
 
-The package is under preparation and is based on [harmonie-38h1.alpha.2](tags/harmonie-38h1.alpha.2) plus [11688] and [11708].
+The package is under preparation and is based on [`harmonie-38h1.alpha.2](tags/harmonie-38h1.alpha.2`) plus [11688] and [11708].
 
 The second, version is available here: [`https://hirlam.org/portal/download/benchmark/src/HMbench_cy38a2_export.tar.gz`].
 
-Input data and some simple scripts can also be found on hirlam.org [https://hirlam.org/portal/download/benchmark/data/cy38].
+Input data and some simple scripts can also be found on hirlam.org [`https://hirlam.org/portal/download/benchmark/data/cy38`].
 
 ## Organization of the package
 
@@ -51,11 +51,11 @@ Please note that it is crucial to have right namelist settings to enable reprodu
    TSTEP=60
 ```
 
-You will also need the files [covers.tar](https://hirlam.org/portal/download/benchmark/data/cy38/covers.tar) and [`rrtm_const.tar`](https://hirlam.org/portal/download/benchmark/data/cy38/rrtm_const.tar).
+You will also need the files [`covers.tar](https://hirlam.org/portal/download/benchmark/data/cy38/covers.tar`) and [`rrtm_const.tar`](https://hirlam.org/portal/download/benchmark/data/cy38/rrtm_const.tar).
 
 ## Status
 
- * The model is not reproducible for different NPROCX/NRPOCY with the default HARMONIE edmfm scheme. Until solved reproducibility can be achieved by removing from `&NAMPARAR`:
+ * The model is not reproducible for different `NPROCX/NRPOCY` with the default HARMONIE edmfm scheme. Until solved reproducibility can be achieved by removing from `&NAMPARAR`:
 
 ```bash
    CMF_CLOUD='STAT',

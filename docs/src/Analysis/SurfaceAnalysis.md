@@ -5,22 +5,22 @@
 ## Surface related variables in `ecf/config_exp.h` :
 
 
-Surface model: **SURFACE = "surfex"** / `"old_surface"`
+Surface model: **SURFACE = "surfex"** `/` `"old_surface"`
 * **surfex**: SURFEX is used as surface model (default and used in all Harmonie configurations)
   The surface fields are in a separat `AROMOUT_.LLLL.lfi` file in LFI format. 
 * `old_surface:` surface physics modelled by routines integrated in code
   The surface fields are a part of the atmospheric file (ICMSHXXXX+LLLL) in FA format.
 
 
-Surface analysis method: **ANASURF = `"CANARI_OI_MAIN"**` / `"CANARI_EKF_SURFEX"`
-* the horisontal interpolation of screen level parameters is performed by [CANARI](HarmonieSystemDocumentation/Analysis/CANARI) in both cases
-* [`CANARI_OI_MAIN`](HarmonieSystemDocumentation/Analysis/CANARI_OI_MAIN) updates soil temperature, water and ice based on 2m analysis increments using coefficients that are derived empirically for ISBA2/3-layers scheme
+Surface analysis method: **ANASURF = `"CANARI_OI_MAIN"**` `/` `"CANARI_EKF_SURFEX"`
+* the horisontal interpolation of screen level parameters is performed by [`CANARI](HarmonieSystemDocumentation/Analysis/CANARI`) in both cases
+* [`CANARI_OI_MAIN`](HarmonieSystemDocumentation/Analysis/CANARI_OI_MAIN) updates soil temperature, water and ice based on 2m analysis increments using coefficients that are derived empirically for `ISBA2/3-layers` scheme
 * [`CANARI_EKF_SURFEX`](HarmonieSystemDocumentation/Analysis/CANARI_EKF_SURFEX) (experimental) updates soil parameters using the Extended Kalman Filter method.
 
 
-**ANASURF_MODE = "before"** / "after"/ "both" - surface analysis performed before/after/both before and after 3DVAR
+**ANASURF_MODE = "before"** `/` `"after"/` "both" - surface analysis performed `before/after/both` before and after 3DVAR
 
-**ANASURF_INLINE = "yes"** /"no"
+**ANASURF_INLINE = "yes"** `/"no"`
 * yes: call SODA for updating soil parameters inside CANARI (default and experimental)
 * no: soil parameters are updated after CANARI
 
@@ -38,11 +38,11 @@ CANARI is used for Optimum Interpolation horizontally to find analysis increment
 
 CANARI was designed before SURFEX was introduced and some of the climate variables that normally exist in the input file for CANARI, do not exist when using SURFEX. This means the task Addsurf is run before CANARI, adding the needed fields from the FA climate file (mMM).
 
-The screen level analyisis (eg. T2m) used in blending/3DVAR/4DVAR is the same as for CANARI in the `old_surface` case.
+The screen level analyisis (eg. T2m) used in `blending/3DVAR/4DVAR` is the same as for CANARI in the `old_surface` case.
 
 ### Variables updated in CANARI for `old_surface` and SURFEX
 
-[Module of namelist variables](Harmonie/src/arpifs/module/qactex.F90?rev=release-43h2.beta.3)
+[Module of namelist `variables](Harmonie/src/arpifs/module/qactex.F90?rev=release-43h2.beta.3`)
 
 HARMONIE namelist settings:
 ```bash

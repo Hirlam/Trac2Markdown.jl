@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Screening (configuration 002 of ARPEGE/IFS model) carries out quality control of observations. 
+Screening (configuration 002 of `ARPEGE/IFS` model) carries out quality control of observations. 
 
 A useful presentation (Martin Ridal) from the "Hirlam-B Training Week on HARMONIE system" training course is available here: [`MR_screenandminim.pdf`](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2014/Programme/MR_screenandminim.pdf). Most of the information on this page is based on his presentation.
 
@@ -17,7 +17,7 @@ A useful presentation (Martin Ridal) from the "Hirlam-B Training Week on HARMONI
    * ELSCFMIN1ALBC000
    * ELSCFMIN1ALBC
 
- * Input/output ODB directory structure
+ * `Input/output` ODB directory structure
    * `${d_DB}/ECMA`
    * `${d_DB}/ECMA.${base1}`
 
@@ -42,7 +42,7 @@ A useful presentation (Martin Ridal) from the "Hirlam-B Training Week on HARMONI
    * Check of completeness of the reports
    * Check if station altitude is present
    * Check of the reporting practice for SYNOP & TEMP mass observations 
- * Blacklisting: A blacklist is applied to discard observations of known poor quality and/or that cannot be properly handled by the data assimilation. A selection of variables for assimilation is done using the data selection part of the blacklist file and the information hard-coded in Arpege/Aladin (orographic rejection limit, land-sea rejection...). Decisions based on the blacklist are feedback to the CMA. Blacklisting is defined in [`src/bla/mf_blacklist.b`](Harmonie/src/bla/mf_blacklist.b?rev=release-43h2.beta.3)
+ * Blacklisting: A blacklist is applied to discard observations of known poor quality `and/or` that cannot be properly handled by the data assimilation. A selection of variables for assimilation is done using the data selection part of the blacklist file and the information hard-coded in `Arpege/Aladin` (orographic rejection limit, land-sea rejection...). Decisions based on the blacklist are feedback to the CMA. Blacklisting is defined in [`src/bla/mf_blacklist.b`](Harmonie/src/bla/mf_blacklist.b?rev=release-43h2.beta.3)
  * Background quality control: flags are assigned to observations -- 1 # >  probably correct, 2> probably incorrect, 3 => incorrect.
  * Vertical consistency of multilevel report:
    * The duplicated levels, in multi-level reports, are removed from the reports

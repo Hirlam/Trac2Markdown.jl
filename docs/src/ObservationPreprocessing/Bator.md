@@ -1,16 +1,16 @@
 # ODB creation: Bator
 ## General Description
 The pre-processing step creates ODB (Observational Data Base) from various observation data files possibly in different formats.
- * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the ARPEGE/ALADIN/HARMONIE analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, `2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf`). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite BUFR/GRIB/BIN files and the OBSOUL one.
+ * Software: The programs used for pre-processing (Shufflebufr, oulan and BATOR) are not part of the IFS code. oulan is software developed at Météo France to extract observations from their local database (BDM). The output of oulan (OBSOUL) is one of the inputs of BATOR. BATOR is also software developed at Météo France to generate the ODB (Observational !DataBase) database for the `ARPEGE/ALADIN/HARMONIE` analysis system. ODB is a tailor made database software developed at ECMWF to manage very large observational data volumes assimilated in the IFS 4DVAR system, and to enable flexible post-processing of this data [(Sami Saarinen, `2006)](http://old.ecmwf.int/services/odb/odb_overview.pdf`). We use oulan to generate an OBSOUL file from different BUFR files (note you can easily change the oulan program to handle data in different format than BUFR. For example in OPLACE data processing some files are in netCDF format). OBSOUL file is an ASCII formatted file, the content of which is similar to that of the CMA (Central Memory Array, packing format actually in use in the HIRLAM data assimilation system). Our version of ouland is placed under “util” directory in the repository. HARMONIE BATOR originates from the MF export-pack. The figure bellow describes the mechanism of the observation pre-processing in HARMONIE DA. To sum it up, !ShuffleBufr splits different observations into BUFR files, then oulan creates the OBSOUL file, and BATOR creates the ODB file using satellite `BUFR/GRIB/BIN` files and the OBSOUL one.
  * Compilation: BATOR is compiled using gmakpack or makeup.
  * Scripts: Bator.
- * Input: OBSOUL (ASCII-formated) and BUFR/GRIB/BIN files
+ * Input: OBSOUL (ASCII-formated) and `BUFR/GRIB/BIN` files
  * Output: ODB databases for surface and upper-air data assimilation
 
 ## BATOR
-BATOR creates the ODB files using OBSOUL and other (satellite) data in BUFR/GRIB/BIN format. BATOR also includes filtering (blacklisting) of parameters from stations of different observation types. To run the BATOR program one needs files containing blacklist rules/information, namelist(s), file containing information about observations and their format – refdata -, and some setting for the ODB environment.
+BATOR creates the ODB files using OBSOUL and other (satellite) data in `BUFR/GRIB/BIN` format. BATOR also includes filtering (blacklisting) of parameters from stations of different observation types. To run the BATOR program one needs files containing blacklist `rules/information`, namelist(s), file containing information about observations and their format – refdata -, and some setting for the ODB environment.
 ### refdata
-The *refdata* file tells BATOR what observations types are to be processed.  *refdata* is written by the Bator script using environment variable defining observation types to be assimilated (set in scr/include.ass). The format of *refdat* is strictly defined and white space is important! The READ statement used to read the *refdata* file is:
+The *refdata* file tells BATOR what observations types are to be processed.  *refdata* is written by the Bator script using environment variable defining observation types to be assimilated (set in `scr/include.ass`). The format of *refdat* is strictly defined and white space is important! The READ statement used to read the *refdata* file is:
 ```bash
  READ(NULOBI,'(a8,1x,a8,1x,a16,1x,i8,1x,i2,1x,a200)',IOSTAT=iret) &
      & TREF_FICOBS(j)%nomfic,TREF_FICOBS(j)%format,TREF_FICOBS(j)%type, &
@@ -18,7 +18,7 @@ The *refdata* file tells BATOR what observations types are to be processed.  *re
 ```
 where:
  * `TREF_FICOBS(j`)%nomfic = filename suffix
- * `TREF_FICOBS(j`)%format = input format (OBSOUL/BUFR/GRIB/HDF5)
+ * `TREF_FICOBS(j`)%format = input format (`OBSOUL/BUFR/GRIB/HDF5`)
  * `TREF_FICOBS(j`)%type   = observation type
  * `TREF_FICOBS(j`)%date   = date (YYYYMMDD)
  * `TREF_FICOBS(j`)%heure  = hour (HH)
@@ -188,5 +188,5 @@ END temp
 		export ODB_IOASSIGN_MAXPROC=${NPOOLS}
 		$HM_LIB/scr/create_ioassign -l "ECMA" -n ${BATOR_NBPOOL}
 ```
-where $base is the ODB base ($base can be conv (for conventional data), amsu (ATOVS/AMSU-A,AMSU-B/MHS), sev (for Sevir), iasi, radarv (radar) for example).
+where $base is the ODB base ($base can be conv (for conventional data), amsu (`ATOVS/AMSU-A`,AMSU-B/MHS), sev (for Sevir), iasi, radarv (radar) for example).
 Important: If you would like to have more bases, do not forget to take that into consideration when generating the “refdata” file for BATOR to define which observations you would like to have in each base.

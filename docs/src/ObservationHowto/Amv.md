@@ -6,14 +6,14 @@
 ## AMV data
 AMV data is available via EUMETCast, the MARS archive at ECMWF or locally using NWCSAF software. All data are in BUFR format. An abstract from the 5th Winds Workshop on the quality control of EUMETSAT wind products (`[S2-3_Elliott-Parallel.pdf`](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemDocumentation/ObservationHowto/Amv/S2-3_Elliott-Parallel.pdf)) provides some useful information on how AMV BUFR is encoded.
 ## HARMONIE changes
-### scr/include.ass
-In [source:scr/include.ass] should be edited to "switch on" the use of AMVs (SATOB/geowinds):
+### `scr/include.ass`
+In [`source:scr/include.ass`] should be edited to "switch on" the use of AMVs (`SATOB/geowinds`):
 ```bash
 export AMV_OBS=1               # Satob geowind
 ```
 
 ### param.cfg
-The BUFR template used by your AMV data should be defined in the param.cfg file used by Bator. param.cfg files for Bator are in the [nam](/trunk/harmonie/nam) namelist directory. The geowind param.cfg template should be something like this:
+The BUFR template used by your AMV data should be defined in the param.cfg file used by Bator. param.cfg files for Bator are in the [`nam](/trunk/harmonie/nam`) namelist directory. The geowind param.cfg template should be something like this:
 ```bash
 BEGIN geowind
 A 0 4 18
@@ -52,7 +52,7 @@ Depending on the satellite and channel you may have to add entries to the NADIRS
 ```bash
    TS_GEOWIND(isatid)%T_SELECT%LCANAL(ichanal)=.TRUE.,
 ```
- * Satellite identifiers are available here: [https://software.ecmwf.int/wiki/display/ECC/WMO%3D27+code-flag+table]
+ * Satellite identifiers are available here: [`https://software.ecmwf.int/wiki/display/ECC/WMO%3D27+code-flag+table`]
  * Bator defaults for MSG AMV data are set in [`src/odb/pandor/module/bator_init_mod.F90`](Harmonie/src/odb/pandor/module/bator_init_mod.F90#L648?rev=release-43h2.beta.3)
 ## Source code
 The reading of BUFR AMVs is taken care of by the [subroutine in [`source:Harmonie/src/odb/pandor/module/bator_decodbufr_mod.F90?rev=release-43h2.beta.3` `src/odb/pandor/module/bator_decodbufr_mod.F90`](geowind]). This subroutine reads the following parameters defined in the param.cfg file:
@@ -63,7 +63,7 @@ The reading of BUFR AMVs is taken care of by the [subroutine in [`source:Harmoni
 | Location          | latitude and longitude are read from tconfig(005001) and tconfig(006001)                                              |
 | Satellite         | the satellite identifier is read from tconfig(001007)                                                                 |
 | Origin. center    | the originating center (of the AMV) is read from tconfig(001031)                                                      |
-| Compu. method     | the wind computation method (type of channel + cloudy/clear if WV) is read from tconfig(002023)                       |
+| Compu. method     | the wind computation method (type of channel + `cloudy/clear` if WV) is read from tconfig(002023)                       |
 | Derivation method | the height assignment method is read from tconfig(002163) and the tracking method from tconfig (002164)               |
 | Channel frequency | the centre frequency of the satellite channel is read from tconfig(002153)                                            |
 | Height (pressure) | the height of the AMV observation is read from tconfig(007004)                                                        |
@@ -72,9 +72,9 @@ The reading of BUFR AMVs is taken care of by the [subroutine in [`source:Harmoni
 | FG QI             | The QI (including FG consistency) for MSG AMVs is read from the first location where descriptor 033007 appears        |
 | noFG-QI           | The FG-independent QI for MSG AMVs is read from the first location where 033007 appears + offset(1)=24                |
 | Sat zenith angle  | the satellite zenith angle is read from tconfig(007024)                                                               |
-| Land/sea/coast    | a land/sea/coast qualifier is read from tconfig(008012)                                                               |
+| `Land/sea/coast`    | a `land/sea/coast` qualifier is read from tconfig(008012)                                                               |
 
 The geowind routine was adapted to handle MSG AMVs from MARS and its module [`src/odb/pandor/module/bator_decodbufr_mod.F90`](Harmonie/src/odb/pandor/module/bator_decodbufr_mod.F90?rev=release-43h2.beta.3) uploaded to the trunk (Mar 2017) .
 
 ## Blacklist
-The selection/blacklist of AMVs according to channel, underlying sea/land, QI, etc. is done in [`src/blacklist/mf_blacklist.b`](Harmonie/src/blacklist/mf_blacklist.b?rev=release-43h2.beta.3), section *- SATOB CONSTANT DATA SELECTION -*.
+The `selection/blacklist` of AMVs according to channel, underlying `sea/land`, QI, etc. is done in [`src/blacklist/mf_blacklist.b`](Harmonie/src/blacklist/mf_blacklist.b?rev=release-43h2.beta.3), section *- SATOB CONSTANT DATA SELECTION -*.

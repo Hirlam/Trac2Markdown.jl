@@ -2,16 +2,16 @@
 This documentation summarises the observation operator in HARMONIE and the use of the `HOP_DIRVER` tool. The test harness, `HOP_DRIVER`, calls the observation operator and generates FG departures without calling any model code or initialising any model modules. Firstly, the IFS is used to dump a single-observation `gom_plus` to file from the 1st trajectory of an experiment. Dumping multiple observations would require a more complex and full-featured dump (good file format, multi-process parallel). For code refactoring `HOP_DRIVER` can be used to test changes to the observation operator of a particular observation type.
 
 ## HARMONIE and `HOP_DRIVER`
-The `HOP_DRIVER` program was first added to CY42R2 code. The tool was initially implemented to test refactoring of the IFS observation operator code `src/arpifs/op_obs/hop.F90.` At the moment the refactor branch ([branches/refactor/harmonie](branches/refactor/harmonie)) is the only HARMONIE code set that includes `HOP_DRIVER.` Instructions on how to prepare the code and run `HOP_DRIVER` using HARMONIE are outlined below. Presentation made at [OOPS Observation Operator Workshop](HirlamMeetings/ModelMeetings/ObOpWorkshop) may provide some useful background information.
+The `HOP_DRIVER` program was first added to CY42R2 code. The tool was initially implemented to test refactoring of the IFS observation operator code `src/arpifs/op_obs/hop.F90.` At the moment the refactor branch (`[branches/refactor/harmonie`](branches/refactor/harmonie)) is the only HARMONIE code set that includes `HOP_DRIVER.` Instructions on how to prepare the code and run `HOP_DRIVER` using HARMONIE are outlined below. Presentation made at [OOPS Observation Operator `Workshop](HirlamMeetings/ModelMeetings/ObOpWorkshop`) may provide some useful background information.
 ### Comments on the branch
- * Code changes were required in order to compile cy42r2bf.04 + mods (provided by MF/ECMWF) in the HARMONIE system: [14312], [14325], [14326], [14330], [14331], [14332], [14333], [14334].
+ * Code changes were required in order to compile cy42r2bf.04 + mods (provided by `MF/ECMWF`) in the HARMONIE system: [14312], [14325], [14326], [14330], [14331], [14332], [14333], [14334].
  * Changes were made to makeup in order to compile `HOP_DRIVER` correctly: [14310], [14327], [14328], [14329], [14335], [14362], [14382], [14392].
  * Included in [14362] is a change to ODBSQLFLAGS which is set to "ODBSQLFLAGS=-O3 -C -UCANARI -DECMWF $(ODBEXTRAFLAGS)" in order to use ECMWF flavoured ODB used by `HOP_DRIVER`
- * On cca GNU compilers 4.9 are not fully supported, ie I had to build GRIB-API and NetCDF locally using gcc/gfortran 4.9 on cca
+ * On cca GNU compilers 4.9 are not fully supported, ie I had to build GRIB-API and NetCDF locally using `gcc/gfortran` 4.9 on cca
  * An environment variable, HOPDIR, is used to define the location of necessary input data for `HOP_DRIVER`
  * An environment variable, HOPCOMPILER, is used by the `HOP_driver` script to define the compiler used. This is used to compare results.
 
-### Running on ecgb/cca
+### Running on `ecgb/cca`
 ```bash
 cd $SCRATCH
 mkdir -p harmonie_releases/branches/refactor
@@ -25,7 +25,7 @@ $SCRATCH/harmonie_releases/branches/refactor/harmonie-42R2/config-sh/Harmonie ho
 ```
 
 ### Running on local platforms
-So far, only METIE.LinuxRH7gnu, which uses gfortran 4.9 and openmpi, has been tested. Input data for the amsua test case is available on ECFS at ECMWF: ec:/dui/hopdata.tar.gz
+So far, only METIE.LinuxRH7gnu, which uses gfortran 4.9 and openmpi, has been tested. Input data for the amsua test case is available on ECFS at ECMWF: `ec:/dui/hopdata.tar.gz`
 ```bash
 cd $HOME
 mkdir -p harmonie_releases/branches/refactor
@@ -61,7 +61,7 @@ Currently there is only one observation type, AMSU-A (HOPOBS=amsua), available f
  | 1007          | 7           | 3          | '        4' | 832800    | !20140131 | 215914   | -29.5906     | 0.3113       | 1                 | 12                | 227.91        | 119        | 3                |
 ## `HOP_DRIVER`
 ### Using `HOP_DRIVER`
-With `**LHOP_RESULTS=.TRUE.**` `HOP_DRIVER` will write results to a file called `*hop_results${MYPROC}*` for comparison between online and offline results. (The results file is opened by [src/arpifs/var/taskob.F90](branches/refactor/harmonie/src/arpifs/var/taskob.F90)). `HOP_DRIVER` results are written to `*hop_results${MYPROC}*` in [`src/arpifs/op_obs/hop.F90`](branches/refactor/harmonie/src/arpifs/op_obs/hop.F90):
+With `**LHOP_RESULTS=.TRUE.**` `HOP_DRIVER` will write results to a file called `*hop_results${MYPROC}*` for comparison between online and offline results. (The results file is opened by [`src/arpifs/var/taskob.F90`](branches/refactor/harmonie/src/arpifs/var/taskob.F90)). `HOP_DRIVER` results are written to `*hop_results${MYPROC}*` in [`src/arpifs/op_obs/hop.F90`](branches/refactor/harmonie/src/arpifs/op_obs/hop.F90):
 ```bash
  :
  :
@@ -86,7 +86,7 @@ ENDIF
  :
  :
 ```
-The `HOP_driver` script (based a script provided by MF) sorts the contents of the `hop_results0001` file for comparison with some results made available by ECMWF/MF:
+The `HOP_driver` script (based a script provided by MF) sorts the contents of the `hop_results0001` file for comparison with some results made available by `ECMWF/MF:`
 ```bash
  :
  :

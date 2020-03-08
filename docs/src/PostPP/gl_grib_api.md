@@ -3,7 +3,7 @@
 
 ## Introduction
 
-gl_grib_api ( as in **g**rib**l**ist ) is a multi purpose tool for file manipulation and conversion. It uses ECMWF's   [ecCodes](https://confluence.ecmwf.int//display/ECC/What+is+ecCodes) library, and can be compiled with and without support for HARMONIE FA/LFI or NETCDF files. The `gl_grib_api` package also includes software for extraction for verification, fldextr, and field comparison, [xtool](HarmonieSystemDocumentation/PostPP/xtool).
+gl_grib_api ( as in **g**rib**l**ist ) is a multi purpose tool for file manipulation and conversion. It uses ECMWF's   [`ecCodes](https://confluence.ecmwf.int//display/ECC/What+is+ecCodes`) library, and can be compiled with and without support for HARMONIE `FA/LFI` or NETCDF files. The `gl_grib_api` package also includes software for extraction for verification, fldextr, and field comparison, [`xtool](HarmonieSystemDocumentation/PostPP/xtool`).
 
 ```bash
 
@@ -45,30 +45,30 @@ gl_grib_api ( as in **g**rib**l**ist ) is a multi purpose tool for file manipula
 
 ## ecCodes definition tables
 
-Since ecCodes has replaced `grib_api` as the ECMWF primary software package to handle GRIB, we will hereafter only refer to ecCodes but same similar settings applies for `grib_api` as well. With the change to ecCodes we heavily rely on the shortName key for identification. To get the correct connection between the shortnames and the GRIB1/GRIB2 identifiers we have defined specific tables for harmonie. These tables can be found in [`gl_grib_api/definitions`](branches/gl_grib_api/definitions). To use these tables you have to define the ``ECCODES_DEFINITION_PATH`` environment variable as 
+Since ecCodes has replaced `grib_api` as the ECMWF primary software package to handle GRIB, we will hereafter only refer to ecCodes but same similar settings applies for `grib_api` as well. With the change to ecCodes we heavily rely on the shortName key for identification. To get the correct connection between the shortnames and the `GRIB1/GRIB2` identifiers we have defined specific tables for harmonie. These tables can be found in [`gl_grib_api/definitions`](branches/gl_grib_api/definitions). To use these tables you have to define the ``ECCODES_DEFINITION_PATH`` environment variable as 
 
 ```bash
 export ECCODES_DEFINITION_PATH=SOME_PATH/gl_grib_api/definitions:PATH_TO_YOUR_ECCODES_INSTALLATION
 ```
 
 
-## GRIB/FA/LFI file listing
+## `GRIB/FA/LFI` file listing
 
-Listing of GRIB/ASIMOF/FA/LFI files.
+Listing of `GRIB/ASIMOF/FA/LFI` files.
 ```bash
  gl_grib_api [-l] [-f] [-m] [-g] FILE
 ```
-where FILE is in GRIB/ASIMOF/FA/LFI format
+where FILE is in `GRIB/ASIMOF/FA/LFI` format
 
 
 |-l | input format is LFI      |
 | --- | --- |
 |-f | input format is FA       |
 |   | -l and -f are equivalent |
-|-g | print GRIB/FA/LFI header |
-|-m |print min/mean/max values |
+|-g | print `GRIB/FA/LFI` header |
+|-m |print `min/mean/max` values |
 
-## GRIB/FA/LFI file conversion
+## `GRIB/FA/LFI` file conversion
 
 ### Output to GRIB1
 
@@ -82,7 +82,7 @@ where
 | --- | --- |
 |-p |converts field excluding the extension zone ("p" as in physical domain) from FA to GRIB1 |
 
-The FA/LFI to GRIB mapping is done in a table defined by a [translation `table](Harmonie/util/gl_grib_api/inc/trans_tab.h?rev=release-43h2.beta.3`)
+The `FA/LFI` to GRIB mapping is done in a table defined by a [translation `table](Harmonie/util/gl_grib_api/inc/trans_tab.h?rev=release-43h2.beta.3`)
 
 To view the table:
 ```bash
@@ -94,7 +94,7 @@ To check for duplicates in the table:
 gl_grib_api -q
 ```
 
-The translation from FA/LFI to GRIB1 can be changed through a namelist like this one:
+The translation from `FA/LFI` to GRIB1 can be changed through a namelist like this one:
 ```bash
   &naminterp
     user_trans%full_name ='CLSTEMPERATURE',
@@ -134,9 +134,9 @@ where
  * level is the GRIB level
  * tri means timeRangeIndicator 
 
-The first three ones are well known to most users. The time range indicator is used in HARMONIE to distinguish between instantaneous and accumulated fields. Read more about the options [here](HarmonieSystemDocumentation/Forecast/Outputlist/40h1#TimeunitsWMOcodetable4) Note that for level type 109 setting level=-1 means all. 
+The first three ones are well known to most users. The time range indicator is used in HARMONIE to distinguish between instantaneous and accumulated fields. Read more about the options [`here](HarmonieSystemDocumentation/Forecast/Outputlist/40h1#TimeunitsWMOcodetable4`) Note that for level type 109 setting level=-1 means all. 
 
-We can also pick variables using their FA/lfi name:
+We can also pick variables using their `FA/lfi` name:
 ```bash
   &naminterp
     readkey%faname = 'SPECSURFGEOP','SNNNTEMPERATURE',
@@ -188,7 +188,7 @@ Fields can be excluded from the conversion by name
    ./gen_tables.pl harmonie_grib1_2_grib2
 ```
 
- and copy the grib1/grib2 directories to `gl_grib_api/definitions.`
+ and copy the `grib1/grib2` directories to `gl_grib_api/definitions.`
 
  Note that there are no GRIB2 transations yet defined for the SURFEX fields!
 
@@ -200,7 +200,7 @@ gl_grib_api can be used to produce postprocessed parameters possibly not availab
    * Wind (gust) speed and direction
    * Cloud base, cloud top, cloud mask and significant cloud top
 
- For a comprehensive list please check the [output information](HarmonieSystemDocumentation/Forecast/Outputlist/40h1#Variablespostprocessedbygl) for each cycle. **NOTE that all parameters may not be implemented in `gl_grib_api**`
+ For a comprehensive list please check the [output `information](HarmonieSystemDocumentation/Forecast/Outputlist/40h1#Variablespostprocessedbygl`) for each cycle. **NOTE that all parameters may not be implemented in `gl_grib_api**`
 
  * To produce "postprocessed" MSLP and accumulated total precipitation and visibility use the following namelist, `nam_FApp:`
 ```bash
@@ -256,7 +256,7 @@ gl_grib_api -p ICMSHHARM+0003 -o output_pl.grib -n nam_pl
 
 ## Horizontal interpolation
 
- * Interpolation/resampling between different geometries such as regular lat lon, Lambert conformal, Polar steregraphic, rotated lat lon and rotated Mercator is possible with `gl_grib_api`
+ * `Interpolation/resampling` between different geometries such as regular lat lon, Lambert conformal, Polar steregraphic, rotated lat lon and rotated Mercator is possible with `gl_grib_api`
 
  * The interpolation methods available are:
    * nearest grid-point (order=-2)
@@ -282,7 +282,7 @@ gl_grib_api -p ICMSHHARM+0003 -o output_pl.grib -n nam_pl
  order= 1,
 /
 ```
-where DLON/DLAT are in degrees.The HIRLAM [Domain Tool](https://www.hirlam.org/nwptools/domain.html) may be of use for viewing rotated lat lon domains.
+where `DLON/DLAT` are in degrees.The HIRLAM [Domain `Tool](https://www.hirlam.org/nwptools/domain.html`) may be of use for viewing rotated lat lon domains.
 ```bash
 gl_grib_api -p ICMSHHARM+0003 -n nam_FArotll  -o output.grib
 ```
@@ -302,7 +302,7 @@ gl_grib_api -p ICMSHHARM+0003 -n nam_FArotll  -o output.grib
   outgeo%projlon    =  15.
 /
 ```
-where DLON/DLAT are in meters.The HIRLAM [Domain Tool](https://www.hirlam.org/nwptools/domain.html) may be of use for viewing rotated lat lon domains.
+where `DLON/DLAT` are in meters.The HIRLAM [Domain `Tool](https://www.hirlam.org/nwptools/domain.html`) may be of use for viewing rotated lat lon domains.
 
    * Example polar stereographic projection
 ```bash
@@ -319,7 +319,7 @@ where DLON/DLAT are in meters.The HIRLAM [Domain Tool](https://www.hirlam.org/nw
   outgeo%projlon    =  15.
 /
 ```
-where DLON/DLAT are in meters.Note: the GRIB1 standard assumes that the projection plane is at 60 degrees north whereas HARMONIE assumes it is at 90 degrees north.
+where `DLON/DLAT` are in meters.Note: the GRIB1 standard assumes that the projection plane is at 60 degrees north whereas HARMONIE assumes it is at 90 degrees north.
 
  * Example rotated Mercator
 ```bash
@@ -336,7 +336,7 @@ where DLON/DLAT are in meters.Note: the GRIB1 standard assumes that the projecti
   outgeo%projlon    =  15.
 /
 ```
-where DLON/DLAT are in metersNote: rotated Mercator is not supported in GRIB1.
+where `DLON/DLAT` are in metersNote: rotated Mercator is not supported in GRIB1.
 
  * Geographical points is a special case of projection 0 use namelist file, `nam_FAgp:`
 ```bash
@@ -461,7 +461,7 @@ domain_prop_grib_api is used do extract various properties from a file.
 
 
 
-Climate:  $MPPGL `$BINDIR/domain_prop_grib_api` `-DOMAIN_CHECK` $LCLIMDIR/m$M1 -f || \
+Climate:  $MPPGL `$BINDIR/domain_prop_grib_api` `-DOMAIN_CHECK` `$LCLIMDIR/m$M1` -f || \
 
 ### Check an existing domain with a namelist specification
 
@@ -469,7 +469,7 @@ Climate:  $MPPGL `$BINDIR/domain_prop_grib_api` `-DOMAIN_CHECK` $LCLIMDIR/m$M1 -
 domain_prop_grib_api -DOMAIN_CHECK -f CLIMATE_FILE
 ```
 
-The geometry is read from fort.10 and the program aborts if the new and old geometries differs. See the [Climate](Harmonie/scr/Climate?rev=release-43h2.beta.3) for an example.
+The geometry is read from fort.10 and the program aborts if the new and old geometries differs. See the [`Climate](Harmonie/scr/Climate?rev=release-43h2.beta.3`) for an example.
 
 ### Check if Q is in gridpoint or spectral representation
 
@@ -531,7 +531,7 @@ domain_prop_grib_api -f -DATE FAFILE
 
 ## fldextr and obsextr
 
- Read about the verification extraction programs [here](HarmonieSystemDocumentation/PostPP/Extract4verification)
+ Read about the verification extraction programs [`here](HarmonieSystemDocumentation/PostPP/Extract4verification`)
 
 
 

@@ -19,13 +19,13 @@ With the basic setup and files in place we can proceed to the integration part w
   * Run assimilation and forecasts
   * Post process and archive the result
 
-The three different task are allowed to run ahead/after each other to get a good throughput.
+The three different task are allowed to run `ahead/after` each other to get a good throughput.
 
-The configuration, the full suite and the relation between different tasks is controlled by the scheduler [ECFLOW](HarmonieSystemDocumentation/ECFLOW) which has a graphical interface `ecflowview/ecflow_ui.` This documentation describes how to get started with your first experiment. The description follows the setup at ECMWF, but your local system setup would be very similar but most likely simpler. The reference Harmonie system on ECMWF platform assumes a dual-hosts setup using ECFLOW. By default, Harmonie uses the front-end ecgb to configure and launch experiments, whereas cca is used for all computations except those for operations related to observation verification and monitoring.
+The configuration, the full suite and the relation between different tasks is controlled by the scheduler [`ECFLOW](HarmonieSystemDocumentation/ECFLOW`) which has a graphical interface `ecflowview/ecflow_ui.` This documentation describes how to get started with your first experiment. The description follows the setup at ECMWF, but your local system setup would be very similar but most likely simpler. The reference Harmonie system on ECMWF platform assumes a dual-hosts setup using ECFLOW. By default, Harmonie uses the front-end ecgb to configure and launch experiments, whereas cca is used for all computations except those for operations related to observation verification and monitoring.
 
 Following example shows the steps to launch an Harmonie experiment `my_exp` from ecgb.
 
-If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration).
+If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration).
 
 ## Before you start ...
 ### hirald group
@@ -52,14 +52,14 @@ changesh
   * -r tells which version to use. There are several old versions kept on ecgb. Check the directories under ``~hlam/harmonie_release`` to see the available versions. 
   * -h tells which configuration files to use. At ECMWF config.ecgb-cca is the default one.
  * This would give you the default setup which currently is AROME physics with `CANARI+OI_MAIN` surface assimilation and 3DVAR upper air assimilations with 3h cycling on a domain covering Denmark using 2.5km horizontal resolution and 65 levels in the vertical.
- *  Now you can edit the basic configuration file [`ecf/config_exp.h`](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for domain, data locations, settings for dynamics, physics, coupling host model etc. Read more about the options in [here](HarmonieSystemDocumentation/ConfigureYourExperiment). You can also use some of the predefined configurations by calling Harmonie with the -c option:
+ *  Now you can edit the basic configuration file [`ecf/config_exp.h`](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for domain, data locations, settings for dynamics, physics, coupling host model etc. Read more about the options in [`here](HarmonieSystemDocumentation/ConfigureYourExperiment`). You can also use some of the predefined configurations by calling Harmonie with the -c option:
 ```bash
    ~hlam/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CONFIG -d DOMAIN
 ```
  where `CONFIG` is one of the setups defined in [`Harmonie_configurations.pm`](Harmonie/scr/Harmonie_configurations.pm?rev=release-43h2.beta.3). If you give `-c` with out an argument or a non existing configuration a list of configurations will be printed.
- * In some cases you might have to edit the general system configuration file, [`Env_system`](Harmonie/config-sh/config.ecgb?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
- * The rules for how to submit jobs on ecgb/cca are defined in  [`Env_submit`](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
- * If you experiment in data assimilation you might also want to change [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
+ * In some cases you might have to edit the general system configuration file, [`Env_system`](Harmonie/config-sh/config.ecgb?rev=release-43h2.beta.3). See here for further information: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration)
+ * The rules for how to submit jobs on `ecgb/cca` are defined in  [`Env_submit`](Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3). See here for further information: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration)
+ * If you experiment in data assimilation you might also want to change [`scr/include.ass`](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 
 ## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND
@@ -77,7 +77,7 @@ If your experiment have successfully completed and you would like to continue fo
 ```
 By using `prod` you tell the system that you are continuing the experiment and using the first guess from the previous cycle. The start date is take from a file progress.log created in your `$HOME/hm_home/my_exp` directory. If you would have used `start` the initial data would have been interpolated from the boundaries, a cold start in other words.
 
-## !Start/Restart of ecflowview
+## `!Start/Restart` of ecflowview
 
  To start the graphical window for ECFLOW on ecgb type
 
@@ -103,32 +103,32 @@ Next time you run your experiment the changed file will be used. You can also ma
 On ecgb, you can follow the progress of the runs on `**$SCRATCH/hm_home/my_exp**`
    * Working directory for the current cycle under `**YYYYMMDD_HH**`
    * Archived files under are in `**$SCRATCH/hm_home/my_exp/archive**`
-       * A **YYYY/MM/DD/HH** structure for per cycle data is used
-       * All logfiles under **archive/log**   
+       * A `**YYYY/MM/DD/HH**` structure for per cycle data is used
+       * All logfiles under `**archive/log**`   
    * On ecgb log files per task are found under `/cca/perm/ms/$COUNTRY/$USER/HARMONIE/my_exp.` All logfiles are also gathered in html files named like e.g. `HM_Date_YYYYMMDDHH.html` which are archived in `**$SCRATCH/hm_home/my_exp/archive/log**` on ecgb.
-   * Verification data available on the permanent disk /hpc/perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract     
+   * Verification data available on the permanent disk `/hpc/perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract`     
 ### cca
 More complete results and the main data are available on `cca:$SCRATCH/hm_home/my_exp.` Under these directories you will find:
    * All binaries under **bin**
-   * IFS libraries, object files and source code under **lib/src** if you build with makeup
-   * Scripts, config files, ecf and suite definitions under **lib/**
-   * Utilities such as makeup, `gl_grib_api` or oulan under **lib/util**
+   * IFS libraries, object files and source code under `**lib/src**` if you build with makeup
+   * Scripts, config files, ecf and suite definitions under `**lib/**`
+   * Utilities such as makeup, `gl_grib_api` or oulan under `**lib/util**`
    * Climate files under **climate**
    * Working directory for the current cycle under `**YYYYMMDD_HH**`
      * If an experiment fails it is useful to check the IFS log file, `NODE.001_01`, in the working directory of the current cycle ( `$HM_DATA/YYYYMMDD_HH` ). The failed job will be in a directory called something like `Failed_this_job.`
    * Archived files under **archive**
-       * A **YYYY/MM/DD/HH** structure for per cycle data
+       * A `**YYYY/MM/DD/HH**` structure for per cycle data
         * ICMSHHARM+NNNN and ICMSHHARM+NNNN.sfx are atmospheric and surfex forecast output files
-   * Verification input data under **extract**. This is also stored on the permanent disk /perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract
+   * Verification input data under **extract**. This is also stored on the permanent disk `/perm/$GROUP/$USER/HARMONIE/archive/$EXP/archive/extract`
 ### ECFS
-   * Since the disks on cca/ecgb are cleaned regularly we need to store data permanently on ECFS, the EC file system, as well. There are two options for ECFS, ectmp and ec. The latter is a permanent storage and first one is cleaned after 90 days. Which one you use is defined by the ECFSLOC variable. To view your data type e.g.
+   * Since the disks on `cca/ecgb` are cleaned regularly we need to store data permanently on ECFS, the EC file system, as well. There are two options for ECFS, ectmp and ec. The latter is a permanent storage and first one is cleaned after 90 days. Which one you use is defined by the ECFSLOC variable. To view your data type e.g.
 ```bash
  els ectmp:/$USER/harmonie/my_exp
 ```
-   * The level of archiving depends on `ARSTRATEGY` in `ecf/config_exp.h` . The default setting will give you one**YYYY/MM/DD/HH** structure per cycle data containing:
+   * The level of archiving depends on `ARSTRATEGY` in `ecf/config_exp.h` . The default setting will give you `one**YYYY/MM/DD/HH**` structure per cycle data containing:
        * Surface analysis, ICMSHANAL+0000[.sfx]
        * Atmospheric analysis result MXMIN1999+0000
-       * Blending between surface/atmospheric analysis and cloud variable from the first guess LSMIXBCout
+       * Blending between `surface/atmospheric` analysis and cloud variable from the first guess LSMIXBCout
        * ICMSHHARM+NNNN and ICMSHHARM+NNNN.sfx are atmospheric and surfex forecast model state files
        * PFHARM* files produced by the inline postprocessing
        * ICMSHSELE+NNNN.sfx are surfex files with selected output
@@ -175,8 +175,8 @@ You can always remove the data from ECFS directly by running e.g.
  erm -R ectmp:/YOUR_USER/harmonie/EXPERIMENT_NAME 
 ```
 
- * For more information about cleaning with Harmonie read [here](HarmonieSystemDocumentation/TheHarmonieScript)
- * For more information about the ECFS commands read [here](https://confluence.ecmwf.int/display/UDOC/ecfs.1)
+ * For more information about cleaning with Harmonie read [`here](HarmonieSystemDocumentation/TheHarmonieScript`)
+ * For more information about the ECFS commands read [`here](https://confluence.ecmwf.int/display/UDOC/ecfs.1`)
 
 
 ----

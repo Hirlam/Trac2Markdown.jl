@@ -4,7 +4,7 @@
 This wiki page outlines the configuration files required by HARMONIE for successful compilation and running of the system.
 
 ## Basic requirements
-All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick start](HarmonieSystemDocumentation/QuickStartLocal) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to `PATH_TO_HARMONIE` one must issue the following command:
+All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick `start](HarmonieSystemDocumentation/QuickStartLocal`) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to `PATH_TO_HARMONIE` one must issue the following command:
 ```bash
 cd hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
@@ -23,8 +23,8 @@ Env_system -> config-sh/config.YOURHOST           ## YOURHOST task submission se
 ```
 But, what if your host configuration is not available in the HARMONIE system? Host specific configuration files in `PATH_TO_HARMONIE/config-sh` must be available for your host and configuration files for the compilation of the code must be available. This documentation attempts to describe what is required.
 ## Host config files
-### `Env_system` -> config-sh/config.YOURHOST
-The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [config-sh](Harmonie/config-sh?rev=release-43h2.beta.3) to see what other people have done. The table below outlines variables set in config-sh/config-sh.YOURHOST and what the variables do:
+### `Env_system` -> `config-sh/config.YOURHOST`
+The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [`config-sh](Harmonie/config-sh?rev=release-43h2.beta.3`) to see what other people have done. The table below outlines variables set in `config-sh/config-sh.YOURHOST` and what the variables do:
 
 |# Variable name|# Description|
 | --- | --- |
@@ -41,7 +41,7 @@ The config.YOURHOST file defines host specific variables such as some input dire
 |HM_SAT_CONST            |location of constants for satellite assimilation                                                                                    |
 |RTTOV_COEFDIR           |location of RTTOV coefficients                                                                                                      |
 |HM_DATA                 |location of top working directory for the experiment                                                                                |
-|HM_LIB                  |location of src/scripts and compiled code                                                                                           |
+|HM_LIB                  |location of `src/scripts` and compiled code                                                                                           |
 |TASK_LIMIT              |Maximum number of jobs submitted by ECFLOW                                                                                          |
 |RSYNC_EXCLUDE           |used to exclude .git* sub-directories from copy of source code for compilation                                                      |
 |DR_HOOK_IGNORE_SIGNALS  |environment variable used by Dr Hook to ignore certain "signals"                                                                    |
@@ -55,7 +55,7 @@ The config.YOURHOST file defines host specific variables such as some input dire
 |BUFR_TABLES             |location of local BUFR tables                                                                                                       |
 
 
-### `Env_submit` -> config-sh/submit.YOURHOST
+### `Env_submit` -> `config-sh/submit.YOURHOST`
 The `Env_submit` file uses perl to tell the HARMONIE scheduler how to execute programs - which programs should be run on multiple processors and define batch submissions if required.
 
 |# perl|= description                                                                                                                       |
@@ -85,7 +85,7 @@ The `Env_submit` file uses perl to tell the HARMONIE scheduler how to execute pr
 |crayx1                 |                               |             |                      |
 |crayxt5m               |                               |             |                      |
 |ecgb                   |                               |             |                      |
-|ecgb-cca               |ECMWF HPC with MPI dual host   |slurm/PBS    |                      |
+|ecgb-cca               |ECMWF HPC with MPI dual host   `|slurm/PBS`    |                      |
 |fmisms                 |                               |             |                      |
 |jumbo                  |                               |             |                      |
 |xt5intel               |                               |             |                      |
@@ -97,7 +97,7 @@ config files required for compilation of code using Makeup ...
 
 More information on Makeup is available here: [Build with `Makeup](HarmonieSystemDocumentation/Build_with_makeup`)
 ### Obsmon
-For config files required for compilation of obsmon check [here](Harmonie/util/obsmon/config?rev=release-43h2.beta.3)
+For config files required for compilation of obsmon check [`here](Harmonie/util/obsmon/config?rev=release-43h2.beta.3`)
 
 ----
 

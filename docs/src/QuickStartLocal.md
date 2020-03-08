@@ -20,13 +20,13 @@ With the basic setup and files in place we can proceed to the integration part w
   * Run assimilation and forecasts (Date)
   * Post process and archive the result (Postprocessing)
 
-The three different task are allowed to run ahead/after each other to get a good throughput.
+The three different task are allowed to run `ahead/after` each other to get a good throughput.
 
 The configuration, the full suite and the relation between different tasks is controlled by the scheduler [mini-SMS](HarmonieSystemDocumentation#Suitemangement). This documentation describes how to get started with your first experiment. The description is general for a single host. (The reference Harmonie system on ECMWF platform assumes a dual-hosts setup with the front-end ecgb used to configure and launch experiments and cca is used for all computations except those for operations related to observation verification and monitoring. 
 
 Following example shows the steps to launch an Harmonie experiment `my_exp.`
 
-If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration). 
+If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration). 
 
 ## Configure your experiment
 
@@ -40,16 +40,16 @@ If this is the first time to install HARMONIE on your local platform please take
   * -r is the path to your downloaded version of HARMONIE
   * -h tells which configuration files to use. At ECMWF config.ecgb is the default one. List `PATH_TO_HARMONIE/config-sh/config.*` for available HOST configurations
  * This setup command  provides the default setup which currently is AROME physics with `CANARI+OI_MAIN` surface assimilation and 3DVAR upper air assimilations with 3h cycling on a domain covering Denmark using 2.5km horizontal resolution and 65 levels in the vertical.
- *  Now you can edit the basic configuration file [`ecf/config_exp.h`](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for model domain, physics (AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. Read more about the options in [here](HarmonieSystemDocumentation/ConfigureYourExperiment). You can also use some of the predefined configurations by calling Harmonie with the -c option:
+ *  Now you can edit the basic configuration file [`ecf/config_exp.h`](Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for model domain, physics (AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. Read more about the options in [`here](HarmonieSystemDocumentation/ConfigureYourExperiment`). You can also use some of the predefined configurations by calling Harmonie with the -c option:
 ```bash
 mkdir $HOME/hm_home/my_exp
 cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CONFIG 
 ```
  where `CONFIG` is one of the setups defined in [`Harmonie_configurations.pm`](Harmonie/scr/Harmonie_configurations.pm?rev=release-43h2.beta.3). If you give `-c` with out an argument or a non existing configuration a list of configurations will be printed.
- * In some cases you might have to edit the general system configuration file, `Env_system.` See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
- * The rules for how to submit jobs are defined in `Env_submit`]. See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](HarmonieSystemDocumentation/PlatformConfiguration)
- * If you experiment in data assimilation you might also want to change [scr/include.ass](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
+ * In some cases you might have to edit the general system configuration file, `Env_system.` See here for further information: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration)
+ * The rules for how to submit jobs are defined in `Env_submit`]. See here for further information: [`HarmonieSystemDocumentation/PlatformConfiguration`](HarmonieSystemDocumentation/PlatformConfiguration)
+ * If you experiment in data assimilation you might also want to change [`scr/include.ass`](Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 
 ## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND, and forecast length, LL
@@ -58,7 +58,7 @@ cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie start DTG# YYYYMMDDHH DTGENDYYYYMMDDHH LL=12
 # e.g., PATH_TO_HARMONIE/Harmonie start DTG# 2012122400 DTGEND2012122406 LL=12
 ```
- If you would like to only run long forecasts at 00/12 UTC and short (3h) at 03/06/09/15/18/21, you specify the longer forecast length as LLMAIN. 
+ If you would like to only run long forecasts at `00/12` UTC and short (3h) at `03/06/09/15/18/21`, you specify the longer forecast length as LLMAIN. 
 ```bash
 cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie start DTG# 2012122400 LLMAIN24
@@ -73,7 +73,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie prod DTGEND# YYYYMMDDHH LL12
 ```
 By using `prod` you tell the system that you are continuing the experiment and using the first guess from the previous cycle. The start date is take from a file progress.log created in your `$HOME/hm_home/my_exp` directory. If you would have used `start` the initial data would have been interpolated from the boundaries, a cold start in other words.
 
-## !Start/Restart of mXCdp
+## `!Start/Restart` of mXCdp
 To start the graphical window for mSMS on ecgb type
 ```bash
 cd $HOME/hm_home/my_exp
@@ -91,7 +91,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie co nam/harmonie_namelists.pm         # retri
 vi nam/harmonie_namelists.pm                        # modify the namelist
 ```
 
-Next time you run your experiment the changed file will be used. You can also make changes in a running experiment. Make the change you wish and rerun the `InitRun` task in the mXCdp window. The !InitRun task copies all files from your local experiment directory to your working directory ``$HM_DATA`.` Once your `InitRun` task is complete your can rerun the task you are interested in. If you wish to recompile something you will also have to rerun the `Build` tasks. Read more about how to control and rerun tasks in mini-SMS from mXCdp [here](HarmonieSystemDocumentation/scripts/mXCdp).
+Next time you run your experiment the changed file will be used. You can also make changes in a running experiment. Make the change you wish and rerun the `InitRun` task in the mXCdp window. The !InitRun task copies all files from your local experiment directory to your working directory ``$HM_DATA`.` Once your `InitRun` task is complete your can rerun the task you are interested in. If you wish to recompile something you will also have to rerun the `Build` tasks. Read more about how to control and rerun tasks in mini-SMS from mXCdp [`here](HarmonieSystemDocumentation/scripts/mXCdp`).
 
 ## Directory structure
 On most platforms HARMONIE compiles and produces all its output data under `$HM_DATA` (defined in `~/hm_home/my_exp/Env_system`)
@@ -111,7 +111,7 @@ On most platforms HARMONIE compiles and produces all its output data under `$HM_
 | Archived cycle output                    `|$HM_DATA/archive/YYYY/MM/DD/HH`                                                               |
 | Archived log files                       `|$HM_DATA/archive/log/HM_TaskFamily_YYYYMMDDHH.html` where !TaskFamily=!MakeCycleInput,Date,Postprocessing  |
 | Task log files                           |$JOBOUTDIR (set in `Env_system`) usually `$HM_DATA/sms_logfiles`                                 |
-| Verification data (vfld/vobs/logmonitor) `|$HM_DATA/archive/extract`                                                                     |
+| Verification data (`vfld/vobs/logmonitor`) `|$HM_DATA/archive/extract`                                                                     |
 | Verification (monitor) results           `|$HM_DATA/archive/extract/WebgraF`                                                             |
 | "Fail" directory                         `|$HM_DATA/YYYYMMDD_HH/Failed_Family_Task` (look at ifs.stat, `NODE.001_01`, fort.4               |
 
@@ -119,7 +119,7 @@ On most platforms HARMONIE compiles and produces all its output data under `$HM_
 $HM_DATA/archive/YYYY/MM/DD/HH is used to store "archived" output from HARMONIE cycles. The level of archiving depends on `ARSTRATEGY` in `ecf/config_exp.h` . The default setting is medium which will keep the following cycle data:
    * Surface analysis: ICMSHANAL+0000
    * Atmospheric analysis result: MXMIN1999+0000
-   * Blending between surface/atmospheric analysis and cloud variable from the first guess: ANAB1999+0000
+   * Blending between `surface/atmospheric` analysis and cloud variable from the first guess: ANAB1999+0000
    * ICMSHHARM+NNNN and ICMSHHARM+NNNN.sfx are atmospheric and surfex forecast output files
    * PFHARM* files produced by the inline postprocessing 
    * GRIB files produced by the conversion of FA output files to GRIB if MAKEGRIB=yes in `ecf/config_exp.h` 
