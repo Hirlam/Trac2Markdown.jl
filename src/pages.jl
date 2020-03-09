@@ -1,47 +1,52 @@
 
+HSD="HarmonieSystemDocumentation"
+
 Configuration = [
-    "Experiment" => "ConfigureYourExperiment.md",
-    "Platform" => "PlatformConfiguration.md",       
-    "Namelist" => "Namelists.md",
-    "Update Namelist" => "UpdateNamelists.md",
-    "Model Domain" => "ModelDomain.md",        
-    "Vertical Grid" => "VerticalGrid.md",
-    "Climate Simulation" => "ClimateSimulation.md",
-    "Hires topography" => "How_to_use_hires_topography.md"
+    "Experiment" => "$HSD/ConfigureYourExperiment.md",
+    "Platform" => "$HSD/PlatformConfiguration.md",       
+    "Namelist" => "$HSD/Namelists.md",
+    "Update Namelist" => "$HSD/UpdateNamelists.md",
+    "Model Domain" => "$HSD/ModelDomain.md",        
+    "Vertical Grid" => "$HSD/VerticalGrid.md",
+    "Climate Simulation" => "$HSD/ClimateSimulation.md",
+    "Hires topography" => "$HSD/How_to_use_hires_topography.md"
 ]
 
 ECFLOW_TASKS = [
-    "Climate" => "ClimateGeneration.md",
+    "Climate" => "$HSD/ClimateGeneration.md",
     "Observations" => [
-        "UseofObservation.md",
-        "ObservationOperators.md",
-        "ObservationHowto/GNSS.md",
-        "ObservationHowto/Amv.md",
-        "RadarData.md",
+        "$HSD/UseofObservation.md",
+        "$HSD/ObservationOperators.md",
+        "$HSD/ObservationHowto/GNSS.md",
+        "$HSD/ObservationHowto/Amv.md",
+        "$HSD/RadarData.md",
         "Preprocessing" => [
          # "ObservationPreprocessing.md" ,
-            "ObservationPreprocessing/ObservationData.md", 
-            "Bator" => "ObservationPreprocessing/Bator.md", 
-            "Oulan" => "ObservationPreprocessing/Oulan.md", 
-            "Cope" => "ObservationPreprocessing/Cope.md"
+            "$HSD/ObservationPreprocessing/ObservationData.md", 
+            "Bator" => "$HSD/ObservationPreprocessing/Bator.md", 
+            "Oulan" => "$HSD/ObservationPreprocessing/Oulan.md", 
+            "Cope" => "$HSD/ObservationPreprocessing/Cope.md"
          ]
     ],            
-    "Bator" => "ObservationPreprocessing/Bator.md", 
-    "Oulan" => "ObservationPreprocessing/Oulan.md",
-    "Boundaries" => "BoundaryFilePreparation.md",
-    "Screening" => "Screening.md",
-    "Surface Analysis" => "Analysis/SurfaceAnalysis.md", 
-    "DFI" => "DigitialFilterInitialization.md",
-    "Forecast" => "Forecast.md",
+    "Bator" => "$HSD/ObservationPreprocessing/Bator.md", 
+    "Oulan" => "$HSD/ObservationPreprocessing/Oulan.md",
+    "Boundaries" => "$HSD/BoundaryFilePreparation.md",
+    "Screening" => "$HSD/Screening.md",
+    "Surface Analysis" => "$HSD/Analysis/SurfaceAnalysis.md", 
+    "DFI" => "$HSD/DigitialFilterInitialization.md",
+    "Forecast" => "$HSD/Forecast.md",
     "Post Processing" => [
-        "Obsmon" => "PostPP/Obsmon.md", 
-        "Diagnostics" => "PostPP/Diagnostics.md", 
-        "xtool" => "PostPP/xtool.md", 
-        "GL interpolation" => "PostPP/gl/Interpolation.md",
-        "Verification" => [ "PostPP/Verification.md", "PostPP/Extract4verification.md"],
-        "Fullpos" => "PostPP/Fullpos.md",
-        "FileConversion" => "PostPP/FileConversions.md",
-        "gl_grib_api" => "PostPP/gl_grib_api.md",
+        "Obsmon" => "$HSD/PostPP/Obsmon.md", 
+        "Diagnostics" => "$HSD/PostPP/Diagnostics.md", 
+        "xtool" => "$HSD/PostPP/xtool.md", 
+        "GL interpolation" => "$HSD/PostPP/gl/Interpolation.md",
+        "Verification" => [
+            "$HSD/PostPP/Verification.md", 
+            "$HSD/PostPP/Extract4verification.md"
+        ],
+        "Fullpos" => "$HSD/PostPP/Fullpos.md",
+        "FileConversion" => "$HSD/PostPP/FileConversions.md",
+        "gl_grib_api" => "$HSD/PostPP/gl_grib_api.md",
     ] 
 ]   
 
@@ -50,63 +55,63 @@ pages = [
     
     "Getting Started" => [
         "Running at ECMWF and local" => [
-            "Running at ECMWF" => "Harmonie-mSMS.md",
-            "Fast start on cca" => "Fast_start_on_cca.md",
-            "Quick start local" => "QuickStartLocal.md",
+            "Running at ECMWF" => "$HSD/Harmonie-mSMS.md",
+            "Fast start on cca" => "$HSD/Fast_start_on_cca.md",
+            "Quick start local" => "$HSD/QuickStartLocal.md",
         ],  
         "Installation" => [
-            "Installation" => "Installation.md",
-            "General Software Requirements" => "General.md",
-            "Makeup" => "Build_with_makeup.md",
-            "Stand Alone ODB" => "StandaloneOdb.md",
-            "Redhat7" => "Redhat7Install.md",
-            "Centos6" => "Centos6Install.md"    
+            "Installation" => "$HSD/Installation.md",
+            "General Software Requirements" => "$HSD/General.md",
+            "Makeup" => "$HSD/Build_with_makeup.md",
+            "Stand Alone ODB" => "$HSD/StandaloneOdb.md",
+            "Redhat7" => "$HSD/Redhat7Install.md",
+            "Centos6" => "$HSD/Centos6Install.md"    
         ],  
-        "The Harmonie Script" => "TheHarmonieScript.md",
-        "Profiling and Traceback" => "DrHook.md",
-        "File Formats" => "FileFormats.md",     
+        "The Harmonie Script" => "$HSD/TheHarmonieScript.md",
+        "Profiling and Traceback" => "$HSD/DrHook.md",
+        "File Formats" => "$HSD/FileFormats.md",     
         "Job Scheduling" => [           
-            "ECFlow" => "ECFLOW.md",
-            "mXCdp" => "scripts/mXCdp.md", 
-            "mSMS" => "scripts/mSMS.md"
+            "ECFlow" => "$HSD/ECFLOW.md",
+            "mXCdp" => "$HSD/scripts/mXCdp.md", 
+            "mSMS" => "$HSD/scripts/mSMS.md"
         ],
         "Testbed and Mitraillette" => [
             #"Testbed" => "Evaluation/HarmonieTestbed.md",
-            "Mitraillette" => "Evaluation/Mitraillette.md"
+            "Mitraillette" => "$HSD/Evaluation/Mitraillette.md"
         ],
         "Directories  and Binaries" => [
-            "Directories" => "Content.md", 
-            "Binaries" => "Binaries.md"
+            "Directories" => "$HSD/Content.md", 
+            "Binaries" => "$HSD/Binaries.md"
         ],
         "Configuration" => Configuration,                
         "ECFlow tasks" => ECFLOW_TASKS, 
         "Other" => [          
        
             # "PreviousVersions.md",            
-            "Scalability_and_Refactoring.md",
-            "HarmonieBenchMark.md",
-            "MFaccess.md",
-            "Phasing.md" 
+            "$HSD/Scalability_and_Refactoring.md",
+            "$HSD/HarmonieBenchMark.md",
+            "$HSD/MFaccess.md",
+            "$HSD/Phasing.md" 
                   
-       # "PreviousModelOutputLists.md",           
+       # "$HSD/PreviousModelOutputLists.md",           
             
         ]
     ],
     #"Input Data" => [
-    #    "Climate" => "ClimateGeneration.md",
-    #    "Boundaries" => "BoundaryFilePreparation.md",
+    #    "Climate" => "$HSD/ClimateGeneration.md",
+    #    "Boundaries" => "$HSD/BoundaryFilePreparation.md",
         
     #],
     #"Data Assimilation" => [
-    #    "Screening" => "Screening.md",
-    #    "Structure functions" => "Structurefunctions_ensys.md",
-    #    "DFS" => "DFS.md",         
-        # "Analysis" => "Analysis.md", 
-    #    "Single Obs" => "SingleObs_ensys.md",
-    #    "Conrad" => "Conrad.md"     
+    #    "Screening" => "$HSD/Screening.md",
+    #    "Structure functions" => "$HSD/Structurefunctions_ensys.md",
+    #    "DFS" => "$HSD/DFS.md",         
+        # "Analysis" => "$HSD/Analysis.md", 
+    #    "Single Obs" => "$HSD/SingleObs_ensys.md",
+    #    "Conrad" => "$HSD/Conrad.md"     
     #]
          
-    # "TrainingCourses.md",
+    # "$HSD/TrainingCourses.md",
     
     
 ]

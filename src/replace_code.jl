@@ -23,7 +23,7 @@ function replace_code(s::String)
             # Single line code blocks
            line = replace(line, r"\{\{\{(.*?)\}\}\}" => s"`\1`") 
            # words containing _ or / 
-           line = replace(line, r"( [,\[\(]?)([^ ]*?[\_\/][^ ,\)\]]*)" => s"\1`\2`")
+           #line = replace(line, r"( [,\[\(]?)([^ ]*?[\_\/][^ ,\)\]]*)" => s"\1`\2`")
            #line = replace(line, r"\[`?([^ ]*?[\_/][^ ]*?)`?\]" => s"[`\1`]")
            #line = replace(line, r"\(`?([^ ]*?[\_/][^ ]*?)`?\)" => s"(`\1`)")
 

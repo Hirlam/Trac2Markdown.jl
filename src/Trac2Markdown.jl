@@ -15,8 +15,8 @@ const hlpassw = get(ENV,"HLPASSW","")
 const MARKDOWNDIR   = joinpath(dirname(pathof(Trac2Markdown)), "../docs/src/")
 const WIKIDIR   = joinpath(dirname(pathof(Trac2Markdown)), "../docs/wiki/")
 const tracurl       = "https://$hluser:$hlpassw@hirlam.org/trac/"
-const wikiurl       = "$tracurl/wiki/HarmonieSystemDocumentation/"
-const attachmenturl = "$tracurl/raw-attachment/wiki/HarmonieSystemDocumentation/"
+const wikiurl       = "$tracurl/wiki/"
+const attachmenturl = "$tracurl/raw-attachment/wiki/"
 
 include("trac2markdown.jl")
 include("trac2md.jl")

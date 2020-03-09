@@ -26,6 +26,25 @@ function trac2markdown(relurl::String; getattachments=false)
         push!(subwikis, capture)
     end
 
+    # Remove some navigation symbols
+    subs =  [ 
+       "== '''Harmonie System Documentation''' ==" => "",
+       "= '''Harmonie System Documentation''' =" => "",
+       "[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]" => "",
+       r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
+       "[[Center(end)]]"                 => "" ,       # This one doesn't end in \r\n     
+    ]
+
+    s =  foldl(replace, subs, init = s)
+
+
+    # To create relative url in Markdown we need the nestling level
+    # So we can point to the docs/src directory
+    nestinglevel = length(splitpath(relurl))-1
+    wikisub = repeat("../",nestinglevel)    
+    sstr = SubstitutionString("[\\2] ($wikisub\\1.md)")    
+    s = replace(s,r"\[wiki:([^ ]+?) (.+?)\]" => sstr)
+
     # convert text to markdown
     mdtxt  = trac2md(s)
 
