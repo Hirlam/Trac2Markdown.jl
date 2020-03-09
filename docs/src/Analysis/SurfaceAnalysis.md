@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Analysis/SurfaceAnalysis?action=edit"
+```
 
 ==
 # Surface Data Assimilation in HARMONIE

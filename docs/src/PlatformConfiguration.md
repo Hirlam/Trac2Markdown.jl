@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/PlatformConfiguration?action=edit"
+```
 
 ## Platform Configuration
 ## Overview

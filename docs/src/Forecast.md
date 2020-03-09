@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Forecast?action=edit"
+```
 # Harmonie system Documentation
 ## Forecast
 ## Introduction Forecast =# [`Forecast](Harmonie/scr/Forecast?revrelease-43h2.beta.3`) is the script, which initiates actual 

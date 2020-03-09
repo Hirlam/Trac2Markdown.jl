@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Namelists?action=edit"
+```
 
 
 ## Controlling the namelists in HARMONIE

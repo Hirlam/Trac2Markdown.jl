@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Centos6Install?action=edit"
+```
 # Centos 6 instructions
 
 # INFORMATION

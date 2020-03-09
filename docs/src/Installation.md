@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Installation?action=edit"
+```
 
 ==
 # HARMONIE System Installation

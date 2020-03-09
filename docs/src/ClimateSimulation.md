@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ClimateSimulation?action=edit"
+```
 
 ==
 # How to run a Climate simulation with Harmonie

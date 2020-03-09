@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationHowto/Amv?action=edit"
+```
 
 # Atmospheric Motion Vectors (AMV)
 

@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/UpdateNamelists?action=edit"
+```
 # Update the namelist hashes
 
 ## Introduction

@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/scripts/mXCdp?action=edit"
+```
 # A new client `/` server solution for mXCdp `/` mSMS
 
 The original mini-XCdp monitor was written as a set of (`perl/Tk`) subroutines

@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Bator?action=edit"
+```
 # ODB creation: Bator
 ## General Description
 The pre-processing step creates ODB (Observational Data Base) from various observation data files possibly in different formats.

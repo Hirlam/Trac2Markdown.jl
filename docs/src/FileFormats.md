@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?action=edit"
+```
 
 
 ## File formats in HARMONIE

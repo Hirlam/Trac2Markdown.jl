@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationOperators?action=edit"
+```
 # Observation operators
 This documentation summarises the observation operator in HARMONIE and the use of the `HOP_DIRVER` tool. The test harness, `HOP_DRIVER`, calls the observation operator and generates FG departures without calling any model code or initialising any model modules. Firstly, the IFS is used to dump a single-observation `gom_plus` to file from the 1st trajectory of an experiment. Dumping multiple observations would require a more complex and full-featured dump (good file format, multi-process parallel). For code refactoring `HOP_DRIVER` can be used to test changes to the observation operator of a particular observation type.
 

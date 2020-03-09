@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Cope?action=edit"
+```
 # ODB creation (COPE)
 ## General Description
 HIRLAM, ALADIN and Météo France are working together with ECMWF to develop COPE, Continuous Observation Pre-processing Environment, to replace `!Oulan/Bator` (and BUFR2ODB at ECMWF), to improve the pre-processing of observations for use in NWP. COPE developments are made in ECMWF's git repository. A COPE [40h1 HARMONIE `branch](branches/harmonie_40h1_cope`) has been created to test COPE in the HARMONIE framework.

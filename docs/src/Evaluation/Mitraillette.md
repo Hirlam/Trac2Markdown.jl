@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Evaluation/Mitraillette?action=edit"
+```
 # Mitraillette - the ALADIN dynamical core testbed
 
 Mitraillette is a script designed to validate ALADIN configurations and is particularly useful to test a new cycle. This script uses a chain of jobs: when a job is finished it launches the following job, in a predetermined order. There are several documents describing the system on the 

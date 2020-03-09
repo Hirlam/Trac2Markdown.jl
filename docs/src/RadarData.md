@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/RadarData?action=edit"
+```
 # Assimilation of Radar Data
 This documentation outlines how to retrieve, process and assimilate HDF5 radar data
 

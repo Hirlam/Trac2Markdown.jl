@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/TheHarmonieScript?action=edit"
+```
 
 
 ## The Harmonie main script

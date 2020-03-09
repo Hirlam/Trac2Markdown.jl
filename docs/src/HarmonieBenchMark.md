@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/HarmonieBenchMark?action=edit"
+```
 
 # Harmonie RAPS benchmark
 

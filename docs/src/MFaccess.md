@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/MFaccess?action=edit"
+```
 # Using Météo-France Servers
 
 ## Introduction

@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/StandaloneOdb?action=edit"
+```
 # ODB software
 ## Get the software
 To make best use of ODB information produced by your Harmonie experiment one should use ODB and ODB-API software developed by ECMWF. Below are instruction on how to obtain the software from ECMWF.

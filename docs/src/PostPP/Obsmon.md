@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/Obsmon?action=edit"
+```
 # OBSMON
 
 In 2014 a new version of the observational monitoring system entered trunk. The first official release containing obsmon was cy38h1.2

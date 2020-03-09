@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/DrHook?action=edit"
+```
 # Profiling & traceback tool Dr.Hook
 
 ## Background

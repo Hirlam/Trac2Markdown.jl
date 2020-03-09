@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Build_with_makeup?action=edit"
+```
 
 ==
 # Building with MAKEUP

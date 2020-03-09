@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/ObservationData?action=edit"
+```
 # Observation data
 In off-line experiments the Oulan script extracts observations from a data archive, e.g from MARS archive at ECMWF platform, or from existing observation files (`BUFR/GRIB` [`seviri]/HDF5` [radar]) available locally.
 # ECMWF

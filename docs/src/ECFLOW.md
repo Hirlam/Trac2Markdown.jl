@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ECFLOW?action=edit"
+```
 
 
 ## Running Harmonie under ecFlow

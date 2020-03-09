@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Fast_start_on_cca?action=edit"
+```
 
 # Configure for faster setup on cca
 

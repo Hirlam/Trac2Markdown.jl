@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Scalability_and_Refactoring?action=edit"
+```
 # Scalability and refactoring
 *Preliminary docs, presentations and links*
 

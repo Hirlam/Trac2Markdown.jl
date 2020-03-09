@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ClimateGeneration?action=edit"
+```
 
 
 ## Generation of climate and physiography files

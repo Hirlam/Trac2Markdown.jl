@@ -1,3 +1,6 @@
+```@meta
+EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Redhat7Install?action=edit"
+```
 # Redhat 7 instructions
 ## Requirements
 This is a *HOWTO* for building and running Harmonie on a Redhat 7 server with GNU compilers using Open MPI. This should probably work on a CentOS 7 PCs too.
