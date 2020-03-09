@@ -6,7 +6,7 @@ Returns names of linked wikipages
 """
 function trac2markdown(relurl::String; getattachments=false)
 
-    s = isfile("$(Trac2Markdown.WIKIDIR)$relurl") ? getfromwikidir(relurl) : getfromhirlam(relurl)
+    s = isfile("$(Trac2Markdown.WIKIDIR)$relurl.wiki") ? getfromwikidir(relurl) : getfromhirlam(relurl)
           
 
     ## download attachments
@@ -30,6 +30,7 @@ function trac2markdown(relurl::String; getattachments=false)
     subs =  [ 
        "== '''Harmonie System Documentation''' ==" => "",
        "= '''Harmonie System Documentation''' =" => "",
+       "=== '''Harmonie System Training''' ===" => "",
        "[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]" => "",
        r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
        "[[Center(end)]]"                 => "" ,       # This one doesn't end in \r\n     
@@ -63,16 +64,18 @@ function trac2markdown(relurl::String; getattachments=false)
 end
 
 function getfromwikidir(relurl)
-    @info "using $(Trac2Markdown.WIKIDIR)$relurl"
-    return read("$(Trac2Markdown.WIKIDIR)$relurl",String)
+    @info "using $(Trac2Markdown.WIKIDIR)$relurl.wiki"
+    return read("$(Trac2Markdown.WIKIDIR)$relurl.wiki",String)
 end 
 
+# The .wiki extension is added to avoid conflict with 
+# having a file with the same name as a directory
 function getfromhirlam(relurl)
     @info "Retrieving $relurl"
     resp = HTTP.get("$wikiurl$relurl?format=txt")
     s = String(resp.body)
 
     mkpath(dirname(joinpath(Trac2Markdown.WIKIDIR,relurl)))
-    write(joinpath(Trac2Markdown.WIKIDIR,relurl),s)
+    write(joinpath(Trac2Markdown.WIKIDIR,"$relurl.wiki"),s)
     return s
 end 

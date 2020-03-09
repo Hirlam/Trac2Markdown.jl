@@ -1,4 +1,7 @@
 
+
+include("TrainingPages.jl")
+
 HSD="HarmonieSystemDocumentation"
 
 Configuration = [
@@ -97,6 +100,7 @@ pages = [
             
         ]
     ],
+    "Training" => TrainingPages
     #"Input Data" => [
     #    "Climate" => "$HSD/ClimateGeneration.md",
     #    "Boundaries" => "$HSD/BoundaryFilePreparation.md",
