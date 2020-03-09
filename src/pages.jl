@@ -76,7 +76,7 @@ pages = [
             "mSMS" => "$HSD/scripts/mSMS.md"
         ],
         "Testbed and Mitraillette" => [
-            #"Testbed" => "Evaluation/HarmonieTestbed.md",
+            "Testbed" => "$HSD/Evaluation/HarmonieTestbed.md",
             "Mitraillette" => "$HSD/Evaluation/Mitraillette.md"
         ],
         "Directories  and Binaries" => [
