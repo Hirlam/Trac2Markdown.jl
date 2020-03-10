@@ -38,7 +38,7 @@ cmake $source_dir \
     -DCMAKE_CXX_FLAGS_DEBUG=&quot;-O0&quot; \
     -DCMAKE_CXX_FLAGS_RELEASE=&quot;-O2 -DNDEBUG&quot; \
     -DCMAKE_Fortran_COMPILER=gfortran \
-    -DCMAKE_Fortran_FLAGS# &quot;-fconvertbig-endian -fdefault-real-8 -fPIC -DLINUX&quot; \
+    -DCMAKE_Fortran_FLAGS=&quot;-fconvert=big-endian -fdefault-real-8 -fPIC -DLINUX&quot; \
     -DCMAKE_Fortran_FLAGS_DEBUG=&quot;-g -O0&quot; \
     -DCMAKE_Fortran_FLAGS_RELEASE=&quot;-O2&quot; \
     -DODB_API_TOOLS=OFF \
@@ -95,7 +95,7 @@ dcagen
 cd ../../
 ls -l ../conv.38h1.sql
 which odb_migrator
-/opt/metlib/odb_api/0.9.31/gnu/bin/odb_migrator -addcolumns &quot;expver# &#39;    38h1&#39;,class2,stream# 1025,type264&quot; odb_ccma/CCMA ../conv.38h1.sql var${DTG}.odb
+/opt/metlib/odb_api/0.9.31/gnu/bin/odb_migrator -addcolumns &quot;expver=&#39;    38h1&#39;,class=2,stream=1025,type=264&quot; odb_ccma/CCMA ../conv.38h1.sql var${DTG}.odb
 ls -l var${DTG}.odb</code></pre><p>Here is the SQL file used: <a href="https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/StandaloneOdb/conv.38h1.sql">conv.38h1.sql</a>. To construct my conv.38h1.sql file did carried out the following commands:</p><pre><code class="language-bash">cd odb_ccma/CCMA/
 odbsql -q &quot;select * from desc,timeslot_index,hdr,body&quot; | head -1 </code></pre><h2 id="Instructions-for-use-on-ecgb-1"><a class="docs-heading-anchor" href="#Instructions-for-use-on-ecgb-1">Instructions for use on ecgb</a><a class="docs-heading-anchor-permalink" href="#Instructions-for-use-on-ecgb-1" title="Permalink"></a></h2><p>On ecgb I have installed <em>odb_migrator</em> in my own account. ODB developers have promise to provide a &quot;system&quot; installation of odb<em>migrator soon. The next version of ODB-API on ecgb should include *odb</em>migrator*. My installation is here:</p><pre><code class="language-bash">/home/ms/ie/dui/odbapi/0.9.31</code></pre><p>To produce your own ODB-2 file from a Harmonie CCMA tar ball on ecgb:</p><pre><code class="language-bash">module load odb
 export PATH=/home/ms/ie/dui/odbapi/0.9.31/bin:$PATH
@@ -110,7 +110,7 @@ tar -xvf odb_ccma.tar
 cd odb_ccma/CCMA/
 dcagen
 cd ../../
-odb_migrator odb_ccma/CCMA -addcolumns &quot;expver# &#39;refSonde&#39;,class2,stream# 1025,type264&quot; /home/ms/ie/dui/odbapi/conv.38h1.sql conv2013122700.odb
+odb_migrator odb_ccma/CCMA -addcolumns &quot;expver=&#39;refSonde&#39;,class=2,stream=1025,type=264&quot; /home/ms/ie/dui/odbapi/conv.38h1.sql conv2013122700.odb
 odb header conv2013122700.odb
 odb sql &#39;select distinct varno&#39; -i conv2013122700.odb
 odb sql &#39;select count(*) where varno=2&#39; -i conv2013122700.odb
@@ -126,5 +126,5 @@ rm -rf odb_ccma</code></pre><h1 id="ODB-visualisation-1"><a class="docs-heading-
  odbmap::   where: outputtype -- ps/png</code></pre><ul><li>An example to plot 2m temperature observation values on 25th December 2013 at 12z:</li></ul><pre><code class="language-bash">cd  $SCRATCH
 cp -r /home/ms/ie/dui/odbMacroTest .
 cd odbMacroTest
-metview4 -b odbmap.mv4 conv201312.odb &quot;obsvalue&quot; &quot;andate# 20131225 and antime120000 and varno=39&quot; legon png
-xv odbmap.1.png</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../Build_with_makeup/">« Makeup</a><a class="docs-footer-nextpage" href="../Redhat7Install/">Redhat7 »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Tuesday 10 March 2020 11:45">Tuesday 10 March 2020</span>. Using Julia version 1.3.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+metview4 -b odbmap.mv4 conv201312.odb &quot;obsvalue&quot; &quot;andate=20131225 and antime=120000 and varno=39&quot; legon png
+xv odbmap.1.png</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../Build_with_makeup/">« Makeup</a><a class="docs-footer-nextpage" href="../Redhat7Install/">Redhat7 »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Tuesday 10 March 2020 11:47">Tuesday 10 March 2020</span>. Using Julia version 1.3.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

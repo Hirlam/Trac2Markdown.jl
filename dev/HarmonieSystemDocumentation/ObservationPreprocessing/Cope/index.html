@@ -16,58 +16,58 @@ make check
 make install</code></pre><h3 id="eckit-(0.14.0)-1"><a class="docs-heading-anchor" href="#eckit-(0.14.0)-1">eckit (0.14.0)</a><a class="docs-heading-anchor-permalink" href="#eckit-(0.14.0)-1" title="Permalink"></a></h3><pre><code class="language-bash">cd $HOME/test_ecmwf_releases/odb_api_bundle-0.15.2-Source/eckit
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/eckit/0.14.0/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/eckit/0.14.0/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake
 make -j 4
 make check
 make install</code></pre><h3 id="metkit-(0.3.0)-1"><a class="docs-heading-anchor" href="#metkit-(0.3.0)-1">metkit (0.3.0)</a><a class="docs-heading-anchor-permalink" href="#metkit-(0.3.0)-1" title="Permalink"></a></h3><pre><code class="language-bash">cd $HOME/test_ecmwf_releases/odb_api_bundle-0.15.2-Source/metkit
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/metkit/0.3.0/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/metkit/0.3.0/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/
 make -j 4
 make check
 make install</code></pre><h3 id="libemos-(4.4.2)-1"><a class="docs-heading-anchor" href="#libemos-(4.4.2)-1">libemos (4.4.2)</a><a class="docs-heading-anchor-permalink" href="#libemos-(4.4.2)-1" title="Permalink"></a></h3><pre><code class="language-bash">cd $HOME/test_ecmwf_releases/libemos-4.4.2-Source
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/libemos/4.4.2/gnu -DGRIB_API_PATHPATH_TO_GRIBAPI
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/libemos/4.4.2/gnu -DGRIB_API_PATH=PATH_TO_GRIBAPI
 make
 make check
 make install</code></pre><h2 id="&quot;Main&quot;-software-packages-1"><a class="docs-heading-anchor" href="#&quot;Main&quot;-software-packages-1">&quot;Main&quot; software packages</a><a class="docs-heading-anchor-permalink" href="#&quot;Main&quot;-software-packages-1" title="Permalink"></a></h2><p>These instructions assume you have access to the ODB-API and COPE ECMWF git repositories. The default install location for software packages is in <em>HOME/metapp/</em>.</p><h3 id="odb-(40t1.01)-1"><a class="docs-heading-anchor" href="#odb-(40t1.01)-1">odb (40t1.01)</a><a class="docs-heading-anchor-permalink" href="#odb-(40t1.01)-1" title="Permalink"></a></h3><p>ECMWF maintain a &quot;standalone&quot; version of ODB software that is compiled with cmake. A 40t1 tag, 40t1.01, has been created to support the flavour of ODB used by harmonie-40h1.1.</p><pre><code class="language-bash">cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/odb/odb.git
 cd $HOME/test_ecmwf_releases/odb
 git pull
-git archive --format# tar -o $HOME/test_ecSource/odb-40t1.01-Source.tar --prefixodb-40t1.01/ 40t1.01
+git archive --format=tar -o $HOME/test_ecSource/odb-40t1.01-Source.tar --prefix=odb-40t1.01/ 40t1.01
 cd $HOME/test_ecSource
 tar -xvf odb-40t1.01-Source.tar
 cd odb-40t1.01/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/odb/40t1.01/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DODB_SCHEMAS=&quot;ECMA;CCMA&quot;
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/odb/40t1.01/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DODB_SCHEMAS=&quot;ECMA;CCMA&quot;
 make -j 8
 make check
 make install</code></pre><h3 id="ODB-API-(0.15.4)-1"><a class="docs-heading-anchor" href="#ODB-API-(0.15.4)-1">ODB API (0.15.4)</a><a class="docs-heading-anchor-permalink" href="#ODB-API-(0.15.4)-1" title="Permalink"></a></h3><p>ODB API is a software developed at ECMWF for encoding and processing of observational data. It includes a SQL filtering and statistics engine, command line tools and APIs for C/C++, Fortran and Python. ODB API works with data format used in ECMWF observational feedback archive. Development of ODB API has been partially funded by the Met Office. More details here: <a href="https://software.ecmwf.int/wiki/display/ODBAPI/ODB+API+Home">https://software.ecmwf.int/wiki/display/ODBAPI/ODB+API+Home</a></p><p>ODB API provides is required by COPE as well as for ODB2 to ODB1 conversion. </p><pre><code class="language-bash">cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/odb/odb_api.git
 cd $HOME/test_ecmwf_releases/odb_api
 git pull
-git archive --format# tar -o $HOME/test_ecSource/odb_api-0.15.4-Source.tar --prefixodb_api-0.15.4/ 0.15.4
+git archive --format=tar -o $HOME/test_ecSource/odb_api-0.15.4-Source.tar --prefix=odb_api-0.15.4/ 0.15.4
 cd $HOME/test_ecSource
 tar -xvf odb_api-0.15.4-Source.tar
 cd odb_api-0.15.4/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/odb_api/0.15.4/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/  -DECKIT_PATH# $HOME/metapp/eckit/0.14.0/gnu/ -DMETKIT_PATH$HOME/metapp/metkit/0.3.0/gnu -DENABLE_MIGRATOR# ON -DODB_PATH$HOME/metapp/odb/40t1.01/gnu -DENABLE_FORTRAN# ON -DENABLE_PYTHONON -DENABLE_NETCDF=ON
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/odb_api/0.15.4/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/  -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DMETKIT_PATH=$HOME/metapp/metkit/0.3.0/gnu -DENABLE_MIGRATOR=ON -DODB_PATH=$HOME/metapp/odb/40t1.01/gnu -DENABLE_FORTRAN=ON -DENABLE_PYTHON=ON -DENABLE_NETCDF=ON
 make -j 8
 make check
 make install</code></pre><h3 id="b2o-(40t1.01)-1"><a class="docs-heading-anchor" href="#b2o-(40t1.01)-1">b2o (40t1.01)</a><a class="docs-heading-anchor-permalink" href="#b2o-(40t1.01)-1" title="Permalink"></a></h3><p>b2o is a library and command line tool to extract ODB data from BUFR files. A 40t1 tag, 40t1.01, has been created to support the flavour of ODB used by harmonie-40h1.1.</p><pre><code class="language-bash">cd $HOME/test_ecmwf_releases
 git clone https://dui@software.ecmwf.int/stash/scm/cope/b2o.git
 cd b2o
 git pull
-git archive --format# tar -o $HOME/test_ecSource/b2o-40t1.01-Source.tar --prefixb2o-40t1.01/ 40t1.01
+git archive --format=tar -o $HOME/test_ecSource/b2o-40t1.01-Source.tar --prefix=b2o-40t1.01/ 40t1.01
 cd $HOME/test_ecSource
 tar -xvf b2o-40t1.01-Source.tar
 cd b2o-40t1.01/
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/b2o/40t1.01/gnu/ -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DLIBEMOS_PATH# $HOME/metapp/libemos/4.4.2/gnu/ -DECKIT_PATH$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/b2o/40t1.01/gnu/ -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DLIBEMOS_PATH=$HOME/metapp/libemos/4.4.2/gnu/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu
 make -j 4
 make check
 make install</code></pre><h3 id="COPE-1"><a class="docs-heading-anchor" href="#COPE-1">COPE</a><a class="docs-heading-anchor-permalink" href="#COPE-1" title="Permalink"></a></h3><p>These instructions are based on building the develop branch of COPE. If you wish to use a tagged version you must use version 0.5.3 or greater.</p><pre><code class="language-bash">cd $HOME/test_ecmwf_releases
@@ -76,10 +76,10 @@ cd $HOME/test_ecmwf_releases/cope
 git pull
 mkdir build
 cd build/
-cmake .. -DCMAKE_INSTALL_PREFIX# $HOME/metapp/cope/develop/gnu -DCMAKE_MODULE_PATH$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH# $HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH$HOME/metapp/odb_api/0.15.4/gnu -DB2O_PATH# $HOME/metapp/b2o/40t1.01/gnu -DCMAKE_PREFIX_PATH$HOME/metapp/libemos/4.4.2/gnu/
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/metapp/cope/develop/gnu -DCMAKE_MODULE_PATH=$HOME/metapp/ecbuild/2.4.0/gnu/share/ecbuild/cmake/ -DECKIT_PATH=$HOME/metapp/eckit/0.14.0/gnu/ -DODB_API_PATH=$HOME/metapp/odb_api/0.15.4/gnu -DB2O_PATH=$HOME/metapp/b2o/40t1.01/gnu -DCMAKE_PREFIX_PATH=$HOME/metapp/libemos/4.4.2/gnu/
 make -j 4
 # make check ## BROKEN DUE TO CHANGES TO ODB SCHEMA IN THIS BRANCH
 make install</code></pre><h2 id="COPE-in-HARMONIE-system-1"><a class="docs-heading-anchor" href="#COPE-in-HARMONIE-system-1">COPE in HARMONIE system</a><a class="docs-heading-anchor-permalink" href="#COPE-in-HARMONIE-system-1" title="Permalink"></a></h2><p>COPE is currently only available in <a href="https://hirlam.org/trac/browser/branches/harmonie_40h1_cope">branches/harmonie<em>40h1</em>cope</a> and has only been tested on a local Linux server.</p><p>The use of COPE in HARMONIE relies on ODB-API, b2o and COPE itself. </p><ul><li>ODB-API tools must be included in PATH</li><li>The ECMA.sch used by COPE is maintained in the b2o version described above. </li><li>&quot;mf<em>vertco</em>type&quot; specific changes are included in the feature/mf<em>vertco</em>type branch of COPE</li><li>scr/Cope includes the setting of the following environment variables which rely on COPE<em>DIR and B2O</em>DIR. These can be set in your Env_system file.</li></ul><pre><code class="language-bash">export COPE_DEFINITIONS_PATH=${COPE_DIR}/share/cope
 export ODB_SCHEMA_FILE=${B2O_DIR}/share/b2o/ECMA.sch
 export ODB_CODE_MAPPINGS=${B2O_DIR}/share/b2o/odb_code_mappings.dat
-export ODBCODEMAPPINGS=${B2O_DIR}/share/b2o/odb_code_mappings.dat</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../Oulan/">« Oulan</a><a class="docs-footer-nextpage" href="../Bator/">Bator »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Tuesday 10 March 2020 11:45">Tuesday 10 March 2020</span>. Using Julia version 1.3.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+export ODBCODEMAPPINGS=${B2O_DIR}/share/b2o/odb_code_mappings.dat</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../Oulan/">« Oulan</a><a class="docs-footer-nextpage" href="../Bator/">Bator »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Tuesday 10 March 2020 11:47">Tuesday 10 March 2020</span>. Using Julia version 1.3.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
