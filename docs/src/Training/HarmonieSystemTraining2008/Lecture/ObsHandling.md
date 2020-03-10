@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/ObsHandling?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/ObsHandling?action=edit"
 ```
 
 # Observation handling in HARMONIE DA

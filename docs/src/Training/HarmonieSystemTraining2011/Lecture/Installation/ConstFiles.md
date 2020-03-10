@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/ConstFiles?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/ConstFiles?action=edit"
 ```
 # Constant Files (Climate File Generation)
 

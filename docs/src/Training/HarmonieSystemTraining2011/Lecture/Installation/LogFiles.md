@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/LogFiles?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/LogFiles?action=edit"
 ```
 # Where does the output go (log file)
 During a run, $HM_DATA looks like this:

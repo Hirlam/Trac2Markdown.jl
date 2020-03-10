@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Trainin/DataAssimilation?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Trainin/DataAssimilation?action=edit"
 ```
 Hands on Exercises related to presentation 
 'How to Derive Background error statistics for HARMONIE Data assimilation'

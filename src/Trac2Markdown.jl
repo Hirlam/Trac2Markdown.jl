@@ -12,9 +12,10 @@ const hlpassw = get(ENV,"HLPASSW","")
 
 
 
-const MARKDOWNDIR   = joinpath(dirname(pathof(Trac2Markdown)), "../docs/src/")
-const WIKIDIR   = joinpath(dirname(pathof(Trac2Markdown)), "../docs/wiki/")
-const tracurl       = "https://$hluser:$hlpassw@hirlam.org/trac/"
+const MARKDOWNDIR      = joinpath(dirname(pathof(Trac2Markdown)), "../docs/src/")
+const WIKIDIR          = joinpath(dirname(pathof(Trac2Markdown)), "../docs/wiki/")
+const tracurl          = "https://$hluser:$hlpassw@hirlam.org/trac/"
+const tracurl_editlink = "https://hirlam.org/trac/"    # make sure password never shows in Markdown doc. 
 const wikiurl       = "$tracurl/wiki/"
 const attachmenturl = "$tracurl/raw-attachment/wiki/"
 

@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/LocalChanges?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/LocalChanges?action=edit"
 ```
 # Local Changes In Your Experiment
 You can make changes to the base system you set up with 'Harmonie setup ...' by adding changed files to your experiment directory $HOME/hm_home/$EXP.

@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Forecast?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Forecast?action=edit"
 ```
 # Harmonie system Documentation
 ## Forecast

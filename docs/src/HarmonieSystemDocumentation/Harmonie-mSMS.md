@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Harmonie-mSMS?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Harmonie-mSMS?action=edit"
 ```
 
 # Running Harmonie at ECMWF

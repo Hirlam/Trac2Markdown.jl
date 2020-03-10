@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Phasing?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Phasing?action=edit"
 ```
 # Phasing information
 

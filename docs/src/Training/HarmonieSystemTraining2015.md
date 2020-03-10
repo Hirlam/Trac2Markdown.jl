@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2015?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2015?action=edit"
 ```
 # Hirlam-B Training Week on HARMONIE system for climate modelling
 **14-17th of September 2015**

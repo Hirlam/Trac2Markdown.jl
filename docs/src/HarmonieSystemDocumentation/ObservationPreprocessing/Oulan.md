@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Oulan?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Oulan?action=edit"
 ```
 # OBSOUL creation: Oulan
 

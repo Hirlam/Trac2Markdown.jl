@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ConfigureYourExperiment?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/ConfigureYourExperiment?action=edit"
 ```
 
 ## Experiment configuration

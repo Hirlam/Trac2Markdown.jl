@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/Extract4verification?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/Extract4verification?action=edit"
 ```
 
 ## Verification preparation

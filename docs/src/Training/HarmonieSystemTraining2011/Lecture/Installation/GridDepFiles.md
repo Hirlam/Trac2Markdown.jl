@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/GridDepFiles?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/GridDepFiles?action=edit"
 ```
 # Grid Dependent Files (the background error statistics)
 

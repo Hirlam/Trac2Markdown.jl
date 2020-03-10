@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Evaluation/Mitraillette?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Evaluation/Mitraillette?action=edit"
 ```
 # Mitraillette - the ALADIN dynamical core testbed
 

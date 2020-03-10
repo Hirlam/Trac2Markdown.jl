@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/How_to_use_hires_topography?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/How_to_use_hires_topography?action=edit"
 ```
 
 # Harmonie System Documentation

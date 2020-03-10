@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/PreqSoft?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/PreqSoft?action=edit"
 ```
 # Software Prerequisites
 A recent Linux distribution, which implies with regards to the system software:

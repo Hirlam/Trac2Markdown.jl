@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationHowto/GNSS?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationHowto/GNSS?action=edit"
 ```
 
 # GNSS ZTD observations

@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/General?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/General?action=edit"
 ```
 
 

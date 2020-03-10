@@ -53,8 +53,8 @@ function trac2markdown(relurl::String; getattachments=false)
     mkpath(dirname(joinpath(MARKDOWNDIR, relurl)))
 
     # Add meta block to change the EditURL to point to hirlam.org
-    wikiurl = Trac2Markdown.wikiurl    
-    meta="```@meta\r\nEditURL=\"$wikiurl$relurl?action=edit\"\r\n```\r\n"
+    wikiurl = "$(Trac2Markdown.tracurl_editlink)/wiki/$relurl"
+    meta="```@meta\r\nEditURL=\"$wikiurl?action=edit\"\r\n```\r\n"
 
     meta_mdtxt = meta .* mdtxt 
 

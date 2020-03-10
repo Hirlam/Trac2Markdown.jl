@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2012?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2012?action=edit"
 ```
 # Hirlam-B Training Week on HARMONIE system
 

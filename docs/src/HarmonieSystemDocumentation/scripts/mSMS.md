@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/scripts/mSMS?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/scripts/mSMS?action=edit"
 ```
 
 # mini-SMS and mini-XCdp

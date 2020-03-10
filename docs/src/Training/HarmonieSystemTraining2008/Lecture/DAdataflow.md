@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/DAdataflow?action=edit"
+EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/DAdataflow?action=edit"
 ```
 
 # Overview of HARMONIE Upper Air and Surface Data Assimilation

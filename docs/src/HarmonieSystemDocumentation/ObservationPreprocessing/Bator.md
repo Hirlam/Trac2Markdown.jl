@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Bator?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/ObservationPreprocessing/Bator?action=edit"
 ```
 # ODB creation: Bator
 ## General Description

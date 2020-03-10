@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://:@hirlam.org/trac//wiki/HarmonieSystemDocumentation/Redhat7Install?action=edit"
+EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Redhat7Install?action=edit"
 ```
 # Redhat 7 instructions
 ## Requirements
