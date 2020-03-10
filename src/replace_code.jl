@@ -20,14 +20,12 @@ function replace_code(s::String)
         elseif incodeblock
             push!(out,line)
         elseif !incodeblock
-            # Single line code blocks
-           line = replace(line, r"\{\{\{(.*?)\}\}\}" => s"`\1`") 
-           # words containing _ or / 
-           #line = replace(line, r"( [,\[\(]?)([^ ]*?[\_\/][^ ,\)\]]*)" => s"\1`\2`")
-           #line = replace(line, r"\[`?([^ ]*?[\_/][^ ]*?)`?\]" => s"[`\1`]")
-           #line = replace(line, r"\(`?([^ ]*?[\_/][^ ]*?)`?\)" => s"(`\1`)")
-
+            
+           line = replace_headers(line)
            
+           # Single line code blocks
+           line = replace(line, r"\{\{\{(.*?)\}\}\}" => s"`\1`") 
+                      
            push!(out,line)
         end
     end

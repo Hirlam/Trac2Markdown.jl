@@ -6,7 +6,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 
 ## GL 
 
- ### GRIB/FA/LFI manipulation
+ === GRIB/FA/LFI manipulation ===
 
  gl uses EMOSLIB ( or AUXLIBS), can be compiled with and without FA/LFI support, requires some IFS libraries. Can be used to list GRIB/ASIMOF/FA/LFI files.
 
@@ -45,7 +45,7 @@ FA/lfi files are converted to grib by gl
 ;
  }}}
 
- ### gl postprocessing
+ === gl postprocessing ===
 
   - To pressure levels,MSLP
 
@@ -71,7 +71,7 @@ FA/lfi files are converted to grib by gl
  }}}
   - Total precipitation
   - Pseudo satellite pictures
-    [any2any.F90](https://hirlam.org/trac/browser/trunk/harmonie/util/gl/grb/any2any.F90@#L463)
+    [source:trunk/harmonie/util/gl/grb/any2any.F90@#L463 any2any.F90]
  
   - Interpolation/resampling between different geometries (0,3,5,10)
 ```bash
@@ -114,7 +114,7 @@ FA/lfi files are converted to grib by gl
  - scum conversion to GRIB/ASCII
 
 
- ### fldextr and obsextr
+ === fldextr and obsextr ===
 
   Fldextr extracts data from several sources (HIRLAM/IFS/AAA) and
 
@@ -130,13 +130,13 @@ Obsextr extracts BUFR data and creates an ascii file. similar to the vfld file.
    - LUSE_LIST controls the usage of a station list
 
 
-## xtool
+== xtool ==
 
-**Xtool** is part of **gl**-package provides utility to calculate differences between GRIB/FA files and give output to a new GRIB file. See xtool part of [gl-README](https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README#L221). Below is a simple example of how to use **xtool**
+'''Xtool''' is part of '''gl'''-package provides utility to calculate differences between GRIB/FA files and give output to a new GRIB file. See xtool part of [https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README#L221 gl-README]. Below is a simple example of how to use '''xtool'''
 
  What is the difference between +24h and +48h MSLP forecasts during August 2008?
 
- 1. Namelist for **xtool**, which lists the parameters (here mean sea level pressure) to be examined:
+ 1. Namelist for '''xtool''', which lists the parameters (here mean sea level pressure) to be examined:
 
 ```bash
 &NAMINTERP
@@ -169,7 +169,7 @@ xtool -sdtg1 2008080100 -edtg1 2008083000 -ll1 48 \
 
 ### SAL
 
-**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., 2008](http://ams.allenpress.com/perlserv/?request# get-abstract&doi10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
+**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., 2008](http://ams.allenpress.com/perlserv/?request=get-abstract&doi=10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
 
  * **S**: Measure of structure of the precipitation area (-2 - +2). Large **S**, if model predicts too large precipitation areas.
  * **A**: Measure of strength of the precipitation (-2 - +2). Large **A**, if model predicts too intense precipitation.

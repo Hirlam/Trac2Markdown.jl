@@ -5,9 +5,9 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 # Analysis Monitoring and Diagnosis in HARMONIE DA
 This document gives some suggestions about how we diagnose the effectiveness of programs execution in different steps during the assimilation. Apart of checking the script output, we check the content of the standard output and standard error files of each executable at each step. 
 ## Diagnosis of different steps in HARMONIE DA
-# ## Checking the execution of oulan
+### **Checking the execution of oulan**
 Oulan has good and detailed output in the file called OULOUTPUT. See [here](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008/Lecture/ObsHandling#Observationhandlingduringthepre-processing) to check the demanded observations and how to check the number of extracted observations per type. It is important to notice, especially during analysis within a large domain, that you might reach the maximum number NB$OBSTYPE of available observations. In this case you will get a comment (in French) saying that you have extracted the maximum number of observation for the given observation type. If you see something similar, you should increase the number in [eee  namelist].
-# ## Checking the execution of bator
+### **Checking the execution of bator**
 Bator does not have such a nice output file like oulan does, so one should take care about standard outputs ("out" and "err") in the script for diagnostic. The standard output file of a bator run looks similar to the example below, where we can see that this BATOR run dealt with reading two files (OBSOUL and !Geowind).
 ```bash
 ****** Traitement initial ******
@@ -20,7 +20,7 @@ Bator does not have such a nice output file like oulan does, so one should take 
     Date      =  20080226
     Heure     =  18
 
-fichier OBSOUL.conv     : INBOBS # 21472 INBWAG    81659
+fichier OBSOUL.conv     : INBOBS =    21472 INBWAG =    81659
 ...
 
 Traitement du fichier         BUFR.geow - type :         geowind
@@ -38,7 +38,9 @@ Rejet donnees vent incorrectes         0
 Then, in the same file we can see output of bator_lamflag like this
 ```bash
 ############  ENTERING LAMFLAG_OBS_SELECT #################
- ### # ###### # ###### # ###### # ###### ## Information about Parameters Projection Structure  ### # ###### # ###### # ###### # ######=
+ =============================================================
+ ===  Information about Parameters Projection Structure  ====
+ =============================================================
 ...
 
  LAMFLAG: C+I LISTING
@@ -75,7 +77,7 @@ Simple diagnostic of any IFS/AAA configuration run can be checked in the NODE fi
 *** END CNT0 ***
 ```
 This means that your model run has reached the end. But to check the NODE, one needs some knowledge of computational algorithm/steps in each configuration.
-# ## Checking the NODE of CANARI (c. 701)
+### **Checking the NODE of CANARI (c. 701)**
 If CANARI went well, one should find the following lines in the NODE file
 ```bash
 ...
@@ -95,12 +97,12 @@ IO-STREAM STATISTICS, TOTAL NO OF REC/BYTES READ            0/           0 WRITT
   *** END CNT0 ***
 ...
 ```
-# ## Checking NODE of the screening (c. 002)
+### **Checking NODE of the screening (c. 002)**
 To check the number of observations handled by the model try the following grep command:
 ```bash
 grep NOBTOT  scrNODE
 output of this command looks like:
- NOBTOT  # 3182 NOBTOV   2853 NOBNTV  # 329 NOBSCA      0
+ NOBTOT  =   3182 NOBTOV  =   2853 NOBNTV  =    329 NOBSCA  =      0
 ```
 Where NOBTOT is the total number of reports; NOBTOV, NOBNTV and NOBSCA are the number of TOVS, non-TOVS (conventional), and scatrometers (?) reports. The results of the quality check in general can be seen scanning the content of the NODE file and finding the following string "SCREENING STATISTICS". One will see something like this
 ```bash
@@ -177,26 +179,26 @@ You can also find explanation of some decisions like this
 ```
 Of course do not miss to check the general reports about observation subtypes, when looking for the string "Obstype"
 ```bash
-        Obstype     1 # = SYNOP, Land stations and ships
+        Obstype     1 === SYNOP, Land stations and ships
         --------------------------------------------------
-             Codetype    11 # = SYNOP Land Manual Report
+             Codetype    11 === SYNOP Land Manual Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U           2762            5576.215280021           2.02    0.200E+01   0.000E+00
                    H2          1382            2165.974415131           1.57    0.100E+00   0.000E+00
                    Z           1325            3543.085017904           2.67    0.785E+02   0.000E+00
                    T2          1383            9994.649126484           7.23    0.140E+01   0.000E+00
                    Q           1382            65181.13285214          47.16    0.592E-03   0.000E+00
-             Codetype    14 # = SYNOP Land Automatic Report
+             Codetype    14 === SYNOP Land Automatic Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U           7496            12168.33930912           1.62    0.200E+01   0.000E+00
                    H2          3792            5057.359856727           1.33    0.100E+00   0.000E+00
                    Z           3842            7548.493306913           1.96    0.785E+02   0.000E+00
                    T2          3809            19325.40160012           5.07    0.140E+01   0.000E+00
                    Q           3792            69937.61180776          18.44    0.550E-03   0.000E+00
-             Codetype    21 # = SYNOP-SHIP Report
+             Codetype    21 === SYNOP-SHIP Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    Z            169            1214.218952374           7.18    0.785E+02   0.000E+00
-             Codetype    24 # = SYNOP Automatic SHIP Report
+             Codetype    24 === SYNOP Automatic SHIP Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U            134            560.2749872594           4.18    0.300E+01   0.000E+00
                    H2            21            6.484463242733           0.31    0.100E+00   0.000E+00
@@ -206,17 +208,17 @@ Of course do not miss to check the general reports about observation subtypes, w
                          ----------   ---------------------------   --------
        ObsType  1 Total:      31698            205114.9994855           6.47
 
-        Obstype     2 # = AIREP, Aircraft data
+        Obstype     2 === AIREP, Aircraft data
         --------------------------------------------------
-             Codetype   141 # = AIREP Aircraft Report
+             Codetype   141 === AIREP Aircraft Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U             16            385.3704231476          24.09    0.414E+01   0.000E+00
                    T              3            10.14588889728           3.38    0.150E+01   0.000E+00
-             Codetype   144 # = AMDAR Aircraft Report
+             Codetype   144 === AMDAR Aircraft Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U           1240            1830.502793835           1.48    0.328E+01   0.000E+00
                    T            620            543.8478505464           0.88    0.144E+01   0.000E+00
-             Codetype   145 # = ACARS Aircraft Report
+             Codetype   145 === ACARS Aircraft Report
                 Variable      DataCount          Jo_Costfunction       JO/n       ObsErr      BgErr
                    U            218            692.2918224983           3.18    0.355E+01   0.000E+00
                    T            119            141.9056544973           1.19    0.142E+01   0.000E+00
@@ -224,7 +226,7 @@ Of course do not miss to check the general reports about observation subtypes, w
        ObsType  2 Total:       2216            3604.064433421           1.63
   ...
 ```
-# ## Checking the NODE of the minimisation (c. 131)
+### **Checking the NODE of the minimisation (c. 131)**
 Online checking (when the model is still running) - you can follow the minimisation process with the following command:
 ```bash
 tail -f NODE | grep GREPCOST
@@ -265,9 +267,9 @@ It may happen when doing our development that we need to check observation setti
 !                1-1   run on nb of proc (?)
 !
 !    version = 3-x   update    ECMA* ; manda_update.sql
-!       x# 1  zone1
-!       x# 2  status.active0  elimination
-!       x# 3  status.active1  forcage (= forcing)
+!       x=1  zone=1
+!       x=2  status.active=0  elimination
+!       x=3  status.active=1  forcage (= forcing)
 !-------------------------------------------------------------
 ...
 ```
@@ -297,8 +299,8 @@ I beleave each Centre has their own efficient monitoring system. But, very often
   * Magnus has developed a simple tool using gnuplot for plotting graphs and using a slightly more information than shown above. The advantage of this system can be that we will be able to use it online when performing our experiments.
   * In fact in Hungary, before building the web-based system, we had more simple monitoring package, which describes - in an ASCII file - the observation usage during one analysis cycle. Example of the output of the program is given bellow:
 ```bash
- date # 20080228 time 1200
- ### # ###### # ###### # #### =
+ date = 20080228 time = 1200
+ =============================================
  OBSTYPE = SYNOP
  ----- HEADER ----- 
  tot_num_obs   active_rep   passiv_rep   blackl_rep   reject_rep
@@ -314,9 +316,9 @@ I beleave each Centre has their own efficient monitoring system. But, very often
                           0           0           0           0           0
   Wind-V      : tot_num_obs   active_rep   passiv_rep   blackl_rep   reject_rep
                           0           0           0           0           0
- nlev # 1  npar  5 (T,V,U,Z,Rhu)
+ nlev =  1  npar =  5 (T,V,U,Z,Rhu)
      1  1000  5273     0     0  5794     0      1.9791       .0000       .0000     14.9070       .0000      -.0754       .0000       .0000     -2.8214       .0000
- ### # ###### # ###### # #### =
+ =============================================
  OBSTYPE = AIREP
  ----- HEADER ----- 
  tot_num_obs   active_rep   passiv_rep   blackl_rep   reject_rep
@@ -328,7 +330,7 @@ I beleave each Centre has their own efficient monitoring system. But, very often
                        3167        2590           0          34         544
   Wind-V      : tot_num_obs   active_rep   passiv_rep   blackl_rep   reject_rep
                        3167        2590           0          34         544
- nlev # 19  npar  3 (T,V,U)
+ nlev =  19  npar =  3 (T,V,U)
      1  1000    99    88    88      1.5020      2.1979      2.7016       .3984       .8297     -1.3257
      2   950   120   120   120      1.0090      2.8102      2.3725       .1782       .5930     -2.1003
      3   925   147   147   147       .9413      3.7278      2.3995      -.2413      1.9015     -2.7580
@@ -348,7 +350,7 @@ I beleave each Centre has their own efficient monitoring system. But, very often
     17    30     0     0     0       .0000       .0000       .0000       .0000       .0000       .0000
     18    20     0     0     0       .0000       .0000       .0000       .0000       .0000       .0000
     19    10     0     0     0       .0000       .0000       .0000       .0000       .0000       .0000
- ### # ###### # ###### # #### =
+ =============================================
 ```
 This package has been "forgotten" for a while, but can be improved in case of demand on it. Outputs of this package are exclusively in an ASCII file. Sandor started with exploiting the output of this file when developing the web-based system.
 

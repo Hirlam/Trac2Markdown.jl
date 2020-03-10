@@ -69,7 +69,7 @@ cmake $source_dir \
     -DCMAKE_CXX_FLAGS_DEBUG="-O0" \
     -DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
     -DCMAKE_Fortran_COMPILER=gfortran \
-    -DCMAKE_Fortran_FLAGS# "-fconvertbig-endian -fdefault-real-8 -fPIC -DLINUX" \
+    -DCMAKE_Fortran_FLAGS="-fconvert=big-endian -fdefault-real-8 -fPIC -DLINUX" \
     -DCMAKE_Fortran_FLAGS_DEBUG="-g -O0" \
     -DCMAKE_Fortran_FLAGS_RELEASE="-O2" \
     -DODB_API_TOOLS=OFF \
@@ -151,7 +151,7 @@ dcagen
 cd ../../
 ls -l ../conv.38h1.sql
 which odb_migrator
-/opt/metlib/odb_api/0.9.31/gnu/bin/odb_migrator -addcolumns "expver# '    38h1',class2,stream# 1025,type264" odb_ccma/CCMA ../conv.38h1.sql var${DTG}.odb
+/opt/metlib/odb_api/0.9.31/gnu/bin/odb_migrator -addcolumns "expver='    38h1',class=2,stream=1025,type=264" odb_ccma/CCMA ../conv.38h1.sql var${DTG}.odb
 ls -l var${DTG}.odb
 ```
 Here is the SQL file used: [conv.38h1.sql](https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/StandaloneOdb/conv.38h1.sql). To construct my conv.38h1.sql file did carried out the following commands:
@@ -182,7 +182,7 @@ tar -xvf odb_ccma.tar
 cd odb_ccma/CCMA/
 dcagen
 cd ../../
-odb_migrator odb_ccma/CCMA -addcolumns "expver# 'refSonde',class2,stream# 1025,type264" /home/ms/ie/dui/odbapi/conv.38h1.sql conv2013122700.odb
+odb_migrator odb_ccma/CCMA -addcolumns "expver='refSonde',class=2,stream=1025,type=264" /home/ms/ie/dui/odbapi/conv.38h1.sql conv2013122700.odb
 odb header conv2013122700.odb
 odb sql 'select distinct varno' -i conv2013122700.odb
 odb sql 'select count(*) where varno=2' -i conv2013122700.odb
@@ -209,6 +209,6 @@ ODB-2 data can be visualized (directly) using Metview. On local platforms Metvie
 cd  $SCRATCH
 cp -r /home/ms/ie/dui/odbMacroTest .
 cd odbMacroTest
-metview4 -b odbmap.mv4 conv201312.odb "obsvalue" "andate# 20131225 and antime120000 and varno=39" legon png
+metview4 -b odbmap.mv4 conv201312.odb "obsvalue" "andate=20131225 and antime=120000 and varno=39" legon png
 xv odbmap.1.png
 ```

@@ -32,8 +32,8 @@ If the server is alive its URL (see below) will be displayed in a tooltip if you
 
 The usage of the new client/server solution is controlled by the environment variable `mSMS_WEBPORT`, which is expected to be an integer. It is interpreted as follows:
 
- * If mSMS_WEBPORT <# 0, the web server is disabled, and the old monitor can still be used (unless mXCdpDISABLE).
- * If 1 <# mSMS_WEBPORT < 1024, the port that the server will listen on is selected at random, in the range 10000 to 30000. If mSMS_WEBPORT1 (the default), the new mXCdp client will start automatically whenever `Hirlam` or `Harmonie` is started or resumed/prodded. If you don't want automatic startup of the client (e.g., for batch queue submitted runs), but still want a random port, set e.g. mSMS_WEBPORT=2.
+ * If mSMS_WEBPORT <= 0, the web server is disabled, and the old monitor can still be used (unless mXCdp=DISABLE).
+ * If 1 <= mSMS_WEBPORT < 1024, the port that the server will listen on is selected at random, in the range 10000 to 30000. If mSMS_WEBPORT=1 (the default), the new mXCdp client will start automatically whenever `Hirlam` or `Harmonie` is started or resumed/prodded. If you don't want automatic startup of the client (e.g., for batch queue submitted runs), but still want a random port, set e.g. mSMS_WEBPORT=2.
  * If mSMS_WEBPORT >= 1024 (i.e., a non-privileged port), the mSMS server will try to listen on the given port.
 
 If mSMS_WEBPORT >=1 (i.e., the web server is enabled), the old monitor is disabled. In other words, both solutions should not be active at the same time (although technically possible), to avoid confusion.

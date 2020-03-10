@@ -112,7 +112,7 @@ During the minimisation observation types and parameters used in the analysis ar
       ...
      /END
 ```
-      where from "./arp/module/yomcosjo.F90" one can see NVAR_U  # 1; NVAR_U10 2; NVAR_DD # 3; NVAR_FF 4; NVAR_H  # 5; NVAR_H2 6; NVAR_T  # 7; NVAR_Z 8; NVAR_DZ # 9; NVAR_LH10; NVAR_T2 # 11; NVAR_TS12; NVAR_RAD# 13; NVAR_SN14; NVAR_RR # 15; NVAR_PS16; NVAR_CC # 17; NVAR_CLW18; NVAR_Q  # 19; NVAR_FFS20; NVAR_S0 # 21;NVAR_X22; NVAR_PWC# 23; NVAR_TO324; NVAR_TCW# 25; NVAR_RFL26; NVAR_APD# 27; NVAR_RO28; NVAR_HLS# 29; and NVAR_AOD30 ! aerosol optical depth at 0.55 microns
+      where from "./arp/module/yomcosjo.F90" one can see NVAR_U  = 1; NVAR_U10= 2; NVAR_DD = 3; NVAR_FF = 4; NVAR_H  = 5; NVAR_H2 = 6; NVAR_T  = 7; NVAR_Z  = 8; NVAR_DZ = 9; NVAR_LH =10; NVAR_T2 =11; NVAR_TS =12; NVAR_RAD=13; NVAR_SN =14; NVAR_RR =15; NVAR_PS =16; NVAR_CC =17; NVAR_CLW=18; NVAR_Q  =19; NVAR_FFS=20; NVAR_S0 =21;NVAR_X  =22; NVAR_PWC=23; NVAR_TO3=24; NVAR_TCW=25; NVAR_RFL=26; NVAR_APD=27; NVAR_RO =28; NVAR_HLS=29; and NVAR_AOD=30 ! aerosol optical depth at 0.55 microns
    * Note that here we did not talk about some specifications of satellite observation handling, but this wiki page will be updated accordingly.
    * Details about the observation types can be found in the routine called [suvnmb.F90](https://hirlam.org/trac/browser/trunk/harmonie/src/arp/setup/suvnmb.F90)
 

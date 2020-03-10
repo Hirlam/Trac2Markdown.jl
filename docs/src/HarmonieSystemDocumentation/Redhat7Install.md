@@ -153,7 +153,7 @@ BDINT=3                 ## I only have (HIRLAM) boundary files every 3 hours
  * Once you think you have all your ducks in a row you can try to run your first experiment:
 ```bash
 cd $HOME/hm_home/trunkexp
-$HOME/harmonie_releases/trunk/config-sh/Harmonie start DTG# 2014040100 DTGEND2014040112 LL# 03 BUILDno
+$HOME/harmonie_releases/trunk/config-sh/Harmonie start DTG=2014040100 DTGEND=2014040112 LL=03 BUILD=no
 ```
 
 Further details on how to use the Harmonie mini-SMS script system are available here: [wiki:HarmonieSystemDocumentation/Harmonie-mSMS] (../HarmonieSystemDocumentation/Harmonie-mSMS.md)

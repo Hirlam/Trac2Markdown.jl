@@ -92,5 +92,5 @@ I retained only the names of the most important text files:
  GPNORM EZDIAG02             AVERAGE               MINIMUM               MAXIMUM        
          AVE   0.000000000000000E+00 0.000000000000000E+00 0.000000000000000E+00
  NSTEP =    52 STEPO   0AAA00AAA
- 14:35:29 STEP   52 H# 0:52 +CPU 13.069
+ 14:35:29 STEP   52 H=   0:52 +CPU= 13.069
 ```

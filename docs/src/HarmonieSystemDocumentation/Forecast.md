@@ -3,12 +3,16 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Forecast?acti
 ```
 # Harmonie system Documentation
 ## Forecast
-## Introduction Forecast =# [Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?revrelease-43h2.beta.3) is the script, which initiates actual 
+== Introduction
+
+## Forecast
+
+[Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev=release-43h2.beta.3) is the script, which initiates actual 
 forecast run (ALADIN/AROME/ALARO depending on *FLAG* and *PHFLAG*).
 
  * Input parameters: none.
  * Data: Boundary files (**ELSCF***-files). Initial file (**fc_start**). If data assimilation is used, **fc_start** is the analysis file. In case of dynamical adaptation, **fc_start** is the first boundary file. In case of AROME, Surfex initial file (**SURFXINI.lfi**) is also needed ([Prep_ini_surfex](https://hirlam.org/trac/browser/Harmonie/scr/Prep_ini_surfex?rev=release-43h2.beta.3)). 
- * Namelists: namelist templates nam/namelist_fcst${FLAG}_default are fetched based on *FLAG* and *PHFLAG*. The templates are completed in [Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev# release-43h2.beta.3) based on the choices of *NPROCX*, *NPROCY* (see [submit.ecgb](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb?revrelease-43h2.beta.3)), *TFLAG*, *OUTINT*, *BDINT* and *REDUCELFI*. In case of AROME also the namelists to control SURFEX-scheme  ([TEST.des](https://hirlam.org/trac/browser/Harmonie/nam/TEST.des?rev# release-43h2.beta.3) and [EXSEG1.nam](https://hirlam.org/trac/browser/Harmonie/nam/EXSEG1.nam?revrelease-43h2.beta.3)) are needed.
+ * Namelists: namelist templates nam/namelist_fcst${FLAG}_default are fetched based on *FLAG* and *PHFLAG*. The templates are completed in [Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev=release-43h2.beta.3) based on the choices of *NPROCX*, *NPROCY* (see [submit.ecgb](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb?rev=release-43h2.beta.3)), *TFLAG*, *OUTINT*, *BDINT* and *REDUCELFI*. In case of AROME also the namelists to control SURFEX-scheme  ([TEST.des](https://hirlam.org/trac/browser/Harmonie/nam/TEST.des?rev=release-43h2.beta.3) and [EXSEG1.nam](https://hirlam.org/trac/browser/Harmonie/nam/EXSEG1.nam?rev=release-43h2.beta.3)) are needed.
  * Executables: as defined by *MODEL*.
  * Output: Forecast files (spectral files **ICMSHALAD+***). In case of AROME, Surfex files containing the surface data (**AROMOUT_*.lfi**). 
 
@@ -26,8 +30,8 @@ __Upper air physics switches__
 
  * Switches related to different schemes of ALADIN/ALARO physics, [yomphy.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy.F90?rev=release-43h2.beta.3).
  * Switches related to physics schemes in AROME [yomarphy.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomarphy.F90?rev=release-43h2.beta.3).
- * Switches to tune different aspects of physics, [yomphy0.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy0.F90?rev# release-43h2.beta.3), [yomphy1.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy1.F90?revrelease-43h2.beta.3), [yomphy2.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy2.F90?rev# release-43h2.beta.3) and [yomphy3.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy3.F90?revrelease-43h2.beta.3)
- * Switches related to HIRLAM physics, [yhloption.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yhloption.F90?rev# release-43h2.beta.3) and [suhloption.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/setup/suhloption.F90?revrelease-43h2.beta.3).
+ * Switches to tune different aspects of physics, [yomphy0.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy0.F90?rev=release-43h2.beta.3), [yomphy1.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy1.F90?rev=release-43h2.beta.3), [yomphy2.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy2.F90?rev=release-43h2.beta.3) and [yomphy3.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomphy3.F90?rev=release-43h2.beta.3)
+ * Switches related to HIRLAM physics, [yhloption.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yhloption.F90?rev=release-43h2.beta.3) and [suhloption.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/setup/suhloption.F90?rev=release-43h2.beta.3).
 
 __Initialization switch__
 
@@ -39,7 +43,7 @@ __Horizontal diffusion switches__
 
 __MPP switches__
 
- * The number of processors in HARMONIE are given in [submit.HOST](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb?rev# release-43h2.beta.3). These values are transfered in to [yomct0.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomct0.F90#L276?revrelease-43h2.beta.3) and [yommp.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yommp.F90?rev=release-43h2.beta.3).
+ * The number of processors in HARMONIE are given in [submit.HOST](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb?rev=release-43h2.beta.3). These values are transfered in to [yomct0.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomct0.F90#L276?rev=release-43h2.beta.3) and [yommp.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yommp.F90?rev=release-43h2.beta.3).
 
 __Surface SURFEX switches__
 

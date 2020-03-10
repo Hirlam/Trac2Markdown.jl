@@ -20,7 +20,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 (a perspective for HIRLAM veterans...) 
 ## HARMONIE features: data structure
 
- ### NWP aspects
+ === NWP aspects ===
 
  * ALADIN is a H/NH spectral model.
  * lambert, polar stereographic, (rotated) mercator projection
@@ -28,7 +28,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
  * 3(4)Dvar upper air analysis
  * OI based surface analysis, CANARI
 
- ### FA files
+ === FA files ===
 
  Internal format for ARPEGE/ALADIN for gridpoint or spectral data. GRIB is used as a way to pack data, but the grib record cannot be used as such.
 
@@ -36,35 +36,35 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
  * Only one date/time per file.
  * FA routines are found under xrd/fa
  * List with gl or frodo.
- * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheFA+)
+ * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=FA+)
 
- ### LFI files
+ === LFI files ===
 
  File format for SURFEX/MESO-NH
  
  * LFI routines for handling direct-access files under xrd/lfi
  * No packing ?
  * List with gl
- * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheLFI)
+ * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=LFI)
  
 ### GRIB
 
  * Harmonie is not using ASIMOF GRIB. 
  * Table one is used and generously extended
 
- ### BUFR and ODB
+ === BUFR and ODB ===
 
  BUFR is the archiving /exchange format for observations. Observation Database is used for efficient handling of observations on IFS. ODB used for both input data and feedback information.
 
- ### DDH (LFA files )
+ === DDH (LFA files ) ===
 
  Diagnostics by Horizontal Domains allows you to accumulate fluxes from different packages over different areas/points. 
  
  * LFA files ( Autodocumented File Software )
- * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article44&var_recherche# LFA&var_langen)
+ * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article44&var_recherche=LFA&var_lang=en)
  * under util/ddh
 
- ### Misc
+ === Misc ===
  
  * vfld/vobs files in a simple ASCII format.
 
@@ -116,28 +116,28 @@ It is important that documentation and instructions are maintained and updated t
   * 
 ```bash
 #!html
-<a href# "https://hirlam.org/portal/dmi/dmiald/forecasts/"  target"_blank">
+<a href="https://hirlam.org/portal/dmi/dmiald/forecasts/"  target="_blank">
 DMI's real time ALADIN suite</a>
 ```
   * 
 ```bash
 #!html 
-<a href# "http://fminwp.fmi.fi/ALADIN/" target"_blank">
+<a href="http://fminwp.fmi.fi/ALADIN/" target="_blank">
 FMI's real time ALADIN suite</a>
 ```
   * 
 ```bash
 #!html 
-<a href# "http://fminwp.fmi.fi/AROME/" target"_blank">
+<a href="http://fminwp.fmi.fi/AROME/" target="_blank">
 FMI's real time AROME suite</a>
 ```
   * 
 ```bash
 #!html 
-<a href# "http://hirlam.org/portal/smhi/WebgraF/" target"_blank">SMHI's real time ALADIN/AROME suite</a> 
+<a href="http://hirlam.org/portal/smhi/WebgraF/" target="_blank">SMHI's real time ALADIN/AROME suite</a> 
 ```
  * met.no and SMHI likely to start cycled HARMONIE runs with DA by the end of this year
-# ## Web interface for real-time operational HIRLAM model monitoring and inter-comparison
+### **Web interface for real-time operational HIRLAM model monitoring and inter-comparison**
  * HIRLAM operational services recently started [joint monitoring and verification] (../../../oprint/general.md) at hirlam.org. It is an interesting topic about if a joint data portal is also relevant for HARMONIE real time system.
 
 ----

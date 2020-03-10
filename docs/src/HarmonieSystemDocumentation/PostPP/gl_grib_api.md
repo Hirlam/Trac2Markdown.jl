@@ -120,9 +120,9 @@ or for the case where the level number is included in the FA name
 
 
 Conversion can be refined to convert a selection of fields. Below is and example the will write out 
- * T (shortname# 't',ppp011), u (shortname# 'u',ppp033) andv (shortname# 'v',ppp034) on all (lll# -1) model levels (ttt109)
- * T (shortname# 't',ppp011) at 2m (lll# 2) above the ground (ttt105) [T2m]
- * Total precipitation (shortname# 'tp',ppp061,ttt# 105,lll000)
+ * T (shortname='t',ppp=011), u (shortname='u',ppp=033) andv (shortname='v',ppp=034) on all (lll=-1) model levels (ttt=109)
+ * T (shortname='t',ppp=011) at 2m (lll=2) above the ground (ttt=105) [T2m]
+ * Total precipitation (shortname='tp',ppp=061,ttt=105,lll=000)
 ```bash
   &naminterp
    readkey%shortname=   't',     'u',     'v',                't',               'tp',               'fg',

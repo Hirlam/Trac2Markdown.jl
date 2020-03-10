@@ -13,7 +13,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2015?actio
 
  * How to get to SMHI
    * [By tram](https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/System201103/tram_to_smhi.pdf)
-   * [By foot](https://www.google.se/maps/dir/Folkborgsv%C3%A4gen,+Norrk%C3%B6ping/Elite+Grand+Hotel+Norrkoping,+Tyska+Torget+2,+600+41+Norrk%C3%B6ping/@58.5863797,16.1574714,15z/data# !3m1!4b1!4m14!4m13!1m5!1m1!1s0x46593bda5050313d:0xfda61b9979291879!2m2!1d16.146851!2d58.579928!1m5!1m1!1s0x46593a4bb20707d3:0x822aaad48dd75a3c!2m2!1d16.186537!2d58.592834!3e2?hlen)
+   * [By foot](https://www.google.se/maps/dir/Folkborgsv%C3%A4gen,+Norrk%C3%B6ping/Elite+Grand+Hotel+Norrkoping,+Tyska+Torget+2,+600+41+Norrk%C3%B6ping/@58.5863797,16.1574714,15z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x46593bda5050313d:0xfda61b9979291879!2m2!1d16.146851!2d58.579928!1m5!1m1!1s0x46593a4bb20707d3:0x822aaad48dd75a3c!2m2!1d16.186537!2d58.592834!3e2?hl=en)
 
 ## Programme
 

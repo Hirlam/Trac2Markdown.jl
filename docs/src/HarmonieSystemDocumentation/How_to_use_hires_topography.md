@@ -113,8 +113,8 @@ The part of this file that writes the header data is:
 
 ```bash
 !    Header file for harmonie:
-       open(unit# 23,file"hires_irluk_hm.hdr",form='formatted',
-     &      status# 'new',IOSTATios)
+       open(unit=23,file="hires_irluk_hm.hdr",form='formatted',
+     &      status='new',IOSTAT=ios)
             write(23,FMT='(A)') "GTOPO30 orography model, starting UL"
             write(23,FMT='(A)') "nodata: -9999"
                   write(caux,*) north
@@ -164,11 +164,11 @@ The main DEM data file is written in integer*2 format to the new `gtopo30.dir` f
           enddo
        enddo
 
-       open(unit# 24,file"gtopo30.dir",form="unformatted",
-     &      access# "direct",reclnpts_ns*npts_ew*2,status# "new",err999)
+       open(unit=24,file="gtopo30.dir",form="unformatted",
+     &      access="direct",recl=npts_ns*npts_ew*2,status="new",err=999)
 
 !  Write starting from NW corner, working east, then south one row:
-        write(24,rec# 1) ((elev_hm(i,j),i1,npts_ew), j=1,npts_ns)
+        write(24,rec=1) ((elev_hm(i,j),i=1,npts_ew), j=1,npts_ns)
 ```
 
 Note the explicit conversion to big-endian (so no “`-convert big-endian`” compiler flag should be used with this).   
@@ -233,7 +233,7 @@ The directory $HM_CLDATA/GTOPT030 contains 9 files, 7 of which are derived in so
 
 
 
-|# File|# Field|# Unit|# Nb bits| 
+|=  File 			=|=		Field 					=|=	  Unit =|=  Nb bits =| 
 | --- | --- | --- | --- |
 | Oro_Mean 		|  Mean orography (mean of Hmean)       |      m     |  16  | 
 | Sigma 			|		Sub-grid std dev of Hmean 	|	 m 	|  16  |

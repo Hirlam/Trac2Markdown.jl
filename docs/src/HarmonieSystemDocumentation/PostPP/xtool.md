@@ -102,7 +102,7 @@ xtool -sdtg1 2008080100 -edtg1 2008083000 -ll1 48 \
 
 ## SAL
 
-**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., 2008](http://ams.allenpress.com/perlserv/?request# get-abstract&doi10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
+**S**tructure **A**mplitude **L**ocation (**SAL**) is object based quality measure for the verification of QPFs ([Wernli et al., 2008](http://ams.allenpress.com/perlserv/?request=get-abstract&doi=10.1175%2F2008MWR2415.1)). **SAL** contains three independent components that focus on Structure, Amplitude and Location of the precipitation field in a specified domain. 
 
  * **S**: Measure of structure of the precipitation area (-2 - +2). Large **S**, if model predicts too large precipitation areas.
  * **A**: Measure of strength of the precipitation (-2 - +2). Large **A**, if model predicts too intense precipitation.

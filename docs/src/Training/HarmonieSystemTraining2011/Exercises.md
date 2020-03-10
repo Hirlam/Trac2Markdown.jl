@@ -60,7 +60,7 @@ gmake COMPILER=gfortran
 
 ## Post-processing
 
- ### Fullpos
+ === Fullpos ===
 
  * Post-processing with fullpos, exercise: Try out the different post processing types
 ```bash
@@ -71,14 +71,14 @@ PPTYPE=""                               # Postprocessing type, space separated l
                                         # sat = satellite radiances (AROME)
 ```
 
- ### Xtool
+ === Xtool ===
 
 [learn to use GL/xtool for file conversion/manipulation](https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README)
   * Run a difference between to files and print the result on the screen
   * Compare the orography between to files with SAL. Change the thresholds
   * Make a analysis increment file for a month of RCR data
 
- ### gl
+ === gl ===
 
  
 [learn to use GL/xtool for file conversion/manipulation](https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README)
@@ -108,7 +108,7 @@ Possible tasks in HARMONIE physics  [(phystask.pdf)](http://netfam.fmi.fi/harmon
 
 ## Monitoring
 
- ### Verification
+ === Verification ===
 
      * Download the trunk to your laptop and try the [testdata](https://hirlam.org/portal/download/system_training_2011/monitor_test_data.tar.gz) set.
 
@@ -137,7 +137,7 @@ Possible tasks in HARMONIE physics  [(phystask.pdf)](http://netfam.fmi.fi/harmon
      * Change the time window for time series
      * Play with the quality control
 
- ### WebgraF
+ === WebgraF ===
 
 
    * Download the WebgraF code
@@ -168,7 +168,7 @@ Possible tasks in HARMONIE physics  [(phystask.pdf)](http://netfam.fmi.fi/harmon
 
 ## Data assimilation
 
-### # Upper Air assimilation
+### = Upper Air assimilation=
 
 
 
@@ -184,7 +184,7 @@ Possible tasks in HARMONIE physics  [(phystask.pdf)](http://netfam.fmi.fi/harmon
 
 Useful guidance can be found in [and [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SingleObs](https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Structurefunctions]) and in presentations from data assimilation part of System Traning week.
 
-### # Surface assimilation
+### = Surface assimilation=
 
 * 1.) OI_MAIN: Try giving the observations more/less weight and see the impact
 

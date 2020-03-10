@@ -106,11 +106,11 @@ END temp
 ```bash
  &NADIRS
    LMFBUFR=.FALSE.,                                         # we are not using Météo France BUFR
-   ASCAT_XYGRID# 12500.,                                     # ASCAT XYGRID RESOLUTION /LR25000m/HR=12500m/
+   ASCAT_XYGRID=12500.,                                     # ASCAT XYGRID RESOLUTION /LR=25000m/HR=12500m/
    GPSSOLMETHOD="CENT",                                     # Selection method for GNSS data "CENT"/"MEAN"
    NbTempMaxLevels=6000,                                    # Maximum number of radiosonde levels read
-   TempSondOrTraj# .FALSE.,                                  # .TRUE. sondage vertical, .FALSE. = trajectoire
-   TempSondSplit# .FALSE.,                                   # .TRUE. on coupe le radiosondage/timeslot, .FALSE. = profil simple
+   TempSondOrTraj=.FALSE.,                                  # .TRUE. = sondage vertical, .FALSE. = trajectoire
+   TempSondSplit=.FALSE.,                                   # .TRUE. = on coupe le radiosondage/timeslot, .FALSE. = profil simple
    ElimTemp0=.FALSE.,                                       # suppression des TEMP sans delta lat/lon/time si .TRUE.
    ElimPilot0=.FALSE.,                                      # suppression des PILOT sans delta lat/lon/time si .TRUE.
    NFREQVERT_TPHR=100,                                      # thinning factor for radiosonde data

@@ -7,7 +7,7 @@ Version (trunk,[40h1.1] (../HarmonieSystemDocumentation/40h1.1/Phasing.md))
 
 ## Introduction
 
-In the following we describe the procedure to interface the HIRLAM subversion repository to the git repository at Météo France. Further on, the tasks of the phasers and procedure to create a new branch are described. A course was held at Météo France in 2010 on the subject of *Maintenance Training*. Some of the presentations made at this *Maintenance Training* course may still be of use. They are available from this !GmapDoc web page: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&lang# en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&langen)
+In the following we describe the procedure to interface the HIRLAM subversion repository to the git repository at Météo France. Further on, the tasks of the phasers and procedure to create a new branch are described. A course was held at Météo France in 2010 on the subject of *Maintenance Training*. Some of the presentations made at this *Maintenance Training* course may still be of use. They are available from this !GmapDoc web page: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&lang=en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208&lang=en)
 
 ## Access to external Meteo France git repository
 
@@ -22,7 +22,7 @@ Note that this is only for read access. To arrange access to the repository plea
 ## git -> subversion merging 
 
 This section of the phasing documentation provides instructions on how to retrieve . In here we assume you have the access rights and the knowledge to connect to the right computers (Météo France git repositories can be accessed from 'merou'). Details on how to access Météo France servers are available here: [wiki:HarmonieSystemDocumentation/MFaccess] (../HarmonieSystemDocumentation/MFaccess.md).
- * Set up git for the first time: Météo France provide documentation on how to set up and use their git repository here: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang# en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_langen). A git user account must be requested from gco at Météo France. 
+ * Set up git for the first time: Météo France provide documentation on how to set up and use their git repository here: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang=en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang=en). A git user account must be requested from gco at Météo France. 
 
 Add the following lines to your $HOME/.bashrc file (replacing **yourusername** with your user name):
 ```bash
@@ -45,7 +45,7 @@ git_start    ### this will require your git userid and password
 ```bash
 cd $HOME/git-dev/arpifs/
 git tag  ### this command will list available tags in the git repository
-git archive --format# tar -o /home/mrpe/whelane/CY40_t1.04.tar --prefixCY40_t1.04/ CY40_t1.04
+git archive --format=tar -o /home/mrpe/whelane/CY40_t1.04.tar --prefix=CY40_t1.04/ CY40_t1.04
 cd $HOME
 gzip /home/mrpe/whelane/CY40_t1.04.tar
 ```
@@ -276,7 +276,7 @@ dd/mm/yyyy Name (MF Service, Aladin or Hirlam partner)
    - for partners: alaro, arome, harmonie (but you may be more specific about harmonie-alaro or harmonie-arome)
 
  * Context and cycle:
-   - context: oper, double, dev   # > refers to MF environment. dev> for partners
+   - context: oper, double, dev   => refers to MF environment. dev => for partners
    - cycle example: 40_op1 (MF only), 40_bf.01 (bugfix), 40_t1 (pre-cycle during phasing)
 
  * Type of file/resource to be modified:

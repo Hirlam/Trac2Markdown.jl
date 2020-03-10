@@ -25,7 +25,7 @@ The ecflow viewer stars automatically. To view any suite for your server or othe
  * For deleting a suite manually using ecflow_client --port XXXX --host XXXX --delete force yes /suite or using the GUI Collector node+CTRL+click1 selecting ###ecflow_client --delete force yes <full_name>
  * If other manual intervention in server or client is needed you can use ecflow commands [https://software.ecmwf.int/wiki/display/ECFLOW/Home].
 
-At ECMWF there are two server options `ECF_HOST# ecgate` or `ECF_HOSTecgb-vecf` where the latter available since release-43h2.beta.5. Set `ECF_HOST` in `Env_system` to choose between the servers.
+At ECMWF there are two server options `ECF_HOST=ecgate` or `ECF_HOST=ecgb-vecf` where the latter available since release-43h2.beta.5. Set `ECF_HOST` in `Env_system` to choose between the servers.
 
 ## ecFlow control
 

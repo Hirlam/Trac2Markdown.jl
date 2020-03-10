@@ -22,7 +22,7 @@ http://ecmwf.int/products/data/software/grib_api.html
 Ungzip and untar the gzip'd tar file, and
 ```bash
 cd grib_api-1.9.9
-./configure --prefix# $HOME/grib_api --with-ifs-samples$HOME/grib_api/share/samples --disable-jpeg
+./configure --prefix=$HOME/grib_api --with-ifs-samples=$HOME/grib_api/share/samples --disable-jpeg
 make
 make install
 ```

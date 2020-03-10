@@ -21,7 +21,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2012?actio
 
  * How to get to SMHI
    * [By tram](https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/System201103/tram_to_smhi.pdf)
-   * [By foot](http://maps.google.se/maps?saddr# Folkborgsv%C3%A4gen,+Norrk%C3%B6ping&daddrKneippgatan+7,+602+36+Norrk%C3%B6ping+(Hotel+Kneippen)&hl# en&ieUTF8&sll# 58.587229,16.166248&sspn0.036101,0.125914&geocode# FdjbfQMdo2H2ACk9MVBQ2jtZRjF5GCl5mRum_Q%3BFdbzfQMdR5r2ACH9jdnYXApjSw&vpsrc0&dirflg# w&mrapd&t# m&z16)
+   * [By foot](http://maps.google.se/maps?saddr=Folkborgsv%C3%A4gen,+Norrk%C3%B6ping&daddr=Kneippgatan+7,+602+36+Norrk%C3%B6ping+(Hotel+Kneippen)&hl=en&ie=UTF8&sll=58.587229,16.166248&sspn=0.036101,0.125914&geocode=FdjbfQMdo2H2ACk9MVBQ2jtZRjF5GCl5mRum_Q%3BFdbzfQMdR5r2ACH9jdnYXApjSw&vpsrc=0&dirflg=w&mra=pd&t=m&z=16)
 
 ## Travelling funding
 

@@ -10,7 +10,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 ## Climate Generation
 
  * [Climate Generation] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Climategeneration.md)
- * [e923 documentation on gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchee923)
+ * [e923 documentation on gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=e923)
  * [Projections](http://www.cnrm.meteo.fr/gmapdoc/spip.php?rubrique24)
  * [Presentation from J.D. Grill](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article108)
  
@@ -50,7 +50,7 @@ For the atmosphere the required fields are: Q,T,U,V,PS,ORO. Optional fields like
  Fullpos is used for interpolation when we go from ALADIN to ALADIN/AROME
  source:/trunk/harmonie/nam/namelist_ald2arome_N_default#L114
  
- * [gmpadoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheee927)
+ * [gmpadoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=ee927)
 
 ## [Hands on practice task] (../../../HarmonieSystemTraining2008/Training/DomainAndCoupling.md)
 ## Reference Links

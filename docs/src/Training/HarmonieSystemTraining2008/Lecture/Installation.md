@@ -16,7 +16,7 @@ Gmkpack is the ALADIN utility to compile ARPEGE/IFS
 A mainpack installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models). Generate a set of pre-compiled libraries (rootpack) and modules available for USE. 
 Each single user buils their own  öocal "target" pack, which synchronise local source modifications with the reference libraries.  
 
-[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchegmkpack)
+[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack)
 
 [gmkpack vs make] (../../../Gmkpack_vs_Make.md)
 
@@ -118,7 +118,7 @@ On [ecgate](https://hirlam.org/trac/browser/trunk/harmonie/config-sh/submit.ecga
 The scalar_list is the default one, meaning that any unspecified job will be run as a single PE job on HPCE. Default values are defined for each list. Special settings for special jobs can be set like:
 
 ```bash
- $job_list{'Prep_ini_surfex'}{'RESOURCES'} # $submit_type.'resources ConsumableCPUs(1) ConsumableMemory(6000 MB)' ;
+ $job_list{'Prep_ini_surfex'}{'RESOURCES'} = $submit_type.'resources = ConsumableCPUs(1) ConsumableMemory(6000 MB)' ;
 ```
 
 

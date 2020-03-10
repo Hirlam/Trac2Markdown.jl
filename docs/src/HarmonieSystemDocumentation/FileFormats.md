@@ -17,9 +17,9 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
  * Only one date/time per file.
  * FA routines are found under ifsaux/fa
  * List or convert a file with [gl_grib_api] (../HarmonieSystemDocumentation/PostPP/gl_grib_api.md)
- * Other listing tool [PINUTS](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchePINUTS)
+ * Other listing tool [PINUTS](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=PINUTS)
 
- [Read more](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&rechercheFA+)
+ [Read more](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=FA+)
 
 
 ## GRIB/GRIB2
@@ -46,7 +46,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
  Diagnostics by Horizontal Domains allows you to accumulate fluxes from different packages over different areas/points. 
  
  * LFA files ( Autodocumented File Software )
- * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article44&var_recherche# LFA&var_langen)
+ * [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article44&var_recherche=LFA&var_lang=en)
  * under util/ddh
 
 ## Misc

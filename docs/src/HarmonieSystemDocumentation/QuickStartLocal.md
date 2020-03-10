@@ -58,13 +58,13 @@ PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CON
 Launch the experiment by giving start time, DTG, end time, DTGEND, and forecast length, LL
 ```bash
 cd $HOME/hm_home/my_exp
-PATH_TO_HARMONIE/config-sh/Harmonie start DTG# YYYYMMDDHH DTGENDYYYYMMDDHH LL=12
-# e.g., PATH_TO_HARMONIE/Harmonie start DTG# 2012122400 DTGEND2012122406 LL=12
+PATH_TO_HARMONIE/config-sh/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH LL=12
+# e.g., PATH_TO_HARMONIE/Harmonie start DTG=2012122400 DTGEND=2012122406 LL=12
 ```
  If you would like to only run long forecasts at 00/12 UTC and short (3h) at 03/06/09/15/18/21, you specify the longer forecast length as LLMAIN. 
 ```bash
 cd $HOME/hm_home/my_exp
-PATH_TO_HARMONIE/config-sh/Harmonie start DTG# 2012122400 LLMAIN24
+PATH_TO_HARMONIE/config-sh/Harmonie start DTG=2012122400 LLMAIN=24
 ```
  If successful, mini-SMS will identify your experiment name and start building your binaries and run your forecast. If not, you need to examine the mSMS log file $HM_DATA/mSMS.log. $HM_DATA is defined in your Env_system file. At ECMWF `$HM_DATA=$SCRATCH/hm_home/$EXP` where `$EXP` is your experiment name. Read more about where things happen further down.
 
@@ -72,7 +72,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie start DTG# 2012122400 LLMAIN24
 If your experiment have successfully completed and you would like to continue for another period you should write
 ```bash
 cd $HOME/hm_home/my_exp
-PATH_TO_HARMONIE/config-sh/Harmonie prod DTGEND# YYYYMMDDHH LL12 
+PATH_TO_HARMONIE/config-sh/Harmonie prod DTGEND=YYYYMMDDHH LL=12 
 ```
 By using `prod` you tell the system that you are continuing the experiment and using the first guess from the previous cycle. The start date is take from a file progress.log created in your $HOME/hm_home/my_exp directory. If you would have used `start` the initial data would have been interpolated from the boundaries, a cold start in other words.
 
@@ -99,10 +99,10 @@ Next time you run your experiment the changed file will be used. You can also ma
 ## Directory structure
 On most platforms HARMONIE compiles and produces all its output data under $HM_DATA (defined in ~/hm_home/my_exp/Env_system)
 
-|# Description|# Location|
+|= Description                            =|= Location                                                                                  =|
 | --- | --- |
 | Binaries                                 |$BINDIR (set in ecf/config_exp.h ), default is $HM_DATA/bin                                   |
-| libraries, object files & source code    |$HM_DATA/lib/src if MAKEUP# yes, $HMDATA/gmkpack_build if MAKEUPno                           |
+| libraries, object files & source code    |$HM_DATA/lib/src if MAKEUP=yes, $HMDATA/gmkpack_build if MAKEUP=no                           |
 | Scripts                                  |$HM_DATA/lib/scr                                                                             |
 | config files (Env_system & Env_system    |$HM_DATA/lib linked to files in $HM_DATA/config-sh                                           |
 | sms                                      |$HM_DATA/lib/sms                                                                             |

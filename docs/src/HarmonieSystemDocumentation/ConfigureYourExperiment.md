@@ -6,7 +6,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/ConfigureYour
 
 ## Introduction
 
-There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev# release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?revrelease-43h2.beta.3).
+There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3).
 
 Host specific paths and environment variables for your system are defined in Env_system. Read more [here] (../HarmonieSystemDocumentation/Installation.md).
 
@@ -40,7 +40,7 @@ WRK=$HM_DATA/$CYCLEDIR                  # Work directory
  * *WRK* is the work directory. The suggested path on cca is $SCRATCH/hm_home/${EXP}/$CYCLEDIR
 
 ## Archive settings (ECMWF)
-Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](https://hirlam.org/trac/browser/Harmonie/scr/Archive_host1?rev# release-43h2.beta.3) and [Archive_ecgb](https://hirlam.org/trac/browser/Harmonie/scr/Archive_ecgb?revrelease-43h2.beta.3). 
+Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](https://hirlam.org/trac/browser/Harmonie/scr/Archive_host1?rev=release-43h2.beta.3) and [Archive_ecgb](https://hirlam.org/trac/browser/Harmonie/scr/Archive_ecgb?rev=release-43h2.beta.3). 
 ```bash
 # **** Paths to archive ****
 # We need to define ARCHIVE early since it might be used further down
@@ -75,9 +75,9 @@ DOMAIN=DKCOEXP                          # See definitions in scr/Harmonie_domain
 TOPO_SOURCE=gmted2010                   # Input source for orography. Available are (gmted2010|gtopo30)
 GRID_TYPE=LINEAR                        # Type of grid (LINEAR|QUADRATIC|CUBIC)
 ```
- * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev# release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?revrelease-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain] (../HarmonieSystemDocumentation/ModelDomain.md)
+ * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain] (../HarmonieSystemDocumentation/ModelDomain.md)
  * *TOPO_SOURCE*: Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography] (../HarmonieSystemDocumentation/How_to_use_hires_topography.md)
- * *GRID_TYPE*: This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](https://hirlam.org/trac/browser/Harmonie/scr/Cliamte?rev# release-43h2.beta.3) and [scr/Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?revrelease-43h2.beta.3)
+ * *GRID_TYPE*: This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](https://hirlam.org/trac/browser/Harmonie/scr/Cliamte?rev=release-43h2.beta.3) and [scr/Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev=release-43h2.beta.3)
 
 ## Vertical levels
 Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid] (../HarmonieSystemDocumentation/VerticalGrid.md)
@@ -157,8 +157,8 @@ ANASURF_MODE="before"                   # When ANASURF should be done
                                         # before            : Before ANAATMO
                                         # after             : After ANAATMO
                                         # both              : Before and after ANAATMO (Only for ANAATMO=4DVAR)
-INCV# "1,1,1,1"                          # Active EKF control variables. 1WG2 2# WG1 3TG2 4=TG1
-INCO# "1,1,0"                            # Active EKF observation types (Element 1T2m, element 2# RH2m and element 3Soil moisture) 
+INCV="1,1,1,1"                          # Active EKF control variables. 1=WG2 2=WG1 3=TG2 4=TG1
+INCO="1,1,0"                            # Active EKF observation types (Element 1=T2m, element 2=RH2m and element 3=Soil moisture) 
 
 MAKEODB2=no                             # Conversion of ODB-1 to ODB-2 using odb_migrator
 
@@ -166,15 +166,15 @@ SST=BOUNDARY                            # Which SST fields to be used in surface
                                         # BOUNDARY          : SST interpolated from the boundary file. ECMWF boundaries utilize a special method.
                                         #                     HIRLAM and HARMONIE boundaries applies T0M which should be SST over sea.
 LSMIXBC=no                              # Spectral mixing of LBC0 file before assimilation
-[ "$ANAATMO" # 3DVAR] && LSMIXBCyes
+[ "$ANAATMO" = 3DVAR] && LSMIXBC=yes
 JB_INTERPOL=no                          # Interpolation of structure functions from a pre-defined domain to your domain
 
 ```
  * *ANAATMO*: Atmospheric analysis (__3DVAR__|4DVAR|blending|none)
  * *ANASURF*: Surface analysis (CANARI|__CANARI_OI_MAIN__|CANARI_EKF_SURFEX|none). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
  * *ANASURF_MODE*:When the surface should be called (__before__|after|both)
- * *INCV*: Active EKF control variables. 1# WG2 2WG1 3# TG2 4TG1 (0|1)
- * *INCO*: Active EKF observation types (Element 1# T2m, element 2RH2m and element 3=Soil moisture) (0|1)
+ * *INCV*: Active EKF control variables. 1=WG2 2=WG1 3=TG2 4=TG1 (0|1)
+ * *INCO*: Active EKF observation types (Element 1=T2m, element 2=RH2m and element 3=Soil moisture) (0|1)
  * *MAKEODB2*: Option to convert ODB-1 databases to ODB-2 files for DA monitoring
  * *SST*: which sea surface temperature field to use in the surface analysis
  * *LSMIXBC* Spectral mixing of LBC0 file before assimilation (__no__|yes)
@@ -283,7 +283,7 @@ SURFEX_PREP="yes"                # Use offline surfex prep facility (Alt. gl + F
  * *SURFEX_INPUT_FORMAT* Input format for host model run with surfex (__lfi__|fa)
 
  * *BDLIB* is the experiment to be used as boundaries. Possible values, __ECMWF__ for IFS from MARS (default), __RCRa__ for HIRLAM-RCR from ECFS or other __HARMONIE experiment__. 
- * *BDDIR* is the boundary file directory. The possible date information in the path must be given by using UPPER CASE letters (@YYYY@# year,@MM@month,@DD@# day,@HH@hour,@FFF@=forecast length).  
+ * *BDDIR* is the boundary file directory. The possible date information in the path must be given by using UPPER CASE letters (@YYYY@=year,@MM@=month,@DD@=day,@HH@=hour,@FFF@=forecast length).  
  * *BDSTRATEGY* Which boundary strategy to follow i.e. How to find the right boundaries with the right age and location. [Read more] (../HarmonieSystemDocumentation/BoundaryFilePreparation#Boundarystrategies.md)
  * *BDINT* is boundary interval in hours.
  * *BDCLIM* is the path to climate files corresponding the boundary files, when nesting HARMONIE to HARMONIE.
@@ -299,10 +299,10 @@ Read more about the boundary file preparation [here] (../HarmonieSystemDocumenta
 # *** Ensemble mode general settings. ***
 # *** For member specific settings use msms/harmonie.pm ***
 ENSMSEL=                                # Ensemble member selection, comma separated list, and/or range(s):
-                                        # m1,m2,m3-m4,m5-m6:step    mb-me ## mb-me:1 mb,mb+1,mb+2,...,me
+                                        # m1,m2,m3-m4,m5-m6:step    mb-me == mb-me:1 == mb,mb+1,mb+2,...,me
                                         # 0=control. ENSMFIRST, ENSMLAST, ENSSIZE derived automatically from ENSMSEL.
 ENSINIPERT=                             # Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv.
-ENSCTL# # Which member is my control member? Needed for ENSINIPERTbnd. See harmonie.pm.
+ENSCTL=                                 # Which member is my control member? Needed for ENSINIPERT=bnd. See harmonie.pm.
 ENSBDMBR=                               # Which host member is used for my boundaries? Use harmonie.pm to set.
 ENSMFAIL=0                              # Failure tolerance for all members.
 ENSMDAFAIL=0                            # Failure tolerance for members doing own DA. Not implemented.
@@ -326,7 +326,7 @@ FESTAT=no                               # Extract differences and do Jb calculat
 ```
 
  * *ENSMSEL*  Ensemble member selection, comma separated list, and/or range(s):
-    # m1,m2,m3-m4,m5-m6:step    mb-me ## mb-me:1 mb,mb+1,mb+2,...,me
+    # m1,m2,m3-m4,m5-m6:step    mb-me == mb-me:1 == mb,mb+1,mb+2,...,me
     # 0=control. ENSMFIRST, ENSMLAST, ENSSIZE derived automatically from ENSMSEL.
  * *ENSINIPERT* Ensemble perturbation method (bnd). Not yet implemented: etkf, hmsv, slaf.
  * *ENSMFAIL* Failure tolerance for all members. Not yet implemented.
@@ -408,7 +408,7 @@ TFLAG="h"                               # Time flag for model output. (h|min)
 
 # Writeup times of # history,surfex and fullpos files
 # Comma separated list, and/or range(s) like:
-# t1,t2,t3-t4,t5-t6:step    tb-te ## tb-te:1 tb,tb+1,tb+2,...,te
+# t1,t2,t3-t4,t5-t6:step    tb-te == tb-te:1 == tb,tb+1,tb+2,...,te
 
 if [ -z "$ENSMSEL"] ; then
   # Standard deterministic run
@@ -430,7 +430,7 @@ if [ -z "$ENSMSEL"] ; then
     FULLFAFTIMES="00-760:24"                # History FA file IO server gather times
     PWRITUPTIMES=$HWRITUPTIMES              # Postprocessing times
     VERITIMES=$HWRITUPTIMES                 # Verification output times, may change PWRITUPTIMES
-    SFXSELTIMES# $HWRITUPTIMES               # Surfex select file output times - Only meaningful if SURFEX_LSELECTyes
+    SFXSELTIMES=$HWRITUPTIMES               # Surfex select file output times - Only meaningful if SURFEX_LSELECT=yes
     SWRITUPTIMES="00-760:12"                # Surfex model state output times
     SFXWFTIMES=$SWRITUPTIMES                # SURFEX history FA file IO server gathering times
   fi
@@ -542,7 +542,7 @@ VFLDEXP=$EXP                            # Experiment name on vfld files
 
 Read more about the verification package [here] (../HarmonieSystemDocumentation/PostPP/Verification.md)
 
- ### Field verification
+ === Field verification ===
 
 ```bash
 # *** Field verification ***
@@ -556,7 +556,7 @@ FLDVER_HOURS="06 12 18 24 30 36 42 48"  # Hours for field verification
 
  More options on field verification can be found in [browser:trunk/harmonie/scr/Fldver Fldver] and [browser:trunk/harmonie/scr/AccuFldver AccuFldver]
 
- ### Observation monitoring and general diagnostics
+ === Observation monitoring and general diagnostics ===
 
 ```bash
 # *** Observation monitoring ***
@@ -575,7 +575,7 @@ OBSMON_SYNC=no                          # Sync obsmn sqlite tables to ecgate (ye
 
  **Note that this is only active if ANAATMO != none**
 
- ### Field monitoring ( experimental )
+ === Field monitoring ( experimental ) ===
 
 Make various charts for daily monitoring
 

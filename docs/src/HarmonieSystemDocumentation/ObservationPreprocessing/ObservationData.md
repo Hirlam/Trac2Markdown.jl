@@ -23,7 +23,7 @@ The variables above denote
      SOUTHEC=$( tail -4 foo | head -1 | sed 's/ //g' )
 ```
 ## MARS contents
-**Note:** by default, MARS observations are retrieved from the MARS TYPE# OB stream. ECMWF add late observations into MARS on a daily basis. MARS OB observations may also be updated with new observation types by ECMWF staff from time to time. eg E-AMDAR BUFR data were added at the end of June 2015 to TYPEOB data (observations from November 2014 - June 2015).Here are changes made to [source:Harmonie/scr/Prepare_ob] to retrieve E-AMDAR (OBSTYPE=146) data from AI/LWDA MARS BUFR:
+**Note:** by default, MARS observations are retrieved from the MARS TYPE=OB stream. ECMWF add late observations into MARS on a daily basis. MARS OB observations may also be updated with new observation types by ECMWF staff from time to time. eg E-AMDAR BUFR data were added at the end of June 2015 to TYPE=OB data (observations from November 2014 - June 2015).Here are changes made to [source:Harmonie/scr/Prepare_ob] to retrieve E-AMDAR (OBSTYPE=146) data from AI/LWDA MARS BUFR:
 ```bash
 
      # Write request for Conventional data

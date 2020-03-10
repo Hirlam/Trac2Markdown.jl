@@ -24,6 +24,7 @@ include("trac2md.jl")
 include("getpages.jl")
 include("replace_code.jl")
 include("replace_tables.jl")
+include("replace_headers.jl")
 include("pages.jl")
 
 end # module

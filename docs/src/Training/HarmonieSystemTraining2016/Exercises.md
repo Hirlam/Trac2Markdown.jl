@@ -28,7 +28,7 @@ cp scr/Select_postp.pl scr/Select_postp.pl_original
      * Hint 2: namfpdyh_lev will need to be changed and namfpdyh_lev2 will need to be created to allow for extra *u* and *v* levels
    * Rerun a short period to test your changes:
 ```bash
-~hlam/harmonie_release/tags/harmonie-40h1.1/config-sh/Harmonie prod DTGEND# YYYYMMDDHH BUILDno
+~hlam/harmonie_release/tags/harmonie-40h1.1/config-sh/Harmonie prod DTGEND=YYYYMMDDHH BUILD=no
 ```
 
 
@@ -56,7 +56,7 @@ rsync -vaux /scratch/ms/spsehlam/hlam/Training/gl/ $SCRATCH/gl_training/
  * Exercise 3: Vertical interpolation with gl exercise (model levels --> pressure levels)
    * Use the forecast FA file from *Exercise 2* to convert to GRIB and carry out vertical interpolation
    * Output temperature on heights above ground at levels 1.0m, 1.5m, 2.0m, 2.5m and 3.0m only
-   * Test impact of using  VINT_Z_ORDER# 0 vs  VINT_Z_ORDER1
+   * Test impact of using  VINT_Z_ORDER=0 vs  VINT_Z_ORDER=1
      * Hint 1: Use lwrite_pponly= .TRUE.,
      * Hint 2: Use level type (pppkey%ttt) = 125
 
@@ -97,7 +97,7 @@ rsync -vaux /scratch/ms/spsehlam/hlam/Training/gl/ $SCRATCH/gl_training/
 
 ## Monitoring
 
- ### Verification
+ === Verification ===
 
      * Try the setup on ecgb available under
 
@@ -121,7 +121,7 @@ rsync -vaux /scratch/ms/spsehlam/hlam/Training/gl/ $SCRATCH/gl_training/
      * Change the time window for time series
      * Try some conditional verification
 
- ### WebgraF
+ === WebgraF ===
 
    * Download the WebgraF code
 
@@ -153,7 +153,7 @@ rsync -vaux /scratch/ms/spsehlam/hlam/Training/gl/ $SCRATCH/gl_training/
      * Download [Harp](https://hirlam.org/trac/attachment/wiki/HARP/Harp_20161213.tar.gz)
      * Install Harp
 
-  ### EPS
+  === EPS ===
 
      * Get observations for 1 May - 31 August 2015 and 2016
      * Choose an experiment from /scratch/ms/no/fa1m/vfld

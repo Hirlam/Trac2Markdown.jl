@@ -4,7 +4,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/DigitialFilte
 # Harmonie system Documentation
 ## Digital Filter Initialization
 == Introduction
-Digital Filter Initialization (DFI) is documented by Météo France here: [http://www.cnrm.meteo.fr/gmapdoc//spip.php?article158&lang# en](http://www.cnrm.meteo.fr/gmapdoc//spip.php?article158&langen). This wiki page is based on the "Version cycle 40t1" document available on the gmapdoc web page. By default HARMONIE does not use DFI. 
+Digital Filter Initialization (DFI) is documented by Météo France here: [http://www.cnrm.meteo.fr/gmapdoc//spip.php?article158&lang=en](http://www.cnrm.meteo.fr/gmapdoc//spip.php?article158&lang=en). This wiki page is based on the "Version cycle 40t1" document available on the gmapdoc web page. By default HARMONIE does not use DFI. 
 
 ## DFI
 

@@ -60,7 +60,7 @@ Depending on the satellite and channel you may have to add entries to the NADIRS
 ## Source code
 The reading of BUFR AMVs is taken care of by the [subroutine in [source:Harmonie/src/odb/pandor/module/bator_decodbufr_mod.F90?rev=release-43h2.beta.3 src/odb/pandor/module/bator_decodbufr_mod.F90](https://hirlam.org/trac/browser/geowind]). This subroutine reads the following parameters defined in the param.cfg file:
 
-|# Name|# Description|
+|= Name            =|= Description =|
 | --- | --- |
 | Date and time     | derived from the tconfig(004001) - assumes month, day, hour and minute are in consecutive entries in the values array |
 | Location          | latitude and longitude are read from tconfig(005001) and tconfig(006001)                                              |

@@ -127,7 +127,7 @@ The pre-processing step creates ODB (Observational Data Base) from various obser
               Important: If you would like to have more bases, do not forget to take that into consideration when generating the “refdata” file for BATOR to define which observations you would like to have in each base.
 ```
  
- ### Surface analysis – CANARI
+ === Surface analysis – CANARI ===
     - Configuration: 701 of the IFS/ARPGE/ALADIN/AROME/HARMONIE
     - Script name: !RunCanari
     - Compilation: Use of the gmkpack or makeup
@@ -202,7 +202,7 @@ The pre-processing step creates ODB (Observational Data Base) from various obser
 
  See [Trojakova, 2008](https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2008/Lecture/DAdataflow/Trojakova_canari_2.ppt) for more details on the Canari and its exploitation.
  
- ### Observation screening
+ === Observation screening ===
     - Configuration: 002 of the IFS/ARPGE/ALADIN/AROME/HARMONIE
     - Script name: !RunScreening 
     - Compilation: Use of the gmkpack or makeup
@@ -237,7 +237,7 @@ The pre-processing step creates ODB (Observational Data Base) from various obser
         if [ $LVARBC = "T" ]; then
 
          BEG_DIFF=`mandtg $DTG - $DTGBEG`
-         if [ "$VARBC_COLD_START" ## "yes" -a $BEG_DIFF -gt 30 -o "$VARBC_COLD_START" "no" ]; then
+         if [ "$VARBC_COLD_START" == "yes" -a $BEG_DIFF -gt 30 -o "$VARBC_COLD_START" == "no" ]; then
 
           [[ -s $WRK/VARBC.cycle ]] || \
           { echo "You don t have VARBC table from the earlier run \
@@ -433,7 +433,7 @@ Details about the minimization procedure can be found [here (Desroziers, ALADIN/
       #  Extraction of the extended ODB (ECMA)
         SUBVERSION=0
         export VERSION=1
-        #export DEGREE# 0  # unfortunately in this case (VERSION1,SUBVERSION=0), we cannot get latitude and longitude in degrees, one should use degrees function in the sql request for that.
+        #export DEGREE=0  # unfortunately in this case (VERSION=1,SUBVERSION=0), we cannot get latitude and longitude in degrees, one should use degrees function in the sql request for that.
         export ODB_CMA=ECMA
         for base in $types_BASE;don
             cd $WRK/odbvar/ECMA.$base
@@ -472,7 +472,7 @@ This task has two purposes: -to validate all steps in DA system, and to prepare 
 3- Setup your syytem
     ~nhz/Harmonie setup -r ~nhz/harmonie_release/33h1
 4- Do our cycling:
-    ~nhz/Harmonie start  DTG# 2007020100 DTGEND2007020318
+    ~nhz/Harmonie start  DTG=2007020100 DTGEND=2007020318
 5- You can find your output on hpce:
        - $TEMP/HTEST/archive
 
@@ -496,7 +496,7 @@ Each report has a header of 12 elements (the 11-th and the 12-th element are not
 22 2 10077144    43.73000     1.61000  'EU9967  '  20080226 213100 2160.000000  2 11111 0
 
 ```
-But you need only one observation. In each report the first value is the number of elements in the report, including itself. Now you choose your single observation. The 10-th element indicates the number of measured parameters (bodies) in the report. In this example we have “2” parameters. Each body has 5 elements, and the first value is the variable name (varno in ODB). So you can choose varno# 2 (temperature), or varno3 (wind). Let choose temperature, and we will have 22-5 elements in the report. So your OBSOUL looks like this:
+But you need only one observation. In each report the first value is the number of elements in the report, including itself. Now you choose your single observation. The 10-th element indicates the number of measured parameters (bodies) in the report. In this example we have “2” parameters. Each body has 5 elements, and the first value is the variable name (varno in ODB). So you can choose varno=2 (temperature), or varno=3 (wind). Let choose temperature, and we will have 22-5 elements in the report. So your OBSOUL looks like this:
 ```bash
 
 20080227 0
@@ -516,7 +516,7 @@ Tip: Create new rule of blacklisting for your stations and change accordingly th
 Plot the impact of your modification. Good luck for this exercise as well!
 
 **d- (Easy) Do single observation analysis with CANARI** (never tested, might not work due to box checking, but why not to try?).
-   Tip: Follow the instructions given in exercise “a-”, and instead of aircraft (obstype# 2), choose SYNOP (obstype1). Problem might occur due to dependency / or completeness of observations, so take one report with all bodies/parameters. But control your choice in namelist of CANARI. Plot the increment field.
+   Tip: Follow the instructions given in exercise “a-”, and instead of aircraft (obstype=2), choose SYNOP (obstype=1). Problem might occur due to dependency / or completeness of observations, so take one report with all bodies/parameters. But control your choice in namelist of CANARI. Plot the increment field.
 
 **e- Single observation using one AMSU-A channel 7:** 
 Here is the content of the OBSOUL file.

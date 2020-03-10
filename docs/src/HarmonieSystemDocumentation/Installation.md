@@ -23,7 +23,7 @@ Gmkpack is the ALADIN utility to compile ARPEGE/IFS
 A mainpack installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models). Generate a set of pre-compiled libraries (rootpack) and modules available for USE. 
 Each single user buils their own  local "target" pack, which synchronise local source modifications with the reference libraries.  
 
-[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page# recherche&recherchegmkpack)
+[gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack)
 
 [gmkpack vs make] (../HarmonieSystemDocumentation/Gmkpack_vs_Make.md)
 
@@ -88,7 +88,7 @@ Identify your system in one of the config files in config-sh or write a new conf
  AUXLIBS/EMOSLIB  # Path to your external libraries
 ```
 
-Compare e.g. with [config.ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb-cca?rev# release-43h2.beta.3) or [config.krypton](https://hirlam.org/trac/browser/Harmonie/config-sh/config.krypton?revrelease-43h2.beta.3).
+Compare e.g. with [config.ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb-cca?rev=release-43h2.beta.3) or [config.krypton](https://hirlam.org/trac/browser/Harmonie/config-sh/config.krypton?rev=release-43h2.beta.3).
 
 You also have to identify your system for gmkpack in:
 
@@ -123,7 +123,7 @@ On [ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb-cca
 The scalar_list is the default one, meaning that any unspecified job will be run as a single PE job on HPCE. Default values are defined for each list. Special settings for special jobs can be set like:
 
 ```bash
- $job_list{'Prep_ini_surfex'}{'RESOURCES'} # $submit_type.'resources ConsumableCPUs(1) ConsumableMemory(6000 MB)' ;
+ $job_list{'Prep_ini_surfex'}{'RESOURCES'} = $submit_type.'resources = ConsumableCPUs(1) ConsumableMemory(6000 MB)' ;
 ```
 
 
