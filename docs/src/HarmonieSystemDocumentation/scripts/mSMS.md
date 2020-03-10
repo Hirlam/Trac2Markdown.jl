@@ -30,7 +30,7 @@ In Harmonie, things related to mini-SMS are located in subdirectory [msms](https
 
 Mini-XCdp is a graphical user interface (GUI) to the mini-SMS scheduler. The source code is contained in the perl script [mXCdp.pl](https://hirlam.org/trac/browser/trunk/harmonie/msms/mXCdp.pl).
 It communicates with mini-SMS by sending HTTP requests. For this to work, a small extension [WebServer.pl](https://hirlam.org/trac/browser/trunk/harmonie/msms/WebServer.pl) is included by `mSMS.pl` on demand.
-More information on the client/server interaction can be found [here] (../../HarmonieSystemDocumentation/scripts/mXCdp.md), and also in this [blog post](https://hirlam.org/trac/blog/split_mSMS_mXCdp).
+More information on the client/server interaction can be found [here](../../HarmonieSystemDocumentation/scripts/mXCdp.md), and also in this [blog post](https://hirlam.org/trac/blog/split_mSMS_mXCdp).
 
 The name mini-XCdp is perhaps a bit unfortunate, it is not as closely mimicking ECMWF's **XCdp** (X Control and display program) as mini-SMS follows full SMS. But it gives the user some possibilities to interact with the scheduler, e.g.:
  * If a task aborts, it can be restarted from the GUI, without rerunning the whole suite.
@@ -138,7 +138,7 @@ The indentation style used in these tdf files may look confusing, but there is a
 ## More documentation
 
  * On [mini-SMS](https://hirlam.org/UG/HL_Documentation/mSMS). Old and slightly outdated, but extensive.
- * On [mini-XCdp] (../../HarmonieSystemDocumentation/scripts/mXCdp.md). A bit more detailed than in this page. An even older document (from before the split into two separate programs) can be found [here](https://hirlam.org/UG/HL_Documentation/mSMS/mXCdp).
+ * On [mini-XCdp](../../HarmonieSystemDocumentation/scripts/mXCdp.md). A bit more detailed than in this page. An even older document (from before the split into two separate programs) can be found [here](https://hirlam.org/UG/HL_Documentation/mSMS/mXCdp).
 
 ----
 

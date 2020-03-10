@@ -194,7 +194,7 @@ PATH_TO_HARMONIE/config-sh/Harmonie start DTG=2006120112
 
 ## Known problems
  * It is currently not possible to run full climate generation locally as long as SURFEX is involved. Do it at ECMWF in advance.
-## [Hands on practice task] (../../../HarmonieSystemTraining2008/Training/LocalInstallation.md)
+## [Hands on practice task](../../../HarmonieSystemTraining2008/Training/LocalInstallation.md)
 ## *Questions & issues related to the current topics* 
  * The installation of additional softwares (auxlibs, blas, lapack) are a bit complicated, but it might be difficult to write a script wrapper for such things due to platform diversity
  

@@ -64,6 +64,6 @@ The following hands-on task list is to be compiled and finalized prior to the tr
  1. learn to work with mXCdp
    * submit, interrupt, resume mSMS jobs with graphic user interface
  1. learn to design and perform a series of ALADIN forecast to derive background error statistics for 3DVAR
- 1. [basic editing of Hirlam system wiki] (../../HarmonieSystemTraining2008/Training/WikiAuthoring.md)
+ 1. [basic editing of Hirlam system wiki](../../HarmonieSystemTraining2008/Training/WikiAuthoring.md)
    * use Hirlam system wiki to add/edit pages, using basic wiki editing features
 

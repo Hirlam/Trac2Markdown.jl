@@ -17,11 +17,11 @@ The meeting location is the Almagrundet meeting room. For lecturers a smaller ro
      * 9:45 Introduction of HARMONIE system
        * [History, status, component development, plan](https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2011/Agenda/HarmonieSystemTraining_2011_UA_Introduction.pdf) (UA)
      * 10:30 Coffee
-     * 11:00 [Harmonie System Installation ] (../../HarmonieSystemTraining2011/Lecture/Installation.md) (TM)
-     * 11:45 [mini-SMS and mini-XCdp] (../../HarmonieSystemTraining2011/Lecture/mSMS.md) (OV)
+     * 11:00 [Harmonie System Installation ](../../HarmonieSystemTraining2011/Lecture/Installation.md) (TM)
+     * 11:45 [mini-SMS and mini-XCdp](../../HarmonieSystemTraining2011/Lecture/mSMS.md) (OV)
      * 12:30 Lunch
-     * 13:30 [Tools and graphics] (../../HarmonieSystemTraining2011/Exercises#ToolsGraphics.md) (UA)
-     * 14:00 [ Your first experiment ] (../../HarmonieSystemTraining2011/RunningExperiment.md) (XY)
+     * 13:30 [Tools and graphics](../../HarmonieSystemTraining2011/Exercises.md#ToolsGraphics) (UA)
+     * 14:00 [ Your first experiment ](../../HarmonieSystemTraining2011/RunningExperiment.md) (XY)
      * 14:30 Break
      * 15:30 - 18:00 Hands on session, Q&A
 
@@ -32,15 +32,15 @@ The meeting location is the Almagrundet meeting room. For lecturers a smaller ro
      * 11:00 AROME/ALARO physics: slides by [SN](http://netfam.fmi.fi/harmonietrain/harphys_SN.pdf), [LR](http://netfam.fmi.fi/harmonietrain/harphys_LR.pdf), [EG](http://netfam.fmi.fi/harmonietrain/harphys_EG.pdf)
      * 12:30 Lunch
      * 13:30 [SURFEX](https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2011/Agenda/SURFEX_for_Harmonie_training_2011.ppt) (PS)
-     * 14:15 [HARMONIE/Surfex climate generation] (../../HarmonieSystemDocumentation/ClimateGeneration.md), [boundary/surface coupling] (../../HarmonieSystemDocumentation/BoundaryFilePreparation.md) (UA)
+     * 14:15 [HARMONIE/Surfex climate generation](../../HarmonieSystemDocumentation/ClimateGeneration.md), [boundary/surface coupling](../../HarmonieSystemDocumentation/BoundaryFilePreparation.md) (UA)
      * 15:00 Break
      * 15:30-18:00 Hands on session, Q&A
 
    3. Wednesday, 21Sept
-     * 09:00 [HARMONIE surface and upper air analysis: Overview] (../../HarmonieSystemTraining2008/Lecture/DAdataflow.md) (RR)
-     * 09:45 [HARMONIE observation data handling] (../../HarmonieSystemTraining2008/Lecture/ObsHandling.md) (RR)
+     * 09:00 [HARMONIE surface and upper air analysis: Overview](../../HarmonieSystemTraining2008/Lecture/DAdataflow.md) (RR)
+     * 09:45 [HARMONIE observation data handling](../../HarmonieSystemTraining2008/Lecture/ObsHandling.md) (RR)
      * 10:30 Break
-     * 11:00 [ Surface assimilation aspects] (../../HarmonieSystemTraining2011/Lecture/SurfaceAssimilation.md) (TA)
+     * 11:00 [ Surface assimilation aspects](../../HarmonieSystemTraining2011/Lecture/SurfaceAssimilation.md) (TA)
      * 12:30 Lunch
      * 13:30 [Jb and derivation of B statistics](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2011/Agenda/magnus_tw_jb_2011.ppt) (ML)
      * 14:15 [Monitoring and diagnosis of analysis results](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2011/Agenda/magnus_tw_mondia_2011.ppt) (ML)
@@ -53,9 +53,9 @@ The meeting location is the Almagrundet meeting room. For lecturers a smaller ro
      * 09:45 [Harmonie Quality (XY) ](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2011/Agenda/HarmonieQuality.ppt)
      * 10:30 Break
      * 11:00 [Field verification](https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2011/Agenda/Field_Verification2_KE.pdf) (KE)
-     * 11:30 [Post-processing fullpos, gl] (../../HarmonieSystemTraining2011/Lecture/PostPP.md) (TA)
+     * 11:30 [Post-processing fullpos, gl](../../HarmonieSystemTraining2011/Lecture/PostPP.md) (TA)
      * 12:30 Lunch
-     * 13:30 [Verification usage] (../../HarmonieSystemDocumentation/PostPP/Verification.md) (UA)
+     * 13:30 [Verification usage](../../HarmonieSystemDocumentation/PostPP/Verification.md) (UA)
      * 14:15-17:00 Hands on with Q & A
      * 15:00 Break
      * 18.00 Workshop dinner at SMHI

@@ -22,7 +22,7 @@ Please note found problems or suggestions below:
 
 
 
-## [Back to the relevant lecture notes] (../../../HarmonieSystemTraining2008/Lecture/DomainAndCoupling.md)
+## [Back to the relevant lecture notes](../../../HarmonieSystemTraining2008/Lecture/DomainAndCoupling.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 

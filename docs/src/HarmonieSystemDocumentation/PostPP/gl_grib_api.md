@@ -6,7 +6,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/gl_gri
 
 ## Introduction
 
-gl_grib_api ( as in **g**rib**l**ist ) is a multi purpose tool for file manipulation and conversion. It uses ECMWF's   [ecCodes](https://confluence.ecmwf.int//display/ECC/What+is+ecCodes) library, and can be compiled with and without support for HARMONIE FA/LFI or NETCDF files. The gl_grib_api package also includes software for extraction for verification, fldextr, and field comparison, [xtool] (../../HarmonieSystemDocumentation/PostPP/xtool.md).
+gl_grib_api ( as in **g**rib**l**ist ) is a multi purpose tool for file manipulation and conversion. It uses ECMWF's   [ecCodes](https://confluence.ecmwf.int//display/ECC/What+is+ecCodes) library, and can be compiled with and without support for HARMONIE FA/LFI or NETCDF files. The gl_grib_api package also includes software for extraction for verification, fldextr, and field comparison, [xtool](../../HarmonieSystemDocumentation/PostPP/xtool.md).
 
 ```bash
 
@@ -137,7 +137,7 @@ where
  * level is the GRIB level
  * tri means timeRangeIndicator 
 
-The first three ones are well known to most users. The time range indicator is used in HARMONIE to distinguish between instantaneous and accumulated fields. Read more about the options [here] (../../HarmonieSystemDocumentation/Forecast/Outputlist/40h1#TimeunitsWMOcodetable4.md) Note that for level type 109 setting level=-1 means all. 
+The first three ones are well known to most users. The time range indicator is used in HARMONIE to distinguish between instantaneous and accumulated fields. Read more about the options [here](../../HarmonieSystemDocumentation/Forecast/Outputlist/40h1.md#TimeunitsWMOcodetable4) Note that for level type 109 setting level=-1 means all. 
 
 We can also pick variables using their FA/lfi name:
 ```bash
@@ -203,7 +203,7 @@ gl_grib_api can be used to produce postprocessed parameters possibly not availab
    * Wind (gust) speed and direction
    * Cloud base, cloud top, cloud mask and significant cloud top
 
- For a comprehensive list please check the [output information] (../../HarmonieSystemDocumentation/Forecast/Outputlist/40h1#Variablespostprocessedbygl.md) for each cycle. **NOTE that all parameters may not be implemented in gl_grib_api**
+ For a comprehensive list please check the [output information](../../HarmonieSystemDocumentation/Forecast/Outputlist/40h1.md#Variablespostprocessedbygl) for each cycle. **NOTE that all parameters may not be implemented in gl_grib_api**
 
  * To produce "postprocessed" MSLP and accumulated total precipitation and visibility use the following namelist, nam_FApp:
 ```bash
@@ -534,7 +534,7 @@ domain_prop_grib_api -f -DATE FAFILE
 
 ## fldextr and obsextr
 
- Read about the verification extraction programs [here] (../../HarmonieSystemDocumentation/PostPP/Extract4verification.md)
+ Read about the verification extraction programs [here](../../HarmonieSystemDocumentation/PostPP/Extract4verification.md)
 
 
 

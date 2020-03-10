@@ -27,7 +27,7 @@ This means that `ecgb:$HM_LIB == cca:$HM_LIB` so the synchronization between ecg
 
 ### Compiling with gmkpack
 
-Harmonie comes with two way of compiling the code, [Makeup] (../HarmonieSystemDocumentation/Build_with_makeup.md) and [Gmkpack] (../HarmonieSystemDocumentation/Installation.md). Both methods have their benefits but in this particular case Gmkpack gives us the fastest throughput for two reasons.
+Harmonie comes with two way of compiling the code, [Makeup](../HarmonieSystemDocumentation/Build_with_makeup.md) and [Gmkpack](../HarmonieSystemDocumentation/Installation.md). Both methods have their benefits but in this particular case Gmkpack gives us the fastest throughput for two reasons.
 
  - We only compile the source you have changed for the rest we reuse the already built libraries. This is partly true for Makeup as well but in the search for what to actually compile takes longer time.
  - Less disk space and number of inodes is required compared to Makeup. We only copy the code to be compiled.

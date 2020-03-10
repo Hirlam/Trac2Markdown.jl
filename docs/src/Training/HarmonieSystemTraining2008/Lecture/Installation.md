@@ -18,7 +18,7 @@ Each single user buils their own  öocal "target" pack, which synchronise local 
 
 [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack)
 
-[gmkpack vs make] (../../../Gmkpack_vs_Make.md)
+[gmkpack vs make](../../../Gmkpack_vs_Make.md)
 
 
 gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in Build_gmkpack, Build_rootpack and Build_pack
@@ -158,11 +158,11 @@ When things goes wrong
 
 **The main task for the installation is to compile the rootpack. The binaries and libraries compiled are never used by any other experiment.**
 
-## [Experiment Configuration] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#smsconfig_exp.h.md)
+## [Experiment Configuration](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#smsconfig_exp.h)
 
-## [Where to find things] (../../../HarmonieSystemDocumentation/Harmonie-mSMS#Filestructure.md)
+## [Where to find things](../../../HarmonieSystemDocumentation/Harmonie-mSMS.md#Filestructure)
 
-## [Hands on practice task] (../../../HarmonieSystemTraining2008/Training/Installation.md)
+## [Hands on practice task](../../../HarmonieSystemTraining2008/Training/Installation.md)
 
 ## *Questions & issues related to the current topics* 
  * "The Harmonie script hard-codes the directory structure in form of $HOME/hm_home/EXP and directory structures such as $SCRATCH appear in different places. This is also reflected in Main script where the experiment name EXP is to be determined. Can the assumed directory structure be made more flexible?"

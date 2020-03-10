@@ -15,7 +15,7 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2016/Exerc
 
 ### FULL-POS
 
-[FULL-POS documentation] (../../HarmonieSystemDocumentation/PostPP/Fullpos.md) will hopefully help with the following exercise.
+[FULL-POS documentation](../../HarmonieSystemDocumentation/PostPP/Fullpos.md) will hopefully help with the following exercise.
  * Exercise 1:Instructions to add extra FULL-POS parameters in the [Select_postp.pl](https://hirlam.org/trac/browser/tags/harmonie-40h1.1/scr/Select_postp.pl) perl script to any of your experiments are detailed below.
    * On ecgate "check out" scr/Select_postp.pl:
 ```bash
@@ -75,7 +75,7 @@ rsync -vaux /scratch/ms/spsehlam/hlam/Training/gl/ $SCRATCH/gl_training/
       * Use gl_grib_api to produce *Total precipitation*, *Visibility* from your model output file.
         * Hint 1: Have a look at [HarmonieSystemDocumentation/Forecast/Outputlist/40h1#Variablespostprocessedbygl](https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Forecast/Outputlist/40h1#Variablespostprocessedbygl)
 
- [gl documentation] (../../HarmonieSystemDocumentation/PostPP/gl.md) 
+ [gl documentation](../../HarmonieSystemDocumentation/PostPP/gl.md) 
 
 ### xtool
 

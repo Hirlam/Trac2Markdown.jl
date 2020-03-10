@@ -31,7 +31,7 @@ In the following we describe the geometrical routines in gl. gl can handle the f
 
  Interpolation can be done between different projections as wall as to geographical points. The most general exmple on the usage of the interpolatin can be found in  [any2any.F90](https://hirlam.org/trac/browser/Harmonie/util/gl/grb/any2any.F90?rev=release-43h2.beta.3).
 
- For practical usage see the section about [postprocessing] (../../../HarmonieSystemDocumentation/PostPP/gl.md)
+ For practical usage see the section about [postprocessing](../../../HarmonieSystemDocumentation/PostPP/gl.md)
 
 
 ## Rotations

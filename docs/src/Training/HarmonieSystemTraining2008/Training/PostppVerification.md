@@ -104,8 +104,8 @@ Please note found problems or suggestions below:
 
 
 ## Reference Links to Post-PP and verification related lectures
- * [Post-Processing and Verification] (../../../HarmonieSystemTraining2008/Lecture/PostppVerification.md)
- * [Common Monitoring] (../../../HarmonieSystemTraining2008/Lecture/CommonMonitoring.md)
+ * [Post-Processing and Verification](../../../HarmonieSystemTraining2008/Lecture/PostppVerification.md)
+ * [Common Monitoring](../../../HarmonieSystemTraining2008/Lecture/CommonMonitoring.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 

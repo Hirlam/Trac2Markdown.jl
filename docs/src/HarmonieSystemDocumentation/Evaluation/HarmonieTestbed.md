@@ -4,7 +4,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Evaluation/Ha
 # The HARMONIE testbed
 
 The HARMONIE testbed provides a facility to run a number of well defined test cases using the existing script environment in HARMONIE. The ALADIN testbed,
-[mitraillette] (../../HarmonieSystemDocumentation/Evaluation/Mitraillette.md) runs test on the hart of the model, the dynamical core. The HARMONIE testbed tests the full script system as it is supposed to be used.
+[mitraillette](../../HarmonieSystemDocumentation/Evaluation/Mitraillette.md) runs test on the hart of the model, the dynamical core. The HARMONIE testbed tests the full script system as it is supposed to be used.
 
 ## Defining the configurations
 

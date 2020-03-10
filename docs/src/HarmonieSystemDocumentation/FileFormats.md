@@ -16,7 +16,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
  * The header contains information about model domain, projection, spectral truncation, extension zone, boundary zone, vertical levels. 
  * Only one date/time per file.
  * FA routines are found under ifsaux/fa
- * List or convert a file with [gl_grib_api] (../HarmonieSystemDocumentation/PostPP/gl_grib_api.md)
+ * List or convert a file with [gl_grib_api](../HarmonieSystemDocumentation/PostPP/gl_grib_api.md)
  * Other listing tool [PINUTS](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=PINUTS)
 
  [Read more](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=FA+)
@@ -24,9 +24,9 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
 
 ## GRIB/GRIB2
 
- All FA files may be converted to GRIB after the forecast run. For the conversion between FA names and GRIB parameters check [this table] (../HarmonieSystemDocumentation/Forecast/Outputlist/43h2.md).
+ All FA files may be converted to GRIB after the forecast run. For the conversion between FA names and GRIB parameters check [this table](../HarmonieSystemDocumentation/Forecast/Outputlist/43h2.md).
 
- * List or convert a GRIB file with [gl_grib_api] (../HarmonieSystemDocumentation/PostPP/gl_grib_api.md)
+ * List or convert a GRIB file with [gl_grib_api](../HarmonieSystemDocumentation/PostPP/gl_grib_api.md)
 
 ## NETCDF
 
@@ -39,7 +39,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
 
  BUFR is the archiving/exchange format for observations. Observation Database is used for efficient handling of observations on IFS. ODB used for both input data and feedback information.
 
- Read more about observations in HARMONIE [here] (../HarmonieSystemDocumentation/UseofObservation.md).
+ Read more about observations in HARMONIE [here](../HarmonieSystemDocumentation/UseofObservation.md).
 
 ## DDH (LFA files )
 
@@ -51,7 +51,7 @@ EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/FileFormats?a
 
 ## Misc
  
- * vfld/vobs files in a simple ASCII format used by the [verification] (../HarmonieSystemDocumentation/PostPP/Verification.md).
+ * vfld/vobs files in a simple ASCII format used by the [verification](../HarmonieSystemDocumentation/PostPP/Verification.md).
  * Obsmon files are stored in sqlite format.
 
 

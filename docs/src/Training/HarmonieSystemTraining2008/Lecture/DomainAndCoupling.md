@@ -5,18 +5,18 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 # HARMONIE climate generation, domain selection and model coupling
 
 ## Construction of model domain
- * [selection from config_exp.h] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Modeldomainsettings.md)
+ * [selection from config_exp.h](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#Modeldomainsettings)
  * construction of new model domain: what to consider
 ## Climate Generation
 
- * [Climate Generation] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Climategeneration.md)
+ * [Climate Generation](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#Climategeneration)
  * [e923 documentation on gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=e923)
  * [Projections](http://www.cnrm.meteo.fr/gmapdoc/spip.php?rubrique24)
  * [Presentation from J.D. Grill](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article108)
  
 ## Model nesting
 
-  * [Boundaryfile Preparation] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Boundaryfilepreparation.md)
+  * [Boundaryfile Preparation](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#Boundaryfilepreparation)
 
 ### Interpolation with gl
 
@@ -52,7 +52,7 @@ For the atmosphere the required fields are: Q,T,U,V,PS,ORO. Optional fields like
  
  * [gmpadoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=ee927)
 
-## [Hands on practice task] (../../../HarmonieSystemTraining2008/Training/DomainAndCoupling.md)
+## [Hands on practice task](../../../HarmonieSystemTraining2008/Training/DomainAndCoupling.md)
 ## Reference Links
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)

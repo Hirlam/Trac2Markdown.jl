@@ -24,11 +24,11 @@ With the basic setup and files in place we can proceed to the integration part w
 
 The three different task are allowed to run ahead/after each other to get a good throughput.
 
-The configuration, the full suite and the relation between different tasks is controlled by the scheduler [ECFLOW] (../HarmonieSystemDocumentation/ECFLOW.md) which has a graphical interface ecflowview/ecflow_ui. This documentation describes how to get started with your first experiment. The description follows the setup at ECMWF, but your local system setup would be very similar but most likely simpler. The reference Harmonie system on ECMWF platform assumes a dual-hosts setup using ECFLOW. By default, Harmonie uses the front-end ecgb to configure and launch experiments, whereas cca is used for all computations except those for operations related to observation verification and monitoring.
+The configuration, the full suite and the relation between different tasks is controlled by the scheduler [ECFLOW](../HarmonieSystemDocumentation/ECFLOW.md) which has a graphical interface ecflowview/ecflow_ui. This documentation describes how to get started with your first experiment. The description follows the setup at ECMWF, but your local system setup would be very similar but most likely simpler. The reference Harmonie system on ECMWF platform assumes a dual-hosts setup using ECFLOW. By default, Harmonie uses the front-end ecgb to configure and launch experiments, whereas cca is used for all computations except those for operations related to observation verification and monitoring.
 
 Following example shows the steps to launch an Harmonie experiment my_exp from ecgb.
 
-If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration] (../HarmonieSystemDocumentation/PlatformConfiguration.md).
+If this is the first time to install HARMONIE on your local platform please take a look at the basic install instructions here: [HarmonieSystemDocumentation/PlatformConfiguration](../HarmonieSystemDocumentation/PlatformConfiguration.md).
 
 ## Before you start ...
 ### hirald group
@@ -55,13 +55,13 @@ changesh
   * -r tells which version to use. There are several old versions kept on ecgb. Check the directories under `~hlam/harmonie_release` to see the available versions. 
   * -h tells which configuration files to use. At ECMWF `config.ecgb-cca` is the default one.
  * This would give you the default setup which currently is AROME physics with CANARI+OI_MAIN surface assimilation and 3DVAR upper air assimilations with 3h cycling on a domain covering Denmark using 2.5km horizontal resolution and 65 levels in the vertical.
- *  Now you can edit the basic configuration file [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for domain, data locations, settings for dynamics, physics, coupling host model etc. Read more about the options in [here] (../HarmonieSystemDocumentation/ConfigureYourExperiment.md). You can also use some of the predefined configurations by calling Harmonie with the `-c` option:
+ *  Now you can edit the basic configuration file [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for domain, data locations, settings for dynamics, physics, coupling host model etc. Read more about the options in [here](../HarmonieSystemDocumentation/ConfigureYourExperiment.md). You can also use some of the predefined configurations by calling Harmonie with the `-c` option:
 ```bash
    ~hlam/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CONFIG -d DOMAIN
 ```
  where `CONFIG` is one of the setups defined in [Harmonie_configurations.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_configurations.pm?rev=release-43h2.beta.3). If you give `-c` with out an argument or a non existing configuration a list of configurations will be printed.
- * In some cases you might have to edit the general system configuration file, [Env_system](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration] (../HarmonieSystemDocumentation/PlatformConfiguration.md)
- * The rules for how to submit jobs on ecgb/cca are defined in  [Env_submit](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration] (../HarmonieSystemDocumentation/PlatformConfiguration.md)
+ * In some cases you might have to edit the general system configuration file, [Env_system](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](../HarmonieSystemDocumentation/PlatformConfiguration.md)
+ * The rules for how to submit jobs on ecgb/cca are defined in  [Env_submit](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3). See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](../HarmonieSystemDocumentation/PlatformConfiguration.md)
  * If you experiment in data assimilation you might also want to change [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3).
 
 ## Start your experiment
@@ -178,7 +178,7 @@ You can always remove the data from ECFS directly by running e.g.
  erm -R ectmp:/YOUR_USER/harmonie/EXPERIMENT_NAME 
 ```
 
- * For more information about cleaning with Harmonie read [here] (../HarmonieSystemDocumentation/TheHarmonieScript.md)
+ * For more information about cleaning with Harmonie read [here](../HarmonieSystemDocumentation/TheHarmonieScript.md)
  * For more information about the ECFS commands read [here](https://confluence.ecmwf.int/display/UDOC/ecfs.1)
 
 

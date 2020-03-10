@@ -63,7 +63,7 @@ One of the things xtool is useful for is to check if the result from two differe
  xtool [-f] -f1 FILE1 -f2 FILE2 -of SCREEN
 ```
 
-The is heavily used in the [Harmonie testbed] (../../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md) to check the difference between versions of the system.
+The is heavily used in the [Harmonie testbed](../../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md) to check the difference between versions of the system.
 
 Below is a simple example of how to use **xtool**. You may also check the [field extraction](https://hirlam.org/trac/browser/Harmonie/scr/Fldver?rev=release-43h2.beta.3) to find examples. 
 

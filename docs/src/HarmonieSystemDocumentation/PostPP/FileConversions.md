@@ -22,7 +22,7 @@ From the perspective of harmonie suite, the conversion FA to GRIB is carried out
 * [Makegrib_an](https://hirlam.org/trac/browser/Harmonie/ecf/Makegrib_an.ecf?rev=release-43h2.beta.3) - for fields produced in the analysis. This task is part of the !/Expe/Date/Hour/Cycle/PostAnalysis family.
 * [Listen2file](https://hirlam.org/trac/browser/Harmonie/ecf/Listen2file.ecf?rev=release-43h2.beta.3) - for fields produced in the forecast. This task is part of the !/Expe/Date/Hour/Cycle/Forecast family, possibly through a set of intermediate families Process-i (depending on the values of variables MULTITASK and MAKEGRIB_LISTENERS as set in the [source:Harmonie/ecf/config_exp.h] experiment configuration file).
 
-If ARCHIVE_FORMAT is set to *GRIB1* or *GRIB2*, the [Makegrib](https://hirlam.org/trac/browser/Harmonie/scr/Makegrib?rev=release-43h2.beta.3) bash script will be run from the tasks mentioned above (possibly through intermediate scripts). Finally, from the [Makegrib](https://hirlam.org/trac/browser/Harmonie/scr/Makegrib?rev=release-43h2.beta.3) script the [gl_grib_api] (../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) tool will be called to convert HARMONIE output from FA to GRIB. Notice that if a more verbose job output is needed, e.g. for debugging, variable PRINTLEV can be set, at the beginning of Makegrib, to something else than 0.
+If ARCHIVE_FORMAT is set to *GRIB1* or *GRIB2*, the [Makegrib](https://hirlam.org/trac/browser/Harmonie/scr/Makegrib?rev=release-43h2.beta.3) bash script will be run from the tasks mentioned above (possibly through intermediate scripts). Finally, from the [Makegrib](https://hirlam.org/trac/browser/Harmonie/scr/Makegrib?rev=release-43h2.beta.3) script the [gl_grib_api](../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) tool will be called to convert HARMONIE output from FA to GRIB. Notice that if a more verbose job output is needed, e.g. for debugging, variable PRINTLEV can be set, at the beginning of Makegrib, to something else than 0.
 
 Conversion of FA/lfi files to GRIB by gl_grib_api:
 ```bash
@@ -32,7 +32,7 @@ Conversion of FA/lfi files to GRIB by gl_grib_api:
     gl_grib_api -p FAFILE      -- excludes the extension zone ( "p" as in physical domain only) 
 ```
 
-By default, **Makegrib** removes the biperiodic zone from FA files and creates GRIB files. HARMONIE data is produced on a Lambert projection. GRIB data can be interpolated onto different projections using gl_grib_api. Further information is available in the [gl_grib_api documentation] (../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md).
+By default, **Makegrib** removes the biperiodic zone from FA files and creates GRIB files. HARMONIE data is produced on a Lambert projection. GRIB data can be interpolated onto different projections using gl_grib_api. Further information is available in the [gl_grib_api documentation](../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md).
 
 Forecast output is converted from FA to GRIB in [Makegrib](https://hirlam.org/trac/browser/Harmonie/scr/Makegrib?rev=release-43h2.beta.3) using the following command:
 ```bash
@@ -65,7 +65,7 @@ where
 In the namelist:
  * $YY/$MM/$DD/$HH  is the forecast initial time
  * $time_unit is the units of time to be used min/h
- * pppkey: selection of requested post-processed products (See: [Postprocessing with gl_grib_api] (../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) for more details)
+ * pppkey: selection of requested post-processed products (See: [Postprocessing with gl_grib_api](../../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) for more details)
  * $fstart is the start hour for time-range products such as maximum temperature.
 
 ## WMO GRIB editions and references

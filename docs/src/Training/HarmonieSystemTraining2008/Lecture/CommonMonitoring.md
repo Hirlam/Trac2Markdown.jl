@@ -9,12 +9,12 @@ EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lectu
 
 Hirlam-A is tasked to coordinate an consortia-wide effort to provide an timely and efficient monitoring facility to measure the development of the HIRLAM forecast system in a **measurable way**. A product data portal at hirlam.org is one of the convenient means to realise such a goal.
 
-We aim to develop and extend the [hirlam.org monitoring portal] (../../../oprint/general.md) for real-time joint monitoring and inter-comparison. And if feasible, to extend it for HARMONIE system as well.
+We aim to develop and extend the [hirlam.org monitoring portal](../../../oprint/general.md) for real-time joint monitoring and inter-comparison. And if feasible, to extend it for HARMONIE system as well.
 
 ### Real-time operational HIRLAM model monitoring and inter-comparison
 Detailed routine monitoring of operational NWP suites is the task of the operational services. With hirlam.org monitoring portal, we aim to develop common monitoring to cover aspects that are suitable for joint monitoring. This may also include links to various monitoring webpages to show various monitoring tools/features for inspiration.
   * [Observation verification](https://www.hirlam.org/portal/oprint/ObsVer)
-    * The procedure to extract model data for observation verification is explained in the [Hirlam system documentation page] (../../../HirlamSystemDocumentation/PostPP/CommonVerification.md)
+    * The procedure to extract model data for observation verification is explained in the [Hirlam system documentation page](../../../HirlamSystemDocumentation/PostPP/CommonVerification.md)
   * [Monitoring of Data assimilation and use of observation](https://www.hirlam.org/portal/monitor)
   * [Statistical Diagnosis of operational runs ](https://www.hirlam.org/portal/oprint/ObsVer/Logplot)
 

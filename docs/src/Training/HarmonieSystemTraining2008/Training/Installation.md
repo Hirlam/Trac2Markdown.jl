@@ -38,7 +38,7 @@ Please note found problems or suggestions below:
  * Everything works just fine!
 
 
-## [Back to the lecture notes] (../../../HarmonieSystemTraining2008/Lecture/Installation.md)
+## [Back to the lecture notes](../../../HarmonieSystemTraining2008/Lecture/Installation.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 
