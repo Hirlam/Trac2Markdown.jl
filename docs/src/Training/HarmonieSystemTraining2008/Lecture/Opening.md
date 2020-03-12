@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/Opening?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/Opening?action=edit"
 ```
 
 # Agenda, Practical Matters, Meeting Format

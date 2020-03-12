@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/xtool?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/xtool?action=edit"
 ```
 
 # Post processing with xtool

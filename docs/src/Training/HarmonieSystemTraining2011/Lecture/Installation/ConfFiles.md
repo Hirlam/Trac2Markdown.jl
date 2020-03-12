@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/ConfFiles?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lecture/Installation/ConfFiles?action=edit"
 ```
 # Configuration Issues
 To configure the HARMONIE system in your experiment directory ($EXP indicating the experiment name), do the following from your home directory:

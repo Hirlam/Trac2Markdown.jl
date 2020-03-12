@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/Installation?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/Installation?action=edit"
 ```
 
 # HARMONIE System Installation

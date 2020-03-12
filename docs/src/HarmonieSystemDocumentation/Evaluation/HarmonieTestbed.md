@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Evaluation/HarmonieTestbed?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Evaluation/HarmonieTestbed?action=edit"
 ```
 # The HARMONIE testbed
 

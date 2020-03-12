@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/SurfaceAssimilation?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/SurfaceAssimilation?action=edit"
 ```
 
 # HARMONIE Surface Data Assimilation

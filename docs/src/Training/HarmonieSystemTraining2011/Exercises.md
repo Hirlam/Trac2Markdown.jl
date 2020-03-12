@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Exercises?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Exercises?action=edit"
 ```
 
 # Hands On Practice

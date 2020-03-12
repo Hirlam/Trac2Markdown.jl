@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/gl/Interpolation?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/gl/Interpolation?action=edit"
 ```
 
 

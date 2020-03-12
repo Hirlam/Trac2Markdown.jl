@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Training/WikiAuthoring?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Training/WikiAuthoring?action=edit"
 ```
 
 # Hands On Practice: Authoring a wiki page

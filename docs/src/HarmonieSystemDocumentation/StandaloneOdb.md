@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/StandaloneOdb?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/StandaloneOdb?action=edit"
 ```
 # ODB software
 ## Get the software

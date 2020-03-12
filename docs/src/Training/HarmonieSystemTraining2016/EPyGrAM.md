@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2016/EPyGrAM?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2016/EPyGrAM?action=edit"
 ```
 
 # EPyGrAM

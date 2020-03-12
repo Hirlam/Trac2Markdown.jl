@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/QuickStartLocal?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/QuickStartLocal?action=edit"
 ```
 
 # Running Harmonie on your local platform

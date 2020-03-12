@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/Building?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lecture/Installation/Building?action=edit"
 ```
 # Building the HARMONIE system
 The rest is amazingly simple.  Even if you would not have input data at all yet, you can already build the HARMONIE software by simply doing the following:

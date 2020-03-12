@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/scripts/mXCdp?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/scripts/mXCdp?action=edit"
 ```
 # A new client / server solution for mXCdp / mSMS
 

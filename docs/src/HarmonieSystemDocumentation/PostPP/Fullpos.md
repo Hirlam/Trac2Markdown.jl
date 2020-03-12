@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/Fullpos?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/Fullpos?action=edit"
 ```
 # Postprocessing with FULL-POS
 

@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2014?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2014?action=edit"
 ```
 # Hirlam-B Training Week on HARMONIE system
 **15-18th of September 2014**

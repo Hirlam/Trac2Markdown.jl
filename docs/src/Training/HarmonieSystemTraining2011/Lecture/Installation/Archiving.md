@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/Archiving?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lecture/Installation/Archiving?action=edit"
 ```
 # Archiving after a successful run
 After a cycle completes successfully, the results (data and log files) are archived.

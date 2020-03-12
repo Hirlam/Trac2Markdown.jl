@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/SourceCode?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/SourceCode?action=edit"
 ```
 
 # HARMONIE source code management, use of Subversion tool

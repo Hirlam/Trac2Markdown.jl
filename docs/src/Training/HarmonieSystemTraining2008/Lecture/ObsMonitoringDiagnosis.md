@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/ObsMonitoringDiagnosis?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/ObsMonitoringDiagnosis?action=edit"
 ```
 
 # Analysis Monitoring and Diagnosis in HARMONIE DA

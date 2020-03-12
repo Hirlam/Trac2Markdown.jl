@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/OnError?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lecture/Installation/OnError?action=edit"
 ```
 # Where does everything end up on error ?
 If, during a cycle for date/time YYYYMMDDHH, an error occurs, the input/output of the failing component is saved under a subdirectory Failed_<component> of $HM_DATA/YYYYMMDD_HH.

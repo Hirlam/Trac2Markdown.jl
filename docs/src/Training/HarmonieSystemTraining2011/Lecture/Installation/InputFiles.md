@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2011/Lecture/Installation/InputFiles?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lecture/Installation/InputFiles?action=edit"
 ```
 # The Input Files (Boundaries and Observations)
 The locations for boundaries and observation files are specified by you in the sms/config_exp.h file.

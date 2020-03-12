@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/Fast_start_on_cca?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Fast_start_on_cca?action=edit"
 ```
 
 # Configure for faster setup on cca
@@ -10,7 +10,7 @@ Since ECMWF switched from the IBM based c2a to the new Cray XC30 cca setting up 
 
 ## What's special with cca?
 
-The main cause for the slow synchronization and compilation time on cca is the Lustre file system. Such a file system is optimized for large files but is less efficient for large numbers of small files. As a comparison it takes ~2 minutes to copy the full harmonie system from ecgb:$HOME to $PERM whereas it takes about 1 hour or more to make the same copy to cca:$SCRATCH. It's not the transfer to cca that takes time but the IO on the $SCRATCH file system.
+The main cause for the slow synchronization and compilation time on cca is the Lustre file system. Such a file system is optimized for large files but is less efficient for large numbers of small files. As a comparison it takes ~2 minutes to copy the full harmonie system from `ecgb:$HOME` to `$PERM` whereas it takes about 1 hour or more to make the same copy to `cca:$SCRATCH`. It's not the transfer to cca that takes time but the IO on the `$SCRATCH` file system.
 
 ## How to set it all up
 
@@ -18,12 +18,12 @@ The changes required can be viewed in [13814] and in below we go through what yo
 
 ### Using the $PERM disk
 
-Normally HARMONIE is setup to use $SCRATCH as the main disk for both ecgb and cca. Two changes are required in `Env_system` to use the $PERM disk on cca.
+Normally HARMONIE is setup to use `$SCRATCH` as the main disk for both `ecgb` and `cca`. Two changes are required in `Env_system` to use the `$PERM` disk on `cca`.
 
- * Set `HM_LIB=/hpc$PERM/build_harmonie/$EXP/lib ` for the ecgb part of Env_system
- * Set `HM_LIB=$PERM/build_harmonie/$EXP/lib` for the cca part of Env_system
+ * Set `HM_LIB=/hpc$PERM/build_harmonie/$EXP/lib ` for the `ecgb` part of `Env_system`
+ * Set `HM_LIB=$PERM/build_harmonie/$EXP/lib` for the `cca` part of `Env_system`
 
-This means that `ecgb:$HM_LIB == cca:$HM_LIB` so the synchronization between ecgb and cca is for free. Your working directories and results will still be found under `$SCRATCH/hm_home/$EXP`.
+This means that `ecgb:$HM_LIB == cca:$HM_LIB` so the synchronization between `ecgb` and `cca` is for free. Your working directories and results will still be found under `$SCRATCH/hm_home/$EXP`.
 
 ### Compiling with gmkpack
 
@@ -41,11 +41,11 @@ The reproducibility between compilation with Makeup and gmkpack has not been che
 
 ### Things to keep an eye on
 
-The disk space on cca:$PERM is limited not only for the disk space in GB but also for the number of files, the inodes. A typical experiment takes 2.5GB and uses 10000 inodes. Thus the number of experiments you can setup this ways is limited. To check your quota on cca:$PERM type
+The disk space on `cca:$PERM` is limited not only for the disk space in GB but also for the number of files, the inodes. A typical experiment takes 2.5GB and uses 10000 inodes. Thus the number of experiments you can setup this ways is limited. To check your quota on `cca:$PERM` type
 
  ` quota -v `
 
-on cca.
+on `cca`.
 
 ### What about existing experiments?
 

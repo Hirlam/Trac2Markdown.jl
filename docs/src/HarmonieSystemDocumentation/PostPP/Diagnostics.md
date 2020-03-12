@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/PostPP/Diagnostics?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/Diagnostics?action=edit"
 ```
 # Diagnostics
 

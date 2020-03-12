@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/Training/HarmonieSystemTraining2008/Lecture/DomainAndCoupling?action=edit"
+EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lecture/DomainAndCoupling?action=edit"
 ```
 
 # HARMONIE climate generation, domain selection and model coupling

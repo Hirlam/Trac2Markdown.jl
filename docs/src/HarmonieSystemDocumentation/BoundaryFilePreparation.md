@@ -1,5 +1,5 @@
 ```@meta
-EditURL="https://hirlam.org/trac//wiki/HarmonieSystemDocumentation/BoundaryFilePreparation?action=edit"
+EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/BoundaryFilePreparation?action=edit"
 ```
 
 ## Preparation of initial and boundary files
