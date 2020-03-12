@@ -6,7 +6,9 @@ Returns names of linked wikipages
 """
 function trac2markdown(relurl::String; getattachments=false)
 
-    s = isfile("$(Trac2Markdown.WIKIDIR)$relurl.wiki") ? getfromwikidir(relurl) : getfromhirlam(relurl)
+    @info "Converting $(Trac2Markdown.WIKIDIR)$relurl.wiki"
+    
+    s = read("$(Trac2Markdown.WIKIDIR)$relurl.wiki",String)
           
 
     ## download attachments
@@ -26,17 +28,7 @@ function trac2markdown(relurl::String; getattachments=false)
         push!(subwikis, capture)
     end
 
-    # Remove some navigation symbols
-    subs =  [ 
-       "== '''Harmonie System Documentation''' ==" => "",
-       "= '''Harmonie System Documentation''' =" => "",
-       "=== '''Harmonie System Training''' ===" => "",
-       "[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]" => "",
-       r"\[\[.+\]\]\r\n"                 => s"",          # Navigation symbols  (removed) 
-       "[[Center(end)]]"                 => "" ,       # This one doesn't end in \r\n     
-    ]
-
-    s =  foldl(replace, subs, init = s)
+    
 
 
     # To create relative url in Markdown we need the nestling level
@@ -53,7 +45,7 @@ function trac2markdown(relurl::String; getattachments=false)
     mkpath(dirname(joinpath(MARKDOWNDIR, relurl)))
 
     # Add meta block to change the EditURL to point to hirlam.org
-    wikiurl = "$(Trac2Markdown.tracurl_editlink)/wiki/$relurl"
+    wikiurl = "$(Trac2Markdown.wikiurl)/$relurl"
     meta="```@meta\r\nEditURL=\"$wikiurl?action=edit\"\r\n```\r\n"
 
     meta_mdtxt = meta .* mdtxt 
@@ -64,18 +56,8 @@ function trac2markdown(relurl::String; getattachments=false)
 end
 
 function getfromwikidir(relurl)
-    @info "using $(Trac2Markdown.WIKIDIR)$relurl.wiki"
-    return read("$(Trac2Markdown.WIKIDIR)$relurl.wiki",String)
+    
 end 
 
 # The .wiki extension is added to avoid conflict with 
 # having a file with the same name as a directory
-function getfromhirlam(relurl)
-    @info "Retrieving $relurl"
-    resp = HTTP.get("$wikiurl$relurl?format=txt")
-    s = String(resp.body)
-
-    mkpath(dirname(joinpath(Trac2Markdown.WIKIDIR,relurl)))
-    write(joinpath(Trac2Markdown.WIKIDIR,"$relurl.wiki"),s)
-    return s
-end 

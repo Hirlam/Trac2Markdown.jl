@@ -6,16 +6,13 @@ export trac2md,
        trac2markdown, 
        MARKDOWNDIR
 
-# Note `export HLUSER=<hluser>` and `export HLPASSW=<passwd> before using Trac2Markdown 
-const hluser = get(ENV,"HLUSER","")
-const hlpassw = get(ENV,"HLPASSW","")
 
 
 
 const MARKDOWNDIR      = joinpath(dirname(pathof(Trac2Markdown)), "../docs/src/")
-const WIKIDIR          = joinpath(dirname(pathof(Trac2Markdown)), "../docs/wiki/")
-const tracurl          = "https://$hluser:$hlpassw@hirlam.org/trac/"
-const tracurl_editlink = "https://hirlam.org/trac/"    # make sure password never shows in Markdown doc. 
+const WIKIDIR          = joinpath(dirname(pathof(Trac2Markdown)), "../deps/wiki/")
+
+const tracurl       = "https://hirlam.org/trac/"    # make sure password never shows in Markdown doc. 
 const wikiurl       = "$tracurl/wiki/"
 const attachmenturl = "$tracurl/raw-attachment/wiki/"
 

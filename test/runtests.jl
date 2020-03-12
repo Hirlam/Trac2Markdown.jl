@@ -1,8 +1,7 @@
 using Test, Trac2Markdown
 
-if false
-@testset "trac2md" begin
 
+@testset "headers" begin
    @test trac2md("= h1 =") == "# h1"
    @test trac2md("= header with space=") == "# header with space"     
    @test trac2md("== h2 ==") == "## h2"
@@ -10,38 +9,24 @@ if false
    @test trac2md("= '''h1''' =") == "# h1"  # note no bold in Markdown
    @test trac2md("== ''' Experiment configuration''' ==") == "## Experiment configuration"
    @test trac2md("[[Nav symbol]]\r\n") == ""
-   @test_broken trac2md("{{{ a=2 }}}")  == "` a=2 `" 
-   @test_broken trac2md("{{{ \r\n a=2 \r\n }}}")  == "```bash \r\n a=2 \r\n ```" 
-
-   # This should work because we will assume ecf/myfile is a path
-   @test_broken trac2md("Hello ecf/myfile ") == "Hello `ecf/myfile` " 
-   
-   # Fixing the above should not break this  
-   @test_broken trac2md("{{{ Hello ecf/myfile }}}") == "` Hello ecf/myfile `"
-
-   # This should work because _ implies a code symbol 
-   @test_broken trac2md("Hello config_exp.h ") == "Hello `config_exp.h` "
-
-   # This should work basd on explicit list of Harmonie code keywords
-   @test_broken trac2md("Hello ANAATMO ") == "Hello `ANAATMO` "
-
-   # Currently tables are not working 
-   @test_broken trac2md("|| h1 || h2||\r\n ||a1 ||a2 ") == "| h1 | h2 |\r\n | :--- | :--- | \r\n | a1 | a2 |"
 end 
-end
 
-@testset "Download from hirlam.org wiki"  begin
+@testset "codeblocks" begin 
+   @test trac2md("{{{ a=2 }}}")  == "` a=2 `" 
+   @test trac2md("{{{\r\n a=2 \r\n}}}")  == "```bash\r\n a=2 \r\n```" 
+end 
+
+@testset "tables" begin   
+   @test trac2md("|| h1 || h2 ||\r\n|| a1 || a2 ||") == "\r\n| h1 | h2 |\r\n| --- | --- |\r\n| a1 | a2 |"
+end 
+
+@testset "Convert wiki to markdown"  begin
    
    pages = Trac2Markdown.getpages(Trac2Markdown.pages)
 
-   # recursively get all subwikis (not used because of potential loops)
-   #getall(page) = getall.(trac2markdown.(page))
-   
    pages_noext = getindex.(splitext.(pages),1)
    
    trac2markdown.(pages_noext, getattachments=false)
 
-   # write("$MARKDOWNDIR/index.md","# Harmonie System Documentation")
-   # If the above command succeeds we assume download worked
    @test 1==1
 end
