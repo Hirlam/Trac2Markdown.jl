@@ -79,7 +79,7 @@ This section describes how to maintain a feature branch using the merge tracking
 ```
  1. Finally resolve any eventual conflicts and commit the result. Please mention the merged trunk revision in the log message. However, for the benefit of others doing this exercise, please do not commit so that they can try the same merge. 
 
-## [Back to the relevant lecture notes] (../../../HarmonieSystemTraining2008/Lecture/SourceCode.md)
+## [Back to the relevant lecture notes](../../../HarmonieSystemTraining2008/Lecture/SourceCode.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 

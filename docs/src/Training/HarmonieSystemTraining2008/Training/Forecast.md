@@ -36,9 +36,9 @@ Please note found problems or suggestions below:
 
 
 ## Relevant lecture notes
- * [Climate Generation, LBC] (../../../HarmonieSystemTraining2008/Lecture/DomainAndCoupling.md)
- * [Experiment configuration] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#smsconfig_exp.h.md)
- * [Forecast configuration] (../../../HarmonieSystemTraining2008/Lecture/Forecast.md)
+ * [Climate Generation, LBC](../../../HarmonieSystemTraining2008/Lecture/DomainAndCoupling.md)
+ * [Experiment configuration](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#smsconfig_exp.h)
+ * [Forecast configuration](../../../HarmonieSystemTraining2008/Lecture/Forecast.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 

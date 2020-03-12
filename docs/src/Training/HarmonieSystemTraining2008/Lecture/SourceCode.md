@@ -120,7 +120,7 @@ Available subcommands:
 
 ## Use of basic svn features
 ## Code update/revision procedure; How to submit changesets
-## [Hands on practice task] (../../../HarmonieSystemTraining2008/Training/SourceCode.md)
+## [Hands on practice task](../../../HarmonieSystemTraining2008/Training/SourceCode.md)
  * https://test.hirlam.org/
 ## Reference links
  * Subversion home page http://subversion.tigris.org/

@@ -9,7 +9,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Installation
 ## Introduction
 
 In the following the installation and compilation of system is described. Read more about how to get the system in
-[here] (../HarmonieSystemDocumentation/General.md)
+[here](../HarmonieSystemDocumentation/General.md)
 
 ## Rootpack Installation
 
@@ -25,7 +25,7 @@ Each single user buils their own  local "target" pack, which synchronise local s
 
 [gmapdoc](http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack)
 
-[gmkpack vs make] (../HarmonieSystemDocumentation/Gmkpack_vs_Make.md)
+[gmkpack vs make](../HarmonieSystemDocumentation/Gmkpack_vs_Make.md)
 
 
 gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in Build_gmkpack, Build_rootpack and Build_pack

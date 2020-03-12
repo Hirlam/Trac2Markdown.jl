@@ -9,7 +9,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2012?acti
 
 ## Programme
 
- [Programme] (../HarmonieSystemTraining2012/Programme.md)
+ [Programme](../HarmonieSystemTraining2012/Programme.md)
 
 ## Preparations
 
@@ -17,7 +17,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2012?acti
 
  * Please send an email to Ulf Andrae and describe on how you intend to use HARMONIE and if there is any special topic you are interested in. It also hepls if you indicate if you have used HARMONIE before the course.
 
- * The course will be based on [harmonie-37h1.1] (../ReleaseNotes/harmonie-37h1.1.md). You can prepare yourself by browsing through the [documentation] (../HarmonieSystemDocumentation.md). Prepare your laptop by making sure it has all the needed [components] (../HarmonieSystemDocumentation/General.md).
+ * The course will be based on [harmonie-37h1.1](../ReleaseNotes/harmonie-37h1.1.md). You can prepare yourself by browsing through the [documentation](../HarmonieSystemDocumentation.md). Prepare your laptop by making sure it has all the needed [components](../HarmonieSystemDocumentation/General.md).
 
  * How to get to SMHI
    * [By tram](https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/System201103/tram_to_smhi.pdf)
@@ -25,12 +25,12 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2012?acti
 
 ## Travelling funding
 
- This training is supported by [MUSCATEN Nordic Network](http://muscaten.ut.ee/). Please read on for instructions in reimbursement of travelling costs [here] (../HarmonieSystemTraining2012/MuscatenFunding.md).
+ This training is supported by [MUSCATEN Nordic Network](http://muscaten.ut.ee/). Please read on for instructions in reimbursement of travelling costs [here](../HarmonieSystemTraining2012/MuscatenFunding.md).
 
 
 ## Exercises
 
-[Exercises] (../HarmonieSystemTraining2012/Exercises.md)
+[Exercises](../HarmonieSystemTraining2012/Exercises.md)
 
 ## Evaluation
 

@@ -10,7 +10,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011?acti
 
 ## Agenda
 
- [Program] (../HarmonieSystemTraining2011/Agenda.md)
+ [Program](../HarmonieSystemTraining2011/Agenda.md)
 
 ## Preparations
 
@@ -18,7 +18,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011?acti
 
  * Please send an email to Ulf Andrae and describe on how you intend to use HARMONIE and if there is any special topic you are interested in. It also hepls if you indicate if you have used HARMONIE before the course.
 
- * The course will be based on [harmonie-36h1.4] (../ReleaseNotes36h1.4.md). You can prepare yourself by browsing through the [documentation] (../HarmonieSystemDocumentation.md).
+ * The course will be based on [harmonie-36h1.4](../ReleaseNotes36h1.4.md). You can prepare yourself by browsing through the [documentation](../HarmonieSystemDocumentation.md).
 
  * How to get to SMHI
    * [By tram](https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/System201103/tram_to_smhi.pdf)
@@ -26,7 +26,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011?acti
 
 ## Exercises
 
- [Exercises] (../HarmonieSystemTraining2011/Exercises.md)
+ [Exercises](../HarmonieSystemTraining2011/Exercises.md)
 
 ## Evaluation
 

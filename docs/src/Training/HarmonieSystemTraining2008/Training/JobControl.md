@@ -14,7 +14,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Trai
 
 
 ## Relevant lecture notes
- * [mini-SMS, SMS and mXCdp] (../../../HarmonieSystemTraining2008/Lecture/JobControl.md)
+ * [mini-SMS, SMS and mXCdp](../../../HarmonieSystemTraining2008/Lecture/JobControl.md)
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)
 

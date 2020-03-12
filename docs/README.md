@@ -1,7 +1,15 @@
 
-# Documentation
+# Installation 
 
+To install the Julia Documenter dependency run 
+
+```bash
+julia --project -e 'using Pkg; Pkg.instantiate()'
+```
+
+# Documentation 
 The documentation is created by 
+
 ```bash
 julia --project make.jl
 ```

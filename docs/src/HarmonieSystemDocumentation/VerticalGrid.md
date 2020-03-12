@@ -21,7 +21,7 @@ the vertical surfaces for half-levels are defined. Pure pressure surfaces are ob
 The script [Vertical_levels.pl](https://hirlam.org/trac/browser/Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) contains definition of vertical levels that have been used in the HIRLAM community for research and/or operational purposes. Currently the default model setup defines 65-level structure as derived by Per Unden, SMHI. Model level definitions for commonly used vertical structures in HARMONIE are listed below.
  * FourtyLevel: HIRLAM_40 model levels (same as Hirlam 6.2.1, Nov 2003 - HIRLAM 7.0, 2006 )
  * SixtyLevel: HIRLAM-60 model levels (same as Hirlam 7.1, March 2007 - 2012 )
- * [MF_60] (../MFSixtyLevel.md): MF-60 model levels (same as Meteo France AROME since 2010 )
+ * [MF_60](../MFSixtyLevel.md): MF-60 model levels (same as Meteo France AROME since 2010 )
  * SixtyfiveLevel: 65 model levels (same as Hirlam 7.4, March 2012 - )
  * other levels: Prague_87, MF_70, 40 (ALADIN-40), ECMWF_60.
 
@@ -52,10 +52,10 @@ There is also an [interactive tool](https://www.hirlam.org/nwptools/vlevs.html) 
 The method is based on a program by Pierre Bénard, Meteo France, that is described in [this gmapdoc article](http://www.cnrm.meteo.fr/gmapdoc//spip.php?article62).
 
 ### **Relevant corresponding data set for different vertical structure**
-HARMONIE 3D-VAR and 4DVAR upper air data assimilation needs background error structure function for each given vertical layer structure. It is noted that [the structure function data included in the reference HARMONIE repository](https://hirlam.org/trac/browser/trunk/const/jb_data) is only useful for reference configuration. Users that runs 3DVAR/4DVAR are strongly recommended to derive proper structure function data [following instructions in the HIRLAM wiki] (../HarmonieSystemDocumentation/Structurefunctions.md) using own data archive to avoid improper use of structure function.
+HARMONIE 3D-VAR and 4DVAR upper air data assimilation needs background error structure function for each given vertical layer structure. It is noted that [the structure function data included in the reference HARMONIE repository](https://hirlam.org/trac/browser/trunk/const/jb_data) is only useful for reference configuration. Users that runs 3DVAR/4DVAR are strongly recommended to derive proper structure function data [following instructions in the HIRLAM wiki](../HarmonieSystemDocumentation/Structurefunctions.md) using own data archive to avoid improper use of structure function.
 
 
-[HARMONIE System Documentation] (../HarmonieSystemDocumentation.md)
+[HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

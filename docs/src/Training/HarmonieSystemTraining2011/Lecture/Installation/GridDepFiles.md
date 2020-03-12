@@ -3,7 +3,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Lect
 ```
 # Grid Dependent Files (the background error statistics)
 
-The method to generate background error statistics is described in [this page] (../../../../HarmonieSystemDocumentation/Structurefunctions.md).
+The method to generate background error statistics is described in [this page](../../../../HarmonieSystemDocumentation/Structurefunctions.md).
 
 Magnus Lindskog will detail the steps in this procedure later this week.
 

@@ -16,9 +16,9 @@ Surface model: **SURFACE = "surfex"** / "old_surface"
 
 
 Surface analysis method: **ANASURF = "CANARI_OI_MAIN"** / "CANARI_EKF_SURFEX"
-* the horisontal interpolation of screen level parameters is performed by [CANARI] (../../HarmonieSystemDocumentation/Analysis/CANARI.md) in both cases
-* [CANARI_OI_MAIN] (../../HarmonieSystemDocumentation/Analysis/CANARI_OI_MAIN.md) updates soil temperature, water and ice based on 2m analysis increments using coefficients that are derived empirically for ISBA2/3-layers scheme
-* [CANARI_EKF_SURFEX] (../../HarmonieSystemDocumentation/Analysis/CANARI_EKF_SURFEX.md) (experimental) updates soil parameters using the Extended Kalman Filter method.
+* the horisontal interpolation of screen level parameters is performed by [CANARI](../../HarmonieSystemDocumentation/Analysis/CANARI.md) in both cases
+* [CANARI_OI_MAIN](../../HarmonieSystemDocumentation/Analysis/CANARI_OI_MAIN.md) updates soil temperature, water and ice based on 2m analysis increments using coefficients that are derived empirically for ISBA2/3-layers scheme
+* [CANARI_EKF_SURFEX](../../HarmonieSystemDocumentation/Analysis/CANARI_EKF_SURFEX.md) (experimental) updates soil parameters using the Extended Kalman Filter method.
 
 
 **ANASURF_MODE = "before"** / "after"/ "both" - surface analysis performed before/after/both before and after 3DVAR

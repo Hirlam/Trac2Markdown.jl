@@ -20,15 +20,15 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Binaries?act
  * dcagen : ODB handling tool
  * domain_prop_grib_api : Helper program to return various model domain properties
  * FESTAT : Background error covariance calculations.
- * [fldextr_grib_api] (../HarmonieSystemDocumentation/PostPP/Extract4verification.md) : Extracts data for verification from model history files. Reads FA from HARMONIE and GRIB from ECMWF/HIRLAM.
- * [gl_grib_api] (../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) : Converts/interpolates between different file formats and projections. Used for boundary interpolation.
+ * [fldextr_grib_api](../HarmonieSystemDocumentation/PostPP/Extract4verification.md) : Extracts data for verification from model history files. Reads FA from HARMONIE and GRIB from ECMWF/HIRLAM.
+ * [gl_grib_api](../HarmonieSystemDocumentation/PostPP/gl_grib_api.md) : Converts/interpolates between different file formats and projections. Used for boundary interpolation.
  * IOASSIGN/ioassign : ODB IO setup
  * LSMIX : Scale dependent mixing of two model states.
  * jbconv : Interpolates/extrapolates background error statistics files. For technical experimentation
  * lfitools : FA/LFI file manipulation tool
  * [MASTERODB](http://www.cnrm.meteo.fr/gmapdoc//IMG/pdf/ykarpbasics43.pdf) : The main binary for the forecast model, surface assimilation, climate generation, 3DVAR, fullpos and much more.
  * MTEN : Computation of moist tendencies
- * [obsextr] (../HarmonieSystemDocumentation/PostPP/Extract4verification.md) : Extract data for verification from BUFR files. 
+ * [obsextr](../HarmonieSystemDocumentation/PostPP/Extract4verification.md) : Extract data for verification from BUFR files. 
  * obsmon : Extract data for observation monitoring
  * odb98.x : ODB manipulation program
  * [OFFLINE](http://www.cnrm.meteo.fr/surfex/) : The SURFEX offline model. Also called SURFEX
@@ -45,7 +45,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Binaries?act
  * SPG : Stochastic pattern generator, https://github.com/gayfulin/SPG
  * [SURFEX](http://www.cnrm.meteo.fr/surfex/) : The SURFEX offline model. Also called OFFLINE
  * tot_energy : Calculates the total energy of a model state. Is used for boundary perturbation scaling.
- * [xtool_grib_api] (../HarmonieSystemDocumentation/PostPP/gl_grib_api#xtool.md) : Compares two FA/LFI/GRIB files.
+ * [xtool_grib_api](../HarmonieSystemDocumentation/PostPP/gl_grib_api.md#xtool) : Compares two FA/LFI/GRIB files.
 
 
 ----

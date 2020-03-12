@@ -80,7 +80,7 @@ export ATOVS_SOURCE=mars       # local: EUMETCast;
 
 ### AMV (aka SATOB, GEOWIND)
 
-For AMVs there is a [HOW-TO page] (../HarmonieSystemDocumentation/ObservationHowto/Amv.md).
+For AMVs there is a [HOW-TO page](../HarmonieSystemDocumentation/ObservationHowto/Amv.md).
 
 ### Other observation types ...
 More documentation to follow ...

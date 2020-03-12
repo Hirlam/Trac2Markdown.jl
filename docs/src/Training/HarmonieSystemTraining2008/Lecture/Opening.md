@@ -49,7 +49,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lect
    * many practice tasks are formulated, which are non-compulsory but can also be used off-line
    * the programme is meant to be flexible; interaction and discussion encouraged
    * a few lectures during mid-day and practice sessions on both ends of days
- * [Agenda of the workshop] (../../../HarmonieSystemTraining2008#AgendaandPresentation.md)
+ * [Agenda of the workshop](../../../HarmonieSystemTraining2008.md#AgendaandPresentation)
 
 ----
 

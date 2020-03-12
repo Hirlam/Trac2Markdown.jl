@@ -338,7 +338,7 @@ Examples :
  * [Fullpos namelists](https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Fullposnamelists).
 
 
-## [Hands On Tasks] (../../../HarmonieSystemTraining2008/Training/PostppVerification.md)
+## [Hands On Tasks](../../../HarmonieSystemTraining2008/Training/PostppVerification.md)
 
 
 [ Back to the main page of the HARMONIE system training 2008 page](https://hirlam.org/trac/wiki/HarmonieSystemTraining2008)

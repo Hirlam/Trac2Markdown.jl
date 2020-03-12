@@ -5,13 +5,13 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/Diagn
 
 ## Xtool
 
-[xtool] (../../HarmonieSystemDocumentation/PostPP/gl#xtool.md)
+[xtool](../../HarmonieSystemDocumentation/PostPP/gl.md#xtool)
 
 
 
 ## SAL
 
-[SAL] (../../HarmonieSystemDocumentation/PostPP/gl#SAL.md)
+[SAL](../../HarmonieSystemDocumentation/PostPP/gl.md#SAL)
 
 
 ## DDH

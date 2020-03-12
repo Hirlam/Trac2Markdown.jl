@@ -33,7 +33,7 @@ The system requires the following standard unix/linux software
  * perl
  * python
 
-Read more about the tested compilers under [installation] (../HarmonieSystemDocumentation/Installation.md).
+Read more about the tested compilers under [installation](../HarmonieSystemDocumentation/Installation.md).
 
 ### MPI and OpenMP
 
@@ -81,7 +81,7 @@ In addition there are some extra support libraries.
  * dummies_006
  * rgb_001
 
-[Makeup] (../HarmonieSystemDocumentation/Build_with_makeup.md) build these libraries for you. 
+[Makeup](../HarmonieSystemDocumentation/Build_with_makeup.md) build these libraries for you. 
 
 ### GMTED processing
 

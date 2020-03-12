@@ -33,7 +33,7 @@ mXCdp is a graphical interface to mini-SMS. Unlike XCdp, which is a standalone p
 
 ### future prospects?
 
-## [Hands on practice tasks] (../../../HarmonieSystemTraining2008/Training/JobControl.md)
+## [Hands on practice tasks](../../../HarmonieSystemTraining2008/Training/JobControl.md)
 
 ## Reference
  * [ Prep-IFS ](https://hirlam.org/HX/organisation/reports/systemww_200709/prepIFS2007.ppt)

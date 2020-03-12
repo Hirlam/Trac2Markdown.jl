@@ -356,7 +356,7 @@ This package has been "forgotten" for a while, but can be improved in case of de
 
 ## A Posteriori Diagnosis of Background Error Statistics
  * see attached ppt presentation
-## [Hands on tasks on DA] (../../../HarmonieSystemTraining2008/Training/DataAssimilation.md)
+## [Hands on tasks on DA](../../../HarmonieSystemTraining2008/Training/DataAssimilation.md)
 
 ## Reference
   * [Joint Operational Hirlam Monitoring of Data Assimilation and Use of Observation](https://www.hirlam.org/portal/monitor)

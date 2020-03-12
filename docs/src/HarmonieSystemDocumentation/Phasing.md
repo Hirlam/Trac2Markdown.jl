@@ -3,7 +3,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/Phasing?acti
 ```
 # Phasing information
 
-Version (trunk,[40h1.1] (../HarmonieSystemDocumentation/40h1.1/Phasing.md))
+Version (trunk,[40h1.1](../HarmonieSystemDocumentation/40h1.1/Phasing.md))
 
 ## Introduction
 
@@ -21,7 +21,7 @@ Note that this is only for read access. To arrange access to the repository plea
 
 ## git -> subversion merging 
 
-This section of the phasing documentation provides instructions on how to retrieve . In here we assume you have the access rights and the knowledge to connect to the right computers (Météo France git repositories can be accessed from 'merou'). Details on how to access Météo France servers are available here: [wiki:HarmonieSystemDocumentation/MFaccess] (../HarmonieSystemDocumentation/MFaccess.md).
+This section of the phasing documentation provides instructions on how to retrieve . In here we assume you have the access rights and the knowledge to connect to the right computers (Météo France git repositories can be accessed from 'merou'). Details on how to access Météo France servers are available here: [wiki:HarmonieSystemDocumentation/MFaccess](../HarmonieSystemDocumentation/MFaccess.md).
  * Set up git for the first time: Météo France provide documentation on how to set up and use their git repository here: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang=en](http://www.cnrm.meteo.fr/gmapdoc/spip.php?article218&var_lang=en). A git user account must be requested from gco at Météo France. 
 
 Add the following lines to your $HOME/.bashrc file (replacing **yourusername** with your user name):
@@ -353,26 +353,26 @@ Read the Meteo France webpage about phasing [http://www.cnrm.meteo.fr/aladin/spi
 
 ## HARMONIE phasing efforts
 
-[cy38t1] (../Phasing/cy38t1.md)
+[cy38t1](../Phasing/cy38t1.md)
 
-[cy39t1] (../Phasing/cy39t1.md)
+[cy39t1](../Phasing/cy39t1.md)
 
-[cy40t1] (../Phasing/cy40t1.md)
+[cy40t1](../Phasing/cy40t1.md)
 
-[cy41t1] (../Phasing/cy41t1.md)
+[cy41t1](../Phasing/cy41t1.md)
 
-[cy42t1] (../Phasing/cy42t1.md)
+[cy42t1](../Phasing/cy42t1.md)
 
-[LUNBC_in_cy43t1] (../Phasing/LUNBC_in_cy43t1.md)
+[LUNBC_in_cy43t1](../Phasing/LUNBC_in_cy43t1.md)
 
-[cy45t1] (../Phasing/cy45t1.md)
+[cy45t1](../Phasing/cy45t1.md)
 
-[cy46t1] (../Phasing/cy46t1.md)
+[cy46t1](../Phasing/cy46t1.md)
 
 ### Testbed experiments
 
 The Harmonie testbed is a tool to help you verify the technical functionality of the system. It runs through all meaningful configurations in an efficient manner. 
-Read more [here] (../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md).
+Read more [here](../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md).
 
 ### Update documentation
 

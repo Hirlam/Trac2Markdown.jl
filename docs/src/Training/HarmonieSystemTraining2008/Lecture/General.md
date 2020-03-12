@@ -9,10 +9,10 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lect
  * Harmonie is an abbreviation for "Hirlam-ALADIN Research on Mesoscale Operational NWP In Europe".
  * Harmonie system as appeared in the hirlam system repository consists of [source code, scripts and utilities](https://hirlam.org/trac/browser/trunk/harmonie) organised under various [system versions](https://hirlam.org/trac/browser), such as that of [trunk](https://hirlam.org/trac/browser/trunk/harmonie), [tagged releases](https://hirlam.org/trac/browser/tags) and [branches](https://hirlam.org/trac/browser/branches)
   * The source code is largely based on the released versions from Meteo France, such as cycle 33, cycle 33t1, which are featured in the hirlam repository as [vendor branches](https://hirlam.org/trac/browser/vendor/aladin)
-  * [The scripts] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md), which are developed by HIRLAM. These originate partly from wrappers around name-lists examples for climate generation, forecast and data assimilation; partly from HIRLAM's own development on model (initial, lateral and surface) coupling, data conversion. The past one year has seen two major developments in scripting area: mini-SMS job control/script system, and scripts for data assimilation at cycling mode.
+  * [The scripts](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md), which are developed by HIRLAM. These originate partly from wrappers around name-lists examples for climate generation, forecast and data assimilation; partly from HIRLAM's own development on model (initial, lateral and surface) coupling, data conversion. The past one year has seen two major developments in scripting area: mini-SMS job control/script system, and scripts for data assimilation at cycling mode.
   * [Utilities](https://hirlam.org/trac/browser/trunk/harmonie/util), partly through own development, such as [GL](https://hirlam.org/trac/browser/trunk/harmonie/util/gl), [MONITOR/WebgraF](https://hirlam.org/trac/browser/trunk/harmonie/util/monitor), partly through import of external tools, such as [gmkpack](https://hirlam.org/trac/browser/trunk/harmonie/util/gmkpack), [DDH](https://hirlam.org/trac/browser/trunk/harmonie/util/ddh), [OULAN](https://hirlam.org/trac/browser/trunk/harmonie/util/oulan), [SCUM](https://hirlam.org/trac/browser/trunk/harmonie/util/scum) etc.
  * HARMONIE system is aimed to be a complete NWP model system suitable for both research and operational use. Given observation and lateral boundary data, it shall be able to run as an independent system that covers full NWP production chain: from build, run to post-processing, diagnosis and verification.
- * HARMONIE system is version controlled using [Subversion] (../../../HirlamHowto/Svn/Subversion.md).
+ * HARMONIE system is version controlled using [Subversion](../../../HirlamHowto/Svn/Subversion.md).
 
 ----
  
@@ -72,15 +72,15 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lect
 ----
 
 ## Harmonie system components and features
- * [Climate generation] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Climategeneration.md): (SURFEX still unresolved issue with source code absent from the system)
- * [Initial and lateral/surface boundary data preparation] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts#Boundaryfilepreparation.md), post-processing using GL
- * [Forecast model] (../../../HarmonieSystemTraining2008/Lecture/Forecast.md), in principle the ALADIN model within the IFS framework, with following physics packages
+ * [Climate generation](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#Climategeneration): (SURFEX still unresolved issue with source code absent from the system)
+ * [Initial and lateral/surface boundary data preparation](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md#Boundaryfilepreparation), post-processing using GL
+ * [Forecast model](../../../HarmonieSystemTraining2008/Lecture/Forecast.md), in principle the ALADIN model within the IFS framework, with following physics packages
   * ALADIN: closest to ALADIN-MF physics, normally run for models with 10km scale, hydrostatic or nonhydrostatic
   * HIRALD: same as above but with HIRLAM 7.1 parameterisation on turbulence, cloud and condensation, radiation schemes. This is a pure HIRLAM development, but maybe ad hoc.
   * ALARO:  an ALADIN development designed to be suitable also for grey zone (~5 km). Currently operational at CHMI (7.5 km?) and runs daily at SMHI at 5 km
   * AROME:  ALADIN dynamics + meso-NH physics targeted for km-scale resolution, currently near-operational at Meteo France (2.5 km) and runs daily at main HIRLAM services
   * SURFEX: an externalized surface scheme suitable to be used for all the above model/resolutions. It as first introduced for AROME, and recently it has been made possible to run with ALADIN/ALARO physics also.
- * [Data assimilation: observation data handling, CANARI and 3DVAR] (../../../HarmonieSystemTraining2008/Lecture/DAdataflow.md)
+ * [Data assimilation: observation data handling, CANARI and 3DVAR](../../../HarmonieSystemTraining2008/Lecture/DAdataflow.md)
   * The work initiated at met.no, with active participation by system group this year
 
 ----
@@ -88,8 +88,8 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2008/Lect
 ## HARMONIE mini-SMS script
  * In ALADIN cooperation, job scripts including that of name-lists for system components (data preparation, assimilation, forecast, posp-processing) are not considered an integrated part of the system source, and thus no scripts or name-list examples are packed in the standard system release ('export' version). HIRLAM considers script as part of the source and is determined to establish a complete system with harmonised system scripts as an integrated part. 
  * Hirlam script development started in 2005/2006 when HIRLAM pioneers started implementing ALADIN forecast system locally. Independently, met.no staffs introduced scripts in order to perform cycled experiment including surface and upper air data assimilation.
- * In Sept 2007, the [system working meeting] (../../../SystemWorkingmeeting200709.md) of the HIRLAM system group decided to develop HIRLAM-like mini-SMS script for HARMONIE system. In December 2007, the first mini-SMS script system, [32h3] (../../../Harmonie_32h3.md), was released, including the installation and build using gmkpack. In April 2008, the mini-SMS script was extended to the data assimilation and cycling components in [33h0] (../../../Harmonie_33h0.md). The system has been further enhanced in [33h1] (../../../Harmonie_33h1.md) as released in June 2008.
- * [HARMONIE mini-SMS script system] (../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md) has full coverage of the NWP system procedure, from installation, configuration, build, data preparation, cycled runs to post-processing and verification. It has so far been tested on various HIRLAM computation platforms. The script including name-list settings are version controlled in similar way as for the source code.
+ * In Sept 2007, the [system working meeting](../../../SystemWorkingmeeting200709.md) of the HIRLAM system group decided to develop HIRLAM-like mini-SMS script for HARMONIE system. In December 2007, the first mini-SMS script system, [32h3](../../../Harmonie_32h3.md), was released, including the installation and build using gmkpack. In April 2008, the mini-SMS script was extended to the data assimilation and cycling components in [33h0](../../../Harmonie_33h0.md). The system has been further enhanced in [33h1](../../../Harmonie_33h1.md) as released in June 2008.
+ * [HARMONIE mini-SMS script system](../../../HirlamSystemDocumentation/Mesoscale/HarmonieScripts.md) has full coverage of the NWP system procedure, from installation, configuration, build, data preparation, cycled runs to post-processing and verification. It has so far been tested on various HIRLAM computation platforms. The script including name-list settings are version controlled in similar way as for the source code.
 
 ----
 
@@ -103,7 +103,7 @@ These tools are not limited to handle HARMONIE data. e.g, GL and MONITOR have re
 
 ## Harmonie Documentation
 
-The main documentation source for HARMONIE system is [documentation portal] (../../../HarmonieSystemDocumentation.md) at the HIRLAM system wiki. Most of the presentation materials prepared for this training workshop will be used/linked directly there.
+The main documentation source for HARMONIE system is [documentation portal](../../../HarmonieSystemDocumentation.md) at the HIRLAM system wiki. Most of the presentation materials prepared for this training workshop will be used/linked directly there.
 
 The main documentation format will be in wiki, with the purpose to encourage all developers and users to contribute easily.
 
@@ -112,7 +112,7 @@ It is important that documentation and instructions are maintained and updated t
 ----
 
 ## Real time HARMONIE forecast systems
- * DMI, SMHI and FMI started real-time, forecast-only runs since 2005/2006. Currently [real time HARMONIE system (at uncycled mode)] (../../../HirlamInventory/HarmonieSystem.md) is run daily at most HIRLAM services.  
+ * DMI, SMHI and FMI started real-time, forecast-only runs since 2005/2006. Currently [real time HARMONIE system (at uncycled mode)](../../../HirlamInventory/HarmonieSystem.md) is run daily at most HIRLAM services.  
   * 
 ```bash
 #!html
@@ -138,7 +138,7 @@ FMI's real time AROME suite</a>
 ```
  * met.no and SMHI likely to start cycled HARMONIE runs with DA by the end of this year
 ### **Web interface for real-time operational HIRLAM model monitoring and inter-comparison**
- * HIRLAM operational services recently started [joint monitoring and verification] (../../../oprint/general.md) at hirlam.org. It is an interesting topic about if a joint data portal is also relevant for HARMONIE real time system.
+ * HIRLAM operational services recently started [joint monitoring and verification](../../../oprint/general.md) at hirlam.org. It is an interesting topic about if a joint data portal is also relevant for HARMONIE real time system.
 
 ----
 

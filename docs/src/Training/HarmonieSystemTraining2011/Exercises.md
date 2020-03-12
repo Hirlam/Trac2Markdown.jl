@@ -19,8 +19,8 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2011/Exer
 
 ### Tools & Graphics
 
- * [Output formats] (../../HarmonieSystemDocumentation/FileFormats.md)
- * [gl commands] (../../HarmonieSystemDocumentation/PostPP/gl.md)
+ * [Output formats](../../HarmonieSystemDocumentation/FileFormats.md)
+ * [gl commands](../../HarmonieSystemDocumentation/PostPP/gl.md)
 
  * [MetgraF](http://netfam.fmi.fi/Museo/Riga/MetgraF/metg2.htm)
   * on ecgate

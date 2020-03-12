@@ -35,8 +35,8 @@ function trac2markdown(relurl::String; getattachments=false)
     # So we can point to the docs/src directory
     nestinglevel = length(splitpath(relurl))-1
     wikisub = repeat("../",nestinglevel)    
-    sstr = SubstitutionString("[\\2] ($wikisub\\1.md)")    
-    s = replace(s,r"\[wiki:([^ ]+?) (.+?)\]" => sstr)
+    sstr = SubstitutionString("[\\3]($wikisub\\1.md\\2)")    
+    s = replace(s,r"\[wiki:([^ #]+)(#?[^ ]*?) (.+?)\]" => sstr)
 
     # convert text to markdown
     mdtxt  = trac2md(s)

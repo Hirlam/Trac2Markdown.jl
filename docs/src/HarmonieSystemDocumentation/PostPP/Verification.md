@@ -39,7 +39,7 @@ Other examples on how products from the verification package looks like today ca
     * [Mast verification](http://fminwp.fmi.fi/mastverif_stats/SODA_2012_JJA_export/)
     * [HIRLAM verification portal](https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/)
 
-In the following we describe the different parts of the verification package. For preparation of verification data read more [here] (../../HarmonieSystemDocumentation/PostPP/Extract4verification.md).
+In the following we describe the different parts of the verification package. For preparation of verification data read more [here](../../HarmonieSystemDocumentation/PostPP/Extract4verification.md).
 
 ## Getting and compiling the code
 
@@ -97,7 +97,7 @@ The strategy in the verification is to separate the data input from the calculat
 
 The program can handle several data sources. Which one you use is depending on the value of *DATA_SOURCE* and is controlled in the routine [my_choices.f90](https://hirlam.org/trac/browser/monitor/rdr/my_choices.f90). At namelist level we also control which experiments we should read, the period (*SDATE*,*EDATE*), interval between cycles (*FCINT*), which forecasts (*FCLEN*) and the interval of the observations (*OBINT*). We can also already at this point select which stations to use by specifying a station list (*STNLIST*). 
 
-The HARMONIE tools to extract data for verifiation are described in [here] (../../HarmonieSystemDocumentation/PostPP/Extract4verification.md).
+The HARMONIE tools to extract data for verifiation are described in [here](../../HarmonieSystemDocumentation/PostPP/Extract4verification.md).
 
 ### = A general input format=
 

@@ -47,7 +47,7 @@ __MPP switches__
 
 __Surface SURFEX switches__
 
- * The SURFEX scheme is controlled through namelist settings in [surfex_namelists.pm](https://hirlam.org/trac/browser/Harmonie/nam/surfex_namelists.pm?rev=release-43h2.beta.3). [The different options are described here] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md).
+ * The SURFEX scheme is controlled through namelist settings in [surfex_namelists.pm](https://hirlam.org/trac/browser/Harmonie/nam/surfex_namelists.pm?rev=release-43h2.beta.3). [The different options are described here](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm).
 
 
 ## Archiving

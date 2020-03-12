@@ -7,7 +7,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PlatformConf
 This wiki page outlines the configuration files required by HARMONIE for successful compilation and running of the system.
 
 ## Basic requirements
-All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick start] (../HarmonieSystemDocumentation/QuickStartLocal.md) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to PATH_TO_HARMONIE one must issue the following command:
+All experiments require a valid host to "setup" an experiment using the Harmonie script. Recall from the [quick start](../HarmonieSystemDocumentation/QuickStartLocal.md) instructions that in order to setup a new experiment on your platform, called YOURHOST, using HARMONIE downloaded to PATH_TO_HARMONIE one must issue the following command:
 ```bash
 cd hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
@@ -98,7 +98,7 @@ The Env_submit file uses perl to tell the HARMONIE scheduler how to execute prog
 ### Makeup
 config files required for compilation of code using Makeup ...
 
-More information on Makeup is available here: [Build with Makeup] (../HarmonieSystemDocumentation/Build_with_makeup.md)
+More information on Makeup is available here: [Build with Makeup](../HarmonieSystemDocumentation/Build_with_makeup.md)
 ### Obsmon
 For config files required for compilation of obsmon check [here](https://hirlam.org/trac/browser/Harmonie/util/obsmon/config?rev=release-43h2.beta.3)
 

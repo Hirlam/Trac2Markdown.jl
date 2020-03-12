@@ -33,7 +33,7 @@ The Harmonie script is the main user interface to the harmonie system. It is use
 
  * ` Harmonie install ` will build your libraries and binaries but not start any experiment
 
- * ` Harmonie testbed ` will launch the [Harmonie testbed] (../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md)
+ * ` Harmonie testbed ` will launch the [Harmonie testbed](../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md)
 
  * ` Harmonie diff [--xxdiff] ` will look for differences between the revision in config-sh/hm_rev and HM_LIB.
 

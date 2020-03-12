@@ -8,7 +8,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/ConfigureYou
 
 There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3).
 
-Host specific paths and environment variables for your system are defined in Env_system. Read more [here] (../HarmonieSystemDocumentation/Installation.md).
+Host specific paths and environment variables for your system are defined in Env_system. Read more [here](../HarmonieSystemDocumentation/Installation.md).
 
 ## Build options
 ```bash
@@ -65,22 +65,22 @@ RUNNING_MODE=research                   # Research or operational mode (research
 SIMULATION_TYPE=nwp                     # Type of simulation (nwp|climate)
 ```
  * *RUNNING_MODE* can be __research__ or operational. Operational is more forgiving in the error handling and e.g. the assimilation will be skipped if Bator doesn't find any observations. Exceptions handled by the operational mode are written to `$HM_DATA/severe_warnings.txt`
- * *SIMULATION_TYPE* Switch between __nwp__ and climate type of simulation. The climate simulations are still in an experimental stage. [See HARMONIE-Climate for cy43h2 for more information] (../HarmonieClimate/HCLIM43.md)
+ * *SIMULATION_TYPE* Switch between __nwp__ and climate type of simulation. The climate simulations are still in an experimental stage. [See HARMONIE-Climate for cy43h2 for more information](../HarmonieClimate/HCLIM43.md)
 
 ## Model domain settings
-Horizontal domain settings. Further information is available here: [HarmonieSystemDocumentation/ModelDomain] (../HarmonieSystemDocumentation/ModelDomain.md)
+Horizontal domain settings. Further information is available here: [HarmonieSystemDocumentation/ModelDomain](../HarmonieSystemDocumentation/ModelDomain.md)
 ```bash
 # **** Model geometry ****
 DOMAIN=DKCOEXP                          # See definitions in scr/Harmonie_domains.pm
 TOPO_SOURCE=gmted2010                   # Input source for orography. Available are (gmted2010|gtopo30)
 GRID_TYPE=LINEAR                        # Type of grid (LINEAR|QUADRATIC|CUBIC)
 ```
- * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain] (../HarmonieSystemDocumentation/ModelDomain.md)
- * *TOPO_SOURCE*: Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography] (../HarmonieSystemDocumentation/How_to_use_hires_topography.md)
+ * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain](../HarmonieSystemDocumentation/ModelDomain.md)
+ * *TOPO_SOURCE*: Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography](../HarmonieSystemDocumentation/How_to_use_hires_topography.md)
  * *GRID_TYPE*: This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](https://hirlam.org/trac/browser/Harmonie/scr/Cliamte?rev=release-43h2.beta.3) and [scr/Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev=release-43h2.beta.3)
 
 ## Vertical levels
-Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid] (../HarmonieSystemDocumentation/VerticalGrid.md)
+Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid](../HarmonieSystemDocumentation/VerticalGrid.md)
 ```bash
 VLEV=65                                 # Vertical level definition name
                                         # HIRLAM_60, MF_60,HIRLAM_40, or
@@ -88,7 +88,7 @@ VLEV=65                                 # Vertical level definition name
                                         # See the other choices from scr/Vertical_levels.pl
 ```
 
- * *VLEV* is the name of the vertical levels defined in [Vertical_levels.pl](https://hirlam.org/trac/browser/Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (__65__). Further information is available here: [Vertical Grid] (../HarmonieSystemDocumentation/VerticalGrid.md). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions] (../HarmonieSystemDocumentation/Structurefunctions.md)
+ * *VLEV* is the name of the vertical levels defined in [Vertical_levels.pl](https://hirlam.org/trac/browser/Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (__65__). Further information is available here: [Vertical Grid](../HarmonieSystemDocumentation/VerticalGrid.md). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](../HarmonieSystemDocumentation/Structurefunctions.md)
 
 ## Forecast model
 Higher level forecast model settings.
@@ -116,7 +116,7 @@ LUNBC=yes                               # Apply upper nested boundary condition
  * *VERT_DISC*: Vertical discretization (__vfd__,vfe)
  * *PHYSICS*: HARMONIE uses either AROME or ALARO for its forecast model physics (__arome__|alaro)
  * *SURFACE*: Surface physics flag to use either the SURFEX or the ALADIN surface scheme(__surfex__|old_surface)
- * *DFI*: Digital filter initialization switch (idfi|fdfi|__none__). idfi - incremental dfi, fdfi - full dfi, none - no initialization. See [Digital filter] (../HarmonieSystemDocumentation/ConfigureYourExperiment#Digitalfilter.md) for more information
+ * *DFI*: Digital filter initialization switch (idfi|fdfi|__none__). idfi - incremental dfi, fdfi - full dfi, none - no initialization. See [Digital filter](../HarmonieSystemDocumentation/ConfigureYourExperiment.md#Digitalfilter) for more information
  * *LSPBDC*: Specify whether the boundary conditions are spectral or not (yes|__no__)
  * *LGRADSP*: Switch to apply vorticity dealiasing (__yes__|no)
  * *LUNBC*: Switch to apply upper boundary conditions (__yes__|no)
@@ -135,9 +135,9 @@ MASS_FLUX_SCHEME=edmfm                  # Version of EDMF scheme (edkf|edmfm)
 HARATU="yes"                            # Switch for HARATU turbulence scheme (no|yes)
 ALARO_VERSION=0                         # Alaro version (1|0)
 ```
- * *CISBA*: If *SURFACE* is set to surfex this selects the type of ISBA scheme to use in SURFEX. (__3-L__|2-L). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
- * *CROUGH*: If *SURFACE* is set to surfex this selects the sub-grid scale orography scheme used in SURFEX. (__NONE__|Z01D|BE04). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
- * *SURFEX_SEA_ICE*: Treatment of sea ice in surfex (none|sice). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
+ * *CISBA*: If *SURFACE* is set to surfex this selects the type of ISBA scheme to use in SURFEX. (__3-L__|2-L). [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
+ * *CROUGH*: If *SURFACE* is set to surfex this selects the sub-grid scale orography scheme used in SURFEX. (__NONE__|Z01D|BE04). [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
+ * *SURFEX_SEA_ICE*: Treatment of sea ice in surfex (none|sice). [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
  * *MASS_FLUX_SCHEME*: If *PHYSICS* is set to arome choose the mass flux scheme to be used by AROME; edkf to use the AROME-MF scheme or edmfm to use the KNMI developed scheme
  * *HARATU*: Switch to use the *HARATU* turbulence scheme
  * *ALARO_VERSION*: If *PHYSICS* is set to alaro select version of ALARO to use (__0__|1)
@@ -171,7 +171,7 @@ JB_INTERPOL=no                          # Interpolation of structure functions f
 
 ```
  * *ANAATMO*: Atmospheric analysis (__3DVAR__|4DVAR|blending|none)
- * *ANASURF*: Surface analysis (CANARI|__CANARI_OI_MAIN__|CANARI_EKF_SURFEX|none). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
+ * *ANASURF*: Surface analysis (CANARI|__CANARI_OI_MAIN__|CANARI_EKF_SURFEX|none). [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
  * *ANASURF_MODE*:When the surface should be called (__before__|after|both)
  * *INCV*: Active EKF control variables. 1=WG2 2=WG1 3=TG2 4=TG1 (0|1)
  * *INCO*: Active EKF observation types (Element 1=T2m, element 2=RH2m and element 3=Soil moisture) (0|1)
@@ -225,7 +225,7 @@ TSPAN=5400                              # 7200s or 5400s
 
 
 ## Boundaries and initial conditions
-Settings for generation of lateral boundaries conditions for HARMONIE. Further information is available here: [HarmonieSystemDocumentation/BoundaryFilePreparation] (../HarmonieSystemDocumentation/BoundaryFilePreparation.md)
+Settings for generation of lateral boundaries conditions for HARMONIE. Further information is available here: [HarmonieSystemDocumentation/BoundaryFilePreparation](../HarmonieSystemDocumentation/BoundaryFilePreparation.md)
 ```bash
 # **** Lateral boundary conditions ****
 HOST_MODEL="ifs"                        # Host model (ifs|hir|ald|ala|aro)
@@ -284,14 +284,14 @@ SURFEX_PREP="yes"                # Use offline surfex prep facility (Alt. gl + F
 
  * *BDLIB* is the experiment to be used as boundaries. Possible values, __ECMWF__ for IFS from MARS (default), __RCRa__ for HIRLAM-RCR from ECFS or other __HARMONIE experiment__. 
  * *BDDIR* is the boundary file directory. The possible date information in the path must be given by using UPPER CASE letters (@YYYY@=year,@MM@=month,@DD@=day,@HH@=hour,@FFF@=forecast length).  
- * *BDSTRATEGY* Which boundary strategy to follow i.e. How to find the right boundaries with the right age and location. [Read more] (../HarmonieSystemDocumentation/BoundaryFilePreparation#Boundarystrategies.md)
+ * *BDSTRATEGY* Which boundary strategy to follow i.e. How to find the right boundaries with the right age and location. [Read more](../HarmonieSystemDocumentation/BoundaryFilePreparation.md#Boundarystrategies)
  * *BDINT* is boundary interval in hours.
  * *BDCLIM* is the path to climate files corresponding the boundary files, when nesting HARMONIE to HARMONIE.
  * *INT_BDFILE* is the name and location of the interpolated boundary files. These files are removed every cycle, but if you wish to save them you can specify a more permanent location here. By setting INT_BDFILE=$ARCHIVE the interpolated files will be stored in your archive directory.
  * *NBDMAX* Number of parallel boundary interpolation tasks in mSMS. The current default value is 12.
  * *SURFEX_PREP* Use SURFEX tool PREP instead of gl+FULLPOS to prepare SURFEX initial conditions. This is now the default. The gl+FULLPOS version is still working but will not be maintained in the future (no|__yes__)
 
-Read more about the boundary file preparation [here] (../HarmonieSystemDocumentation/BoundaryFilePreparation.md).
+Read more about the boundary file preparation [here](../HarmonieSystemDocumentation/BoundaryFilePreparation.md).
 
 ## Ensemble mode settings
 
@@ -346,11 +346,11 @@ FESTAT=no                               # Extract differences and do Jb calculat
   * *PERTSURF* Perturbation of surface observations before Canari (recommended for EDA to have full perturbation of the initial state) (__no__|yes).
 
 
- * *FESTAT* Extract differences and do Jb calculations (__no__|yes). Read more about the procedure [here] (../HarmonieSystemDocumentation/Structurefunctions_ensys.md).
+ * *FESTAT* Extract differences and do Jb calculations (__no__|yes). Read more about the procedure [here](../HarmonieSystemDocumentation/Structurefunctions_ensys.md).
 
 
 ## Climate file settings
-Climate file generation settings. Further information is available here: [HarmonieSystemDocumentation/ClimateGeneration] (../HarmonieSystemDocumentation/ClimateGeneration.md)
+Climate file generation settings. Further information is available here: [HarmonieSystemDocumentation/ClimateGeneration](../HarmonieSystemDocumentation/ClimateGeneration.md)
 ```bash
 # **** Climate files ****
 CREATE_CLIMATE=${CREATE_CLIMATE-yes}    # Run climate generation (yes|no)
@@ -367,8 +367,8 @@ SOIL_TEXTURE_VERSION=FAO                # Soil texture input data FAO|HWSD_v2
  * *CREATE_CLIMATE*: Run climate generation (__yes__|no). If you already have a full set of climate files generated in CLIMDIR you can set this flag to no for a faster run.
  * *CLIMDIR*: path to the generated climate files for your specific domain. The input data for the climate generation is defined by HM_CLDATA defined in Env_system -> config-sh/config.YOURHOST
  * *BDCLIM*: path to intermediate climate files
- * *ECOCLIMAP_VERSION* is the version of ECOCLIMAP to be used with SURFEX. Available versions are 1.1-1.5,2.0,2.1,__2.2__. [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
- * *SOIL_TEXTURE_VERSION* Soil texture input data (__FAO__|HWSD_v2). [See surfex_namelists.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_namelists.pm.md)
+ * *ECOCLIMAP_VERSION* is the version of ECOCLIMAP to be used with SURFEX. Available versions are 1.1-1.5,2.0,2.1,__2.2__. [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
+ * *SOIL_TEXTURE_VERSION* Soil texture input data (__FAO__|HWSD_v2). [See surfex_namelists.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_namelists.pm)
 
 ## Archiving settings
 ```bash
@@ -492,7 +492,7 @@ FREQ_RESET_GUST=1                       # Reset frequency of max/min gust values
 
 ```
 
- * *SURFEX_LSELECT*: Switch to write a selection of fields in SURFEX output files (__yes__|no). [See surfex_selected_output.pm for more info.] (../HarmonieSystemDocumentation/Namelists#surfex_selected_output.pm.md)
+ * *SURFEX_LSELECT*: Switch to write a selection of fields in SURFEX output files (__yes__|no). [See surfex_selected_output.pm for more info.](../HarmonieSystemDocumentation/Namelists.md#surfex_selected_output.pm)
 
  * *INT_SINI_FILE*: name and location of the initial SURFEX file
  * *ARCHIVE_ECMWF*: archive files to ECFSLOC at ECMWF (__yes__|no)
@@ -540,7 +540,7 @@ VFLDEXP=$EXP                            # Experiment name on vfld files
  * *FLDEXTR_TASKS*: Number of parallel tasks for field extraction
  * *VFLDEXP*:
 
-Read more about the verification package [here] (../HarmonieSystemDocumentation/PostPP/Verification.md)
+Read more about the verification package [here](../HarmonieSystemDocumentation/PostPP/Verification.md)
 
  === Field verification ===
 
@@ -570,7 +570,7 @@ OBSMON_SYNC=no                          # Sync obsmn sqlite tables to ecgate (ye
 ```
 
  *OBSMONITOR* Selection for observation statistics plots
-    * obstat Observations usage. Read more [here] (../HarmonieSystemDocumentation/PostPP/Obsmon.md).
+    * obstat Observations usage. Read more [here](../HarmonieSystemDocumentation/PostPP/Obsmon.md).
     * no No monitoring
 
  **Note that this is only active if ANAATMO != none**

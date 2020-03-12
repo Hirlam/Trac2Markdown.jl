@@ -14,14 +14,21 @@ git clone https://github.com/Hirlam/Trac2Markdown.jl Trac2Markdown
 
 ## Usage
 
-From the `Trac2Markdown` directory 
+### Instantiation 
+
+To install the dependencies. From the `Trac2Markdown` directory 
 
 ```bash
-julia --project --color=yes -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
+julia --project --color=yes -e 'using Pkg; Pkg.instantiate()'
 ```
 
-This will run the unit tests, downloads wiki pages from hirlam.org 
-and converts them to markdown.
+### Creating Markdown files 
+
+```bash
+julia --project --color=yes -e 'using Pkg; Pkg.test()'
+```
+
+This will run the unit tests, downloads wiki pages from hirlam.org and converts them to markdown.
 
 ## To do 
 

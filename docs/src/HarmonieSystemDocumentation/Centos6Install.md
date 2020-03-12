@@ -110,7 +110,7 @@ Now use the Harmonie system to build the software:
 cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie Install
 ```
-This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [wiki:HarmonieSystemDocumentation/Build_with_makeup] (../HarmonieSystemDocumentation/Build_with_makeup.md)
+This uses the Harmonie MAKEUP utility to compile the code and create libraries and executables required. Further details on MAKEUP are available here: [wiki:HarmonieSystemDocumentation/Build_with_makeup](../HarmonieSystemDocumentation/Build_with_makeup.md)
 
 ## Run an experiment
 Instructions for testbed and/or local experiment are detailed here:
@@ -133,4 +133,4 @@ cd $HOME/hm_home/trunkexp
 $HOME/harmonie_releases/trunk/config-sh/Harmonie start DTG=2014040100 DTGEND=2014040112 LL=03 BUILD=no
 ```
 
-Further details on how to use the Harmonie mini-SMS script system are available here: [wiki:HarmonieSystemDocumentation/Harmonie-mSMS] (../HarmonieSystemDocumentation/Harmonie-mSMS.md)
+Further details on how to use the Harmonie mini-SMS script system are available here: [wiki:HarmonieSystemDocumentation/Harmonie-mSMS](../HarmonieSystemDocumentation/Harmonie-mSMS.md)

@@ -26,7 +26,7 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2015?acti
 
  During the week lectures will be mixed with practical hands on exercises.
 
- Read more [here] (../HarmonieSystemTraining2015/Programme.md).
+ Read more [here](../HarmonieSystemTraining2015/Programme.md).
 
 ### Previous courses
 
@@ -36,16 +36,16 @@ EditURL="https://hirlam.org/trac//wiki//Training/HarmonieSystemTraining2015?acti
 
 ### Online and recorded lectures
 
-Remote participation will be provided using the EUMETCAL Centra !OnDemand system. Recorded lectures from 2014 can be found [here] (../HarmonieSystemTraining2014/Eumetcal.md). 
+Remote participation will be provided using the EUMETCAL Centra !OnDemand system. Recorded lectures from 2014 can be found [here](../HarmonieSystemTraining2014/Eumetcal.md). 
 
 ## Preparations
 
  * Please remember to bring your own laptop and make sure that you can connect to a wireless network. For the exercises we will mainly use the ECMWF HPC facilities so make sure that you have a user account at ECMWF and belong to the hirald group. **For those coming from countries/institutes that does not provide ECMWF access we will arrange with temporary accounts on the SMHI research cluster bi. Please let us know ASAP if you need such account.**
 
  * The course will be based on two recent versions of HARMONIE. 
-   * The special climate branch [HCLIM-38h1.1] (../HarmonieClimate.md) developed by the Rossby Centre at SMHI
-   * The next NWP version [harmonie-40h1.1.beta.3] (../Harmonie_40h1.md) targeted for operational use during the autumn. This version includes some of the development from the HCLIM branch.
-You can prepare yourself by browsing through the [documentation] (../HarmonieSystemDocumentation.md) and the information about the [climate version] (../HarmonieClimate.md). If you intend to install HARMONIE locally ( on your laptop or your institutes HPC ) make sure it has all the needed [components] (../HarmonieSystemDocumentation/General.md).
+   * The special climate branch [HCLIM-38h1.1](../HarmonieClimate.md) developed by the Rossby Centre at SMHI
+   * The next NWP version [harmonie-40h1.1.beta.3](../Harmonie_40h1.md) targeted for operational use during the autumn. This version includes some of the development from the HCLIM branch.
+You can prepare yourself by browsing through the [documentation](../HarmonieSystemDocumentation.md) and the information about the [climate version](../HarmonieClimate.md). If you intend to install HARMONIE locally ( on your laptop or your institutes HPC ) make sure it has all the needed [components](../HarmonieSystemDocumentation/General.md).
 
  * The Thursday morning will be devoted to students feedback. We kindly ask everyone to prepare a 5-15 minute presentation about your climate related research, scientific challenges and possible future use of HARMONIE climate. Feel free to give a shared presentation if you are several people coming from the same institute. Please let us know if you will give a presentation or not before the 10th of September.
 
@@ -53,7 +53,7 @@ You can prepare yourself by browsing through the [documentation] (../HarmonieSys
 
 ## Exercises
 
-  [Exercises] (../HarmonieSystemTraining2015/Exercises.md)
+  [Exercises](../HarmonieSystemTraining2015/Exercises.md)
 
 ## Evaluation
 
