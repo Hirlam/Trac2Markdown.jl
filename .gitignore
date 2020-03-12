@@ -1,4 +1,6 @@
 .vscode/
+build/build.log
+build/wiki/
 docs/build/
 docs/wiki/
 Manifest.toml
