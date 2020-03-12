@@ -1,0 +1,60 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= '''HARMONIE binaries''' =
+[[Center(end)]]
+
+ An installation of HARMONIE produces the following binaries:
+
+ * !ACADFA1D : Tool to generate initial and boundary data for MUSC
+ * ADDPERT : Create initial perturbations
+ * ADDSURF : Allows you to mix different files and add different fields
+ * [http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=PINUTS ALTO] : Also known as PINUTS. Contains several diagnostic tools.
+ * BATOR : Generate ODB from observations in various formats
+ * bl95.x : Blacklist compiler, help program to generate object files from the blacklist
+ * BLEND : Mixes to files
+ * BLENDSUR : Mixes to files
+ * cluster : Cluster ensemble members
+ * CONVERT_ECOCLIMAP_PARAM : Generate binary files from ECOCLIMAP ascii files
+ * dcagen : ODB handling tool
+ * domain_prop_grib_api : Helper program to return various model domain properties
+ * FESTAT : Background error covariance calculations.
+ * [wiki:HarmonieSystemDocumentation/PostPP/Extract4verification fldextr_grib_api] : Extracts data for verification from model history files. Reads FA from HARMONIE and GRIB from ECMWF/HIRLAM.
+ * [wiki:HarmonieSystemDocumentation/PostPP/gl_grib_api gl_grib_api] : Converts/interpolates between different file formats and projections. Used for boundary interpolation.
+ * IOASSIGN/ioassign : ODB IO setup
+ * LSMIX : Scale dependent mixing of two model states.
+ * jbconv : Interpolates/extrapolates background error statistics files. For technical experimentation
+ * lfitools : FA/LFI file manipulation tool
+ * [http://www.cnrm.meteo.fr/gmapdoc//IMG/pdf/ykarpbasics43.pdf MASTERODB] : The main binary for the forecast model, surface assimilation, climate generation, 3DVAR, fullpos and much more.
+ * MTEN : Computation of moist tendencies
+ * [wiki:HarmonieSystemDocumentation/PostPP/Extract4verification obsextr] : Extract data for verification from BUFR files. 
+ * obsmon : Extract data for observation monitoring
+ * odb98.x : ODB manipulation program
+ * [http://www.cnrm.meteo.fr/surfex/ OFFLINE] : The SURFEX offline model. Also called SURFEX
+ * oulan : Converts observations in BUFR to OBSOUL format used by BATOR
+ * PERTCMA : Perturbation of observations in ODB
+ * PERTSFC : Surface perturbation scheme
+ * [http://www.cnrm.meteo.fr/surfex/ PGD] : Generates physiography files for SURFEX.
+ * PREGPSSOL : Processing of GNSS data
+ * [http://www.cnrm.meteo.fr/surfex/ PREP] : Generate SURFEX initial files. Interpolates/translates between two SURFEX domains.
+ * SFXTOOLS : Converts SURFEX output between FA and LFI format.
+ * shuffle : Manipulation of ODB. Also called ODBTOOLS
+ * !ShuffleBufr : Split bufr data according to observation type, used in the observation preprocessing.
+ * [http://www.cnrm.meteo.fr/surfex/ SODA] : Surfex offline data assimilation
+ * SPG : Stochastic pattern generator, https://github.com/gayfulin/SPG
+ * [http://www.cnrm.meteo.fr/surfex/ SURFEX] : The SURFEX offline model. Also called OFFLINE
+ * tot_energy : Calculates the total energy of a model state. Is used for boundary perturbation scaling.
+ * [wiki:HarmonieSystemDocumentation/PostPP/gl_grib_api#xtool xtool_grib_api] : Compares two FA/LFI/GRIB files.
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+

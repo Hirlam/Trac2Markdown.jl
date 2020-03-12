@@ -1,0 +1,39 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''The status of AAAH reference system''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Namelists ==
+
+ * "Default" namelists for ''HIRLAD''-group exist (for CY30t1, CY31t0 and CY31t1).
+
+== Scripts ==
+
+ * [wiki:HirlamSystemDocumentation/Mesoscale/MesoScaleCoupling The first version of scripts] works at ECMWF.
+ * However, these scripts are not directly applicable under SMS (and mini-SMS).
+ * Refined scripts are under development (see attachment below).
+
+
+== svn-repository ==
+
+ * What to include (minimum requirements)?
+   * Source code: '''CY31T1''' to start with.
+   * Namelists for: aladin and arome forecasts, boundary file generation (fullpos).
+   * Forecast scripts, which can be used at ECMWF.
+   * Utilities: gmkpack, gl-package and monitor-package for verification.
+
+ * Structure
+   * ''src'' for source code
+   * ''scr'' for scripts
+   * ''nam'' for namelists
+   * ''util'' for gl, gmkpack and monitor    
+
+ * What to include later?
+   * Second version of the forecast scripts.
+   * Mini-SMS?
+   * Scripts for climate file generation and fullpos?
+   * namelists for climate file generation and fullpos?
+
+
+ * First version of the ''HARMONIE'' trunk is available https://hirlam.org/trac/browser/trunk/harmonie  

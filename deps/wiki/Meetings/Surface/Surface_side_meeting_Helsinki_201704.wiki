@@ -1,0 +1,93 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Surface side meeting on Surface processes and data assimilation''' =
+''At the Joint ALADIN / HIRLAM Meeting in Helsinki, 3-7 April, 2017''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Call for meeting ==
+
+This meeting is scheduled for 17:00-19:00 on Monday afternoon in parallel with “WG on Recent upper-air DA issues” and Posters session. We will start out joining the with upper air to discuss issues around OOPS and CANARI. After that we split into separate groups.
+
+My intention with this meeting is mainly that we should have a chance to update each other on progress and problems related to our surface activities. If you have some material you wish to share with this group that is not shown in plenum/posters please feel free to bring (or upload as an attachment to this wiki) a presentation. Please add any issues you think we should discuss to the agenda below or write an email to Patrick.
+
+
+== Agenda and memory notes ==
+
+> '''Memory notes are indicated like this.'''
+
+Time: Monday, April 3, 17:00 - 19:00
+
+Joint discussion with upper air:
+
+ * The future of CANARI
+ > CANARI was developed to fulfil spatialisation needs for both upper air and surface variables but is now used only for the surface part. Also, CANARI was developed based on a binary land/sea mask and does not take fractional coverage into account. CANARI is developed to calculate spatial homogeneous analysis fields and is not suitable to handle non-homogeneous fields based on satellite products. Thus, voices have been raised that it may be good to replace CANARI with a new surface-dedicated spatialisation tool in the future. Existing alternatives mentioned are the IFS tool (not yet adjusted to OOPS) and the HIRLAM span tool (not parallelised). A comment was made that with EKF for surface the horizontal spatialisation may be done after the vertical...
+
+ * How does OOPS proceed and how does it affect development of CANARI?
+ > An OOPS-ification of CANARI is currently not in the Météo-France pipeline. The question was raised if we need OOPS for CANARI but the answer is yes to fulfil coupling needs.
+
+Surface people only:
+
+ * A few comments based on around-the-table status check
+   > Jure Cedilnik: The ocean-coupling work is less active at the moment. Assimilation of surface snow is given more attention now.
+   >
+   > Karl-Ivar Ivarsson: Has been working with snow melt issues in D95.
+   >
+   > Maria Monterio: Working on surface analysis with CANARI and OI-main. Have problems with PGD output for lakes when using ECOCLIMAPv2.3 as input.
+   >
+   > Martina Tudor: Working on surface field inconsistencies.
+   >
+   > Yurii Batrak: Development of sea-ice scheme SICE (see poster).
+   >
+   > Jozef Vivoda: Working on a postprocessing tool based on SURFEX offline. Requests documentation for SURFEX example setups, e.g. how SODA is related to OI and EKF.
+   >
+   > Ekaterina Kourzeneva: Now focusing on FLake in HARMONIE-AROME (see presentation) but also on CANARI/snow analysis.
+   >
+   > Martin Bellus: Work on CANARI and perturbation of surface parameters.
+   >
+   > Margarita Choulga: Development of lake depth data base.
+   >
+   > Alberto Martin: Surface perturbations for EPS use.
+   >
+   > Daan Degrauwe: ALARO and ALARO-SURFEX coupling.
+   >
+   > Rafiq Hamdi: ALARO1-SURFEX coupling is now working technically in cy43t2.
+   >
+   > Emily Gleeson: Development of glaciers in SURFEXv8 based on Explicit snow scheme.
+   >
+   > Balazs Szintai: Helga Toth et al. in Hungary are testing and developing EKF for surface assimilation.
+   >
+   > Sander Tijm: Studied the impact of clay/sand distribution on assimilation and evapotranspiration. [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface_side_meeting_Helsinki_201704/20170403_Tijm_SURFACE.pdf See presentation here.]
+   >
+   > Laura Rontu: Working on orography impact on radiation.
+   >
+   > Patrick Samuelsson (HIRLAM): See wiki page for next [wiki:Meetings/Surface/Surface201705 HIRLAM Surface Working Week in May] for information on what is on the agenda for HIRLAM at the moment.
+ * Report from the SURFEX Steering Committee meeting March 1st:
+   > Deadline for contributions to SURFEXv9 is at the end of 2017.
+   >
+   > ECOCLIMAP-SG (Second Generation) is under preparation. HIRLAM will contribute with consistency check of land/water fractions in connection to sea, lakes and rivers. 
+   >
+   > cy36/SURFEXv5 is still used and documentation about it will be added to the SURFEX web site.
+   >
+   > The atmospheric part of our NWP systems are compatible between cycles which means that one cycle can be forced by another cycle but this is not the case between SURFEX versions.  
+
+ * A new HIRLAM/ALADIN/LACE/SURFEX Surface Working week coordinated with the LACE Data Assimilation Working Days (DAWD). The meeting will take place in Ljubljana.
+ > Dates are now decided to Monday-Wednesday September 18-20. The surface meeting will run in parallel with the DAWD but joint sessions will also take place.  
+ * From 2018 we will again have a common !WorkPlan for ALADIN/HIRLAM/LACE. For "Surface analysis and modelling" the Work packages discussed are: 1 Assimilation, algorithms for surface assimilation, 2 Use of observations in surface assimilation, 3 SURFEX: validation of existing options for NWP, 4 SURFEX: development of model components, 5 Assess/improve quality of surface characterization, 6 Coupling with sea surface/ocean
+ > The process of the !WorkPlan will be discussed further at the CSSI-HMG meeting Friday 7 April. Further instructions and information will follow after that.
+ * HIRLAM has the ambition to arrange a SURFEX course as a complement to the annual Toulouse courses.
+ > The planning of this course will be coordinated with ALADIN/LACE who are also thinking about this. Probably the course will take place during 2018. If so, announcement will come during autumn 2017.
+ * In which cycle environments do we work/develop EKF for surface? Please mention during "Around the table status check" which environment you use. More coordination needed?
+   * For example, in Hungary cy38/SURFEXv7.2 is used, in Austria cy40/SURFEXv8 is used, in HIRLAM cy40/SURFEX7.3 is used,...
+   * [wiki:Surface_physis_assimilation/SODA_development For SURFEX-SODA offline, at the Zagreb meeting, we agreed to share development via the SODA_V8 branch.]
+ > The participants of the side meeting did not see the need for more strong coordination beyond the discussions and meetings already planned. But discussions on potential coordination of SURFEX contributions as mentioned below are ongoing.
+ * Preparation of SURFEX forcing files: Currently, [https://hirlam.org/trac/browser/trunk/harmonie/util/forcing/doc offline forcing in HARMONIE-AROME by Trygve] is used by HARMONIE-AROME to create forcing for SURFEX from AROME simulations when surface EKF is activated. Trygve has been thinking on a new offline forcing generation in HARMONIE-AROME. Based now on the initiative by John de Vries to build a python based offline forcing generation, John and Trygve are asked to coordinate their ideas also with Daniel since there is a long term plan to build the HARMONIE-AROME scripting system around python. Stefan also mentions that Victor at Slovakia Met Service has done a similar solution in python.
+ > Eric Martin reports that similar ideas/development happen at Météo-France by...
+ * From cy43 on, HIRLAM has decided that we will develop NWP surface/SURFEX connected to the SURFEX repository and use SURFEX as a vendor branch in the NWP system. The reason is that we need to update SURFEX used in cy43h with the latest updates from the SURFEX trunk since we are going to utilize SURFEX options diffusion soil scheme and explicit snow scheme and there are important bug fixes and updates in SURFEX related to these options since SURFEX for cy43t was fetched from the SURFEX repository (revision 3681 in the SURFEX repository). [wiki:Surface_physis_assimilation/SURFEX_after_cy43t The working strategy is described here]. May this be interesting also for other users?
+    * Laura Rontu says: The suggested new working strategy seems complicated - who would draw it for discussion?... An attempt to understand the present cycling philosophy graphically [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface_side_meeting_Helsinki_201704/Trunk.pdf Present strategy?]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface_side_meeting_Helsinki_201704/SURFEX_HIRLAM_development.pdf Inspired by Laura Patrick has added a couple of slides] which describe the new working strategy.
+ > The discussion on this continued at the CSSI-HMG meeting Friday 7 April. There may be an interest beyond HIRLAM for such a coordination... Claude Fischer will check interest and ideas among his Météo-France colleagues for such coordination.
+
+

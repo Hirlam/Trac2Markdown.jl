@@ -1,0 +1,76 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''File conversions''' =
+[[Center(end)]]
+
+= FA --> GRIB =
+
+HIRLAM/HARMONIE users are more used to dealing with the GRIB data. The default HARMONIE output is in FA format. Users have the option to convert HARMONIE FA format files to GRIB1 or NETCDF. Note that the NETCDF conversion is still experimental. 
+
+== sms/config_exp.h ==
+
+The option to convert model output to GRIB can be selected in the [source:tags/harmonie-40h1.1/sms/config_exp.h] file:
+{{{
+
+# **** GRIB ****
+CONVERTFA=yes                            # Conversion of FA file to grib/nc (yes|no)
+ARCHIVE_FORMAT=grib                     # Format of archive files (grib|nc). nc format yet only available in climate mode
+
+}}}
+
+== Details ==
+By setting ARCHIVE_FORMAT to ''grib'' the [wiki:HarmonieSystemDocumentation/40h1.1/PostPP/gl gl] tool will be called from the [source:tags/harmonie-40h1.1/scr/Makegrib_gribex Makegrib_gribex] script to convert HARMONIE output from FA to GRIB. 
+
+Conversion of FA/lfi files to grib by gl:
+{{{
+    gl [-c] [-p] FILE [ -o OUTPUT_FILE ] [ -n NAMELIST_FILE ]
+
+    gl -c FA/LFI-FILE -- converts the full field (including extension zone)
+    gl -p FAFILE      -- excludes the extension zone ( "p" as in physical domain only) 
+}}}
+
+By default, '''Makegrib_gribex''' removes the biperiodic zone from FA files and creates GRIB files. HARMONIE data is produced on a Lambert projection. GRIB data can be interpolated onto different projections using gl_grib_api. Further information is available in the [wiki:HarmonieSystemDocumentation/40h1.1/PostPP/gl gl documentation].
+
+Forecast output is converted from FA to GRIB in [source:tags/harmonie-40h1.1/scr/Makegrib_gribex Makegrib_gribex] using the following command:
+{{{
+  $MPPGL $BINDIR/gl -p $1 -o $2 -n namelist_makegrib${MG} || exit
+}}}
+where 
+ * $1 is the input HARMONIE FA-file (ICSMHHARM+${ffff}, $ffff is the forecast minute/hour)
+ * $2 is the output HARMONIE GRIB file (fc${DATE}${HH}+${FF}grib)
+ * namelist_makegrib${MG} is 
+{{{
+&naminterp
+ outkey%yy=$YY,
+ outkey%mm=$MM,
+ outkey%dd=$DD,
+ outkey%hh=$HH,
+ outkey%mn=00,
+ outkey%ff=$FF,
+ time_unit=$time_unit
+ pppkey(1:3)%ppp =   1, 61,184
+ pppkey(1:3)%ttt = 103,105,105,
+ pppkey(1:3)%lll =   0,  0,  0,
+ pppkey(1:3)%tri =   0,  4,  4,
+ skipsurfex = .TRUE.,
+ fstart(15) = $fstart,
+ fstart(16) = $fstart,
+ fstart(162) = $fstart,
+ fstart(163) = $fstart,
+/
+}}}
+In the namelist:
+ * $YY/$MM/$DD/$HH  is the forecast initial time
+ * $time_unit is the units of time to be used min/h
+ * pppkey: selection of requested post-processed products (See: [wiki:HarmonieSystemDocumentation/40h1.1/PostPP/gl Postprocessing with gl] for more details)
+ * $fstart is the start hour for time-range products such as maximum temperature.
+
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

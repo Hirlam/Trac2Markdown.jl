@@ -1,0 +1,128 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Assimilation of !QuikScat data''' =
+[[Center(end)]]
+
+= Introduction =
+
+The polar orbiting !QuikScat satellite carries the !SeaWinds scatterometer instrument.
+The !SeaWinds scatterometer is a radar that bounces a radar puls off the earth surface
+and measures the backscatter. The backscatter from a given area is measured several
+times, and from different directions as the satellite flies by the target.
+The backscatter depends on the surface properties, and in particular over the ocean
+the backscatter depends on the capillar wave amplitude and the direction. The wave
+amplitude and direction in turn depend on the surface wind speed and direction, which
+in turn depends on the 10m wind speed and direction. An empirical relationship can be
+found for connecting the backscatter observations to the 10m wind speed and direction.
+Unfortunately, there are usually several possible wind solutions to a set of backscatter
+measurements. These wind solutions are referred to as ambiguities. 
+The ambiguous !QuikScat observations have clearly a very non-Gaussian error distribution,
+and assimilating these observations in HIRLAM 3D-Var is not straight forward.
+Two different methods for using the !QuikScat observations in !HIRLAM have therefore 
+been implemented. The method implemented at met.no is described here. The
+other method was implemented by knmi.
+
+The ambiguous !QuikScat observations can be downloaded from a NOAA/NESDIS ftp server. 
+There is a 2 hour time delay, but this will be improved in future missions, when data will be
+downloaded and processed continuously by local receiving stations, and distributed
+by a model inspired by the EUMETSAT EARS service. The NOAA/NESDIS server distributes
+!QuikScat BUFR files.
+
+The !QuikScat BUFR files are not read into the CMA array (by OBSPROC), but are
+read directly into HIRLAM 3D-Var modules. This is achieved by setting 
+{{{LLSCATT=.TRUE.}}} in the {{{&obstypes}}} namelist in {{{prepobstypes.dat}}},
+{{{scrobstypes.dat}}} and {{{minobstypes.dat}}}. !HIRLAM will then look for the file
+{{{scatt.in}}} in the working directory. This is the input file for processing !QuikScat
+obsevations according to the met.no implementation. The {{{scatt.in}}} file is
+processed by [wiki:HirlamHowto/Man/nukem nukem], and may look like the following:
+{{{
+ SCATTEROMETER INPUT FILE V1.0
+ NESDIS SCATTEROMETER BUFR FILES [*]VFLR &
+  seawinds.input
+ CHANGE SELECTED AMBIGUITY AT ITERATION INTERVAL [1] VFMLR
+    5
+ DO NOT CHANGE SELECTED AMBIGUITY AFTER ITERATION NO [1]
+    50
+ MINIMUM THINNING DISTANCE (KM)
+    100
+ USE QUIKSCAT 100 KM WIND SPEED AND DIRECTION IN ITERATION INTERVAL [1] VFMLR
+    20 999
+}}}
+Here, the BUFR data should be contained in the file {{{seawinds.input}}}.
+
+== Examples ==
+
+A typical HIRLAM 3D-Var log file will typically contain the following lines when
+!QuikScat observations are assimilated:
+{{{
+ READSCATT       Sat:281 Instr:  8 Res:100 Thinning dist: 100.0 km (  0.800 deg),  3630 -  2047 ( 56.4%) =  1583
+ READSCATT       Sat:281 Instr:  8 Res: 25 Thinning dist: 100.0 km (  0.800 deg),     0 -     0 (  0.0%) =     0
+ READSCATT       Sat:199 Instr:  8 Res: 50 Thinning dist: 100.0 km (  0.800 deg),     0 -     0 (  0.0%) =     0
+ READSCATT       Initial obs range: 2004/12/04 20:23: 7.00 to:2004/12/05 03:04:51.00 (  401 min)
+ READSCATT       Accepted obs range:2004/12/04 20:30: 5.00 to:2004/12/05 03:04:51.00 (  394 min)
+ READSCATT        Number of valid obs:        35128
+ READSCATT        Outside HIRLAM grid:       -31182 ( 88.8%)
+ READSCATT        Unable to locate:               0 (  0.0%)
+ READSCATT        Outside time slot:           -316 (  8.0%)
+ READSCATT        Thinned:                    -2047 ( 56.4%)
+ READSCATT       -------------------------------------------
+ READSCATT        Accepted:                    1583
+ READSCATT       Ambiguity change interval=  5, last= 30
+ READSCATT       Sat:281 Instr:  8 Res:100 #######################
+ READSCATT        SPD+DIR used from iteration   0 to 999
+ READSCATT        OSigma: 2.500 ISigma: 2.000 Gerr: 0.10000
+ READSCATT       Sat:281 Instr:  8 Res: 25 ## No data available ##
+ READSCATT       Sat:199 Instr:  8 Res: 50 ## No data available ##
+...
+ PREPARE_SCATT_WORK  Dumping scatt to: 90 scattdump005X0000000.dat
+...
+ PREPARE_SCATT   Total number of obs:          786
+ PREPARE_SCATT   A-posteriori gross err:      -297 ( 37.8%)
+ PREPARE_SCATT   Gross error threshold:       -156 ( 31.9%)
+ PREPARE_SCATT   -------------------------------------------
+ PREPARE_SCATT   Accepted:                     333 (Win  1)
+...
+ PREPARE_SCATT   Total number of obs:          497
+ PREPARE_SCATT   A-posteriori gross err:      -141 ( 28.4%)
+ PREPARE_SCATT   Gross error threshold:        -87 ( 24.4%)
+ PREPARE_SCATT   -------------------------------------------
+ PREPARE_SCATT   Accepted:                     269 (Win  2)
+...
+ PREPARE_SCATT   Total number of obs:          111
+ PREPARE_SCATT   A-posteriori gross err:       -36 ( 32.4%)
+ PREPARE_SCATT   Gross error threshold:        -14 ( 18.7%)
+ PREPARE_SCATT   -------------------------------------------
+ PREPARE_SCATT   Accepted:                      61 (Win  5)
+...
+ PREPARE_SCATT   Total number of obs:          189
+ PREPARE_SCATT   A-posteriori gross err:       -46 ( 24.3%)
+ PREPARE_SCATT   Gross error threshold:        -37 ( 25.9%)
+ PREPARE_SCATT   -------------------------------------------
+ PREPARE_SCATT   Accepted:                     106 (Win  7)
+...
+ JOGRAD_SCATT_WORK Using old uv10 calculations.
+...
+ --------------- Scatt Cost function contributions ----------------------------------------
+ Sat:281 Instr:  8 Res:100 Dir+Spd: Jo=   224.19, active:  769 (Std:     2.02,Hx-y:  -0.47)
+ ------------------------------------------------------------------------------------------
+ total (  769 -    0 -    0 -    0 -    0 -    0) Jo=   224.19, active:  769
+}}}
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,35 @@
+[[PageOutline]]
+
+= '''GLAMEPS product web page contents''' =
+
+The GLAMEPS product web page is located at
+[https://glameps.org/]. There are
+two major branches with plot products:
+
+1. '''forecasted'''
+
+1. '''valid'''
+
+Each of these branches contains menue items on the left hand side for different parameters
+(`AccPcp3h`, `G10m` etc.), different thresholds, etc.
+
+The menues on the top side indicate the date and time information, and
+'Forecast Length' or 'Age Rank'.
+
+
+== '''What toCheck''' ==
+
+check that the latest data have been transferred on to the web page:
+
+  1. navigate into either 'forecasted' or 'valid'
+
+  1. check the date and time in the top menue is prefilled with todays datum
+     [[Color(red, NOTE)]]: todays datum should appear after 10:40 UTC has passed. If you check the page earlier, then yesterdays datum is still shown, and todays plots have most probably not arrived yet.
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

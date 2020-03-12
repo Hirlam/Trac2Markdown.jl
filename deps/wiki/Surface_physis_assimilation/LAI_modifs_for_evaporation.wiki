@@ -1,0 +1,54 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Modified LAI to control model deficiencies via transpiration''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Progress report in August 2016 by Sander Tijm ==
+
+Supervised by Sander Tijm, Nadia Bloemendaal has worked on "Improvement of surface turbulent fluxes in
+the HARMONIE model". She has finished her Masters thesis and the results of her work can be found through:
+https://drive.google.com/a/students.uu.nl/file/d/0BxgqgnCRpI2BcWlOOUk1MGkwZWs/view?usp=drive_web
+
+Here follows a summary of Nadia's work by Sander:
+
+As already [http://www.cnrm-game-meteo.fr/aladin/IMG/pdf/20160404_tijm_asm.pdf reported in Lisbon] the adjustments of the LAI (division by factor of 2 and 4) results in smaller increments from the data-assimilation. In March the reduction by a factor of 4 gives the smallest increments, in July the factor of 2 gives almost the same effect as a factor of 4. This leads me to the conclusion that you need something more in March than in July, but even in July the evaporation with the standard LAI still is much too large.
+
+For March you have the additional problem of the too early increase and/or the too high LAI. For this period you could apply a temperature dependent LAI adjustment. Nadia has tried an adjustment based on the root zone temperature, but I have the feeling that the force restore procedure that is used in HARMONIE is not really suitable. It changes too quickly and it also changes back to low values quickly so the temperature adjustment fluctuates.
+
+A better solution would be to have an additional field in SURFEX that describes the temperature sum above a certain threshold (e.g. 8 degrees
+C) value, but that was a little bit too difficult to implement in the short period that Nadia had left to experiment.
+
+If you want to do some simple experiments with the LAI then please look at two experiments in my ECMWF account (nlz) in the directory ~nlz/hm_home/
+{{{
+drwxr-x---.  7 nlz nl     4096 Aug 19 15:07 LAI2_july_nieuw
+drwxr-x---.  7 nlz nl     4096 Aug 19 15:08 MODEL_NIEUW9
+}}}
+The first one describes the adjustment in the LAI, a simple divisions by
+2 or more (only SURFEX adjustments).
+The second one describes the adjustment in LAI dependent on the root zone temperature (a few sources adjusted).
+
+The too large evaporation in July (in general) and the too early increase in LAI in March can be adjusted in one step in isba.F90 through:
+
+{{{
+!Bloemendaal temperature dependence
+
+ZLAI(:)= 0.0_JPRB
+
+DO JJ=1,SIZE(PTG,1)
+        IF (PTG(JJ,2).LE.281.0_JPRB) THEN
+                ZLAI(JJ)=0.1_JPRB*PLAI(JJ)
+        ELSE IF (PTG(JJ,2).GT.281.0_JPRB .AND. PTG(JJ,2) .LE. 288.0_JPRB) THEN
+                ZLAI(JJ)=(0.4_JPRB*((PTG(JJ,2))-281.0_JPRB)/7.0_JPRB + &
+                & 0.1_JPRB)*PLAI(JJ)
+        ELSE IF (PTG(JJ,2).GT.288.0_JPRB) THEN
+                ZLAI(JJ)=0.5_JPRB*PLAI(JJ)
+        ENDIF
+ENDDO
+}}}
+
+Elsewhere in this routine you need to replace PLAI by ZLAI (else nothing will happen).
+
+This will divide the LAI by a factor of 2 in all seasons and by a factor of 10 in winter. Note that this probably is a little bit too much for the southern regions. In the results of Nadia you see an increase in the soil moisture as a sign that the evaporation is not strong enough in some southern areas because of such a change.

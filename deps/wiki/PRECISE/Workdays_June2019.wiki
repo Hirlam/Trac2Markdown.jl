@@ -1,0 +1,188 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''PRECISE working days, 11-14 June, 2019 '' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+
+
+== Attendees ==
+||=Name                  =||=  Institute    =||=    Arr.-Dep.    =|| 
+||Martin Ridal            ||SMHI             || Only remotely 11-12 June  || 
+||Per Unden               ||SMHI             || 11- early afternoon 14 June  || 
+||Semjon Schimanke        ||SMHI             || 11-early afternoon 14 June ||
+||Esbjörn Olsson          ||SMHI             || 11-mid-day 14 June  ||
+||Eric Bazile             ||Meteo France     || 11-14 June   ||
+||Patrick Le Moigne       ||Meteo France     || 11-14 June ||
+||Adam El Said            ||Meteo France     || 11-14 June ||
+||Michael Glinton         ||Meteo France     || 11-14 June ||
+||Antoine Verrelle         ||Meteo France     || 11-14 June ||
+||Zheng Qi Wang           ||MET Norway       || 11-14 June ||
+
+Pierre Brousseau Metéo-France 
+
+remotely available : Per Dahlgren and Roger Randriamampianina
+ and Susanna Hopsch and Lars Berggren 
+
+
+
+'
+
+
+
+
+
+Agenda
+
+Minutes: 
+please see at the end. [https://hirlam.org/trac/attachment/wiki/PRECISE/Workdays_June2019/Working_days_201906.2.pdf]
+
+
+Issues:
+
+   
+    Status of experiments and tests 
+
+    Physics final namelist options and status of reference alpha_2 
+
+    10 m wind problem and SICE solution and test 
+
+    Experiments needed, table of reference and periods
+
+    Trunk changes and needed / expected changes
+
+    Making an alpha-2 plus? tag or beta version for production 
+
+    EDA and cost issues of EDA and cost savings
+
+    Update of structure functions (for beta version ?)
+
+    Structure function computations in production 
+
+    Inclusion of local_obs from UERRA, CARRA, any other MF and SMHI, status and plans and use
+
+    Data inputs (any choices), impact studies bias coefficients and spin-up
+
+    Obsmon issues, backend number of files, but also how to use the front-end for us
+
+    Archiving parameters or rather scripts for fields GRIB2 ( as far as is ready)
+
+    ODB(2) and archiving (as far as is ready)
+
+    Diagnostic tools for production Operational monitoring tools, verification 
+
+    Coordination of production SMHI-MF
+
+
+
+  
+
+    
+
+Tuesday morning: 9-12
+
+   
+   Status of (ready or almost ready) experiments and tests
+
+   10 m wind problem and SICE solution and test
+
+    Physics final namelist options and status of reference alpha_2
+
+    Experiments needed, table of reference and periods (to be updated at the end of the week)  (Martin remote for this session)
+
+
+Tuesday afternoon 13.30-17 
+
+   Satellite inputs, spin-ups and bias coefficients, list and check re-cap
+
+        (Possibly with MET as well)
+   
+   List of impact experiments, results and plans
+
+
+   Observation input choices and impact studies done
+
+   Possible cost savings of satellite data ?
+
+
+
+Wednesday morning 9-12
+
+    
+
+    Obsmon issues, data files and saving or not and batch option, front-end standard use and monitoring (with MET, Per D)
+
+    
+    [https://docs.google.com/presentation/d/1GWmpWelu0j5fM07OCmbCfJNtjyLroXlTrnxoDySu2TU/edit#slide=id.g5977244484_0_1 GRIB2 archiving parameters], software and how to archive, scripts or sms changes needed ( with Ulf (and Martin) (and Susanna?) 
+
+    ODB(2) and archiving (as far as is ready) (with Per D (Roger?)
+
+
+
+  
+Wednesday afternoon 13.30 -17
+
+    EDA results and choices
+
+    EDA choices, cost savings 
+
+    EDA used for background statistics and communication with 3D-VAR 5.5 km (flow dependency?)
+ 
+    EDA for operationalisation    (this session with Susanna Lars too?) (Martin for this session too )
+
+
+
+    Inclusion of local_obs from UERRA, CARRA, any other MF and SMHI, status and plans and use
+
+
+        3D-VAR and CANARI and the MESCAN with also ECA&D, local obs
+
+ 
+
+
+Thursday morning 9-12
+
+   Continuation of issues from Wednesday
+
+
+   Verification, monitoring, diagonostic software ( with Susanna remote ?)
+
+   Production monitoring
+
+   Production SMHI/MF coordination 
+
+
+
+   MESCAN and SURFEX issues, quality control, UERRA problem ?
+
+
+Thursday afternoon 13.30-17
+
+
+     Updates of scripts and programmes 
+
+    Trunk changes and needed / expected changes
+
+    Making an alpha-2 plus? tag or beta version for production 
+
+
+ 
+   Experiments needed, table of reference and periods
+
+
+
+Friday morning and early afternoon 
+
+    9.30 - 11.30 max  Management Meeting (video to MET and SMHI)
+
+
+   
+Friday  early afternoon 
+
+   Conclusions and actions 
+
+
+
+ Minutes of the meeting on google 

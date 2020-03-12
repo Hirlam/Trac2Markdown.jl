@@ -1,0 +1,298 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Climate Generation and Its Configuration''' =
+[[Center(end)]]
+
+[[Center(begin)]]
+== '''Overview''' ==
+[[Center(end)]]
+ 1. HIRLAM climate generation prepares physiographic data using raw data set from
+    *  GTOPO30 digital elevation
+    *  GLCC land cover
+    *  FAO soil data
+    *  US-NAVY low resolution global data
+ 1. The data utilized in the climate generation has been converted onto a uniform grid and is stored in HDF4 format (HDF data base, hdfdb)
+ 1. There exist HDF data bases for different HIRLAM versions. The data bases are NOT administrated by subversion. They are available on ECFS under
+{{{
+    ec:/hirlam/dat/hdfdb-7.0
+    ec:/hirlam/dat/hdfdb-7.1
+    ec:/hirlam/dat/hdfdb-7.2
+}}}
+    The data base selection is defined in the `Climate` script, by parameter `HDFDB`.
+ 1. There are several [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Configure/ClimateGeneration#SelectionofsuitableHDFfileset sets of HDF files] available in each of the HDF data bases
+    An [https://hirlam.org/trac/wiki/HirlamHowto/Install/General#WhatisanHDFSETandwherecanIfindtheHDFsets HowTo] gives details for local use.
+ 1. During climate generation, all working files for data make use of HDF4 format, an HDF2GRIB converter is used at the final step
+ 1. The preparation of fields for the ISBA scheme is done after the climate generation. This implies some simplification of the available information from the climate generation
+
+[[Center(begin)]]
+=== '''Implementation, data flow''' ===
+[[Center(end)]]
+
+ 1. HDF data base
+ 1. field aggregation: HDF working files
+ 1. HDF to GRIB conversion
+ 1. preparation of ISBA fields
+ 1. Hirlam climate generation file in GRIB
+
+[[Center(begin)]]
+== '''Relevant code and scripts''' ==
+[[Center(end)]]
+ * climate generation code is written in C, only the HDF2GRIB converter (hdf2asim) is in FORTRAN
+ * The relevant source codes are:
+{{{
+   ctopo_s.c
+   ctopo_sub.c
+   ctopo_pp_fields.c
+   hdf2asim.F
+   hdfattr.c
+   hdfsds.c
+   hdfutil.c
+   hdfview_s.c
+   gen.c
+   calc_alb_s.c
+   polar.c
+}}}
+ * The relevant scripts for the climate generation are
+{{{
+   Env_expdesc
+   Env_domain
+   Climate
+   Preps_ISBA
+}}}
+
+[[Center(begin)]]
+== '''What's new in 7.0''' ==
+[[Center(end)]]
+
+ * The 7.0 version of the climate generation does not differ from the 6.4.4 version
+ * However, the location of the HDF data base has changed under ECFS
+
+
+[[Center(begin)]]
+== '''What's new in 7.1''' ==
+[[Center(end)]]
+
+ * HDF data base includes fields of orography derivatives for sub-grid orography processing
+ * aggregation of MF-MSO (mesoscale sub-grid orography) parameters
+ * aggregation of SSO (small-scale sub-grid orography) parameters
+ * grid-scale option in ctopo
+ * option to change aggregation area shape (beta state)
+
+see also [wiki:HirlamSystemDocumentation/Configure/ClimateGeneration/Upgrade_7.1 Climate Generation Upgrade for 7.1].
+
+
+[[Center(begin)]]
+== '''What's new in 7.2''' ==
+[[Center(end)]]
+
+ * HDF data base includes new fields of nearest pixel neighbour properties:
+   * nearest neighbour slopes: average and extreme values
+   * nearest neighbour slope aspect (azimuth) direction of extreme slopes
+ * aggregation of orographic slope properties for the HIRLAM radiation parameteriztion (enabled via `RADORO_PAR` in `Env_expdesc`)
+ * new functions in `ctopo_pp_fields`
+ * new ctopo procedure ''num'' added
+ * stable version of `ctopo` option ''sample'' to change aggregation area shape
+ * update of the [https://hirlam.org/UG/HL_Documentation/Climate/ctopo/index.html ctopo user guide]
+
+
+[[Center(begin)]]
+== '''Relevant namelists, tunables''' ==
+[[Center(end)]]
+
+The settings for the following parameters are usually located within the scripts `Env_expdesc`, `Env_domain`, `Env_input` or `Climate`
+
+ * modify the HDF data base to be used
+{{{
+   HDFSET=9000     # old, regular, 9000: climate data set projection
+   HIRES=0.025     # resolution of climate data sets (as per available)
+}}}
+ * since version 7.1, modify setting for the band-pass filter used in MSO parameter aggregation
+{{{
+  MSO_PAR=no             # switch to enable aggregation of MSO parameters
+  MSO_BPF_HIGH=0.025      # MSO param. aggr. B-P filter: Upper limit (degrees)
+  MSO_BPF_LOW=4           # MSO param. aggr. B-P filter: Lower limit (grid units)
+}}}
+ * since version 7.2, switch for sub-grid orographic slope parameter aggregation
+{{{
+  RADORO_PAR=no           # switch to enable aggregation of sub-grid orographic slope parameters
+}}}
+ * other important variables
+{{{
+  CLEXP                   # climate experiment name
+  CLDIR                   # climate files storage directory
+  HDFDB                   # HDF input data base name (specified in `Climate` script)
+  HL_CLDATA               # scratch storage of HDF files
+}}}
+
+[[Color(red, CAUTION)]]: If you choose to switch one of the parameters `MSO_PAR` or `RADORO_PAR` to `yes` within an already existing experiment, you must make sure that the climate generation is rerun, in order to get the relevant fields aggregated. Rerun is thus usually assured by removing all climate files (GRIB files and HDF files!) in both the Hirlam archive (`$HL_ARC/ClimateFiles`) and under the Hirlam working directory (`$HL_DATA`).
+
+
+[[Center(begin)]]
+== ''' Selection of suitable HDF file set ''' ==
+[[Center(end)]]
+
+The HDF file sets are made available through the two environment variables `HDFSET` and `HIRES`. They are specified in `Env_expdesc`.
+
+The following table list the HDF sets available since Hirlam-7.0:
+
+|| '''HDFSET'''  || '''HIRES'''   ||  '''description''' ||
+|| old     || "unset" || HDF files as of version 6.2.1 ||
+|| old     || "set"   || HDF files as of version 6.2.2 (incl. the 0.025 orography for Europe) ||
+|| regular || 0.025   || HDF set with data represented on a regular geographic grid and in 0.025Â° grid mesh size. Global coverage except for the poles ||
+|| 9000    || 0.025   || HDF set which represents the data on a rotated grid (Southpole at 90Â° longitude and 0Â° latitude) in 0.025Â° grid mesh size. Global coverage except Galapagos and a sea area West of Indonesia ||
+|| 9000    || 0.0125  || HDF set which represents the data on a rotated grid (Southpole at 90Â° longitude and 0Â° latitude) in 0.0125Â° grid mesh size. It covers Europe, Iceland and Greenland. If this set is used outside its domain, then data from the HDF set 9000 with 0.025Â° grid mesh are used for the outside areas. ||
+
+
+Specification of `HDFSET=old` implies the old method for determination of subgrid-scale orographic roughness length, i.e. the method before reference version 6.1.1. Specification of any of the new HDF sets implies the use of the non-linear determination of orographic roughness.
+
+Using HDFSET=old does also disable aggregation of parameters for MSO, SSO- and sub-grid sloping surface radiation, because the old data sets do not supply the necessary input fields.
+
+=== Data coverage ===
+
+The data coverage of the HDF sets `regular_0.025` and `9000_0.025` is almost global. The representation becomes more and more distorted towards the respective poles. So the `regular_0.025` does not represent the North Pole and the South Pole very well, and the `9000_0.025` does not represent well the region west of Midle America and around the Indian Ocean.
+
+The maps show the tiles of the covered area. These tiles are labelled with the HDF file names, which include the approximate geographic postion of the tile centre (10ths of a degree).
+
+'''9000_0.025'''
+[[Center(begin)]]
+[[Image(HDFSET_gtopo_9000_0.025_nh.png)]]
+[[Image(HDFSET_gtopo_9000_0.025_sh.png)]]
+[[Center(end)]]
+'''regular_0.025'''
+[[Center(begin)]]
+[[Image(HDFSET_gtopo_regular_0.025_wh.png)]]
+[[Image(HDFSET_gtopo_regular_0.025_eh.png)]]
+[[Center(end)]]
+
+'''9000_0.0125'''
+ This HDF file set only covers a limited area in mesh size of 0.0125° (shown in the figure below). Regions outside that area are represented in 0.025° mesh size.
+
+[[Center(begin)]]
+'''9000_0.025'''
+[[Image(HDFSET_gtopo_9000_0.0125.png)]]
+[[Center(end)]]
+
+=== Which HDFSET for what region? ===
+
+
+The choice of the HDF file set depends on the region that your model domain is to cover:
+
+|| '''Region'''                     || '''HDFSET'''    || '''HIRES''' ||
+|| Europe                           || 9000            || 0.025 or 0.0125 ||
+|| South Europe, Mediterranian      || 9000            || 0.025 or 0.0125 ||
+|| South Europe, Mediterranian      || regular         || 0.025 ||
+|| Greenland, Iceland, Spitsbergen  || 9000            || 0.025 or 0.0125 ||
+|| Artics                           || 9000            || 0.025 ||
+|| North Asia, North America        || 9000            || 0.025 ||
+|| Africa                           || 9000 or regular || 0.025 ||
+|| Australia, Tasmania, New Zealand || 9000 or regular || 0.025 ||
+|| Middle and South America         || regular         || 0.025 ||
+|| Indonesia                        || regular         || 0.025 ||
+|| Antarctica                       || 9000            || 0.025 ||
+
+
+[[Center(begin)]]
+== '''Monitoring subjects, tools''' ==
+
+'''[[Color(red, Allways check the climate files before using them in the model)]]'''
+[[Center(end)]]
+
+The main means of checking the climate generation process
+
+ * check the log file: any text or html pager/browser
+ * view data in the HDF file (e.g. 'cl00010000.hdf'): 'HDFLook', 'hdfview'
+ * check the content of the final GRIB file: 'metgraf', 'grib_api', 'wgrib', 'cdo'
+
+[[Center(begin)]]
+== '''Common warnings and error messages''' ==
+[[Center(end)]]
+
+=== '''Warnings''' ===
+
+ * if the log file shows the following warning
+{{{
+  WARNING: field 'foo' is empty
+}}}
+   This message occurs as a warning, as long as commandline option "-strict" is not specified. The message indicates that you probably have a coverage problem. See also the description under the respective ERROR message for further possibilities.
+
+=== '''Errors''' ===
+ * if the log file shows the following error
+{{{
+  ERROR: field 'foo' is empty
+}}}
+   The message is similar to the warning with the same text (see above), and it occurs as an error, if option "-strict" was specified on the commandline.
+   The message indicates that no data was found within the area specified via the region file. This can happen a/o if
+   * the domain specification is wrong (check your region file)
+   * the input HDF files are corrupted
+   * the installation of the HDF4 library is broken
+   The two latter possibilities may be gross-checked when running `ctopo` with the verbose option (-v). The second listing of the input HDF files should for example show the correct grid mesh size of the input data (like e.g. 0.025, 0.0125).
+
+ * incomplete data coverage
+{{{
+  ERROR, missing coverage in point <x> <y>
+         please rerun with -v option to find all missing coverages
+}}}
+  This error indicates that data aggregation was not possible in at least one grid point of the domain. The x,y-coordinates of the first grid point, where missing data occured is given in the message.
+
+  Missing data occurs when the input HDF files used for the aggregation do not cover the whole of the desired domain. In order to find all missing data points, the climate generation can be rerun with verbosity option -v. This option can be switched on by editing the ```Climate``` script. Search for [[Color(green, ctopoopts=)]] and set
+{{{
+   ctopoopts="-v"
+}}}
+
+  Besides more verbosity on ```STDOUT```, the verbosity option makes the climate generation create an additional field in the HDF working file (```ClimateFailed/hl.hdf```) called ```coverage_<number>```, where <number> is a counter. The coverage field is created for each data set in the HDF working file.
+
+  If the error on missing data coverage occurs during aggregation of MSO parameters, where the HDF file ```hl_bpf_*``` is the input, then the wrong hl_bpf-file is used. One reason why this can happen is when you have changed the domain definition of one of the predefined domains in the script ```Env_domain```, or when you have included your own domain into ```Env_domain``` without adapting the environment variable ```DOMAIN``` in ```Env_expdesc```. When using a self-defined domain, make sure to change ```DOMAIN```:
+{{{
+   DOMAIN=""
+   or
+   DOMAIN="my-unique-domain-name"
+}}}
+  Before restarting your failed experiment after having corrected ```DOMAIN```, make sure to remove ```hl_bpf_*``` from ```$HL_DATA``` and ```$HL_ARC``` in order to tell the climate generation to create this file from scratch.
+
+ * input data not found
+{{{
+  FATAL ERROR, can't open <file>
+  FATAL ERROR, can't find <file>
+}}}
+
+ * wrong input data
+{{{
+  FATAL ERROR, can't read dataset <dataset>
+}}}
+
+ * memory problems
+{{{
+  FATAL ERROR, memory allocation failed (<variable>)
+  FATAL ERROR, SDS data memory allocation failed
+  FATAL ERROR, SDS dim memory allocation failed
+}}}
+
+[[Center(begin)]]
+== '''Overhaul issues, questions''' ==
+[[Center(end)]]
+ * more strictness in ctopo (is a (partly) empty field not an error?) [[Color(green, included since 7.1)]]
+ * The final output GRIB files contain a lot of redundant data
+ * some fields are meaningless
+   * sea-surface roughness is just one single constant
+   * some ISBA fields are just set to 99
+ * HDF4 towards HDF5?
+
+----
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

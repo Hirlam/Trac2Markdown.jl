@@ -1,0 +1,41 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Specification of which cycles to run and their forecast length''' =
+[[Center(end)]]
+
+== '''Replacement of FCINT, LL, LLMAIN and LLMAIN_FREQ''' ==
+A more flexible way of specifying which cycles (UTC) to run, and the corresponding forecast length at these cycles has been implemented.
+In the past, the following variables has been in use:
+ * FCINT : forecast interval (in hours).
+ * LL : forecast length (hours), same for all cycles if given without LLMAIN (see below).
+ * LLMAIN : forecast length at '''main''' hours. What main means could be given by LLMAIN_FREQ (see below).
+ * LLMAIN_FREQ : Interval (in hours, not really frequency) between main hours (e.g., 6 or 12).
+If LLMAIN and LLMAIN_FREQ was given, forecast length at intermediate (not main) cycles would be LL=FCINT.
+
+Although serving the purpose for most users, this scheme was still not really flexible.
+
+== '''New variables: HH_LIST and LL_LIST''' ==
+In Harmonie-40h1, two new variables replace the above four, but they are supposed to be '''lists'''.
+ * HH_LIST : list of cycles (UTC hours) to run, comma separated, ranges and step allowed (see below).
+ * LL_LIST  : list of forecast lengths corresponding to HH_LIST, with ''compatible'' list length to the HH_LIST list length.
+For example:
+{{{
+HH_LIST="0-21:3"
+LL_LIST="48,3"
+}}}
+Here HH_LIST has implicit length 8, "0-21:3" is a shorthand for "from 0 to 21 with steps of 3".
+LL_LIST has length 2, which is OK since 8 is divisible by 2. It is equivalent to LL_LIST="48,3,48,3,48,3,48,3",
+and means that the cycles 0, 6, 12 and 18 are run with 48h forecast length, and 3, 9, 15 and 21 with 3h forecast length.
+
+== '''Note also:''' ==
+ * At present the HH_LIST list must result in a constant "FCINT" throughout the day, otherwise !CheckOptions will complain.
+ * HH_LIST and LL_LIST may (of course) be different for different members of an ensemble. As usual such differences must be given in harmonie.pm.
+ * If members run different HH_LIST, they may in practice have different DTGBEG (first cycle). A "cold start" may therefore span several cycles, if members start differently.
+ * The old variables LL and FCINT are still present in many scripts, but should no longer be given explicitly in sms/config_exp.h
+ * It is still possible to give LL=nn on the Harmonie command line, for convenience. This will be interpreted as LL_LIST=nn, and will also override any differences found in harmonie.pm regarding forecast length.
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

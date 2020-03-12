@@ -1,0 +1,94 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Development Merge CY43''' =
+[[Center(end)]]
+
+== '''Overview''' ==
+This page provides informations concerning the merge of CY43 into the general development branch `develop` within the [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SourceCodeRepository official Harmonie git repository].
+
+Cycle 43 has become the general development line for Harmonie as of 2019-02, and as such it replaces cycle 40. This is marked by the fact that branch `CY43` has been merged into the generic branch `develop`. Effectively, this merge has ''transferred'' all commits present in `CY43` into `develop`, or in other words, `CY43` has now the new name `develop`.
+
+By this the branch name `CY43` has become obsolete and has therefore been removed from
+the public Harmonie repository on hirlam.org.
+
+== '''How to Migrate''' ==
+
+For those who have been doing development on basis of `CY43` within a local repository, the following procedure applies in order to continue.
+
+Assume you have a local repository clone of Harmonie from hirlam.org, where you have done further developments under feature branches related to `CY43`, and which have not been merged back and published yet. As the public branch name CY43 has disappeared, your new cycle 43 developments have to be merged to the branch called `develop`.
+
+Procedure for adapting your local `CY43` related developments to the `develop` branch on hirlam.org:
+
+  1. check out the "develop" branch within your local Harmonie repository
+
+     {{{
+        git checkout develop
+        git pull origin develop
+     }}}
+
+     (the pull command assures that the local `develop` is up-to-date in case it already existed locally)
+
+  2. remove your local `CY43` branch
+
+     {{{
+        git branch -d CY43
+     }}}
+
+     If git tells you that your `CY43` branch ''is not fully merged'', then you probably have some unpublished local changes within your local `CY43` branch. In order to deal with this, just treat your `CY43` in a similar way as if it was a CY43 feature branch. Mark this for example by renaming the branch to something like `cy43_unpublished`
+
+     {{{
+        git branch -m CY43 cy43_unpublished
+     }}}
+
+     Then treat it like all your other cycle 43 related feature branches, see next step
+
+  3. relate your feature branches to `develop`
+
+     Your cycle 43 feature branches refer to `develop` now, so they should be updated in the future by merging from `develop`:
+
+     {{{
+        git checkout cy43_my_feature
+        git merge develop
+     }}}
+
+     [[Color(green, So instead of using the (obsolete) branch name `CY43`, you just use the branch name `develop`)]] 
+
+
+  4. if you have any remote clone of the Harmonie repo (a personal one, a shared one, a fork etc.) with the `CY43` branch included, then you can use following procedure in order to migrate to `develop`
+
+     4.1. establish the new `develop` branch on your remote repo by pushing it
+
+     {{{
+        git push <your remote> develop
+     }}}
+
+     4.2. remove `CY43` branch on the remote [[FootNote(In the very rare case that your remote `CY43` branch contains unpublished commits, which you estimate to be relevant still and of which you don't have any local copy, then pull them to your local repo and treat the branch into which you pulled like a feature branch, see above then for further details. After this `CY43` is ready to be removed)]]
+
+     {{{
+        git push <remote> :CY43
+     }}}
+
+     (concerning the ':' in front of CY43: the command tells git to push ''NOTHING'' to the remote CY43 branch, thus removing it)
+
+
+== '''Special Tags''' ==
+
+The merge of `CY43` into `develop` is marked by two tags:
+
+  end-40::
+    this tag marks the snapshot of the Harmonie repository right before the merge of `CY43`, so the last state of cycle 40 development can be reached by resetting hard to that tag
+
+  merge-43::
+    this tag marks the snapshot of the `CY43` branch just before it was merged into `develop`
+
+So these two tags may help to retain a clear picture of how the repository has evolved. Please note that the lack of ''merge-'' tags for cycle 41 and cycle 42 can be taken as an indication of the fact that these development cycles have not existed explicitly in the Harmonie repository.
+
+
+
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

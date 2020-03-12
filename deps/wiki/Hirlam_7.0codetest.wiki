@@ -1,0 +1,88 @@
+= '''Test and Evaluation of 7.0''' =
+
+[[PageOutline(2-3, Contents, inline)]]
+
+
+== Data assimilation cycling test ==
+
+
+Two month-long data assimilation cycling tests, one for winter season, Dec 2005, another for summer season, Aug 2005, have been tested successfully with 6.4.4 using 'operational' boundary strategy on ECMWF-HPCD platform. 
+
+
+== Meteorological Evaluation ==
+
+
+Two full-month (Aug and Dec 2005) data assimilation runs using the reference 6.4.4 have been performed, the results are compared to the equivalent runs using 6.4.1 (= 6.4). From the averaged observation verification for EWGLAM station-list in form of key parameter rms/bias for upper air (Aug 2005, Dec 2005) and for upper air (Aug 2005, Dec 2005), the daily averaged std/bias for Aug 2005 and Dec 2005 for surface parameters and the precipitation contingency table for Aug 2005 and Dec 2005, it is concluded that the latest HIRLAM version improves model forecast skills, especially in root-mean-square errors of almost all key parameters. The improvement over Greenland area (rms+bias for two months; (daily averaged 24 h forecast error time series for surface parameters for Aug and Dec 2005)  is especially significant, presumably due mostly to the re-forecast scheme.)
+
+The 6.4.4 validation results have also been compared to a corresponding run using 6.4.3 for a two week episode. The results with observation verification suggest same conclusion, that is, the introduction of LSMIX and ATOVS improves model skills.
+
+Note that compared to the test results shown in the above example,  the skill imprvement associated with the introduction of large scale blending scheme in the operational environment is expected to be more significant, primarily due to two reasons. First the operational suite has access to the ECMWF analysis and boundary data 4 times a day, instead of 2 times a day in the current scenario at ECMWF platform;  Second the current reference system only makes use of a very coarse reslution ECMWF analysis (1.5 degree at minimium), compared to a typical case with 0,5 deree in operational suites. Both should results in even better results in this connection.
+
+'''ATOVS AMSU-A data''': Two one month tests, one for June 2005 and another for Oct 2005,  have been run. For the first  period (June 2005), the reference system 6.4 was used in the validation, for the second episode, version 6.4.2 was used. [[BR]]
+
+'''10m Synop Wind''': the meteorological impact has been shown in several tests using Release 6.3.8. A description of the results is to appear in Hirlam Newsletter 50. Code tests have been performed with a merged version over 6.4.3. From Alberto's parallel test using 6.3.8, he noted improvements in wind speed at all levels, no changes in surface parameters and slight improvements in relative humidity in high and medium levels. At the same time, he noted slight worsening of scores in temperature and RH2m for lower levels. The scores in geopotential heights are comparable. From innovations of u and v components in both 3D-VAR  and 4D-VAR tests, a slightly positive impact is seen for the use of 10m wind obs.[[BR]]
+
+'''GPS slant delay''' : The code updates have been validated through comparisons between modeled and observed slant delays. In addition, the tangent-linear and adjoint codes have been tested. The assimilation increments in a hypothetical data experiment have been checked; these tests are based on hl_vn 6.3.7.
+
+[[BR]]
+
+== Technical Evaluation ==
+
+
+=== Tested model domains ===
+
+||model||grid-mesh||resolution||
+||TEST||166x130x31||0.5d||
+||SMHI-C22||306x306x40||0.2d||
+||RCR||438x336x40||0.2d||
+||RCR7.1||582x448x60||0.15d||
+||DMI-T15||610x586x40||0.15d||
+||INM-ONR||582x424x40||0.16d||
+||INM-BIG||1158x878x60||0.08d||
+
+
+=== Computation cost === 
+
+
+'''3D-VAR'''
+
+||model||tested 7.0 release||platform||nr of node,processors||plen||elapse time||Billing unit||
+||RCR 6.4.4||6.4.4||HPCD||1,16,16||7e6||108s||3.6||
+||RCR 7.1||6.4.4+||HPCD||1,16,16||7e5||170s||11.5||
+||SMHI-C22||6.4.4+||HPCD||1,32,32||7e5||64s||4.4||
+||DMI-T15||6.4.4+||HPCD||2,32,64||4e5||123s||16.8||
+||INM-ONR||6.4.4+||HPCD||1,32,32||7e5||111s||7.6||
+||INM-BIG||6.4.4+||HPCD||2,32,64||7e5||460s||62||
+
+[[BR]]
+
+'''4D-VAR'''
+
+||model||tested 7.0 release||platform||simplified phys||structure function||nr of node,processors||plen||elapse time||Billing unit||
+||RCR 6.4.4||6.4.4+||HPCD||BUIZZA||analytic||1,32,32||7e6||1154s||78||
+||RCR 7.1||6.4.4+||HPCD||BUIZZA||analytic||2,32,64||7e5||1971s||262||
+||SMHI-C22||6.4.4+||HPCD||BUIZZA||analytic||1,32,32||7e5||740s||69||
+||INM-ONR||6.4.4+||HPCD||BUIZZA||statistic||1,32,32||7e6||1836s||125||
+||INM-ONR||6.4.4+||HPCD||BUIZZA||statistic||2,32,32||7e5||1400s||190||
+||DMI-T15||6.4.4+||HPCD||BUIZZA||analytic||2,32,64||4e5||2170s||295||
+||INM-BIG||6.4.4||HPCD||MFSP2||analytic||4,32,128||7e5||||||
+
+[[BR]]
+
+'''Forecast'''
+
+||model||tested 7.0 release||platform||nr of node||nprocx||nprocy||ncpu_hgs||nhalo||time step||elapse time per step||48 h Forecast ellapse time||Forecast Billing cost||
+||TEST||6.4.4||6.4.4||LINUX-PC||||||||||900s||||||-||
+||SMHI-C22||6.4.4+||HPCD||1||7||9||1||6||450s||0.8s||385s||54||
+||RCR 6.4.4||6.4.4+||HPCD||2||7||9||1||6||450s||1.35s||574s||78||
+||RCR 7.1||6.4.4+||HPCD||2||7||9||1||6||450s||3.9s||2160s||291||
+||INM-ONR||6.4.4+||HPCD||2||7||9||1||6||450s||2.58s||1065s||145||
+||DMI-T15||6.4.4+||HPCD||3||5||19||1||7||450s||2.15s||1017s||207||
+||INM-BIG||6.4.4+||HPCD||6||12||16||0||8||240s||5.16s||5050s||2053||
+
+[[BR]]
+
+== Recent Changes ==
+
+[[RecentChanges(Hirlam_7.0codetest,5)]]
+

@@ -1,0 +1,175 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Cy46 compilation notes in cca''' =
+[[Center(end)]]
+
+= Instructions to compile cy46 using harmonie-43h1.pre-alpha.1 scripting =
+
+== How to obtain the sources ===
+
+{{{
+mkdir /home/ms/es/sp2b/MF_git_repo
+cd arpifs
+git clone ssh://reader054@git.cnrm-game-meteo.fr/git/arpifs/git
+cd arpifs
+git checkout CY46
+}}}
+
+
+== Creating a "local branch" ==
+
+After that I created a "local branch" in 
+
+{{{
+/perm/ms/es/sp2b/branches/harmonie-46T1_bf02
+}}}
+
+To create this branch I copied the needed cy46 projects from /home/ms/es/sp2b/MF_git_repo/arpifs and put the harmonie-cy43h1.pre-alpha.1 scripting on top.
+ 
+I started the compilation using the experiment 
+
+{{{
+/home/ms/es/sp2b/hm_home/46T1bf02_f0cfd
+}}}
+== Changes needed ==
+
+
+=== ARPIFS ===
+
+Change  the calls to some *.intfb.h to lowercase. 
+{{{
+arpifs/chem/bascoe_kpp_rosenbrock.F90
+arpifs/chem/chem_bascoetm5.F90
+arpifs/chem/chem_bascoe.F90
+arpifs/chem/chem_tm5.F90
+arpifs/chem/tm5_kpp_Integrator.F90
+}}}
+
+Remove FUNCTION LNANQ(KA) from
+{{{
+arpifs/obs_preproc/ngnada.F90
+}}}
+
+{{{
+mv mse/externals/wrresf_sfx.h mse/interface/.
+
+}}}
+=== UTILITIES ===
+{{{
+ rm utilities/mten/module/mod_utils.F90
+}}}
+
+=== SURFEX ===
+
+Add auto_modi for mod generation in GELATO modi files:
+
+
+{{{
+modi_glt_blowsn_r.F90:!auto_modi:spll_glt_blowsn_r.D
+modi_glt_constrain_r.F90:!auto_modi:spll_glt_constrain_r.D
+modi_glt_frzvtp_r.F90:!auto_modi:spll_glt_frzvtp_r.D
+modi_glt_gelato.F90:!auto_modi:spll_glt_gelato.D
+modi_glt_getatmf.F90:!auto_modi:spll_glt_getatmf.D
+modi_glt_getmlrf.F90:!auto_modi:spll_glt_getmlrf.D
+modi_glt_gelato.F90:!auto_modi:spll_glt_gelato.D
+modi_glt_getatmf.F90:!auto_modi:spll_glt_getatmf.D
+modi_glt_getmlrf.F90:!auto_modi:spll_glt_getmlrf.D
+modi_glt_icetrans_r.F90:!auto_modi:spll_glt_icetrans_r.D
+modi_glt_icevsp_r.F90:!auto_modi:spll_glt_icevsp_r.D
+modi_glt_inibud.F90:!auto_modi:spll_glt_inibud.D
+modi_glt_invert.F90:!auto_modi:spll_glt_invert.D
+modi_glt_lmltsi_r.F90:!auto_modi:spll_glt_lmltsi_r.D
+modi_glt_mltvtp_r.F90:!auto_modi:spll_glt_mltvtp_r.D
+modi_glt_oceflx_r.F90:!auto_modi:spll_glt_oceflx_r.D
+modi_glt_precip_r.F90:!auto_modi:spll_glt_precip_r.D
+modi_glt_salflx.F90:!auto_modi:spll_glt_salflx.D
+modi_glt_salflx_r.F90:!auto_modi:spll_glt_salflx_r.D
+modi_glt_saltrap_r.F90:!auto_modi:spll_glt_saltrap_r.D
+modi_glt_sndatmf.F90:!auto_modi:spll_glt_sndatmf.D
+modi_glt_sndmlrf.F90:!auto_modi:spll_glt_sndmlrf.D
+modi_glt_snowice_r.F90:!auto_modi:spll_glt_snowice_r.D
+modi_glt_sublim_r.F90:!auto_modi:spll_glt_sublim_r.D
+modi_glt_swabs_r.F90:!auto_modi:spll_glt_swabs_r.D
+modi_glt_thermo.F90:!auto_modi:spll_glt_thermo.D
+modi_glt_thermo_end_r.F90:!auto_modi:spll_glt_thermo_end_r.D
+modi_glt_thermo_ice_r.F90:!auto_modi:spll_glt_thermo_ice_r.D
+modi_glt_thermo_lead_r.F90:!auto_modi:spll_glt_thermo_lead_r.D
+modi_glt_thermo_r.F90:!auto_modi:spll_glt_thermo_r.D
+modi_glt_updasn_r.F90:!auto_modi:spll_glt_updasn_r.D
+modi_glt_updbud.F90:!auto_modi:spll_glt_updbud.D
+modi_glt_updbud_r.F90:!auto_modi:spll_glt_updbud_r.D
+modi_glt_updhsi_r.F90:!auto_modi:spll_glt_updhsi_r.D
+modi_glt_updhsn_r.F90:!auto_modi:spll_glt_updhsn_r.D
+modi_glt_updice.F90:!auto_modi:spll_glt_updice.D
+modi_glt_updice_mix_r.F90:!auto_modi:spll_glt_updice_mix_r.D
+modi_glt_updice_r.F90:!auto_modi:spll_glt_updice_r.D
+modi_glt_updsal_r.F90:!auto_modi:spll_glt_updsal_r.D
+modi_glt_updsnow.F90:!auto_modi:spll_glt_updsnow.D
+modi_glt_updsnow_r.F90:!auto_modi:spll_glt_updsnow_r.D
+modi_glt_updtfl.F90:!auto_modi:spll_glt_updtfl.D
+modi_glt_updtfl_r.F90:!auto_modi:spll_glt_updtfl_r.D
+modi_glt_vhdiff_r.F90:!auto_modi:spll_glt_vhdiff_r.D
+modi_glt_vhdslab_r.F90:!auto_modi:spll_glt_vhdslab_r.D
+modi_gltools_adjflx.F90:!auto_modi:spll_gltools_adjflx.D
+modi_gltools_alloc.F90:!auto_modi:spll_gltools_alloc.D
+modi_gltools_avevai.F90:!auto_modi:spll_gltools_avevai.D
+modi_gltools_chkglo.F90:!auto_modi:spll_gltools_chkglo.D
+modi_gltools_chkglo_r.F90:!auto_modi:spll_gltools_chkglo_r.D
+modi_gltools_chkinp.F90:!auto_modi:spll_gltools_chkinp.D
+modi_gltools_chkout.F90:!auto_modi:spll_gltools_chkout.D
+modi_gltools_dealloc.F90:!auto_modi:spll_gltools_dealloc.D
+modi_gltools_glterr.F90:!auto_modi:spll_gltools_glterr.D
+modi_gltools_isdigit.F90:!auto_modi:spll_gltools_isdigit.D
+modi_gltools_mixice.F90:!auto_modi:spll_gltools_mixice.D
+modi_gltools_mixice_r.F90:!auto_modi:spll_gltools_mixice_r.D
+modi_gltools_mskerr.F90:!auto_modi:spll_gltools_mskerr.D
+modi_gltools_newice_r.F90:!auto_modi:spll_gltools_newice_r.D
+modi_gltools_nextline.F90:!auto_modi:spll_gltools_nextline.D
+modi_gltools_nextval.F90:!auto_modi:spll_gltools_nextval.D
+modi_gltools_nwords.F90:!auto_modi:spll_gltools_nwords.D
+modi_gltools_outdia.F90:!auto_modi:spll_gltools_outdia.D
+modi_gltools_readnam.F90:!auto_modi:spll_gltools_readnam.D
+modi_gltools_strlower.F90:!auto_modi:spll_gltools_strlower.D
+modi_gltools_strsplit.F90:!auto_modi:spll_gltools_strsplit.D
+modi_gltools_timers.F90:!auto_modi:spll_gltools_timers.D
+modi_gltools_updaponds_r.F90:!auto_modi:spll_gltools_updaponds_r.D
+modi_gltools_wriios.F90:!auto_modi:spll_gltools_wriios.D
+}}}
+
+Manual compilation of /surfex/module
+
+{{{
+modi_init_surfconsphy.F90
+modi_vslog.F90
+}}}
+
+{{{
+
+source /scratch/ms/es/sp2b/hm_home/46T1bf02_f0cfd/lib/config-sh/choose_PrgEnv.cca gnu
+
+}}}
+
+
+{{{
+ftn -m64 -g -fopenmp -fpic -O2 -fbacktrace -fno-second-underscore -DLINUX -DCNL -DLITTLE -DLITTLE_ENDIAN -DHIGHRES -DADDRESS64 -DPOINTER_64 -D_ABI64 -DBLAS -DSTATIC_LINKING -DNO_CURSES -Din_surfex -DSFX_ARO -DSFX_ASC -DSFX_OL -DSFX_TXT -DSFX_FA=sfx_fa -DSFX_LFI -DGRIB_API_1 -DOLDBUFR -fconvert=big-endian -dynamic -ffree-form -ffree-line-length-512  -c modi_init_surfconsphy.F90
+
+ftn -m64 -g -fopenmp -fpic -O2 -fbacktrace -fno-second-underscore -DLINUX -DCNL -DLITTLE -DLITTLE_ENDIAN -DHIGHRES -DADDRESS64 -DPOINTER_64 -D_ABI64 -DBLAS -DSTATIC_LINKING -DNO_CURSES -Din_surfex -DSFX_ARO -DSFX_ASC -DSFX_OL -DSFX_TXT -DSFX_FA=sfx_fa -DSFX_LFI -DGRIB_API_1 -DOLDBUFR -fconvert=big-endian -dynamic -ffree-form -ffree-line-length-512  -c modi_vslog.F90
+}}}
+
+{{{
+
+ln -s  surfex/GELATO/modi_gltools_*.mod  /surfex/SURFEX/. 
+ln -s . surfex/GELATO/modi_glt_*.mod      surfex/SURFEX/. 
+
+}}}
+
+
+=== BARTOR ===
+
+comment in odb/pandor/module/bator_decodbufr_mod.F90
+
+{{{
+!!!EOIN: requires compilation of aeolus code - dodge for now
+!!!USE height_conv, only: geom_to_geop
+
+}}}

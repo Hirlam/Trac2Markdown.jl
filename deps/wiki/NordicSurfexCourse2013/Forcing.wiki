@@ -1,0 +1,63 @@
+EXERCISE 1:
+
+Create forcing from TESTBED-grib from TESTBED for Norrkøping files using the attached create_forcing version (Linux only)
+
+----
+
+EXERCISE 2:
+
+Create forcing for the full testbed domain with the input files from above. Use netCDF forcing and output format and look on the results with ncview
+
+----
+
+EXERCISE 3:
+
+Create a new routine called my_forc_[your-name].F90. Modify my_forcing.F90 accordingly.
+
+Insert you own values for the needed output-values, and see if you get offline SURFEX to run.
+
+----
+
+EXERCISE 4 (advanced):
+
+* First install a new instance of EXPORT_r1341 in a new directory
+
+* Get SODA patch from:
+https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/soda.tar
+
+* Untar the patch in EXPORT_r1341
+
+{{{
+cd src
+
+#Modify environment and Makefile if needed
+
+./configure
+
+# source config-fil
+make
+make installmaster
+
+export XYZ=""
+export SRC_SURFEX=""
+export VER_USER=FORC
+
+./configure
+
+# source the new config file
+make user
+make installuser
+}}}
+
+The basic installation installs without fimex/gl support.
+
+There is a script MY_RUN/FORCING/figl.sh which demonstrates the use fimex/netcdf files. Basically it links the input-files and run:
+{{{
+cd ../MY_RUN/FORCING
+./prepare_forcing.bash figl
+}}}
+
+with namelists: "namelist" and possibly "naminterp" in addition to the needed MY_SRC/NAMELIST/MY_PARAM.nam and MY_SRC/NAMELIST/OPTIONS.nam
+
+
+----

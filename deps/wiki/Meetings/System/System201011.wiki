@@ -1,0 +1,280 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''DMI, 29 Nov - 3 Dec 2010''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Participation, period and location ==
+
+The working week starts at 1000 on Monday morning, Nov 29, at DMI, finishes at 1200 on Friday afternoon, 3 Decmber 2010. 
+
+Participates are,
+ * AEMET:   Carlos Geijo ( 30/11 - 3/12 )
+ * DMI:     Xiaohua Yang, Mats Dahlbom ( 29/11 - 3/12 )
+ * KNMI:    Toon Moene ( 29 - 30/11 ) 
+ * met.no:  Ole Vignes, Trygve Aspelien ( 29/11 - 3/12 )
+ * SMHI:    Ulf Andrae ( 29/11 - 2/12 )
+
+== Objectives ==
+
+The main goal of this working week is to consolidate on trunk (with the source code based on CY36T1), with the aim to make final preparation of a quality-assured harmonie release, 36h1.3, the first of its kind, before 2011
+
+== Todo's for 36h1.3 ==
+
+At tagging of beta release harmonie 36h1.2, [blog:taggingof36h12 a number of items] were identified as working targets in the final stage prior to official release of 36h1.3. The tasks involves items on both technical and meteorological aspects.
+
+Starting from the [blog:taggingof36h12 above listed items], a series of HIRLAM-A working weeks have been arranged to address various issues. These include the working week on surface issue during 15 and 17 Nov at met.no, data assimilation working week during Nov 22-26 at SMHI, and the system working week during Nov 29 and Dec 3 at DMI. 
+
+In the following, a series of issues, some of them TODOs, others the intended check-lists before official releases, are listed, which will be updated during the course of the working weeks.
+
+=== Technical items ===
+ * System aspects
+   * efficiency in syncronising and rebuilding sources under Makeup option
+     * Shall MAKEUP option become default?
+       * Discussion about this will be resumed after looking at
+         * how adaptation of makeup proceed for prototype-CY37 --- estimate of future maintenance need
+         * how remaining testing for 36h1-series go: efficiency of rebuild, (see below); problem of observation handling with makeup optin for some platforms (DMI Cray, SMHI Linux?)
+     * makeup-build is generally much faster than gmkpack, (see [wiki:Harmonie_36h1#SamplecomputationalcostsforrunningHARMONIE-36h1 wiki page]), but the rebuild appears to go through redundant procedure. Some streamlining of the script may be necessary to avoid redundant steps
+     * instruction is needed for users to utilise pre-built libraries and binaries, somewhat similar to the philosophy in HIRLAM or in HARMONIE with gmkpack-rootpack
+     * '''Actions (Ole, Toon, Trygve, Ulf, Xiaohua)'''
+          * Test on PRECOMPILED option '''DONE'''
+          * Evaluate MAKEUP for proto-type CY37
+          * Separation of configure from Make '''DONE'''
+          * Check on syncronisation step '''DONE'''
+   * further documentation about HARMONIE script system/utilities and instructions
+     * This is a long term issue but needs to be taken serious for operationalisation of HARMONIE
+       * Especially: main issues involved in porting of system for local usage
+         * What are tested/recommended configuration settings for model physics, domain, analysis schemes, post-processing options
+         * verification, visualisation
+     * '''ACTIONS (Ulf)'''
+       * Enhancement of checkoptions/functionalities to help users with a better overview about actual settings/options. '''DONE'''
+   * tuning for optimal settings about resource request for main HARMONIE configurations and documentation about basic guidelines
+     * Currently users on ECMWF platform needs to fiddle with resource requests in Env_submit in order to run their own configurations. Note that 3DVAR screening and minimisation appear to require large memory, thus many nodes. On [wiki:Harmonie_36h1#SamplecomputationalcostsforrunningHARMONIE-36h1 wiki page about 36h1], some sample information have been given to illustrate technical information for successful runs
+     * '''ACTIONS (Ole, Ulf, Xiaohua)'''
+       * Gather relevant data form different runs and see some empirical relations can be designed
+   * Streamlining of GRIB parameter-translation problems, 
+     * In first go, examine what's currently applied in GL
+     * '''ACTIONS (Toon, Ulf, Laura)'''
+       * Bring this up in the coming interoperability meeting at ECMWF to see what general recommendations can be made in GRIB-II framework 
+       * Try to avoid conflict between HARMONIE and HIRLAM parameter definitions; A discussion about conventions shall be done within a few months
+   * mSMS problems
+     * Interupted mSMS sometimes restarts with HH=24 instead of HH=00
+     * Let mSMS pickup the last changed def file on restart
+     * '''ACTIONS (Ole/Ulf)'''
+       * This will be looked at if/when problem is reproduced '''DONE'''
+   * extension of configuration domain options
+     * add MF ALADIN and AROME domains; Add LACE option and domains. These will enable easier comparisons/sanity check about HARMONIE configurations in comparison to other centers
+     * '''ACTIONS (Ole)'''
+       * MF and LACE will be contacted
+   * Implement the 3 step MARS retrieval as it is done in HIRLAM
+   * '''ACTION (Ulf)'''
+       * ExtractBD is splitted into two similar to those in HIRLAM 7.3. '''DONE'''
+ * Data assimilation, use of observation
+   * Assimilation settings should be the same for all physics options where applicable. This is valid for both settings on observation and on trajectory forecasts
+   * '''ACTIONS (Trygve, Carlos)'''
+     * Continue on work started in assimilation working week last week
+   * Sanity check about data assimilation
+     * do analysis increment look reasonable in 3DVAR; in surface analysis
+     * SST, land surface ts, ws, snow...
+     * single observation impact tests
+     * extension of structure function from external domains. The facility is available now and looks to work property 
+     * '''ACTIONS (Mats, Carlos, Trygve, Xiaohua)'''
+       * look at current status in 3DVAR and in surface analysis
+       * single obs experiment
+       * look at derivation of structure functions
+   * check on observation data injection, especially those of remote sensing data available to operational services. Satellite data are now disabled by default. Can they be enabled using locally available data (... technical enabling)? Shall they be enabled (positive impact needed)
+     * ATOVS amsu-a; amsu-B from MARS and from ERAS
+     * AMV
+     * ASCAT
+     * '''ACTIONS (Mats, Carlos, Xiaohua)'''
+       * Status estimate and work to fix them
+ * Surface assimilation
+   * rescaling of soil wetness index from ECMWF data for SURFEX initialisation, which is considered essential for AROME/ALARO SURFEX option, especially for cold-start
+     * This is now implemented in [8625], but the implementation shall be made conditional to take into account situations in which parameter 43 is unavailable from ECMWF, --- old episodes, like the ECMWF achives in 2006 used in HARMONIE ensemble runs for deriving structure functions
+     * '''ACTIONS (Toon)'''
+       * Implement conditional reading of parameter 43 '''DONE'''
+   * status of general bufr data injection
+   * status of SST, ice and snow observation data input
+     * '''ACTIONS, see similar actions for upper air'''
+ * Physics
+   * AROME-edmfm option initially appeared problematic.
+     * The option in 36h1.2 and trunk appears working technically on ECMWF but Ulf has reported problems at SMHI platform. Otherwise the option awaits evaluation. Is the option suitable to be used as default? 
+     * '''ACTIONS (Xiaohua)'''
+       * Contact Wim to hear experience and recommendations
+   * Evaluation of the HIRLAM-like cloud diagnostics (options LWMOCLOUD and LACPANMX in ALADIN, ALARO and AROME runs
+   * '''ACTIONS (Xiaohua)'''
+       * Contact physics group about LWMOCLOUD and LACPANMX for recommendations '''Lisa: NO CHANGE YET'''
+   * update of ALADIN-namelist option to that of the MF e-suite
+   * '''ACTIONS (Ulf)'''
+     * Test ongoing. '''DONE'''
+   * removal of hirald option and hide SPSMORO '''DONE'''
+ * Verification and Post-processing
+   * Precipitation fields for AROME are missing from fldextr/verification in versions up to 36h1.2. 
+     * This has now been corrected in the trunk by [8643]. 
+   * Discuss change of using T2M instead of TS for MSLP reduction
+   * '''ACTIONS (Trygve)'''
+       * Looking at impact on vfld and on MakeGrib. '''DONE'''
+   * Add variables like Tmax/Tmin/gust from HARMONIE
+     * Starting from [8644], gust wind is now extracted
+     * T2m (max, min) is to be looked at later. Need further enhancement of fldextr and montior. '''POSTPONED'''
+   * check and enable featuring of HARMONIE monitoring information to the real-time HIRLAM data portal. Can HARMONIE suites be featured together with HIRLAM in hirlam data portal?
+     * Observation verification: this has been possible thanks to HARMONIE gl/monitor package
+     * Forecast charts and other graphics: this needs to be worked out
+     * Further information needed to help users getting familiar with available products, tools
+     * Some work is needed to co-display observation monitoring data from HIRLAM and from HARMONIE
+     * '''ACTIONS (Xiaohua)'''
+       * Contact Kalle and Magnus for charting and obs plot
+
+=== Quality assurance aspects ===
+
+In terms of quality evaluation of the model candidates,
+
+ * Evaluate general quality of forecast model, mainly with AROME, but also ALARO/ALADIN physics, especially the behavior of the models for predicting weather phenomena/episodes of interest
+   * fog problem? waves over sea? strongly convetive situation; heavy rain episodes?
+ * Evaluate performance of various model settings, especially those of AROME with data assimilation on upper air and surface, and on various behavior related to model coupling strategy
+   * Shall AROME be coupled to ECMWF or to HIRLAM? Is there benefit of running 3DVAR for AROME, or is blending sufficient? Shall one do multiple nesting?
+   * '''ACTIONS (all)'''
+     * Toward end of working week, it is aimed that participants share tasks to run validations runs to provide updated check mainly about forecast qualities in terms of observation verification, but also technical aspects
+
+=== Collection of evaluation runs ===
+
+ * 36h1 vs 35h1
+   * SCANDINAVIA, ALADIN, with 3DVAR+CANARI
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/valid35h14_RCR_H_201010" target="_blank">35h1.4 vs 36h1.2, 201010 </a>
+}}}
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/valid35h14_36h12_blend_201008" target="_blank">35h1.4 vs 36h1.2 (with blending), 201008 </a>
+}}}
+ * SCANDINAVIA
+   * ALADIN
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_H_36h12_blend_201010" target="_blank"> 3DVAR+CANARI vs blending+CANARI, 201010</a>
+}}}
+   * MAKEUP vs GMKPACK
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_H_36h12" target="_blank"> ALADIN 3DVAR+CANARI with MAKEUP vs GMKPACK, 201010</a>
+}}}
+   * ALADIN vs ALARO
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h12_blend_36h12_alaro_201010" target="_blank"> ALADIN vs ALARO, blending, 201010</a>
+}}}
+   * ALADIN vs ALARO vs HIRLAM
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_36h12_blend_36h12_alaro_201010" target="_blank"> HIRLAM (RCR) vs ALADIN (blending) vs ALARO (blending), 201010</a>
+}}}
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_M09_E11_RCR_H_201010" target="_blank"> HIRLAM (RCR) vs HIRLAM (DMI-M09) vs HIRLAM (SMHI-E11) vs ALADIN, 201010</a>
+}}}
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_M09_E11_RCR_H_201011" target="_blank"> HIRLAM (RCR) vs HIRLAM (DMI-M09) vs HIRLAM (SMHI-E11) vs ALADIN, 201011</a>
+}}}
+ * AROME
+   * AROME_2.5
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/RCR_RCR_H_D36" target="_blank"> HIRLAM vs ALADIN vs AROME, 201010</a>
+}}}
+   * SWEDEN_2.5
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/arome_da_arome_blend_arome_none_arome_inm" target="_blank"> AROME 3DVAR vs blending vs none vs none+ANASURF, 200912</a>
+}}}
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/arome_blend_alaro_blend_200912" target="_blank"> AROME blending vs ALARO blending, 200912</a>
+}}}
+     * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/arome_inm_arome_inm_old_200912" target="_blank"> AROME forecast with boundary interpolation of gl_only vs old, 200912</a>
+}}}
+
+== Status ==
+
+ * System aspects
+   * on efficiency in syncronising and rebuilding sources under Makeup option (Trygve, Toon, Ole, Xiaohua)
+     * some re-organisation has been done in build step in which rsync, configure and make are now separated, which shall results in some saving. The re-built step has now been improved but it is still a bit slow compared to corresponding step in HIRLAM and in gmkpack.
+     * PRECOMPILED option seemed to work. The current setup on ECMWF platform already assigns directory under $TEMP/common_rootpack but this needs to be further checked, and documentation/instructions remains to be done
+     * test of build with CY37 did not proceed long due to required package for GRIB-API. This needs to be further examined
+     * Problem with makeup for observation handling as seen on DMI platform has not been looked further
+   * further documentation about HARMONIE script system/utilities and instructions (Ulf, Ole, Xiaohua)
+     * enhancement of checkoptions/functionalities to help users with a better overview about actual settings/options
+     * preliminary investigation to find algorithms to help users with an optimal settings about resource request for main HARMONIE configurations have been made. Examination of ARMOE forecast run-logs in terms of memory consumption/billing costs reveal quite strong dependence on domain size, mail-box size, umber of MPI tasks per node etc., but it may require more efforts before a reliable algorithm can be implemented. In first go, users are recommended to test out actual need of memory usage per node so as to subscribe optimal memory/mpi-tasks per node to ensure cost-effective settings. It is clear that mailbox sizes in forecast and fullpose runs shall be specified separately, with the former being small to save costs. More efforts are needed to analysis situation in data assimilation such as 3DVAR screening and minimisation
+   * Streamlining of GRIB parameter-translation problems (Toon, Ulf, Laura)
+     * Assignment of GRIB parameters in HARMONIE seems to be a difficult task due to lack of standard. Toon is asked to bring this up in the coming interoperability meeting at ECMWF to see what general recommendations can be made in GRIB-II framework. For the time being it is agreed to try avoiding conflict between HARMONIE and HIRLAM parameter definitions. This activity will continue during HIRLAM-B
+   * extension of configuration domain options (Ulf, Ole)
+     * LACE domain option is added. Ulf is also working to test MF-ALADIN namelists with a view to use it as standard ALADIN option. Ole will look at the domain settings of MF for AROME/ALADIN, these in order to enable easier comparisons/sanity check about HARMONIE configurations in comparison to other centers
+   * A multi-step MARS data retrieval procedure has been worked out in order to address the concern from ECMWF on improved data retrieval procedure from MARS. Ulf also worked on change of ECFS archive strategy by which tarballs instead of individual result files are archived/dearchived between active and ECFS disks.
+ * Data assimilation, use of observation
+   * Trygve continued test to ensure consistent data assimilation settings for different model physics.
+   * Carlos started some work to perform single observation impact study with 3DVAR. Further examination of analysis sanity is to be continued
+   * Xiaohua managed to update source and name-lists to enable derivation of structure functions for AROME model in Cy36, following earlier instruction by Magnus
+   * Remote sensing data injection into 36H1 is still problematic. On ecgate, MARS data with amsu-a/b, AMV and IASI have been successfully extracted but problems occur during screening or minimisation. Efforts will continue
+ * Surface assimilation
+   * rescaling of soil wetness index from ECMWF data for SURFEX initialisation is now implemented in [8625] and some corrections are made during the week to to take into account situations in which parameter 43 is unavailable from ECMWF (Toon and Xiaohua)
+ * Physics
+   * AROME-edmfm option has been experimented intensively at KNMI with generally good results, but the technical test at SMHI platform looked problematic. After consulting Wim, it is suggested to add edmfm into a regular testbed option, while keeping the EDKF option as AROME default for 36h1.3
+   * The statistical cloud scheme as introduced by Lisa shall be made applicable to EDKF as well and optional switch introduced via namelist. For the options LWMOCLOUD and LACPANMX as are already used in ALARO settings, the use in ALADIN and AROME runs can be considered but awaits future tests
+   * hirald option is now removed and the switch for the default SPSMORO (high order orographic smoothing) is now taken away to avoid confusing. Users of HIRALD are referred to earlier tagged versions 
+   * some discussion about selection of vertical levelling structure. Jan recommends MF_60 levels in view of apparent difficulty with HIRLAM_60 in some strong wind conditions in which wavy pattern over sea have often been seen, and the fact that MF AROME is now using MF_60. Tests with HIRLAM-65 show clear improvement over HIRLAM-60. The discussion seem to suggest need for some further tests to see general behaviour / characteristics of vertical levelling
+ * Verification and Post-processing
+   * Precipitation and gust wind are now included in fldextr/verification. This alone is a good reason for testers of 36h1.2 to switch to 36h1.3  
+   * T2M now replace TS in redaction of MSLP for HARMONIE models
+   * Add variables like Tmax/Tmin/gust from HARMONIE
+   * Addition of T2m (max, min) awaits later actions, which requires further enhancement in fldextr
+   * Some work remain to add HARMONIE forecasts charting and observation data usage plots into the intercomparson interface (Kalle, Sami, Magnus and Xiaohua ?)
+
+ * Quality aspect. Some validation results from Xiaohua's tests were briefly looked at. These tests suggest
+   * With reduction of SSO surface drag from the previously large values which appear to be buggy, the surface wind speed at mountain area now changed from strongly negative bias to positive, (may even be oerly positive)
+   * MSLP scores seemed to improve with change of redaction algorithm
+
+== Planned validation work ==
+
+We shall now target for a 36h1.3 release in around 2 weeks with following things checked
+ * Finalise the technical work. Some loose ends remain, such as
+   * Technical test repeated to ensure makeup/gmkpack option and make a decision about which one to be default
+   * structure function for some domains need to be re-derived for AROME models following the latest bug report
+   * gl (any2any) needs to be updated for collection of precipitation information 
+ * a new round of validation test started mid-next week, to enable decision on default, preliminarily with preferance of periods for 2010080100-2010083118 and 2010010100-2010013118. Xiaohua to contact more at FMI/KNMI to share some work. The validation shall focus on finding a preliminary "optimal" default setting for AROME, ALADIN and ALARO physics. At the moment following experimentation are foreseen, with participation of Trygve, Ole, Ulf and Xiaohua
+{{{
+   AROME model, HIRLAM-65, no nesting, DA or blending?  domain DENMARK and probably also SWEDEN_2.5?
+   ALADIN with old_surface, DA on SCANDINAVIA domain, if possible, on SCANDINAVIA_5.5
+   ALARO with SURFEX on SCANDINAVIA_5.5, (probably also Norway_4)?
+}}}
+ * If more can join, (from FMI, KNMI, AEMET...), also in the case of later validations, tests can be extended to 
+   * the above with alternative vertical resolution (MF_60, HIRLAM_60), domains (FINLAND, NETHERLAND, IBERIA..)
+   * alternative physics (AROME with edmfm instead of edkf)
+   * 4dvar for ALADIN
+ * a temporal frozen version of trunk, ~nhz/harmonie_release/trunk8751 where 8751 denote a specific changeset in svn, will be made at ecgate so that all experiments can refer to same repository. 
+ * Target release date of 36h1.3: around 21 Dec, (earliest on Dec 17 and latest on 23 Dec 2010)
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]
+
+
+
+
+

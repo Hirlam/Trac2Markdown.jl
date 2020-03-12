@@ -1,0 +1,164 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''NordNWP PGD workshop''' =
+''Copenhagen, October 25-26, 2017''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+'''Conclusions and comments are marked like this'''
+
+== Participants ==
+
+ * Ekaterina Kourzeneva (FMI).
+ * Matti Horttanainen (FMI).
+ * Kristian Pagh Nielsen (DMI).
+ * Maja Kjørup Nielsen (project manager; DMI).
+ * Bolli Palmason (IMO).
+ * Teresa Valkonen (MET-Norway). 
+ * Rafael Grote (MET-Norway).
+
+== Absent ==
+
+ * Magarita Choulga (LEGMC).
+ * Ola Pettersson (SMHI). 
+
+== Topics ==
+
+ * Visualization​ of​​ the​ ​ HWSD​ ​sand and clay​ database​s​ over​ each​ country.
+ * Identify​ and​ process/visualize​ ​the​ local​​ databases​​ that​ ​can​ be​ used​ to​ ​update​​ HWSD.
+ * Develop​ the​ programs​ ​to​​ overwrite​​ the​ ​HWSD​ with​​ local​ data​​ and​​ if​​ successful​​ provide​​ a​ new​​ version​ of HWSD.​ I’m​ ​optimistic​​ we​ will​​ manage​​ to​​ do​​ this​​ for​ some​ countries,​ maybe​​ not​ ​all,​ ​but​ ​it​ ​depends​​ on how​ well​ ​people​ have​ ​prepared​ ​and​ ​how​ ​fast​ we’ll​ get​ through​ ​item​​ 2.
+ * Investigation​​ of​ ​data​ ​along​ the​​ borderlines.
+ * If​ we​ have​ ​new​​ version​​ of​ ​HWSD​ then​​ we​ should​​ try​​ to​​ setup​​ a​ quick​ HARMONIE-AROME​ run​ with​ the new​ updated​ database​​ and​​ visualize.
+
+== Agenda ==
+
+=== Wednesday, October the 25^^th^^ ===
+
+10.00 Start​ of​ meeting[[BR]]
+12.00 Lunch[[BR]]
+17:00 End​ ​of​ day​​ 1[[BR]]
+18:00 Dinner​ ​at​ ​restaurant​ in​ Copenhagen:[[BR]]
+  Tony's​​ Havnegade[[BR]]
+  Havnegade​​ 47[[BR]]
+  1058​ ​København​ K[[BR]]
+
+=== Thursday, October the 26^^th^^ ===
+
+09.00 Start​ ​of​ meeting[[BR]]
+12.00 Lunch[[BR]]
+13:00 End​ ​of​​ day​​ 2[[BR]]
+
+== Meeting, day 1 ==
+
+=== Local sand and clay databases ===
+
+The meeting started with going through the status of the local sand and clay databases: 
+
+ * DMI have obtained 30 m resolution data sets of soil types, clay, silt, fine sand, coarse sand, humus and carbon concentrations in four soil layers (a: 0-30 cm; b 30-60 cm; c 60-100 cm; d 100-200 cm).
+ * FMI have found the global database [https://soilgrids.org soilgrids.org], which should be better quality than the FAO databases that are currently use in HARMONIE-AROME.
+ * MET-Norway have gotten data on the geological soil types and also a database of detailed grain-size analyses made at specific points.
+ * SMHI will get access to the soil models of the Swedish Geological Survey. From this they play to derive the sand and clay fractions.
+ * IMO have updated their local sand and clay datasets already. This was done from soil type maps of Iceland and by following the recommendations from a professor in Reykjavik with expertise in the Icelandic soils.
+
+'''It was agreed that we will use the soilgrids.org sand and clay fractions as global background data sets. Local databases such as the Danish data can then be added on top of this as available and necessary.''' This does require that the soilgrids.org geotiff datasets are converted into the *.dir files used by PGD and SURFEX. This can be used as an alternative global dataset to the FAO HWSD dataset, in the case that some countries would still rather use that database. This should be agreed in the SURFEX steering committee. 
+
+It was discussed how multi-layer data should best be converted in the 2-D sand and clay datasets needed as input by the model. Katya suggested that weighted averages of the layer properties are made, as the vegetation in many cases have roots that go below 100 cm depth; in cases with bare soil only the top layer is important. Aaron Boone (MF) has since confirmed this.
+
+=== Using gdal and qgis ===
+
+Bolli Palmason shared his experiences using gdal, qgis and python scripts for reading, viewing and manipulating the *.dir file databases for both the sand and clay fractions, and the ECOCLIMAP cover types. Below is a list of Bolli's preparation notes sent before the workshop:
+
+'''Preparations​ ​ for​ ​ the​ ​ meeting:'''
+
+If​ ​ participants​ ​ are​ ​ well​ ​ versed​ ​ in​ ​ ArcGIS​ ​ or​ ​ similar​ ​ and​ ​ would​ ​ prefer​ ​ to​ ​ use​ ​ that​ ​ software​ ​ for​ ​ their​ ​ work​ ​ then
+some​ ​ of​ ​ the​ ​ following​ ​ will​ ​ not​ ​ apply.​ ​ The​ ​ preparations​ ​ here​ ​ are​ ​ for​ ​ the​ ​ non-experts​ ​ in​ ​ GIS​ ​ who​ ​ will​ ​ be​ ​ using
+the​ ​ same​ ​ tools/methods​ ​ as​ ​ Bolli@IMO.
+
+ 1. Install​ ​ the​ ​ following​ ​ software​ ​ on​ ​ your​ ​ laptop​ ​ (if​ ​ you​ ​ use​ ​ MS​ ​ Windows​ ​ or​ ​ MacOS​ ​ and​ ​ have problems...you​ ​ are​ ​ mostly​ ​ on​ ​ your​ ​ own.​ ​ - ​ ​ Bolli): 
+   a. GDAL​ ​ ( ​ http://www.gdal.org​ ) ​ ​ and​ ​ GDAL​ ​ for​ ​ Python​ ​ ( https://pypi.python.org/pypi/GDAL​ )
+   b. QGIS​ ​ ( ​ http://www.qgis.org/​ )
+  2. Since​ ​ we’ll​ ​ mostly​ ​ be​ ​ working​ ​ with​ ​ rasters​ ​ and​ ​ the​ ​ future​ ​ ECOCLIMAP-SG​ ​ will​ ​ be​ ​ in​ ​ 300m​ ​ resolution then​ ​ you​ ​ should​ ​ try​ ​ to​ ​ have​ ​ the​ ​ following​ ​ ready:
+    a. Land-Sea​ ​ mask​ ​ ​ of​ ​ your​ ​ country​ ​ in​ ​ GeoTIFF​ ​ format​ ​ in​ ​ the​ ​ preferred​ ​ projection​ ​ of​ ​ your country​ ​ and​ ​ at​ ​ your​ ​ preferred​ ​ working​ ​ resolution,​ ​ but​ ​ it​ ​ should​ ​ be​ ​ at​ ​ least​ ​ 300m​ ​ but​ ​ we agreed​ ​ on​ ​ 100m.​ ​ Best​ ​ to​ ​ get​ ​ this​ ​ from​ ​ the​ ​ GIS​ ​ experts​ ​ in​ ​ your​ ​ institute​ ​ or​ ​ other​ ​ institute similar​ ​ to​ ​ a ​ ​ national​ ​ land​ ​ survey​ ​ institute.​ ​ If​ ​ you​ ​ have​ ​ problems​ ​ getting​ ​ this​ ​ file​ ​ then​ ​ it​ ​ can easily​ ​ be​ ​ made​ ​ from​ ​ the​ ​ Corine​ ​ (2012)​ ​ database.
+    b. Lakes​ ​ and​ ​ rivers​ ​ of​ ​ your​ ​ country.​ ​ Should​ ​ be​ ​ in​ ​ same​ ​ format/projection/resolution​ ​ as​ ​ the Land-Sea​ ​ mask​ ​ and​ ​ can​ ​ even​ ​ be​ ​ in​ ​ the​ ​ same​ ​ file​ ​ (Sea:​ ​ 1,​ ​ Lakes:​ ​ 2,​ ​ Rivers:​ ​ 3,​ ​ Land:​ ​ 4).​ ​ ​ This​ ​ is not​ ​ as​ ​ important​ ​ as​ ​ a),​ ​ but​ ​ good​ ​ to​ ​ have​ ​ and​ ​ can​ ​ also​ ​ been​ ​ made​ ​ from​ ​ Corine​ ​ if​ ​ you​ ​ can’t easily​ ​ get​ ​ from​ ​ the​ ​ expert/official​ ​ bodies.
+    c. If​ ​ you​ ​ are​ ​ unable​ ​ to​ ​ get​ ​ a)​ ​ and​ ​ b),​ ​ then​ ​ you​ ​ should​ ​ at​ ​ least​ ​ have​ ​ ready​ ​ the​ ​ name​ ​ of​ ​ the preferred​ ​ projection​ ​ of​ ​ your​ ​ country,​ ​ it’s​ ​ basically​ ​ the​ ​ projection​ ​ used​ ​ for​ ​ most​ ​ of​ ​ the locally​ ​ made​ ​ maps​ ​ you​ ​ normally​ ​ see​ ​ of​ ​ your​ ​ country.​ ​ This​ ​ name​ ​ might​ ​ be​ ​ similar​ ​ to EPSG:4326​ ​ or​ ​ a ​ ​ proj4​ ​ string.​ ​ I ​ ​ highly​ ​ recommend​ ​ you​ ​ get​ ​ that​ ​ since​ ​ usually​ ​ most​ ​ local databases​ ​ will​ ​ be​ ​ in​ ​ this​ ​ projection​ ​ and​ ​ if​ ​ you​ ​ want​ ​ to​ ​ make​ ​ maps​ ​ or​ ​ send​ ​ your​ ​ updates​ ​ to some​ ​ GIS​ ​ expert​ ​ for​ ​ verification,​ ​ then​ ​ people​ ​ expect​ ​ your​ ​ local​ ​ projection.
+    d. Download​ ​ the​ ​ current​ ​ HWSD​ ​ v2​ ​ database​ ​ from​ ​ SURFEX​ ​ website: http://www.umr-cnrm.fr/surfex/spip.php?article135​​ ​ Download​ ​ the​ ​ current​ ​ ECOCLIMAP​ ​ 2v2.5​ : ​ ​ http://www.umr-cnrm.fr/surfex/spip.php?article136
+
+'''Basic GDAL tools:'''
+
+'''''gdalinfo <filename>.<ext>''''': This command provides info about the data size, format and coordinate system, which is needed to read the data. When the flag '''''-stats''''' is added to the command basic statistical information about the data are also listed. The command can be run directly on !GeoTiff (<filename>.tif) files. A header file (<filename>.hdr) is needed to use it, and other gdal tools, for the PGD files (*.dir) in HARMONIE-AROME. ''Be aware that that the existing header files (<filename>.hdr) do not work for this purpose! '' Below two concrete examples of header files that will work are given. These can be used for ''local '' reading and manipulation of the *.dir files:
+
+  1) ECOCLIMAP_II_EUROP_V2.2.hdr:
+{{{
+nrows 21600
+ncols 43200
+nodata 0
+nbands 1
+nbits 16
+ULXMAP        -179.99583333333334
+ULYMAP        89.99583333333334
+XDIM          0.00833333333333
+YDIM          0.00833333333333
+}}}
+
+  2) CLAY_HWSD_MOY_v2.hdr (and also SAND_HWSD_MOY_v2.hdr):
+{{{
+nrows 21600
+ncols 43200
+nodata 255
+nbands 1
+nbits 8
+ULXMAP        -179.99583333333334
+ULYMAP        89.99583333333334
+XDIM          0.00833333333333
+YDIM          0.00833333333333
+}}}
+
+'''''gdal_translate''''': This command is used to convert raster data between formats. It can also be used to crop out a region of interest and to resample data to a different resolution. Bolli gave the following example of how to crop out a regional dataset (for Iceland in this case) from a global dataset:
+{{{
+gdal_translate -a_srs '+proj=longlat +datum=WGS84 +no_defs' -projwin -26 68 -10 62 SAND_HWSD_MOY_v2.dir s.tif
+}}}
+
+Here is another example of how to make a blank file "canvas" with coordinates as a given <inputfile>:
+{{{
+gdal_translate -ot UInt16 -scale 0 1000 0 0 <inputfile>.tif <new_file>.tif
+}}}
+
+
+'''''gdalwarp''''': This command is used to reproject a dataset to another projection. Starting with the blank file from above, Bolli gave the following example of how to reproject a dataset onto the blank canvas in <new_file>:
+{{{
+gdalwarp ECOCLIMAP_II_EUROP_V2.2.tif <new_file>.tif
+}}}
+
+Now <new_file>.tif has the content from ECOCLIMAP_II_EUROP_V2.2.tif in the projection and coordinates of <inputfile>.tif!
+
+'''Python tools:'''
+
+Bolli showed several Python scripts based on GDAL for Python. These included a script for ranking the ECOCLIMAP cover types after their prevalence in pixels and percent, scripts for converting one cover type into another cover type, and a script for converting a !GeoTiff file into the *.dir binary files used by PGD in HARMONIE-AROME.
+
+'''Alternatives to Python tools:'''
+
+Kai works with '''''GRASS GIS''''', which is the classical scripting language for reading and manipulating shape and raster GIS files.
+
+Katya has made Fortran subroutines for reading and writing the *.dir binary files.
+
+=== Concrete expamples of PGD updates and work to-do! ===
+
+  1. Met. Norway brought an updated (and much improved) glacier mask for Svalbard. Bolli showed how his tools can modify this. The land sea mask for Svalbard also needed modification. This was done in places with calving glaciers and could reflect actual changes rather than an error in the current dataset.
+
+  2. '''The soilgrids.org sand and clay data should be adapted for using in PGD and SURFEX.''' Matti will do this!
+
+  3. '''The local Danish sand and clay fractions should be implemented in the HWSD datasets (and in the new soilgrids.org datasets when ready).'''
+
+  4. '''The soilgrids.org sand and clay data should be tested against the local Swedish and Norwegian data, and a decision should be made whether to use the soilgrids.org dataset as it is, or if this should be modified according to or replaced with the local data.'''
+
+  5. Limfjorden and two smaller fjords in Western Jutland are classified as lakes (cover type 2) in ECOCLIMAP-II. '''Limfjorden, and perhaps also the two smaller fjords, should be redefined to be sea (cover type 1).
+
+  6. '''Katya will make a plan for to make these updates, and also her recent updates related to FLAKE, in a coordinated fashion in the larger ALADIN-HIRLAM and SURFEX communities.'''
+
+== Useful links and references ==
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Surface/NordNWP_PGD_201710/ECOCLIMAP_II_class_cover_data.pdf Table with the ECOCLIMAP II cover type definitions][[BR]]
+[https://hirlam.org/trac/wiki/Surface_physis_assimilation/pgd_ecoclimap_work The general wiki page on PGD ECOCLIMAP][[BR]]
+[https://hirlam.org/trac/wiki/Surface_physis_assimilation Overview of HIRLAM activities related to development in surface physics and assimilation]

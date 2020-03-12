@@ -1,0 +1,42 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Hirlam Vertical Diffusion Scheme =
+[[Center(end)]]
+
+== '''Introduction''' ==
+== '''Publication''' ==
+ * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article13_Tijm_Impact_moist_CBR.pdf Impact of moist CBR], Sander Tijm 
+ * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article16_Bruin_BL_validation.pdf Single-column modeling versus mesoscale modeling for an episode with three diurnal cycles in cases99], E.I.F de Bruijn, A.B.C. Tijm and G. J. Steeneveld
+ * [https://hirlam.org/open/publications/NewsLetters/48/35_EBa_ext.pdf Preliminary result with a TKE scheme in ARPEGE/ALADIN], Eric Bazile, P. Marquet, F. Bouyssel, T. Bouffon, S. Remy and A.M. Wieczorek
+ * [https://hirlam.org/open/publications/NewsLetters/47/tau_rot_hirnews.pdf The effect of surface stress rotation on the Ekman pumping], Niels Woetmann Nielsen and Bent Hansen Sass
+ * [https://hirlam.org/open/publications/NewsLetters/46/31_Direc.pdf Tuning CBR], Sander Tijm
+ * [https://hirlam.org/open/publications/NewsLetters/45/31_tau.pdf Modelling of the HIRLAM surface stress direction], Bent Hansen Sass and Niels Woetmann Nielsen
+ * [https://hirlam.org/open/publications/NewsLetters/45/32_tau.pdf Experimentation with a modified surface stress], Simo Jarvenoja
+ * [https://hirlam.org/open/publications/NewsLetters/44/CLJ.pdf Different aspects of CBR/CLJ], Sander Tijm 
+ * [https://hirlam.org/open/publications/NewsLetters/43/CBRflv.pdf Characteristics of CBR and STRACO versions], Sander Tijm 
+ * [https://hirlam.org/open/publications/NewsLetters/43/CJo_hirnews_stable.pdf Representing subgrid scale mixing under stable conditions: Importance for overall model  synoptic development], Colin Jones, Geert Lenderink and Karl-Ivar Ivarsson 
+ * [https://hirlam.org/open/publications/NewsLetters/41/newsletter_2002.pdf Recent and future developments in the turbulence modeling in HIRLAM], Geert Lenderink
+ * [https://hirlam.org/open/publications/NewsLetters/39/newsletter_1dcomp.pdf Single-column HIRLAM tests of idealized cases related to CBR modifications proposed by KNMI and INM], Enrique Sanchez and Joan Cuxart
+ * [https://hirlam.org/open/publications/NewsLetters/39/cbrsummarynl39_mod.pdf Additional verification of CBR updates], Wim de Rooy
+ * [https://hirlam.org/open/publications/NewsLetters/38/15newsletter_inst.pdf Status of work on the turbulence modelling in the CBR scheme: instability with high u*], Geert Lenderink, Enrique Sanche and Joan Cuxart
+ * [https://hirlam.org/open/publications/NewsLetters/38/16CBR_tests.pdf Tests with different CBR versions], Simo Jarvenoja
+ * [https://hirlam.org/open/publications/NewsLetters/38/17WdR_newsletter.pdf Verification of updates of the CBR scheme in Hirlam?], Wim de Rooy
+ * [https://hirlam.org/open/publications/NewsLetters/36/GeertLenderink.ps.gz A robust mixing length formulation for a TKE-l turbulence scheme], Geert Lenderink and Wim de Rooy
+ * [https://hirlam.org/open/publications/NewsLetters/35/WimDeRooy Experiences with the Hirlam including the CBR scheme], Wim de Rooy
+ * [https://hirlam.org/open/publications/NewsLetters/35/VeniaminPerov.ps.gz Application of an extended similarity theory for the stably stratified atmospheric boundary layer to the HIRLAM], V. Perov and S. Zilitinkevich
+ * [https://hirlam.org/open/publications/NewsLetters/35/NielsWNielsen.ps.gz A lower boundary condition for the mixing length in the CBR turbulence scheme], Niels Woetmann Nielsen and Bent Hansen Sass
+== '''Workshop Contribution''' ==
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/07_VPe.pdf Development of vertical diffusion models for stable stratification on the base of a new spectral theory of turbulence], Veniamin Perov
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/11_STi.pdf The stable boundary layer in Hirlam], Sander Tijm  
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/18_EBa.pdf The GABLS experiment, Sodankyla; comparisons with RCR:    
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/RGa.pdf Modelling low level winds with the Met Office New Dynamics Model - A Dover Straits Case Study], Rachel Capon
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

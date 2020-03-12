@@ -1,0 +1,31 @@
+
+== Copenhagen Workshop, DMI, May 2007 ==
+ 
+Integrated systems of meso-meteorological and chemical transport models, Copenhagen, 21-23.5.2007. Arranged together with COST action 728
+[http://netfam.fmi.fi/Integ07/index.html Programme and Presentations]
+
+== NetFAM summer school and workshop, RSHU, July 2008 ==
+ 
+"Integrated Modelling of Meteorological and Chemical Transport Processes / Impact of Chemical Weather on Numerical Weather Prediction and Climate Modelling", was arranged 7-15 July 2008 in Zelenogorsk, near St.Petersburg, Russia
+[http://netfam.fmi.fi/YSSS08/SS/school_prese.html School Programme and Lectures]
+[http://netfam.fmi.fi/YSSS08/WS/ws_prese.html Workshop Programme and Presentations]
+[http://netfam.fmi.fi/YSSS08/NetFAM08-YSSSWS-BookletAbstracts.pdf Abstract Book]
+
+== Enviro-HIRLAM Course, DMI, January 2009 ==
+NetFAM et al. 2009 - Practical Course
+"Environment - HIgh Resolution Limited Area Model (Enviro-HIRLAM)"
+Copenhagen, Denmark, 26-30 January 2009 
+Danish Meteorological Institute (DMI), Research Department, Location - HIRLAM Room
+
+Programme of the course with links to [http://netfam.fmi.fi/ENV09/ENVHIRLAM_programme.html presentations/lectures] (updated 10 Feb 2009)
+
+[http://netfam.fmi.fi/ENV09/ENVHIRLAM_participants.html List of participants] (updated 20 Dec 2008)
+
+[http://netfam.fmi.fi/ENV09/EnvHCourseOutcome.pdf Summary Report] from the Enviro-HIRLAM Practical Course (updated 10 Feb 2009)
+
+Contact information: 
+Laura Rontu FMI, NetFAM E-mail: laura.rontu, fmi.fi
+
+Alexander Baklanov and Alexander Mahura, DMI, practical course organizers 
+E-mail: alb, dmi.dk and ama, dmi.dk 
+

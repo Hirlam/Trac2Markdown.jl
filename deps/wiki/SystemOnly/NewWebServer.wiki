@@ -1,0 +1,40 @@
+= NEW hirlam.org server configuration =
+
+The server is physically located at DMI, but has now been upgraded to a 32-core
+Intel Xeon? with 16? Gb RAM. It runs (64-bit) Ubuntu 16.04 LTS (Long Term Support), also known as "Xenial Xerus" (or just xenial).
+
+== Installation of software ==
+
+The software package system on Ubuntu is based on Debian packages, see [https://help.ubuntu.com/16.04/serverguide/package-management.html]
+for info on how to install packages. If you ''can'' install something as a package, please do that, as it makes future
+upgrades much easier.
+
+If you wonder what packages are installed on the system you can do: {{{dpkg -l}}} to list them all. This will give a lot of output.
+A better alternative is to combine with grep. E.g., if you want to list ''installed'' packages connected to the Apache server, you could do like this:
+{{{
+dpkg -l | grep -i apache
+}}}
+
+If you want to see what is potentially available in the Xenial software repositories, you could do e.g.
+{{{
+aptitude search apache
+}}}
+or, alternatively (with slightly different output):
+{{{
+apt-cache search apache
+}}}
+
+Software not installed as packages have so far been put under the home directory of the root user ( {{{/root}}} ).
+
+== Further topics ==
+
+ * [wiki:SystemOnly/NewWebServer/Apache Apache web server, access control, certificates etc.]
+ * [wiki:SystemOnly/NewWebServer/TracWiki Trac and Wiki]
+ * [wiki:SystemOnly/NewWebServer/Subversion Subversion]
+ * [wiki:SystemOnly/NewWebServer/Git Git and gitolite]
+ * [wiki:SystemOnly/NewWebServer/Mailman Mailing lists (mailman and exim4)]
+ * [wiki:SystemOnly/NewWebServer/Joomla Joomla]
+ * [wiki:SystemOnly/NewWebServer/Glameps Glameps site]
+ * [wiki:SystemOnly/NewWebServer/Shiny Shiny proxy for Rstudio server]
+ * [wiki:SystemOnly/NewWebServer/ShinyServer Installation of Shiny-Server]
+

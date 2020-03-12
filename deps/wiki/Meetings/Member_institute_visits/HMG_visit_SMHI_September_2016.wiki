@@ -1,0 +1,25 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Management Group visit at SMHI''' =
+''Norrköping, September 8, 2016''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Presentations  ==
+
+ * Magnus Lindskog: Surface DA [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/magnustomas_surface_mgvisit.pdf pdf]
+ * Jorge Amorim: Urban SIS [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/UrbanSIS_HMGmeeting_SMHI_080916.pdf pdf]
+ * Marco Kupiainen: Model Coupling in Computational Meteorology  [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/kupiainen.pdf pdf]
+ * Åke Johansson: Why EPS needs equally likely ensemble members and How they can be constructed [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/HMG.SMHI.AJ.2016.pdf pdf]
+ * Jelena Bojarova: UERRA cloud cover reanalysis [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/isda_cloud_analysis.pdf pdf]
+ * Martin Ridal: GNSS [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/martin_NGAAGNSS_2016.pdf pdf]
+ * Petter Lind: ALARO-climate [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/Petter_HMG_visit.pdf pdf]
+ * Jeanette Onvlee-Hooimeijer: HIRLAM MG presentation  [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/VisitSMHI_JO_20160908.pdf pdf]
+ * Abolfazl Neyestani: HARMONIE and WRF over Iran  [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/Abolfazl_SMHI.pdf pdf]
+ * Ulf Andrae: Cy40h1.1 in !MetCoOp  [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/HMG_visit_20160908_UA.pdf pdf]
+ * Åsa Granström: probability forecasting [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/SMHI-%23206593-v1-FR%C3%96N_f%C3%B6r_Hirlam_MG_group_8_sep_2016.pdf pdf]
+ * Anders Wettergren: Operational forecasts [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/SMHI-%23206358-v1-Hirlam_Management_Group_2016.pdf pdf]
+ * Tomas Fyrby: Aviation weather [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016/SMHI-%23206674-v1-HARMONIE_reflections_from_the_SMHI_aviation_forecasters.pdf pdf]
+

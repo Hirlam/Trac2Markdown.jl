@@ -1,0 +1,136 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Reports on surface activities January 2018''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Status with respect to Rolling Work Plan for Surface analysis and modelling ==
+
+> '''Status notes are indicated like this.'''
+
+=== SU1: Assimilation algorithms for surface assimilation ===
+
+ * '''SU1.1 Develop/assess EKF for soil, snow and vegetation using SYNOP data in combination with the force-restore, diffusion soil and the Explicit Snow (ES) scheme in SURFEXv8'''
+   * '''SU1.1.1	Evaluate EKF for diffusion soil scheme as implemented in SURFEX/SODA and suggest eventual further modifications. Test should include options with non-evolving (SEKF) and evolving B-matrix and recommendation which to utilize. Take into account the outcome from similar works already done at Meteo-France. (Katya, Magnus, Jelena, Patrick, Siggi)'''
+   > No action among HIRLAM NWP colleagues yet. However, other colleagues have offline experience, e.g. the SURFEX team, and master student Åsmund Bakketun at !MetNorway.  
+   * '''SU1.1.2 Implement/develop suggested modifications for DIF in SU1.1.1 and test the modified system. (Katya, Magnus, Jelena, Patrick, Tomas, Karl-Ivar, Mariken, Trygve, Siggi)'''
+   > No action yet.
+   * '''SU1.1.3	Develop and test OI/EKF for Explicit snow scheme. Coordinate with SU1.1.1 regarding choice of method(s). (Trygve, Mariken, Patrick, Karl-Ivar, Tomas, Siggi)'''
+   > Trygve has made Explicit snow scheme work in combination with 2 patches, Force-restore and OI in an cy40h offline environment... 
+   * '''SU1.1.4	Continue to test and develop STAEKF for LAI updates. Implement STAEKF for LAI-Albedo-RSmin within SODA/SURFEX-v8 (Jelena)'''
+   > Jelena has implemented STAEKF for LAI in a test version of cy40h1.1. It works technically. No further activity since September.
+   * '''SU1.1.5	Combine the development in SU1.1.2-3 and set up a pre-operational system based on EKF for soil, snow and vegetation. (Katya??, Magnus, Jelena, Patrick, Tomas, Karl-Ivar, Mariken, Trygve)'''
+   > No activity yet.
+
+ * '''SU1.2 Modify CANARI/SURFEX to be able to access SURFEX variables from CANARI. E.g. utilize tile/patch variables in SURFEX as first guess in CANARI. Activate the MESCAN part of CANARI, and investigate sensitivity of anisotropic horizontal/vertical structure functions. (Patrick, Katya, Trygve, Mariken, Eric Bazile, Suzana Panežić)'''
+ > Mariken has done a number of tests and will now coordinate selection of settings with Magnus and make a sensitivity test where MESCAN is activated in a test setup.
+ * '''SU1.3 Further develop snow analysis and assimilation of snow extent in CANARI/MESCAN/SODA. Developments on snow analysis in CANARI for AROME-France (Katya, Camille Birman)'''
+ > The problem in snow analysis in CANARI which comes from coastal SYNOP stations and which was actually noticed earlier, was decided to be solved by blacklisting the affecting coastal stations. This is quick dirty solution, better solution for the future will be needed. Katya started to look for that, studying the CANARI code.  
+ * '''SU1.4 Develop/assess EKF for sea ice, using satellite products in combination with the SICE scheme. (Bin, Yurii, Katya)'''
+ > No action yet.
+
+=== SU2: Use of observations in surface assimilation ===
+
+ * '''SU2.1 Examine available satellite snow-extent (and Snow-Water Equivalent products?) products and make them available in ODB. E.g. H-SAF. (Katya, Mariken)'''
+ > [https://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjK2J2LyPXYAhWFhSwKHSJUDKAQFggpMAA&url=https%3A%2F%2Fwww.met.no%2Fpublikasjoner%2Fmet-report%2Fmet-report-2013%2F_%2Fattachment%2Fdownload%2F803a5265-6fe7-4782-95df-963ebf948bd2%3A0a6e79d932bb5437040ce6c706e0bfed3d886eb8%2FMET-report-06-2013.pdf&usg=AOvVaw2TMZ-QCrNuT2iMurSVOJC9 Homleid and Killie (2014)] describe how !CryoRisk satellite snow extent product was used for tests of assimilation of snow in HARMONIE-AROME. Mariken is now doing similar work for CARRA but based on satellite product !CryoClim. The development and tests for this will open up for operational SE assimilation using the HSAF product as recommended by FMI.
+ * '''SU2.2 Examine available satellite soil moisture products for use in surface data assimilation. The description of the sub-taks contains the following information: [soil moisture product] - [assimilation method] - [SURFEX version]. 
+   * '''SU2.2.1	[ASCAT, AMSR-2, ...] - [EnKF] - [8.0*]	(John)'''
+   > Activity?
+   * '''SU2.2.2	[ASCAT, AMSR-2, SAR-C (Sentinel-1), ...] - [ tbd ] - [ tbd ] (Magnus, Tomas)'''
+   > Magnus is currently in the process of documenting his work in the IMPREX project where he has been running test cases over Spain and France to investigate the role of surface soil moisture assimilation from a satellite product and how it affect precipitation patterns. 
+   > 
+   > In connection to EnKF development Tomas reports use of different satellite data for assimilation: Running SURFEXv8 with DIF and 3-L (more or less according to [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h recommendations]) for the old !MetCoOp domain and the time period !20160801-!20170501. So far forcing with forecast data from 00 and 12 cycles in order to get two members (done). Will now extend the number of members by adding perturbations from archive of forecast differences (+48 - +24). Maybe also look at using 06 and 18 cycles for forcing but probably too similar to 00 and 12?. Plan to look at correlations between ISBA parameters to find out which will be most affected by data assimilation. Also look at horizontal error correlations. Then use the up spinned members as a starting ensemble for EnKF DA experiments (winter 2016-17) with AMSR2 and SMOS raw radiances (HUT model as observation operator, to be worked on at [https://agora.fmi.fi/display/HSCE1404/Snow+data+assimilation+school+12-16+March+2017+in+Bormio COST snow school]). Also look at Sentinel-C SAR with MEMLS as a component of SMRT.
+   > 
+   > Tomas also implemented IGN for !MetCoop grid with the intention to speed up SURFEX by restricting it to points of interest only. The result was however that the execution time became much longer...
+ * '''SU2.3 Examine available satellite sea-ice extent products and make them available in ODB. E.g. OSI SAF (Yurii, Bin)'''
+ * '''SU2.4 Explore the possibility to use SIMBA buoys for assimilation of sea-ice conditions. (Bin, Yurii)'''
+
+=== SU3: SURFEX: validation of existing options for NWP ===
+
+ * '''SU3.1 Test and validate the behaviour of individual components, as well as the full combination, of DIF, ES, MEB in cy43/SURFEXv8.1. Utilize a combination of offline SURFEX, MUSC, and the full 3D model depending on the type of study. Also, utilize climate-mode simulations (without data assimilation) to identify and reduce biases.'''
+   * '''SU3.1.1	In climate mode, over different domains, examine biases in cy43h when the full combination of DIF, ES, MEB are activated in combination with recommended namelist settings. (Samuel, Patrick, Mariken, Katya, Nikolai, Emily, John, Trygve, Yann Seity)'''
+   > Samuel: Tests of the wishlist using harmonie-43t2_climate revealed issues with some of the LBC coupling schemes (LUNBC, ~~LESPCPL~~); simulations tend to crash after a few weeks of integration. Without these options, new crashes appear due to SIGFPEs in the surface part, typically connected to subroutines from the explicit snow scheme. Now awaiting for updates in the branch (including SURFEX8.1 code + MF updates in cy43t) before further testing. More info about the tests in cy43 thread in hirlam Forum ([http://hirlam.org/index.php/forum/2-harmonie-system/1302-cy43?limitstart=0&start=15]) and here: [https://hirlam.org/trac/wiki/HarmonieClimate/HCLIM43]
+   > 
+   > Emily: Is testing harmonie-43t2_climate over the Irish operational domain. Encounters the same SIGFPEs problem related to explicit snow scheme as Samuel.
+   > 
+   > Patrick: Has now replaced SURFEXv8.0 in harmonie-43t2_climate with SURFEX8.1 based on the new SURFEX_NWP branch in the SURFEX Git repository. Is currently solving compilation problems related to change of type variables in SURFEX8.1 which requires corresponding changes in the mse part of HARMONIE-AROME. Hopefully an update to SURFEXv8.1 will help the snow-related SIGFPEs problems reported by Samuel and Emily. Also, activation of MEB in harmonie-43t2_climate does not work yet. Maybe also related to SURFEX version...
+   * '''SU3.1.2	By namelist modifications, parameter tuning and/or code modifications try to reduce any biases identified in SU3.1.1 (Samuel, Patrick, Mariken, Katya, Nikolai, Bolli, Emily, John, Trygve, Patrick LM, Aaron Boone)'''
+   * '''SU3.1.3	Based on the outcome of SU3.1.2, repeat the simulations for different domains as done in SU3.1.1 and evaluate the performance. This version of HARMONIE-AROME will be used for coupling to surface data assimilation in SU1. (Samuel, Patrick, Mariken, Katya, Nikolai, Bolli, Emily, John, Trygve)
+ * '''SU3.2 Develop methods for parameter optimization in SURFEX (ISBA) and apply the method on an operational cycle to reach better performance. (John)'''
+ * '''SU3.3 Examine the potential use of, until now, non-utilized options in TEB. (Katya)'''
+      > No activities yet.
+
+=== SU4: SURFEX: development of model components	===
+
+ * '''SU4.1 Develop a physically based glacier model for SURFEX based on the Explicit Snow Scheme. Includes glacier albedo aspects. (Bolli, Kristian, Ruth)'''
+ * '''SU4.2 Further development of SICE. (Yurii, Bin, Katya)'''
+ * '''SU4.3 Evaluate the orographic/radiation implementation in Cy43 and apply further modifications/ developments. (Laura, Yann Seity, Alexandre Mary)'''
+ > Not started yet
+ * '''SU4.4 Evaluate and further modify/develop the orographic roughness parameterization. (Laura)'''
+ > Actually, not orographic roughness but orotur. Preliminary MUSC experiment framework has been set up in cy40, cy43, with additional code and namelist variables. More thinking in playing needed, 3D aspects together with METCOOP and Vedurstofa colleagues.
+ * '''SU4.5 Merge FLake modifications in cy40h into the SURFEX repository as contribution to SURFEX general development. (Katya)'''
+      > Not done yet. But FLake related development reported by Katya includes: Experiments with FLake are analyzed, with the recommendations for operational implementation in MetCoOp. While analyzing the experiment results, the problem with the deep soil temperature in coastal areas was discovered. Technical problems with reproductability between FLake and WATFLUX, which were reported by Daniel when merging Flake branch into trunk, are solved.
+ * '''SU4.6 Further development of MEB which can include separate soil column under snow/non-snow, snow albedo in forest, effect of intercepted snow on albedo. (Patrick, Aaron Boone)'''
+ > Aaron reports: MEB results are looking good in more and more applications slowly but surly....BUT...indeed, we find that MEB sublimates too much snow in the canopy it seems, based on ESMSnowMIP and SIM results...so it seems we might need to tune some parameters a bit. I'll be looking at this soon.
+
+=== SU5: Assess/improve quality of surface characterization ===
+
+ * '''SU5.1 Compile common consortia wide versions of physiography databases based on regional/domain specific modifications. (Bolli, Katya, John, Patrick, Mariken, Suzana Panežić, Samuel)'''
+      > Activity started within NORDNWP project first for the percentage of sand and clay data, see e. g. https://hirlam.org/trac/wiki/Meetings/Surface/NordNWP_PGD_201710
+      > For the percentage of sand and clay, the new fine resolution dataset Soilgrids (http://www.isric.org/explore/isric-soil-data-hub) was proposed by Matti Horttanainen as a basis for further developments. The new dataset was technically implemented by Matti, Katya and Laura into cy43, branches/harmonie-43rb.
+ * '''SU5.2 In collaboration with the SURFEX team, perform eventual updates of SURFEX web-site publically available physiography databases when it is considered suitable. (Katya, Patrick)'''
+ * '''SU5.3 Participate in ECOCLIMAP-SC database developments, utilize and examine it for 1 km resolution test domains. Participate in the lake database developments. (Patrick, Katya)'''
+      > Margarita Choulga, who was expected to develop the lake database, moved to ECMWF. But she found a new person to continue the work. This person is Olga Toptunova from weather service center in Saint-Petersburg. Margarita agreed with EUMETNET about the financial support for this work. Olga visited Helsinki, to start working with the lake database. The first step to continue is to add new data from the dataset of Ryanzhin (personal communication). This dataset is very large, but it needs the quality check.
+ * '''SU5.4 Test of ECOCLIMAP-Second Generation in the high-resolution test domains (see HR1) and, when considered relevant, complement the databases with more accurate information based on e.g. national data. (Patrick, Samuel, Kristian)'''
+ * '''SU5.5 Document IMO projects related to ECOCLIMAP/PGD development (Siggi)'''
+
+=== SU6: Coupling with sea surface/ocean ===
+
+ * '''SU6 Coupling with sea surface/ocean'''
+   * '''SU6.5.2 Assess the existing wave models and make recommendation for which one to implement in the ALADIN-HIRLAM system. Also recommend coupling strategy, e.g. direct subroutine call from SURFEX or via coupler OASIS. (Lichuan)'''
+   > The OASIS-MCT will be used for the coupling.  The WAM and WW3 are the two options models. The comparison are ongoing.
+   > Good thing with WAM is that it is ued by ECMWF so boundary conditions would be available. However, WAM needs to run on a regular grid.
+   > Good thing with WW3 is that it can run on any grid. However, the boundary conditions needs to be solved as a pre-processing.
+   * '''SU6.5.3	Implementation of wave model into the ALADIN-HIRLAM system. (Lichuan)'''
+   > ongoning
+
+
+== Additional information ==
+
+ * Katya reports:
+   * The project application on snow data assimilation was submitted to Academy of Finland. If successful, it will allow to recruit people for this developments. This is related to SU1.3 (Further develop snow analysis and assimilation of snow extent in CANARI/MESCAN/SODA. Developments on snow analysis in CANARI for AROME-France) and  SU2.1 (Examine available satellite snow-extent (and Snow-Water Equivalent products?) products and make them available in ODB).
+   * Activities related to the Snow Data Assimilation school in Bormio, Italy, March 12-16: planning, contacting people, preparing lectures and exercises. This goes in parallel with SU1.3 and SU2.1. 
+   * Another lake activity, which started during past months, is to study the effects of lakes in the region of Fennoscandia and Northern Russia from HIRLAM operational archives. The idea is first to select the interesting cases of lake effects from satellite data, and to see how they are reproduced by the model. For example, from the satellite data we can clearly see cases of suppressing convection in summer, or enhancing convection in winter over open water. This case selection was already started by a forecaster from Riga Svetlana Tomaka.  
+   * Publication of Yurii, Katya and Mariken about SICE developments is (hopefully today) submitted by Yurii to GMD. This is related to SU4.2 (Further development of SICE). 
+ * Emily reports:
+   * As you know we've been trying to fix a temperature bias before we upgrade to cycle 40 - our efforts are still on-going but I'll try to summarise in case it's of interest since we haven't ruled out the surface as being part of the problem.
+   * We compared the covers from ecoclimap 1 and 2 - they are different.
+   * We then looked at clear sky days and some wet cloudy days.
+   * Turning off HARATU improves the bias in temperature for us but degrades winds.
+   * ECO-1 has shorter grass rather than shrubs for Ireland - this allows for higher winds (we are now checking what happens using ECO-1 with HARATU off). It makes the winds worse in cloudy/wet case but slightly improves temp but cy37 is still better.  The clear case has the largest biases at night. We've looked at soil temperatures compared to analysis and see a trend going from SW to NE consistent with the change in cover type from ECO-1 to 2.
+ * Trygve reports:
+   * This is maybe more system-related work but still surface connected. SURFEX forcing and IO development ([https://github.com/metno/offline-surfex-forcing]) has lately included:
+     * Support for NetCDF via netcdfpy [https://github.com/metno/netcdfpy netcdfpy]. Also via fimex can give !NetCDF support. And in addition UK !MetOffice has the Python tool [http://scitools.org.uk/iris/ iris] which could be used.
+     * Support for GRIB via eccodes by ECMWF
+     * Tests are ongoing
+   * Currently the tool supports:
+     * GRIB and !NetCDF for input forcing
+     * !NetCDF for output forcing
+     * SURFEX formats: !NetCDF (limited to time series), ASCII (both PGD and time series), TEXTE.
+   * Supported projections (CGRIDTYPE):
+     * IGN
+     * CONF_PROJ
+     * LONLATVAL
+     * LONLAT_REG
+   * [https://docs.google.com/document/d/1SlT_3YdwAPpmc_oigrCZiXwhYGvgyHS-2TM5bPawvyI Looking into alternatives for CANARI] which includes:
+     * Pre-prosessing of new [https://github.com/metno/TITAN NETATMO] observations.
+     * In gridpp T2M is implemented but needs testing (looks exciting for NETATMO stations). Rh2m and snow still need ti be implemented.
+     * Forward the gridpp analysis to SODA via !NetCDF or ASCII.
+     * Inline experiments are needed to investigate stability and quality 
+     * Diagnostics and monitoring via python and bokeh
+
+
+
+

@@ -1,0 +1,8 @@
+http://hirlam.org/index.php/rolling-plan
+
+'''Ph2.6''' Ensure consistency between the current cloud microphysics and radiation schemes. Import effective size (radius) of cloud ice, cloud liquid, graupel, snow and rain particles from microphysics to the radiation schemes. Externalise effective radius calculations from inside IFS, ACRANEB2 and HLRADIA; develop, recode, test within MUSC cycle cy43 (45) [Karl Ivar, Emily]
+
+'''Ph2.7''' Radiation: Continue the comparison of the IFS, hlradia and Acraneb-2 short-wave and long-wave radiation schemes, consider as multi-physics options in HarmonEPS, work towards a unified radiation scheme in cooperation with ECMWF [Laura, Emily, Kristian]
+
+'''Ph2.8''' Aerosol: Prepare and test introduction of near-real-time aerosol for calculating the direct radiative effect of aerosols and cloud-aerosol interactions. Prepare the interfacing of an external library with aerosol and chemical parameterizations [Laura, Kristian]
+

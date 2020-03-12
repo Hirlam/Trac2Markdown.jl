@@ -1,0 +1,181 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''HIRLAM System Installation''' =
+[[Center(end)]]
+
+== Installation on ECMWF computer platform ==
+
+ * Preparation 
+   * You need an user account at the ECMWF computer platform (ecgate.ecmwf.int and c1a.ecmwf.int)
+   * You need some allocated CPU and storage quota on ecgate.ecmwf.int. Contact your local ECMWF contact point for information
+   * You need to have your user-id included in the group 'hirlam' at the ECMWF platform
+     * if uncertain, check if your ECMWF usewr-id $uid belongs to group hirlam 
+{{{
+     groups $uid
+}}}
+     * write to ulf.andrae@smhi.se to request your 'hirlam' group membership
+ * Perform HIRLAM run 
+   1. link the top level Hirlam script
+{{{
+   alias Hirlam ~nhz/Hirlam
+}}}
+   1. set up an experiment directory $expdir under $HOME/hl_home
+{{{
+   mkdir -p $HOME/hl_home/$expdir
+   cd $HOME/hl_home/$expdir
+}}}
+   1. let $VERSION be one of the following
+{{{
+   7.3                 # the latest stable version of the official HIRLAM release 7.3, or
+   trunk               # the latest HEAD version of HIRLAM repository leading to the next release: (NOT ENCOURAGED UNLESS FOR TESTS7DEVELOPMENTS)
+}}}
+   1. do
+{{{
+   Hirlam setup -r $VERSION
+}}}
+   1. if applicable, 'check out' relevant source codes or scripts and do modification
+{{{
+   Hirlam co scripts/Env_domain             
+   Hirlam co scripts/Env_expdesc
+   Hirlam co spdy/gemini_tl.F
+}}}
+   1. launch experiment, e.g.,
+{{{
+   Hirlam start DTG=2006030806 DTGEND=2006030812 LLMAIN=12
+}}}
+   1. You can follow your model runs either via links in the GUI pop-up window, or by rsh-login to hpcd and monitor log files in the directory trees under /ms_dir/ms/$country_code/$user/$expdir/
+   1. The collection of log files are available in ecgate:/scratch/ms/$country_code/$user/hl_home/$expdir in form of HL_*html
+   1. The collection of model results are available in hpcd:/ms_tmp/ms/$country_code/$user/hl_home/$expdir
+
+== Installing HIRLAM system on local platform ==
+
+ * Install, with internet and Subversion client available
+   1. set up a local HIRLAM source code directory
+{{{
+   mkdir $srcpath
+   cd $srcpath
+}}}
+   1. download the HIRLAM source of one of the following kinds:
+{{{
+   svn co https://svn.hirlam.org/branches/hirlam-7.3 7.3            # for the last stable HIRLAM release 7.2 (recommended), or
+   svn co https://svn.hirlam.org/trunk                              # for the latest trunk version of the main repository
+}}}
+ * Install, with local copy of svnroot available and Subversion client
+   1. set up a local HIRLAM source code directory
+{{{
+   mkdir $srcpath
+   cd $srcpath
+}}}
+   1. extract the HIRLAM source, assuming extracted repository in $svnrootpath
+{{{
+   svn co file://$svnrootpath/svnroot/branches/hirlam-7.3  7.3   # for the latest stable version of HIRLAM release 7.3, or
+   svn co file://$svnrootpath/svnroot/trunk                      # for the latest HEAD version, or
+   svn co file://$svnrootpath/svnroot/branches/chemgas           # for the branch 'chemgas'
+}}}
+ * Install, using a HIRLAM source code tarball
+   1. set up a local HIRLAM source code directory
+{{{
+   mkdir $srcpath
+   cd $srcpath
+}}}
+   1. extract the HIRLAM source, with a source code tarball
+{{{
+   tar -zxvf hirlam-7.3.tar.gz; mv hirlam-7.3 7.3    # for the latest tagged HIRLAM release, or
+   tar -zxvf trunk.tar.gz                            # for trunk version, available on ECMWF ecgate:/scratch/ms/dk/nhz/trunk.tar.gz
+}}}
+   1. Prepare data for performing HIRLAM experiments
+      * Climate data base
+      * Observation data
+      * Initial and Lateral boundary data, e.g. those from ECMWF, or larger domain HIRLAM model state data with full coverage over all points for the guest model domain
+
+== Configure a HIRLAM experiment and run ==
+
+   1. link the top-level Hirlam script.
+{{{
+   alias Hirlam $srcpath/$VERSION/hirlam/config-sh/Hirlam
+}}}
+   1. set up a local experiment directory
+{{{
+   mkdir -p $HOME/hl_home/$expdir
+   cd $HOME/hl_home/$expdir
+}}}
+   1. set up local configuration
+{{{
+   Hirlam setup -d $srcpath -h LinuxPC            # use the version under $srcpath/7.3
+   Hirlam setup -d $srcpath -r 7.3 -h LinuxPC     # use 7.3  under $srcpath/7.3 with LinuxPC architecture
+   Hirlam setup -d $srcpath -r trunk -h LinuxPC   # use the trunk version under $srcpath/trunk
+}}}
+   1. edit script config-sh/config.LinuxPC to correct data links etc. 
+   1. 'check out' some key scripts to modify experiment configuration, such as
+{{{
+   Hirlam co src/config/config.linuxgfortran      # if you use gfortran ...
+   Hirlam co src/config/config.ia32em_fftw3       # if you use ifort ...
+   Hirlam co scripts/Env_expdesc                  # edit this to choose alternative options
+   Hirlam co scripts/Env_input    # edit this file to specify location of input files for climate data base, observation, initial and lateral boundary
+}}}
+   1. launch experiment, e.g.,
+{{{
+   Hirlam start DTG=2006030806 DTGEND=2006030812 LLMAIN=12
+}}}
+
+== Cautions about use of unstable system code: trunk and evolving development branches ==
+
+Trunk and development branches in the HIRLAM repository, such as newsnow, are unstable codes which are also updated irregularly, with addition of features and fixes. Such moving codes, although available for the whole community,  are generally not recommended for general use. If your work involves serious evaluation of such code for development purpose, please remember to create your own sandbox in order to get a freeze version. You can do this by, e.g
+
+{{{
+   svn co -r 6718 https://svn.hirlam.org/branches/newsnow $SCRATCH/newsnow6718                   # to lock your code to newsnow branch up to changeset [6718]
+}}}
+and afterwards point your experiment on that sandbox:
+
+{{{
+Hirlam setup -r newsnow6718 -d $SCRATCH            # the option "-d $SCRATCH" in the above example refers to the subdirectory path in which the sanbox is placed.
+}}}
+
+With sandbox, you may also do editing directly on the code, and update the sandbox (together with your local modifications) by using commands like 
+{{{
+   svn diff                                                          #  to keep trac on your local changes, and 
+   svn update https://svn.hirlam.org/branches/newsnow                #  to update to the latest newsnow branch
+   svn merge -r 6723:6725 https://svn.hirlam.org/trunk/hirlam        #  to cherry-pick certain changesets [6724], [6725] from trunk)
+}}}
+
+== Local compilation of HIRLAM code ==
+
+If you are just interested to compile HIRLAM code without using HIRLAM script system for cycling experiment, you may follow the procedure below:
+
+ 1. create an source code directory $LOCALTMP
+{{{
+   mkdir -p $LOCALTMP; cd $LOCALTMP
+}}}
+ 1. install the HIRLAM source
+{{{
+    svn co https://svn.hirlam.org/branches/hirlam-7.3               # get it from HIRLAM repository directly: This requires svn client installed in your platform, or
+    tar zxvf hirlam-7.3.tar.gz                                      # start from a tarball
+}}}
+ 1. edit or add, if necessary, the configuration specification suitable for your architecture under src/config/config.$ARCH, such as ARCH=linuxgfortran or linuxpgi, or linuxifort etc., and set necessary library path correctly (e.g. the path for HDF 4 library if climate generation is needed)
+ 1. compile, with the binaries located in $ARCH/bin directory
+{{{
+   $MAKE ARCH=$ARCH $target     where 
+          MAKE=gmake or make;
+          target=" " or "all" will compile entire HIRLAM software;
+                =beprep  will compile all that is necessary for interpolation
+                =hlprog.x compile the grid-point forecast model                                           
+}}}
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

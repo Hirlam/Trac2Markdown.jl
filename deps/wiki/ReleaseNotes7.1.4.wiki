@@ -1,0 +1,33 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1.4''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of 7.1.4 ==
+
+Hirlam 7.1.4 is a bug correction release over the current Hirlam reference system, [wiki:Hirlam_7.1].3, which corrects a deficiency in the reference condensation scheme (STRACO) on parameterisation of precipitation release. The deficiency has been found to be associated with unrealistic rainfalls at sub-freezing conditions. The updated code also contains minor technical corrections on the previous code.
+
+In connection with the F90 code transition in Hirlam 7.1 for physical parameterisation, total cloud condensate has been split into, repectively, specific cloud water and cloud ice. Also 'convective precipitation' and 'stratiform precipitation' should be split up in separate rain- and snow fluxes throughout the precipitation routine. Unfortunately, the original formulae related to precipitation release in STRACO were not recoded entirely correctly during the transition, causing a too high fraction of rain out of total precipitation at sub-frezing temperatures. With the correction in 7.1.4 (changeset [5711], Sass), the previous rain/snow fraction has been re-established, which is considered more realistic. In addition, a minor bug correction was implemented in a formula related to evaporation of precipitation. 
+
+7.1.4 also contains the script modification to correct on a too loose data rejection criterion for screening of AMSU brightness temperature data (changeset [5636], Dahlgren) . In addition, the correction to avoid absolute zero humidity in diagnosis of CAPE has been included (changeset [5692], Tijm).
+
+Overall the meteorological impact of the code update is estimated to be minor. Prior to the release, the corrected code has been tested for a 2-week long winter episode with satisfatcory results.
+
+Hirlam 7.1.4 now replaces that of Hirlam 7.1.3 as official Hirlam reference version. 
+
+The complete source code of Hirlam 7.1.34 can be obtained by using either
+
+ * Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.1.4
+}}}
+ * or source code tarball, available from ECMWF ecgate:/scratch/ms/dk/nhz/hirlam-7.1.4.tar.gz or ecfs:/hirlam/src/tar/hirlam-7.1.4.tar.gz which contains the sandbox (check-out version) of the Hirlam 7.1.4
+
+== How to run Hirlam 7.1.4 ==
+
+See instructions on wiki page for [https://hirlam.org/trac/wiki/Hirlam_7.1#RunningHirlam7.1ontheECMWFplatform ECMWF] and [https://hirlam.org/trac/wiki/Hirlam_7.1#Installandrun7.1onnon-ECMWFplatforms non-ECMWF ] platforms.
+
+== Acknowledgement ==
+
+Laura Rontu reported the problem with unrealistic rainfall under sub-freezing conditions in the FMI-RCR runs and Bent Hansen Sass provided the correction. Per Dahlgren detected problems with the too loose screening criterion for AMSU data and suggested solution. Sander Tijm provided solution to avoid crash during diagnosis step in case of low humidity.

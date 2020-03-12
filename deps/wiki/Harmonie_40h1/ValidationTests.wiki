@@ -1,0 +1,276 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Validation of HARMONIE-40h1'' ==
+
+[[Center(end)]]
+
+=== Latest Status about test ===
+
+'''20160323''': 
+Recently an error in microphysics was discovered in METCoOp (Karl Ivar).
+Preliminary testing of CY40 including the bugfix
+gives promising results.
+A negative temperature bias in most CY40 tests, mainly in winter season,
+will presumably be much reduced or eliminated when implementing the bugfix.
+
+As a consequence, it has been decided 
+in the Hirlam-C Management to do additional tests with a new target version including the bugfix.
+The tests are done with high priority in order not to significantly delay the release of CY40
+for preoperational use. As a minimum these tests must be done for the RCR domains used in METCoOp 
+and AEMet respectively.
+
+Periods to be run are, for
+ 
+METCoOp: Jan-Feb 2015 and Aug-Sep 2014 
+ 
+AEMet:   Sep     2012 and Feb     2016 
+
+Finally, due to some uncertainty regarding impact of radiation updates
+a test will be added with namelist updates for radiation switched off. 
+
+The related new two targets may be briefly summarized as follows: 
+
+1) NEW TARGET = cycle 40h1.beta5 + haratu update + KI bugfix
+
+2) NEW TARGET minus the radiation changes that entered in cycle 40h1.beta5
+
+Possibly supplementary tests with these settings will be done at other Hirlam centres.
+
+When tests are completed the results will be validated,
+ 
+and a recommendation for standard settings for CY40h1.1 will be made.
+
+  
+'''20160218''': So far most of services have carried out the recommended tests for validation of 40h1.1.beta5
+    with additional extensions for various existing/new options. Experiments are mainly in following categories
+  * validation test of 40h1 with minimum and target scenarios for operational domains
+  * additional test for main options on 1) HARATU and updates, 2) cubic/quadratic/super linear grids
+  * further tests on other options (radiation, cloud/microphysics schemes, ice scheme pi factors)
+
+
+LIST of main tests:
+
+|| Institutes || model versions || domains || period ||  "minimum", "targeted" configuration  || upper air DA || gmted2010 || cubic/quadratic/super linear grid || haratu update test ||  additional options  ||  testers ||
+|| HIRLAM-B  || 38h1 branch, 40h1 beta4, 40h1 beta5  || DKCOEXP  || 201502, 201408  || minimum, target || 3DVAR || gtopo30 || cubic, linear || || ||   Xiaohua Yang, Ulf Andrae ||
+|| DMI  || 38h1 branch, 40h1 beta 5  || NEA, IGA, METCOOP25B, ICELAND || multiple periods  || target || blending  || gmted2010  || cubic, quadratic, linear || yes || pi factors, auto rain conversion ||  Xiaohua Yang, Shuyu Zhuang, Alexandrer Mahura ||
+|| MetCoOP  || 38h1.2, 40h1 beta5, 40h1-beta5-updHARATU-bf || MetCOOP25B || multiple periods  || minimum, target || 3DVAR  || gtopo30, gmted2010  || cubic, quadratic, superlinear, linear || yes || ice scheme, llcrit, radiation, pi factor  ||  Ulf Andrae, Patric Samuelsson, Ole Vignes, Esbjørn ||
+|| AEMET  || 38h1.2, 40h1 beta5, 40h1-beta5-updHARATU-bf || Iberia XL, Iberia XXM, Canarias || multiple periods || minimum, target ||  3DVAR  || gtopo30, gmted2010  || cubic, linear || yes  || || Javier Calvo  ||
+|| IMO  || 38h1.2, 40h1 beta5  || ICELAND || [https://hirlam.org/portal/validation/40h1/cy40h11b5_201207 201207], 201209, [https://hirlam.org/portal/validation/40h1/cy40h11b5_201211/ 201211]  || minimum, target || blending  || gtopo30  ||  ||   ||  ocndt2 ||  Sigurdue Thorsteisson, Bolli Palmason ||
+|| KNMI || 40h1 beta5  || NETHERLANDS || 201408, 201502  || target || 3DVAR  || gtopo30  || linear || yes   ||  ||  Wim de Rooy ||
+|| FMI || 38h1.2, 40h1 beta5  || Scandinavia25 || 201510  || target || 3DVAR  || gtopo30  || linear || yes   || llcrit  || Carl Fortelius ||
+|| METIE || 38h1.2, 40h1 beta5  || IRELAND25 || 201401, 201408, 200912   || minimum, target || 3DVAR  || gtopo30  || linear ||     ||  || Eoin Whelan, Emily Gleeson ||
+|| !LHMS || 38h1.2, 40h1 beta5  || LITHUANIA ||    || minimum, target ||   || gtopo30  || linear ||     ||  ||  ||
+'''20151222''': validation of 40h1.1.beta5 for second phase, in which all services are involved in validation of the preliminarily recommended options as included in the "target" scenarios (haratu, llcrit, radiation modifications), have been ongoing. It is estimated that a 40h1rc1 will be tagged in end of Jan 2016 with management of the new HIRLAM-C management team. Current tests involve now HIRLAM services at DMI, SMHI, met.no, METIE, FMI, KNMI, AEMET and LHMS. Additional tests have been configured for validation, sensitivity or tuning purposes. These additional tests include,
+  * physics options
+    * turbulence: haratu tuning (KNMI)
+    * cloud and microphysics (SMHI, DMI)
+    * radiation configuration (AEMET, METIE)
+    * soil analysis tuning tests ("pi factor": DMI, !MetCoOp)
+  * test on cubic grid (DMI)
+  * test on use of higher resolution/corrected PGD data base (DMI, IMO)
+'''20151204''': validation of 40h1.1.beta5 for first phase, in which two configuration scenarios, "minimum" and "target", for three episodes on default domain DKCOEXP, are compared to that of stable 38h1 branch, is now finished. see also [http://hirlam.org/index.php/forum/2-harmonie-system/1197-harmonie-40h1 the description on HIRLAM forum]. Currently, extended tests for operational domains and for various themes are ongoing. These include,
+  * test on operational domains for AEMET, DMI, DMI-IMO, IMO, !MetCoOp, METIE, AEMET, LHMS.
+  * test on physics (turbulence, cloud scheme, microphysics, radiation configuration, soil analysis etc.)
+  * test on cubic grid
+  * test on use of higher resolution/corrected PGD data base
+'''20151120''': validation of 40h1.1.beta5 for two scheduled scenario has now advanced to more than half of the scheduled test period and preliminary results points to
+  * between 40h1.1beta5 at "minimum setting" (as defined below) and that of operational 38h1.2, scores are comparable;
+  * between 40h1.1beta5 at "targeted setting" (with main factor of HARATU, modification in radiation setting, LLCRT), there is an overall improvement of scores especially in surface wind. The new version results in reduced cloud cover which appears mostly an improvement. At the same time, there is tendency of reduced T2m, which is a degradation for T2m bias as the reference is negatively biased. 
+It is judged that the 'above targeted' setting can be basis for next phase of validation in which member services are invited to conduct extended tests with a deadline of results by Dec 15.  In particular, tests shall be planned with following design
+  * as minimum, test the above 'targeted scenario" against operational domains at the member service with a check on performance against 1) current operational setting, or 2) 38h1.2.
+  * additional test to understand which contributes most to the increased T2m bias and possible remedy.
+  * additional tests are welcome to test 1) additional physics options and tuning; 2) gmted2010 and/or other improved  climatological datasets; 3) cubic grid; 4) data assimilation aspects, 5) etc. etc.
+It is hoped that the reference default can be adjusted to reflect these test results for final 40h1.1 tagging.
+
+'''20151115''':40h1.1.beta5 is tagged which reset gtopo30 as default topographic database. Baseline validation test using beta 5 now starts.
+
+'''20151111''':deficiency in 40h1.1.beta4 is now identified to be associated with recent changes with implementation of gmted2010. Correction for this is to be done. For now the default orographic data source is put back to gtopo30.  A 40h1.1.beta5 will be tagged as basis for extended validation test.
+
+'''20151109''':Since tagging of 40h1.1.beta4 in early Nov 2015, validation test starts following the strategy as described below. We are now in phase 1 for initial meteorological validation and it has been found that the default 40h1.1.beta4 is not healthy. See the validation links in the following section. We call a temporal halt on other extended test actions before the deficiency is diagnosed. A 40h1.1.beta5 may likely be tagged as basis for extended validation test.
+
+
+=== Strategy of test ===
+
+Phase 1, Baseline test (from tagging of 40h1.beta4 to Nov 20 2015)
+ * Baseline for validation test is 40h1.1beta4 in early Nov 2015. The version has however been found to be buggy. Instead, baseline is redefined as 40h1.1.beta5.
+ * Comparison of 38h1.2 vs baseline 40h1 for selected episodes with reference configuration/domains
+Phase 2 (Nov 20 to Dec 15) Validation test with extended scenarios 
+ * Preliminary targeted configuration is made for an extended validation groups  (RCR centers + all services) to participate to cover wider domains/scenarios/configuration options.
+Phase 3 (Dec 18 to March 20)
+ * release of rc1 for further/final tuning/tagging
+ * real time run and monitoring at RCR centers
+
+=== Baseline test in phase 1 ===
+
+Test episodes, with LLMAIN=24, WARMUP_PERIOD=5,  DKCOEXP domain
+
+ 1) !2015092000 -- !2015101518 (under-estimation of spring fog/low cloud episodes in high pressure/low wind situation. Consider to extend to full month later. 
+ 2) !2015012000 -- !2015031018 (relatively cold period, later with excessively predicted spring fog/low cloud episodes) 
+ 3) !2014081000 -- !2014091618, (several episodes of strongly convective events including that of the Copenhagen-Malmo flashflood case) 
+
+ * 38h1.2 control, default (DKCOEXP, 3DVAR)  Done!!
+  * NRADIP=2
+  * RSWINHF=RLWINHF=0.7
+  * TOPO_SOURCE=gtopo30
+  * TSTEP=75s
+  * (pre-LHARATU)
+  * (Pre-LLCRIT)
+
+ * minimum setting 
+   *) with 40h1.1.beta.4 (check of meteorological reproducibility between 40h1.1beta4 and 38h1.2). This is interrupted after initial diagnosis of results and instead, 40h1.1.beta.5 is used.  (~snh/hm_home/40h11b5_min_20150920, ~snh/hm_home/40h11b5_min_20150120, ~snh/hm_home/40h11b5_min_20140810)
+    * NLWLIQOPT=0 | MF operational 0
+    * NSWLIQOPT=0 ! MF operational 0
+    * NLWICEOPT=1 ! MF operational 1
+    * NSWICEOPT=1 ! MF operational 1
+    * NRADIP=2 ! before 32R1 default=3 EC 2 MF
+    * NRADLP=2 ! before 32R1 default=2 EC 2 MF
+    * NINHOM=1 | before 32R1 default=1
+    * LHARATU=F, 
+    * TOPO_SOURCE=gmted2010 (in beta 4) and TOPO_SOURCE=gtopo30 (in beta 5) and
+    * LLCRIT=F,
+    * TSTEP=75s
+ 
+ * targeted setting (aiming for 40h1.1rc1/40h1.1)
+  * (preliminarily) targeted setting for 40h1rc1/40h1 with baseline of 40h11beta5: initially with 40h1.1beta4 as basis, changed to 40h1.1beta5 after tagging of 40h1.1.beta5.  (~nhe/hm_home/40h11b5_tgt_20150920, ~nhe/hm_home/40h11b5_tgt_20150120, ~nhe/hm_home/40h11b5_tgt_20140810)
+    * NLWLIQOPT=2  ! replaces NLIQOPT before 32R1 ECMWF 2 | MF operational 0
+    * NSWLIQOPT=3  ! replaces NLIQOPT before 32R1 ECMWF 2 | MF operational 0
+    * NLWICEOPT=3  ! replaces NICEOPT before 32R1 ECMWF 3 | MF operational 1
+    * NSWICEOPT=3  ! replaces NICEOPT before 32R1 ECMWF 3 | MF operational 1
+    * NRADIP=3            ! before 32R1 default=3 EC     2 MF
+    * NRADLP=2            ! before 32R1 default=2 EC     2 MF
+    * NINHOM=0
+    * LHARATU=T, https://hirlam.org/trac/changeset/14385
+    * TOPO_SOURCE=gtopo30, 
+    * LLCRIT=T, https://hirlam.org/trac/changeset/14374
+    * TSTEP=75s
+
+=== Phase 2, extended validation test ===
+
+ * Minimum: test on operational domains at operational centers using the above targeted settings or settings similar to,
+   * AEMET: IBERIAxl_2.5
+   * !MetCoOp: MetCoOpB 
+   * DMI: NEA
+   * DMI/IMO, IGA
+   * FMI:Scandinavia 
+   * IMO, ICELAND
+   * LHMS 
+   * KNMI
+   * METIE
+ * !Voluntary/Optional tests
+   * additional test as recommended by cloud working group
+   * additional test as recommended by radiation working group
+   * comparison between EDMFM+CBR, EDMFM+HARATU, or EDKF+CBR
+   * test of prognostic sea ice temperature
+    * !MetCoOp
+=== Phase 3, additional tests and tuning experiments ===
+   * tuning of HARATU  (Wim De Rooy, Xiaohua Yang, Ulf Andrae, Carl Fortelius)
+   * test on cubic, quadratic, "superlinear" or linear (default) grids, and sensitivity on timestep (Xiaohua Yang, Ole Vignes, Ulf Andrae)
+    * Background. Following the work at ECMWF, Mariano Hortal (AEMET) implemented cubic grid scheme as an alternative to the current linear grid scheme for projection of waves on grid point space. The scheme, if tested successful, has a potential for quicker execution for same grid resolution and same time step size. Further, use of cubic grid allow longer time steping from dynamics point of view. 
+    * Initial tests with cubic grids showed satisfactory results, with exception for area with orography (Norway, Iceland) especially for surface wind. Further tests have been done to examine performances with quadratic grid and superlinear grids with hope to find suitable compromise between efficiency gain and quality.
+    * HOWTO. To run 40h1.1beta5 with cubic grid, do following
+      * Change in sms/config_exp.h so that GRID_TYPE=CUBIC/QUADRATIC; LGRADSP=no
+      * Change in nam/harmonie_namelists.pm so that 'RDAMPDIV','RDAMPPD','RDAMPQ','RDAMPT','RDAMPVD','RDAMPVOR' are all set to 20000000, i.e., with no horizontal diffusion.
+      * IGA, NEA, [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_cubic/ DKCOEXP-201502, also with removal of pi factor], [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_cubic_201408/ DKCOEXP-201408, also removal of pi factor]  
+    * test about cubic grid and smoothing of orography ( Mariano Hortal, Xiaohua Yang)
+   * test on PGD data base (gtopo30/gmted2010, +local correction)
+    * BACKGROUND: current HARMONIE default uses gtopo30 data for topography which is at the resolution of 1 km. Currently, a setup has been made (by Esbjørn Olsson and Ulf Andrae, SMHI) to enable use of gmted2010 data and at ECMWF, Bolli Palasson (IMO)  and Xiaohua yang (DMI) have tested a setup to use gmted2010 data at a global resolution of 250m with exception of Iceland and Greenland, in which higher resolution, corrected data is used. gmted2010 itself is an update on top of gtopo30.
+    * HOWTO: to run 40h1.1beta5 with gmted2010, do following
+      * Change in sms/config_exp.h so that TOPO_SOURCE=gmted2010
+      * Change in Env_system so that "export GMTED2010_INPUT_PATH=/scratch/ms/dk/nhz/climatedata/GMTED2010"
+    * [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_gmted DKCOEXP], NEA,  IGA
+   * test about sso
+    * IGA
+   * test of warm rain tuning (bhs) + HARATU  (DMI)
+    * [https://hirlam.org/portal/validation/38h1/haratubhs/ DKCOEXP with 38h12 and 40h1b5] 
+   * test of soil analysis relaxation (pi factor)
+    * [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_pi/ DKCOEXP ]
+   * local obs data stream and assimilation of radar, gnss, atms, local (external) sst/ice analysis... 
+    * no report so far
+   * ALARO physics (alaro 0, alaro 1)
+=== Lists of validation experiments ===
+
+||= Experiment names             =||= Domain   =||= Model Version =||= Physics =||= UA Ana =||= Surface Ana =||= Misc =||= Start of Episode =||= End of Episode =||= tester =||= Observation Verification =||
+|| 38h12_20140810           || DKCOEXP    || 38h1.2n         || AROME || 3DVAR || Canary-oimain || reference || !20140810 || !20140915 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201408_3/ obsver ] ||
+|| 38h12_20150120           || DKCOEXP    || 38h1.2n         || AROME || 3DVAR || Canary-oimain || reference || !20150120 || !20150315 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201502_3/ obsver ] ||
+|| 38h12_20150920           || DKCOEXP    || 38h1.2n         || AROME || 3DVAR || Canary-oimain || reference  || !20150920 || !20151030 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201510_3/ obsver ] ||yet                                                                             ||
+|| 40h11b4_min_20140810     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20140810 || !20140915 || snh || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201408_3/ obsver ] ||
+|| 40h11b4_min_20150120     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20150120 || !20150315 || snh || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201502_3/ obsver ] ||
+|| 40h11b4_min_20150920     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20150920 || !20151030 || snh || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201510_3/ obsver ] ||
+|| 40h11b4_tgt_20140810     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20140810 || !20140915 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201408_3/ obsver ] ||
+|| 40h11b4_tgt_20150120     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150120 || !20150315 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201502_3/ obsver ] ||
+|| 40h11b4_tgt_20150920     || DKCOEXP    || 40h1.1.beta.4   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150920 || !20151030 || nhe || '''done''' [https://hirlam.org/portal/oprint/validation/38h1/valid40_dkcoexp_201510_3/ obsver ] ||
+|| 40h11b5_min_20140810     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20140810 || !20140915 || snh || '''done''' [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201408_3/ compared to 38h12, tgt  ]   ||
+|| 40h11b5_min_20150120     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20150120 || !20150315 || snh || '''done'''  [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201502_3/ compared to 38h12, tgt ] ||
+|| 40h11b5_min_20150920     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !20150920 || !20151030 || snh || '''done''' [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201510_3/ compared to 38h12, tgt  ] ||
+|| 40h11b5_tgt_20150120_nopi     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + test without pi factor || !20150120 || !20150228 || nhe || [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_pi/ test of pi factor, compared to 38h12, tgt  ] ||
+|| 40h11b5_tgt_20150120_cubic  || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + test with cubic grid || !20150120 || !20150228 || nhe || [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_cubic/ test of cubic+w/o pi , compared to 38h12, tgt  ] ||
+|| 40h11b5_tgt_20140810_cubic  || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + test with cubic grid || !20150120 || !20150228 || nhe || [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_cubic_201408/ test of cubic+ w/o pi, compared to 38h12, tgt  ] ||
+|| 40h11b5_tgt_20150120gmted   || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + test with 250m gmted orography || !20150120 || !20150228 || nhz || [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_gmted test of gmted2010, compared to 38h12, tgt  ] ||
+|| 40h11b5_med_20140810     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum + haratu || !20140810 || !20140915 || nhe || [https://hirlam.org/portal/oprint/validation/38h1/valid40h11b5_dkcoexp_haratu_rad_201408/  compared to 38h12, min, tgt] ||
+|| 40h11b5_med_20150120     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum + haratu || !20150120 || !20150228 || nhe || [https://hirlam.org/portal/oprint/validation/38h1/valid40h11b5_dkcoexp_haratu_rad/  compared to 38h12, min, tgt] ||
+|| 40h11b5_irl_20140810     || IRELAND25  || 38h1.2, 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum, target || !20140810 || !20140915 || dui, dum || [https://hirlam.org/portal/validation/40h1/metie3840s 201408]    
+|| 40h11b5_irl_20140101     || IRELAND25  || 38h1.2, 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum, target || !20140101 || !20140131 || dui, dum || [https://hirlam.org/portal/validation/40h1/metie3840w 201401]                                                                            ||
+|| 40h11b5_irl_20091020     || IRELAND25  || 38h1.2, 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum, target || !20091201 || !20091231 || dui, dum || [https://hirlam.org/portal/validation/40h1/metie3840_200912 200912]       ||
+|| 40h11b5_min_20141210     || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum || !201412100 || !20150115 || snh || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_SICE SICE] ||
+|| 40h11b5_sice_20141210    || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum + sice || !201412100 || !20150115 || snh || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_SICE SICE] ||
+|| 40h11b5_tgt_20140810     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20140810 || !20140915 || nhe || '''done''' [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201408_2/ compared to 38h12 ] ||
+|| 40h11b5_tgt_20150120     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150120 || !20150315 || nhe || '''done''' [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201502_2/ compared to 38h12  ] ||
+|| 40h11b5_tgt_20150920     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150920 || !20151030 || nhe || '''done''' [https://hirlam.org/portal/validation/38h1/valid40h11b5_dkcoexp_201510_2/ compared to 38h12 ] ||
+|| 40h11b5_mcp_tgt_20140810 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20140810 || !20140916 || sur || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20140810/ MCP_20140810] [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20140810 Against DKCOEXP] ||
+|| 40h11b5_mcp_tgt_20150120 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150120 || !20150310 || sur || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150120/ MCP_20150120]   [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20150120 Against DKCOEXP] ||
+|| 40h11b5_mcp_tgt_20150920 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target  || !20150920 || !20151015 || sur || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150920/ MCP_20150920] [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20150920 Against DKCOEXP]  ||
+|| 38h12_mcp_20140810       || METCOOP25B || 38h1.2          || AROME || 3DVAR || Canary-oimain || reference    || !20140810 || !20140916 || fad || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20140810/ MCP_20140810] ||
+|| 38h12_mcp_20150120       || METCOOP25B || 38h1.2          || AROME || 3DVAR || Canary-oimain || reference    || !20150120 || !20150310 || fad || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150120/ MCP_20150120] ||
+|| 38h12_mcp_20150920       || METCOOP25B || 38h1.2          || AROME || 3DVAR || Canary-oimain || reference    || !20150920 || !20151015 || fad || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150920/ MCP_20150920] ||
+|| 40h11b5_opt_20140810     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target - opt prop changes  || !20140810 || !20140915 || snh || [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/DK_OPT_20140810/ DK_OPT_20140810] ||
+|| 40h11b5_opt_20150120     || DKCOEXP    || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target - opt prop changes  || !20150120 || !20150315 || snh || [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/DK_OPT_20150120/ DK_OPT_20150120] ||
+|| 40h11b5_mcp_min_20140810 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum  || !20140810 || !20140916 || sn8 || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20140810/ MCP_20140810]  [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20140810 Against DKCOEXP] ||
+|| 40h11b5_mcp_min_20150120 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum  || !20150120 || !20150310 || sn8 || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150120/ MCP_20150120] [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20150120 Against DKCOEXP] ||
+|| 40h11b5_mcp_min_20150920 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 minimum  || !20150920 || !20151015 || sn8 || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_20150920/ MCP_20150920] [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_DK_20150920 Against DKCOEXP] ||
+|| AIBxl_38h12 || IBERIAxl_2.5 || 38h1.2 || AROME || 3DVAR || Canary-oimain || 40h1 minimum  || !20120827 || !20120930 || mdk || [https://hirlam.org/portal/validation/38h1/aemet3840 compared to ECH, ONR, 40h1b5] || 
+|| AIBxl_40h11b5 || IBERIAxl_2.5 || 40h1.1.beta.5 || AROME || 3DVAR || Canary-oimain || 40h1 minimum  || !20120827 || !20120930 || mdk || [https://hirlam.org/portal/validation/38h1/aemet40 compared to ECH, ONR] || 
+|| 40h11b5_mcp_tgt_cm_20140810 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + GMTED + CUBIC  || !20140810 || !20140916 || snh || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_CM_20140810/ MCP_CM_20140810] ||
+|| 40h11b5_mcp_tgt_cm_20150120 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + GMTED + CUBIC  || !20150120 || !20150310 || snh || [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_CMNOP_20150120 MCP_CMNOP_20150120] ||
+|| 40h11b5_mcp_tgt_cmnop_20150120 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target + GMTED + CUBIC + no pi  || !20150120 || !20150310 || snh || [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_CMNOP_20150120/ MCP_CMNOP_20150120]  ||
+|| 40h11b5_tgt_oldpgd_201207 || ICELAND || 40h1.1.beta.5   || AROME || Blending || Canary-oimain || 40h1 target || !20120701 || !20120731 || ics || [https://hirlam.org/portal/validation/40h1/cy40h11b5_201207/ 201207] ||
+|| 40h11b5_tgt_oldpgd_201211 || ICELAND || 40h1.1.beta.5   || AROME || Blending || Canary-oimain || 40h1 target || !20121101 || !20121130 || ics || [https://hirlam.org/portal/validation/40h1/cy40h11b5_201211/ 201211] ||
+|| 40h11b5_opt_oldpgd_201207 || ICELAND || 40h1.1.beta.5   || AROME || Blending || Canary-oimain || 40h1 target -HARATU -OCND2 || !20120701 || !20120731 || ic0 || [https://hirlam.org/portal/validation/40h1/cy40h11b5_201207/ 201207]  ||
+|| 40h11b5_opt_oldpgd_201211 || ICELAND || 40h1.1.beta.5   || AROME || Blending || Canary-oimain || 40h1 target  -HARATU -OCND2 || !20121101 || !20121130 || ic0 || [https://hirlam.org/portal/validation/40h1/cy40h11b5_201211/ 201211]  ||
+|| cy40h11b5 || Scandinavia || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target w HARATU  || !20151005 || !20151031 || Carl Fortelius  || [http://fminwp.fmi.fi/WebgraF/cy40h11b5_vs_aro38h12 vs 38h1.2] ||
+|| cy40h11b5 || Scandinavia || 40h1.1.beta.5 + || AROME || 3DVAR || Canary-oimain || 40h1 HARATU update || !20151005 || !20151031 || Carl Fortelius  || [ http://fminwp.fmi.fi/WebgraF/cy40h11b5_146630_vs_aro38h12/index.html test with HARATU update ] ||
+|| KNMI_40h11b5_tgt || Netherland || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || 40h1 target w HARATU  || !20150120 || !20150228 || Wim De Rooy  || [https://hirlam.org/portal/validation/38h1/valid40h11b5_KNMI vs HARATU tuning ] ||
+|| 40h11b5_HAUP_20150120 || Netherland || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || HARATU tuning || !20150120 || !20150228 || Wim De Rooy  || [https://hirlam.org/portal/validation/38h1/valid40h11b5_KNMI vs 40h1b5 target, winter period ] ||
+|| 40h11b5_HAUP_20150120 || Netherland || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || HARATU tuning || !20140810 || !20140915 || Wim De Rooy  || [https://hirlam.org/portal/validation/38h1/valid40h11b5_KNMI_s/ vs 40h1b5 target, summer period ] ||
+|| 40h11b5_mcp_haup_20150120 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || HARATU tuning || !20150120 || !20150228 || sn8  || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_HAUP_20150120/ MCP_HAUP_20150120] ||
+|| 40h11b5_mcp_haup_20140810 || METCOOP25B || 40h1.1.beta.5   || AROME || 3DVAR || Canary-oimain || HARATU tuning || !20140810 || !20140916 || snh  || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_HAUP_20140810/ vs 38h1.2 and 40h1 target] ||
+|| MCP_20150120 || METCOOP25B || 40h1.1.beta.5 + haratu  || AROME || blending|| Canary-oimain || HARATU with tuning, linear grid || !20150120 || !20150301 || nhe  || [https://hirlam.org/portal/validation/38h1/MCPquadratic linear vs quardratic vs cubic grid]  ||
+|| MCP_20150120_quardratic || METCOOP25B || 40h1.1.beta.5 + haratu  || AROME || blending || Canary-oimain || HARATU with tuning, quadratic grid || !20150120 || !20150301 || nhe  || [https://hirlam.org/portal/validation/38h1/MCPquadratic linear vs quardratic vs cubic grid]  ||
+|| MCP_20150120_cubic || METCOOP25B || 40h1.1.beta.5 + haratu  || AROME || blending || Canary-oimain || HARATU with tuning, cubic grid || !20150120 || !20150301 || nhe  || [https://hirlam.org/portal/validation/38h1/MCPquadratic linear vs quardratic vs cubic grid]  ||
+|| IMO_201211 || ICELAND || 40h1.1.beta.5 + haratu  || AROME || blending || Canary-oimain || HARATU with tuning, linear grid || !20121020 || !20121130 || nhe  || [https://hirlam.org/portal/validation/38h1/IMOquadratic2 linear vs quadratic vs cubic grid]  ||
+|| IMO_201211_quadratic2 || ICELAND || 40h1.1.beta.5 + haratu  || AROME || blending || Canary-oimain || HARATU with tuning, quadratic grid || !20121020 || !20121130 || nhe  || [https://hirlam.org/portal/validation/38h1/IMOquadratic2 linear vs quadratic vs cubic grid]  ||
+|| IMO_201211_cubic2 || ICELAND || 40h1.1.beta.5 + haratu  || AROME || blending || Canary-oimain || HARATU with tuning, cubic grid || !20121020 || !20121130 || nhe  || [https://hirlam.org/portal/validation/38h1/IMOquadratic2 linear vs quadratic vs cubic grid]  ||
+|| || Iberia XL || 40h1.1.beta.5 + haratu  || AROME || 3DVAR || Canary-oimain || HARATU. linear or  cubic grid || 2012, 2015, 2016 ||   || Javier Calvo || [https://hirlam.org/portal/validation/40h1/aemet_40h1.html validation result portal as done at AEMET ]  ||
+|| || Iberia XXM   || 40h1.1.beta.5 + haratu  || AROME || 3DVAR || Canary-oimain || HARATU. linear or  cubic grid || 2013, 2014, 2016  ||   || Javier Calvo || [https://hirlam.org/portal/validation/40h1/aemet_40h1.html validation result portal as done at AEMET ]  ||
+|| || AIB Canarias  || 40h1.1.beta.5 + haratu  || AROME || 3DVAR || Canary-oimain || HARATU. linear or  cubic grid || Feb 2010   ||   || Javier Calvo || [https://hirlam.org/portal/validation/40h1/aemet_40h1.html validation result portal as done at AEMET ]  ||
+|| || AIB Iberia XL || 40h1.1.beta.5 + haratu upd  || AROME || 3DVAR || Canary-oimain || HARATU update || Sept 2012   ||   || Javier Calvo || [https://hirlam.org/portal/validation/40h1/AIBxlHRTupd-sep12 test of HARATU update for summer at AEMET ]  ||
+|| || AIB Iberia XL || 40h1.1.beta.5 + haratu upd  || AROME || 3DVAR || Canary-oimain || HARATU update || Feb 2016   ||   || Javier Calvo || [https://hirlam.org/portal/validation/40h1/nAIBxlHRTupd-feb16  test of HARATU update for winter at AEMET ]  ||
+|| 40h1b5_mcp_bf_tg1_20150120 || METCOOP25B || 40h1.1.beta.5 +bf tg1  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg1 || !20140810 || !20140916 || snh || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20140810 verification] ||
+|| 40h1b5_mcp_bf_tg2_20150120 || METCOOP25B || 40h1.1.beta.5 +bf tg2  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg2 || !20140810 || !20140916 || snh || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20140810 verification] ||
+|| 40h1b5_mcp_bf_tg1_20150920 || METCOOP25B || 40h1.1.beta.5 +bf tg1  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg1 || !20150920 || !20151015 || smx || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20150920 verification] ||
+|| 40h1b5_mcp_bf_tg2_20150920 || METCOOP25B || 40h1.1.beta.5 +bf tg2  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg2 || !20150920 || !20151015 || smx || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20150920 verification] ||
+|| 40h1b5_mcp_bf_tg1_20150120 || METCOOP25B || 40h1.1.beta.5 +bf tg1  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg1 || !20150120 || !20150310 || smi || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20150120 verification] ||
+|| 40h1b5_mcp_bf_tg2_20150120 || METCOOP25B || 40h1.1.beta.5 +bf tg2  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg2 || !20150120 || !20150310 || smi || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/MCP_BF_TGT1_20150120 verification] ||
+|| 40h1b5_mdk_bf_tg1_IBERIA-XL_sep12 || IBERIA || 40h1.1.beta.5 +bf tg1  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg1 || !20120901 || !20120928 || mdk || [https://hirlam.org/portal/validation/40h1/AIBxl_t2-sep12 verification] ||
+|| 40h1b5_mdk_bf_tg1_IBERIA-XL_mar16 || IBERIA || 40h1.1.beta.5 +bf tg1  || AROME || 3DVAR || Canary-oimain || 40h1 target + bf tg1 || !20160303 || !20160403 || mdk || [https://hirlam.org/portal/validation/40h1/AIBxl_t2-mar16 verification] ||
+
+
+
+
+== Real time monitoring runs with 40h1 ==
+
+ * !MetCoOp suite on !MetCoOpB domain
+
+ * AEMET suite on IBERIA domain
+
+== Final validation test of 40h1 rc1 ==
+

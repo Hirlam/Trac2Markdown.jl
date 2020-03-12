@@ -1,0 +1,193 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 35h1''' ==
+
+[[Center(end)]]
+
+== Highlights of Harmonie 35h1 ==
+
+Harmonie 35h1 is HIRLAM's adaptation to the IFS/ALADIN Cycle 35t1 released on Dec 15. 2008. On June 14, 2010, the latest update to the original release was made, with the tagging [source:tags/harmonie-35h1.4 harmonie-35h1.4],
+
+HARMONIE is the acronym for Hirlam's meso-scale forecast system (Hirlam Aladin Regional/Meso-scale Operational NWP In Europe). The HARMONIE system is the product of the HIRLAM-ALADIN joint project HARMONIE: Hirlam-Aladin Research towards Meso-scale Operational NWP in Europe.
+
+The highlights of Harmonie 35h1 include
+ * features in cycle 35T1 and subsequent 6 source code bug fixes 
+ * Hirlam's local source code updates including those for utilities
+ * Hirlam scripts update including those for running testbed, 4D-VAR, CANARI, forecasts with ALARO/AROME/ALADIN/HIRALD physics, post-processing
+
+== Source code and script updates in Harmonie-35h1 ==
+
+The alpha version, [source:tags/harmonie-35h1 harmonie-35h1], is tagged on Dec 2008. The stable branch for the system, [source:branches/harmonie-35h1 harmonie-35h1], has since been set up, with various bug fixes about source code, as well as corrections or additions in scripts and utilities. On May 7 2009, a snapshot of the stable branch is released, named as [source:tags/harmonie-35h1.2 harmonie-35h1.2]. On Dec 16 2009, the third snapshot of the stable branch is tagged, named as [source:tags/harmonie-35h1.3 harmonie-35h1.3]. On June 14, 2010, the latest snapshot of the stable branch is tagged, named as [source:tags/harmonie-35h1.4 harmonie-35h1.4]. The details about the source code and script updates can be found in [https://hirlam.org/trac/log/branches/harmonie-35h1?action=stop_on_copy&mode=stop_on_copy&rev=8183&stop_rev=7580&limit=500 the wiki-listing on updates on top of 35h1.3] between changeset [7570] and [8183]. The stable branch for harmonie-35h1 will continue to be maintained with further technical improvements and bug fixes when necessary-
+
+Beyond the news featured in 35T1 code series, the Hirlam adaptation includes following main additional features,
+
+ * [wiki:HarmonieSystemDocumentation/Evaluation/HarmonieTestbed Harmonie testbed]. A facility for testing different system configurations.
+
+ * Conversion to GRIB in parallel with the forecast for faster file access, [6432].
+
+ * Added support of GNUPLOT in the verification package for better portability.
+
+ * Generation of SURFEX physiography files included as part of the integrated HARMONIE system.
+
+ * Pre-experiment sanity check on user settings in [source:trunk/harmonie/scr/CheckOptions.pl CheckOptions.pl]. 
+
+ * The optional scheme with mass flux scheme, EDMKF, is now included for evaluation [6498]
+
+ * Merge of ECMWF SST data in CANARI, [6599]
+
+ * Namelist "database" introduced in order to achieve easier maintenance of the name-lists
+
+ * Observation monitoring package to plot data usage maps and departures for upper air assimilation is included [6624].
+
+Since harmonie-35h1.2, the default computer platform on ECMWF has been on ecgate-c1a, with computations performed on C1A.
+
+== Harmonie-35h1 source code downloads ==
+
+ * On ECMWF, the check-out version of the stable harmonie-35h1.4 is available on,
+{{{
+   ecgate:/home/ms/dk/nhz/harmonie_release/35h1.4
+}}}
+ * harmonie-35h1.4 can also be obtained via Subversion command. (Note that at ECMWF, the svn client is available on ecgate but not on C1A)
+{{{
+   svn co https://svn.hirlam.org/branches/harmonie-35h1.4
+}}}
+ * The export tarball of the harmonie-35h1.4 is available on ECMWF:ecgate as /scratch/ms/dk/nhz/harmonie-35h1.4.tar.gz
+
+== Model Installation and Experiment Configuration ==
+
+Users are referred to the system wiki documentation about [wiki:HarmonieSystemDocumentation/Installation Information and Instruction on basic system installation and experiment configuration].
+
+=== Configure and Launch Harmonie experiments from ECMWF-ecgate ===
+
+At ECMWF HPC platform, by default, the mSMS script uses the front-end ecgate to configure and launch experiments, whereas C1A is used for all computations except those for operations related to observation verification and monitoring.
+
+As in the previous versions, the reference ROOTPACK for 35h1.4 has been pre-built and available on ECMWF C1A, under /ms_perm/hirlam/harmonie/pack/
+
+Following example shows steps to launch an Harmonie-35h1.4 experiment "H35H14" on ECMWF platform:
+
+ 1. Create an experiment directory under $HOME/hm_home and run the setup
+{{{
+   mkdir -p $HOME/hm_home/H33H1; cd $HOME/hm_home/H35H14            # the experiment name is artificially chosen
+   ~nhz/Harmonie setup           # this by default points the model version to the latest tagged Harmonie release; or
+   PATH_TO_HARMONIE35h14_SOURCE/config-sh/Harmonie setup -r PATH_TO_HARMONIE_35h14_SOURCE -h YOURHOST    # for non-ECMWF platform
+}}}
+ 1. If applicable, put your local source or script changes, which are different but consistent with the reference version as installed in the ROOTPACK, into the current $HOME/hm_home/H35H14 directory, with exactly the same subdirectory structure as in the reference. e.g, if you want to modify a subroutine
+{{{
+   cd $HOME/hm_home/H35H14;
+   ~nhz/Harmonie co suphy.F90           # this will create src/arp/setup/suphy.F90                  # retrieve default source code
+   vi src/arp/setup/suphy.F90                                                                       # modify the source code
+}}}
+ 1. Edit basic configuration files such as [source:tags/harmonie-35h1.4/config-sh/config.ecgate Env_system -> config-sh/config.YOURHOST] and [source:tags/harmonie-35h1.4/sms/config_exp.h sms/config_exp.h] to configure your experiment scenarios. Modify specifications for model versions (ALADIN, AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. e.g,
+{{{
+   ~nhz/Harmonie co scr/include.ass         # retrieve default 3DVAR configuration script include.ass
+   vi scr/include.ass                       # modify the script
+}}}
+ 1. Launch the experiment
+{{{
+      PATH_TO_HARMONIE/config-sh/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH
+                                    # e.g., ~nhz/Harmonie start DTG=2008030500 DTGEND=2008030506 LL=12
+                                    # if DTGEND is not given, it will be assued that DTGEND=$DTG
+}}}
+If successful, mSMS will identify your experiment name, launch mXcdp and start build and run. If not, you need to examine the mSMS log file $HM_DATA/mSMS.log. $HM_DATA is defined in your Env_system file
+
+On ecgate, you can follow the progress of the runs on $SCRATCH/hm_home/H35H14. More complete results data are available on C1A:$TEMP
+under $HM_DATA: $TEMP/hm_home/H33H1. Under this directory you will find:
+
+   * All binaries under lib/ibmecmwf/bin
+   * Model libraries, object files and source code under lib/gmkpack_build
+   * Scripts, config files, sms and msms definitions under lib/
+   * Utilities such as gmkpack, gl and verification under lib/util
+   * Climate files under climate
+   * Archived files under archive
+   * Working directory for the current cycle under YYYYMMDD_HH
+   * Verification working directory on ecgate:$SCRATCH/hm_home/$EXP/lib/util/monitor.
+   * Log files under H33H1. All logfiles are also archived in archive
+
+See also previous documentations on
+ * HARMONIE ROOTPACK and reference installation on ECMWF-HPC
+
+=== Default configuration in Harmonie-35h1.4 and available alternatives ===
+ * Default configuration: main speficication
+   * SCANDINAVIA domain with 11 km resolution, HIRLAM-60 vertical levelling, nested to ifs lateral boundary
+   * Upper air analysis with 3DVAR using conventional data, surface analysis with CANARI
+   * dynamics with hydrostatic
+   * physics with ALADIN
+   * incremental digital filtering initialisation
+ * NOTE: if running t different domain than SCANDINAVIA, it is obligatory to derive and specify background error structure function separately.
+ * Alternative configurations
+   * ALADIN configurations
+     * with nonhydrostatic dynamics
+     * without upper air assimilation
+     * without surface assimilation
+     * with full DFI (fdfi) or none initialisation
+   * ALARO physics
+     * with or without upper air data assimilation
+     * with or without CANARI
+     * with hydrostatic or nonhydrostatic dynamics
+     * with idfi or fdfi or none initialisation
+   * AROME
+     * no assimilation option is supported yet
+     * only nonhydrostatic dynamics has been tested
+     * surface scheme is surfex
+
+== Technical aspects with Harmonie-35h1 ==
+
+=== Tested HARMONIE-35h1 platforms, configurations, components  ===
+
+ * Computer Architecture/platforms: ECMWF, AEMET, DMI, FMI, KNMI, metEireann, met.mo and SMHI
+ * Forecast model: ALADIN, ALARO, HIRALD, AROME
+ * Analysis: CANARI and 3DVAR for SCANDINAVIA, RCR_POLAR and SCANDINAVIA-5.5 domains with MARS and local bufr data on DMI, met.no and SMHI platform
+ * Coupling scenarios: ec2ald, ec2ala, ec2aro, hir2ald,hir2aro
+ * Known problems
+   * Fulpos does not work for RCR_POLAR (large problem size/memory constraint)
+   * 4DVAR does not work fully with 35h1.4
+
+=== Sample computational costs for running HARMONIE-35h1 ===
+
+The Following table lists sample computational costs for running HARMONIE-35h1 (ALADIN, AROME)
+
+|| model domain || computer platform || tested configurations || nr of nodes || total nr of PE || per step time & total elapse time || Billing SBU costs ||
+||  || ecgate/HPCE || rootpack build || 1 || 24 ||  ca 90 min  || 310   ||
+||  || ecgate/c1a || rootpack build || 1 || 1 ||  ca 120 min  ||   ||
+||  || DMI XT5 || rootpack build|| 1 ||  2 ||  > 5 hour ||   || 
+||  || SMHI clustre || rootpack build|| ||   ||    ||   ||
+|| RCR_POLAR with HIRLAM_60 [[FootNote(Delayed mode run at ECMWF, 648x540x60, 16 km, DT=360s)]]  || HPCE || ALADIN 48 h Forecast || 8  || 40 ||  4700-4800s  || 2180 || 
+|| RCR_POLAR with HIRLAM_60 [[FootNote(Delayed mode run at ECMWF, 648x540x60, 16 km, DT=360s)]]  || C1A || ALADIN 48 h Forecast || 4  || 40 || 5.9s; 4511s  || 3270  || 
+|| RCR_POLAR with HIRLAM_60 || HPCE || ALADIN Surf Ana ||  1 ||  1||  770-880s  || 2  ||  
+|| RCR_POLAR with HIRLAM_60 || C1A || ALADIN Surf Ana ||  1 ||  1||  590s  || 3  ||  
+|| RCR_POLAR with HIRLAM_60 || HPCE || ALADIN 3DVAR || 8  || 40 ||  610-680s  || 280-310 || 
+|| RCR_POLAR with HIRLAM_60 || C1A || ALADIN 3DVAR || 4  || 40 ||  1200s  || 822  || 
+|| DENMARK with HIRLAM_60 || HPCE || AROME 24 h forecast, 60s || 8 ||  40 ||  8000s  || 3700 || 
+|| DENMARK with HIRLAM_60 || C1A || AROME 24 h forecast, 60s || 4 ||  40 ||  6075s  || 4405 || 
+|| SCANDINAVIA with ECMWF_60 || C1A|| 3DVAR || 4  || 10 ||  300s  || 100 || 
+|| SCANDINAVIA with ECMWF_60 || C1A || ALADIN 6h forecast || 4  || 40 ||  1.6s; 160s  || 106 || 
+|| SCANDINAVIA_5.5 with ECMWF_60[[FootNote(300x450x60, 5.5 km)]] || C1A || ALARO 48h forecast, DT=120s || 4  || 40 ||  4.2s; 6533 s  || 4738 || 
+|| SCANDINAVIA with ECMWF_60 || DMI Cray XT5 || ALADIN CANARI || 1  || 8 ||  <60s  ||  || 
+|| SCANDINAVIA with ECMWF_60 || DMI Cray XT5 || 3DVAR || 1  || 8 ||  ca 720s  ||  || 
+|| SCANDINAVIA with ECMWF_60[[FootNote(256x288x60, 11 km)]]|| DMI Cray XT5 || 24h Forecast, DT=300s || 20  || 160 ||  ca 240s  ||  || 
+|| DENMARK with 40[[FootNote(384x400x40, 2.5 km)]]|| DMI Cray XT5 || AROME-DENMARK 24h Forecast[[FootNote(with harmonie 33h1)]], DT=60s || 16 || 128 ||  ca 2600s  ||  || 
+  
+ [[FootNote]]
+
+As reference, the following are some corresponding numbers for runs using the latest HIRLAM model (7.3trunk))
+|| model domain || computer platform || tested configurations || nr of nodes || total nr of PE || total elapse time || Billing costs ||
+|| RCR-E[[FootNote(Real-time monitoring run using hirlam-7.3 trunk, 582x448x60, 0.15 d)]] || HPCE || HIRLAM 48h forecast, DT=360s || 4 ||  64 ||  2100s  || 480 || 
+|| RCR-E[[FootNote(Real-time monitoring run using hirlam-7.3 trunk, 582x448x60, 0.15 d)]] || C1A || HIRLAM 48h forecast, DT=360s || 3 ||  62 ||  833s  || 453 || 
+|| RCR-E[[FootNote(Real-time monitoring run using hirlam-7.3 trunk, low resolution increment)]] || HPCE || HIRLAM 3DVAR/Surf analysis || 2/1 ||  32/1 ||  350s  || 40  ||  
+|| RCR-E[[FootNote(Real-time monitoring run using hirlam-7.3 trunk, 2 outer-loop, minimization resolution at 90 and 45 km, DT=30/20m))]] || HPCE || HIRLAM 4DVAR+Surf analysis || 4 ||  64 ||  1800-2100s  || 420-480 ||   
+|| RCR-E[[FootNote(Real-time monitoring run using hirlam-7.3 trunk, 2 outer-loop, minimization resolution at 90 and 45 km, DT=30/20m))]] || C1A || HIRLAM 4DVAR+Surf analysis || 2 ||  64 ||  1340s  || 485 ||  
+|| DMI-M09R[[FootNote(hirlam-7.3 trunk, 726x746x40, 0.1 d)]] || DMI Cray-XT5 || HIRLAM 48h forecast, DT=300s || 61 ||  488 ||  630s  ||  || 
+|| DMI-M09R[[FootNote(hirlam-7.3 trunk, 2-outer-loop minimization resolution at 60 and 40 km, DT=30/20m)]] || DMI Cray-XT5 || HIRLAM 4DVAR+Surf Ana || 12 ||  96||  2400s  ||  || 
+|| DMI-S03R[[FootNote(Fhirlam-7.3 trunk, 874x658x40, 0.03d)]] || DMI Cray-XT5 || HIRLAM 48h Forecast, DT=90s || 73 ||  584||  1620s  ||  || 
+|| DMI-S03R[[FootNote(hirlam-7.3 trunk, minimisation resolution at 10 km)]] || DMI Cray-XT5 || HIRLAM 3DVAR || 5 ||  40||  210s  ||  || 
+  
+ [[FootNote]]
+
+== Acknowledgement ==
+
+== References and documentation ==
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]''

@@ -1,0 +1,334 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Coupling SURFEX and LPJ-GUESS''' =
+[[LastModified]]
+[[Center(end)]]
+
+----------------------------------
+
+== Background == #Background
+
+[http://www.smhi.se/en/Research/Research-departments/climate-research-rossby-centre2-552 Rossby Centre, SMHI], [http://www.nateko.lu.se/index.asp?lang=2 Department of Physical Geography and Ecosystem Science, Lund University], and [http://www.cnrm-game.fr CNRM/CNRS, Météo France], have taken the initiative to develop a coupling between the externalised surface model SURFEX and the dynamic vegetation model LPJ-GUESS. The kick-off for this initiative was taken at the [http://www.cec.lu.se/o.o.i.s/24961 MERGE] autumn meeting in Båstad, Sweden, October 2013. This wiki page is intended for communication between developers of the coupled system.
+
+----------------------------------
+
+== Links to documentation and models == #Docu
+
+=== LPJ-GUESS === #LPJGUESS
+
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/smith2001_withappendix.pdf smith2001_withappendix.pdf]
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/smith2011_tellus.pdf smith2011_tellus.pdf]
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/guess.pdf guess.pdf]
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/guessdoc.doc guessdoc.doc] (technical documentation, trunk r3540)
+
+=== SURFEX === #SURFEX
+
+SURFEX in general:
+
+ * [http://www.cnrm.meteo.fr/surfex SURFEX home page]
+ * [http://www.cnrm.meteo.fr/surfex-lab SURFEX-lab page] (special access request may be needed)
+ * [http://www.geosci-model-dev.net/6/929/2013/gmd-6-929-2013.html SURFEX 7.2 overview paper]
+ * [http://www.geosci-model-dev-discuss.net/5/3771/2012/gmdd-5-3771-2012-supplement.pdf SURFEX 7.2 Scientific Documentation]
+ * [http://www.cnrm.meteo.fr/surfex/IMG/pdf/surf-v7-3.pdf SURFEX 7.3 User's guide]
+
+Focus on vegetation and carbon:
+
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/calvet-afm-1998.pdf calvet-afm-1998.pdf]
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/calvet-afm-2001.pdf calvet-afm-2001.pdf]
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/gibelin-jgr-2006.pdf gibelin-jgr-2006.pdf]
+
+Multi-Energy Balance (MEB) in upcoming version 8 of SURFEX. This draft document describes how the energy balances
+of the upperstory and understory vegetation including interaction with snow are simulated and also how the
+radiative transfer in the canopy layer is parameterised. The SURFEX-GUESS coupling will include the SURFEX MEB option:
+
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/MEB_for_SURFEX.pdf MEB_for_SURFEX.pdf]
+
+Stuff, e.g. presentations, available via the [wiki:NordicSurfexCourse2013 Nordic SURFEX course wiki] may also be useful.
+
+Useful subroutines:
+
+ * [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/ini_data_param.F90 ini_data_param.F90] lists various vegetation parameters used in SURFEX.
+
+--------------------------------------
+
+== Development strategy == #Strategy
+
+This section is currently based on Patrick's memory notes (with comments) from the Båstad meeting. At the meeting we made two idea sketches :-)
+
+[[Image(Bastad_fig1small.jpg, 15%, middle)]]  [[Image(Bastad_fig2small.jpg, 15%, middle)]]
+
+=== Relationship between photosynthesis and surface conductance ===
+
+The photosynthesis (An) parametrisation used in LPJ-GUESS is copied into SURFEX as one additional option to calculate An. SURFEX gives LPJ-GUESS incoming radiation and the radiative transfer model in LPJ-GUESS distributes this radiation into 7(?) different layers (vector Rsveg) using the individual spices distribution. Rsveg is used in SURFEX to calculate vector Anveg and surface conductance vector gsveg. Anveg and gsveg is sent to LPJ-GUESS. In addition LPJ-GUESS also calculates aggregated values of Rs used for the three layers of vegetation in SURFEX MEB (upperstory, understory and ground vegetation). SURFEX uses the aggregated values of Rs to calculate surface conductance used for latent heat and CO2 flux.
+
+* '''Problem 1 with this first idea according to Patrick:''' The current implementation of MEB in SURFEX (multi-energy balance) includes two vegetation layers (upperstory and ground vegetation). A third middle layer (understory vegetation) cannot be easily added. It would mean a total reprogramme of the MEB implementation including three extra prognostic variables; temperature (one additional energy balance), snow and rain interception storages. My suggestion is that we keep two vegetation layers (upperstory and ground vegetation) in the coupling with LPJ-GUESS.
+* '''Problem 2 with this first idea according to Patrick:''' In SURFEX MEB (multi-energy balance) the MEB  radiative transfer model includes the thickness of the snow. Thus, if snow partly buries the vegetation the LAI decreases and more radiation reaches the snow (when snow totally buries the vegetation the snow receives all radiation). This means that in the presence of snow (when areal snow cover is less than 100%) we can have three different surface conductances (gs for upperstory in snow free fraction, gs for understory in snow free fraction and gs for upperstory in snow fraction (less LAI) ). Thus, the radiative transfer model must include this effect of snow. But does the LPJ-GUESS radiative transfer model care about the thickness of snow in relation to the height of the vegetation? If no, it has to be included into LPJ-GUESS (given thickness of snow from SURFEX) or the distribution of vegetation characteristics has to be sent to SURFEX and SURFEX radiative transfer model calculates Rsveg.
+
+Comments by Joe and comments on these by Patrick and Guy:
+
+* If the photosynthesis is done in SURFEX, should soil water stuff only be done in SURFEX as well? If so I'm not sure if guess would need to know about conductance, we'd need soil temperature and water content though if decomposition is still guess' responsibility. Maybe some information about water stress in order to know how to develop roots.
+  * PS: Yes soil water stuff should only be done in SURFEX. Hmhm, if it can be confirmed that GUESS then does not need conductance from SURFEX it would simplify communication between the models.
+  * GS: Agreed, I think it would be most logic to separate as much as possible between physical processes (SURFEX) and biological processes (LPJ-GUESS), so soil moisture would be SURFEX' responsibility. We may need conductance in LPJ-GUESS, though, for breaking down the contributions of photosynthesis from a SURFEX tile into the PFTs in LPJ-GUESS (depending a bit on how we want to do that exactly).
+* I don't understand the 7(?) different layers for Rsveg, Anveg and gsveg. What do the elements of these vectors represent? LPJ-GUESS could send a vector of how much radiation each individual would get, but that would then need to be of flexible size (and it wouldn't represent layers). Note that LPJ-GUESS doesn't simulate one average individual for each PFT, for a single PFT we can have several individuals with different properties (height for instance).
+  * PS: Hmhm, I don't remember why I wrote 7. If GUESS needs a long flexible vector for each individual that is what should be sent, right?
+  * GS: Aren't these the 7 aggregated SURFEX tiles (list below)?
+* Regarding the aggregation of Rs into upperstory, understory and ground vegetation; are these defined strictly based on height? If so I suggest LPJ-GUESS sends a detailed vertical profile (we already do this with 2m layers up to however tall the tallest tree is) and MEB can aggregate however is suitable. Doing the aggregation in MEB means LPJ-GUESS doesn't need to know how MEB is currently implemented (and if you eventually add a middle layer in MEB there's no need to make changes in LPJ-GUESS).
+  * PS: No, it is not height that defines upperstory and ground vegetation in MEB. As defined now all primary vegetation is upperstory and then some secondary ground vegetation is added for some vegetation types (forest types and natural grass) but since SURFEX has no specific info of the properties of the ground vegetation for now the ground vegetation is defined as a function (fraction) of the upperstory. 
+  * GS: This is similar as in LPJ-GUESS: Upperstory (tree PFTs) have a height, and the understorey (herbaceous PFTs) is "flat". The vertical distribution of LAI may be useful for SURFEX, though, depending on how detailed the computation of light extinction is. 
+* I'm not sure what we mean by copying the photosynthesis parametrisation used in LPJ-GUESS to SURFEX. If we're going to do photosynthesis in SURFEX the way it's done in LPJ-GUESS, we would need to transfer more information together with Rsveg. For instance PFT type (or a few PFT specific parameters such as C3 vs. C4 and temperature ranges for possible and optimal photosynthesis), and perhaps leaf nitrogen if we're including the nitrogen cycle.
+  * PS: No clever comment...
+  * GS: Agreed, with nitrogen the coupling becomes considerably more complicated. I still have no clear picture what is actually done in LPJ-GUESS, and which parameters are passed to SURFEX in order to compute photosynthesis there. I can give this a thought and come up with a proposal (maybe together with Joe?), unless someone has a clear picture on how this will be done already.
+* The radiative transfer model in LPJ-GUESS doesn't care about snow. It shouldn't be hard to add I think. Your other option of sending distribution of vegetation characteristics to SURFEX and let SURFEX do the radiative transfer model also sounds interesting to me. We could then basically send for each individual, its height, bole height and LAI.
+  * PS: The snow/vegetation interaction with respect to short and longwave radiation is quite tricky in MEB. I agree that maybe the best way would be to send veg characteristics GUESS to SURFEX and do the radiation in SURFEX. Or maybe I don't see some problems with that...?
+  * GS: Here as well: If separating physics from biology is most clear, the light extinction should be SURFEX' task (note, this contrasts Patrick's notes from the meeting, so maybe we should discuss this more carefully), and it can use LPJ-GUESS LAI (bulk values or vertically distributed) for that. 
+
+
+=== Relationship between SURFEX tiles and LPJ-GUESS PFTs ===
+
+SURFEX nature tile can have maximum twelve patches:
+
+1. bare soil (NO)
+2. bare rock (ROCK)
+3. permanent snow (SNOW)
+4. deciduous broadleaved (TREE)
+5. needleleaved (CONI)
+6. evergreen broadleaved (EVER)
+7. C3 crops (C3)
+8. C4 crops (C4)
+9. irrigated crops (IRR)
+10. temperate grassland (GRAS)
+11. tropical grassland (TROG)
+12. wetlands, parks and gardens (PARK)
+
+When SURFEX is coupled to LPJ-GUESS we group these patches in the following way:
+
+* (1) bare soil (NO)
+* (2) bare rock (ROCK)
+* (3) permanent snow (SNOW)
+* (7) C3 crops (C3)
+* (8) C4 crops (C4)
+* (9) irrigated crops (IRR)
+* (4+5+6+10+11+12) deciduous broadleaved (TREE) + needleleaved (CONI) + evergreen broadleaved (EVER), temperate grassland (GRAS) + tropical grassland (TROG) + wetlands, parks and gardens (PARK).
+
+Thus, all trees and all natural low vegetations are grouped into one common patch, called LG. In total this gives 7 possible patches when SURFEX is coupled to LPJ-GUESS. Since MEB is constructed to be continuous from trees to grass SURFEX needs the following information for the LG patch: height of vegetation, LAI for upperstory, LAI for ground, vegetation cover of ground vegetation.
+(Problem 1: When LAI for upperstory goes to zero only ground v) 
+
+The photosynthesis should be moved from LPJ-GUESS to SURFEX, means that Ag is calculated in SURFEX and given to LPJ-GUESS. LG gives SURFEX a range of  Apar values for upper and lower story, respectively. And  also one value each for upper and lower story for SURFEX stomata conductance. 
+In SURFEX we lump all trees and natural vegetation together, i.e. TREE, CONIF, EVER, GRAS, TROG and PARK (wetland). The MEB parametrisation takes care of the continuous change between tall tress to grass.
+
+'''Comment by Patrick 2014-06-02'''
+
+The upcoming version 8 of SURFEX will include 19 patches. The additional ones are:
+
+13. tropical broadleaf deciduous (TREE)
+14. temperate broadleaf evergreen (TREE)
+15. temperate needleleaf evergreen (CONI)
+16. boreal broadleaf cold-deciduous summergreen (TREE)
+17. boreal needleleaf cold-deciduous summergreen (CONI)
+18. boreal grass (GRAS)
+19. shrub (TREE)
+
+== Investigation of moving photosynthesis and related processes from LPJ-GUESS (added by Joe 2014-06-04) ==
+
+The following are my notes from an investigation of what it would take to 
+move LPJ-GUESS' photosynthesis out of the model. Processes like photosynthesis,
+radiative transfer, water demand/supply, respiration etc. were lifted out so
+that all needed values had to explicitly be sent back and forth.
+
+The resulting interface becomes somewhat complex, but can perhaps serve as a
+basis for a discussion around what processes to include in SURFEX and which to
+include in LPJ-GUESS.
+
+I haven't included things which the canopy exchange processes would need, but
+which I assume SURFEX would already know about (climate, soil temperature and
+soil water, etc.)
+
+I've for now ignored the issue of how we're going to couple SURFEX patches to 
+LPJ-GUESS patches, and just assumed that we have a single patch in LPJ-GUESS
+which is coupled to a single SURFEX patch.
+
+=== Data sent from LPJ-GUESS to SURFEX ===
+
+==== Values for the patch (or whatever it will represent) ====
+
+* Interception capacity of the canopy (mm)
+* Available soil mineral nitrogen (kgN/m2)
+
+==== Static parameters per PFT ====
+
+(These parameters' meanings is documented in the LPJ-GUESS technical documentation and source code)
+
+* liteform
+* parff_min
+* pathway
+* pstemp_min
+* pstemp_low
+* pstemp_high
+* pstemp_max
+* lambda_max
+* nupscoeff
+* cton_leaf_min
+* cton_leaf_max
+* cton_leaf_avr
+* cton_root_avr
+* cton_sap_avr
+* km_volume
+* nuptoroot
+* gmin
+* rootdist
+* emax
+* drought_tolerance
+* respcoeff
+
+==== Varying values per PFT ====
+
+* phenological state (sending this per PFT is perhaps questionable...)
+
+==== Values per individual ====
+
+* PFT id
+* height
+* LAI (patch basis)
+* LAI (on the individual's crown area basis)
+* bole height
+* fpc (foliar projective cover)
+* cmass_root
+* cmass_leaf
+* cmass_sap
+* plant density (plants per m2, note that an LPJ-GUESS individual typically represents a "cohort" of plants)
+* nstore_labile
+* nmass_leaf
+* nmass_root
+* nmass_sap
+* C to N ratio in leafs (phen weighted)
+* C to N ratio in roots (phen weighted)
+* C to N ratio in sap wood
+* N storage demand
+
+
+=== Data sent back from SURFEX to LPJ-GUESS ===
+
+==== Values for the patch (or whatever it will represent) ====
+
+* PAR at top of grass canopy (needed for establishment)
+
+==== Values per PFT ====
+
+* Net assimilation at top of grass canopy (for establishment)
+
+==== Values per individual ====
+
+* nstore_labile (remaining after storage has been used to satisfy demand)
+* Optimal C to N ratio in leafs (needed in growth for leaf to root allocation)
+* ndemand
+* fnuptake
+* leaffndemand
+* rootfndemand
+* sapfndemand
+* storefndemand (this and the 5 above are needed for taking N from soil and knowing where to put it)
+* N limitation on RuBisCO capacity (only needed for output, not for the model itself)
+* fwuptake (for each soil layer)
+* AET
+* wscal (supply/demand for full leaf-on, not today's supply/demand(!))
+* assimilation
+* respiration
+
+
+
+=== Comments ===
+
+By sending these PFT parameters, we get a quite tight coupling, forcing SURFEX
+to use a photosynthesis formulation which works just like the one in LPJ-GUESS.
+A more flexible solution could be to simply send PFT ids/names, and let SURFEX
+manage the needed parameters.
+
+I especially don't like the parameters nupscoeff, drought_tolerance and 
+respcoeff, which are unit less and without real definition and seem to be very 
+tightly coupled to how LPJ-GUESS works (and so might not give a very stable
+interface between LPJ-GUESS and SURFEX).
+
+Having LPJ-GUESS send in storendemand, but letting SURFEX calculate all the
+other demands (leafndemand, sapndemand etc.) seems odd. Having SURFEX calculate
+storendemand the way LPJ-GUESS does at the moment would require sending some
+other things that don't feel right (historical information such as the 
+individual's accumulated npp so far this year). Perhaps if we can come up with
+a more mechanistic way of calculating storendemand the coupling could be
+simplified.
+
+The values that SURFEX would send to LPJ-GUESS describing uptake of Nitrogen
+can probably be simplified (ndemand, fnuptake and *ndemand). The same goes for
+fwuptake and aet.
+
+wscal seems problematic. Since we need a water stress value for a hypothetical
+situation with full leaf-on rather than today's situation, SURFEX would need
+to do things twice. Would be great if we could get rid of this in LPJ-GUESS
+and just use today's situation instead.
+
+
+== Meeting in Lund 2014-06-05 == #LundMeeting
+
+=== Presentations ===
+
+* [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/Patrick_SURFEX-GUESS_140604.pdf Patrick_SURFEX-GUESS_140604.pdf] 
+* [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/surfex_guess_aggregation_guyschurgers.pdf surfex_guess_aggregation_guyschurgers.pdf] (from Guy)
+* [https://hirlam.org/trac/attachment/wiki/SURFEX-LPJ-GUESS/LPJ-GUESS%20SURFEX.ppt LPJ-GUESS SURFEX.ppt] (from Joe)
+
+=== Memory notes ===
+
+This section is currently based on Patrick's memory notes (with comments) from the meeting. At the meeting we made an egg sketch :-)
+
+[[Image(IMAG0389small.jpg, 30%, middle)]]
+
+After some discussion we agreed to go for option number 6 in Guy's presentation, i.e. each patch in a LPJ-GUESS natural stand will correspond to a patch in the SURFEX nature tile. Referring to the SURFEX patch list above this would mean that the patches would be:
+
+* (1) bare soil (NO)
+* (2) bare rock (ROCK)
+* (3) permanent snow (SNOW)
+* (7) C3 crops (C3)
+* (8) C4 crops (C4)
+* (9) irrigated crops (IRR)
+* A number of GUESS patches, 1 to e.g. 15.
+
+The number of GUESS patches is specified for each simulation and is the same for all grid boxes, right? In principle the six pure SURFEX patches, 1-3 and 7-9, could be aggregated to any number 1-6 independent on the GUESS-patches. In a later stage the three SURFEX crop patches could be replaced by corresponding GUESS patches from one or more GUESS crop stands. With this concept we do not need to modify any fractions of patches with time. All the GUESS patches will have the same fraction during a simulation. If the fraction of e.g. forest and open land will change with time is just given by how many GUESS patches that are considered to be forest or open land dominated. Each SURFEX patch, i.e. each GUESS patch, has its separate soil column with respect to soil temperature, soil moisture etc, its separate snow storage, its separate energy balances with respect to upperstory canopy, ground (bare soil and/or understory) and snow.
+
+A separate interface module between SURFEX and GUESS will be constructed, the egg in the figure above. Technically this module will probably be part of the SURFEX environment and OASIS will be used for communication between GUESS and the module. The strategy is that SURFEX will be responsible for physical processes related to energy and water while LPJ-GUESS will be responsible for vegetation/carbon/nitrogen processes. The egg module and its connections to SURFEX and GUESS are here presented as a table:
+
+{{{#!latex
+\begin{tabular}{|l||l|c|l||l|}
+\cline{2-4}
+\hline
+{\bf SURFEX}          &               \multicolumn{3}{c||}{{\bf THE INTERFACE MODULE}}                                                          & {\bf LPJ-GUESS} \\
+\hline
+                      & {\bf Dir, what \& vertical aggr.}      & {\bf Interface components}                    & {\bf Dir, what \& time aggr.}  &                 \\
+\cline{2-4}
+                      & {\bf To SURFEX:}                       & {\bf New development:}                        & {\bf To LPJ-GUESS:}            &                 \\
+  NPATCH              & Number of GUESS patches                & Radiative transfer with snow                  & GPP/individual/patch           &                 \\
+                      & Radiative surface fluxes, aggr         & Stomatal conductance                          & Water stress                   &                 \\
+  3 PRS (resistance)  & Surface conductance, aggr              &                                               &                                &                 \\
+                      &                                        &                                               &                                &                 \\
+                      & {\bf From SURFEX:}                     & {\bf Copy from LPJ-GUESS:}                    & {\bf From LPJ-GUESS:}          &                 \\
+                      & Potential evaporation                  & Carbon flux/photosynthesis                    & Characteristics of individuals &                 \\
+                      & Snow depth/fraction/albedo/emiss       & Water demand                                  &                                &                 \\
+                      & Incoming SW and LW radiation           & Nitrogen demand                               &                                &                 \\
+                      & Soil temp and water per layer          & Competition                                   &                                &                 \\
+\hline
+\cline{2-4}
+\end{tabular}
+}}}
+
+The interface module should operate on SURFEX time step interval (i.e. on the order of 1-60 minutes) and include calculations of LPJ-GUESS variables on individual basis. Thus, the "Investigation of moving photosynthesis and related processes from LPJ-GUESS" by Joe above lists which variables that should be sent from LPJ-GUESS to the interface module. The  interface components "Copy from LPJ-GUESS" in the table may need some adjustment to operate on sub-daily time step?? The only aggregation needed between the interface and LPJ-GUESS is probably time aggregation to daily values.
+
+We need to do some new development:
+* The new radiative transfer must combine the detailed vertical resolution in LPJ-GUESS, i.e. for every second meter the radiative energy is calculated taking into account the distribution of individual characteristics (height, LAI, albedo, emissivity, ...), with the vegetation-snow interaction implemented in SURFEX-MEB, i.e. how snow depth relates to the height of the vegetation. The radiative surface fluxes must be aggregated and sent to SURFEX for the different sub-surfaces, e.g. canopy, understory, snow.
+* Stomatal conductance calculation must be introduced on individual level and aggregated and sent to SURFEX for upperstory snow and non-snow canopy parts and understory vegetation, respectively.
+
+
+
+
+
+
+
+
+ 
+
+

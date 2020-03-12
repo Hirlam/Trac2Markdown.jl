@@ -1,0 +1,180 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Spring Working Week on GLAMEPS & HarmonEPS 2014''' =
+''Barcelona. Monday 19 May - Friday 23 May. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+This is the first GLAMEPS/HarmonEPS working week for this year. Special focus this time: system aspects and training in HarmonEPS.
+Following are the main headlines:
+
+ 1. Operational GLAMEPS. Status of GLAMEPS_v2
+ 1. HarmonEPS training
+ 1. HarmonEPS experiments
+ 1. Post-processing and Ensemble calibration
+ 1. Verification issues
+
+
+== Participants ==
+
+ || Name || Arriving || Leaving || Working with ||
+ || John Bjørnar Bremnes || || ||Calibration||
+ || Geert Smet || Monday ||Friday ~11-12 ||HarmonEPS ||
+ || Maurice Schmeits || || ||Calibration||
+ || Xiaohua Yang || Monday ||Friday ~14 ||GLAMEPSv2, HarmonEPS ||
+ || Ulf Andrae || Tuesday evening || Friday evening ||System ||
+ || Pieter De Meutter || || ||HarmonEPS||
+ || Henrik Feddersen || || || ||
+ || Åke Johansson || || || ||
+ || Sibbo van der Veen || || ||HarmonEPS||
+ || Björn Stensen || || ||HarmonEPS||
+ || Kai Sattler || Monday || Friday ~11||GLAMEPSv2 ||
+ || Andrew Singleton || Monday ~2pm || Friday ~2pm || Perturbing surface physics / HARP ||
+ || Thomas Nipen || || ||Calibration||
+ || Ole Vignes || Monday ~14 || Friday ~11 ||System||
+ || Pau Escribà || I work here || I work here || LETKF ||
+ || Alfons Callado || I work here || I work here || SPPT ||
+ || José A. García-Moya || || ||migration to new cray computer||
+ || Inger-Lise Frogner || Monday ~14 ||Friday ~12|| perturbing surface parameters in HarmonEPS ||
+
+
+== Agenda ==
+
+ * Monday
+   * 1400 start of ww
+   * [attachment:GLAMEPSv2_20140519.pdf Presentation about GLAMEPSv2 (Kai)]
+   * Discussions about GLAMEPSv2
+     * Unless major quality issue, GLAMEPS V2 will be made operational latest by the end of Sept when c2a@ECMWF is phased out
+     * Migration task to cca
+       * Compilation of hirlam source (Kai with help from HIRLAM system team)
+       * Compilation of alaro source (Alex with help from HIRLAM system team)
+       * modification of SMS/scripts for cca platform. No intention to replace SMS with ECflow in first go (Kai)
+       * Some technical test and monitoring on cca (Kai, Xiaohua)
+     * V2 quality aspect
+       * From verification and monitoring the outstanding problems with V2 are mainly in T2m (large bias; difference between control and purturbed HIRLAM members; weak and decreasing spread especially with ALARO member). The hope is that, thanks to the latest bug correction with both HIRLAM (purturbed) and ALARO (control+ purturbed) members, the T2m behaviour in V2 will return to normal
+         * Examination of T2m error time series since bug correction last week indicated 
+            * For HIRLAM members the main T2m problem is gone, with the purturbed members getting their bias characteristics consistent with those of control.
+            * For ALARO-ISBA member, on Wednesday it became apparent that the bias in T2m is now much reduced and getting very close to those of ALARO-surfex members
+         * Some quick verification with HARP for EPS scores are suggested this week to see if the bias and spread-skill behaviour with V2 has been improved accordingly 
+     * Storage. The previously scheduled output parameters including conventions have been settled (W10m, T2max, T2min)
+       * Extraction of observation and model data to stationlists with SQlite table. The model data is already extracted during postprocessing directly to SQlite. It is suggested to also do the observation data (vobs) convertion to SQlite as part of the postprocessing task. (Kai, Andrew)
+     * Near term plan
+        * Calbration team will work on test set up using the currently available SQlite tables, with a view to assess whether or not to incooperate calibration into final V2
+        * Xiaohua take a look on whether it is possible to find alternative way for harp-verification interface using shiny on port 3838.
+          * Done with Ole's help after discussion with Thomas. HARP verification is now available on https://shiny.hirlam.org/harp
+        * It is scheduled to make second announcement to the user community before summer holiday about intended official launch of V2 in September.
+   * Working session
+ * Tuesday
+   * HarmonEPS introduction (Ole)
+   * Discussions about HarmonEPS
+     * A new branch called [https://hirlam.org/trac/log/branches/harmonEPS-38h1.1 harmonEPS-38h1.1] have been created for future cy38h1.1 harmonEPS developments. The default setup have the following EPS specific settings compared to the default deterministic setup
+      {{{
+        DOMAIN=HarmEPS_1
+        FCINT=06
+        BDINT=3
+        BDSTRATEGY=eps_ec, input from RD experiment EXPVER=frld data available for 20120610 - 20120628
+
+        ENSMSEL=0-3
+          0: arome ctrl, ANAATMO=3DVAR, LSMIXBC=yes, ANASURF=CANARI_OI_MAIN
+          1: alaro ctrl, ANAATMO=3DVAR, LSMIXBC=yes, ANASURF=CANARI_OI_MAIN
+          2: alaro prtb, ANAATMO=blending, ANASURF=CANARI_OI_MAIN, TSTEP=90
+          3: arome prtb, ANAATMO=blending, ANASURF=CANARI_OI_MAIN, TSTEP=60
+
+          further members will be repetitions of 2 and 3.
+
+        ENSINIPERT=bnd
+        ENSBDMBR=0,0,1,2
+
+        AMSUA_OBS=0
+        AMSUB_OBS=0
+
+      }}}
+      This branch should be used for all old and new developments that are not yet part of the old harmonEPS-38h1 branch. The branch can be setup at ecgb by
+      {{{
+         ~hlam/harmonie_release/branches/harmonEPS-38h1.1/config-sh/Harmonie setup -r ~hlam/harmonie_release/branches/harmonEPS-38h1.1 -h ecgb
+      }}}
+      * New features on the way to the branch
+        * Observation perturbation ( upper air and surface )
+        * Streamlined derivation of structure functions ( FEMARS and parallel FESTAT )
+      * What EPS features can be brought in from GLAMEPS in terms of e.g. fail tolerance?
+      * Postprocessing to be included in an HarmonEPS experiment?
+      * What new perturbations to include, and how to do it
+   * Discussions about post-processing and calibration
+      * aim is operational calibration in GLAMEPSv2
+   * Alfons presenting SPPT in HarmonEPS
+   * José presenting γ-SREPS: AEMET new Mesoscale Ensemble Prediction System
+   * Working session
+   
+ * Wednesday
+   * HARP presentation and hands on session (Andrew)
+   * Working session
+   * 14.00 Åke: On the consequences of centering an ensemble around a control analysis
+   
+ * Thursday
+   * Working session
+   
+ * Friday
+   * Working session
+   * 12.00 end of ww
+  
+== Preparations ==
+
+* Basic working details
+
+  People should bring their own laptop. Wired internet connections only. We let you the cables. Projector for presentations available. 
+  If anybody needs videoconference please let us know in advance.
+
+* Telephone number of the work place
+
+  0034932211475
+ 
+* How to get there
+
+  The location of the work place for the working week (Delegation of AEMET in Catalonia) is:
+
+  [https://maps.google.es/maps?q=Delegaci%C3%B3n+Territorial+de+AEMET+en+Catalu%C3%B1a&ie=UTF8&ll=41.390204,2.200227&spn=0.009546,0.016565&fb=1&gl=es&hq=delegaci%C3%B3n+aemet&hnear=0x12a45bdc8530f5f3:0x100fae021a3c850,Catalu%C3%B1a&cid=10622546249887988347&t=m&z=16&iwloc=A]
+
+  From the airport there are several ways to get there:
+
+    a) By taxi 
+
+       You should go along the coast, it is the shortest way. An approximated price for the lift is 35 euros.[[BR]]
+
+    b) By bus (http://www.aerobusbcn.com/)
+
+       You should stop in "Plaça Catalunya" station. There you should take the underground up to "Vila Olimpica" station, of yellow line. From the station to the work you should walk for 10 minutes. Print the map above in order to find the way. [[BR]]
+
+    c) By train. (http://www.renfe.com)
+
+       The train station is in Terminal 2 (old one). If you land on Terminal 1 you should take a free bus between terminals. You should stop in "Passeig de Gracia" station. There you should take the underground up to "Vila Olimpica" station, and follow indications in b)[[BR]]
+
+  The airport is around 15 km far from Barcelona city centre
+  
+* Hotel
+
+  The reference Hotel for GLAMEPS working week is:
+
+  [http://www.nh-hoteles.es/nh/es/hoteles/espana/barcelona/nh-diagonal-center.html ]
+
+  The underground stations to stop in to get the hotel are "Bogatell" or "Llacuna", both from yellow line.
+
+  The hotel is 10-15 minutes walking far from the workplace. Print the google map above.
+
+* WW "oficial" dinner:
+
+  It will be on Wednesday 21th at 8:30 pm in the restaurant:
+
+  [http://www.senyorparellada.com/]
+
+  We could meet at 8 pm at the exit of "Jaume I" metro station (yellow line) and go all together
+
+* Others
+
+  A web page for doing some tourism in Barcelona:
+
+  http://www.barcelonaturisme.com/
+
+  If you want to lay on the beach or even take a swim during any short break of WW remember to take
+  the towel and swim dress. The SST was 17 degrees on 6th of May

@@ -1,0 +1,35 @@
+[[PageOutline]]
+
+= Check-list about the joint HIRLAM/HARMONIE monitoring interface =
+
+HIRLAM programme maintains a [wiki:dataportal monitoring data portal] in which monitoring information from operational/real-time HARMONIE and HIRLAM suites from HIRLAM communities are regularly updated and inter-compared.
+
+It is required that each on-duty staff, during his/her shift, to spend some time each day to go through at least SOME items of the model inter-comparison interface, and report findings about missing links or abnormal features. Feel free to limit your time spent on such inspection to be within one hour.
+
+ 1. Examine the present monitoring interface
+   * Forecast charting interface, which is updated daily, and report MAJOR data holes on [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=6&id=82 Monitoring forum] and inform Kalle (kalle.eerola@fmi.fi). Note that data from different models/centers may have a delay of one to two days.
+     * [https://hirlam.org/portal/oprint/Charts/CHARTS/1_RCR_area/index.html?choice_ind=Surface Latest HIRLAM forecast charts]
+     * [https://hirlam.org/portal/oprint/Charts/AROME_WebgraF/index.html Latest HARMONIE forecast charts ]
+   * Verification inter-comparison, which is updated daily, and report data holes on [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=6&id=82 Monitoring forum] and inform Xiaohua (xiaohua@dmi.dk). 
+     * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/InterComp Multi-model inter-comparison for operational HIRLAM system and for the trunk version of HIRLAM ]
+     * Comparison interface centered about '''one or two''' institute/models '''. Please focus on most relevant models or features for your institute or your main expertise''', such as [https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/ HARMONIE system], [https://hirlam.org/portal/oprint/WebgraF/ObsVer/AEMET AEMET-HIRLAM], [https://hirlam.org/portal/oprint/WebgraF/ObsVer/DMI DMI-HIRLAM],  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/EMHI EMHI-HIRLAM],  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/FMI FMI-HIRLAM],  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/KNMI KNMI-HIRLAM], [https://hirlam.org/portal/oprint/WebgraF/ObsVer/LHMS LHMS-HIRLAM], [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METIE METIE-HIRLAM],  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METNO METNO-HIRLAM], [https://hirlam.org/portal/oprint/WebgraF/ObsVer/SMHI SMHI-HIRLAM]
+     * [https://hirlam.org/portal/glameps/WebgraF/ObsVer/Realtime Verification and intercomparison around GLAMEPS control runs].
+   * Monitoring about operational suites at member services, , and report data holes or abnormal features on [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=6&id=82 Monitoring forum]. Inform Xiaohua (xiaohua@dmi.dk)
+     * [https://hirlam.org/portal/oprint/WebgraF/ObsUse HIRLAM Observation data coverage maps]. Report data holes. See also [wiki:HirlamInventory/Operational#Assimilatedobservationpseudoobservationinupperairanalysis listings ] about observation types expected to be used by different models.
+     * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_obstat HARMONIE observation data coverage maps]
+     * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_obs_ts HARMOINE observation data usage time series]
+     * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_satarea HARMOINE observation data usage, satellite data]
+     * [https://hirlam.org/portal/oprint/WebgraF/Logplot HIRLAM and HARMONIE Forecast diagnosis and analysis minimisation]
+ 1. Report and comment about any interesting or abnormal features that you observe. In particular, make a note on the [http://www.hirlam.org/index.php?option=com_kunena&Itemid=161 HIRLAM-forum] on [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=showcat&catid=6 operational monitoring at hirlam.org]. Typical examples:
+   * some models failed to appear in the relevant interface for several cycles. (Note that data from various model may be delayed by one to two days).
+   * some models display abnormal features
+     * a dramatic or sudden departure of verification behavior, e.g., those commented in [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=8&id=30 a forum post about t2m behaviour]
+     * A complete miss of data at main synop hour for synop (00, 06, 12, 18) and TEMP (00, 12)
+     * an abnormal cost function behavior in minimisation
+     * an abnormal change of moisture spin-up feature
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

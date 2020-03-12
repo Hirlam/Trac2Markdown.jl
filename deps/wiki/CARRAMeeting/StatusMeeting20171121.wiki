@@ -1,0 +1,48 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''CARRA Status Meeting'' =
+== '''[https://hangouts.google.com/hangouts/_/calendar/eWFuZ3hpYW9odWFAZ21haWwuY29t.0a3s9iqi20fkrljmdk47fdhpq4?authuser=0 WP1: System Status Review,  Nov 21, 2017]'' ==
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+ 
+
+== Agenda ==
+
+ * Review progress with parallel tests about Harmonie 40h1.1 and 40h1.2 on IGB and AA domains
+ * Decision about selection of CARRA system baseline
+ * Review of other ongoing activities in WP1 
+
+== Participants ==
+ * DMI: Mats D., Kristian N., Xiaohua Y.
+ * IMO: Sigurdur T.
+ * met.no: Roel S., Roger R, Ole V., Harald S., Mariken H.
+ * SMHI: Magnus L, Jelena B, Patrick S.
+
+== Minutes ==
+
+ * Review progress with parallel tests about Harmonie 40h1.1 and 40h1.2 on IGB and AA domains
+   * See summary on [https://hirlam.org/trac/wiki/CARRA/validation_about_40h1.2  about the validation test]
+   * Ongoing test runs to reproduce 40h1.1 with 40h1.2 code indicates positive results
+     * [https://hirlam.org/portal/validation/40h1/IGBcarra_1_a_40h12 IGB domain]: Reverting SBL settings back to 40h1.1 brings results closer to 40h1.1
+     * [https://hirlam.org/portal/validation/40h1/AAcarra2_s_40h12 Arome-arctic domain]: Rerun of 40h11 (without ATOVS data) show comparable results between 40h11 and 40h12 options, both of which significantly better than previous test results for 40h1.2 and comparable to 40h1.1
+ * Decide on selection of CARRA system baseline
+   * Experiences so far confirms that it is feasible to reproduce using 40h1.2 meteorologically comparable results to 40h1.1
+   * It is agreed, after necessary technical correction, to tag a 40h1.2 based system as CARRA baseline system to enable tests about CARRA configuration options as well as code development
+ * Near term tasks
+   * Tag CARRA baseline system (Ole and Xiaohua)
+   * Finish 40h1.2 validation runs including those that mimic 40h1.1 options. Document the efforts toward selection of CARRA baseline (Roel, Roger, Xiaohua)
+   * Include use of ERA5 data stream BDSTRATEGY=era5 (Xiaohua, Roel)
+ * Reporting of ongoing WP1 work etc.
+   * Coding of BDSTRATEGY=era5 option and test of ERA5 analysis as boundary (Xiaohua, Roel)
+     * [https://hirlam.org/portal/validation/40h1/IGBcarra_ERA5_2012 Red: with ERA 5 analysis, Green: with HRES analysis, Blue: with HRES forecast as LBC, Magenda: ERA5]
+   * Extraction of ERA5 vfld data and comparison to 40h1.2 on IGB (Xiaohua)
+     * [https://hirlam.org/portal/validation/40h1/IGBcarra_ERA5_2012 For Nov 2012 ]
+   * Planning of common setting for observation verification in CARRA (Morten et al)
+   * Collection of local observations (Magnus et al)
+   * Test of 3DVAR/VarBC (Roger, Roels, Ole, Siggi, Xiaohua)
+   * Test of Cray compiler and effort to improve computational efficiency and obsmon on ECMWF platform (Ole)
+   * Work on Jk (Mats)
+   * work to update PGD (Kristian, Bolli)
+ * Harald informed planning of the CARRA plenary meeting in Jan (23-24) 2018 with optional extension to allow working days and/or interaction with ECMWF on DA issues. More details coming.

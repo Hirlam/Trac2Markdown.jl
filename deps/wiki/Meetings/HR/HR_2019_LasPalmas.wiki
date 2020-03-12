@@ -1,0 +1,158 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM-ALADIN High Resolution and Nowcasting Workshop''' =
+''Las Palmas, 10^th^ of December - 12^th^ or 13^th^ of December 2019''
+
+This website is under construction. We will add more practical information when it is available and keep you updated on any new information.
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Meeting Venue =
+The meeting will be held at the AEMET office on the Campus de Tafira, of the University
+of Las Palmas. AEMET is 10 km from the city center of Las Palmas G.C.
+
+The address of AEMET Canarias is:
+C/ Historiador Fernando de Armas, 12 (Tafira Baja), 35017 Las Palmas G.C.
+
+= Participants =
+
+  ||=Institutes:                                        =||=Organizers:=||
+  || AEMET                    ||  Daniel Santos ||
+  || KNMI                     ||  Sander Tijm ||
+  || MET Norway                   ||  Roger Randriamampianina ||
+  ||=                                       =||=Participants:=||=Presentation(s):=||
+  || AEMET                         ||  Javier Calvo || High Resolution  experiments at AEMET (by A. Subias, D. Suarez & Javier Calvo) ||
+  || AEMET                         ||  Daniel Martin || Single precision experiments at AEMET (by A. Subias, & Daniel Martin) ||
+  || DMI                           ||  Xiaohua Yang (Hotel: NH Imperial playa 9-14.12) || Experience with operational hectometric models; Ensemble sub-km nowcasting ||
+  || DMI                           ||  Kasper Hintz (Hotel: NH Imperial playa 9-14.12) || Use of crowdsource data for nowcasting ||
+  || ESTEA                         ||  Ivar Ansper ||  ||
+  || ESTEA                         ||  Vello Loorits? ||  ||
+  || FMI                           ||  Erik Gregow  (Hotel: NH Imperial playa 9-14.12) || METCOOP-Nowcasting (MNWC): Existing system and on-going developments ||
+  || FMI                           ||  David Schönach || METCOOP-Nowcasting (MNWC): Existing system and on-going developments ||
+  || Meteo France                  ||  Pierre Brousseau || Hectometric simulations (mainly Yann Seity and Rachel Honnert work) ||
+  ||                               ||                   || Assimilation aspect for nowcasting (high temporal/spatial resolution observations, assimilation cycle frequency,...) ||
+  || MET Norway                        ||  Yuri Batrak (Hotel: NH Imperial playa 9-14.12) || Experiences with the 500m HARMONIE-AROME setup over the experimental Svalbard domain. ||
+  || MET Norway                        ||  Eirik Mikal Samuelsen (Hotel: NH Imperial playa 9-13.12) || Experiences with the 500m HARMONIE-AROME setup over the experimental Svalbard domain. ||
+  || MET Norway               || Birgitte Rugaard Furevik (Hotel: NH Imperial playa 9-14.12) ||  Results from downscaling ERA5 storms to 500m/750m grid resolution with AROME-HARMONIE ||
+  || Met Éireann                   || Colm Clancy || Experiments with dynamics at 1250m and 750m resolution ||
+  || Met Éireann                   || Eoghan Harney ||   ||
+  || ZAMG                          ||  Phillip Scheffknecht || Results  from the AROME RUC 1.2 km and AROME 500 m Test Operation from Summer 2019  ||
+  || Universidad de Las Palmas     || Albert Oliver || Downscaling wind predictions from HARMONIE in complex terrain using a Mass-consistent model and the Zilitinkevich vertical wind profile ||
+
+= Pictures =
+
+[[Image(IMG_8486-2.jpg, 30%)]] [[Image(IMG_8484.jpg, 30%)]]v[[Image(IMG_8483.jpg, 30%)]] 
+
+[[Image(IMG_8476.jpg, 30%)]] [[Image(IMG_8475.jpg, 30%)]] [[Image(IMG_8474.jpg, 30%)]]
+
+
+= Objectives =
+
+The goals of the workshop are to inform each other of all the work that has been done so far on the high resolution (100-1000m) modeling and nowcasting, streamline all the work in HIRLAM-C that is going to be done, to pose the questions for research, not only for physics, dynamics and nowcasting but also for other important areas (surface, EPS, system) and to do some practical work.
+
+= Presentation and discussion subjects =
+
+ 
+
+* AROME, HARMONIE-AROME and ALARO HR model configuration (dynamics and physics)
+* HR experiences in past two years since Copenhagen workshop
+* Applications in mountain meteorology, airport applications, convective scale events, impact of urban effects
+* Observation and validation studies, comparison with LES, temporal and/or spatial HR observations
+* 3D physics at high resolution (radiation, turbulence), dependence physics on horizontal and vertical resolution
+* HR research topics dynamics
+* Assimilation aspects (methods and observations): e.g correlated observations; DA cycling strategy; superobbing/supermodding; initialisation techniques
+* Nowcasting: how to get model close to observations
+* Uncertainty and computation of B-matrix
+* Surface and physiography aspects (resolution and surface types)
+* Code optimization
+* HR diagnostics and postprocessing
+* Recommended HR setup(s) and HR EPS setup (2020 deliverable HIRLAM-C project; can we build a playfile?)
+
+
+
+= Agenda (preliminary) =
+  ||=Time:                           =||=presenter:=||=title:=||
+  || Tue 10:00                  || Sander Tijm and Roger Randriamampianina ||  Welcome and start of workshop [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/20191210_HR_NWC_intro.ppt ppt] ||
+  || Tue 10:10                  || Sander Tijm  ||  Introduction to HR aspects, roling workplan targets [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/20191210_Tijm_HRintro.ppt ppt] ||
+  || Tue 11:00                  ||   ||  Coffee break ||
+  || Tue 11:30                  || Xiaohua Yang  ||  Experience with operational hectometric models [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Xiaohua%20Yang%2C%20Hectometric%20HARMONIE%20model(1).pptx pptx] ||
+  || Tue 12:00                  || Pierre Brousseau  ||  Hectometric simulations (Seity & Honnert) [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/AROME_500m_PB.pdf pdf] ||
+  || Tue 12:30                  || Phillip Scheffknecht  || Results  from the AROME RUC 1.2 km and AROME 500 m Test Operation from Summer 2019 [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/HR_phillip_scheffknecht.pdf pdf] ||
+  || Tue 13:00                  ||   ||  Lunch break ||
+  || Tue 14:00                  || Birgitte Rugaard Furevik  ||  Results from downscaling ERA5 to 500m/750m grid for storms [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/HR2019_BFurevik(1).pdf pdf] ||
+  || Tue 14:30                  || Albert Oliver  || Downscaling wind predictions from HARMONIE in complex terrain [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/2019_HRN_AEMET_AOS.pptx pptx] ||
+  || Tue 15:00                  || Javier Calvo  || High Resolution experiments at AEMET [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/High%20Resolution%20experiments%20at%20AEMET.pdf pdf] ||
+  || Tue 15:30                  ||   ||  Coffee Break ||
+  || Tue 16:00                  || Yuri Batrak & Eirik Mikal Samuelsen  ||  Experiences with the 500m setup over Svalbard [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Arome_Svalbard_500m_2019.pdf pdf] ||
+  || Tue 16:30                  || Colm Clancy  ||  Experiments with dynamics at 1250m and 750m resolution [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/CClancy_highres_dec2019.pdf pdf] ||
+  || Tue 17:00                  ||   ||  Discussion on HR aspects ||
+  || Tue 17:30                  ||   ||  End ||
+  ||                   ||   ||   ||
+  || Evening                  ||   || Common Dinner?  ||
+  ||                   ||   ||   ||
+  || Wed 10:00                  || Daniel Santos || System aspects HR and NWC [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Daniel%20Santos%20System%20Hires%20Nowcasting%20.pptx pptx] ||
+  || Wed 10:30                  || Daniel Martin || Single precision experiments at AEMET [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/HR_WW_Canarias_201911_DM_v1.pdf pdf] ||
+  || Wed 11:00                  ||   ||  Coffee break ||
+  || Wed 11:30                  ||   ||  Discussion on System aspects HR and NWC ||
+  || Wed 13:00                  ||   || Lunch Break ||
+  || Wed 14:00                  ||   || Weather permitting: tour of the old city of Las Palmas? ||
+  ||                   ||   ||   ||
+  || Evening                  ||   || Dinner at Las Lagunetas  ||
+  ||                   ||   ||   ||
+  || Thu 10:00                  || Roger Randriamampianina  || Introduction Nowcasting, roling workplan targets [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Nowcasting_new.pdf pdf] ||
+  || Thu 10:30                  || Pierre Brousseau  || Assimilation aspect for nowcasting [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Brousseau_NWC_2019.pdf pdf] ||
+  || Thu 11:00                  ||   || Coffee Break ||
+  || Thu 11:30                  || Xiaohua Yang & Kasper Hintz  || Ensemble sub-km nowcasting and use of crowdsource data [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Xiaohua%20Yang%2C%20Ensemble%20Subkm%20Nowcasting.pptx pptx] ||
+  || Thu 12:00                  || Erik Gregow || FMI/METCOOP-Nowcasting activities (incl. rapid refresh setup) [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/WW_NWC_LasPalmas_ErikG_Overview.ppt ppt] ||
+  || Thu 12:30                  || Erik Gregow || The MSG cloud ingest method and results [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/WW_NWC_LasPalmas_ErikG_MSG.ppt ppt] ||
+  || Thu 13:00                  ||   ||  Lunch Break ||
+  || Thu 14:00                  || David Schönach || Assimilation of satellite AMV/HRW and on-going developments [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/DevelopmentsMNWC_David.pdf pdf] ||
+  || Thu 14:30                  ||   ||  Discussion on NWC  ||
+  || Thu 15:30                  ||   ||  Coffee Break ||
+  || Thu 16:00                  ||   ||  Discussion on HR [https://hirlam.org/trac/attachment/wiki/Meetings/HR/HR_2019_LasPalmas/Discussion_notes.pptx pptx] ||
+  || Thu 17:30                  ||   ||  End ||
+  ||                   ||   ||   ||
+  || Evening                  ||   || Common Dinner?  ||
+  ||                   ||   ||   ||
+  || Fri 10:00         ||   || Practical work on HR issues, building a recommended setup? ||
+
+
+= Practical information =
+
+Below there are two hotels (80-90 euro per night), close to each other and in a nice area and with convenient transport to the meeting venue are recommended. We recommend these hotels as they are of good quality and because when the whole group is staying in one or two hotels it makes the common transport to the meeting venue, e.g. with taxi buses, possible. Please use your own favorite booking tools for hotel reservation.
+
+These hotels are (Please use the link for group booking special price)
+* NH Imperial playa [https://www.nh-hoteles.es/event/harlem-aladin booking]
+* NH Playa Las Canteras[https://www.nh-hoteles.es/event/hirlam-aladin-consortia booking]
+
+= Transport to Las Palmas from the airport =
+
+For information regarding the transport from the airport to Las Palmas, please check de website with [https://www.grancanaria-airport.net/transport.php information from the airport of Gran Canaria]. You can go by bus (with one transfer to get relatively close to the hotel) or take a taxi (around € 25).
+
+= Transport to meeting venue =
+
+Use the Guaguas global line 328 (they are blue, turquoise buses guagua is the local word for bus) 
+* From NH-hotel (near 1 in figure 1 left) go to the bus stop in Albareda street (near 2 in figure 1 left) in front of the Port market.
+* The bus leaves at 7:10, 8:10 and 9:10. It takes about 35 minutes to get to the University. I propose to catch the bus at 9:10 on the first morning, then we can see if we can stick to the earlier schedule on the next days or if we have to change it a little bit (e.g. due to breakfast times in the hotel etc.).
+* Price € 1.40 per trip. You have to pay in cash, so it is best to carry some coins. There is also the option to buy 10 travel vouchers at a kiosk or at the bus stations.
+* Once at the University you have to get off at the general library stop (see figure 1 right). From the library to the DT AEMET it is a short walk of less than 5 minutes.
+
+[[Image(Bus_stop_hotel.jpg,44%)]]
+[[Image(Bus_stop_AEMET.jpg,37%)]]
+
+Figure 1: bus stop near the hotel (left) and near the AEMET Canarias (right).
+
+= Coffee and lunch breaks =
+
+The coffee breaks will be held at the university residence (self paid, see figure 2 left). The lunch breaks will be at the Aulario (Classrooms space, self paid, see figure 2 right). A typical lunch includes first course, main course, desert and one drink and costs € 6. A big table has been reserved at 1AM for our group.
+
+[[Image(Coffee_break.jpg,45%)]]
+[[Image(Lunch_Break.jpg,45%)]]
+
+Figure 2: route to the coffee break (left) and lunch (right).
+
+= Tour of the old city =
+
+For Wednesday afternoon (weather permitting, but we should be able to see if it is feasible or if we should postpone to Thursday) we propose to have a relaxed stroll through the old town (Vegueta) and the Triana area (pedestrian street with shops and restaurants). It is relatively easy to get there by bus from the university (get out at Vegueta). After this we propose to have a common dinner at Las Lagunetas, a nice restaurant near the old town.
+

@@ -1,0 +1,178 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''met.no, Oslo, 3rd - 7th of September 2012''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Practical ==
+
+ The meeting will be held at Forskningsparken, met.no, Oslo
+
+ * Participants:
+  * KNMI:    Toon Moene
+  * SMHI:    Ulf Andrae, Arrival Monday 11.00, departure Friday 12.00
+  * FMI:     Niko Sokka, arrival Mon 13.00, departure Fri 13.00 @ Gardermoen
+  * met.no:  Ole Vignes, Trygve Aspelien
+  * Met Éireann: Eoin Whelan, (arrive Monday 09.00, depart Friday 09.00)
+ 
+== Objectives ==
+
+The main goal for the practical part of this working week is to conclude on the content of cy37h1.2, start working on cy38h1 and to start preparing for cy39t1 . We also need to discuss a number of general issues as listed below.
+
+== Agenda ==
+
+ * Monday: Gathering, setup
+  * Presentations
+   * Ulf: Status and schedule of cycles, from the IFS-ARPEGE and OOPS coordination meetings.
+   * Niko: Status of cy38t1.
+   * Toon: Assimilation scalability problems at KNMI.
+   * Ole: HarmonEPS system work, status, problems
+   * Eoin: What do we know about COPE.
+   * Ulf(All): Schedule for the rest of the week 
+  * Discussion points
+   * MF moves to GIT, HIRLAM needs?
+ * Tuesday-Friday: Hard work!
+ * Friday:
+  * Wrapup discussions
+
+== HIRLAM matters ==
+
+ * Handling of ECMWF 137 levels (Toon)
+   * A second request for test data have been sent to ECMWF and the answer is that data will be published soon.
+ * Outstanding contributions to hirlam (Ulf)
+   * The ETKF development is now integrated in the trunk as [10805]. No more large contributions expected.
+
+== cy38h1 ==
+
+ * For the status of cy38h1 see [wiki:Phasing/cy38t1] and [source:branches/phasing/cy38 ] (Niko)
+ * Namelists. At GCO no reference namelist packs are yet available for cycle CY38T1. The next best thing is to take namelists used in the MITRAILLETTE and MITRARP validation. In the attached tar file (nam_cy38t1.tar.gz) the following namelist sets can be found:
+  * cy38t1  : ARPEGE namelists matching with MF current oper physics 
+  * cy38t1d : ARPEGE namelists matching with MF parallel suite physics ( becomes operational in September )
+  * al38t1  : ALADIN and AROME namelists matching with MF oper physics
+  * al38t1d : ALADIN and AROME namelists matching with MF current parallel suite physics ( becomes operational in September ) 
+   * There are some character chains to be replaced in some of these namelists as they are directly taken from MITRAILLETTE/MITRARP environment. The latest MITRAILLETTE/MITRARP documentation is attached (ykvalidinfo_cy39.pdf) for reference.
+ * Sanity check on namelists, see the namelist comparison script in the attachments. '''TO BE DONE WHEN WE HAVE A TECHNICAL WORKING VERSION'''
+  * Physics (Lisa?)
+  * Dynamics (Mariano?)
+  * DA (?)
+    * Upper Air
+    * Surface assimilation (Mariken/Trygve)
+  * Surfex
+ * Status of testbed runs
+  * Merge all outstanding post-cy38 src changes from cy37t1
+    * All changes merged in [10846]
+  * Merge SOME outstanding pre-cy38 src changes from cy37t1
+    * BATOR still untouched. LNOEXTZ not to be merged. BDIFF to be investigated
+  * Status of the testbed configurations
+   * AROME
+    * Check climate generation. '''Works'''
+      * Generation of binary ECOCLIMAP cover files added
+    * Generate surfex initial file. '''Works'''
+    * Check arome forecast '''Works'''
+      * edmfm chrashes due to out of bounds problems. '''Solved by [10877]'''
+      * LHGT_CLDVAR replaced by PSIGQSAT. Check proper value for edmfm (default is to 0.02 in namparar)
+      * edkf runs on some platforms, problems with writing history files with gfortran. Fixed by open files with status UNKNOWN [10878].
+    * Check postprocessing '''Works'''
+      * Deallocation bug found and fixed
+      * Cleaned LNOEXTZ from gl
+    * Check Runinit and RunBatodb for conventional observations '''Works'''
+      * LMFBUFR not in cy39, to be ported. Remove from namelist to pass this. 
+      * Currently crashing due to missing gps white list. Provide empty list for the time being.
+    * Check RunCanari '''Works'''
+      * Works after smaller fixes at some machines. ODB related problems on vilje.
+      * Non-MPI built binaries doesn't work due to call to mpl* rotuines.
+    * Check SODA '''Works'''
+      * Works
+    * Check RunScreening
+      * Crashing
+    * Check RunMinim
+   * MUSC
+     * [10879] brings us somewhat closer to a working MUSC, but not fully.
+   * ALARO
+     * Chrashes, namelist settings to be checked.
+  * Update all other parts to the current trunk '''DONE in [10822]'''
+  * Check the IO server
+    * Will be continued by Ole within !MetCoOp which will use cy38 for the next benchmark.
+  * Update grib_api to 1.9.16 and emoslib to gribex ( emoslib ) to 381.
+  * Document what's needed to be done
+   * Enable boyd, '''postponed'''
+
+ == cy37 fixes ==
+  * Several smaller fixes in [https://hirlam.org/trac/log/trunk/harmonie/?action=stop_on_copy&mode=stop_on_copy&rev=&stop_rev=10813&limit=100 the trunk]
+   * Missig interface block, #101, causing erroneous lake temperatures corrected.
+   * Fullpos bug causing double correction of temperature when generating initial surfex files (#103). Courtesy Yann Seity
+   * Forking of listener tasks to allow a faster post processing and generation of grib files. 
+   * Use soda by default. Changed after short evaluation. Impact is negligible.
+   * Allow different numbers of ODB pools for CANARI.
+   * Bugfix for RUNNING_MODE=operational ( Thanks Xiaohua! )
+   * Collect log on abort implemented
+
+ * Try Bash on c2a ( for later )
+
+ == OOPS ==
+        * Send toy OOPS changes to ECMWF. 
+           * Trygve generated a LAM branch which has been sent to ECMWF.
+        * Create our own GIT repository?
+
+ == HarmonEPS ==
+        * Allow multi physics and multi control runs '''DONE'''
+          * FCINT=12 crashes in minimization. Unrelated to EPS but a general DA problem.
+        * Minimize differences between HarmonEPS and Harmonie. '''DONE'''
+        * Create HarmonEPS branch and install on ecgate.
+        * Write first wiki documentation '''DONE'''
+        * ALARO@2.5km
+          * Crashes after some cycles both in EPS mode and in a pure deterministic forecast. Further tests shows that it works sometimes. ALARO@2.5km Needs further investigations!
+          * Tuning of alaro, open questions:
+           * Run surfex with TEB inside ALARO, explicit coupling?
+           * Run with gridpoint Q?
+
+ == Glameps access ==
+        * How to arrange a separate access control for GLAMEPS?
+          * We will first try to with identification through address and not through user. '''DONE''' 
+
+ == SRNWP-I ==
+        * Work started with c903. 
+        * Enable treatment of ECMWF lat/lon field, for later
+        * Port code to later cycles?
+
+
+== cy37h1.1 problems and experiences ==
+
+ * [https://hirlam.org/trac/query?status=accepted&status=assigned&status=new&status=reopened&version=37h1&order=priority&report=11 37h1]
+
+== trunk/cy37h1.2 developments ==
+
+None of the bullets below have been touched during the working week.
+ 
+ * GL
+  * Correct gl to handle HIRLAM 7.3 data. gl works for 7.3 but the quality is uncertain. Stefan G has started coding of a new translation routine suitable for newsnow.
+  * New grib tables for SURFEX.
+
+ * Follow up on the postpp action [wiki:HarmoniePostPP2012]
+
+ * Status of the observation monitoring as prepared by Trygve and Per Dahlgren. Obstat?
+
+ * Observation perturbations. Modset by Roger at ecgate:/home/ms/no/sbt/hm_home/TESTOBSPERT1
+
+ * Add variables like Tmax/Tmin from HARMONIE
+     * T2m (max, min) is to be looked at later. Need further enhancement of fldextr and monitor.
+
+ * New features planned in cy37h1.2 compared to cy37h1.1
+  * Implemented
+   * SODA
+   * Enhanced log plotting
+   * Optional usage of PREP for SURFEX initialisation
+   * Increased response in deep temperatures to T2M increments.
+  * Pending
+   * Multi physics HarmonEPS
+   * Climate run capabilities
+   * Non-conventional observations such as ???
+   * More complete postpp list 
+ * Compilation
+  * gmkpack faster than makeup at ecgate for most users
+ 
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

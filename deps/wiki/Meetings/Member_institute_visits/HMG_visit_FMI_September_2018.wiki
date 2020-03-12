@@ -1,0 +1,17 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Management sub-group visit at FMI''' =
+''Helsinki, 19. - 20. September, 2018''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/Karoliina_Icing_MATINE.pdf Karoliina Hämäläinen: Verification of atmospheric icing model against new type of ground based remote-sensing observations]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/HIRLAM_CB_Presentation.pptx Bin Cheng: Snow and sea ice mass balance in the Arctic Ocean]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/Management_visit_Sep2018.ppt Erik Gregow: Nowcasting, cloud-ingest and AMW]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/Rontu_EMS18_har.pdf Laura Rontu: Renewal of aerosol climatology for HARMONIE-AROME radiation parametrizations]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/Mastverif-short_20180911.pdf Markku Kangas: Hirlam/Harmonie on-line mast verification]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/SiljamoPilvi_PollenAndPests.pptx Pilvi Siljamo: Pollen, spores and insect pests: The use of the SILAM model for the atmospheric dispersion of biological organisms]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/Oasis_Hirlam_C_20092018.pdf Anniina Korpinen: Mesoscale meteorological simulations - OASIS project]
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Member_institute_visits/HMG_visit_FMI_September_2018/UrbanSnow.pdf Carl Fortelius: Simulating conditions of winter traffic in Helsinki Metropolitan Area]

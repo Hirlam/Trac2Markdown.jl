@@ -1,0 +1,126 @@
+[[PageOutline]]
+[[Center(begin)]]
+= ''' Exercise: Snow ''' =
+[[Center(end)]]
+
+''' Responsible expert: Samuel Morin '''
+
+''Siberia ERA-Interim driving/evaluation data''
+
+The snow exercise will be based on extracts from ERA-Interim surface fields needed to run SURFEX covering 15 stations location in Northern Eurasia which selected from the dataset described by [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/2013-brun-jh-crocus-siberia.pdf Brun et al.], J. Hydrometeorol. 2013. See the map of the stations below. 
+Observations were obtained from the dense former-USSR observation network and are provided as netCDF files.
+
+
+[[Image(map.png, 50%, middle)]]
+
+-----------------------------------------
+
+Notes on the preparation of the forcings: they consist in "raw" ERA-Interim 3-hourly surface fields needed to run SURFEX, at the altitude of the ERA-Interim nearest grid point (on a 0.5 x 0.5 degree grid). No altitude correction was implemented here (in contrast to what is reported in Brun et al.). However, the altitude difference between ERA-Interim gridpoints and obervations stations is generally small in these cases.
+
+
+[[Image(ZS.png, 35%, middle)]]
+
+--------------------------------
+
+Observation data: SYNOP Snow height, Snow course snow height and SWE, 20cm below surface ground temperature data are provided for the 15 selected stations. [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/station_data.tar.gz tarball] 
+
+--------------------------------
+
+Driving data: Two series of folders are provided, each containing a FORCING.nc datafile and the corresponding standard NAMELIST for use with Crocus (see below for more information about the namelist). [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/forcings_short.tar.gz This tarball] contains the full 1979-2012 forcing, while these [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/forcings_full_1.tar.gz 1/3], [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/forcings_full_2.tar.gz 2/3], [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/forcings_full_3.tar.gz 3/3] ones contains only the period from 1979-07-01 0:00 to 1984-07-01 0:00 (model runs are quicker). The latter was generated using [http://nco.sourceforge.net/ nco] which is a suite of extremely useful tools to handle netCDF datafiles. Further modifications of the files are possible using nco (in particular ncks).
+
+--------------------------------
+
+'' Suggested modifications of the namelist '':
+
+After having downloaded the driving files and placed them in a directory containing appropriate binaries and links to the needed ecoclimap files, you can carry out a first model run. The base OPTIONS.nam will run as follows:[[BR]]
+/[[BR]]
+&NAM_ISBA              XUNIF_CLAY    = 0.30          ,[[BR]]
+                       XUNIF_SAND    = 0.60          ,[[BR]]
+	               XUNIF_RUNOFFB = 0.5           ,[[BR]]
+                       CISBA         = 'DIF'         ,[[BR]]
+                       CPHOTO        = 'NON'         ,[[BR]]
+                       NPATCH        = 1             ,[[BR]]
+                       NGROUND_LAYER = 20        [[BR]]
+/
+
+This refers to the multi-layer ground scheme DIF ISBA option with 20 layers, and fixed clay/sand proportion (impact not very strong impact on temperature regime in soil).
+
+Snow options:[[BR]]
+/[[BR]]
+&NAM_PREP_ISBA_SNOW    CSNOW = 'CRO',[[BR]]
+                       NSNOW_LAYER = 20, [[BR]]
+                       LSNOW_FRAC_TOT = T[[BR]]
+/
+
+You can replace 'CRO' by '3-L' to run ISBA-ES snow scheme instead of Crocus. In this case, you need to delete the NSNOW_LAYER line which tells Crocus how many layers can be used at maximum (interactive handling of snow layering). You can try with 5, 20 and 50 and see the differences in terms of bulk (SWE, Snow height), internal (density profile etc.) and ground temperature impact.
+LSNOW_FRAC_TOT = T tells the model that even with slight amounts of snow on the ground the snow fraction is set to 1. This is used in most (if not all) offline Crocus runs, because this options is the most physically-sound in terms of albedo and heat exchange at the ground/snow interface. Indeed, with a snow fraction lower than 1, the albedo is computed as a composite of vegetation, bare ground and snow leading to physically suspect values for snow, and the ground temperature can becom unrealistically high leading to basal snow melt even under strong freezing conditions. This logical key circumvent such issues but the nice way of solving it is to use MEB in the future (separate energy budget between snow, bare ground and vegetation).
+
+To initialize snow conditions with given snow properties (mostly used for glacier simulations with Crocus), here are some values that can be used in the &NAM_PREP_ISBA_SNOW namelist: [[BR]]
+&NAM_PREP_ISBA_SNOW [[BR]]
+ CSNOW = 'CRO',[[BR]]
+ NSNOW_LAYER = 50,[[BR]]
+ LSNOW_FRAC_TOT = T, [[BR]]
+ LSNOW_IDEAL = T,  # this needs to be set when initializing with a pred-defined snowpack.[[BR]]
+ XZSNOW = 0.01,0.05,0.1,0.84,2.,10.  # thickness of snow layers (in m, starting from top)[[BR]]
+ XTSNOW =273.16, 273.16 , 273.16, 273.16 , 273.16 ,273.16 , # temperature of snow layers, in K[[BR]]
+ XRSNOW = 900. , 900. ,900. , 900. , 900. ,900. , # density of snow layers in kg m-3[[BR]]
+ XASNOW = 0.5 ,  # initial snow albedo (needs to be set, will be updated anyway after the first time step)[[BR]]
+ XSG1SNOW = 99., 99. , 99., 99. , 99. ,99. ,  # Grain1 value [[BR]]
+ XSG2SNOW = 0.005,0.005,0.005,0.005,0.005 ,0.005, # Grain2 value[[BR]]
+ XHISTSNOW = 2.,2.,2.,2.,2.,2., # Hist value[[BR]]
+ XAGESNOW = 1000., 1000. , 1000., 1000. , 1000., 1000. # age of snow layers (in days).[[BR]]
+
+Note 1 : XLWCSNOW (liquid water content, in kg m-3) can also be initialized.[[BR]]
+Note 2 : instead of   XZSNOW, one can also set XWSNOW (snow water equivalent of each layer, in kg m-2).[[BR]]
+Note 3 : in case CSNOWMETAMO is different from 'B92', XSG1SNOW and XSG2SNOW have different meanings. SNOWGRAN1 represents in this case the optical diameter (in mm) and SNOWGRAN2 the sphericity. (not yet available in SURFEX trunk)[[BR]]
+Note 4 : it is recommended to initialize the snowpack with sufficiently thin layers at the surface (1 cm for the first layer) and to never exceed a ratio of 10 between the thicknesses of two consecutive layers.[[BR]]
+
+You can try to see whether a glacier could survive in the selected points in Siberia !
+
+Other Crocus options:
+
+There is a fraction of the namelist specific to Crocus (here provided with the default values) [[BR]]
+&NAM_CROCUSn[[BR]]
+  LSNOWDRIFT= T  # allows compaction/microstructure modifications depending on wind speed after snow deposition [[BR]]
+  LSNOWDRIFT_SUBLIM= F  # allow sublimation of part of the snow that can be moved around by the wind[[BR]]
+  XRHOTHRESHOLD_ICE=850. # snow density threshold above which the surface snow layer is considered to be ice[[BR]]
+  XZ0ICEZ0SNOW=10.  # multiplication factor for Z0 on ice[[BR]]
+  XALBICE1=0.38 # albedo of ice in the 1st band [[BR]]
+  XALBICE2=0.23 # albedo of ice in the 2nd band [[BR]]
+  XALBICE3=0.08 # albedo of ice in the 3rd band [[BR]]
+  XVAGING_GLACIER=900. # aging coefficient for ice surfaces [[BR]] 
+  XVAGING_NOGLACIER=60. # aging coefficient for snow surfaces [[BR]]
+  CSNOWMETAMO="B92" # snow metamorphism scheme; original version is "B92"; alternatives are "C13", "T07", "F06" (see Carmagnola et al., TCD 2013) - not yet available in SURFEX trunk. For use by advanced snow physics users and data assimilation of remotely sensed  observations (not applicable yet for avalanche hazard applications) [[BR]]
+
+You can try to set the SNOWDRIFT and SNOWDRIFT_SUBLIM toggles to true/false and check their impact.
+
+What can also be interesting is to try different "spin-up" time periods to initialize the simulations. This can be done e.g. by performing a long run, and initializing the short run with the final state of the prognostic variables (use of RESTART mode, only the initial date field to edit after renaming SURFOUT.txt -> PREP.txt). In Brun et al. (2013), the initialization was performed through 1 long run. FYI tools have been developed (and included in snowtools) to initialize the ground temperature (all layers) with the mean air temperature of a given FORCING file.
+
+--------------------------------
+
+''Plotting bulk (snow height, SWE, ground temperature) data along with observations''
+
+You can either use your own favourite plotting software (or those provided by others during the SURFEX training). A python script is provided to carry out quick plots of snow height, SWE and ground temperature using the ISBA_PROGNOSTIC and ISBA_DIAGNOSTIC netCDF outputs of SURFEX, along with station data. You will need to install netcdf4-python libraries from http://code.google.com/p/netcdf4-python/ in order to use this script. Links to the location of the files will need to be edited in the attached [https://www.hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/erai_eval_hirlam.py script].
+
+Example output: [[Image(example.png, 20%, middle)]]
+
+--------------------------------
+''Plotting internal snow properties from Crocus output with python''
+
+Tools to read and plot CROCUS profiles from the SURFEX/CROCUS output file ISBA_PROGNOSTIC.out.nc, based on scripts by Samuel Morin and the Meteo France Grenoble colleagues, edited by Richard Essery and Niina Puttonen are available in a [https://www.hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/croplo.tgz tarball] . You will need to install netcdf4-python libraries from http://code.google.com/p/netcdf4-python/ in order to use these tools.
+
+Conversely, you may be interested in using the series of python-based libraries for managing SURFEX input/output with emphasis on Crocus use. Note that this also includes the MEPRA mechanical stability model used for avalanche hazard diagnostic on sloping surfaces. The packages, referred to as "snowtools", is available as a svn repository on cnrm-game-meteo.fr (similar to SURFEX) and is maintained by Météo-France/CNRM/CEN Grenoble. For more information, you can have a look at the attached [https://www.hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/SURFEX-Crocus_snowtools_starting_guide.doc starting guide] which is provided by Météo-France/CNRM/CEN Grenoble after the first contacts with potential SURFEX/ISBA-Crocus users (to ease the install procedure of SURFEX and snowtools). The scripts provided above are actually extracts from earlier versions of snowtools. Please ask us (samuel.morin@meteo.fr for opening access to snowtools - same svn credentials as for surfex).
+
+-------------------------------
+
+''Snow and avalanche applications (SNAPS) driving data''
+
+Preliminary material related to Snow and avalanche applications (SNAPS): forcing data based on HIRLAM output + OPTIONS for a Crocus experiment in Sodankylä, provided by Richard Essery. Please download a [https://www.hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/hirsnaps.tgz tarball] (updated and renamed 24.11.2013 by LR!). These data are provided as backup and perhaps for a startup warming exercise with CROCUS, but there is nothing yet to validate the results with. This is why the main snow exercise of the course will be based on the Siberian case by Eric Brun et al.
+
+-----------------------------------
+
+''References''
+
+Brun, E., V. Vionnet, A. Boone, B. Decharme, Y. Peings, R. Valette, F. Karbou and S. Morin, Simulation of northern Eurasian local snow depth, mass and density using a detailed snowpack model and meteorological reanalyses, J. Hydrometeor., 14, 203–219, doi:[http://dx.doi.org/10.1175/JHM-D-12-012.1 10.1175/JHM-D-12-012.1], 2013. [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpSnow/2013-brun-jh-crocus-siberia.pdf pdf also available here] [[BR]]
+Carmagnola, C. M., Morin, S., Lafaysse, M., Domine, F., Lesaffre, B., Lejeune, Y., Picard, G., and Arnaud, L.: Implementation and evaluation of prognostic representations of the optical diameter of snow in the detailed snowpack model SURFEX/ISBA-Crocus, The Cryosphere Discuss., 7, 4443-4500, doi:[http://dx.doi.org/10.5194/tcd-7-4443-2013 10.5194/tcd-7-4443-2013] , 2013 (open access paper).[[BR]]
+Description of Crocus by [http://www.geosci-model-dev-discuss.net/4/2365/2011/gmdd-4-2365-2011.html Vionnet et al, 2012] (open access paper).[[BR]]

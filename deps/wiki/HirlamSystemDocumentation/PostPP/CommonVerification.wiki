@@ -1,0 +1,67 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Performing Observation Verification with HARMONIE GL/MONITOR tool''' =
+[[Center(end)]]
+
+It is recommended by Hirlam-programme to use the HARMONIE observation verification procedure for validations involving multi-model forecast inter-comparison, such as model upgrade validation, impact study and sensitivity studies.
+
+The observation verification computes forecast errors relative to the verifying observation. The process involves two steps. First model data is interpolated to the in-situ observation site as defined by station-lists, [https://hirlam.org/trac/browser/trunk/harmonie/util/gl/scr/allsynop.list ALLSYNOP.list] and [https://hirlam.org/trac/browser/trunk/harmonie/util/gl/scr/alltemp.list ALLTEMP.list], using HARMONIE utility [https://hirlam.org/trac/browser/trunk/harmonie/util/gl/prg/fldextr.F gl/fldextr, with versions at least as recent as 32h2 and preferably the newer versions ] with results written to an ascii-format data (vfld$EXP$YYYY$MM$DD$HH$LL); Correspondingly, the HARMONIE utility [https://hirlam.org/trac/browser/trunk/harmonie/util/gl gl/obsextr] is used to extract from SYNOP and TEMP data the parameters according to the same station lists. In the second step, HARMONIE utility [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor MONITOR:gl/monitor/verobs] is used to compute verification statistics, and final results presented via WebgraF web/graphic interface
+
+To date the GL utility can derive vfld-data with model output from ECMWF, HARMONIE and HIRLAM.
+
+== Derivation of model equivalent of the observables at observation locations ==
+
+This will create vfld$EXP$DTG$LL. The step can be done either online or off-line. 
+
+ * Since Hirlam 7.2rc2, the reference Hirlam by default calculate vfld-data, and archive them on both ECFS and ECTMP under a directory structure and file name convention $ECFSLOC:/$user$hirlam$EXP/$yyyy/$mm/$dd/vfld$exp$yyyy$mm$dd$hh.tar.gz. This requires a pre-compiled HARMONIE utility util/gl/fldextr which is available to HIRLAM forecast suite. On ECMWF platform, the utility is taken from hpce:/ms_perm/hirlam/harmonie/utl/fldextr
+ * Harmonie forecast system by default calculate vfld-data, and archive them on ECFS/ECTMP under a directory structure and file name convention $ECFSLOC:/$user$harmonie/$EXP/vfld/vfld$exp$yyyy$mm$dd$hh.tar.gz.
+ * For hirlam-suites, on non-ECMWF platform, there is a need to adapt the standard [https://hirlam.org/trac/browser/trunk/scripts/VER_create_fld hirlam script VER_create_fld] to specify correct local path to the HARMONIE GL utility '''fldextr''', see the example in [https://hirlam.org/trac/browser/branches/refdmi/scripts/VER_create_fld?rev=6304 DMI adaptation].
+  * Note the fldextr utility shall be of post-HARMONIE 32h2 version. If you need to compile fldextr in local platform, do following
+   1. mkdir -p $installation_directory; cd $installation_directory
+   1. Copy the HARMONIE utility source GL, e.g.
+{{{
+     svn co https://svn.hirlam.org/trunk/harmonie/util/gl            # this create a directory  $installation_directory/gl with GL source
+}}}
+   1. Check that your platform is represented in the [https://svn.hirlam.org/trunk/harmonie/util/gl/config  pre-configured architecture files]. Create one if your platform is not represented
+   1. gmake ARCH=$name_of_the_architecture ([blixt bore dunder ecgate gimle hpce ia64Jumbo ibmecmwf linuxgfortran pclx054 pgf90 xt4pathscale]). This shall create binaries GL/fldextr/obsextr/xtool etc.
+  * Note that the above procedure also produce OBSEXTR needed to extract observation data.
+ * Off-line approach
+  * Given model level/history data, one can construct a stand-alone script to generate vfld-data similar to [https://hirlam.org/trac/browser/branches/refdmi/scripts/VER_create_fld the VER_create_fld] script.
+
+== Extraction of observations ==
+ * Harmonie utility [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/prg/verobs.f90 monitor/verobs,  with versions at least as recent as 32h2 but preferably later], is used to extract observation data in the corresponding format to the model data against same station list as used for field extraction. The data vobs$DTG is of ASCII format as well
+   * At ECMWF, the extracted observation data every 6 hours since  February 2000 covering all the HIRLAM operational area, has been archived and available to HIRLAM users on ec:/hirlam/oprint/OBS. The data are named in form of $yyyy$mm.tar.gz. For current date, the data are available on /scratch/ms/dk/nhz/oprint/OBS2
+ * For some applications, such as verification of observation from moving platforms, a name-list change is required in obsextr to use observations containing observations of moving platform. A cycle-specific station-list will be generated containing e.g AIREP, SHIP and BUOY data. Same stationlist shall be used to extract model field for verification of such data, probably in off-line mode.
+
+== Computation of verification statistics ==
+ * With extracted observation and model data HARMOMIE utility [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor monitor/verobs] is used to compute verification statistics in offline mode. The examples can be find in the [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/scr scripts] directory of the monitor facility.
+ * Example steps to generate observation verifications on ECGATE
+   1. mkdir -p $SCRATCH/verobs; cd $SCRATCH/verobs
+   1. svn export https://svn.hirlam.org/trunk/harmonie/util/monitor
+   1. cd monitor; gmake ARCH=ecgate     # this will produce binaries under ecgate subdirectory
+   1. mkdir data; cd data;              # retrieve vfld and vobs files from the experiment and place them somewhere like in data
+   1. cd ../scr; vi [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/scr/Env_exp Env_exp] # edit configuration files
+   1. vi [https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/scr/selection.pm selection.pm]    # modify eventually other settings
+   1. sh Run_obsver_all Env_exp         # perform verification statics for surface/upper air
+   1. cd ../WebgraF/$PROJNAME           # resulting PS and PNG files stored
+ * examples of verification statistics as presented with WebgraF interface 
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/InterComp  Operational HIRLAM verification intercomparison ]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

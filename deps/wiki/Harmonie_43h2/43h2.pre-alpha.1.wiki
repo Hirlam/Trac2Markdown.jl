@@ -1,0 +1,227 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''harmonie-cy43 status''' =
+[[Center(end)]]
+
+== '''Overview''' ==
+
+This page describes the status and ongoing activities with harmonie-cy43. For a first validation see [[wiki:Harmonie_43h2/43h2.pre-alpha.1_validation]]
+
+The branch is available on ecgate under ~/hlam/harmonie_release/git/CY43
+
+== Platform/compiler/domain status ==
+
+|| Platform                  || Compiler         || domain      || Status                                  || Who's on it ||
+|| cca                       || gnu/5.3.0        || DKCOEXP     || abort: Canari (wrmlppa.F90)             || Eoin        ||
+|| cca                       || gnu/6.3.0        || DKCOEXP     || AROME_3DVAR OK                          || Eoin        ||
+|| cca                       || gnu/7.3.0        || DKCOEXP     || AROME_3DVAR OK                          || Eoin        ||
+|| cca                       || gnu/7.3.0        || DKCOEXP     || AROME_3DVAR OK                          || Ulf         ||
+|| cca **32-bit reals**      || gnu/7.3.0        || DKCOEXP     || fails in first forecast step            || Ole         ||
+|| cca                       || intel/17.0.3.053 || DKCOEXP     || fails in gl_bd                          || Ulf         ||
+|| cca **32-bit reals**      || intel/17.0.3.053 || DKCOEXP     || AROME_3DVAR OK                          || Ole         ||
+|| bi                        || intel/15.0.1.133 || DKCOEXP     || AROME_3DVAR OK                          || Ulf         ||
+|| bi                        || intel/15.0.1.133 || METCOOP25C  || AROME_3DVAR, 2patch, SICE, FLAKE (one thread only)        || Ulf         ||
+|| elvis                     || intel/15.0.1.133 || METCOOP25C  || AROME_3DVAR OK                          || Trygve      || 
+|| elvis **32-bit reals**    || intel/15.0.1.133 || METCOOP25C  || AROME_3DVAR OK                         || Ole      ||
+|| METIE.LinuxRH7gnu         || gnu/4.8.5        || IRELAND150  || AROME_3DVAR/AROME_1D/AROME OK           || Eoin        ||
+|| METIE.LinuxRH7gnu-dev     || gnu/4.8.5        || IRELAND150  || Does not compile - issue linking HDF5   || Eoin        ||
+|| METIE.LinuxRH7gnu-dev     || gnu/5.3.1        || IRELAND150  || AROME_3DVAR/AROME_1D/AROME OK           || Eoin        ||
+|| METIE.LinuxRH7gnu-dev     || gnu/6.3.1        || IRELAND150  || AROME_3DVAR/AROME_1D/AROME OK           || Eoin        ||
+|| METIE.LinuxRH7gnu-dev     || gnu/7.3.1        || IRELAND150  || abort:Prepare_pgd_fa (readsurf.F90)     || Eoin        ||
+|| KNMI.bullx_b720           || intel/17.0.2.174 || NETHERLANDS || 43h2_alpha_1 compiles, after utilgl linking fix & using pre-installed sqlite3 || Bert        ||
+
+== Testbed status ==
+||= Configuration     =||= Platform(s) =||= STATUS                      =||
+|| AROME_3DVAR         || cca/METIE     || Working.                      ||
+|| AROME_3DVAR_2P      || METIE         || Working.                      ||
+|| AROME               || cca/METIE     || Working.                      ||
+|| AROME_1D            || cca/METIE     || Working.                      ||
+|| AROME_MUSC          || cca/METIE     || Working.                      ||
+|| AROME_3DVAR_MARSOBS || cca/METIE     || Working.                      || 
+|| AROME_3DVAR_ALLOBS  || METIE         || Working locally.              || 
+|| AROME_3DVAR_BATOR   || cca/METIE     || Obsolete since BATOR is default  || 
+|| HarmonEPS           || cca           || Working. ||
+|| AROME_EPS_COMP      ||               || Working. ||
+|| AROME_BD_ARO        || METIE/cca     || Working. ||
+|| AROME_JB            || cca           || Working.                      ||
+|| AROME_CLIMSIM       ||               || Not tested - talk to Emily            ||
+|| AROME_4DVAR         ||               || Not working (CY40 code merged) ||
+|| AROME_LETKF         ||               || Not working (CY40 code merged) ||
+|| AROME_HYBRID        ||               || Not working (CY40 code merged) ||
+|| ALARO_3DVAR         || cca           || What do we want to do with ALARO? e001_ALARO-1_CY43T2bf09_commented.nam is available. Does ALARO-0 exist in CY43T2 code and do we want to support it? No action on these (Ulf) ||
+
+== Observation status ==
+harmonie-40h1 Bator changes have been merged in to harmonie-43h1.pre-alpha.1. Below is a table summarising the status ofthe processing of various observation types.
+
+||= TYPE       =||=           =||= SOURCE        =||= STATUS              =||
+|| SURFACE-LAND || MOST        || mars/mcp/metie  || Working. synop_old implemented in Bator to process SYNOP TM307005, TM307007. ||
+|| SURFACE-LAND || GBGPS       || mars/mcp/metie  || Working. ASCII COST format not tested                                        ||
+|| SURFACE-SEA  || ALL         || mars/mcp/metie  || Working. buoy_old implemented in Bator to process TM308003.                  ||
+|| SOUNDING     || TEMP        || mars/mcp/metie  || temp_old implemented in Bator to process TM309007. temps_old implemented to process TM309196. ||
+|| SOUNDING     || PILOT       || mars/mcp/metie  || Treatment of PILOT BUFR TM301001 (pilot_old) not implemented.                ||
+|| AIREP        || ALL         || mars/mcp/metie  || amdaromm now treats the latest AMDAR BUFR TM311010.                          ||
+|| SATOB        || GEOWIND/AMV || ears            || Working technically.                                                         ||
+|| SOUNDING-SAT || AMSUA       || ears            || Working technically.                                                         ||
+|| SOUNDING-SAT || AMSUB/MHS   || ears            || Working technically. Investigate use of mask.amsub file?                     ||
+|| SOUNDING-SAT || HIRS        || ears            || Working technically.                                                         ||
+|| SOUNDING-SAT || IASI        || ears            || Working technically.                                                         ||
+|| SOUNDING-SAT || ATMS        || ears            || Fails in Screening (AT_AVG_STDEV_FILTER). mask.atms added to nam.            ||
+|| SOUNDING-SAT || CRIS        || ears            || Fails in Screening (RADTR_ML: Error in channel subsetting for RTTOV.         ||
+|| SOUNDING-SAT || SEV         || ears            || Working technically. METEOSAT 11 csr (SEVIRI) data passes through OK         ||
+|| SOUNDING-SAT || GPSRO       ||                 || Not tested.                                                                  ||
+|| RADAR        || Z           || OPERA           || Working and inspected                                                        ||
+|| RADAR        || Vr vol      || OPERA/???       || Not tested.                                                                  ||
+
+
+Some further comments:
+ * CY43T2 DA const files have been downloaded from hendrix (Météo France) and have been tested. Best treatment of IASI (and other) rtcoef files to be discussed/decided.
+ * obsmon not working with ODB_IO_METHOD=4 - more testing required.
+ * Is LL_ECMWF still needed in src/odb/cma2odb/shuffle_odb.F90?
+ * Is LMFBUFR still needed in Bator?
+ * VARBC table format has changed, 5->6, Roger will send question about converter to MF
+ * Translation tool from Alena Trojakova: [[https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/43h1.pre-alpha.1/convert_VARBC.tar.gz]]
+   * Introduced in the branch and works for satellites but not yet for GNSS. Magnus is working on GNSS.
+ * Derivation of structure functions using harmonie-43h1.pre-alpha.1 has not been tested. '''AROME_JB is working'''
+ * Cleaner start of ECFLOW like in MetCoOp ( Ole ...)
+ * Too many environment variables are exported to _ecFlow_submit_env. Problems with LOADEDMODULES....
+ * Fix for negative moist variables got lost between cy38 and cy40. Where to put it in? Jan Barkmeijer knows the details.
+ * ANAATMO/ANASURF=none/blending/fgcopy doesn't work as intended for various reasons. Needs to be defined properly and tested.
+ * Implement extended E-zone option for 3DVAR. Nils G/Ulf A knows the details.
+ * Re-runnable tasks
+ * E-ZONE fix for SURFEX from CY45
+{{{
+in remotes/origin/gco_CY45_t1
+< IF (NBLOCKTOT > 0) THEN
+<   YSURFEX_ARO_CUR => YSURFEX_ARO_ALL (1)
+< ELSE
+<   NULLIFY(YSURFEX_ARO_CUR)
+< ENDIF
+
+}}}
+
+== DA algorithm status ==
+||= TYPE =||= ALGORITHM          =||= STATUS                      =||
+|| SFC    || CANARI_OI_MAIN       || Working.                      ||
+|| SFC    || CANARI_EKF_SURFEX    || Not tested.                   ||
+|| SFC    || CANARI               || Not tested.                   ||
+|| SFC    || OI                   || Not tested.                   ||
+|| SFC    || EKF                  || Not tested.                   ||
+|| SFC    || fgcopy               || Working.                      ||
+|| UA     || blending             || Working.                      ||
+|| UA     || 3DVAR                || Working.                      ||
+|| UA     || 4DVAR                || Not working.                  ||
+|| UA     || LETKF                || Not working.                  ||
+|| UA     || HYBRID               || Not working.                  ||
+
+
+== Upper air  ==
+ * CY43 updates from Karl-Ivar, see attached tar file. '''Included'''
+
+
+== SURFEX status ==
+ * gl_grib_api -sst option not working (used in gl_bd script; needed for interpolate & update SST in climate mode simulations). Issue not present in other cy43 branches.
+   * Does the "gl_grib_api -sst3" option work?
+ * FLAKE does not work with OMP_NUM_THREADS>1 on intel.
+
+== Physiography/climate generation status ==
+ * Reorganise and complete the physiography data sources at cca:/project/hirlam/harmonie/climate, check the definitions in config files and scripts (Climate, Prepare_pgd etc)
+ * Use of new sand and clay?
+   * Soilgrid introduced
+
+== Trunk status ==
+ * Needs to be merged with the latest trunk changes
+  * Selected changes included
+
+== Misc ==
+ * JPXTRO/JPXLAT is increased to 4000 from 2560 which may increase memory usage. See fa_mod.F90 for details.
+ * Fldextr broken for fgcopy and blending+surface assimilation cases
+ * Should we output GRIB2 as default?
+ * Generalise domain check in MARS_ROTATED (Ulf)
+ * User trans does not work in gl_grib_api
+ * LSELECT=yes increases the cost and leaks memory
+ * Switch to FPBOYD=1 and FPRHMAX >> 1.0 in E927.
+
+== Candidates for cleaning ==
+ * Conrad '''Removed'''
+ * Cloudinfo '''Removed'''
+ * monitor '''Removed'''
+ * gl ''' Removed''' gl_grib_api will be renamed to gl later
+ * gribex, '''Still used in various routines, will not be removed''' gribex will not be ported to Bologna by ECMWF.
+ * SURFEX_PREP="no" '''Removed'''
+ * SURFACE="old_surface" '''Will be removed, It means that ALARO as ALADIN uses it will not work''' '''DONE'''
+ * OBSMON=plotlog, doesn't work in EPS mode, will be missed by DMI
+ * POSTP=offline and POSTP=both '''Will be removed'''
+ * LSMIXBC inside Canari, should switch to offline program '''Done, Ole'''
+ * SURFEX_OUTPUT_FORMAT to be removed '''Removed'''
+ * odb2ascii, linking of MANDALAY and similar '''Removed'''
+
+== ~~'''Outstanding tasks as of 2018-06-15 '''~~ ==
+
+ Unresolved merge issues can be found with #ifdef HIRLAM_XXX where XXX currently are 
+
+ * VAR is 3D/4D-VAR. Eoin, so you take charge? Should we involve Roger?
+   * src/arpifs/var/adtest.F90 changed in r17257
+   * HIRLAM_VAR ifdefs removed
+ * BATOR. Eoin taking charge ...
+   * src/odb/pandor/module/bator_util_mod.F90 corrected in r17261
+   * HIRLAM_BATOR ifdefs removed
+   * further work on the following may be required:
+{{{
+src/odb/module/yomboctp.F90
+src/odb/pandor/module/bator_decodbufr_mod.F90
+src/odb/pandor/module/bator_decodhdf5_mod.F90
+src/odb/pandor/module/bator_ecritures_mod.F90
+src/odb/pandor/module/bator_impr_mod.F90
+src/odb/pandor/module/bator_init_mod.F90
+src/odb/pandor/module/bator_saisies_mod.F90
+src/odb/pandor/module/bator_util_mod.F90
+src/odb/pandor/namelist/bator_namelist.nam.h
+src/odb/tools/Bator.F90
+}}}
+ * PAR is a more technical parallezation issue. Ole or Ulf, can you have a look? ** Fixed by Ole **
+ * MSG Erik has volunteered with help from Niko
+   * How to transport three MSG-fields to the physics, the GFL way (meant for 3D fields) is no good!
+   * This will require some recoding, who is going to take care of this?
+   * Formally fixed @17348. No run time correctness check done with active MSG input data, should be done by Erik or Magnus.
+ * SPDT: Ulf has volunteered
+ * PHYSICS: Karl-Ivar will have a look. One issue with some logics. Otherwise check that the interfaces are OK and it behaves. ** Fixed by someone **
+ * pertsurf.F90 is duplicated (Ole/Ulf) **Fixed by someone**
+
+== ~~'''Conflicts resolution during the merging of branches/cy43_t2  and trunk/harmonie (rev 16684)'''~~ ==
+
+All the conflicts on config.sh and scr directories has been solved as cy43 
+
+=== ~~''' List of conflicts in src '''~~ ===
+
+'''File:'''  aladin/coupling/lsrw.F90  
+
+'''Conflict:'''  Revision 15257, Merge asynchronous reading of boundaries from the MetCoOp branch
+
+'''Comments:''' Implemented on cy43 LDSWAP now is LDREADCOU
+
+'''File:'''  aladin/coupling/erlbc.F90  
+
+'''Conflict:'''  Revision 15257, Merge asynchronous reading of boundaries from the MetCoOp branch
+
+'''Comments:''' Implemented on cy43
+
+'''File:'''  algor/module/random_numbers_mix.F90
+
+'''Conflict:'''  Revision 16615 Merge back the harmonEPS-40h1.1 branch to the trunk
+ Minor changes in meteorology expected due to revised MARS request procedure that affects the accuracy. 
+
+'''Comments:''' Accept trunk modification
+
+'''File:'''  arpifs/adiab/cpg.F90
+
+'''Conflict:'''  Revision 16615. Merge back the harmonEPS-40h1.1 branch to the trunk
+Minor changes in meteorology expected due to revised MARS request procedure that affects the accuracy.
+
+'''Comments:''' Implemented in cy43
+
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

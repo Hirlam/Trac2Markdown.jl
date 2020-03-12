@@ -1,0 +1,41 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''Monitoring of the observation data usage''' =
+[[Center(end)]]
+
+== Regularly produced observation data coverage maps ==
+
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| Soundings|| yes||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] || yes ||   ||   ||   ||   ||
+|| Surface obs|| yes||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] || yes ||   ||   ||   ||   ||
+|| aircraft obs|| yes||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] || yes ||   ||   ||   ||   ||
+|| ATOVS || yes||   || no || no ||   ||   ||   ||   ||
+|| AMV || yes||   || no || no ||   ||   ||   ||   ||
+|| !QuickScat || yes||   || no || no ||   ||   ||   ||   ||
+|| OSI-SAF SST || yes||   || no || no ||   ||   ||   ||   ||
+
+== Regularly produced analysis increments ==
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| surface || no||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+|| key pressure levels || no||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+
+== Obs-ana, Fgs-ana statistics ==
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| TEMP || no ||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+|| PILOT || no ||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+|| AIREP || no ||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+|| SURFACE || no ||   || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html yes] ||yes ||   ||   ||   ||   ||
+
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]

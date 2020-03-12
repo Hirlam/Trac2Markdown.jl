@@ -1,0 +1,46 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''HIRLAM Verification''' =
+[[Center(end)]]
+
+== Observation Verification ==
+
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| Obs verification [[br]] software || DMI||  || reference || reference || reference || met.ie || met.no  || SMHI ||
+|| averaging period || daily,monthly,quarterly ||  ||  || monthly,quarterly ||  ||  ||   ||  ||
+|| length of [[br]] data set || since 1994 ||  ||  || since 1997 ||  ||  ||  ||   ||
+|| Verification [[br]] Area || EWGLAM,  Denmark, Greenland[[br]], extended EWGLAM ||  || All, EWGLAM,Scn,Spa,[[br]]Fra,!UkIrl,Ned   || All,Spa,EWGLAM ||  || EWGLAM  ||  ||  ||
+|| Verified [[br]] Surface parameter || Mslp, T2m, W10m, Rh2m[[br]] Tmin/max, W10m gust||  ||   || Mslp, T2m, W10m, Rh2m ||  ||  ||   ||  ||
+|| Verified [[br]] UA parameter || H, T, W, RH ||  ||   || H, T, W, RH  ||  ||  ||  ||   ||
+|| Verified [[br]] pressure levels || standard levels [[br]] up to 100 Hpa  ||  ||   || standard levels [[br]] up to 100 hPa ||   ||  ||  ||  ||
+|| Main statistics [[br]] parameter || rms, std, bias ||  ||   || rms, bias ||  ||  ||    ||  ||
+|| other Statistics [[br]] || wind weibull distribution, wind rose [[br]] hit rate, brier scores [[br]] ETS ||  ||   ||   ||  ||  ||  ||    ||
+|| Contingency table || precipitation, visibility [[br]] total cloud, W10m ||  ||   ||   ||  ||  ||    ||  ||
+|| meteogram || prec, mslp, T2m, W10m, [[br]] W10md, RH2m, cloud cover ||  ||   ||   ||  ||  ||    ||  ||
+|| Verification data [[br]] for comparision || ECMWF, UKMO ||  ||  || ECMWF ||  ||  ||    ||  ||
+|| length of [[br]] interxomparison data set || since Oct 1994 ||  ||  ||   ||  ||    ||  ||  ||
+
+== Field Verification ==
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| Field verification [[br]] software || DMI home-made ||  || reference || reference || reference ||   ||   || SMHI home-made ||
+|| averaging period || monthly [[br]] specified periods ||  ||  || monthly,[[br]] quarterly  ||  ||  ||    ||  ||
+|| parameters || mslp, t2m,w10m, w10 vector,[[br]] H,T,W at 925 850 700 500 250 hPa  ||  ||  || mslp, t2m,w10m, [[br]] w10 vector,[[br]] H,T,W at standard pressure levels ||  ||  ||    ||  ||
+
+
+
+
+
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,36 @@
+= Mailman and exim4 =
+
+Mailman is the system behind the mailing lists at [https://hirlam.org/mailman/listinfo].
+Note that all administration of the mailing lists themselves should be done via the web
+interface to mailman, and not by editing files on the server. The password for mailman
+administration is in {{{~root/Mailman-site-password}}}.
+
+Exim4 is the mail exchange system, responsible for handling incoming and outgoing mail.
+
+Both mailman and exim4 are installed as software packages on the server:
+{{{
+root@hirlam:~# dpkg -l | grep mailman
+ii  mailman                              1:2.1.20-1ubuntu0.3                        amd64        Powerful, web-based mailing list manager
+root@hirlam:~# dpkg -l | grep exim4  
+ii  exim4                                4.86.2-2ubuntu2.4                          all          metapackage to ease Exim MTA (v4) installation
+ii  exim4-base                           4.86.2-2ubuntu2.4                          amd64        support files for all Exim MTA (v4) packages
+ii  exim4-config                         4.86.2-2ubuntu2.4                          all          configuration for the Exim MTA (v4)
+ii  exim4-daemon-light                   4.86.2-2ubuntu2.4                          amd64        lightweight Exim MTA (v4) daemon
+}}}
+
+However, they are not automatically integrated just because they are both installed as packages.
+
+The master configuration file for mailman can be found in {{{/etc/mailman/mm_cfg.py}}}.
+
+The top level configuration file for exim4 is {{{/etc/exim4/update-exim4.conf.conf}}}.
+After this file is changed, one needs to do:
+{{{
+update-exim4.conf
+service exim4 restart
+}}}
+There are also quite a few mailman adaptations in the files under {{{/etc/exim4/conf.d/}}}, mostly
+along the lines described here: [http://www.debian-administration.org/article/617/Mailman_and_Exim4].
+
+And don't forget that mailman is also a service, so if configuration files are updated, this service
+also has to be restarted!
+

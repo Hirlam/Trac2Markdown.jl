@@ -1,0 +1,56 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1 alpha 3''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlight of Hirlam 7.1 alpha 3 ==
+
+Hirlam 7.1 alpha 3 is the third tagged trial release towards [wiki:Hirlam_7.1 Hirlam 7.1]. The code includes following main updates on top of the previous trial releases for 7.1, [wiki:ReleaseNotes7.1alpha1 Hirlam 7.1 alpha1] and
+[wiki:ReleaseNotes7.1alpha2 Hirlam 7.1 alpha2]:
+
+ * A series of bug fixes to correct errors in the previous versions
+   * failure to define NDTVDIF
+   * missing surface analyses at 06 and 18 UTC in case of 6 h cycling and LSMIX
+   * inconsistencies in calculation of lowest model level TKE in F90 version of vertical diffusion code VCBR
+   * a bug in grib-handling
+   * missing print-out of cost function contribution per observation type in case of minimization using conjugate gradient method
+ * Launch of minimization scheme with conjugate gradient (CG) method instead of Quasi-Newton method M1QN3. This results in a general speed up of 4D-VAR minimization in most cases.
+ * Restoration of saturation pressure table instead of functional form. As a result, the forecast module now runs noticeably faster.
+ * Optional assimilation of AMV wind data with polar-orbit satellites (MODIS) or geostationary satellite (Meteosat 8). The assimilation module is at the moment not entirely ready for use though.
+ * Further improvement on climate generation script
+ * Improvement in scripts
+   * no specification about CPU time limit on ECMWF/HPCE following ECMWF suggestion
+   * non-standard 4D-VAR assimilation window length allowed
+   * specification of VarQC on-off time moved to Env_expdesc
+   * flexibility in choosing assimilation window length for 4D-VAR
+ * Clean up of superfluous/obsolete scripts
+ * Reduction of print-out messages
+ * Other technical improvements and corrections
+
+That this tagged system is still named as an 'alpha' release instead of 'beta' reflects the fact that the currently assembled system is still an incomplete one compared to the target for 7.1, (e.g., the fully tested new surface scheme
+has yet to become an integrated part), and that neither the individual components nor the assembled system has been tested thoroughly. To help developers with code tests, a tagged model version containing the new surface scheme, [wiki:ReleaseNotes7.1alpha3newsnow Hirlam-7.1 alpha3-newsnow], is released simultaneously. [wiki:ReleaseNotes7.1alpha3newsnow Hirlam-7.1 alpha3-newsnow] is equivalent to Hirlam-7.1 alpha3 but with the addition of the new surface scheme.
+
+We encourage developers involved with preparation of components for 7.1 to use the latest tagged (alpha) release(s) as much as possible until the next assembled code version is available. Please remember to exchange experiences and report problems/bugs to fellow developers. Meanwhile, we do not encourage operational centers to adopt the current one for operational use.
+
+== Description of the code and script changes ==
+
+The system 7.1 alpha 3 contains code updates on top of the previous tagged version, 7.1 alpha 2. A detailed [https://hirlam.org/trac/log/trunk/hirlam?action=follow_copy&rev=4784&stop_rev=4735&mode=follow_copy&verbose=on listing] of these changes can be found through the link to wiki page. The following lists provides brief list of the modifications, including names of main contributors and version numbers of the changeset associated most closely with the update:
+
+ * Removal of inconsistency in TKE computation at lowest model level (Bent Hansen Sass, [4745]). 
+ * Optional assimilation of atmospheric motion vector (AMV) data for polar satellite (MODIS) or Geostationary satellite (Meteosat 8) (Carlos Geijo, [4753]);
+ * Improvement on climate generation scripts to adapt ctopo calls to new ctopo strictness policy; account for memory limitations on ECMWF platform; bug fixes (Kai Sattler, [4765]);
+ * Update of Background error on Observation Space (BGOS) code to cover AMSU data over sea [Per Dahlgren, 4766]);
+ * Enable flexible assimilation window length in 4D-VAR (Xiaohua Yang, [4760]);
+ * Bug correction on the recent changeset [4709] to ensure correct time stepping for vertical diffusion (Toon Moene, [4742])
+ * Bug correction in the script "Span" to ensure surface analysis at 06 and 08 UTC in LSMIX scenario (Xiaohua Yang [4740]);
+ * Bug correction on grib-handling changes introduced recently in [4603] (Lars Meuller, [4735]);
+ * Other minor script and code revisions (Xiaohua Yang, Ole Vignes, Tomas Wilhelmsson et al)
+
+== Meteorological and Technical Evaluations, Outstanding problems, Bugs ==
+
+See wiki page for [wiki:Hirlam_7.1 Hirlam 7.1]
+
+== How to run Hirlam 7.1 alpha 3 ==
+
+See instructions on wiki page for [wiki:Hirlam_7.1 Hirlam 7.1]

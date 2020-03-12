@@ -1,0 +1,256 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie Working Week on Use of Observations and DA algorithms ''' =
+''Santander, 11th - 15th of June 2018''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+[[Image(20180612_131102.jpg, 30%)]]
+[[Image(20180612_131059.jpg, 30%)]]
+[[Image(20180612_131038.jpg, 30%)]]
+[[Image(20180612_131030.jpg, 30%)]]
+[[Image(20180611_202820.jpg, 30%)]]
+[[Image(IMG_20180613_104103.jpg, 30%)]]
+[[Image(IMG-20180615-WA0001.jpg, 30%)]]
+
+
+
+The common HARMONIE Working Week on UoO and Algo 2018 will be held this year in Santander.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =||= Hotel             =||= Pref. restaurant  =|| 
+||Roger Randriamampianina || MET Norway      || Bilbao: 10th at 16:25 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar            ||
+||Roohollah Azad          || MET Norway      || Bilbao: 10th at 16:25 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar            ||
+||Roel Stappers           || MET Norway      || Bilbao: 10th at 16:25 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar             ||
+||Magnus Lindskog         ||SMHI             || Bilbao: 10th at 22:45 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar             ||
+||Nils Gustafsson         ||SMHI             ||                   ||  Hotel Santemar     || Hotel Santemar             ||
+||Jelena Bojarova         ||SMHI             ||                   ||  Hotel Santemar     || Hotel Santemar             ||
+||Martin Ridal            ||SMHI             || Bilbao: 10th at 22:45 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar            ||
+||Sigurdur Thorsteinsson  ||IMO              || Santander 10th at 16:05 -- Santander 19th at 21:10                  ||  Hotel Santemar     || Hotel Santemar             ||
+||Carlos Geijo            ||AEMET            ||                   ||  Hotel Santemar     || Hotel Santemar            ||
+||Eoin Whelan             ||METIE            || Bilbao: 7th at 15:55 --  15th at 17:10   || Hotel Santemar     || Hotel Santemar             ||
+||Maria Diez              ||AEMET            || Santander: 11th at 8:30 -- 15th at 13:45                 ||  Hotel Santemar     || Hotel Santemar           ||
+||Mats Dahlbom            ||DMI              || Bilbao: 10th at 16:25 -- Santander 15th  ||  Hotel Santemar     || Hotel Santemar            ||
+||Xiaohua Yang            ||DMI              || Bilbao: 10th at 16:25 -- 15th at 18:05   || Hotel Santemar     || Hotel Santemar            ||
+||Wim Verkley             ||KNMI             ||                   ||  Hotel Santemar     || Hotel Santemar            ||
+||Jan Barkmeijer          ||KNMI             || Santander 10th at 17:05 -- 15th at 17:45  || Hotel Santemar  || Hotel Santemar            ||
+||Jana Sanchez            ||AEMET            ||                   ||                 || Hotel Santemar ||
+||Joan Campins            ||AEMET            || Santander 10th at 22:40 -- Santander 15th at 17:55  || Hotel Santemar  || Hotel Santemar             ||
+||Pau Escribà             ||AEMET            || Santander 11th at 09:00 --  Santander 15th at 17:55  || Hotel Santemar  || Hotel Santemar ||          ||
+||Ole Vignes              || MET Norway      || Bilbao: 10th at 16:25 --  15th at 17:10  ||  Hotel Santemar     || Hotel Santemar             ||
+||Isabel Monteiro         || IPMA Portugal   || Santander 10th at 19:35 -- Santander  15th at 17:45  ||  Hotel Art Santander     || Hotel Santemar             ||
+
+== Agenda ==
+
+Normal daily agenda:[[BR]]
+09:00 - 10:30: Working in groups[[BR]]
+10:30 - 10:50: coffee break[[BR]]
+10:50 - 13:30: working in groups[[BR]]
+13:30 - 14:30: lunch break[[BR]]
+14:30 - 16:00: working in groups[[BR]]
+16:00 - 16:30: coffee break[[BR]]
+16:30 - 18:00: working in groups[[BR]]
+
+== Report topics ==
+We start with short progress report (short presentation is welcome but not mandatory). It'd be good to have overview on the following topics:
+ --Radiance: ATOVS (Sigurdur & Joan & Roger); IASI ( Roger); Seviri (Magnus); ATMS (Mats);[[BR]]
+ --DFS computation. Do we have it implemented at each centre?[[BR]]
+ --MTEN computation. Do we have it implemented at each centre?[[BR]]
+ --Obsmon (?? from Paulo's development);[[BR]]
+ --!ObsTool: Do we have this tool implemented at each centre? [[BR]]
+ --AMV (Roger - status report from Per Dahlgren work);[[BR]]
+ --GNSS ZTD (Jana & Magnus);[[BR]]
+ --Mode-S or (hu) aircraft data (Maria & ??);[[BR]]
+ --VarBC for aircraft data (Magnus);[[BR]]
+ --ASCAT (Isabel & Roger);[[BR]]
+ --Bator-related tasks (Eoin, Roger);[[BR]]
+ --Radar (Jana & Wim);[[BR]]
+ --Aeolus HLOS wind (Roohollah); [[BR]]
+ --Filed alignment (FA) & Variational Constraint (VC) scheme (Carlos); [[BR]]
+ --Back & Forth nudging (Ole); [[BR]]
+ --Nowcasting, RUC, overlapping windows scheme (Xiaohua, Martin? Metcoop);[[BR]]
+ --4D-VAR (Nils & Jan & Magnus);[[BR]]
+ --Hybrid !EnVar (Jelena);[[BR]]
+ --LETKF (Pau & Jelena);[[BR]]
+ --OOPS (Roel).[[BR]]
+
+
+== List of topics/tasks ==
+
+**Draft list of topics to be discussed and worked out together or in a group:** Please check also our previous meetings (see below) tasks lists.[[BR]]
+ -- Use of observations from moving platforms in 4D-Var and LETKF (handling of observations in appropriate time slots): Magnus, Martin, Jan, Roohollah;[[BR]]
+ -- Testing 4D-Var (3 hourly cycling or nowcasting regimes) Xiaohua, Nils;[[BR]]
+ -- Assimilation of T2m & Hu2m & V10m in upper-air DA: Pau, Maria;[[BR]]
+ -- FA & VC into trunk: Carlos, Eoin;[[BR]]
+ -- OOPS & flow-dependent schemes implementation;[[BR]]
+ -- Hybrid !EnsVar system into trunk: Jelena, Ole;[[BR]]
+ -- LETKF system into trunk: Pau, Eoin;[[BR]]
+ -- Testing CY43 with bug fix 8: Roohollah, Mats;[[BR]]
+ -- Humidity data from Aircraft: Maria, Roger;[[BR]]
+ -- Improve use of low peaking channels from microwave radiances: Xiaohua, Sigurdur;[[BR]]
+ -- Assimilation of surface pressure instead of MSLP (or "zero" Geopotential) in Variational schemes: Pau, Magnus, Roel, Eoin, Martin;[[BR]]
+ -- Implementation of DFS and MTEN locally: Jan, Jana, Roger, Martin, Sigurdur, Mats; [[BR]]
+ -- VarBC in absence of anchoring observations: Jana, Joan, Roel;[[BR]]
+ -- Rolling work plan for 2019;[[BR]]
+ ---Check 4D-Var by “dynamical” case study (polar low): Nils, Jan, Xiaohua [[BR]]
+ -- Jc-dfi (Can we learn from Marco Milan Met Office?) Nils [[BR]]
+ -- Optimisation of 4D-Var system: Ole [[BR]]
+ -- Parallel test (Metcoop domain); Magnus, Jan, Nils, Roger [[BR]]
+ -- Hybrid 4D-Var (with Lena and Ole)[[BR]]
+ -- Truncation of trajectory??: delay [[BR]]
+ -- Blacklisting of ECMWF vs that of Harmonie;[[BR]]
+ -- Testing of the new RTTOV coefficients; [[BR]]
+ -- Local assimilation of ASCAT data: Jana, Isabel; [[BR]]
+ -- Documentation of !PrepOper: Roger, Mats, Martin; [[BR]]
+ -- Assimilation of radial wind: Martin, Jana; [[BR]]
+ -- Assimilation of IASI radiances: Joan, Roger; [[BR]]
+
+
+== Draft minutes of the meeting ==
+
+ The meeting started with [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/LocalOrganization_WWUO%26Alg2018.pdf short practical information] from Jana. Then, Roger shared [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/welcome_and_some_info_RR.pdf some information] and talked about organisation matters. [[BR]]
+
+ The first day, almost each participants gave progress report.[[BR]]
+ - **Sigurdur** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/SantanderDAWW_10062018_SThRR.pdf reported] the implementation of the use of dynamical emissivity and Atlases in assimilation of ATOVS and ATMS radiances in Harmonie....[[BR]]
+ - **Joan** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Delay_of_NOAA_18_19_over_Iberia.pdf reported] the results of a tentative of updating the assimilation of ATOVS radiances over the Iberian peninsula and the Balearic islands. He assimilated more data in passive form next to the active ones. The study was interesting with relatively long spinup of coefficients for ATOVS channels, when the availability is varying from day to day. Long spinup helped in getting stable coefficients for certain cases, while for few cases it's still difficult to draw conclusions.[[BR]]
+ - **Roger**, **Magnus**, and **Mats** said that since last report there was no update on the use of IASI, Seviri and ATMS, respectively. Magnus mentioned that there is plan in MetCoOp to use Seviri radiances and SAF-NWC cloud products from MSG and Polar satellites.[[BR]]
+ - **MTEN** and **DFS**: Jana expressed the need for improved documentation.She will install MTEN on local machine as soon as it is updated.[[BR]]
+ - **Obsmon**: It was mentioned that Paulo is updating this tool. Many of the participants expressed the need for a single version of this tool.[[BR]]
+ - **GNSS-ZTD (zenith Total delay)**: The Nordic processing centre is preparing data for nowcasting purposes with timeliness not more than 15 min. These data will be available for test. They will be distributed with different stream than those used in operational systems.[[BR]]
+   -- **Jana** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Radar%26GNSS2018_JS.pdf reported their results] with changing the updating frequency (from cycling to twice (00 and 12 UTC)) of predictors and reduced NBG value for GNSS-ZTD. The results are very promising, but they decided not to put the solution in operational.[[BR]]
+ - **GNSS-SD (Slant delay)**: **Jan** reported that Siebren is working to make these data assimilated in their DA. The results are not yet satisfactory.[[BR]]
+ - **ADD**:[[BR]]
+   -- **Mode-S data**: **Siebren** is processing the data for our centres. There is potential interest on these data at each centre. [[BR]]
+   -- **Aircraft humidity data**: **Maria** reported that she observes random strange bias at low model levels.[[BR]]
+   -- ** Magnus** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/magnus_santander.pdf reported] about the first results with active VarBC to correct the bias in aircraft observation. He showed very promising results. So far he tested the VarBC with the off-set only. He plans to use more predictors soon.[[BR]]
+ - **Scatterometer data**: **Isabel** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Isabel_IPMA_Scatterometer_DA_Harmonie_wwSantander2018.pptx reported] the work she did with Gert-Jan Marseille with tha Scatterometer data. They added the Scatterometer data on top of conventional observations only. The checked the impact of the Scatt data with and without thinning. She mentioned that the data were from the EUMETCast. After her presentation, we discussed a bit the access to different scatterometer data. It's worth to check the availability of these data in our centres. [[BR]]
+ - **Aeolus**: Roohollah [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/aeolus_test_data.pdf reported] the implementation of Aeolus HLOS wind data assimilation in the CY43T2 of the Harmonie system. He succeed to read and assimilate the test data from ECMWF. This work was done in frame of the PRODEX CAL/VAL project funded by ESA and the Norwegian space centre. The Aeolus satellite will be launched in August and the real data for CAL/VAL studies will be available 2-3 months after the launch. The assimilation of the real data in Harmonie is expected to be carried out at the beginning of 2019.  [[BR]]
+ - **Local DA developments, ASCAT tests, Bator and more ...**: **Eoin**: presented a quick update on DA developments at Met Éireann including some initial results from ASCAT (coastal product tests). Eoin highlighted the issue of ambiguous wind directions. It was suggested that VarQC may help this. A brief summary of Bator/COPE/SAPP developments was also provided. Presentation: [raw-attachment:eoinWhelan_DAUOWW.pdf pdf ] [[BR]]
+ - **Back and forth nudging**: **Ole** didn't have time to work on this lately. [[BR]]
+ - **Field alignment (FA) and Variational constraint (VC)**: **Carlos** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/CGG_wwsantander2018.pptx presented] the latest development related to the VC. He mentioned that this tool is meant to be used in nowcasting applications. The VC was tested with LETKF by Pau. The status of the VC is that the "spreading" of the increments along the vertical is working quite well using the Green function, while the "spreading" in horizontal needs to elaborated for example using only the horizontal correlation parts of the B matrix.[[BR]]
+ - **Nowcasting system, RUC**: **Xiaohua** highlighted from [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Yang.pdf his presentation at the EUMETNET workshop] the performance of the Harmonie-Arome DA with partially overlapping windows. He showed the results of a hourly 1-, 2-, and 3-hours cycling overlapping windows systems. 1-hour cycling was mentioned to be advantageous with forecasting of "dry parameters" like Temperature, while 2-hour cycling showed the best forecasts of precipitation and humidity. [[BR]]
+ - **4D-Var**: **Nils** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/NGJune2018.pdf reported] about the latest development with the 4D-Var system. Among others, he tested the computational cost and the accuracy of a multi-incremental system. He found that using two outer-loops with 6dx and 3dx can have a cost that can be affordable for operational application. Actually, he compared two settings: 1) 30 iter 3 dx + 30 iter 3 dx and 2) 20 iter 6 dx (needed to extend EZONE to 25) + 10 iter 3 dx. These two systems have the same accuracy. [[BR]]
+    -- **Jan** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/santander2018june_jb.pptx presented] validation results of a 4dvar parallel run (using all available Mode-s EHS data and scatterometer) for a two week period. Unfortunately the results were affected by a 'cloud' bug, but there is an indication of promising results compared to the associated 3dvar run. The bug will be corrected and continue to run over the summer. He also points out that the minimization in loop2 does not seem to add much to loop1. Further diagnostics is required here , such as the structure of analysis increments or the use of a warm start. Also the minimizer CONGRAD (currently M1QN3) may improve the efficiency of the minimization. It does so in the context of 3dvar, where on average 8 iterations less are required for the same accuracy. It may therefore beneficial to switch to CONGRAD for 3D/4DVAR. In addition he reported on a parallel radar run (Wim Verkley). Results indicated that radar refectivities do have positive impact for cases. Next step will be the use of objective scores like Fractions Skill Score to substantiate this.[[BR]]
+ - **Hybrid !EnVar**: **Jelena** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Uo%26ALGO2018.pdf presented] the implementation process of the !EnVar scheme in Harmonie-Arome DA starting from the theoretical background and the coding of the solution in Fortran level. She also presented the Brand perturbation technique and showed few preliminary results. To be accurately used, this this solution needs careful tuning and better understanding of its functionality. [[BR]]
+ - **LETKF**: **Pau** reported LETKF is quite mature after several tuning but still not finished. In a 8 day (short) verification period the LETKF performance is comparable to 3DVAR, even better in some parameters when assimilating only conventional observations. More verification with other and longer periods is needed. More description below and in the presentation is [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/LETKF_in_HARMONIE_Jun18.ppt attached].[[BR]]
+ - **OOPS and more**: **Roel** gave a [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/2018Santander_DAWW_stappers.pdf summary] of the OOPS Video meeting (8 June) and some aspects of the scripting redesign were discussed. He also showed [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/NetAtmo20180510.gif result] from Thomas Nipen on Netatmo surface pressure anomalies and precipitation. From this short motion, one can see correlation between precipitation and the pressure anomaly. 
+
+We above tasks were executed/treated the following way:
+ -- **Use of observations from moving platforms in 4D-Var and LETKF (handling of observations in appropriate time slots)**:
+   -- Magnus, Martin, Jan, Roohollah;[[BR]]
+   -- Eoin: confirmed hi-res BUFR TEMP is treated correctly in 4D-Var timeslots. '''Note:''' MARS does not have the full set of BUFR TEMP (compared to TAC TEMP). For a sample DTG in June 2018 '''19 BUFR TEMP''' vs '''31 TAC TEMP''' were available.[[BR]]
+   -- Magnus confirms GNSS can now be included in correct time slots with 15 minutes time slots. Martin that radar data works with 1 h timeslots and probably also 15 min timeslots.[[BR]] 
+
+
+ -- **Testing 4D-Var (3 hourly cycling or nowcasting regimes)**:
+   -- Xiaohua, Nils;[[BR]]
+ -- **Assimilation of T2m & Hu2m & V10m in upper-air DA**: 
+   -- Pau, Maria: A parallel experiment to HARMONIE-AROME operational at AEMET, is being integrated, assimilating the same obs than operational (conventional, GNSSS and ATOVS) plus T2m and RH2m, with LSOE=.true., so blacklisting T2m and RH2m during night time. 1 week of verification, let's see if we have better scores of some surface parameters as previous experiments suggested.[[BR]]
+ -- **FA & VC into trunk**: 
+   -- Carlos, Eoin: VC branch created with VC utilities added to this branch. The reintegration of the "VC" branch is pending the reintegration of the "LETKF" branch. [[BR]]
+ -- **OOPS & flow-dependent schemes implementation**:
+   -- Roger and Roel informed the participants about the OOPS development and the evolution of the new cycles. The importance of the OOPS prototype was underlined, however it would be meaningful to wait for CY47 to start to develop and explore an OOPS prototype. The reason is that the difference between CY43 and CY47 will be very big.  [[BR]]
+ -- **Hybrid !EnsVar system into trunk**: 
+   -- Jelena, Ole; The HybridEnVar branch was merged into trunk during the meeting. That broke the testbed, but a tdf bug was fixed shortly after. [[BR]]
+ -- **LETKF system into trunk**: Work is almost ready. Final testing underway. Plan is Eoin does it before finalizing June.
+   -- Pau, Eoin;[[BR]]
+ -- **Testing CY43 with bug fix 8**: 
+   -- Roohollah, Mats: Bug fix 8 supposed to have all solution allowing the full DA and forecast system to be valid for operational application. Still, both Roohollah and Mats couldn't get the Harmonie system working.[[BR]]
+ -- **Humidity data from Aircraft**: 
+   -- Maria, Roger; Roger has asked to Mate for the formula of q error, and Maria install in the local computer and run an experiment.[[BR]]
+ -- **Improve use of low peaking channels from microwave radiances**: 
+   -- Xiaohua, Sigurdur;[[BR]]
+ -- **Assimilation of surface pressure instead of MSLP (or "zero" Geopotential) in Variational schemes**:  
+   -- Pau, Magnus, Roel, Eoin, Martin. Bator was quickly edited to write Ps SYNOP observations to ECMA ODB. The screening of "redundant mass observations" in src/arpifs/obs_preproc/redmo.F90 is hard-coded to keep only geopotential observations.[[BR]]
+ -- **Implementation of DFS and MTEN locally**: 
+   -- Jan, Jana, Roger, Martin, Sigurdur, Mats; No progress during  this week [[BR]]
+ -- **VarBC in absence of anchoring observations**: 
+   -- Jana, Joan, Roel; No progress during  this week. [[BR]]
+ -- **Rolling work plan for 2019**;
+   -- On Wednesday morning, the group discussed the existing work packages and provided comments to the different tasks. [[BR]]
+ -- **Check 4D-Var by “dynamical” case study (polar low)**: 
+   -- Nils: With help from Ulf, he succeed to run experiment to test the performance of 4D-Var in forecasting polar low. He was thinking of shifting a little bit the model domain to have the cyclonic phenomenon well inside the domain.... Hopefully the results will be reported soon.[[BR]]
+   -- Jan: Spent lot of time to set up the radar data assimilation with well defined slots observations...
+   -- Xiaohua: Also spent some time to set up 4D-Var with the very high-resolution DMI domain... [[BR]]
+ -- **Jc-dfi (Can we learn from Marco Milan Met Office?)**
+   -- This task will be tackled by Nils soon the above test confirmed to show good behavior of the system. [[BR]]
+ -- **Optimisation of 4D-Var system**: 
+   -- Ole; A bug was fixed so that 4D-Var (and probably also 3D-Var, but this is not tested) can now run also with 2D/B-level parallelization. [[BR]]
+      Debugging continues for OpenMP, which still does not work.
+ -- **Parallel test (Metcoop domain)**: 
+   -- Magnus, Jan, Nils, Roger: Roger explained that there is now a coordinated OSE in frame of APPLICATE and Alertness projects aiming to study the impact of individual observations over the Arctic. ECMWF will provide respective LBCs for the denial experiments. While the above study will be done with 3D-Var, 4D-Var also can be tested. [[BR]]
+ -- **Hybrid 4D-Var**:
+   -- Nils, Jelena, Ole: This task will be started when LETKF and 4D-Var can work in a same branch. [[BR]]
+ -- **Blacklisting of ECMWF vs that of Harmonie**:
+   -- Roger: not started during the meeting, but report will be provided as soon as the test is ready. [[BR]]
+ -- **Testing of the new RTTOV coefficients**:
+   -- Roger: The idea here is confirm that the new coefficients provide more accurate processing of the satellite radiances. The results of such test will be provided soon. [[BR]]
+ -- **Local assimilation of ASCAT data**: 
+   -- Jana, Isabel; Isabel managed to run an experiment assimilating ASCAT data over Iberian Peninsula and over Canary Islands domain. Then Jana will implement them on Aemet's local machine.[[BR]]
+ -- **Documentation of !PrepOper**: 
+   -- Roger, Mats, Martin:  [[BR]]
+ -- **Assimilation of radial wind**: 
+   -- Martin, Jana; Good progress. More impact tests are needed. [[BR]]
+ -- **Assimilation of IASI radiances**: 
+   -- Joan, Roger: **Joan** discovered that in CY40 some of the predictors used for IASI processing are wrong, using non-existing stratospheric thicknesses. Similar problem was reported by Meteo France during the last video meeting. We (can) have problem because, due to large channels number, we cannot afford having all setup in the namelist. We have to hard-code our solution, which update is very easy to forget. We need keep eyes on this in the future cycles. As the only centre assimilating the IASI data, MetCoOp was informed about this problem. **Joan** will use the updated coefficients in his setup. [[BR]]
+
+The following topics were discussed as well:
+ -- **Patrick Samuelsson** expressed the idea of having the next working week commonly with the surface and DA groups. This proposal was discussed and we found it a bit early to have such common meeting. **Jelena and Magnus** think that the schemes under development and to be used for soil and surface analysis haven't each yet a mature stage to be compared with the upper-air schemes and discussed with (upper-air) DA and system experts. We think that it's really good idea, but not for this year.[[BR]]
+ -- **Isabel** invited the group to meet in Lisbon sometime in October, November, or beginning of December. **Roger** should come with suggestions about the possible weeks. Both group found that having a common meeting has more advantages. So, if affordable by both groups, we would like to the have a common meeting again.[[BR]]
+ -- **Nils ** invited both the groups  (Algo & UoO) next spring to meet in Gotland. **Nils and Roger** should come with dates soon. [[BR]]
+ -- **Debugging on CCA**: 
+   -- **Pau** demonstrated how can one set up a debugger in an experiment running on CCA. He also provided a [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201806/Debugging_con_ddt_eng.ppt presentation] for later consultation.
+
+The following was saved for another day:
+ -- **Verification using Screening/ODB**: Roger's idea is to plot 2D field of F-O, where x horizontal line shows the forecast ranges, and the vertical line shows the pressure in case of conv obs and channels in case of radiances. Eoin has python scripts used during the MÉRA project that may help. Siebren de Haan has also used this approach with his work.
+
+
+= Hotel information =
+
+HOTEL SANTEMAR (http://www.hotelsantemar.com/) will provide accommodation and the conference room with all necessary facilities for the meeting.
+ * BOOKING: Write to ["reservassante@h-santos.es"], where they have pre-booked around 20 rooms, '''Reference: MEETING AEMET'''.
+ * PRICES: Double room, single use and breakfast: €75.00 per night. Double room , double use and breakfasts: €87.00 per night. Lunch costs around €20 per person.
+ * BOOKING DEADLINE: May '''7^th^'''.
+
+= Travel information =
+http://www.turismodecantabria.com/inicio
+ * AIRPORTS:
+-The closest Airport is '''Santander Airport''', from where you can take a taxi  or a public bus (http://www.aena-aeropuertos.es/csee/Satellite/Aeropuerto-Santander/en/Page/1237554547718/) to get the Hotel or the city centre.
+
+-A bigger airport is '''Bilbao Airport''' (http://www.aeropuertodebilbao.net/en/) but it is about 100km far. So you will have to take public bus to come to Santander (Airport-Bilbao city centre-Santander city centre) or you can take a taxi/car with driver, or rent a car there. 
+
+By public transport (bus):
+
+1) From Bilbao Airport to Bilbao City Centre: Bus to City Centre (go to !TermiBus stop) It is the last stop and it is the Central Bus Station.. Line A3247.
+There are buses each 30 min and they cost around 1,45 euros. You have to pay to the bus driver. Then, from  Bilbao Termibus (city centre) to Santander(city centre): ALSA Bus to Santander. (www.alsa.es)
+there are buses from 7:00 to 23:15 h , each 30 min to Santander Bus station. It takes around 90 min.
+
+    Bilbao Turismo (Turism Officce), Plaza Circular, 1 , 48001 Bilbao 
+    Tel: +34 944 795 760 
+    E-mail: informacion.at.bilbaourismo.bilbao.net 
+
+2) Car with driver: www.armonicar.com     ["car@armonicar.com"]
+ or (better) www.autostucan.com ["autostucan@gmail.com"], Car : 115€ + Iva (10%). 
+ Mini Van Viano: 150€ + Iva (10%).[[BR]]
+
+3) Rent a car.[[BR]]
+
+
+**Previous meetings on the use of observations**
+   * [wiki:HarmonieWorkingWeek/UseObs201705 Harmonie DA&UO Working Week 2017], Reykjavik, 8th - 11th of May 2017 
+   * [wiki:HarmonieWorkingWeek/UseObs201605 Harmonie DA&UO Working Week 2016], Madrid, 17th - 20th of May 2016
+   * [wiki:HarmonieWorkingWeek/UseObs201509 Harmonie DA&UO Working Week 2015], Dublin, 7th - 10th of September 2015
+   * [wiki:HarmonieWorkingWeek/UseObs201410 Harmonie DA&UO Working Week 2014], AEMET (Santander), 13th - 16th October 2014
+   * [wiki:HarmonieWorkingWeek/UseObs201312 Harmonie DA&UO Working Week 2013], DMI, 2nd - 5th December 2013
+   * [wiki:HarmonieWorkingWeek/UseObs201303 HArmonie DA&UO Working Week 2013], (a follow-up of the extended radar data impact studies), SMHI, 12th - 15th March 2013
+   * [wiki:HarmonieWorkingWeek/UseObs201111 Harmonie DA&UO Working Week 2012], (Use of High Frequency Observations), met.no, 14th - 18th of November 2011 
+
+   * [wiki:HarmonieWorkingWeek/ALGO201711 201711], Lanzarote, 2nd Working Week on Data assimilation Algorithms 2017
+   * [wiki:HarmonieWorkingWeek/ALGO201701 201701], de Bilt, Working Week on Data assimilation Algorithms 2017
+   * [wiki:HarmonieWorkingWeek/4DVAR201605 201606], Norrkoping, Extended 4Dvar working week 2016
+   * [wiki:HarmonieWorkingWeek/4DVAR201511 201512], ECMWF, 4D-Var Working Week 2016
+   * [wiki:HarmonieWorkingWeek/UseObs201509 201509], Dublin, The Harmonie DA&UO Working Week 2015
+   * [wiki:HarmonieWorkingWeek/4DVAR201503 201503], Norrkøping, The Harmonie 4DVAR Working Week 2015
+   * [wiki:HarmonieWorkingWeek/UseObs201410 201410], Santander, The Harmonie DA&UO Working Week 2014
+   * [wiki:OOPS/KNMI_201409 201409], KNMI, The HARMONIE OOPS/C++ Working Meeting

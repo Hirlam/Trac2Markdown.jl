@@ -1,0 +1,10 @@
+[[PageOutline]]
+[[Center(begin)]]
+= ''' Pre-defined experiments included in the EXPORT distribution ''' =
+[[Center(end)]]
+
+''' Responsible expert: Patrick Samuelsson '''
+
+ * The first practical exercises will make use of the pre-defined experiments.
+ * To set up one or more of these experiments please refer to the "How to install a pre-defined experiment" in the [http://www.cnrm.meteo.fr/surfex/IMG/pdf/surf-v7-3.pdf SURFEX 7.3 User's guide] or visit the [http://www.cnrm.meteo.fr/surfex-lab SURFEX-lab] page and go to "Documentation" --> "User's guide". Follow the instructions under "1.2. Export off-line version of SURFEX (from version 7_2)".
+ * To start with, you may consider downloading a [http://www.cnrm.meteo.fr/surfex-lab/spip.php?article280 simple test case] from the surfex-lab. Copy all contents to your SURFEX working directory and run pgd, prep and offline consequently. Should work but I have no idea what is in the input or in results, please find out! In fact, the tarball of these data is [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpPredefined/tsz0.tar.gz attached] here. (LR 23 Sep 2013). A small script to plot this data can be found [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/plot_TZS0.py here].

@@ -1,0 +1,299 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie Working Week on Use of Observations and DA algorithms ''' =
+''Lisbon, 10th - 14th of December 2018''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+[[Image(20181210_104454.jpg, 30%)]]
+[[Image(20181212_142947.jpg, 30%)]]
+[[Image(20181212_142847.jpg, 30%)]]
+[[Image(20181212_142853.jpg, 30%)]]
+[[Image(20181213_210701.jpg, 30%)]]
+[[Image(20181213_210606.jpg, 30%)]]
+[[Image(20181212_143500.jpg, 30%)]]
+
+
+The common HARMONIE Working Week on UoO and Algo 2018 will be held this year in Lisbon.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =||= Hotel             =||= Pref. restaurant  =|| 
+||Roger Randriamampianina || MET Norway      || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     || :)         ||
+||Roohollah Azad          || MET Norway      || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Roel Stappers           || MET Norway      || Dec. 9 - 14 ||  Tryp oriente     ||            ||
+||Ole Vignes              || MET Norway      || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Magnus Lindskog         ||SMHI             || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Nils Gustafsson         ||SMHI             ||                   ||      ||              ||
+||Jelena Bojarova         ||SMHI             ||                   ||       ||              ||
+||Martin Ridal            ||SMHI             || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||             ||
+||Susanna Hagelin         ||SMHI             || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||             ||
+||Paulo Medeiros          ||SMHI             || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||             ||
+||Sigurdur Thorsteinsson  ||IMO              ||                   ||       ||              ||
+||Carlos Geijo            ||AEMET            || Dec. 9 - 14  || VIP executive art's        ||             ||
+||Rónán Darcy             ||METIE            || Dec. 10 - 14 || ibis Lisboa Parque das Naçoes ||  ||
+||Eoin Whelan             ||METIE            || Dec. 10 - 14 || ibis Lisboa Parque das Naçoes ||:-)              ||
+||Maria Diez              ||AEMET            ||                  ||       ||            ||
+||Mats Dahlbom            ||DMI              || Dec. 10 - 13 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Xiaohua Yang            ||DMI              || Dec. 9 - 14 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Bjarne Amstrup          ||DMI              || Dec. 9 - 13 ||  ibis Lisboa Parque das Naçoes     ||            ||
+||Wim Verkley             ||KNMI             ||                   ||       ||             ||
+||Jan Barkmeijer          ||KNMI             || Dec. 9 - 14 || ibis Lisboa Parque das Naçoes      ||             ||
+||Jana Sánchez            ||AEMET            || Dec. 9 - 14 || ibis Lisboa Parque das Naçoes      ||          ||
+||Joan Campins            ||AEMET            || Dec. 9 - 14 || ibis Lisboa Parque das Naçoes      ||          ||
+||Pau Escribà             ||AEMET            || Dec. 9 - 14 || ibis Lisboa Parque das Naçoes      ||         ||          ||
+||Isabel Monteiro         || IPMA            ||   ||       ||              IPMA's Canteen   ||
+||Manuel Mendes           || IPMA            ||   ||       ||          ||          ||
+||Maria Monteiro          || IPMA Portugal   ||   ||       ||                ||
+||João Rio                || IPMA            ||   ||       ||                ||
+||Vanda Costa             || IPMA            ||   ||       ||                ||
+
+== Agenda ==
+
+Normal daily agenda:[[BR]]
+09:00 - 10:30: Working in groups[[BR]]
+10:30 - 10:50: coffee break[[BR]]
+10:50 - 13:30: working in groups[[BR]]
+13:30 - 14:30: lunch break[[BR]]
+14:30 - 16:00: working in groups[[BR]]
+16:00 - 16:30: coffee break[[BR]]
+16:30 - 18:00: working in groups[[BR]]
+
+== Report topics ==
+We start with short progress report from Participants (short presentation is welcome but not mandatory, and preferably also about the tasks chosen during last WW, see below). Please prepare your presentation to fit max. 15-20 minutes.
+
+
+== List of topics/tasks from last working week ==
+
+ -- Use of observations from moving platforms in 4D-Var and LETKF (handling of observations in appropriate time slots): Magnus, Martin, Jan, Roohollah;[[BR]]
+ -- Testing 4D-Var (3 hourly cycling or nowcasting regimes) Xiaohua, Nils;[[BR]]
+ -- Assimilation of T2m & Hu2m in upper-air DA: Pau, Maria;[[BR]]
+ -- FA & VC into trunk: Carlos, Eoin;[[BR]]
+ -- OOPS & flow-dependent schemes implementation; I have something to tell on the second topic (flow-dependent ...) (Carlos)[[BR]]
+ -- Hybrid !EnsVar system into trunk: Jelena, Ole;[[BR]]
+ -- LETKF system into trunk: Pau, Eoin;[[BR]]
+ -- Testing CY43 with bug fix 8: Roohollah, Mats;[[BR]]
+ -- Humidity data from Aircraft: Maria, Roger;[[BR]]
+ -- Improve use of low peaking channels from microwave radiances: Xiaohua, Sigurdur;[[BR]]
+ -- Assimilation of surface pressure instead of MSLP (or "zero" Geopotential) in Variational schemes: Pau, Magnus, Roel, Eoin, Martin;[[BR]]
+ -- Implementation of DFS and MTEN locally: Jan, Jana, Roger, Martin, Sigurdur, Mats; [[BR]]
+ -- VarBC in absence of anchoring observations: Jana, Joan, Roel;[[BR]]
+ ---Check 4D-Var by “dynamical” case study (polar low): Nils, Jan, Xiaohua [[BR]]
+ -- Jc-dfi (Can we learn from Marco Milan Met Office?) Nils [[BR]]
+ -- Optimisation of 4D-Var system: Ole [[BR]]
+ -- Parallel test (Metcoop domain); Magnus, Jan, Nils, Roger [[BR]]
+ -- Hybrid 4D-Var (Nils, Jelena and Ole)[[BR]]
+ -- Truncation of trajectory??: delayed [[BR]]
+ -- Blacklisting of ECMWF vs that of Harmonie;[[BR]]
+ -- Testing of the new RTTOV coefficients; [[BR]]
+ -- Local assimilation of ASCAT data: Jana, Isabel; [[BR]]
+ -- Documentation of !PrepOper: Roger, Mats, Martin; [[BR]]
+ -- Assimilation of radial wind: Martin, Jana; [[BR]]
+ -- Assimilation of IASI radiances: Joan, Roger; [[BR]]
+
+== Priority tasks list and progress report ==
+Algorithms
+ -- 4D-Var sharing of recent results and making plans (Jan, Nils, Magnus) ;[[BR]]
+ -- Ensemble data assimilation sharing of results and plans (Pau, Jelena) ;[[BR]]
+ -- Jk sharing of results and plans (Mats, Jelena) ;[[BR]]
+ -- Wide extension zone (Nils) ;[[BR]]
+ -- More effective 2nd loop (Jan) ;[[BR]]
+ -- Issue with negative q (Jan) ;[[BR]]
+ -- Processing of Doppler wind with field alignment and 3D-Var scheme;(Carlos)[[BR]]
+ -- Cloud initialisation;[[BR]]
+ -- LETKF migration to CY43 (Eoin, Pau) ;[[BR]]
+ -- Last LETKF developments (Pau) ;[[BR]]
+ -- Make use of surface analysis in variational upper-air assimilation (Roger);[[BR]]
+ -- Letkf implementation like operational 3DVar in Aemet (Pau, Jana);[[BR]]
+Observation handling related
+ -- Verification against all observations (Roger & Eoin);[[BR]]
+ -- Assimilation of ps instead of z (Magnus, Eoin, Roel, Pau) ;[[BR]]
+ -- Modified mf-blacklist, ecmwf like;[[BR]]
+ -- Radiosonde bias correction, ecmwf like;[[BR]]
+ -- Variational bias correction of aircraft temperatures ;[[BR]]
+ -- Assimilation of aircraft humidity observation;[[BR]]
+ -- Choice of predictors in radiance assimilation;[[BR]]
+ -- Impact of E-AMDAR humidity observations in comparison to radiosonde data (Joan);[[BR]] 
+ -- Use of emissivity atlas and low peaking channels (Sigurdur);[[BR]]
+ -- Issue with updating of surface temperatures (Magnus);[[BR]]
+ -- Plans for handling of correlated observation errors and cloudy radiances (?);[[BR]]
+ -- Assimilation of radial winds + reflectivity (Martin, Jana, Jan, Mats, Roohollah); [[BR]]
+ -- Mode-S EHS part of CY43/CY46 (Jan); [[BR]]
+ -- Assimilation of T2m & Rh2m obs in 3DVAR (Maria, Pau); [[BR]]
+ -- Aeolus HLOS wind assimilation in CY43 (Roohollah); [[BR]]
+ -- Local assimilation of ASCAT data (Jana, Isabel); [[BR]]
+ -- Impact of assim radar reflectivities in Aemet (Jana); [[BR]]
+System aspects
+ -- Terrifying tales of git from the System group (Eoin);[[BR]]
+ -- CY43 system status - a DA perspective (Eoin);[[BR]]
+ -- SAPP update (Rónán, Eoin); [[BR]]
+ -- Use of LISTE_LOC file in CY43;[[BR]]
+ -- Script documentation [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/40h1.1.1/graphviz]; [[BR]]
+ -- prepIFS for Harmonie [https://roelstappers.github.io/index.html]
+
+== Reports ==
+   -- **Magnus** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/magnus_4dvar_lisboa_final.pdf reported] about the 4D-Var experiments performed over the !MetCoOp domain using 40h.1.1.1-plus and all the operational observations. The VarBC coefficients and the LBC files were taken from the operational system, although few difference was taken, like for ex. no LSMIX, no fLake. See more details [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/magnus_4dvar_lisboa_final.pdf in the presentation]. The following setup was chosen: Radar and GNSS-ZTD are hourly, while the other observations were used with 20 minutes time slots; 2 outer loops with 2dx and 10, 15 iterations. The performance of the 4D-Var was checked against that of the 3D-Var. One additional experiment was also performed, where only conventional observations were assimilated with reduced REDNMC and slightly increased error for SYNOP and one outer loop with 20 iterations. Although, the test was done with very short time, and still some issues need to solved, he hopes to have 4D-Var !MetCoOp cake soon.[[BR]]
+   -- **Nils** started [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/nils.pdf his presentation] showing the importance of larger extension zone using minimisation with 3D-Var. A single observation experiment was done to show that in case of large extension zone the the false increment at the other side of the domain disappeared. Few experiments with and without large extension zone and LSMIX were conducted with 3D-Var, which were compared with a 4D-Var with no LSMIX, multi-incremental, 6dx first outer loop and 3dx in second outer loop. He also pointed out some promising results with 4D-Var and that the short test period doesn't allow to draw firm conclusion regarding the performance of the 4D-Var against 3D-Var. Among other issues, he is pointing to the importance of testing large extension zone also with 4D-Var. So far, this is not possible.[[BR]]
+   -- **Jan** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/Jan_B_FSS%20.pdf compared] different runs (lead time 12h)  at KNMI (36h14, 40h12, 40h12_rfl - 3dvar including radar (only F), and 40h12_4dv - 4dvar using radar from F+B+NL+Ire). He also uses hourly radar data, with 2 outer loops at 2dx. The 3D-var runs were set up with LSMIX. He concluded that good homogeneous treatment of radar data (ex. the French ones) is very important. For his results (45 days experiment) 3DVAR still beats 4DVAR for the short range (+12h), but there are some promising indications of the 4dvar performance (q bias and RH quality)[[BR]]
+   -- **Pau** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/LETKF_in_HARMONIE_WWDA_Des18.ppt talked] about lot of development works. He checked the efficiency of the surface perturbation in our EPS system. Surface Perturbations seem to improve LETKF forecasts of MSLP or S10m, which is very good because these parameters seemed very difficult to improve. He points out the importance of using LSMIX for Q in 3DVAR, results are clearly better, probably for using the "full" IFS state in LSMIX. Experiments in a full observations assimilation environment is carried out either for 3DVAR -vs- 3DVAR + Q LSMIX and for LETKF -vs- 3DVAR + Q LSMIX.[[BR]]
+   -- **Jelena** in [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/DAEPS_WW2018_jelena.pdf her presentation] talked about possible data sets for derivation of climatological background error statistics. Now one can choose between few solutions to derive structure functions: Downscaling, Brand, EDA, and forcing perturbation. The later one is so far available in 4D-Var regime. She compared the efficiency of Brand and EDA in MEPS. She also presented the latest development towards Harmonie hybrid ensemble variational system. She shortly discussed the possible solutions that are already available now in our system. Comparison of applying the Brabd and LETKF schemes was presented. Promising results was shown pointing large variance where more uncertainty is expected like for example at frontal lines. Non- centered incremental analysis update (IAU) was also discussed. Interesting results were shown. She asked a question on how to make this scheme centered, and where to put the surface analysis in such a solution?[[BR]]
+   -- **Carlos** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/CGG.GI.pptx introduced] how the field alignment is implemented in the Harmonie system. He also showed how to compile and how to run the scheme. So far, the scheme was tested with synthetic data only. He also discussed the possibility of modelling and possible implementation of flow dependent B matrices with Gaussian integrals. [[BR]]
+   -- **Susanna** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/Carra_precise_DA_hagelin2018.pdf presented] some new developments/changes needed for the Copernicus regional Arctic (CARRA) and European (PRECISE) reanalysis projects. Among others, she discussed the use of the IFS blacklisting solution in Harmonie, the implementation of the MSU radiances and bias correction for radiosonde and aircraft observations. Most of the implemented solutions are relevant for operational application as well.[[BR]]
+   -- **Maria** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/Lisboa_qAMDAR.2.pdf showed] very promising results from the last achievement in assimilation of humidity observation from aircraft (E-AMDAR). The solution looks safe and ready to be tested in operational regime. [[BR]]
+   -- **Joan** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/Results_Study1_Case3_WW.pdf presented] the results of the IFS FSOI study on humidity E-AMDAR and radiosonde.[[BR]]
+   -- **Isabel** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/Monteiro_Marseille_Scatterometer_DA_Harmonie_Iberia_WWLisboa.pdf presented] the results of their (work was done with Gert-Jan Marseille) OSE study with different sets of scatterometer data. She also talked about the possible solutions from scatterometer data processing from the 3 actually available Metop satellites.[[BR]]
+   -- **Jana** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/WWLisbon2018_JS.pdf presented] the results of assimilation of radar reflectivity at AEMET. She pointed out the importance of assimilation of radar reflectivity together with GNSS ZTD data. She used Spanish and Portuguese radar only in her study. She showed very promising and clear positive results. After her presentation we discussed the need for update of obsmon to be able to check the performance of the individual radar stations.[[BR]]
+   --**Roger** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/verif_vs_all_obs.pdf discussed] the new and under implementation verification tool, which takes into account all available observations from data assimilation. He pointed to the flexibility of this new tool to use a non assimilated observations -- set to passive in DA -- for verification purposes. [[BR]]
+   --**Ronán** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/SAPP_plans.pdf presented] the status and their plan with the SAPP tool at Met Éireann. He said that the SAPP has an error handling on the fly. One can also cut the final file into a geographical area. Although, this tool is able to handle so far BUFR data only.[[BR]]
+   --**Maria and Pau** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/LisboaTH2_Pau_Maria.pdf co-production] was about the assimilation of T2m and RHu2m observations in 3D-Var, in addition to Canari. Experiments show LSOE must be .FALSE. to avoid crazy first guess values in 06/18 UTC cycles. This assimilation improves RHu2m forecast scores and up to some extent, precipitacion (it needs further diagnostic). First computation of DFS diagnosis shows that RHu2m & T2m observations have the largest impact in 3DVAR analysis, which is a very important result. Extension of DFS test with longer period is being computed. [[BR]]
+   --**Eoin** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/eoinWhelan_DAUO201812.pdf presented] data assimilation development at MET Éierann. In particular he talked about the implementation of ASCAT and radiance data. He also made a tour de added developments in the Harmonie DA system, where his contributions were almost sine qua non.[[BR]]
+   --**Roel** [https://roelstappers.github.io/index.html presented] his idea on how can a Harmonie experiment be created. It is something like the [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/prepIFS.pdf Prep-IFS] tool.[[BR]]
+
+
+
+== Working groups ==
+After the short reports, the following groups were formed with tentative discussion time:[[BR]]
+
+  - **4D-VAR:** (Nils, **Jan**, Magnus, Ole, Roohollah, Xiaohua) [Wednesday]: sanity check, radiance, Cloudy radiances,[[BR]]
+    **Sanity check for 4D-Var system**[[BR]]
+     - select a dynamic and convective case and run a single obs experiment (e.g. radio sonde) for the various domains (Magnus, Nils, Roel, Roohollah, Jelena, Jan, …).[[BR]]
+     - comparison of the TL and the NL evolution of the analysis increment during the minimization (999 run) (Jan).[[BR]]
+     - check whether important observation sets (radar) are used for the correct time slots and are used at all ( D radio sondes valid for 12 UTC are only available after 13 UTC) (Magnus, Nils, Roel, Roohollah, Jelena, Jan, …). [[BR]]
+     - do we really run a coupled run (Alladin+Surfex) during the minimization? (Roohollah).[[BR]]
+     - run validation experiments (Magnus, Jan,…). [[BR]]
+     - test the impact of tendency forcing (Jan,…). [[BR]]
+    **2019-2020**[[BR]]
+    **Design of 4DVAR**[[BR]]
+    shorter term:[[BR]]
+     - Use/check LSM in 4DVAR[[BR]]
+     - check VARBC in the trajectory runs[[BR]]
+     - Use/check surface analysis before 4DVminin[[BR]]
+     - Implement a larger extension zone[[BR]]
+     - Use of hessian information (warm start) for the 2nd loop[[BR]]
+     - Flexibility in the observation window/hourly 4DVAR[[BR]]
+     -Test single precision runs and 2d node architecture for 4DVAR[[BR]]
+    longer term:[[BR]]
+     - Remove the NL run from 4DVminim and use truncated versions of a full NL Arome run in 4DVminim (similar to ECMWF)[[BR]]
+     - Use ECMWF physics (the package under LE* logicals) during the minimization[[BR]]
+  - **VarQC:** (Nils, Roger, **Roel**)  [Tuesday] [[BR]]
+     - VARQC settings can be made in NAMCOSJO (see src/arpifs/module/yomcosjo.F90)
+     - M1QN3 is required to use VarQC in the minimization
+  - **Correlated obs (time & spatial & inter-channel):** (**Magnus**, Roger, Jelena, Jan, Roohollah)  [Tuesday]
+     - Diagnosis of spatial and time-correlated forecast errors (Obstool, Roohollah, from Patrick Bucanek Limitations of approach? Good starting point. Jan might come up with suggestions and ideas of improvements in current ongoing projects). Jelena has idea also to derive time correlated observation errors for radar. This has been tried at Univeristy of Reading for example. Also consider correlations between different satellite channels.[[BR]]
+     - Use findings from diagnosis as a first step to overhaul thinning distances and it will as well guide averaging distances for super-observations of radar as well as crowd sourced data. [[BR]]
+     - Apply findings from diagnosis on correlated errors between different channels. Overhauls of current research and tools available at ECMWF?[[BR]]
+     - First crude method to take correlated observations errors into account in harmonie 4dvar is to modify sigmao. Magnus will investigate what has been done in IFS 4dvar for correlated observation errors at ECMWF and if we can apply that for surface pressure observations in HARMONIE 4D-Var to start with and later on also for other data.[[BR]]
+     - Somebody to investigate framework for handling of correlated observation errors in parallel framework implemented by Gabor Radnoti at ECMWF. Later on how to link that to derived models for observation error correlations. Perhaps small local R matrix correlations between local stations.[[BR]]
+     As pointed by Magnus [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/corr_obs_error.pdf here].[[BR]]
+  - **Cloudy radiances:** (**Roger**, Magnus, Joan, Roohollah) [Wednesday] [[BR]]
+     - We plan to use the ECMWF physics in 4D-Var, which is not a simple task. Some works need to be done to make it available for Harmonie-Arome.[[BR]]
+     - Run the non-linear part (ex. 4DScreen) with Harmonie-Arome, and the tangent linear and adjoint with the EC physics.[[BR]]
+     - We can also produce regular outputs for the low resolution loops using FullPos.[[BR]]
+     - Good point in this plan is that we have the ECMWF physics in minimisation to assimilate All-Sky radiances.[[BR]]
+     - If things go well, in time it fits well with the Alertness project plan at MET Norway. So, we have manpower for this task.[[BR]]
+  - **Handling of obs:** (**Joan**, **Eoin**, Martin, Mats, Jana, Bjarne, Sigurdur, Susanna, Maria, Magnus, Roger, Roel, Ronan, Jan) varbc, verif vs all obs, Crowdsourced obs,  [Tuesday]
+     - Processing of radar (HDF5) data: An option to extend the prepopera.py script to produce radar data on ODB2 format and ultimately converted to an ECMA.radarv ODB suitable for NWP was discussed. Mats, Martin and Eoin discussed the possibilities and a prototype is being developed.
+     - Magnus raised the issue VARBC predictors in the Harmonie system. Roel presented results analysis of IFS VARBC predictor correlations.
+     - In preparation for an evaluation of low-peaking radiance channels (Sigurdur, Maria) it was agreed that the skin (surface) temperature from SURFEX should be included (blended) in the first-guess file for minimization.
+     - The use (and blacklisting) of GPS-RO observations was discussed. It was agreed that a review of their use should be carried out.
+     - The assimilation of SEVIRI radiances and, in particular, the data processing chain required to prepare these observations for Harmonie was discussed. Roger will provide more information to the group. Maria will contact with (AEMET) SAF-Nowcasting to explore the use of its products.
+     - Crowd-source data, AI and machine-learning techniques were discussed. The challenges associated with the use of these data (based on presentations made at the wCROWN workshop hosted by DMI) were discussed. The merits of the using of pressure tendencies instead of pressure using nudging instead of variational techniques were also discussed.
+     - The ''allObVer'' approach to verification was explained by Roger. See his presentation.
+  - **Surface pressure assimilation:** (**Maria**, Pau, Eoin, Roel, Magnus, Sigurdur) [Wednesday afternoon]
+     - A CY43 experiment has been shared and tested by the group. Bator code has been changed to write out P,,surf,, observations as well as Z from SYNOP. LISTE_LOC is used to blacklist SYNOP Z observations and a required change to the NOTVAR namelist is also used to ensure the assimialtion of P,,surf,,.
+  - **Scatterometers:**  (**Isabel**, Jan, Eoin, Jana, Bjarne) [Tuesday]
+     - The group discussed the assimilation of scatterometer winds, in particular ASCAT, in CY40. Concerns regarding thinning and the observation error setting were investigated.
+     - The group group summarised some useful ASCAT information on the [wiki:HarmonieSystemDocumentation/ObservationHowto/Ascat wiki]
+  - **CY43:** (**Eoin**, Jelena, Roger, Pau, Roohollah, Bjarne, Ole, Jan, Roel) [Wednesday]
+  - **Jk & LSMIX:** (Jelena, **Mats**, Ole, Pau, Maria, Martin) [Wednesday]
+     - Present: Xiaohua, Jelana, Ole, Martin, Mats and Carlos 
+     - Conclusion from the experiments that has been run on the CARRA-SW and CARRA-NE domains, comparing to the case with and without LSMIX, is that more experiments needs to be run inorder to see if coefficient tuning can make JK compete with LSMIX. Presently, LSMIX verifies better for pressure, while JK seems to verify as well for some other parameters. However, a large discrepency can be seen in the profiles for level around 800 - 500 hPa for JK. This points to that more investigation about the JK settings has to be performed. Furthermore, other seasons needs to be investiged as well. At this point JK remains an interesting and promising research topic, but can not act as a substitute for LSMIX.
+     - Pau has pointed out in his presentation the importance of applying LSMIX to Q (Specific Humidity). Doing so there is either a drastical reduction of bias in humidity fields and also an improvement of Temperature and Wind scores in the vertical. The hypothesis is that mixing also Q is more consistent since we are mixing "the full" IFS state with HARMONIE first guess.
+  - **Nowcasting:** (**Xiaohua**, Roger, Magnus, Jan, Jana, Martin, Mats, Carlos, Isabel, Roohollah) [Thursday morning][[BR]]
+    **Targeted applications**[[BR]]
+     - Small spatial and time scale features: Summer convection (Denmark, Spain Malloca+Tenerif). Fire risk (Portugal)[[BR]]
+     - Energy production (wind + radiation fluxes): KNMI+met.no+SMHI (Norwind project) [[BR]]
+     - General aviation purpose   [[BR]]
+   **Assimilation algorithm & system**[[BR]]
+     - hourly 4DVAR with 2h window [[BR]]
+     - sub-hourly 750m 3DVAR/4DVAR. AROME coupling[[BR]]
+     - EPS including members connected to real time radar advection[[BR]]
+     - latent heat nudging of radar derived precipitation rate[[BR]]
+     - variational constraints (Carlos).[[BR]]
+   **Assimilated obs**[[BR]]
+     - radar reflectivity, radial wind, mode-s, GPS, crowdsource [[BR]]
+     - wind turbine height data (KNMI: continuous wind/humidity at 80 m, 6 stations, met.no)[[BR]]
+     - AEMET wind measurement from high speed train[[BR]]
+     - pseudo precipitation rate obs from radar advection[[BR]]
+   **Discussions**[[BR]]
+   Main intended nowcasting are on resolution of 2.5km or 750 m, with forecast length of 6 to 12h, a RUC with 15 min to 1h. 3DVAR, 4DVAR are main approaches. Option to use nudging for short range considered. Adaptation of algorithm/system according to practical needs seems necessary. At current stage, it maybe too early to use sub-km model for general forecast purpose.A number of research issues discussed:[[BR]]
+     - Functionality with sub-hourly launch in 3DVAR/4DVAR needs development.[[BR]]
+     - Options in internal AROME coupling and coupling with LBC needs deeper look.[[BR]] 
+     - Large extension zone in 3DVAR/4DVAR necessary especailly for small domains need to consider obs data correction for high density observation important to do time lagged verification to take into account delivery time.[[BR]]
+  - **Future of monitor, HARP:** MTEN, FSOI, DFS, Obsmon (Eoin, Roger, **Susanna**, Paulo) [Wednesday][[BR]]
+  - **Ensemble generation:** (Jelena, **Pau**, Jan, Nils, Roger, Ole, Roel, Carlos) [Wednesday afternoon] LETKF, BRAND, EDA, forcing perturbation
+     - Jelena points out the importance of making converge different data assimilation algorithms from the configuration point of view in HARMONIE. Pau and Jelena have set up a LETKF/4DVAR hybrid formulation that it is now running in test mode in a Jelena's experiment.
+     - A very interesting discussion about computation of analysis perturbations using the Hessian of the Cost Function, which is the inverse of the Analysis Error Covariance Matrix. Jan has mentioned that he can try to compute analysis perturbations using this method with HARMONIE 3DVAR. It seems this method is quite expensive so maybe using 3DVAR is affordable
+     - Work in finding a proper HYBRID formulation in HARMONIE is going on. So far there are several methods for HYBRID formulation based in 3DVAR, EDA, LETKF, BRAND... Evaluation/Verification of HYBRID is needed.
+     - The method for modelling flow-dependency by means of Gaussian Integrals was also briefly discussed and it seems to have also applications in ensemble-based DA. Carlos will work further on this topic.
+  - **Initialisation:** IAU, VC, FA (**Carlos**, Jelena, Pau, Roger) [Wednesday]
+  - **Surface analysis & coupling with UA:** (Magnus, Roger, Pau, Jelena, Eoin, Carlos, **Sigurdur**) [Wednesday afternoon]
+  - **SAPP:** (**Rónán**, Manuel, Bjarne, Roel, Eoin, Paulo, Isabel) [Tuesday]
+      - Report [raw-attachment:SAPP_plans.pdf here]
+  - **set up of common reference system:** (Roger, Jan, Eoin)
+
+
+  -- [https://docs.google.com/spreadsheets/d/1SlkFt-I1YOwfZ955FeuJ89REkt3ji4IywE9UshCCwsI/edit#gid=1687001628 The HIRLAM-ALADIN rolling work plan for 2019:][[BR]]
+
+
+== Practical Information ==
+Isabel Informed us about:
+
+1) She made a group reservation at IBIS, Parque das Nações hotel. If you decide to stay at IBIS, please consider the following rates:
+  - Single Standard Room including breakfast – 65.00€ / room / night
+  - Double Standard Room including breakfast – 71.00€ / room / night
+  - City Tax – €1/pax/night
+
+ IBIS Hotel reservation conditions:
+You should complete the Hotel form in the attachment (CCTEMPLATE_PAGAMENTO_TERCEIROS_IPMA.PDF) and send it directly to the hotel by e-mail (H8501-AM@accor.com). The e-mail should be directed to Mr Sérgio Mendes and should mention that it is IPMA group reservation.
+
+IBIS Dead line for reservation: 09/11/2018
+
+2) From the IBIS to IPMA, you will have to take public transportation (3 stops taking the underground, red line). The Metro’s Red line connects IBIS (Oriente) to IPMA (Aeroporto), and then you have to walk for about 5 minutes (see att DiagramadaRedeMLjul2017.PDF).
+
+ More to know:
+
+*  In the following link you can see how to get from the hotel to IPMA:
+
+https://www.google.com/maps/d/u/0/viewer?mid=19i9JSiyqqUTtTPvwqayi3tSwza4dWvWM&ll=38.77090525734051%2C-9.106799588854983&z=15
+
+* In the following link you can find information about Lisbon underground (ticket prices and Map) https://www.metrolisboa.pt/en/
+   You can also find some information on 705 bus connecting IBIS to IPMA  http://www.carris.pt/pt/autocarro/705/ascendente/ and IPMA to IBIS http://www.carris.pt/pt/autocarro/705/descendente/
+
+*  There is a bus, 705, that goes from IBIS to IPMA (it stops just in front of IPMA). According to the bus company it takes about 25 minutes. IPMA's stop is called "Geofísica "
+
+The bus scheduller (just indicative I must warning you) is :
+IBIS to IPMA --> http://www.carris.pt/pt/autocarro/705/ascendente/
+IPMA to IBIS --> http://www.carris.pt/pt/autocarro/705/descendente/
+
+You can buy the ticket inside the bus to the driver (1,85€) in that case you should have change. You can buy a pre-paid card at the authomatic machines at a metro station. The pre-paid card can be used both for the bus and the metro.
+
+
+3) Closer to date, Isabel will ask you to choose the menu and she will reserve meals at IPMA’s Cantina (for those who wish to have lunch there). However, if you have any dietary constraint please let me know in advance. 
+Regarding the Canteen the complete meal is 4,60 euros.
+
+
+ If you have any question at all, please feel free to ask Isabel (only about accommodation) & Roger 
+Meeting point IPMA at 4 pm
+or
+Downtown at "Praça D. Pedro IV" Underground station "Rossio" (green line) at 5 pm 
+https://www.google.com/maps/place/Pra%C3%A7a+Dom+Pedro+IV,+Lisboa/@38.7141344,-9.1402536,18.25z/data=!4m5!3m4!1s0xd1933875a6e7b17:0x838d6cf838696382!8m2!3d38.7138802!4d-9.139051
+The Meeting point at Rossio is near the D. Pedro IV:
+https://www.google.com/maps/place/Pra%C3%A7a+Dom+Pedro+IV,+Lisboa/@38.7138571,-9.1390429,3a,75y,249.09h,104.01t/data=!3m8!1e1!3m6!1ssXX6uEh_6KwPJ2ETNe0QvA!2e0!3e11!6s%2F%2Fgeo0.ggpht.com%2Fmaps%2Fphotothumb%2Ffd%2Fv1%3Fbpb%3DChAKDnNlYXJjaC5UQUNUSUxFEiAKEgkXe25ahzMZDRGCY2k4-GyNgyoKDQAAAAAVAAAAABoECFYQVg%26gl%3DPT!7i13312!8i6656!4m5!3m4!1s0xd1933875a6e7b17:0x838d6cf838696382!8m2!3d38.7138802!4d-9.139051
+
+Restaurant "D'Bacalhau" on Thursday. 
+If you won't attend the walking tour please be there at 8 pm (reservation, Isabel Monteiro - IPMA), location:
+https://www.google.com/maps/place/R.+Pimenta+45,+1990-254+Lisboa/@38.7721827,-9.0959353,17.25z/data=!4m5!3m4!1s0xd19318fb273007d:0xcd00f2c09cf14b18!8m2!3d38.7713267!4d-9.0923296
+
+

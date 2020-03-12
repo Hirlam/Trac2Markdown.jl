@@ -1,0 +1,82 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Harmonie System Inventory''' ==
+= '''Real time HARMONIE Forecast Systems in HIRLAM and ALADIN services''' =
+[[Center(end)]]
+
+[[br]]
+[[Image(domains_europe_2019.png, centre, 30%)]]
+[[br]]
+
+== General properties of the real time HARMONIE configurations ==
+
+|| Domains || Status || Targeted forecast area || model version || Grid spacing || gridmesh || host model || assimilation || initialisation || forecast length/cycle || delivery time[[FootNote(defined as the time when last forecast output is delivered after base hour)]]|| Last upgrade ||
+|| AEMET-IB || Operational || Iberian Peninsula & Balearic Islands (yellow) || 40h1.1 || 2.5 km || 1152x864x65 || ECMWF || 3DVar + surf ana ||  none || 48h/8times || 2h 45m || 201711 ||
+|| AEMET-IC || Operational || Canary Islands (yellow) || 40h1.1 || 2.5 km || 576x480x65 || ECMWF || 3DVar + surf ana  || none || 48h/8 times || 2h 15m || 201711 ||
+|| DMI/VI-IGB || Operational || Greenland + Iceland || 40h1.1 || 2.5 km || 1280x1080x65 || ECMWF || 3DVAR + surf ana ||  none || 66h: 00,06,12,18\\ 12h: 03,09,15,21 || 2 h 30 m || 201804 ||
+|| DMI/TAS || Operational || Greenland Tasiilaq || 40h1.1 || 750 m || 400x400x65 || IGB || surf ana ||  none || 54h: 03,09,15,21 || 2 h 30 m || 201810 ||
+|| DMI-NEA || Operational ||North Europe||  40h1.1 || 2.5 km || 1200x1080x65 || ECMWF || 3DVAR+surf ana || none || 60h/8times || 1h40m || 201611 || 
+|| DMI-COMEPS 25-members || Operational || "DKA"+"NEA" domains ||  harmonie 40h1.1 [[FootNote(13 NEA members + 12 DKA members)]]  || 2.5 km || 1280x1080x65 (NEA), 800x600x65 (IGB) || ECMWF || 3DVAR+surf ana || none || 57h/24times || 1h40m || 201805 || 
+|| KNMI-36h14 ||  Operational || Netherlands (dark green) || 36h1.4.bf1 || 2.5 km || 800x800xMF-60 || HIRLAM || 3DVAR + Surf ana || none || 48h/8 times || 2h 40m || 201201 ||
+|| KNMI-40ens ||  Pre-Operational || Netherlands (dark green) || trunk_r17057++ || 2.5 km || 800x800x65 || ECMWF || 3DVAR + Surf ana || none || 48h/8 times || 2h 40m || 201902 ||
+|| LHMS-Lithuania ||  Operational || Lithuania (dark blue) || 40h1.2 || 2.5 km || 648x800x65 || ECMWF || 3DVAR + Surf ana || none || 54h/8 times || || 201908 ||
+|| IRELAND25_090  || Operational  || Ireland (black)[[FootNote(domain plot needs to be updated)]] || 40h1   || 2.5 km\\ dt=75 s || 1000x900x65 || ECMWF || 3DVAR + Surf ana || none ||36h/54h at 00,12 for members/control \\ 54h at 06,18 for control only\\ 3h: 03,09,15,21 for control only || 1h 40m || 2018-10-16 12Z ||
+|| MET-Norway (AROME-Arctic) ||  Operational || Svalbard + Arctic (blue) || 40h1.1 || 2.5 km, dt=75s || 750x960xHIRLAM-65 || ECMWF || 3DVAR + Surf ana || none || 66h 00,06,12,18 3h 03,09,15,21 || 2h 55m || September 2019 || 
+|| !MetCoOp METCOOP25C || operational  || Scandinavia (purple) || 40h1.1.1 || 2.5 km, dt=75s || 900x960x65 || ECMWF HIRES || 3DVAR + Surf ana || none || 48/66h at 00,06,12,18 for members/control \\ 3h at 03,09,15,21 for control only || 2h 20m || 2018-12-10 03Z ||
+|| VI-Iceland || Operational  || Iceland (pink) || 38h1.2 || 2.5 km || 500x480x65 || ECMWF || blending + Surf ana || none || 66h/4 times || 2h 40m || 201509, runs at ECMWF ||
+|| TOONHARM200 [[FootNote(Run on home PC: Linux 3.9, GCC 4.7, glibc 2.17)]] || Near Real Time || Netherlands 200x200 || trunk || 2.5 km || 200x200xHIRLAM_40 || ECMWF || 3DVAR + Surf ana || none || 24h/4 times (3h cycling) || 2h 25m || [http://moene.org/~harmonie/LAST_UPDATED updated weekly] ||
+
+ [[FootNote]]
+
+== General properties of the upper air data assimilation ==
+||= Models      =||= DA =||= version     =||= obs cut-off =||= conventional data               =||= non-conventional data                               =||= Other =||
+|| AEMET         ||3DVAR ||40h1.1         || 1 h 10 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, AMSU-B, MHS, GNSS                              || ||
+|| DMI-NEA       ||3DVAR ||40h1.1         || 0 h 35 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, MHS, AMV, MODES, ATMS, RO, radar reflectivity  || ||
+|| DMI/VI-IGB    ||3DVAR ||40h1.1         || 1 h 35 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, MHS, AMV, MODES, ATMS, RO                      || ||
+|| DMI-COMEPS    ||3DVAR ||40h1.1         || 0 h 35 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, MHS, AMV, MODES, ATMS, RO, radar reflectivity  || ||
+|| IRELAND25_090 ||3DVAR ||40h1           || 0 h 45 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, MHS, IASI, ASCAT                               ||Conventional observations \\ processed by BATOR \\ (produced by SAPP since 20191119)     ||
+|| KNMI 36h1.4   ||3DVAR ||36h1.4.bf1     || 1 h  5 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||none                                                   || ||
+|| KNMI-40ens    ||3DVAR ||trunk_r17057++ || 1 h  5 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||ASCAT, Mode-S EHS                                      || ||
+|| AROME-Arctic  ||3DVAR ||40h1.1         || ~ 2 h         ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, AMSU-B, MHS, AMV, ASCAT, GNSS, IASI            || ||
+|| !MetCoOp      ||3DVAR ||40h1.1.1       || 1 h 15 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||AMSU-A, AMSU-B, MHS, \\ RADAR (dbz), ASCAT, GNSS, IASI || Conventional observations \\ processed through BATOR \\ EDA derived structure functions ||
+|| LHMS   ||3DVAR || 40h1.2          || 1 h  10 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP || Radar (dbz)                                                 || || 
+|| TOONHARM200   ||3DVAR ||trunk          || 1 h  5 m      ||SYNOP, AIRCRAFT, SHIP, DRIBU, TEMP ||Mode-S                                                 || ||
+
+ [[FootNote]]
+
+== General properties of the ensemble system ==
+|| Models || version || Number of members || DA control || DA members || Initial perturbations || Boundary perturbations || Model perturbation || Forecast length ||Misc || 
+|| !MetCoOp || 40h1.1.1 || 9+1 || 3DVAR, CANARI 3h || CANARI 6h || !PertAna, Surface perturbations || SLAF || || 66h for control, 54h for members || Runs on three clusters where two members on two of the cluster serves as a pseudo control and runs up to 66h || 
+|| DMI-COMEPS || harmonie 40h1.1  || 13+12 || 3DVAR || none || !PertAna || SLAF || multi-physics (harmonie), multi-physics || N/A ||pseudo-EDA with alternating observation mix, 3h assimilation windows with overlapping between consecutive hours, time lagged ensemble || 
+|| IREPS || 40h1.1    || 10+1 || 3DVAR, CANARI 3h || CANARI 6h || Surface perturbations || SLAF || || 54h for control, 36h for members || EPS only runs at 00 and 12 ||
+|| KNMI-40ens || trunk_r17057++ || 10+1 || 3DVAR, CANARI_OI_MAIN || CANARI_OI_MAIN 3h || PertAna || SLAF || || 48h ||  || 
+
+== Computational aspects ==
+ * Time is the time given by Date_timing.dat for a 00 cycle
+|| Domain || Version ||  Computer specs|||||||||| Forecast settings |||||| Canari |||||| Screening |||||| Minimzation || Fullpos || Observations || Boundaries ||
+||        ||         ||      || npx x npy + io || threads || MPI tasks per node  ||  NPROMA || Time ||  npx x npy || npools || Time || npx x npy || npools || Time ||  npx x npy || npools || Time || npx x npy || Observations || Boundaries ||
+|| AEMET-IB || 40h1.1 || BullX || 24x36 || 1 ||  24  || ||~2400s [[FootNote(75s time step)]] || -  || - || -|| - || - || - || - || - || - || inline || - || - || 
+|| !MetCoOp member 0 || 40h1.1.1 || [https://www.nsc.liu.se/systems/cirrus/ Cirrus] || 16x41+16 || 4 ||  16  || -32 || ~1900s || 1x128  || 128 ||120s || 1x128 || 128 || 120s || 1x128 || 128 || 190s || inline || 80s || 170s || 
+|| !MetCoOp member 1 || 40h1.1.1 || [https://www.nsc.liu.se/systems/stratus/ Stratus] || 16x41+16 || 4 ||  16  || -32 || ~1900s  || 1x128  || 128 || 120s || 1x128 || 128 || 120s || 1x128 || 128 || 190s || inline || 80s || 170s || 
+|| !MetCoOp member 2 || 40h1.1.1 || Teho || 16x48+20 || 1 ||  20  || -61  ||~2600s || 1x128  || 128 || 150s || 1x128 || 128 || 240s || 1x128 || 128 || 120s || inline || 110s || 200s || 
+|| DMI/VI IGB|| 40h1.1 || Cray XC50 || 25x72 || 1 ||  32  || ||~4200s || 1x24, mpi || 24  || - || - || - || - || - || - || - || - ||
+|| DMI-NEA || 40h1.1 || Cray XC50 || 25x72 || 1 ||  32  || ||~2900s || 1x24, mpi || 24  ||80s || - || - || - || - || - || - || - ||
+|| DMI-COMEPS || 40h1.1 || Cray XC50 || 29x72 for NEA, 13x72 for DKA || 1 ||  32  || || ~3300s || 1x24, mpi || 24  || 80s || - || - || - || - || - || - || - ||
+|| IRELAND25_090 || 40h1 || Cray XC40 || 56x18 || 1 ||  36  || || ~3700s || 1x4    || 4 || ~180s || 1x216 || 216 || 148s  || 1x216 || 216 || 150s  || inline || 60s || -- ||
+|| KNMI 36h14 || 36h1.4.bf1 || BullX B720 || 28x20 || 1 ||  28  || || ~2880s || || || 25+150 (OI_main) || 1x60 || - || ~20s || 1x112 || 112 || 80s || 6x4 || 
+|| KNMI 40ens || trunk_r17057++ || BullX B720 || 16x19 || 1 ||  28  || -56 || ~4250s || 1x224 || 224 || ~150s || 1x224 || 224 || ~100s || 1x224 || 224 || 80s || inline || 
+|| TOONHARM200 || trunk || Intel Core I7 3770 || 1x8 || 1 ||  8  || || 4320s [[FootNote(75s time step)]] || 1x8 || 8 || 5s+30s (SODA) || 1x8 || 8 || 5s  || 1x8 || 8 || 30s || inline || 
+|| FMI aro38h12 || 38h1.2 || Cray XC30 || 40x40 || 1 ||  20  || || ~1800s || 1x90 || 90 || 100s || 1x90 || 90 || 55s  || 1x90 || 90 || 100s || 2x8 ||
+|| LHMS operational || 40h1.2 || SGI ICE X || 28x36 || 1 ||  28  || || ~1900s || 1x16 || 16 || 200s || -- || -- || --  || -- || -- || -- || -- ||
+|| Arome_Arctic || 40h1.1 || [https://www.nsc.liu.se/systems/stratus/ Stratus] || 16x41+16 || 4 ||  16  || -32 || ~1600s || 1x128  || 128 ||180s || 1x128 || 128 || 130s || 1x128 || 128 || 140s || inline || 60s || 90s || 
+ [[FootNote]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieInventory Back to the main page of the HARMONIE System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

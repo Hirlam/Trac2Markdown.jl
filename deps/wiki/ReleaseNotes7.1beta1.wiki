@@ -1,0 +1,46 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1 beta 1''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Hirlam 7.1 beta 1 ==
+
+Hirlam 7.1 beta 1 is the preliminary release for [wiki:Hirlam_7.1 Hirlam 7.1]. The code includes following main features targeted for [wiki:Hirlam_7.1 Hirlam 7.1]:
+ * A resolution increase in both horizontal and vertical, from the present reference model grid mesh (RCR-7.0) with 438x348 at 0.2 degree resolution and 40 levels, to a grid mesh (RCR-7.1) with 538x440 at 0.15 degree resolution and 60 levels;
+ * An upper air data assimilation of 3D-VAR with 6 h cycling. Conjugate gradient method is chosen as minimisation scheme, with quasi-Newton minimization scheme M1QN3 as alternative option. 
+ * An upgrade in CBR turbulence scheme with parameterization of moist processes, a tuned STRACO condensation scheme adding parameterization of cloud ice;
+ * A recoded physics parameterization package for CBR, STRACO and radiation schemes which is in phase with the "HIRLAM parameterization package" that is included in the Hirlam-ALADIN mesoscale forecast system HARMONIE;
+ * A statistical-balance background error structure function derived with the NMC method;
+In addition, HIRLAM 7.1 also includes source codes/scripts for optional features as listed below.
+ * 4D-VAR upper air assimilation scheme
+ * Optional assimilation of polar satellite AMV (MODIS) and geostationary satellite AMV data;
+ * Optional assimilation of surface relative humidity data;
+Furthermore, it is planned that Hirlam 7.1 will included following new features,
+ * Enhanced post-processing in forecast model to enable more diagnostic parameters (in preparation);
+ * modified forecast output and archiving strategy.
+The official version of the Hirlam 7.1 is scheduled to be released in late February 2007. Hirlam developers are encouraged to participate in test of the current beta version and to provide feedbacks. 
+
+== Description of the code and script changes ==
+
+The system 7.1 beta 1 is a tagged version of the recently established Hirlam-7.1 branch which in turn was based on the trunk version of the Hirlam source code repository. Codewise it is built on top of the last alpha release in Hirlam 7.1 series, [wiki:ReleaseNotes7.1alpha3 Hirlam 7.1 alpha3]. A number of important modifications of the source code and scripts
+[https://hirlam.org/trac/log/branches/hirlam-7.1?action=&rev=4862&stop_rev=4800&mode=follow_copy&verbose=on since Hirlam 7.1 alpha3 have been included]:
+
+ * Correct the error to MakeCMA introduced in [4753] which limits observation data to north of 40 degree latitude ([4858], Wilhelmsson)
+ * A more flexible placement of the HGS server ranks in MPI to reduce memory consumption ([4857], Vignes)
+ * Remove intermediate directory /hirlam from HL_LIB path ([4860], Wilhelmsson)
+ * Make forecast model to read from namrun.dat instead of stdin ([4861], Wilhelmsson)
+ * SMP performance optimizations for forecast model thanks to Dr Roland Richter from SGI ([4838], Sokka)
+ * Add STAGE to the MARS boundary request for operational strategy ([4828), Vignes)
+ * Revive Eulerian advection scheme ([4818], Moene)
+ * Other technical improvement (Amstrup, Eerola, Lindskog, Moene, Poulsen, Sattler, Wilhelmsson, Vignes, Yang et al)
+
+The description of new features in the previous releases for Hirlam 7.1, can be found in release notes for Hirlam 7.1 [wiki:ReleaseNotes7.1alpha1 alpha1], [wiki:ReleaseNotes7.1alpha2 alpha2] and [wiki:ReleaseNotes7.1alpha3 alpha3], respectively.
+
+== Meteorological and Technical Evaluations,  Outstanding problems, bugs ==
+
+See wiki page for [wiki:Hirlam_7.1 Hirlam 7.1], in particular, the preview about the performance of 7.1 beta 1 equivalent (L71) in comparison to the current reference version, 7.0.1 (701), in https://hirlam.org/portal/validation/7.1/701L71.html.
+
+== How to run Hirlam 7.1 beta 1 ==
+
+Please note that with Hirlam-7.1 beta 1, change has been made to the boot-strap script `./config-sh/Hirlam` to reflect the removal of directory level `/hirlam`. On ECMWF platform, users using various versions of previously tagged 7.x versions shall not be affected due to this change. For non-ECMWF platform, users are adviced to use version-specific Hirlam script to avoid inconsistency between versions. For information on further details, see instructions on wiki page for [wiki:Hirlam_7.1 Hirlam 7.1]

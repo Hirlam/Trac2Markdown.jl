@@ -1,0 +1,130 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Climate cy43''' =
+[[LastModified]]
+[[Center(end)]]
+
+
+'''This page is intended for communication of status, development and documentation of HARMONIE Climate (HCLIM) based on cy43.''' ||
+'''It will also serve to keep track of longer experiments and used domains/options/dates etc'''
+
+= Status November 2019 =
+
+List of latest commits to the HCLIM43 branches:
+* Samuel: 
+ - Last set of recommended settings for advanced surface physics: CALBEDO=CM13: Updates ALBEDO for bare soil by cover and vegtype using satellite data. CSNORES=RIL:Turbulent exchanges over snow in 3-L ISBA scheme limited by a Maximum Ri in stable conditions
+ - Complete missing namelists for using spectral nudging (LESPCPL) scheme in shorter simulations (3-5y) for surface validation
+
+* Emily: Bugfix when snow=0, get error as dividing by 0.
+
+During the Surface working week in Maynoth, Samuel presented a first analysis of the 4 year run (+8 months for soil spinup) over IBERIAxxm_2.5 using HCLIM43tg1. It is available [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201911/Surface112019_SamuelViana.pdf here]
+
+'''Notes of the videoconference with RC / Harmonie-Climate colleagues (Fuxing, Danijel): '''
+
+* At RC / Harmonie Climate HCLIM43tg1 is currently being tested in short runs in order to add new functionalities (sub-hourly output, compatibility with ALARO & ALADIN physics, etc.)
+* With IO_SERVER=y, the simulation crashes after about 20 days. With IO_SERVER=n, the simulation can run longer (tested on Bi@SMHI)
+* Starting next year,  one person in the Harmonie-Climate community is expected to be in charge of the systems part of HCLIM. Until then, the development will be kept in the current branches available from Samuel’s git repo forked from harmonie repo. Samuel will open his git to accept commits with the latest development & fixes from Harmonie-Climate colleagues. 
+* The idea of using fluxes for validating HCLIM43 in specific flux sites is still on the table. Not only to evaluate the SEB fluxes as has been done by Samuel at La Herreria site from GUMNET Network, but also to study i.e. momentum/heat fluxes at several levels and its connection with Surface & lowest model level temperature/wind etc. This is partly connected to the desired increase in the XRIMAX setting for future cy43h releases which is seems complicated to do over domains with prolonged & strong stable winter conditions. Patrick will try to find such a dataset by contacting a local swedish colleague.
+* Fuxing has found that the aerosol content in output files is not updated in HCLIM43. It used to be done correctly in HCLIM38. Patrick informs that this update from the monthly climatological files is done by CANARI in nwp cy43. Samuel/Fuxing will look how this was managed by HCLIM38 to find a solution for HCLIM43.
+* Emily expects to run a simulation over Ireland similar to Samuel’s 4y run in ecmwf hpc in December.
+* Danijel asks if the present status of cy43h is mature enough as to consider that an HCLIM43 branch based in those settings + advanced surface physics can be considered an “operational” HCLIM43 branch. Patrick informs that there are still many settings under consideration, many of them connected to the surface ( ECO-SG fixes, roughness length fixes, XRIMAX, RSMIN coefficients, etc) so at least until the first official harmonie43h2.1 release expected for next spring, the HCLIM43 branches should probably be used only for test runs & development.
+* The intention from the perspective of the Hirlam’s surface group is to keep doing short (~4-5y) climate runs from time to time, especially as an evaluation tool on the model performance after or before major changes/updates in the system and as an additional tool to help understand the weaknesses of the surface representation and how to improve it.
+
+= Status and setup August 2019 (by Samuel Viana) =
+
+* A new branch named CY43HCLIMh2.1.target.1 is available for testing HCLIM43. It is the result of merging harmonie-43h2.target.1  & HCLIM43. It has the same  [https://hirlam.org/trac/wiki/Harmonie_43h2/Validation_for_tagging_43h2.1 target1] settings being tested in nwp mode, but with the whole surfex [https://hirlam.org/trac/wiki/Surface_physis_assimilation/New_SURFEX_options_cy43h  wishlist]  including MEB & other specific settings for climate runs (LESPCL on, LUNBC off, etc). Any hirlam.org user can checkout this branch with the following commands:
+ - git clone https://git.hirlam.org/users/sviana/Harmonie
+ - git checkout CY43HCLIMh2.1.target.1
+
+* The tasks convertFA* & script convertFAclim have been modified to make possible to stablish a lower netcdf output frequency for some subtasks. Variables in convertFA_fp3 are converted every FPOUTINT*FPOUTINTF hours, instead of the normal FPOUTINT frequency used by convertFA_fp1&2. Also convertFA_sfx has been split into two tasks; convetFA_sfx1 for slowly varying fields (soil temperatures, etc) which are only converted every SFXSOUTINT*SFXSOUTINTF hours, and convertFA_sfx2 for faster variables such as fluxes & surface energy balance variables, which are converted normally as defined by SFXOUTINT. So FPOUTINTF & SFXSOUTINTF are reduction factors, defined in config_exp.h. This makes possible to save time & archiving space in the postprocessing;  otherwise if one needs for instance hourly output for SEB components you get also a bunch of other slowly varying variables, which might make the Postprocessing family a bottleneck.
+
+* A new long experiment over IBERIAxxm_2.5 is running, starting in February 2014. Output for 2015-2018 will be compared to the previous experiment with a partial surfex wishlist which was reported during the Surface working week in March, 2019 [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Viana_cy43h_climate_tests.pdf]. Also with SEB data from a flux site in central spain and other sources of reference data (ERA5 land, etc...)
+
+= Status and setup July 2019 (by Samuel Viana) =
+
+* Earlier this year, CY43 branch in the common git repository was removed since the branch "/develop"  was upgraded to cy43; so all cy43 development enters now into the repository through that branch. Therefore instructions below from January'19 are obsolete.
+
+* Among the surface and climate related updates merged into /develop during the last few months are:
+ - Fixes for MEB (Patrick)
+ - Enable ECOCLIMAP-SG (Patrick)
+ - Reading of SIC files & updating sea-ice during the forecast (David / Fuxing)
+
+* Currently, a basic testing of CY43 in climate mode can be done by checking out "/develop" from the repository. Also, I have created branch CY43HCLIM in my personal git repo, branched-off from /develop and regularly updated with the latest changes from this branch. CY43HCLIM includes some changes which is not clear by now whether they should enter the official development branch or not, but which are very useful for running longer experiments & handling output more easily. These changes were already available in HCLIM38; they refer mainly to netcdf conversion & archiving: fixes in gl_grib_api for conversion of surfex files into netcdf, more field names added in nc_tab.h & trans_tab.h, etc.  CY43HCLIM can be located here: git @ git.hirlam.org:users/sviana/Harmonie.git    branch: CY43HCLIM
+
+* Please feel free to checkout CY43HCLIM  & test it for small periods/domains and send any comments / problems found / proposed fixes .
+
+
+= Draft plans for testing HCLIM43, discussed in side meeting with Rossby Centre colleagues during last SFC working week in Norrköpping, February 28, 2019 =
+
+* Until now only a few test climate runs have been done for IBERIAxxm_2.5 & IRELAND domain. These initial tests will serve to produce a first rough evaluation of the model performance when no data assimilation is applied. For example some first results  are available analyzing the climatology of the precipitation and Tmax / Tmin produced by the model. We're also checking the surface spinup time.
+* New climate runs will be done after the CY43 development branch gets closer to our target options: MEB isn't available yet, and ECOCLIMAP-SG can be activated now but there's some bug with H_TREE parameter for NPATCH=2 which must be solved. These new experiments will allow us to describe the model sensitivity to the new phisiographic data. Then a more intensive evaluation of the model performance could be started where we'll try to validate the model in more detail using higher-resolution datasets, satellite estimations of surface parameters, etc...
+* Although different domains can still be tested individually for studying model performance in general, it was decided that joining efforts for studying a single experiment/domain in a collaborative way can help us to better understand the behaviour of the new surface options and what possible surface biases are introduced. A good candidate area for this experiment is one covering the Feldbach region in Austria where Wegenernet, a high density [https://wegenernet.org/portal/ network] of AWS was deployed by the University of Graz, with data available since 2007 and open access to point & gridded data. Before a final decision on this we'd like to check if we can find any source of eddy-covariance data in Austria since it can be interesting to check latent/sensible heat fluxes at least for a part of the experiment and compare it with observed point data. This looks less problematic than trying to compare surface soil moistures with direct observation or satellite estimation as these are highly model-dependant variables. Samuel is trying to find such flux data around the Wegenernet area.
+* Emily can provide computing time at ECMWF's HPC since she recently got a special project there. She will check how to add other users to use these SBUs. The idea is to use this account at least for the experiments over Ireland & the common experiment over Austria or wherever we finally decide to run it.
+* David / Fuxing are working on the reading of SIC files & updating sea-ice during the forecast. They're working locally with a harmonie-43h1.pre-alpha.1 copy cheked out from the svn repo. After they reach a solution Samuel will test it in a new setup based on the latest git development branch & send it to commit if results are positive.
+
+= Status and setup January 2019 [[OUTDATED, kept for reference]] =
+
+After the merging of SURFEX8.1 into CY43 last summer, testing in climate mode is now done in the same CY43 development branch as the rest of the HIRLAM group. Thus tests in climate mode can be done now with minimum changes with respect to the CY43 version in the git repository.
+
+=== Steps to checkout & test CY43: ===
+* Create a local working copy of the CY43 branch in the git repository: "git clone https://git.hirlam.org/Harmonie". You’ll be asked for your Hirlam user & pass. A local directory “Harmonie” will be created with the “master” branch from the repository.
+* Switch to the CY43 branch & checkout: “cd Harmonie”, “git checkout CY43”
+* Check that you’re on the right branch with “git branch”.
+* Create a new setup as usual at ~hm_home/ . Set SIMULATION_TYPE=climate, ANASURF=none, ANAATMO=none & DOMAIN=your_domain in config_exp.h. 
+That's it (hopefully) you're ready to start running basic climate tests in the usual way!! For more advanced settings, selection of advanced surface schemes, use of era5 boundaries etc you can check for instance the “surfex wishlist” experiment for IBERIA at ~sp3c/hm_home/CY431812_sst_fullwl
+
+Or alternatively here are some other details for setting up the CY43 branch:
+* mkdir -p $SCRATCH/harmonie_releases/git
+* cd $SCRATCH/harmonie_releases/git
+* git clone https://git.hirlam.org/Harmonie -b CY43 CY43 ## This just clones the CY43 branch
+* cd CY43
+* git branch # If you already have a clone of CY43 but want to update it to the latest, use "git pull" rather than "git branch".
+
+
+More details:
+* It is advised to run with IO_SERVER=yes in config_exp.h. It was previously unavailable in climate runs. It speeds up the simulations, specially if you use the LSELECT option which slows down the Forecast, specially when running without IO_SERVER
+* Default options include old surface schemes from harmonie-40h12 (force restore, 1 layer snow, etc). Activation of DIF & Explicit Snow can be done in config_exp.h; the rest of the options in the wishlist must be activated in surfex_namelists.pm. 
+* In the surface group we're running 3-4 years simulations, with most new SURFEX8 options in our wishlist, except for MEB which is not yet adapted for coupled runs. In addition we have recovered the spectral nudging scheme (LESPCPL) from CY38 (see ~sp3c/hm_home/CY431812_sst_fullwl/nam/harmonie_namelists.pm) which forces upper levels & larger scales to follow BCs more closely. Use with LUNBC=no in config_exp.h when using LESPCL as advised by Xiaohua.
+* Domains tested so far: IRELAND_2.5 for ~1year, IBERIAxxm_2.5 for +3 years. Tests over METCOOP fail early in the Forecast step, for now it is unclear the reason why.
+* When using SURFEX_LSELECT=yes, there’s some memory leak which causes an “out of memory” crash after a certain number of hours in the Forecast. Some medium-sized domains such as IRELAND2.5 (~500x500) can reach the end of the month with enough memory but for IBERIAxxm_2.5 (800x868) it tends to crash after ~500hours. For now we’re running without the LSELECT options and saving a lot of output, although increasing nprocx & nprocy in submit.ecgb-cca might also serve for some domains (not tested).
+
+=== List of long experiments, status & results ===
+|| '''DOMAIN'''|| '''Simulation period''' || '''Responsible''' ||'''LBCs'''   ||  '''HPC''' || '''Status''' ||'''Comments''' ||
+|| IBERIAxxm_2.5 || 10/2013 - 10/2017 || Samuel|| ERA5 || cca ||3years completed, now analyzing sfc bias||   Full wishlist (- MEB), LESPCPL on ||
+|| IRELAND2.5 || 04/2017 - 12/2017 || Emily || ERA5 || cca || Completed ||  DIF, ES ||
+
+== Development needs in some priority order ==
+
+ * ~~Make sure the branch can technically run in climate mode (e.g. month-shift works as it should, continuous SST/SIC updates, ...)~~. Cy43 runs now smooth in climate mode but only a limited number of domains have been tested (some already in multi-ear simulations). Still, some domains show issues (for instance too small domains as TEST_2.5, TEST11 tend to crash, also METCOOP in combination with new surface, etc). SST update was fixed by D. Lindstedt who is also working in the update of sea ice. 
+ * ~~Keep in mind/check/implement missing cy40h AROME/SURFEX updates between [15114] from 2016-08-18 and head.~~ This should not be a problem since we're not using a different development branch now.
+ * ~~Reimplement SURFEX_LSELECT functionality (never entered in cy43 phasing). Requires rephasing of [14252]~~ . LSELECT is back but is suspected to cause memory leaks.
+ * Update SURFEX to SURFEXv8.1 (current v8.0 is 1.5 years old). [[ Plans and status?]]
+ * Update with SICE when available. SICE a la Yurii Batrak is on its way into SURFEX repository but is not yet an official part of SURFEXv8.1.
+ * ~~Fix the spectral nudging option (LESPCPL), see details in HIRLAM's forum, Topic:cy43. (Fixed in changesets 16655 & 16656)~~ As it is not a part of the CY43, settings to use this must be copied from harmonie_namlelists.pm in the old cy43 climate branch (harmonie-43t2_climate), or from ~sp3c/hm_home/CY431812_sst_fullwl/nam/harmonie_namelists.pm
+
+== Applications in mind ==
+
+ * Test [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h NWP wish list for SURFEX settings] (DIF, Explicit snow, MEB, ...)
+ * Identify and resolve near-surface biases fro NWP purposes (utilize upper boundary spectral nudging to limit needed simulation time to maybe ~3 years)
+
+== Status and setup November 2017 [[OUTDATED, kept for reference]] ==
+
+ * The HIRLAM climate development branch for cy43t2 is [https://svn.hirlam.org/branches/harmonie-43t2_climate]
+ * harmonie-43t2_climate is based on harmonie-43t2 + Ecflow functionality for SIMULATION_TYPE=climate (by Samuel Viana)
+ * harmonie-43t2 is based on cy43t2 (+ bf1 & bf2) from Météo-France (i.e. the src directory) with HARMONIE script system around it (based on cy40 r15114 from 2016-08-18).
+ * harmonie-43t2_climate runs on ECMWF with SIMULATION_TYPE=climate and SURFEX_LSELECT=no. Namelist settings are still NWP cy40-like settings for AROME/SURFEX (Force-restore and D95 snow).
+ * The forecast part of harmonie-43t2_climate now runs with most namelist flags corresponding to the latest release of HARMONIE-AROME NWP (cy40h1.1). I.e. the majority of physics options are as NWP wishes to have them right now (no SICE though).
+ * Upper boundary relaxation scheme is disabled (LUNBC=FALSE) since long simulations tend to crash after a few tens of hours.
+
+== Domains tested [[OUTDATED, kept for reference]] ==
+
+ * IBERIA_2.5 domain for more than 1 month, default SURFEX options in branch. Tester: Samuel Viana (AEMET). Level: technically working
+ * METCOOP25B domain for three days: !2015062900-!2015070200. Tester: Patrick Samuelsson (SMHI). Experiment: ecgb:/home/ms/se/sn8/hm_home/cy43_climate_test. Level: technically working
+ * Irish operational domain: Emily Gleeson (Met Eireann): 
+   - Experiment: /home/ms/ie/dum/hm_home/HCLIM_IRL. Ran a 70-hour test - no technical issues encountered. But used old settings - force restore for soil and D95 for snow.
+   - Retried but using DIF for soil. Failed because DIF only works when snow = 3L or CRO.
+   - Ran another test using Samuel's sfx namelist wishlist - failed for a snow related error at the turn of the month - now looking in to this. 
+   - Also tested 3 layers for ES snow scheme rather than 12  - got same error however.
+   - Testing new 43climate branch (with bf3&4) - ran ok for nwp namelist settings; now testing Soil Dif & 3L snow combo - this failed on month change at snow3L_transf/ice_solidif
+   - Retried prev test using summer months (over Ireland/UK ie no snow; no issues on the month changeover in that case).
+ * IBERIAxxm_2.5 domain for +1 month (october 2009), wishlist SURFEX options (all but MEB). Tester: Samuel Viana (AEMET). Level: technically working

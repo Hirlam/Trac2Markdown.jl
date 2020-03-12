@@ -1,0 +1,194 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= '''Running Harmonie under (m)SMS''' =
+[[Center(end)]]
+
+== Introduction ==
+
+Mini SMS is a job scheduler used to control your experiments. A detailed description about mSMS can be found 
+[wiki:HirlamSystemDocumentation#ReferenceScripts here]. This documentation describes how to install the latest versions of HARMONIE system from scratch, including that of build of the reference ROOTPACK, and [wiki:HarmonieSystemDocumentation/33h1/Harmonie-mSMS#ConfigureandlaunchHarmonieexperimentsfromECMWF-ecgate how to start an experiment]. 
+
+Users for a tagged Harmonie-system versions featuring mini-SMS script, please refer to the specific instructions for the corrsponding releases, such as [wiki:Harmonie_33h1 that for Harmonie-33h1].
+
+== Build HARMONIE from the HARMONIE repository ==
+
+If this is the first time you install HARMONIE on your local platform please take a look at the basic install [wiki:HarmonieSystemDocumentation/33h1/LocalInstall32 instructions] for a linux system.
+
+== Preparations ==
+
+=== Get the Harmonie source ===
+
+To obtain the HARMONIE source, assuming the computer platform has svn client available, one may check out from the repository at the host hirlam.org:
+{{{
+        svn export https://svn.hirlam.org/tags/harmonie-33h1                # for the recently tagged (stable-) HARMONIE system
+        svn export https://svn.hirlam.org/trunk/harmonie                    # for the latest updated (unstable-) version
+}}}
+For Harmonie build using miniSMS script, it suffices that you have access to the HARMONIE system source. On ECMWF HPCE, on which svn client is not available, the HARMONIE sources are available under sub-directories of 
+{{{
+ ecgate:/home/ms/dk/nhz/harmonie_release/33h1    # on ecgate
+   hpce:/ms_perm/hirlam/harmonie_release/33h1    # on hpce
+}}}
+One may also get a HARMONIE source code tarball, e.g., from ECMWF computer, 
+{{{
+        ecgate:    /scratch/ms/dk/nhz/harmonie-33h1.tar.gz        # for the recently tagged (stable-) HARMONIE system
+        ecfs:      ec:/hirlam/src/tar/harmonie-33h1.tar.gz
+        ecgate:    /scratch/ms/dk/nhz/harmonie_trunk.tar.gz       # for the (unstable-) version updated daily
+}}}
+=== External librares ===
+First you need some auxiliary libraries, provided by ECMWF and Meteo France. The libraries contain GRIB and BUFR software as well as dummies for routines available only at ECMWF. They can be found on ECFS at ECMWF under:
+{{{
+ecfs :/rme/hirald/install/auxlibs_installer.1.3.tar.gz
+}}}
+
+Follow the install instructions and use dirver_automatic or driver_interactive. If you are running on GNU/Linux system and it doesn't have the libraries BLAS and LAPACK installed (see ls -l /usr/lib/*blas* /usr/lib/*lapack*), get them from http://netlib.org and build them.  Install them as libblas.a and liblapack.a in $HOME/auxlibs.
+
+To be able to launch the mSMS mXdcp window you need to have perl toolkit installed. Define PERL_TK and PERLTKDIR in your system config file, read more below.
+
+=== Build a ROOTPACK ===
+A ROOTPACK installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models) which can afterwards be used as a reference for building local "target" pack, which synchronise local source modifications with that of the reference. 
+
+To build the rootpack using the mSMS script system, please follow the following instructions. You may also proceed as described in the above mentioned [wiki:HarmonieSystemDocumentation/33h1/LocalInstall32 instruction].
+
+Identify your system in one of the config files in config-sh or write a new config.YOURHOST definition, make sure that some of the important optional settings are defined in this file:
+{{{
+ COMPCENTRE       # should be something else than ECMWF for non-HPCE platform
+ HM_DATA          # where you run your experiments and keep your "local" binaries
+ ROOTPACK         # where you refer/put your rootpack installations
+ HARMONIE_CONFIG  # identifies your configuration
+ AUXLIBS/EMOSLIB  # Path to your external libraries
+}}}
+Compare e.g. with [source:tags/harmonie-33h1/config-sh/config.ecgate config.ecgate] or [source:tags/harmonie-33h1/config-sh/config.dunder config.dunder].
+Next you have to identify your submit file in config-sh or write a new submit.YOURHOST file. This file defines how you submit your jobs in your local batch system. Any job that is not defined in the @scalar_list, for scalar jobs, or @par_list, for parallel jobs, is by definition executed as a background job. [source:tags/harmonie-33h1/config-sh/submit.ecgate submit.ecgate] or
+[source:tags/harmonie-33h1/config-sh/submit.dunder submit.dunder] are good examples to start from.
+
+You also have to identify your system for gmkpack in:
+
+{{{
+        util/gmkpack/arch/YOURMACHINE.HARMONIE_CONFIG
+}}}
+
+
+The source code for utilities not compiled with gmkpack you find under util. There should be three config files created/edited.
+
+{{{
+        util/gl/config/config.HARMONIE_CONFIG
+        util/monitor/config/config.HARMONIE_CONFIG
+        util/oulan/config.HARMONIE_CONFIG
+}}}
+
+The makefiles themselves should not have to be edited.
+
+To start the build create an experiment under $HOME/hm_home and run
+
+{{{
+   PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST
+}}}
+
+Note the options "-r" and "-h" here are defined differently from those in the script Hirlam for synoptic-scale Hirlam system.
+
+The above command creates the following files/directories under
+{{{
+   config-sh/hm_rev                         # gives the path to the reference installation, similar to hl_rev in synoptic-Hirlam
+   config-sh/Main                           # a script to enable start Harmonie, similar to Start in synoptic-Hirlam
+   Env_system -> config-sh/config.YOURHOST  # describing your system, similar to Env_system in synoptic-Hirlam
+   Env_submit -> config-sh/submit.YOURHOST  # describing your submit commands, comparable to submission.db in synoptic-Hirlam
+   sms/config_exp.h                         # defines your experiment, comparable to Env_expdesc in synoptic-Hirlam
+}}}
+
+
+In sms/config_exp.h you may identify the following options sent to gmkpack
+{{{
+# Build libraries and binaries
+REVISION=33h1
+BRANCH=main
+VERSION=01
+OPTION=x
+PROGRAM=aromodb
+}}}
+
+Change if needed.
+
+Start the compilation of the rootpack :
+{{{
+      PATH_TO_HARMONIE/config-sh/Harmonie install
+}}}
+
+The suite definition file used for the installation is 
+[source:tags/harmonie-33h1/msms/Install_rootpack.tdf Install_rootpack.tdf].
+
+=== Configure and launch Harmonie experiments from ECMWF-ecgate ===
+
+The reference Harmonie system on ECMWF platform assumes dual-hosts setup, resembling now more the traditional settings for the synoptic Hirlam using mini-SMS. By default, the mSMS script uses the front-end ecgate to configure and launch experiments, whereas HPCE is used for all computations except those for operations related to observation verification and monitoring. 
+
+As in the previous versions, the reference ROOTPACK for 33h1 has been pre-built and available on ECMWF HPCE computer, under /ms_perm/hirlam/harmonie/pack/
+
+Following example shows the steps to launch an Harmonie-33h1 experiment H33H1 on ECMWF platform:
+
+ 1. Create an experiment directory under $HOME/hm_home and run the setup
+{{{
+   mkdir -p $HOME/hm_home/H33H1; cd $HOME/hm_home/H33H1
+   PATH_TO_HARMONIE33h1/config-sh/Harmonie setup -r PATH_TO_HARMONIE_33h1 -h YOURHOST   
+                                    # e.g., ~nhz/Harmonie setup -r ~nhz/harmonie_release/33h1
+}}}
+ 1. If applicable, put your local source or script changes, which are different but consistent with the reference version as installed in the ROOTPACK, into the current $HOME/hm_home/H33H1 directory, with exactly the same subdirectory structure as in the reference. e.g, if you want to modify a subroutine 
+{{{
+   cd $HOME/hm_home/H33H1; mkdir -p src/arp/setup/src/arp/setup
+   cp ~nhz/harmonie_release/33h1/src/arp/setup/src/arp/setup/suphy.F90 src/arp/setup/src/arp/setup  # retrieve default source code
+   vi src/arp/setup/src/arp/setup/suphy.F90                                                         # modify the source code
+}}}
+ 1. Edit basic configuration files such as [source:tags/harmonie-33h1/config-sh/config.hpce Env_system -> config-sh/config.YOURHOST] and [source:tags/harmonie-33h1/sms/config_exp.h sms/config_exp.h] to configure your experiment scenarios. Modify specifications for model versions (ALADIN, AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. e.g, 
+{{{
+   ~nhz/Harmonie co scr/RunCanari         # retrieve default script RunCanari
+   vi scr/RunCanari                       # modify the script
+}}}
+ 1. Launch the experiment
+{{{
+      PATH_TO_HARMONIE/config-sh/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH
+                                    # e.g., ~nhz/Harmonie start DTG=2008030500 DTGEND=2008030506 LL=12
+}}}
+If successful, mSMS will identify your experiment name, launch mXcdp and start build and run. If not, you need to examine the mSMS log file $HM_DATA/mSMS.log. $HM_DATA is defined in your Env_system file
+
+
+
+=== File structure ===
+
+On ecgate, you can follow the progress of the runs on $SCRATCH/hm_home/H33H1. More complete results data are available on HPCE:$TEMP
+under $HM_DATA: $TEMP/hm_home/H33H1. Under this directory you will find:
+
+   * All binaries under '''bin'''
+   * IFS libraries, object files and source code under '''gmkpack_build'''
+   * Scripts, config files, sms and msms definitions under '''lib/'''
+   * Utilities such as gmkpack, gl and verification under '''lib/util'''
+   * Climate files under '''climate'''
+   * Archived files under '''archive'''
+       * A '''YYYY/MM/DD/HH''' structure for per cycle data
+       * verification input data under '''extract'''
+   * Working directory for the current cycle under '''YYYYMMDD_HH'''
+   * Verification working directory on '''ecgate:$SCRATCH/hm_home/$EXP/lib/util/monitor'''
+   * Log files under H33H1. All logfiles are also archived in archive.
+
+=== Making 3DVAR experiment ===
+
+=== Performing model inter-comparison using Harmonie verification tools ===
+
+For comparison between HIRLAM and HARMONIE experiments it is now possible to extract verification files from your HIRLAM experiment
+[source:trunk/hirlam/scripts/VER_create_fld VER_create_fld]. Read more on how to use the 
+[source:tags/harmonie-33h1/util/monitor/doc verification].
+
+== Running HARMONIE under full SMS ==
+
+FMI is running HARMONIE using the full SMS system. The SMS playfile produced from the mSMS tdf-file by running the --prepare setup of mini-SMS. The created def-file can then be used in full SMS.
+
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

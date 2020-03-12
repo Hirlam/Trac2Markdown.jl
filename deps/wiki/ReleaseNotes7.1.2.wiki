@@ -1,0 +1,42 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1.2''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of 7.1.2 ==
+
+Hirlam 7.1.2 is bug fix update for the current Hirlam system, [wiki:Hirlam_7.1]. The update consists of several source code and script corrections on top of the latest official version, Hirlam 7.1.1. The update contains a correction to a bug in specification of physics option, which caused no use of moist CBR turbulence scheme in 7.1 code series. The update also corrects a script deficiency which caused no use of ATOVS AMSU-A data on ECMWF platform using reference configuration.
+
+The main update candidates for 7.1.2 have been [https://hirlam.org/trac/wiki/Hirlam_7.1TestEvaluation#Evaluationof7.1.2vs7.1.1vs7.1 validated on the ECMWF-HPCE platform] using reference set-up, which indicates a minor but consistent improvement for forecast scores, mainly in terms of precipitation. The tests also indicate a more realistic forecast for cloud water and TKE. 
+
+In addition, Hirlam 7.1.2 also contains a number of other minor updates of technical nature.
+
+Hirlam 7.1.2 now replaces that of Hirlam 7.1 as official Hirlam release. The complete source code of Hirlam 7.1.2 can be obtained by either
+
+ * Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.1.2
+}}}
+ * Downloading tarball from ECMWF ecgate:/scratch/ms/dk/nhz/hirlam-7.1.2.tar.gz or ecfs:/hirlam/src/tar/hirlam-7.1.2.tar.gz which contains the sandbox (check-out version) of the Hirlam 7.1.2
+
+== Description of the changes ==
+
+HIRLAM 7.1.2 contains bug corrections and technical improvements on top of the release Hirlam-7.1.1. A detailed listing of the code and script changes can be found in [https://hirlam.org/trac/log/branches/hirlam-7.1?action=stop_on_copy&rev=5240&stop_rev=5165&mode=stop_on_copy the summary page on wiki page]. The updates include:
+ * Changset [5224] and [5228], which ensure correct and consistent setting of physics options in forecast model, (Yang and Vignes)
+ * corrections relevant to ECMWF platform
+  * ensure correct file location for e.g. FMI-archived ATOVS data (Yang [5211])
+  * bug fixes and other improvements for archiving. Improved standard archiving setting; introduce ECFSGROUP in scripts/Env_expdesc and set reasonable file/directory permissions in HL_ARC to enable easier data exchange among HIRLAM colleagues (Sattler [5197], [5198], [5202], [5217],[5219],[5233],[5235])
+ * bug corrections in post-processing (Rontu [5161], Sokka [5185], Eerola [5204])
+ * bug correction for BGOS code (Gustafsson [5215])
+ * adjustment of some HIRVDA-namelist defaults to be more realistic (Yang [5194])
+ * corrections relevant for EPS option (Sattler [5173])
+ * other minor technical improvements ( [5128], [5168], [5187], [5196], [5227], [5231])
+
+== How to run Hirlam 7.1.2 ==
+
+See instructions on wiki page for [https://hirlam.org/trac/wiki/Hirlam_7.1#RunningHirlam7.1ontheECMWFplatform ECMWF] and [https://hirlam.org/trac/wiki/Hirlam_7.1#Installandrun7.1onnon-ECMWFplatforms non-ECMWF ] platforms.
+
+== Acknowledgement ==
+
+Special thanks to Javier Calvo, INM, who discovered inconsistency between specified namelist and effectively chosen physics option in the forecast model. Ole Vignes, Kai Sattler, Kalle Eerola, Laura Rontu, Nils Gustafsson, Tomas Wilhelmsson and Xiaohua Yang provided code updates included in this release.

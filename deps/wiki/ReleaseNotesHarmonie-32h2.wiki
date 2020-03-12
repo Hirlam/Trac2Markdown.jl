@@ -1,0 +1,50 @@
+
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of Harmonie-32h2 (draft)''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Harmonie-32h2 ==
+Harmonie-32h2 is the HIRLAM-adapted Arpege/IFS system Cycle 32t2, including its subsequent patches and HIRLAM's local modifications and additions, such as scripts and utilities developed in HIRLAM community.
+
+On top of the source in Cycle 32t2, 32h2 introduces two recent patches developed in HIRLAM:
+ * high order spectral smoothing of orography (Hortal, [5405]). The orography field used by the ALADIN community is truncated in spectral space to the resolution corresponding to the quadratic grid and a special procedure is applied to reduce the orographic ripples over sea at the expense of the representation of the orography over land. Studies carried out at ECMWF have shown that a better representation of the orography (reducing noise at the lowest model levels without degrading too much the resolution represented in the orography field) is obtained by keeping all the scales representable with the linear grid but reducing the amplitude of the shortest scales in a very scale-selective way, by applying the equivalent to a diffusion operator of order 16. The scheme is introduced as a non-default option.
+ * An interface to connect HIRLAM physics with SURFEX (Sass, [5416]). Explicit momentum fluxes have been proposed for the HIRLAM physics package within IFS, as a contrast to the Meteo France implicit scheme. This is believed to be necessary at present for HIRLAM, since the implicit scheme part is done elsewhere in the context of HIRLAM turbulence computations.
+
+Hirlam is in the process of extending mini-SMS job control and scheduling system to HARMONIE system. As a part of the ongoing efforts toward that direction, the build and run procedure for setting up HARMOINE experiment on the ECMWF reference platform has been simplified in 32h2, compared to the previous system. The simplification assumes existence of a reference master pack in the HPCE directory /ms_perm/hirlam/harmonie/pack for 32h2, and a correspondence between source and scripts/namelists. With these changes, the build process no longer involve use of revision control (thus the dependence on Subversion client), hence no need to use dual platforms (ecgate and HPCE) for the build purpose. Users are advised to follow the instructions refered to below for the new build and run procedure
+
+In ALADIN webpage, there are numerous [http://www.cnrm.meteo.fr/gmapdoc/spip.php?rubrique1 useful and comprehensive
+documentation] about the system 32t2. For beginners, an simple overview wiki page[https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Mesoscale/HarmonieSource about the basic source code structure as contained in Harmonie-32h2] is given.
+
+== Harmonie-32h2 source code downloads ==
+
+ * harmonie-32h2 release can be obtained via Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-32h2
+}}}
+ * On ECMWF, export version (the checkout of the source code with Subversion export command) of the harmonie-32h2 is available,
+{{{
+   ecgate:/home/ms/dk/nhz/harmonie_release/32h2  # on ecgate
+   hpce:/ms_perm/hirlam/harmonie_release/32h2    # on hpce
+}}}
+ * The export tarball of the harmonie-32h2 is available on ECMWF:ecgate as /scratch/ms/dk/nhz/harmonie-32h2.tar.gz, or on ECFS: ec:/hirlam/src/tar/harmonie-32h2.tar.gz
+
+== Performing experiments with Harmonie-32h2 ==
+
+Step by step instruction about build and run Harmonie system using 32h2 on the reference platform (ECMWF HPCE) can be found in [https://hirlam.org/trac/wiki/Install_HARMONIE_trunk_ECMWF the updated wiki instructions].
+
+The Harmonie system environment is going through rapid changes currently and there is still a general shortage with experience and documentation. Please contact system@hirlam.org for inquiry on problem you encounter when using Harmonie 32h2.  
+
+== Acknowledgement ==
+
+Numerous HIRLAM staffs have contributed to development of HIRLAM components as featured in Harmonie-32h2. Among them, direct contribution from Ulf Andrae, Sami Niemela, Tomas Wilhelmsson, Bjarne Stig Andersen, Toon Moene, Bent Hansen
+Sass, Mariano Hortal and Xiaohua Yang are acknowledged.
+
+== References and documentation ==
+ * Yessad, K., 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article29 Basics about ARPEGE/IFS, ALADIN and AROME in the cycle 32T2 of ARPEGE/IFS]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

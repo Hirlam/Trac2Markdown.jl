@@ -1,0 +1,24 @@
+[[Center(begin)]]
+= '''HIRLAM Surface Analysis and Modelling Meetings''' =
+[[Center(end)]]
+
+
+== Surface working weeks ==
+
+ * [wiki:Meetings/Surface/Surface201604 HARMONIE Surface Working Week, Oslo, April 11-14, 2016]
+ * [wiki:Meetings/Surface/Surface201610 HIRLAM/ALADIN/LACE/SURFEX Surface Working Week Zagreb, October 24-26, 2016] 
+ * [wiki:Meetings/Surface/Surface201705 HIRLAM Surface Working Week, Norrköping, May 8-11, 2017]
+ * [wiki:Meetings/Surface/Surface201709 HIRLAM/ALADIN/LACE/SURFEX Surface Working Days Ljubljana, September 18-20, 2017]
+ * [wiki:Meetings/Surface/Surface201805 HIRLAM Surface Working Week in Tromsø, Norway, May 28 - June 1, 2018]
+ * [wiki:Meetings/Surface/Surface201901 NWP Surface Working Week at SMHI, Norrköping, Sweden, February 25 - March 1, 2019]
+ * [wiki:Meetings/Surface/Surface201911 Surface Working Week Maynooth Ireland, November 11-15th, 2019]
+ * [wiki:Meetings/Surface/Surface202005 Surface Working Week in Madrid, spring 2020]
+
+== Other Meetings ==
+
+ * [wiki:Surface_physis_assimilation/Glacier_plans Ideas and plans for glacier development in SURFEX, Toulouse, February 27, 2017]
+ * [http://www.umr-cnrm.fr/surfex/spip.php?article426 SURFEX Users Workshop at Meteo France in Toulouse, February 27-March 1, 2017]
+ * [wiki:Meetings/Surface/Surface_side_meeting_Helsinki_201704 Surface side meeting at Joint 27th ALADIN Workshop & HIRLAM All Staff Meeting, April 2017, Helsinki, Finland]
+ * Lake workshop 2017 in Berlin, registration ongoing! http://www.flake.igb-berlin.de/Lake17/  
+ * [https://hirlam.org/trac/wiki/Meetings/Surface/NordNWP_PGD_201710 NordNWP workshop on the physiography database (PGD), Copenhagen, October 25-26, 2017]
+ * [wiki:Meetings/Surface/Surface_side_meeting_Toulouse_201804 Surface side meeting at Joint 28th ALADIN Workshop & HIRLAM All Staff Meeting, April 2018, Toulouse, France]

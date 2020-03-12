@@ -1,0 +1,365 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''GLAMEPS Production System: Technical Information for Users''' ==
+Last modified on [[LastModified]]
+
+[[Color(red, CAUTION, this is a draft version!)]]
+[[Center(end)]]
+
+This page contains technical information for GLAMEPS users, who intend to utilize GLAMEPS products. The documentation refers to the GLAMEPS production system version 2 (GLAMEPSv2).
+
+== '''General Information''' ==
+
+=== Setup ===
+
+GLAMEPS is installed on the computers at ECMWF and uses the ECMWF EPS as boundary model. GLAMEPS production makes use of the SMS facility to control the production process. The current production version of GLAMEPS is version 3.
+
+The GLAMEPS ensemble is a 32+4-member multi-model ensemble, with 4 control members plus 32 perturbed members, the latter of which include lagging. GLAMEPS is run over 4 cycles per day for hours 00, 06, 12 and 18 UTC, where each cycle runs a 16+4 member ensemble. The member configuration is such that two consecutive cycles make up a full 32+4 member ensemble.
+
+GLAMEPS comprises following models (please note that member '000' refers to 'control member'):
+
+|| '''acronym''' || '''model name'''     || '''type''' || '''contributed members''' ||
+|| HirEPS_S      || Hirlam STRACO        || LAM        || 000, 001 - 004, 007 - 010 ||
+|| HirEPS_K      || Hirlam !Kain/Fritsch || LAM        || 000, 013 - 016, 019 - 022 ||
+|| AloEPS_S      || Alaro SURFEX         || LAM        || 000, 025 - 028, 031 - 034 ||
+|| AloEPS_I      || Alaro ISBA           || LAM        || 000, 037 - 040, 043 - 046 ||
+
+The numbering of the ensemble members coincides with the numbering in the 50+1 member ECMWF EPS, and the LAM models utilize the respective ECMWF EPS ensemble members as boundary model. The model acronym is used in order to identify a model when accessing data from the GLAMEPS system.
+
+
+=== Cycling ===
+
+GLAMEPS does not run all ensemble members within one single cycle. Instead the perturbed ensenmble members are split into two groups, which are run in an alternating manner when moving from one cycle to the next. Following table shows the distribution of the perturbed ensemble members for the daily cycles:
+
+||             |||||||| '''perturbed members''' ||
+|| '''cycle''' || '''HirEPS_S''' || '''HirEPS_K''' || '''AloEPS_S''' || '''AloEPS_I''' ||
+||   `00`      ||   001 - 004    ||   013 - 016    ||   025 - 028    ||   037 - 040    ||
+||   `06`      ||   007 - 010    ||   019 - 022    ||   031 - 034    ||   043 - 046    ||
+||   `12`      ||   001 - 004    ||   013 - 016    ||   025 - 028    ||   037 - 040    ||
+||   `18`      ||   007 - 010    ||   019 - 022    ||   031 - 034    ||   043 - 046    ||
+
+Where the four unperturbed control members with 000 identifier are concerned, these are run at each cycle using most recent observation data within analysis.
+
+This ensemble configuration provides a full ensemble when combining the perturbed members from two consecutive cycles, and adding the control runs from the newest cycle. This way, GLAMEPS is capable of providing ensemble products every 6 hours, while optimizing use of available computer resources.
+
+As GLAMEPS users have access to the model output data (see below), they are free to compile another ensemble member composition from the GLAMEPS members, and apply their own post-processing on that.
+
+
+== '''Product data''' ==
+
+Following post-processing products are available:
+
+=== Probability Maps ===
+
+Probability maps for atmospheric parameters, where each ensemble member is equally weighted (plain data). The processed parameters comprise:
+
+|| '''acronym''' || '''parameter'''              || '''product'''             ||
+|| AccPcp1h      || 1h accumulated precipitation || probability maps          ||
+|| G10m          || wind gust at 10m             || probability maps          ||
+|| Pmsl          || mean sea level pressure      || ensemble mean/spread maps ||
+|| S10m          || wind at 10m                  || probability maps          ||
+|| S925          || wind at 925hPa level         || probability maps          ||
+|| T2m           || temperature at 2m            || probability maps, ensemble mean/spread maps ||
+|| T850          || temperature at 850hPa level  || ensemble mean/spread maps ||
+|| Z500          || geopotential at 500hPa level || ensemble mean/spread maps ||
+
+
+=== Meteograms (GLAMEPS-o-GRAMs) ===
+
+These meteograms are created for selected locations, including graphs for temperature, wind and precipitation. The GLAMEPS-o-GRAMs can be viewed on the [https://glameps.org GLAMEPS web page], or accessed on the ''GLAMEPS disk'' (see below).
+
+The data shown in a GLAMEPS-o-GRAM is available as point data in the [#Tableextractionsofpointdata table extraction data].
+
+
+
+=== Data Access ===
+
+Product data for GLAMEPS is available from the ''GLAMEPS data disk'' on the ECMWF computer system:
+
+ 1. [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/plain)]] contains products created from plain model output
+
+    a. [[Color(green, .../Data/)]] contains product maps in GRIB2 files
+
+    a. [[Color(green, .../Plots/)]] contains product maps as graphics in the formats ''eps'' and ''png''
+
+    a. [[Color(green, .../GLograms/)]] contains the 'GLAMEPS-o-GRAMs' in ''pdf'' format
+
+    a. [[Color(green, .../FCtables/)]] contains point extractions data in ''Sqlite'' format
+
+ 1. [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/calib)]] contains products created from calibrated model output
+
+    a. [[Color(green, .../Data/)]] contains product maps in GRIB2 files
+
+    a. [[Color(green, .../Plots/)]] contains product maps as graphics in the formats ''eps'' and ''png''
+
+    a. [[Color(green, .../GLograms/)]] contains the 'GLAMEPS-o-GRAMs' in ''pdf'' format
+
+    a. [[Color(green, .../FCtables/)]] contains point extractions data in ''Sqlite'' format
+
+ 1. [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/OBStables/)]] contains observation data as used within product generation
+
+
+These directories each contain a directory identifying the GLAMEPS product group named by prefix 'Gl.PROD', followed by an identifier that ondicates the number of member, on which the products are based.
+
+Further below the path, data is stored for each parameter under a date-time tree of the form
+{{{
+<yyyy>/<mm>/<dd>/<HH>/
+}}}
+
+This is valid for the data sub-directories [[Color(green, .../Data/)]], [[Color(green, .../Plots/)]] and [[Color(green, .../GLograms/)]], and the date-time specification refers to the cycle, to which the products are related.
+
+The data sub-directories [[Color(green, .../FCtables/)]] and [[Color(green, .../OBStables/)]] contain data on a monthly basis
+{{{
+<yyyy>/<mm>/
+}}}
+
+
+[[Color(red, NOTE: In order to access GLAMEPS data on the ECMWF computers you must be member of the UNIX group 'glampes')]]
+
+
+== '''Model output data''' ==
+
+The GLAMEPS model output data can be found on the ''GLAMEPS data disk'' under [[Color(green, ecgate:/ms_crit/glameps_op/PROD/)]]. Down this path data for each model can be found structured as follows:
+{{{
+[[Color(green, <model acronym>/Outdat/<yyyy>/<mm>/<dd>/<HH>/mbr<nnn>/)]]
+[[Color(green, <model acronym>/Secdat/<yyyy>/<mm>/<dd>/<HH>/mbr<nnn>/)]]
+[[Color(green, <model acronym>/Caldat/<yyyy>/<mm>/<dd>/<HH>/mbr<nnn>/)]]
+}}}
+
+With the model acronym being one of '''AloEPS_I''', '''AloEPS_S''', '''HirEPS_K''', '''HirEPS_S'''. The date-time specification is self-explainatory, and ensemble member identification is by the sub-directory ''mbr<nnn>'', with ''<nnn>'' refering to the member number.
+
+Below the above mentioned paths, model data can be found in files separated by forecast length:
+{{{
+[[Color(green, fc<yyyy><mm><dd>_<HH>+<fcl>gl)]]
+}}}
+
+where date and time specification is similar to that of the Product data, and <fcl> depicts the forecast length.
+
+In cases where a model partly or completely fails to produce a forecast, the expected output data is replaced by backup data, which is represented by a [[Color(cyan, symbolic link)]], in order to indicate clearly that this is backup data. The [[Color(cyan, symbolic link)]] comes with following characteristics:
+
+  * the name of the [[Color(cyan, symbolic link)]] is identical with the name of the original file name, like e.g.
+{{{
+  fc20161211_06+021gl
+}}}
+  * the [[Color(cyan, symbolic link)]] points to the file, which is to backup the original file. The file name of this backup file is similar to the original one and indicates where it is comming from. In the mentioned example this would look like
+{{{
+  [[Color(cyan, fc20161211_06+021gl)]] -> /ms_crit/glameps_op/PROD/HirEPS_K/Outbak/HirEPS_K/2016/12/10/18/mbr023/fc20161210_18+033gl
+}}}
+    where the backup file is from the 12h older cycle with 12h longer forecast length.
+
+[[Color(red, NOTE: the GRIB header of a backup file reflects the date-time group of the backup, not of the symbolic link)]]
+
+The first two of the above mentioned paths, [[Color(green, Outdat)]] and [[Color(green, Secdat)]] represent the model output data separated into two output streams:
+
+
+=== Main Output Stream ('''Outdat''') ===
+
+'''Outdat''' is the major output stream from the GLAMEPS models. This data is archived into 'ECFS'. It contains following parameters:
+
+||= '''Parameter''' || '''GRIB number''' || '''Level Type''' || '''Level''' || '''Unit''' =||
+|| Mean Sea Level Pressure                    ||   1 || 103 ||   0 || Pa ||
+|| Height Pressure Level                      ||   6 || 100 || 925 || m^2^/s^2^ ||
+|| Temperature Pressure Level                 ||  11 || 100 || 925 || K ||
+|| U-wind Pressure Level                      ||  33 || 100 || 925 || m/s ||
+|| V-wind Pressure Level                      ||  34 || 100 || 925 || m/s ||
+|| Height Pressure Level                      ||   6 || 100 || 850 || m^2^/s^2^ ||
+|| Temperature Pressure Level                 ||  11 || 100 || 850 || K ||
+|| U-wind Pressure Level                      ||  33 || 100 || 850 || m/s ||
+|| V-wind Pressure Level                      ||  34 || 100 || 850 || m/s ||
+|| Height Pressure Level                      ||   6 || 100 || 500 || m^2^/s^2^ ||
+|| Temperature Pressure Level                 ||  11 || 100 || 500 || K ||
+|| U-wind Pressure Level                      ||  33 || 100 || 500 || m/s ||
+|| V-wind Pressure Level                      ||  34 || 100 || 500 || m/s ||
+|| Temperature 2m                             ||  11 || 105 ||   2 || K ||
+|| Dew-Point Temperature 2m                   ||  17 || 105 ||   2 || K ||
+|| U-wind 10m                                 ||  33 || 105 ||  10 || m/s ||
+|| V-wind 10m                                 ||  34 || 105 ||  10 || m/s ||
+|| Total Accumulated Precipitation            ||  61 || 105 ||   0 || kg/m^2^ ||
+|| Total Accumulated Snowfall                 ||  65 || 105 ||   0 || kg/m^2^ ||
+|| Total Cloud Cover                          ||  71 || 105 ||   0 || 0..1 ||
+|| Downward Shortwave Radiation               || 117 || 105 ||   0 || J/m^2^ ||
+|| Wind gust 10m                              || 228 || 105 ||  10 || m/s ||
+
+[[Color(red, NOTE: the AloEPS_S model does not support Wind gust 10m)]]
+
+=== Secondary Output Stream ('''Secdat''') ===
+
+This output stream contains many additional parameters, and it may also contain experimental records. The '''Secdat''' data files may also contain different records depending on the underlying LAM model. The following list provides an overview:
+
+||= '''Parameter''' || '''GRIB number''' || '''Level Type''' || '''Level''' || '''Unit''' =|| available ||
+|| Surface Pressure                           ||   1 || 105 ||    0 || Pa        || all       ||
+|| Height Pressure Level                      ||   6 || 100 || 1000 || m^2^/s^2^ || all       ||
+|| Height Pressure Level                      ||   6 || 100 ||  700 || m^2^/s^2^ || all       ||
+|| Temperature Pressure Level                 ||  11 || 100 || 1000 || K         || all       ||
+|| Temperature Pressure Level                 ||  11 || 100 ||  700 || K         || all       ||
+|| U-wind Pressure Level                      ||  33 || 100 || 1000 || m/s       || all       ||
+|| V-wind Pressure Level                      ||  34 || 100 || 1000 || m/s       || all       ||
+|| U-wind Pressure Level                      ||  33 || 100 ||  700 || m/s       || all       ||
+|| V-wind Pressure Level                      ||  34 || 100 ||  700 || m/s       || all       ||
+|| Relative Humidity Pressure Level           ||  52 || 100 || 1000 || 0..1      || all       ||
+|| Relative Humidity Pressure Level           ||  52 || 100 ||  925 || 0..1      || all       ||
+|| Relative Humidity Pressure Level           ||  52 || 100 ||  850 || 0..1      || all       ||
+|| Relative Humidity Pressure Level           ||  52 || 100 ||  700 || 0..1      || all       ||
+|| Relative Humidity Pressure Level           ||  52 || 100 ||  500 || 0..1      || all       ||
+|| Temperature 100m                           ||  11 || 105 ||  100 || K         || AloEPS    ||
+|| Relative Humidity 100m                     ||  52 || 105 ||  100 || 0..1      || AloEPS    ||
+|| U-wind 100m                                ||  33 || 105 ||  100 || m/s       || AloEPS    ||
+|| V-wind 100m                                ||  33 || 105 ||  100 || m/s       || AloEPS    ||
+|| Max. Temperature 2m                        ||  15 || 105 ||   2  || K         || all       ||
+|| Min. Temperature 2m                        ||  16 || 105 ||   2  || K         || all       ||
+|| Zero-Celsius Level                         ||   6 ||   4 ||    0 || m^2^/s^2^ || all       ||
+|| Direct Solar Radiation                     || 116 || 105 ||    0 || J/m^2^    || AloEPS    ||
+|| Diffuse Solar Radiation                    || 118 || 105 ||    0 || J/m^2^    || HirEPS    ||
+|| Large Scale Precipitation                  ||  62 || 105 ||    0 || kg/m^2^   || all       ||
+|| Convecitve Scale Precipitation             ||  63 || 105 ||    0 || kg/m^2^   || all       ||
+|| Large Scale Snowfall                       ||  79 || 105 ||    0 || kg/m^2^   || AloEPS    ||
+|| Convective Snowfall                        ||  78 || 105 ||    0 || kg/m^2^   || AloEPS    ||
+|| CAPE                                       || 225 || 105 ||    0 || J/kg      || all       ||
+|| Snow Depth                                 ||  66 || 105 ||    0 || m         || all       ||
+|| Low Cloud Cover                            ||  73 || 105 ||    0 || 0..1      || all       ||
+|| Medium Cloud Cover                         ||  74 || 105 ||    0 || 0..1      || all       ||
+|| High Cloud Cover                           ||  75 || 105 ||    0 || 0..1      || all       ||
+|| Cloud Ice Pressure Level                   ||  58 || 100 || 1000 || kg/m^2    || HirEPS    ||
+|| Cloud Ice Pressure Level                   ||  58 || 100 ||  925 || kg/m^2    || HirEPS    ||
+|| Cloud Ice Pressure Level                   ||  58 || 100 ||  850 || kg/m^2    || HirEPS    ||
+|| Cloud Ice Pressure Level                   ||  58 || 100 ||  700 || kg/m^2    || HirEPS    ||
+|| Cloud Ice Pressure Level                   ||  58 || 100 ||  500 || kg/m^2    || HirEPS    ||
+|| Cloud Liquid Water Pressure Level          ||  76 || 100 || 1000 || kg/m^2    || HirEPS    ||
+|| Cloud Liquid Water Pressure Level          ||  76 || 100 ||  925 || kg/m^2    || HirEPS    ||
+|| Cloud Liquid Water Pressure Level          ||  76 || 100 ||  850 || kg/m^2    || HirEPS    ||
+|| Cloud Liquid Water Pressure Level          ||  76 || 100 ||  700 || kg/m^2    || HirEPS    ||
+|| Cloud Liquid Water Pressure Level          ||  76 || 100 ||  500 || kg/m^2    || HirEPS    ||
+
+Note that the occcurrence of a data record in the '''Secdat''' stream does NOT imply that the data is consistent between different models. It may become necessary for the user to consult documentation and code internals from the LAM models in order to check for full consistency. However, within a single model familiy, like within AloEPS or within HirEPS, '''Secdat''' data records can be considered consistent.
+
+The data from a specific model of the GLAMEPS ensemble may also contain further records in '''Secdat''' in addition to the above listed.
+
+[[Color(red, NOTE: The data from the secondary data stream (Secdat) is not archived, and thus only available on disk for a certain short period of time.)]]
+
+The data under '''Secdat''' is kept on disk for about 5 days, then it is removed and cannot be restored again.
+
+
+=== Calibrated Output stream ('''Caldat''') ===
+This output stream contain statistically calibrated forecasts:
+{{{
+[[Color(green, <model acronym>/Caldat/<yyyy>/<mm>/<dd>/<HH>/mbr<nnn>/)]]
+}}}
+
+The following parameters have been calibrated:
+||= '''Parameter''' || '''GRIB number''' || '''Level Type''' || '''Level''' || '''Unit''' =||
+|| Temperature 2m                             ||  11 || 105 ||   2 || K ||
+|| U-wind 10m                                 ||  33 || 105 ||  10 || m/s ||
+|| V-wind 10m                                 ||  34 || 105 ||  10 || m/s ||
+|| Total Accumulated Precipitation            ||  61 || 105 ||   0 || kg/m^2^ ||
+
+Calibrated forecasts are made by training statistical models on historical point observations and forecasts and applying these statistical models to the raw model output. The statistical models adjust the raw forecasts such that derived probabilities are more reliable.
+
+For T2m, a normal distribution is used with the following parameters:
+{{{
+mean  = a + b * ensemble_mean + c * model_elevation
+stdev = exp(d + e * log(ensemble_std) + f * log(max(1,model_elevation)))
+}}}
+Values for a-f are estimated by using observations and forecasts for the 42 most recent days and are updated every week. Separate values are estimated for each 3h time period and for each forecast cycle independently. This model improves both the central tendency of the ensemble as well as the spread of the members.
+
+For surface winds, the calibration is done on the windspeed (not on U and V separately) and the direction is kept the same. A box-cox t-distribution is used to model windspeed with the following parameters:
+{{{
+mu    = a + b * ensemble_mean + c * model_elevation
+sigma = exp(d + e * log(ensemble_std) + f * log(max(1,model_elevation)))
+nu    = g + h * ensemble_mean
+tau   = exp(i)
+}}}
+The rough interpretation of these four parameters is that mu is the median of the distribution, sigma the variance, nu the skewness, and tau the kurtosis.
+
+Once the parameters have been estimated, the calibration of the forecasts can commence. The GLAMEPS members are read in and a distribution is created for each gridpoint using the above-mentioned models. To convert the distribution back to ensemble members again, evenly spaced quantiles are extracted from the distribution. These quantiles are then reordered such that the calibrated members have the same order as in the raw files (that is the rank of each member is conserved).
+
+
+== Output Domain ==
+
+The domain covered by the output data (both streams) is as follows:
+
+ || NLON|| NLAT|| SOUTH||  WEST|| NORTH|| EAST|| POLAT|| POLON|| mesh size||
+ || 1024|| 1016||  -7.6|| -43.4|| 43.15|| 7.75|| -46.0||  30.0|| 0.05°||
+
+[[Image(GLAMEPSv3_area.png)]]
+
+
+== '''Table extractions of point data''' ==
+
+These data contain extractions for a list of locations, most of which coincide with WMO stations. The current list of locations can be found in
+
+ [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/FCtables/tableextraction.list)]]
+
+The data are available in sqlite data base format for each of the daily cycles under the following path on ECMWF's computer system:
+
+ [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/plain/FCtables/<yyyy>/<mm>)]]
+
+Thereare also table extraction data from calibrated model output:
+
+ [[Color(green, ecgate:/ms_crit/glameps_op/PROD/Products/calib/FCtables/<yyyy>/<mm>)]]
+
+The files are named as follows:
+{{{
+FCTABLE_<par>_<yyyy><mm>_<HH>+<fcl>.sqlite
+}}}
+
+''<par>'' stands for a parameter, ''<yyyy>'' stands for the year (4 digits), and ''<mm>'' stands for the month (2 digits), ''<HH>'' stands for the analysis hour (2 digits), and ''<fcl>'' stands for the forecast length (3 digits incl. leading zeros).
+
+The file naming indicates that one file gathers daily data over one month. The data refers to a certain parameter at a certain cycle and forecast length.
+
+The table extractions are currently available for following parameters:
+
+||''<par>'' ||description ||
+||Pmsl      ||mean sea level pressure ||
+||T2m       ||2m temperature (corrected to location elevantion since 1 Sep 2014) ||
+||D10       ||10m wind direction ||
+||S10m      ||10m wind speed ||
+||Pcp       ||precipitation, accumulated since analysis time ||
+
+
+
+== '''Archived data'''==
+
+The ''GLAMEPS disk'' will store model output from the '''Main Output Stream''' and products data back in time for a certain amount of days. If data is not available from the ''GLAMEPS disk'' it can be found in the 'ECFS' archive below the path [[Color(green, ec:/zno/PROD/)]].
+
+[[Color(red, Note that data from the '''Secondary Output Stream''' is '''NOT ARCHIVED''' - it is available from disk for a couple of days only!)]].
+
+The sub-directory structure in the archive is similar to the structure on the ''GLAMEPS disk''. However, please be aware that data is packed together in chunks of one cycle using ''ecfsdir'', i.e. a '.../<yyyy>/<mm>/<dd>/<HH>/' directory is stored on 'ECFS' in one packed file.
+In order to retrieve data, use the 'ecfsdir' command, like e.g.:
+
+{{{
+==> ecfsdir ec:/zno/PROD/AloEPS_I/Outdat/2016/12/29/18 AloEPS_I_Outdat_for_2014092918
+}}}
+
+[[Color(red, NOTE: In order to access GLAMEPS data on the ECMWF computers you must be member of the UNIX group 'glampes')]]
+
+
+== '''TC1 - signals''' ==
+
+GLAMEPS issues signals of type ''time-critical option 1'' in order to facilitate timely triggering of GLAMEPS user processes. The signals can be listed using the `ecaccess` command on 'ecgate':
+
+{{{
+==> ecaccess-event-list | grep GLAMEPS
+}}}
+
+
+
+== '''GLAMEPS Special''' ==
+
+In addition to the above mentioned products, GLAMEPS provides some special data '''without liability'''. Informations and details can be found on the [wiki:GlamepsSpecialUserInfo] page.
+
+
+
+== '''GLAMEPS mailing lists and forum''' ==
+
+There are two mailing lists relevant for GLAMEPS users:
+
+ * [https://hirlam.org/mailman/listinfo/glameps glameps@glameps.org] for general questions and discussions related to GLAMEPS
+ * [https://hirlam.org/mailman/listinfo/notification notification@glameps.org] for receiving notifications on GLAMEPS production updates
+
+Alternatively, there is a GLAMEPS related forum on the [http://joomla.hirlam.org/index.php?option=com_kunena&Itemid=160 Hirlam web page]
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+[[Center(end)]]

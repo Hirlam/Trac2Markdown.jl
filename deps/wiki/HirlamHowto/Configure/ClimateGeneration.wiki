@@ -1,0 +1,27 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= '''Climate Generation''' =
+[[Center(end)]]
+
+[[Color(green, Note: The former content of this page has been moved to the)]] [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Configure/ClimateGeneration Hirlam System Documantation: Climate Generation]
+
+
+== How can I look into the content of the HDF files? ==
+
+You may need to install a visualization software for this first, dependend on the system you are running on.
+
+An easy to use visualization tool is [http://www-loa.univ-lille1.fr/Hdflook/hdflook_gb.html HDFLook]. A list of visualization software can be found on the [http://hdf.ncsa.uiuc.edu/tools.html HDF software page]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

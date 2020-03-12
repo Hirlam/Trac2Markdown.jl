@@ -1,0 +1,24 @@
+= Shiny proxy =
+
+A virtual server '''shiny.hirlam.org''' has been set up to ease access to the Rstudio shiny
+server listening on port 3838. Since the apache web server is already set up with proper
+access control and since the ports 80 (http) and 443 (https) are already open in the DMI
+firewall it is easier to route access to Shiny through apache than setting up similar
+access rights for port 3838.
+
+Take a look at /etc/apache2/sites-available/shiny if you want to know more about how it is done.
+The interesting part is this:
+{{{
+  ProxyPass        / http://localhost:3838/
+  ProxyPassReverse / http://localhost:3838/
+}}}
+That is, access to/from the root directory of {{{http(s)://shiny.hirlam.org/}}} is redirected to port
+3838 on the server. Thus, the shiny configuration files are unchanged, the real server still
+listens and works through port 3838. What could be done is to change the access rights for
+the shiny server to only accept access through localhost, to ''force'' all access through
+apache. As it is now, access via hirlam.org:3838 also works to where the port is open.
+
+The shiny server should automatically start on server reboot. The details can be found in
+{{{/etc/systemd/system/shiny-server.service}}}.
+
+

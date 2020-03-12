@@ -1,0 +1,151 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Potential updates for tagging 43h2.1'' =
+[[Center(end)]]
+
+This page is a working document for the potential updates for tagging Harmonie-43h2.1. Components to be prepared and tested to create a Release Candidate for Harmonie-43h2.1 Please check [wiki:Harmonie_43h2/43h2.pre-alpha.1] for the previous status of cy43.
+
+
+
+== DATA ASSIMILATION ==
+
+||='''Task'''=||= '''Subtasks'''                                               =||= '''Authors'''  =||='''Status''' =||='''Sys mem'''=||= '''Notes'''                                          =||= '''Priority''' =||= '''Validation results''' =||
+|| DA1       || Algo: Blend T,,skin,, before screening                          ||!MaDi, !SiTh      ||Tech Imp cy40  ||               ||                                                        ||                  ||                            ||
+||           || Algo: 3D-Var namelist review                                    ||!RoRa             ||Started        ||!UlAn !EoWh    ||CY43 namelists updated [changeset:b143ba/Harmonie]      ||                  ||                            ||                                 
+||           || Algo: ensure obs errors set in Bator are consistent with CY40   ||!EoWh/!UlAn       ||Complete       ||!UlAn          ||CY43 namelists updated [changeset:b143ba/Harmonie]      ||                  ||                            ||
+|| DA3       || Obs: Polar and Geo AMV (NWCSAF)                                 ||!RoRa & !EoWh     ||Tech Imp cy40  ||!EoWh          ||!RoRa to provide changes for CY43                       ||                  ||                            ||
+||           || Obs: Hires radiosonde observations                              ||!EoWh             ||Complete       ||N/A            ||Validated cy40                                          ||                  ||                            || 
+||           || Obs: (ECMWF) radiosonde bias correction                         ||!EoWh & !PeDa     ||Complete       ||N/A            ||Investigated by !PeDa and !EoWh - would not be ready for cy43h2.1 ||        ||                            ||
+||           || Obs: Assimilation of SYNOP Ps (instead of Z)                    ||!EoWh & !MaLi     ||Started        ||!EoWh          ||Bator OK. Issue with Screening                          ||                  ||                            ||
+||           || Obs: radar reflectivity, radar radial winds                     ||!MaLi             ||Tech Imp cy43  ||               ||                                                        ||                  ||                            ||                                      
+||           || Obs: Mode-S                                                     ||SdH               ||Tech Imp cy40  ||               ||                                                        ||                  ||                            ||
+||           || Obs: GNSS ZTD                                                   ||!MaLi             ||Tech Imp cy43  ||!UlAn          ||SigmaO needs further investigations                     ||                  ||                            ||
+||           || Obs: GPS-RO                                                     ||!MaDah, !EoWh     ||Tech Imp cy43  ||!EoWh          ||Pushed in [changeset:555d79/Harmonie]                   ||                  ||                            ||
+||           || Obs: Review blacklisting of radiance data in mf_blacklist.b     ||!RoRa             ||Complete       ||!DaSa          ||Pushed in [changeset:e18893/Harmonie]                   ||                  ||                            ||
+||           || Obs: Ensure latest rtcoef files are available for CY43          ||!RoRa & !MaLi     ||Complete       ||               ||Pushed in [changeset:dffaad/Harmonie]                   ||                  ||                            ||
+||           || Obs: Ensure new VarBC file version (and converter) are working  ||!UlAn             ||Tech Imp cy43  ||!UlAn          ||Pushed in [changeset:d955eb/Harmonie]                   ||                  ||                            ||
+||           || Extrapolating jbconv                                            ||!NiGu !UlAn       ||Tech Imp cy43  ||!UlAn          ||Pushed in [changeset:9443c6/Harmonie]                   ||                  ||                            ||
+||           || Large extensions (with minimal REDZONE)                         ||!NiGu !UlAn !EoWh ||In CY40 4DVAR  ||!UlAn !EoWh    ||Developments pending! May not make rc tag ...           ||                  ||                            ||
+||           || Obsmon extract produces incomplete sqlite files                 ||!EoWh             ||In progress    ||!EoWh          ||Pushed in [changeset:65a69a/Harmonie], [changeset:4611c6/Harmonie]. More to come      ||                  ||                            ||
+ 
+== DYNAMICS AND PHISYCS ==
+  
+||='''Task'''=||='''Subtasks'''                                                =||= '''Authors'''  =||='''Status''' =||'''Sys mem'''=|| '''Notes'''                                            =||='''Prioriry'''=||= '''Validation results'''=||
+|| DY1.1      ||Cubic grid for EPS and HiRes                                    || CoCl             ||Tech Imp cy40  ||              ||                                                         ||                ||                           || 
+|| PH2.2      ||Change to reduce evaporation & surf DA impact with ECOCLIMAP-SG || SaTi             ||Tech Imp cy40  ||              ||Not known yet the impact on cy46                         ||                ||                           || 
+|| PH2.3      ||Update HARATU mixing top PBL                                    || WdR, KII         ||Tech Imp cy40  ||              ||Meteorologically validated (cy40) by KNMI/MetCoOp/AEMET  ||                ||                           ||
+|| PH2.4      ||EDMF and microphysic optimizations                              || KII, WdR         ||Tech Imp cy43  ||              ||Ported in cy46 phasing                                   ||                ||                           ||
+|| PH2.7      ||Aerosol: Fix tables                                             || LaRo             ||Tech Imp cy40  ||              ||Check if it is impact on code                            ||                ||                           ||    
+||            ||Updat of monthly aerosols lost when moving LSMIX out of CANARI  ||                  ||Fixed          ||!UlAn         ||                                                         ||                ||                           ||
+|| PH4.2      ||MUSC updates - easy to use (scripting), bug in forcing namelist || EoWh, EmGl       ||Tech Imp cy43  ||              ||Not full functionality To be checked by Wim and Eric     ||                ||                           ||
+
+
+== SURFACE ==
+
+||='''Task'''=||= '''Subtasks'''                                                                           =||= '''Authors'''            =||='''Status''' =||='''System member responsible'''=||= '''Testers''' =||= '''Notes''' =||= '''Priority''' =|| '''Validation results''' || 
+|| SU1.1      ||Modified increments of soil moisture in the OI assimilation scheme Modified increments of soil moisture in the OI assimilation scheme. POLYNOMES_ISBA modified table affect our soil moisture, evapotranspiration and validation  || PaSa || Tech Imp cy43  ||  || ||[https://hirlam.org/trac/browser/tags/harmonie-40h1.1.1/const/sa_const/POLYNOMES_ISBA POLYNOMES_ISBA] || high  ||   ||
+|| SU1.2      ||Snow assimilation is not working in CANARI (inconsistency between land-sea mask in Canari and Surfex that must be fixed in Canari) Quick and dirty fix : Blacklisting &  Canari FG will be water dominated MF solved sends a field and Canari reads the field. Better take the FG from land area  || EkKo || No Mature || || ||  Needs testing to live with CANARI before TITAN / GRIB PP willl enter || high ||  ||
+|| SU1.3      ||Force-restore and D95 snow & Assimilation of satellite product of snow extent. Running in CARRA || EkKu, MaLi || Tech Imp cy43 & Mature || ||  || Meteorologically validated for cy40 in KNMI, MetCoOp, AEMET || Low ||  ||
+|| SU3.1.2    ||Modified values of minimum stomatal resistance Rsmin. Increase Rsmin for a few vegetation types... which would decrease daytime transpiration from vegetation and as a consequence e.g. increase surface temperature (and T2m) and possibly have some impact on cloud and precipitation formation  & Remove surface assimilation in the TEB tile after testing in other domains i.e KNMI . i) Observations representing town areas are missing and ii) as for FLake, town areas are smaller than nature areas. || PaSa ||Tech Imp cy43 || || || [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/Hoshika_RSMIN.pdf Report] Ported in cy46 phasing   ||  high / medium || ||
+|| SU3.7      ||The new ECUME may change evaporation. Thus, it would be interesting to see if it may have some impact on e.g. fog formation, cloud formation and precipitation rates. It is activated in SURFEX namelist like this || Patrick Le Moigne, KI, SaVi, BoPa  || Tech Imp cy43 || || ||  Winter experiment finished over IBERIAxl_2.5. Verification shows improvement in most variables specially for coastal stations. Need to look specific cases i.e. fog/low clouds etc.|| Medium || [https://hirlam.org/portal/aemet/verif43h2a1/ecume6/] ||
+|| SU4.4      ||Implement OROTUR in cy43h and include this in the tests for cy43h  || LaRo || Tech Imp cy43 || || || Must be tested over all domains on going on MetCoOp (LaRu) and over Spain (JaCa) to solve U10 gust problems  || High  ||  ||
+|| SU5.1      ||Margarita at ECMWF has looked into ECOCLIMAP-SG Town parameters and her experience is that they look quite realistic. Thus, also an argument to consider ECOCLIMAP-SG. &  Summary ECOCLIMAP SG testing  || & JdV, SaVi || No Mature & Tech Imp cy43 || || || [https://opensource.umr-cnrm.fr/projects/ecoclimap-sg/wiki ECOCLIMAP-SG ] || High ||  || 
+|| SU5.2      ||New clay and sand database ,  SOILGRIDS  || MetCoOP || Met. Valid || ||  || Reports of tests in cy40 over METCOOP & IBERIA [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Sand_Clay_report.pdf here] and [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/soilgrids_vs_fao_report_AEMET.pdf here]	 || High || ||
+
+== ENSEMBLES ==
+
+||='''Task'''=||='''Subtasks'''                                                                                    =||=   '''Authors'''       =||=  '''Status''' =||'''System member responsible'''=||'''Testers'''=||='''Notes'''                      =||='''Prioriry'''=||= '''Validation resuslts'''=||
+|| E2.1.1     ||  Different configuration of SPPT with SPG pattern generator. We will switch to SPG also for SPP.   || AlHa (SPPT), OlVi (SPG) || Tech Imp cy40   ||                                ||              |||Check with Mihaly and OlVi. Doable separate code that should work technically ||  || ||     
+|| E2.2.1     || Make the first setup of EDA MetCoOp domain                                                         || IlF, UlAn,Andrew        || Tech Imp cy40   ||                                ||              ||                                   ||                ||                            || 
+|| E2.4.1     || SLAF                                                                                               || HeFe                    || Tech Imp cy43   ||                                ||              || Script level only                 ||                ||                            ||        
+|| E2.5.1     || harmonEPS-40h1.1.1 at the level of harmonie-40h1.1.1 + SPP                                         || UlAn                    ||Tech Imp cy40    ||                                ||              ||                                   ||                ||                            || 
+|| || ~~PertSFC is duplicated in the code~~ ||  || FIXED ||    ||   ||  ||   ||    ||
+||   || ~~Should we seed SPP with DTG?~~ ||  || FIXED ||    ||   ||  ||   ||    ||
+
+== SYSTEM ==
+
+
+||='''Task'''=||='''Subtasks'''                                                                                    =||=   '''Authors'''       =||=  '''Status''' =||'''System member responsible'''=||'''Testers'''=||='''Notes'''                      =||='''Prioriry'''=||= '''Validation results'''=||
+|| SY1.5      ||  Single Precision Preliminary tests                                                                || OlVi                    ||Tech Imp cy43    || OlVi                           || MaKa, RyJa   ||  Understand the degradation on pmsl and the effects after all contributions are included  ||  || [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/43_aut_SP  Single Precision Preliminary tests] ||
+|| SY1.6      ||   MicroPh Optimizations                                                                            || KII                     || Met Valid       ||                                ||              ||                                      ||  || || 
+
+== HIGH RES ==
+
+||='''Task'''=||='''Subtasks'''                                                                                    =||=   '''Authors'''       =||=  '''Status''' =||'''System member responsible'''=||'''Testers'''=||='''Notes'''                      =||='''Prioriry'''=||= '''Validation results'''=||
+|| HR1.1       ||     Set up recomendations for the community.  *  Dynamics recomendations: from Petra must be considered.   * Tech recomendations: Cubic Grid Single Precision || XiYa, CoCl, SaTi || Tech Imp cy40||    ||   || ||   ||    ||
+
+
+
+
+== OTHER PENDING CONTRIBUTIONS, BUGS AND SUGGESTIONS ==
+
+||='''Issue'''                                                  =||= '''Raised'''  =||= '''Status''' =||'''On it'''=||='''Notes'''                                  =||='''Priority'''=||
+||~~Rename gl_grib_api to gl~~                                      ||              ||[changeset:4c4742/Harmonie Fixed] ||!UlAn       ||                                               ||                ||
+||~~User_trans broken in gl_grib_api~~                              ||              ||Fixed           ||!UlAn       ||                                               ||                ||
+||~~E-ZONE fix for SURFEX from CY45~~                               ||              ||[changeset:d49c85/Harmonie Fixed] ||            ||Implemented in [changeset:d49c85/Harmonie/ here] Does not solve CANARI crashes with large amount of processors  ||   ||
+||~~Restore w calculations in gl_grib_api~~                         ||              ||Fixed           ||!UlAn       ||                                               ||                ||
+||~~Avoid blend task by copying fg in minim~~                       ||!AlTr et.al.  ||Implemnted      ||!UlAn       ||Implemented                                    ||                ||
+||~~IO_SERVER_BD=yes + TFLAG=min problems in cy43 (tested in 8561c86d7ca6eeed125deab2d411203bf414d01a) [[BR]] Check how it works with LBCINC=T~~ || !UlAn ||Fixed || !UlAn ||see [http://hirlam.org/index.php/forum/2-harmonie-system/1369-io-server-bd-tflag-min-alters-output forum topic] ||   ||
+||~~General cleaning of harmonie_namelists.pm. Duplicated NAMARG~~  ||!UlAn         ||                ||             ||                                               ||                ||
+||~~grib_fp output broken beoynd +256h~~                            ||              ||Cancelled       || !UlAn       ||Inherent GRIB1 problem, no further action      ||                ||
+||~~Forecast model fails with to few cores, due out of bounds in LNOWRITE (surfex)~~ || !UlAn  ||Fixed || !UlAn      ||[changeset:d49c85/Harmonie Fixed]              ||                ||
+||~~Issue with the rotated grid- points outside domain~~            ||!EmGl         ||Fixed          ||!UlAn         ||failed for boundaries using the IRELAND25_090 domain  ||         ||
+||~~Inconsistent tabdef in gl_grib_api~~                            ||              ||Fixed          ||!UlAn         ||                                               ||                ||
+||~~gl_grib_api cannot convert MUSC.FA to MUSC.ascii~~              ||              ||Fixed          ||!UlAn         ||                                               ||                ||
+||~~ODB_IO_METHOD=1/4: Is there still an issue with obsmon?~~       ||              ||Fixed          ||!EoWh         ||                                               ||                ||
+||~~Run ecflow on virtual servers on ecgate~~                       ||!UlAn         ||Implemented    ||!UlAn         ||And working                                    ||                ||
+||~~gl cannot decode new ARPEGE FA files, see ecgb:/scratch/ms/es/im8/mfml_bcs~~ ||!UlAn || Fixed    ||!UlAn         ||                                               ||                ||
+||~~The make dependency for blacklist files is incomplete~~         ||              ||               ||              ||                                               ||                ||
+||~~Move generation of SPG pattern from Climate to the Forecast task~~  || !UlAn    ||               ||              ||                                               ||                ||
+||~~Sub hourly grib1 files are encoded or possibly decoded with the wrong timestemp~~ || || Fixed    ||              ||                                               ||                ||
+||~~MARS_prepare have faulty exception handling~~                   ||              ||               ||              ||                                               ||                ||
+||~~Let TFLAG=min=>stepUnit=m if GRIB2 and stepUnit=15m if GRIB1~~  ||              ||               ||              ||                                               ||                ||
+||~~Cloud base and visibility missing from vfld files~~             ||              ||               ||              ||                                               ||                ||
+||~~scp in Prepare_cycle from cca to ecgate returns an error~~      || !UlAn        ||               ||              ||                                               ||                ||
+||~~util/gl/ala/openfa.F90 duplicates src/arpifs/utility/openfa.F90~~ || !UlAn      ||[changeset:14d5b8/Harmonie Fixed] ||!UlAn         ||                                                                        ||                ||
+||~~The system should not accept missing LISTE_LOC files~~          ||!OlVi         ||[changeset:81ed4a/Harmonie Fixed] ||!EoWh         ||Bator aborts (instead of warning) for sat obs                           ||                ||
+||~~FLAKE fails with OMP_NUM_THREADS > 1 for intel~~                ||              ||[changeset:235fc1/Harmonie Fixed] ||!OlVi         ||Works with gcc 7.3.0 on cca using OMP_NUM_THREADS=2                     ||                ||
+||~~Fix hard-coded obs window settings in Bator~~                   ||!EoWh         ||[changeset:8e7cec/Harmonie Fixed] ||!EoWh         ||4D-Var settings also implemented in [changeset:359f34/Harmonie 359f34]  ||CRITICAL        ||
+||~~CANARI does not seem to use blacklist information in ODB~~      ||!MaHo         ||[changeset:dd5046/Harmonie Fixed] ||!EoWh, !MaHo  ||TAC BUFR removed from CANARI (on cca with MARS BUFR)                    ||CRITICAL        ||
+||~~Issues with snow DA using BUFR SYNOP~~                          ||!EoWh         ||[changeset:b9a610/Harmonie Fixed] ||!EoWh         ||BUFR LAND SYNOP types now understood by CANARI                          ||CRITICAL        ||
+||~~Changeset [https://hirlam.org/trac/changeset/142227f1406e7e14ec4516064561f7e2267a2634/Harmonie/ 142227] changes the result. Pattern on difference plots suggests decomposition problem.~~ ||  ||Fixed   ||    ||BUG             ||
+||~~Problems on equatorial domains, the Prepare_gmted script needs to be generalized~~ ||!UlAn  ||[changeset:9607f1/Harmonie Fixed] ||  ||                                                                        ||BUG             ||
+||~~Testbed case for snow DA~~                                      ||!EoWh         ||[changeset:f03983/Harmonie Fixed] ||!EoWh         ||Requires new "SNOW" testbed member or new dates for existing member     ||FEATURE         ||
+||~~Avoid use of $HM_DATA/lock.create_param? Regular issue on cca~~ ||!EoWh         ||[changeset:5c342d/Harmonie Fixed] ||!EoWh         ||Pushed: [changeset:5c342d/Harmonie 5c342d]                              ||FEATURE         ||
+||SFX.DX/SFX.DY differs between 1D and 2D decomposition in +0h output from the forecast model. ||!UlAn ||  ||        ||Test removed from testbed, Intialization problem to be fixed ||   ||
+||The amount of files in the new blacklisting setup crashes compilation with intel unless -O0 is specified  || || || ||Due to cat all blacklist montly updates        ||                ||
+||~~ Fldextr broken for fgcopy/blending+surface DA cases ~~         ||              ||               ||              ||                                               ||                || 
+|| ~~SST update in climate mode~~                                       ||              ||               ||              || Fixed in the climate branch           ||                ||
+||BDSTRATEGY=enda needs to be adapted for DTG>2019061018            ||!EoWh         ||                                  ||              ||Only steps 3, 6 and 12 available               ||BUG             || 
+||~~!AccuFldver does not consider ECFS~~                                ||!UlAn         ||  Fixed              ||              ||                                               ||ECMWF HPCF      ||
+||How to generate RSA hostkeys for ecgb on ecgb-vecf                ||              ||               ||              ||Problem for new users in vecf                  ||ECMWF HPCF      ||
+||Archive_host1 sometimes misses files                              ||              ||               ||              ||Change archiving from ls to ...                ||ECMWF HPCF      ||
+||Killing processes in ecf-vecf                                     ||!UlAn         ||               ||              ||Check reproducibility and report ECMWF         ||ECMWF HPCF      ||
+||Test and implement MPL_MBX_SIZE environment variable [http://foomla.hirlam.org/index.php/forum/2-harmonie-system/1378-irregular-failure-on-cca#2396 details] ||!EoWh         ||!EoWh, !CoCl    ||     ||Check reproducibility and report ||ECMWF HPCF      ||
+||Switch to FPBOYD=1 and FPRHMAX >> 1.0 in E927                     ||              ||               ||              ||Check with HRES people                         ||                || 
+||ANAATMO/ANASURF=none/blending/fgcopy doesn't work as intended     ||              ||               ||              ||Check with HRES group about blending           ||                ||
+||Fix for negative moist variables got lost between cy38 and cy40   ||              ||               ||              ||Mail Jan Barkmeijer to check in cy38           ||                ||
+||Obsmon extraction does not store satellite information for ASCAT  ||              ||               ||              ||Check with Roger                               ||                ||
+||Check if FREQ_RESET_GUST=1 resets max gust & diag hail hourly     ||              ||               ||              ||See [http://hirlam.org/index.php/forum/2-harmonie-system/1369-io-server-bd-tflag-min-alters-output#2319 forum post]. Comments suggest yes but cy40 behaviour suggest every output step.  || Daniel will check  ||
+||CANARI fails with to many cores, fix/introduce error message      ||              ||               ||              ||                                               ||                ||
+||GPNORMS/SPNORMS not reproducible with different OPM_NUM_THREADS   ||              ||               ||              ||Ole is testing on bi using Intel 15.0.1        ||                ||
+||Add emissivity atlases to HM_SAT_CONST on cca                     ||!SiTh         ||               ||!EoWh,!SiTh   ||Waiting for CY43 changes from Sigurður         ||                ||
+||Aerosols will not be updated properly in case of GRIDPP           ||              ||               ||              ||                                               ||Report to Trygve||
+||POSTP=offline does not work                                       ||!UlAn         ||               ||!UlAn         ||Remove offline option                          ||FEATURE         ||
+||fldextr does not read HARMONIE grib2 files                        ||!UlAn         ||               ||!UlAn         ||                                               ||FEATURE         ||
+||User specified group owner on HM_DATA/HM_LIB/HM_EXP/HM_WD. Allows easier cooperation @ecgate/cca. || || ||         ||FEATURE in scripting privacy?                  ||FEATURE         ||
+||MARS extraction fails for ENSMSEL=0 and BDSTRATEGY=era5enda       ||              ||               ||              ||                                               ||FEATURE         ||
+||Extract first guess from REFEXP                                   ||              ||               ||              ||                                               ||FEATURE         ||
+||Add option to gl to print domain geometry (incl. proj4 string)    ||!EoWh         ||               ||!UlAn         ||                                               ||FEATURE         ||
+||Testbed case for climate setup                                    ||              ||                                  ||!UlAn         ||Example ecgate:/scratch/ms/spsehlam/hlam/test_harmonie/climsim_testbed \\ Awaiting fix for crash in Prep_ini_surfex ||FEATURE  ||
+||Use hh:mm name convention on FA files, useful for subhourly DA/output ||          ||               ||              ||1st step for sub-hourly cycling                ||POSTPONED       ||
+||Re-runable tasks                                                  ||              ||               ||              ||Redesign to avoid links                        ||POSTPONED       ||
+||~~Min/Max fields in surfex SELECT files are corrupt~~                 ||              || Fixed              ||              ||                                               || BUG            ||
+||Min/Max reset frequency in surfex does not respect upper air settings                  ||              ||             ||              ||                                               || FEATURE            ||
+||RH conversion for verification is goofy. Differences between SURFEX v7 and V8                  ||              ||             ||              ||                                               || BUG            ||
+
+[[Disclaimer]]    
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

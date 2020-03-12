@@ -1,0 +1,57 @@
+= The git configuration at hirlam.org =
+
+The git root directory is {{{/data/www/gitroot}}}.
+
+This area is mostly to hold our repositories. The git system itself is installed as (several) deb packages,
+and typically lives somewhere under {{{/usr}}}.
+
+For more detailed authorization control than what standard git provides, we use ''gitolite''.
+
+''gitolite'' is however not installed as a package. The package version available on Ubuntu 12.04 LTS was 2.2,
+but in order to get access over https working, we needed version 3, or more specifically, we have 3.4.
+On the new server running Ubuntu 16.04 there is a recent enough package "gitlolite3", available, but for now we
+have kept the version installed in {{{/data/www/gitroot/gitolite-source}}}. Gitolite is mostly pure perl so it
+it was not a big problem to port it to the new server, it followed with the rsync'ing of the repositories.
+
+Configuration of ''gitolite'' is via the ''gitolite-admin'' git repository. To work with the access control to
+the repositories, you need to clone this repo somewhere,
+you should NOT work directly with the files under {{{/data/www/gitroot/repositories/gitolite-admin.git}}}!!
+At the time of this writing, the ''gitolite-admin'' repo can only be cloned via ssh access (see below).
+
+== git access methods ==
+
+''git'' on hirlam.org can be accessed by either ''ssh'' or ''https''. The disadvantage with ssh access is that
+every git user would need to provide their ssh public key to the server managers, also for read access.
+Take a look at {{{/data/www/gitroot/.ssh/authorized_keys}}} to see what would be needed. Note that this file is
+automatically created by gitolite and should not be edited by hand. Adding of keys should be done in the ''keydir''
+directory of the ''gitolite-admin'' repository.
+
+With https access we actually use the '''joomla''' user database for authentication (who you are), ''not'' ssh keys.
+git over https is controlled by the ''git'' virtual Apache host, configured in {{{/etc/apache2/sites-available/git}}}.
+All access actually goes via the shell script {{{/data/www/gitroot/bin/gitolite-suexec-wrapper.sh}}}.
+As can be seen, this script finally goes on to execute {{{/data/www/gitroot/gitolite-source/src/gitolite-shell}}},
+which is exactly what happens also in the case of ssh access, except that the user names are different.
+
+NOTE on new server: in order for this suexec-wrapper script to work, the apache "suexec" module had to be enabled, after
+downloading the appropriate debian package '''apache2-suexec-custom'''.  It was also necessary to edit the file
+{{{/etc/apache2/suexec/www-data}}} with the path to the suexec-wrapper script.
+
+Note that, unlike for subversion, with git over https we do not allow "anonymous" read (or rather clone) access to the
+repositories, not even from within the "allowed institutes". Those repositories that have been made visible through
+Trac can be browsed anonymously, but one cannot do "{{{git clone https://git.hirlam.org/some_repo}}}" without
+being prompted for username and password.
+
+== Adding a new git repository ==
+
+New repositories should be added under {{{/data/www/gitroot/repositories/}}} and have extension {{{.git}}}.
+After installing a new repository you need to do the following:
+ * create the necessary hooks under the {{{hooks}}} subdirectory. Start by copying {{{post-receive, post-update and post-commit}}} from one of the other repos. Then edit {{{post-commit}}} to enter the correct repo name.
+ * Still in the {{{hooks}}} subdirectory, run:
+{{{
+chown -h git.www-data *
+}}}
+ * From the main repo directory (one step up from {{{hooks}}}) do:
+{{{
+git config hooks.mailinglist 'commits@hirlam.org'
+git config hooks.emailprefix 'GIT - '
+}}}

@@ -1,0 +1,39 @@
+= Running the HARMONIE system =
+A simple script to keep everything necessary for starting HARMONIE together (I normally use a directory 'local_scripts' in my experiment directory for scripts like these, which I called 'Start'):
+{{{
+#!/bin/sh
+
+ulimit -s unlimited      # Unlimited stack size
+ulimit -c unlimited      # Unlimited core size
+
+export NPROC=8           # 8 threads to build (useful on a four-core machine)
+
+~/svn/harmonie-36h1.4/config-sh/Harmonie start DTG=2010011400 LL=06
+}}}
+See how they run:
+{{{
+$ top -c -u harmonie -b -n 1
+...
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
+17349 harmonie  20   0 1721m 206m  14m R   69  5.2   0:18.51 /scratch/harmonie/hm_home/36h14/bin/MASTERODB -maladin -vmeteo -eHARM -c001 -t60 -fh06 -asli
+17350 harmonie  20   0 1753m 243m  13m R   69  6.1   0:18.51 /scratch/harmonie/hm_home/36h14/bin/MASTERODB -maladin -vmeteo -eHARM -c001 -t60 -fh06 -asli
+17351 harmonie  20   0 1721m 205m  12m R   69  5.2   0:18.54 /scratch/harmonie/hm_home/36h14/bin/MASTERODB -maladin -vmeteo -eHARM -c001 -t60 -fh06 -asli
+17348 harmonie  20   0 1728m 213m  14m R   68  5.4   0:18.59 /scratch/harmonie/hm_home/36h14/bin/MASTERODB -maladin -vmeteo -eHARM -c001 -t60 -fh06 -asli
+14783 harmonie  20   0 99.2m  25m 4536 S    0  0.6   0:05.35 perl -S mSMS.pl --prepare --play harmonie
+17241 harmonie  20   0 11024 1684 1256 S    0  0.0   0:00.01 /bin/sh /scratch/harmonie/hm_home/36h14/36h14/Date/Hour/Cycle/Forecasting/Forecast.job1-q
+17268 harmonie  20   0 10940 1608 1268 S    0  0.0   0:00.02 /bin/sh /scratch/harmonie/hm_home/36h14/lib/scr/Forecast
+17347 harmonie  20   0 56228 2260 1640 S    0  0.1   0:00.01 mpirun -np 4 /scratch/harmonie/hm_home/36h14/bin/MASTERODB -maladin -vmeteo -eHARM -c001 -t60 -fh06 -asli
+17355 harmonie  20   0 11020 1676 1252 S    0  0.0   0:00.01 /bin/sh /scratch/harmonie/hm_home/36h14/36h14/Date/Hour/Cycle/Forecasting/Listen2Forecast/Listen.job1-q
+17387 harmonie  20   0 10912 1520 1204 S    0  0.0   0:00.00 /bin/sh /scratch/harmonie/hm_home/36h14/lib/scr/Listener SMSMETER
+17434 harmonie  20   0  5560  580  492 S    0  0.0   0:00.00 sleep 5                                                                              
+}}}
+Once this forecast is complete (no analysis is done the first cycle), you can change the last line of the above 'Start' script to:
+{{{
+~/svn/harmonie-36h1.4/config-sh/Harmonie prod LL=06
+}}}
+and miniSMS will automatically perform the next cycle, based on the "!Date/Time Stamp" in the progress.log file:
+{{{
+$ cat progress.log
+DTG=2010011406 export DTG
+DTGBEG=2010011400
+}}}

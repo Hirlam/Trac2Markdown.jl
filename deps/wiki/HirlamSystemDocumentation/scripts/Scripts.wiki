@@ -1,0 +1,98 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''mini-SMS: HIRLAM reference scripts system, an introduction (Gerard Cats, 2004)''' =
+[[Center(end)]]
+
+Mini-SMS is a simple job scheduler. The user provides a description of the suite of programs that (s)he wants to run, possibly distributed over several computers. This description is in the `suite-definition file'. In that file, the user can indicate on which platform a certain module should be executed, and in what order the modules must be executed. 
+
+Mini-SMS is in fact a subset of SMS, the `Supervisor and Monitoring System', developed at ECMWF. The SMS features needed to schedule the HIRLAM system have been implemented in mini-SMS. Other useful features have been left out. However, Ole Vignes wrote an extension to SMS, called mXCdp, which implements some of the graphical display facilities offered by ECMWF's XCdp. It even offers some facilities for the user to interact with mini-SMS, as detailed in a separate document. 
+
+The format of the suite definition file, as it is accepted by mini-SMS, is that of SMS. Hence, a mini-SMS suite definition file can also be used for SMS; the reverse is not necessarily true. However, in the usual way that SMS is used, the suite definition file is written specifically for a certain computer architecture. This violates an important principle for HIRLAM, namely full portability. To overcome this, mini-SMS has an added facility, namely to convert a template for a suite definition file into a true suite definition file. The template is valid for a simple architecture (namely: one single platform), but it contains the extensions needed for efficient execution on the ECMWF computer system. Outside ECMWF, those extensions are removed by the preprocessor part of mini-SMS, when converting the template into a true suite definition file. On complex installations outside ECMWF, the user can add the required features to the template locally, in such a way that it remains compatible with the standard version. The template format is HTML; the sections that are enclosed between lines with <PRE> and the next </PRE> (case-sensitive) are interpreted for creation of the suite definition file, while the other lines are skipped. For feed-back to the user, the template file is also converted to an HTML file, which is a copy of the template, but with some interpretation (`pretty printing') of the suite definition lines. 
+
+This document gives a short overview of what the user will see of mini-SMS: implemented features, running mini-SMS and differences in implementation, the template format, and files produced by mini-SMS. More documentation is available: 
+
+ * mSMS interface: command line and environment 
+ * mini-XCdp: graphical display, by Ole Vignes. 
+ * mSMS programming notes. 
+ * HIRLAM under (mini-)SMS: how HIRLAM is modified to make best use of (mini-)SMS. 
+ * The suite definition template of HIRLAM under mini-SMS. 
+
+Also, ECMWF kindly granted permission to include their HTMLdocumentation of full SMS in the HIRLAM documentation system. 
+
+Note: The ECMWF documentation may be used in connection with any HIRLAM installation but it is owned by ECMWF and should only be used for the HIRLAM mini-SMS with reference made to ECMWF. For any other use of the ECMWF SMS documentation, you should make a request to ECMWF. 
+
+The ECMWF documents included here describe version 4.4.2 of SMS, and were made available in March 2000.
+
+Mini-SMS has been written in perl. 
+
+== Implemented Features == 
+
+see [https://hirlam.org/UG/HL_Documentation/mSMS/#Implemented the list in Table form]
+
+== Running mini-SMS. Differences in implementation between SMS and mini-SMS == 
+
+Mini-SMS is run by typing 
+{{{
+perl mSMS.pl options
+}}}
+If no options are given, a help screen is printed. In HIRLAM, mSMS.pl is a script in the search path. So HIRLAM invokes it by the -S option of perl: 
+{{{
+perl -S mSMS.pl options
+}}}
+Probably the most important difference in implementation is that mini-SMS is supposed to execute as long as tasks from the suite definition file are active. Mini-SMS will stop after all tasks are complete or aborted (but see the `Note, however', below). If any task aborted, mini-SMS will stop with an abort status. After a task aborted, mini-SMS will attempt to submit the tasks that trigger on the abort of that tasks, but only if those tasks appear in the suite definition file after the aborted tasks. Then mini-SMS will wait for all tasks that are submitted or active to stop or abort. If the tasks that trigger on the aborted task are held up because their triggers require other conditions, it is possible that those tasks will not be submitted at all: mini-SMS diagnoses them to be `queued', and hence will not count against submitted or active tasks. 
+
+Note, however: if mXCdp is active, to graphically display the progress of the tasks, mini-SMS will continue to execute as long as the display window is open. To at least have some control on this less desirable behaviour, mSMS will abort after long inactivity (default is one day). For more details, see the mXCdp documentation. If mini-SMS is halted, it will even continue to execute (even though doing nothing) after the mXCdp window was closed. 
+
+Edit commands of the type `edit _mSMS_<rest of keyword> <value>' (so the keyword starting with `_mSMS_') will have a special meaning to mSMS. As usual, they will result in substitution of the keyword, surrounded by % signs,  by the value. But mSMS may also take specific actions when it encounters keywords of this kind. So for normal use, keywords should not start with _mSMS_. 
+
+== The template suite definition file ==
+Mini-SMS incorporates a preprocessor to convert a template for a suite definition file into a proper suite defintion file. In situations where the full SMS is available, it is possible to run the preprocessor stand-alone, and feed the resulting true suite definition file into SMS. 
+
+The preprocessor enables the following possibilities: 
+
+ * replacing a string by the value of an environment variable. Strings of the form $ENV{NAME} are replaced by the value of environment variable NAME. It is fatal for the preprocessor if NAME is not in the environment, unless the string is on a line on which the first non-blank character is either ! or #. 
+ * selecting sections of the suite definition file. 
+  * Sections enclosed by ifeq(string1,string2) .. else .. endif (each of these being the first characters on their lines) are selected according to whether string1 and string2 are equal. Spaces between ( and ) in the ifeq are significant. The else part is optional. The constructs may be nested, but elseif is not available. The sections that are not selected, and the control lines (ifeq, else, endif) are kept in the suite definition file as comments, to facilitate references between the suite definition file and its template. As a consequence, you cannot use the ifeq-else-endif mechanism to select a part of a multi-line command. In stead, a command with all its continuation lines has to be fully inside a single branch of an ifeq construct. 
+  * Sections enclosed by iflike(string1,string2) .. else .. endif are treated similary, except that now the condition evaluates to "true" if string2 is contained in string1. 
+ * looping over a section of the suite definition file. Sections enclosed by loop(var_name,start,stop,increment) .. endloop (each of these being the first characters on their lines) are "rolled out" (expanded) according to the loop start, stop and increment values. start, stop and increment must be integers, 0 <= start <= stop; increment is optional (default is 1) and must be greater than 0. Within the loop, the loop variable (var_nam) can be referred to by @var_name@. Loops cannot be nested. 
+
+'''Note:''' In the suite definition template, the comment character should be !, rather than #, if it is the first non-white character on a line. This is to allow future preprocessing of the template by the C preprocessor, cpp. Do not use the negation symbol `!' in a logical operation as the first non-white character on a line: the preprocessor will transform the line into a comment! 
+
+The preprocessor searches the path ($PATH) for the template. The template file hence must have execute permission for the user. The preprocessor writes the suite definition file in its working directory. This is compatible with both mini- and normal SMS, that expect to find the suite definition file in the current working directory. The title of the template file must be suite.tdf; the title of the suite definition file will be suite.def. 
+
+The format of the template file is HTML. Only the lines between lines with <PRE> and the next </PRE> are interpreted for SMS commands as described above. These strings must be alone on their lines, even white space is not allowed. Note that the lines between these keywords should not contain any HTML formatting (unless in the unlikely case that the HTML test forms the required SMS text....). The lines not between these keywords are replaced by empty lines. 
+
+So the suite definition file that is generated from the template contains empty lines where the template contained normal HTML. The lines that were deemed inactive due to the logics in an ifeq-else-endif construct are kept but commented out. Hence, the line numbers are preserved. Furthermore, a `!' as first non-white character is replaced by `#', and environment variables are substituted. The format of the resulting file should of course be as described above. 
+
+The preprocessor that converts the template (.tdf) file into a suite definition (.def) file, also generates a file in HTML format, the title of which is the same as that of the .def file but with .def replaced by .html. It is a copy of the .tdf file, but with some additional formatting of the lines that were converted into the .def file: those lines are shown in red, and with an indentation to reflect the nesting of suites, families, and tasks. 
+
+Because the template is in HTML, it is a perfect medium to both specify and document the actions to be taken. For an example, see the HIRLAM template. 
+
+== Files produced by mini-SMS == 
+Mini-SMS produces the following files (nb suite is the suite name): 
+ * STDOUT and STDERR: parsing errors in the suite definition file (including syntax errors, references to undefined triggers, illegal task names) 
+ * suite.def: the suite definition file proper (if generated from the template by the preprocessor) 
+ * suite.html: copied from the template by the preprocessor, but with some interpretation of the suite definition lines. This file is useful as feed-back to the user when developing the template, but also as general documentation of the actions performed by the HIRLAM system! 
+ * suite.log: loggings: lists of variables, their statusses; times at which statusses changed. If debugging, also results of parsing the suite definition file 
+ * suite.check: checkpoint file: If mini-SMS is interrupted, the checkpoint file will contain the information for mini-SMS to be resumed in (nearly) the same the situation in which the previous run was interrupted. For this, the checkpoint file records all status changes of tasks and new vaules of `repeat' counters. Under normal conditions, these are sufficient to reconstruct the current situation. If user interaction is allowed, also the status changes of other than task nodes are recorded, because user interaction may disrupt the consistency of node statusses. 
+ * suite.check.b: backup of the checkpoint file. Mini-SMS has a dependable checkpoint mechanism in the checkpoint file. The title of the backup of that file is used occasionally, namely to reduce the file size of the checkpoint file. The `backup' is hence to be looked upon as an internal file. Its description is in the mSMS programming notes. 
+Mini-SMS also produces internal files. They are described in the mSMS programming notes. Internal files are normally removed after use. 
+Just before a task is sent to the execution queue, a jobfile for that task is constructed. This file can be considered an internal file, but it is not removed after the job submission, thus allowing inspection by the user. The user may even want to use the file again, e.g. to resubmit a failed task, possibly after having edited the jobfile. 
+
+The title of the jobfile is constructed from the full path name of the task. A consequence is that if the task is in a repeat-ed cycle, the jobfile of that taks will be overwritten by the same task in a subsequent cycle. This treatment of the jobfile is not different from that in ECMWF's SMS. 
+  
+The link below points to the original documentation that Gerard provided on [https://hirlam.org/UG/HL_Documentation/mSMS the mini-SMS script system].
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

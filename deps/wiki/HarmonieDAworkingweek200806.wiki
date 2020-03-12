@@ -1,0 +1,121 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie ALADIN 3DVAR portability Working week''' =
+'''2nd-5th of June 2008, SMHI, Norrköping '''
+
+[[Center(end)]]
+
+
+== Introduction ==
+
+The main goal for this meeting was to port 3DVAR in HARMONIE to a platform outside ECMWF. Other priorites was to install the odbviewer and NMC statistics software locally. The week was very fruitful and SMHI are very grateful for the ALADIN expertise Gergely brought to the meeting.
+
+
+=== Participants: ===
+
+HMS: Gergely Bölöni[[BR]]
+SMHI: Ulf Andrae, Magnus Lindskog, Tomas Wilhelmsson
+
+
+
+== Work done during the week ==
+
+
+=== 1. HARMONIE 3DVAR adaptation ===
+
+The main work done was on portability of oulan and script changes for a non ECMWF platform. At the Oslo meeting in May it was found that Canari, the surface analysis, could not be used for the first cycle. This is now worked around by assuring that the date in the file used as first guess always has a non zero forecast length. Blending of the analysis with the first guess was introduced. This is used to retain the properties of variables like cloud water and cloud ice. It is yet only done in case of analysis, but this should be revisited for the non analysis case. It is shown by several ALADIN countries that keeping the moist atmospheric fields improves the scores. We faced the same problem with erroneous SST/surface temperature fields as seen i Norway when doing SST analyses with Canari. Similar features has been seen in AROME experiments in Sweden. It's clear that the interpolation of surface fields in gl has to be revised. In the end two full cycles could be finished. Analysis increment from both Canari and 3DVAR were examined and found reasonable. 
+
+A documentation of the obsoul file format, created by oulan, is attached at the end of this page.
+
+
+=== 2. Installing Cycle 33t1 ===
+
+Cycle 33t1 was merged from the subversion vendor branch into 
+harmonie/trunk/src. This was then installed and tested on the SMHI linux cluster. AROME/ALARO and 3DVAR with ALADIN was run successfully,
+but without updated namelists.
+
+
+
+=== 3. NMCSTAT ===
+
+Background statistics was generated for the SMHI 11 km horizontal 
+resolution domain. The statistics was generated from differences 
+of +48 and +24 h forecasts, stored in a local archive. The generation 
+of background error statistics involves 3 steps:
+
+x Generating difference files by running ALDODB (main ALADIN executable) with some changes in cnt3.F before linking and using a particular namelist. The program should be run on one processor (important)
+
+x Simple program for linking the output difference files of the previous step to particular file-names.
+
+x Runing festat to calculate background statistics from generated difference files. Some geometrical parameters need to be set correctly in festat and these can be obtained from applying frodo on one of the forecst files (utilized as input for the generation of difference files).
+
+=== 4. Investigation on relaxed constrains on geometry for Jb statistics ===
+
+Applying a relaxed constrains on geometry for Jb statistics to allow
+first data assimilation experiments on new domain, without calculating
+background error statistics in advance, turned out more difficult than 
+expected. The attempt made has been reported to Xiaohua and Nils. Nils 
+will try to solve the problems in the coming year, building on experiences from HIRVDA.
+
+
+=== 5. mSMS installation ===
+
+Gergely was introduced to the mSMS system which was used for running
+experiments during the week. Unfortunately we could get no access to the
+Hungarian computers to try to install the system. The installation work
+will continue later and questions will be answered by improving the
+wiki-documentation.
+
+
+=== 6. odbviewer ===
+
+Odbviewer is a tool to examine the content of an odb directory. In
+Hungary and Norway it is used to monitor first guess departures and
+observation usage statistics. This was installed on the SMHI computers. 
+
+* Installation of odbviewer on dunder (CY31R1)
+
+Standalone odbviewer CY31R1 installed on dunder:
+rootdir: /nobackup/smhid4/sm_gerbo/ODB/odb_CY31R1.002/
+The package is installed without motif (no graphical interface)
+
+Fixes:
+- makefile prepared for dunder after the one used at HMS (Sgi), motif libs removed (rootdir/odb/scripts/make.altix_mpi_nomotif)
+as there was no motif on dunder at the moment
+- building of b4.x removed from rootdir/odb/scripts/makefile
+(motif would be needed)
+- rootdir/odb/bufr2odb/bufr2odb_grad.F90
+double definition of variable i_008023h i
+
+After requesting the installation of openmotif-devel on dunder, Tomas 
+succeeded to compile odbviewer with motif support and later struggled to also include the Magics visualizer. However that was hampered by missing libraries, and an attempt to instead install Magics++ was not (yet) 
+completed.
+
+How to run odbviewer:
+
+In order to use it set:
+{ 
+export ARCH=altix_mpi_nomotif
+export ODB_DIR=/nobackup/smhid4/sm_gerbo/ODB/odb_CY31R1.002
+export ODB_VERSION=CY31R1
+. $ODB_DIR/$ARCH/$ODB_VERSION/bin/use_odb.sh
+}
+
+To run the odbviewer (for an ECMA):
+
+{{{
+odb_dup -i your_ecma_odb/ECMA.base -o test_odb -l ECMA
+cd test_odb
+odbviewer -e batch -I -v myview.sql
+}}}
+
+To run the odbviewer (for an CCMA):
+{{{
+odb_dup -i your_ccma_odb/CCMA -o test_odb -l CCMA
+cd test_odb
+odbviewer -e batch -I -v myview.sql
+}}}
+
+The file myview.sql should contain the sql request for the data you want to see. [http://www.cnrm.meteo.fr/gmapdoc/meshtml/DOC_odb/FRANCAIS/requete.html Documentation about the syntax] (in French). There is also a documentation of ODB-format, variables and parameters on: [http://www.cnrm.meteo.fr/gmapdoc/meshtml/DOC_odb/odb.html odb] There is a prepared script to provide monitoring information 
+from ODB bases in a loop: /nobackup/smhid4/sm_gerbo/ODB/TestViewer/scr/Extractodb.sh. ECMWF software obstat, used to created statistics of analysis increments and first guess, is included in the odb package. It will be investigated further how this can be used in HARMONIE. The 
+

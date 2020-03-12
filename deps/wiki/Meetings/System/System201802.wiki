@@ -1,0 +1,276 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''SMHI, Norrköping, 5th - 9th of February 2018''
+
+
+
+Last modified [[LastModified]]
+
+
+[[Center(end)]]
+
+[[Image(IMG_1915.JPG,60%)]]
+
+System and DA teams during WW on cy43 "Absolut" model version
+
+
+== Practical ==
+
+ The meeting will be held at SMHI, Folkborgsvägen 17, Norrköping. Meeting room Nikkaluokta 
+
+* Participants, arrival, departure, hotel:
+ * AEMET: Daniel Santos, Monday ~1700, Friday ~1500 Comfort Hotel
+ * METIE: Eoin Whelan, Monday ~late, Thursday ~late Elite Grand Hotel
+ * SMHI: Ulf Andrae, all week
+ * SMHI: Martin Ridal, all week
+ * SMHI: Patrick Samuelsson, all week
+ * MET Norway: Ole Vignes, Monday ~0900, Friday ~1500 Elite Grand Hotel
+ * MET Norway: Roel Stappers, Monday ~0900, Friday ~1500 Elite Grand Hotel
+ * DMI: Kai Sattler, Monday ~1500, Thursday ~1500 Strand Hotel
+ * KNMI: Toon Moene, Sunday ~1600, Friday ~1500, Elite Grand Hotel
+ * KNMI: Bert van Ulft, Sunday ~1600, Friday ~1500, Elite Grand Hotel
+ * FMI: Niko Sokka, Monday ~1600, Friday ~1500, President Hotel
+
+=== Accomodation ===
+  
+{{{
+Elite Grand Hotel                  https://www.elite.se/en/hotell/norrkoping/grand-hotel/
+Address: Tyska Torget 2
+Phone: +46 11 - 36 41 40
+Fax: +46 11 - 36 41 01
+
+We have a block booking for 4-9th of February
+
+ 978 SEK/night (VAT included)
+ Bookingaddress: reservation.grandhotel@elite.se
+ Bookingcode: GSMH040218
+ Book latest: 26th of January 2018
+
+
+Comfort Hotel             https://www.choicehotels.com/sweden/norrkoping/comfort-inn-hotels/se117?brand=CI        
+
+Address:Saltangsgatan 29, Norrkoping, 60238, SE
+Phone: (46) 11 156500 
+Fax: (46) 11 156500
+
+}}}
+
+=== Buying tram tickets ===
+Intructions on how to buy tram tickets for Östgötatrafiken: [https://www.ostgotatrafiken.se/biljetter/ https://www.ostgotatrafiken.se/biljetter/]
+
+== Agenda ==
+
+  Start: Monday 05/2 16.00 [[BR]]
+
+  * Monday
+    * Drop in
+  * Tuesday 
+    * 14.30 and onwards OOPS video meeting
+    * Dinner at 19.0 at the famous restaurant [[https://www.google.se/maps/place/H%C3%A4rlig+Pasta+Grazie+i+Norrk%C3%B6ping+AB/@58.5906544,16.184964,17z/data=!3m1!4b1!4m5!3m4!1s0x46593a4b6a8f272f:0x27ca0099240f78c4!8m2!3d58.5906544!4d16.1871527| Härlig pasta]]
+
+  * For discussion
+   - cy43h status - '''Daniel'''
+    - The standard experiment's forecast model seems to run fine in [source:branches/harmonie-43t2] when the predictor-corrector dynamics is used.
+    - CY43T2_bf.04 available now  
+    - Ask for bf documentation to MF
+    - GRID_TYPE_LCQ related code is missing
+      - Replaced by LBOUND_D3. The check of NSTEP < NFOST is missing in gnhd3.F90. On purpose or mistake? Will add it back '''Ulf''' fixed in [16417]
+        - Causes crash in forecast model, reverted in [16433]. **This needs to be checked again** 
+    - Logics for LSRTM/LRAY and RADSN/RADGR is broken in suecrad.F90, fixed in changeset:16393
+    - CY43 runs all the necessary changes include a  shortcut in aro_ground_param.F90 were included in changeset:16393
+    - SURFEX_LSELECT functionality is missing although sent to [wiki:Phasing/cy43t1#SupportforSURFEXlselect phasing]. Requires rephasing of [14252]. Disabled for the time being.
+    - SFX.ZS output from the model is truncated and causes problems if a .sfx file is used as input for the forecast. Could be avoided by setting LPGDFWR=F in NAMPHMSE but that's only hiding the problem. Question sent to Yann Seity.
+      * MF has not seen the problem since they always run with LPGDFWR=F.
+    - "Bare bones" changes have been applied to the Bator script and namelists to produce usable (conventional) ODBs
+    - Feedback  our relevant corrections from our branch to MF - '''Niko'''   
+    - To tackle the current cy43t situation 4 working groups must be establish:
+       - DA team for upper air and surface
+       - Surface team for SURFEX v8 
+       - CANARI expert
+       - System team
+   - All these groups have been invited to the next WW in SMHI (check below)
+   - '''Daniel''' will ask Claude about the reasons of CANARI problems (Eric Bazile suggested that could be related with ODB treatment), technical memorandum about the recent and the possible new bug fix versions and include HIRLAM on the bugfix info flow. 
+   - **2018-02-05 updates**
+       - ~~Screening fail because of erroneous namelists. Please check ecgb:/home/ms/se/snh/hm_home/43t2.~~ **Fixed in [16666],[16667]**
+
+- '''Documentation about cy43t2_b4''' [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201802/cy43t2_bf_v04.pdf pdf]
+
+- 40h1.1 Bugfix version and backport submit.ecgb-cca config.ecgb-cca  and choose_PrgEnv.cca to cy38h.1.2. - '''Daniel'''
+     - New harmonie-40h1.1.bf.1 version was release with the new ECMWF HPC settings and a fix for env variables for ecFlow
+     - Documentation on WIKI [https://hirlam.org/trac/wiki/ReleaseNotes/harmonie-40h1.1 bf1 info]
+
+   
+- cy40h1.2 status - '''Daniel'''
+    - Proposed deadline to tag the full or "technical" version of cy40h1.2  is before 2018 ASM
+    - CY40T1_bf.07 is available but not in our 40h1 setup ( although it's in the vendor branch ).
+
+- cy45 phasing - '''Toon'''
+     - [wiki:Phasing/cy45t1]
+     - The mitraillete tests are on-going on MF HPCs to avoid problems on cca.
+     - '''Eoin''' had test all our Bator proposed changes on top of cy45 using ECMWF and MF obs. 
+     -  Frank  Guillaume will check all Bator contributions
+     - Claude's proposed deadline for R&D  contributions to CY45T1 by mid-November. After that they will be focus on fixes only.
+     - A branch compiles and can be checked by MF Bator experts.
+     - B branch is ongoing with the help of KNMI people
+     - C branch is obsolete SURFEX changes should enter through SURFEX repository.
+     - D branch DA 
+     - E branch Technical fixes that probably were included by MF in cy45_main
+
+- SVN 2 GIT  - '''Kai'''
+   - Connect Harmonie GIT repository with MF GIT is posible (vendor)
+   - Preserve the SVN history is aimed at for trunk/harmonie
+   - Possible SVN deadline after relising harmonie 40h1.2 
+   - 43h1 to be be the basis for the first master GIT
+   - Inform users/developers about SVN deadlines as soon as this is decided
+   - Questions about repository design
+   - A general [http://nvie.com/posts/a-successful-git-branching-model/  GIT repository model] can describe the basis for the Harmonie repository design and how to use it
+   - The Harmonie git repository is likely to become more complex than this http://nvie.com/posts/a-successful-git-branching-model/  GIT repository model] because of the existence of cycles, which indicates that multiple development branches would exist in the Harmonie repository
+   - Contact MF about their repository organization: looks like they call their development branches "phasing branch"
+   - MF and ECMWF provide tools for developers to access and work with their repository - however, the tools hide the actual git actions for these developers
+   - A concept of 'best practice' and how to work with the Harmonie git repository to be established and documented. Following is a sketch:
+      1. establish local repo:
+         a. clone remote master
+      1. use personal feature branch for development
+         a. branch from master to local work branch
+         b. create remote link of work branch
+         c. commit changes within local work branch:
+            * add changes hunkwise/linewise to index in order to write "good history" (more strauightforward under git gui than on CLI)
+            * commit message:
+              1. line short summary
+              1. line empty
+              1. and following lines with more elaborate message
+            * sign-off the commit (a chain of sign-offs may indicate acknowlegement from several people)
+      1. in case of master updates
+         a. pull updates from master to local master
+         b. merge master updates to local work branch, and resolve conflicts
+      1. once development work is ready for public
+         a. assure that the local work branch is up-to-date with the master
+         a. create an annotated tag of the HEAD of the work branch
+         a. push local work branch to the remote copy, including the tags
+         a. notify system group to ask for merge of the remote work branch into master by providing the tag and/or commit hash
+   - Training course/webinar
+   - Use of the gitk (explore repository) git gui (commit) to reduce errors - '''Klaus Zimmerman'''
+   - Posible repository design with the main entry point Harmonie Scripting
+   - HSc -> Hsrc -> MFsrc 
+- System documentation and scripting system cleaning - '''Roel'''
+   - Increase log print-out
+   - Include manuals in ecf containers.
+   - Different levels of depth in documentation. Layers of svg for different users.
+   - Deterministic vs EPS documentation    
+   - Use of ECF variables to share info between tasks.
+   - Improving model tasks placement flow
+   - Include the possibility to queue manually
+
+- System contents 
+   - mSMS phase-out if we increase the cap
+   - Remove external libraries (grib_api/gribex/bufr/sqlite) (cy43)
+   - Remove obsolete code (oulan/conrad) (cy43)
+   - Move monitor out of the trunk (i.e. like HARP) (cy43)
+   - Replace gl with gl_grib_api (cy43)
+
+- Code scalability and profiling - '''Daniel'''
+   - Single precision vs double precision in model and DA
+   - Update information about model performance on local computers
+   - Scalability Experts Group with MF and Aladin. First video meeting before ASM to promote a side meeting in ASM.
+
+- ALARO running on cy40 - '''Jose A'''
+  - Hamonie doesn't support Quadratic neither Cubit time stepping any longer. Only linear option is valid.
+  - ALARO Physics use to be run with Quadratic scheme.
+  - Putting LQCPL=.FALSE. seems to solve all the problems. 
+  - No matter, of course, the arrays that seem to be non properly initialized and the places in the code where arrays are filled beyond their allocation. 
+  
+== harmonie-43t2 branch ==
+Here are the first steps to start testing the harmonie-43t2 branch on ecgate-cca:
+{{{
+cd $HOME/hm_home
+mkdir test43t2
+cd test43t2
+~hlam/Harmonie setup -r /home/ms/spsehlam/hlam/harmonie_release/branches/harmonie-43t2
+~hlam/Harmonie start DTG=2018010109 DTGEND=2018010112
+}}}
+
+== Working week tasks ==
+
+  - CY43 tasks
+       - Canari - '''Trygve, Eoin'''
+         - ~~CANARI completes but does not call SODA~~  '''Fixed in [16673]'''
+         - CANARI crashes writing output file. (So far only on cca (gfortran 5.3).
+         - ~~''#ifdef USE_SODA'' does not compile.~~ '''Fixed'''
+         - Works on Met Éireann computers with gfortran 4.8.5 and elvis.nsc.liu.se with intel compiler
+         - Problems on ECMWF HPC related with writing files with and without IO server (Both CANARI and Minim)
+       - Climate
+          - Uninitialized values in ebicli and fpcorphy  '''Bert & Trygve'''. There are 3 locations in these files where uninitialized variables are used. Solutions are tested and work, but have not been committed yet. Daniel contact Claude Fischer on this. Two out of the three problems were already known, the third one will be fixed. All fixes will become available in a next release of CY43T2_bf. Diffs against r16695:
+          {{{
+diff src/arpifs/fullpos/fpcorphy.F90
+237d236
+< IXVGST=MAFPTR(GFP_XVGST%ICOD)
+238a238
+> IXVGST2=MAFPTR(GFP_XVGST2%ICOD)
+729c729,730
+< DO JI=KST,KEND
+---
+> IF (LLRHCLS) THEN
+>   DO JI=KST,KEND
+733c734,735
+<  ENDDO
+---
+>   ENDDO
+> ENDIF
+
+diff src/aladin/c9xx/ebicli.F90
+373a374
+>     ZREAL(:,:) = 0.0_JPRB
+
+          }}}
+       - Bator non-conventional observations - '''Eoin, Roger, Martin, Magnus '''   
+         - non - radar data - Not solved yet
+         - RADAR 
+       - Minimisation - '''Magnus, Roel, Jelena''' 
+         - LSPRT =TRUE in 4DVAR and must be set to FALSE in 3DVAR
+         - Problems on ECMWF HPC related with writing files with and without IO server
+       - Reinject NFOST, LBOUND_D3 - '''Ulf''' 
+          - It works and testing possible model problems in long runs reported in the past by Samuel.
+       - LSELECT functionality in surfex - '''Ulf'''
+         - Works without IO-server, will be cleaned futher.
+       - Install on non-cca platforms - '''Ole''' 
+         - Problem with SURFEX IO solved by compiling write_surfx1_aro.F90 with -O0
+         - Crash in radiation circumvented but probably not solved?
+         - Bugs in horisontal interpolation of rot. lat. lon. grids fixed, extrapolation of surfex fields reintroduced.
+         - Successfully run through both a coldstart and a warmstart cycle, with Intel compiler
+         - Also succeeded on ecgb-cca with Intel now
+       - Make compatible with latest gfortran version - '''Toon, '''
+         - This is now in as changeset:16696. (Note that ioassign contains a definition of an ODB
+           routine that is also in an ODB library, so it doesn't link automatically [duplicate symbol]).
+       - MF namelist investigation - '''Toon, Roger'''
+         - We received [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201802/arome3dvarin43t2.zip log files and namelists] from Pierre Brousseau.
+       - Test the IO server (NN)       
+       - Cy43_t2  merge with last trunk version - '''Daniel, Niko''' 
+         - Aprox. 100 conflicts more info [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/43h1.pre-alpha.1 here]   
+       - Remove SURFEX_OUTPUT_FORMAT=lfi ( obsolete in 43t2 ) '''Ulf''' fits well with the LSELECT fixes/cleaning, will be committed after the trunk is merged.
+       - Check climate generation and PGD related data files (NN)
+       - Check constant files for assimilation (NN)
+       - Check constant files for the forecast model (NN)
+   
+   - CY45 tasks
+       - git repository - '''Kai,Toon'''
+       - Reintroduce the contributions that didn't enter during the phasing in a CY45 branch - '''Toon, Daniel'''
+
+Download svg and open in browser to have working hyperlinks
+
+[[ImageSvg(harmonie2.svg,60%)]]  
+
+== Tentative dates for important system tasks ==
+ - Dead line for trunk contributions - '''End Feb'''
+ - Tagging harmonie-40h1.1.1.rc1 - '''Beginning March'''
+ - Tagging harmonie-40h1.1.1 (Technical release + setup changes based on tg2 ) - '''15 March'''
+ - Tagging harmonie-40h1.1.1.bf1 (Final release of cy40 and optional installation and testing for RCR) - '''15 Jun-15 Sep '''   
+ - Git webinars (Version control theory, procedures (rules) and practical examples - '''1st Before Summer 2nd After Summer'''
+ - Video meeting about cy43 progress and git design  (Doodle) - '''End of Feb '''
+ - Next System WW (Doodle) - ''' Met Eirean After Summer ''' 
+
+
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

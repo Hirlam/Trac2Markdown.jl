@@ -1,0 +1,76 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= '''How to Monitor a Running Experiment''' =
+[[Center(end)]]
+
+== About the Mini-SMS's Graphuic User Interphase ==
+The best way to monitor (and intervene in) a running HIRLAM suite is by the mini-SMS monitor mXCdp. 
+Because the X connection is not always stable, it is advised to stop the monitor window if you are away from the office for a longer time, and want your experiment to continue even if the X connection is lost. Stop the monitor by the menu option "Quit graphical interface". Note: do not stop mini-SMS itself, because that would interrupt your experiment. When you return to your office you can re-connect the monitor (provided that your experiment is still running, and X is still alive) by typing Hirlam mXCdp. 
+
+On some installations mini-SMS will fail if it cannot establish an X connection for mXCdp. This is not understood. But there is a work-around: instruct mini-SMS to run without a monitor. Do this by adding mXCdp=DISABLE on the command line, like in Hirlam DTG=...mXCdp=DISABLE. Note: case sensitive. 
+
+== If the Mini-SMS's built-in monitor cannot be used == 
+
+If the monitor is not running for any reason, there are still facilities to inspect the progress of a HIRLAM suite, be it running or complete or aborted. Typing Hirlam follow will print a summary of the log file, listing start and end-times of all HIRLAM jobs with an indication of the jobs that aborted. Also, it will list the jobs that apparently have been submitted or that are still running. In particular after a system crash it is advised to check that indeed those jobs are still in the input and execute queues, resp. A typical line in the output could be 
+15:26:07 15:26:17 -                     active?  /rf3/Date/Hour/Cycle/Forecast/Execute
+
+It suggests that the forecast was submitted at 15:26:07, went into execution at 15:25:17, and probably still is active. 
+
+== Where do I find the job output files? ==
+The output of 
+{{{
+Hirlam follow
+}}}
+may also be helpful to find back the stdout/stderr files of the jobs. For this proceed as follows: 
+
+ * First, identify the root directory for job output files by typing 
+{{{
+Hirlam echo JOBOUTDIR
+}}}
+A typical response is: 
+{{{
+JOBOUTDIR="/hpcd/ms_dir/ms/nl/rui"                                      # envmt
+}}}
+
+The stdout/stderr file can now be found by dragging and dropping the listed value of JOBOUTDIR followed by that of the jobname, as it is printed by "Hirlam follow". Add the suffix .1 . In the above examples: 
+ls  /hpcd/ms_dir/ms/nl/rui/rf3/Date/Hour/Cycle/Forecast/Execute.*
+
+would print: 
+{{{
+/hpcd/ms_dir/ms/nl/rui/rf3/Date/Hour/Cycle/Forecast/Execute.1
+}}}
+You can inspect this file with the usual tools like less. 
+After a cycle is complete, this file will be copied to an html file (typical title HL_Cycle_yyyymmddhh.html) that, of course, most comfortably is inspected from a browser. 
+
+''At ECMWF'':
+You can do this with mozilla, if you have an X connection. But it will be fairly slow. Alternatives are: 
+
+ * ftp the file to your local site 
+ * use the simple browser that is built into the monitor. This is also not very fast, and also only available if there is an X connection. But its advantage is that it is easily operated from the mini-SMS monitor window. 
+
+The html file will contain the stdout/stderr files of all jobs within the cycle. After the creation of the html file, the raw stdout/stderr files wil be removed. So the above instructions to inspect the raw output files directly will not work anymore then, and you will have to look at the html files. However, if the job failed, the raw file will not be removed, so for failed jobs it remains possible to check the files in directory JOBOUTDIR. 
+
+== How do I verify that my jobs are still in the queues? ==
+
+To inspect whether a job is still in the input or execute queue, you can use tools like ps. This will often not work in a cluster. 
+
+At ECMWF, Gerard Cats wrote a monitor based on llq. Invoke it as: 
+{{{
+~nkg/bin/Monitor
+}}}
+It will list all jobs by hirlam group members, and jobs with their job names, in the input and execute queues on ecgate, hpca and hpcd.
+
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

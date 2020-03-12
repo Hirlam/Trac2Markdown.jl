@@ -1,0 +1,160 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''PRECISE Copernicus C3S 322 Lot1: Regional Reanalysis for Europe '' =
+
+Last modified [[LastModified]]
+\\
+\\
+[[Image(PPC_2173.jpg, 35%)]]
+\\
+\\
+[[Center(end)]]
+
+The service PRECISE will be based on the system developed in the pre-operational project UERRA
+(called UERRA system from now on) in the first two years. Moreover, PRECISE relies on the well
+established collaboration between the contractor and all subcontractors. Both facts enable PRECISE
+to deliver a RRA for Europe almost from the onset of the service. Operational updates in near real
+time can be expected from the UERRA system already in 2017 if the service starts in April 2017. In
+combination with the RRA produced already in the UERRA project, PRECISE offers a consistent RRA
+from 1961 to near real time.
+
+
+C3S 322 Lot1 consists of 5 work packages. The project coordinators are Per Unden and Semjon Schimanke, SMHI, with support of 3 principle investigators leading the work packages. 
+
+== WP0: Management and implementation (lead: Semjon Schimanke, SMHI) ==
+ 1. Service management
+ 1. Monitoring the progress of the service
+ 1. Collaboration with other reanalysis activities
+ 1. Reporting to ECMWF
+ 1. Risk management
+
+
+== WP1: System development (lead: Martin Ridal, SMHI) ==
+ 1. Design, implementation, testing and optimisation of the RRA system
+  * Configuration of the ALADIN 5.5 km model with 90-100 levels.
+  * Configuration of the ALADIN 3D-VAR at 5.5 km, background statistics, Jk statistics and tuning
+  * Check and ensure correct observation operators for historical satellite data.
+  * Evaluate and tune the use of satellite radiances.
+  * Investigate what other non-conventional observations that can be used, e.g. Atmospheric Motion Vectors (AMV), ground based GNSS, GNSS radio occultation observations.
+  * Configuring and optimising the surface and soil analysis.
+  * Configure and develop SST and sea ice analysis.
+  * Optimising SURFEX for our application and maturity of SURFEX options.
+  * Develop and configure the ensemble data assimilation system for uncertainties and background error.
+ 1. Handling of input observations, e.g. selection rules, QC, bias adjustment
+  * Adapting the observation input stream software to extract data and flags from ECMWF.
+  * Implement black listing of historical data from ECMWF blacklist file.
+  * Testing and adapting variational bias correction software for historical satellite instruments
+ 1. Handling of RRA output, e.g. quality checks, post-processing, converting of data formats
+  * Diagnostic software to detect either missing parameters or unexpected extreme values.
+  * Observation monitoring.
+  * Post-processing and extraction of fields for archiving.
+
+
+== WP2: Input Data Handling (lead: Patrick Le Moigne, Météo-France) ==
+ 1. Preparation of observation input data for upper-air (UA) analysis
+ 1. Preparation of observation input data for surface analysis
+ 1. Preparation of lateral boundary input data
+ 1. Tests performed with input datasets
+
+== WP3: Re-analysis Production (lead: Lars Berggren, SMHI ) ==
+ 1. Production of a reanalysis for 2016 through September 2017 using the existing UERRA/HARMONIE system.
+ 1. Production of operational updates of RRA products based on the existing UERRA/HARMONIE system.
+ 1. Production of a reanalysis using the PRECISE system.
+ 1. Operational updates of RRA products based on the developed PRECISE system.
+ 1. System performance monitoring, fault detection and problem solving
+ 1. Quality assurance based on diagnostics, post-processing, output data management and the delivery of data.
+
+
+== WP4: User Guidance and Support (lead: Semjon Schimanke, SMHI) ==
+ 1. Product documentations for users
+ 1. Training material
+ 1. Technical support
+
+
+
+= Completed deliverables, presentations, minutes from meetings =
+
+On the ftp-site [ftp://ftp.umr-cnrm.fr ftp.umr-cnrm.fr] most documents, reports and presentations from different meetings can be found. 
+
+
+
+= Work days in Norrköping, 8-11 April 2019 =
+[wiki:PRECISE/Workdays_April2019 PRECISE work days]
+\\
+
+= Work days in Toulouse, 11-14 June 2019 =
+[wiki:PRECISE/Workdays_June2019 PRECISE work days June]
+\\
+
+= Work days in Norrköping, 17-19 September 2019 =
+[wiki:PRECISE/Workdays_Sept2019 PRECISE work days September]
+\\
+
+= General Assembly in Norrköping, 12 November 2019 and work days 13-14-(15) November =
+[wiki:PRECISE/GA__Work_November2019 PRECISE GA and work days]
+\\
+
+= Work days in Toulouse, 21-23 January 2020 =
+[wiki:PRECISE/Workdays_Jan2020 PRECISE work days January]
+\\
+
+= WP1 progress =
+A detailed workplan with progress and outstanding issues is available [https://docs.google.com/document/d/1i9-Yqrg3qVTl686XNPXOwWW-MKnadTFG4zTL47O5cio/edit?usp=sharing here].
+
+Adams presentation about EDA: [https://hirlam.org/trac/attachment/wiki/PRECISE%20Regional%20Reanalysis/PRECISE_21082019.odp PRECISE_21082019.odp ]
+\\
+
+Adams second presentation about EDA: [https://hirlam.org/trac/attachment/wiki/PRECISE%20Regional%20Reanalysis/PRECISE_27092019_UPDATE.pdf PRECISE_27092019_UPDATE.pdf ]
+\\
+
+
+
+= Tests and development: Experiment list = 
+UERRA production used for evaluation with the MF tools is "7IQ5"
+
+All experiments will be run with 30 hour forecasts at 00 and 3 hour forecasts for all other cycles.
+
+||= Category =||= Component to be tested =||= Periods of experiment run =||= Involved staffs =||=path name=||= MF name =||= Link to results (attachment or results page) =||
+||Obs use||Additional local conventional observations||Jan 2017||Martin|| || || ||
+||Reference run||Conventional obs, 24h forecasts at 00 and 12 ||Jan 2017||Martin|| || || ||
+||alpha_v0||Conventional obs,dt=240s, 30h forecasts at 00||July  2017 done||Esbjorn || ectmp:/smo/harmonie/precise_alfa1 || 7JJQ ||[https://hirlam.org/trac/attachment/wiki/PRECISE%20Regional%20Reanalysis/20170701_20170714_P7IQ5_SYNOP_00_P7JJQ_SYNOP_00_GLOB05.iso.pdf SYNOP] [https://hirlam.org/trac/attachment/wiki/PRECISE%20Regional%20Reanalysis/20170701_20170714_P7IQ5_TP_00_P7JJQ_TP_00_GLOB05.iso.pdf RS ]||
+||alpha_v1||alpha_v0+ Convection, 30h forecasts at 00||1-5 July & 1-4 January 2017||Eric || ectmp:/rm1/harmonie/alpha_v1_240 || 7JGW || ||
+|| ||GB-GNSS ||Apr 2007||Per U.|| || || [https://hirlam.org/portal/validation/precise/GPS_200704_export GBGNSS2007] ||
+|| ||With and without SEVIRI ||1-15 Feb 2010||Martin|| || || [https://hirlam.org/portal/validation/precise/201002_preciseseviri_export/ SEVIRI2010] ||
+||alpha_v2||alpha_v1+ Surfex update, 30h forecasts at 00||1-5 January 2017||Patrick || ectmp:/rmix/harmonie/alpha_v1_240 || 7JLI || ||
+|| ||With and without LSM ||Jan 2017||Martin|| || || [https://hirlam.org/portal/validation/precise/201701_preciseuerralsm_export LSM2017] ||
+||alpha2_v0 (corrected)||Reference run||July 2017||Esbjörn || ec:/smo/harmonie/precise_alfa2 || 7JTI || ||
+||alpha2_v0 (corrected)||Reference run||January 2017||Patrick || ec:/rmix/harmonie/alpha2_v0 || 7JTI || [https://hirlam.org/portal/validation/precise/Precise_alpha2_v0v2_export v0v2] ||
+||alpha2_v1 ||Reference + convection ||Jan & 1/7/2017 --> Nov 2017 on going ||Eric ||ec:/rm1/harmonie/alpha2_v1 || 7JTJ ||[https://hirlam.org/portal/validation/precise/Precise_alpha2_v0_v1_export v0v1] [https://hirlam.org/portal/validation/precise/uerra_alpha2v1_export uerra_July] [https://hirlam.org/portal/validation/precise/uerra_alpha2v1_aug_export uerra_Aug] [https://hirlam.org/portal/validation/precise/uerra_alpha2v1_sep_export uerra_Sep]||
+|| ||Reference + Conv + surfex ||Jan 2017|| Patrick || ec:/rmix/harmonie/alpha2_v2 || 7JVB ||[https://hirlam.org/portal/validation/precise/Precise_alpha2_v0v2_export v0v2] ||
+|| alpha2_v2b ||Reference + Conv + surfex ||start from alpha2_v1 soil var. 31/08/2017 || Patrick || ec:/rmix/harmonie/alpha2_v2b || || [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v2b_export v1v2b_sep2017] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v2b_oct_export v1v2b_oct2017] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v2b_nov_export v1v2b_nov2017] ||
+|| alpha2_v3 || z0 tuning ||start from alpha2_v1 soil var. 31/08/2017 || Patrick || ec:/rmix/harmonie/alpha2_v3b || || [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v3b_v3c_sep_export/ v1v3b3c_sep2017] ||
+||alpha2_v4 ||alpha2_v1 + MESCAN + Ri=0.2|| start from alpha2_v1 soil var. 1/9/2017. Sept and Oct done || Eric || ec:/rm1/harmonie/alpha2_v4 || ||[https://hirlam.org/portal/validation/precise/Precise_alpha2_v0_v4_export v0v4_jan2017] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v4_sep_new_export v1v4_sep2017] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v4_oct_new_export v1v4_oct2017] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v4_oct_newnew_export v1v4_oct2017_new] [https://hirlam.org/portal/validation/precise/alpha2v1_alpha2v4_nov_export v1v4_nov2017] ||
+|| || Comparison between alpha2_v4, UERRA and ERA5 ||  ||  ||  || || [https://hirlam.org/portal/validation/precise/CERRA_UERRA_ERA5_MONTHLY_2017_export MONTHLY]  [https://hirlam.org/portal/validation/precise/CERRA_UERRA_ERA5_3MONTHLY_2017_export 3_MONTHLY] ||
+|| ||Reference + SICE ||Jan 2017, Sep 2017 to April 2018 ||Esbjörn|| ec:/smo/harmonie/precise_alfa2_sice || || [https://hirlam.org/portal/validation/precise/Precise_alpha2_export SICE2017] [https://hirlam.org/portal/validation/precise/Precise_alpha2_v1_vs_v1_sice_export SICE_sep_dec2017] ||
+|| ||Reference + Convection + SICE ||Starting from end of August 2017 from alpha2_v1 ||Esbjörn|| ec:/smo/harmonie/precise_alfa2_sice || || ||
+|| ||AMSU-A and -B ||Jan 2017||Per D. || || || ||
+|| ||IASI ||Jan 2017||Zheng Qi|| || || ||
+|| ||GNSS-RO + AMSU||7-21 Jan 2017||Martin|| ec:/smb/harmonie/precise_alfa2gnssro || || [https://hirlam.org/portal/validation/precise/gnssro_export GNSSRO+AMSU] ||
+|| ||Scatterometer ||Jan 2017||Per D. || || || ||
+|| ||AMV ||Jan 2017||Per D. || || || ||
+|| ||GNSS-ZTD + AMSU||1-15 July 2017||Per U.|| ec:/smr/harmonie/CERRA_spin_ZT_AM || ||[https://hirlam.org/portal/validation/precise/GPS_201707_export GBGNSS+AMSU] ||
+|| ||GNSS passive + AMSU||1-15 July 2017||Per U.|| ec:/smr/harmonie/CERRA_ZTpass_AM || ||[https://hirlam.org/portal/validation/precise/GPS_201707_export_passive GBGNSS+AMSU] ||
+|| ||MSU ||Sep 1996||Zheng Qi || || || ||
+||alpha2_v5 || || || || || ||[https://hirlam.org/portal/validation/precise/monitor_example_export jan2017] ||
+|| || || || || || || ||
+|| RC1 || Spinup Hires || Dec2018 || || || || [https://hirlam.org/portal/validation/precise/CERRA_MONTHLY_201812_nrt_export nrt_hires] ||
+|| RC1 || Spinup EDA || Dec2018 || || || || [https://hirlam.org/portal/validation/precise/CERRA_SPINUP2_NRT_ENS_ERA5_201812x_export nrt_eda] ||
+\\
+
+
+To set up an experiment from a tagged version and launching a month long test:
+{{{
+mkdir -p $HOME/hm_home/my_exp
+cd $HOME/hm_home/my_exp
+/hpc/perm/ms/se/smoz/tags/precise_beta_1.0/config-sh/Harmonie setup -r /hpc/perm/ms/se/smoz/tags/precise_beta_1.0
+ln -s /hpc/perm/ms/se/smoz/tags/precise_beta_1.0/config-sh/Harmonie Harmonie
+./Harmonie start DTG=2017010100 DTGEND=2017013121 BUILD=yes
+}}}
+\\
+

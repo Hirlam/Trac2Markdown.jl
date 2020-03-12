@@ -1,0 +1,124 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= '''General requirements''' =
+[[Center(end)]]
+
+
+=== Get the Harmonie source ===
+
+To obtain the HARMONIE source, assuming the computer platform has svn client available, one may check out from the repository at the host hirlam.org:
+{{{
+        svn export  https://svn.hirlam.org/tags/harmonie-38h1.beta.3    # for the latest tagged (stable-) HARMONIE system
+        svn export https://svn.hirlam.org/trunk/harmonie                # for the latest updated (unstable-) version
+}}}
+For Harmonie build using miniSMS script, it suffices that you have access to the HARMONIE system source. On ECMWF, the check-out version of harmonie-37h1.beta.3 is available as,
+{{{
+   ecgate:/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-38h1.beta.3
+   ecgate:/home/ms/spsehlam/hlam/harmonie_release/trunk
+}}}
+
+The export tarball for full versions are available on hirlam.org, https://hirlam.org/portal/download/harmonie-37h1.2.tar
+
+=== Compilers and standard software ===
+
+The system requires the following standard unix/linux software 
+
+ * A fortran compiler
+ * A C compiler
+ * flex & bison for lex & yacc
+ * ksh and bash
+ * perl
+
+Read more about the tested compilers under [wiki:HarmonieSystemDocumentation/38h1.1/Installation installation].
+
+=== MPI and OpenMP ===
+
+Harmonie supports parallelization through message passing or shared memory multiprocessing. 
+
+ * mpi libraries such as mpich2, openmpi or similar.
+ * OpenMP libraries
+
+The system can be compiled without support for MPI, but not all parts of the system can be run without MPI. The forecast model should however work fine without MPI.
+
+=== BLAS and LAPACK libraries ===
+
+You need [http://netlib.org/ BLAS and LAPACK-lite] libraries.
+
+If they are already on your system, verify they have been made with the correct compiler, or rebuild them. Instructions on how to (re-)build BLAS and LAPACK follow below:
+ * Download [http://www.netlib.org/blas/index.html BLAS] and [http://www.netlib.org/lapack/index.html LAPACK]
+ * First build BLAS (untarring blas.tgz places it in the BLAS directory). Go to that directory, and edit make.inc to set the compiler and linker to '''gfortran'''. Then type 'make'.
+ * Subsequenty, for LAPACK, after untarring lapack-lite-3.1.1.tgz, go to the lapack-lite-3.1.1 directory.
+ * Copy make.inc.example to make.inc.
+ * Edit make.inc to point to the proper compiler/loader ('''gfortran''') and to put the variable PLAT to the empty string. Set TIMER to INT_ETIME.
+ * Copy the blas.a library from the BLAS directory to the lapack-lite-3.1.1 directory, run ranlib on it, then type 'make'.
+ * Then copy the libraries in '''/usr/local/lib''' with names libblas.a and liblapack.a, respectively, otherwise the default configuration will not find them. Run ranlib on them.
+
+=== NETCDF ===
+
+ Netcdf is required for some routines. Make sure you have development version installed on your system.
+
+ http://www.unidata.ucar.edu/software/netcdf
+
+=== GRIB, BUFR and auxiliary software ===
+
+The software for reading GRIB and BUFR is included in the HARMONIE system an comprises
+
+ * grib-api 1.10.4
+ * bufr 000383
+ * gribex 000370
+
+In addition there are some extra support libraries.
+
+ * dummies_006
+ * rgb_001
+
+
+If you compile with [wiki:HarmonieSystemDocumentation/38h1.1/Build_with_makeup Makeup] these are built for you. If you use gmkpack you have to build them yourself. For grib-api follow the instructions. For the other libraries follow the instructions below. Read more in the [source:tags/harmonie-38h1.1/util/auxlibs/README README file].
+
+In each of the directories in auxlibs, run the script ./build_library.  You'll have to answer the following
+questions:
+
+ * Which compiler to use
+ * Whether you want 64 bit reals (yes)
+ * Where to store the library on completion of the build (choose a subdirectory of your home directory
+   where you have write permission - note: full path; e.g. the GFORTRAN.LINUX configuration assumes these
+   libraries are in $HOME/auxlibs and include files in $HOME/auxinclude)
+ 
+After build_library finishes, run ./install - this will put the library in the directory you've chosen above. 
+
+=== Perl requirements ===
+
+To be able to launch the mSMS mXdcp window you need to have perl toolkit installed. Define PERL_TK and PERLTKDIR in your system config file.
+
+=== Preparation of source codes for HARMONIE system on ecgate ===
+
+ * Make sure you belong to the hirald group at ECMWF platform. Contact the HIRLAM system manager requesting it if you do not.
+ * Due to limitation of the ECMWF HPCF currently preparation and compilation of the HARMONIE-related software need to be done using ecgate and c2a platforms, separately. For retrieving of the HARMONIE source code/updates (from https://svn.hirlam.org) using Subversion (svn) command, it needs to be done at ecgate platform. The compilation and experiment submission are then done on c2a. 
+   * Log in to ecgate platform. Subversion is installed at ecgate but you have to edit the server configuration file for subversion to be able to access hirlam.org. 
+{{{  
+Change in $HOME/.subversion/servers
+from
+# http-proxy-exceptions = *.exception.com, www.internal-site.org
+to
+  http-proxy-exceptions = *.ecmwf.int, localhost
+  http-proxy-host = www-gw.ecmwf.int
+  http-proxy-port = 3333
+}}}
+   * If $HOME/.subversion/servers does not exist, use the copy of ''servers'' attached to this page.
+
+ '''NB!!!'''
+ As a normal user you don't need to worry about the svn access. The most recent versions are available under {{{ecgate:/home/ms/spsehlam/hlam/harmonie_release}}}.
+
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

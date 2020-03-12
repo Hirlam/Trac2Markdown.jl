@@ -1,0 +1,108 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Autumn Working Week on GLAMEPS & HarmonEPS 2014''' =
+''Norrköping. Monday 24 November - Friday 28 November. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+This is the second GLAMEPS/HarmonEPS working week for this year. 
+Following are the main headlines:
+
+ 1. Operational GLAMEPSv2; work on implementing calibration, discussion/test about 5 km version
+ 1. HarmonEPS perturbation experiments
+ 1. Verification with HARP: QC/conditional verification, spatial verification, SO-NF, probblistic scores for HARMONIE... )
+ 1. Discussion of 2015 work plan. 2015 is the last year of HIRLAM-B, what goals to set for ourselves and how can we achieve it?
+
+
+== Participants ==
+
+ || Name || Arriving || Leaving || Working with ||
+ || Inger-Lise Frogner || 24 Nov, noon || 28 Nov, noon || Administration of ww, HarmonEPS ||
+ || Xiaohua Yang || 24 Nov, noon || 28 Nov, 1200 || GLAMEPS, HARP ||
+ || Lisa Bengtsson || 24 Nov, noon || 28 Nov, 1500 || HarmonEPS, stoch.phy. || 
+ || Thomas Nipen || 24 Nov, afternoon || 28 Nov || Calibration || 
+ || Andrew Singleton || 24 Nov, afternoon || 28 Nov || HarmonEPS, HARP ||
+ || Jose A. Garcia-Moya || 24 Nov, afternoon || 28 Nov || HarmonEPS, SLAF ||
+ || Björn Stensen || 24 Nov, noon || 28 Nov, 1500 || HarmonEPS ||
+ || Kai Sattler || 24 Nov, noon || 28 Nov, noon || GLAMEPS, HARP ||
+ || Åke Johansson || 24 Nov, noon || 27 Nov, 1700 || GLAMEPS, HARP ||
+ || Henrik Feddersen || 24 Nov, 1300 || 28 Nov, noon || HarmonEPS, random field pert. ||
+ || John Bjørnar Bremnes || 24 Nov || 28 Nov || Calibration ||
+ || Maurice Schmeits || 24 Nov || 28 Nov || Calibration ||
+ || Alfons Callado || 24 Nov, afternoon || 28 Nov || HarmonEPS, SPPT ||
+ || Ole Vignes || 24 Nov, morning || 28 nov, 1500 || HarmonEPS, system ||
+ || Alex Deckmyn || 24 Nov || 28 Nov, noon || GLAMEPS, HARP ||
+ || Sibbo van der Veen || 24 Nov, after noon|| 28 Nov, noon|| Glameps, HarmonEPS ||
+
+== Agenda ==
+
+ * Monday
+   * 1300 start of ww
+   * GLAMEPS session: introductory talks and discussion
+       * Kai: [attachment:GLAMEPS_operational_status_20141124.pdf Status of the operational suite]
+       * Xiaohua: Findings from GLAMEPS verification and monitoring
+   * Working session
+ * Tuesday
+   * HarmonEPS session: current status of development, plans 2015.
+     * Inger-Lise: planned perturbations in HarmonEPS
+     * Ulf: HarmonEPS and system. Operational requirements.
+     * Sibbo: Verification of GLAMEPS and HarmonEPS experiments
+     * Lisa: [attachment:harmonEPSww.pdf Evaluation of cellular automata stochastic deep convection in HarmonEPS]
+   * Continuation of the GLAMEPS presentation
+     * John Bjørnar: Status of calibration and plans for calibration work rest of the week
+   * Working session
+ * Wednesday
+   * Xiaohua and Inger-Lise: HIRLAM MG subgroup visit to SMHI
+   * Working session
+ * Thursday
+   * working session
+   * Discussion about HARP (Alex, Andrew, Ulf, Kai, Xiaohua)
+     * Target for the first release of HARP ca Dec 15 2014.
+       * Finish documentation and instructions (Andrew, Alex, by 10 Dec 2014 with Latex). Documentation will be part of the release. A wiki link established offering wiki version of the instructions based on the documentation(Xiaohua)
+       * Move Rgrid, Gogrid etc outside of the HARP repository as it shall be separately maintained and hopefully part of the R repository
+       * Adding option for verifying single forecast length, adding confidence interval, move threshhold definition to configuration etc. (Andrew)
+       * For spatial verification, we leave the status as it is.
+       * Contact Christoph Zingerle to agree on handing of spatial verification and the first release of HARP (Xiaohua)
+     * Writing a vfld -> SQlite table converter in order to enable HARP verification for Harmoneps and verification for other HIRLAM/HARMONIE deterministic models currently producing vfld data (Alex)
+     * Approaches to enable quality control of observation and strict sample size equivalence in form of conditional verification
+       * design monitoring table to store non-aggregate data including observation column, ensemble mean and model data. This is to be an intermediate step to enabling conditional verification (Alex, Andrew)
+       * scripts/procedure for preparation (offline-type) intermediate steps before verification computation
+         * selection of overlapping station list (to avoid non-overlapped stations)
+         * selection of overlapping cycle time (to avoid data gaps fpr days/cycles in one or several models)
+         * quality control of observation (gross error check and screening of obs data by N times of standard deviation error)
+       * Ulf and Xiaohua provide description of MONITOR on-the-fly steps leading to a reduced sample in MONITOR as example scenario to be considered in the HARP step for deriving 'sample of the current verirification' (Andrew, Alex, Ulf, Xiaohua)  implement gross error check at SQlite table
+ 
+ * Friday
+   * Wrap-up discussion 
+     * GLAMEPS
+       * One more check about ALARO-isba data flow, maybe associated with reduced spread with alaro members after initial time (surface model state changes in connection with surface analysis and start-state of forecast step) (Alex)
+       * short term actions about ALARO members for perturbation sensitivity 
+         * Alex to discussion with RMI colleagues on SLHD and HD settings, test actions with Xiaohua and Kai
+         * Lisa for settings needed with CA perturbations?
+       * Calibration of surface parameters
+         * The previous severe error with wind speed calibration is corrected now, but Thomas and John are still unsatisfied with the currently calibrated T2m and W10m, as the diurnal bias trend in both T2m and W10m have not been corrected and there is some degradation of W10m bias. These do not seemed to be explained by potential seasonal mismatch due to training data. Thomas continue working on it next week.
+         * Continued work by the calibration team to introduce dependency on 1) forecast length 2) spatial variation.
+       * Maintenance
+         * Kai analysed recent incidence with production interruptions and is in dialogue with ECMWF to improve operator instructions.
+         * In discussion about lack of 7/24 maintenance of the GLAMEPS production suite there was suggestion to explore involvement of NWP staffs taking similar duties for member services such as those at SMHI. It is suggested that perhaps some of these colleagues can be asked to help looking at log data and provide advices to the ECMWF operators. This needs to be further discussed between MG and member services.   
+       * Development option
+         * Sibbo will finalise the verification about singular vectors in HIRLAM components for full period and the outcome and recommendation to be discussed in the next MG meeting. Sibbo estimate that implementaiton of the option needs several weeks.
+   * Working session
+   * 13.00 end of ww
+  
+== Preparations ==
+
+* Basic working details
+
+  People should bring their own laptop.
+ 
+* How to get there
+  
+* Hotel
+
+
+* Dinner
+
+  Common dinner on Thursday 18.30 at SMHI, 300 SEK.

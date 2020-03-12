@@ -1,0 +1,265 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Development and tests of new near-surface diagnostics methods''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Modified diagnostic of relative humidity in cy43h/SURFEX8.1 ==
+
+Calculations of fluxes in cy40h/SURFEX7.3 are wrongly all related to saturation humidity over water even if surface temperature is below zero. This has been corrected for in cy43h/SURFEX8.1 but this correction also wrongly affected the diagnostic output of Rh2m (HU2M in SURFEX language). Thus, Rh2m output from cy43h is with respect to ice while observations of Rh2m are always with respect to water (WMO standard). Patrick has made a correction for this where near-surface specific humidity, QS, is used in the diagnostics instead of near surface relative humidity. In the diagnostics QS is now related to saturation humidity over water and not over ice. 
+
+Here is a test of the new HU2M formulation in offline SURFEX for the Marsta site north of Uppsala. Observed tower data at 29 m has been used to force SURFEX. Simulated HU2M with old formulation (black), new formulation (red) and observed HU2m (magenta) is shown for the beginning of 2018. New formulation fits better with observations although still overestimated.
+
+[[Image(HU2M_Marsta_2018.png, 30%)]]
+
+HARMONIE-AROME test for the old formulation (left), new formulation (middle) and new-old formulation (right). The pictures show one moment situation for 2020-01-01 12Z.
+
+[[Image(old_HU2M.png, 30%)]][[Image(new_HU2M.png, 30%)]][[Image(new-old_HU2M.png, 30%)]]
+
+== Adding a new T2m diagnostic formulation to SURFEX ==
+
+Our ALARO colleagues have added a modified Kullman T2m diagnostics into the arpifs part of the system by [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Diagnostics_development/dian_screeninter_pragueApr2016.pdf Martin Dian in Slovakia],
+i.e. a mix of our current Geleyn formulation (N2M=2) and a modified Kullmann solution. For stable surface layer situations (XRIMAX>0) it gives less cold T2m than the Geleyn formulation.
+
+This modified Kullmann solution is now implemented in cy43h, develop branch, as N2M=3. [https://hirlam.org/trac/changeset/142227f1406e7e14ec4516064561f7e2267a2634/Harmonie See this changeset].
+Thus, to activate it you need to change N2M setting in surfex_namelists.pm (two places). Please note that the modified Kullmann solution only has an effect on the stable surface layer. Thus you need to allow a stable surface layer to exists, i.e. with XRIMAX>0, for N2M=3 to have an effect.
+
+== Discussion on U10m wind issues in December 2016 ==
+
+'''Patrick's initial email on U10m wind issues December 6, 2016. Follow the discussion below'''
+
+Hi Wim, (cc Lisa and Mariken)
+
+ 
+In the development of cy401.2 we have introduced 2 patches over land, i.e. we separate forest and open land in grid boxes where they both exist and SURFEX calculates separate roughness length, momentum flux, U10m, … for each patch. When we run with 2 patches we have to remove the surface-layer canopy scheme in SURFEX (the one that introduces 6 more prognostic sub layers between the surface and lowest model level). Thus, with 2 patches U10m and T2m become diagnostic variables. Mariken has done a number of tests where one can see the sensitivity of removing canopy , adding HARATU, and adding 2 patches. See for example this period 20150201-20150310 over a Scandinavia domain:
+https://hirlam.org/portal/validation/40h1/twoP_export/
+ 
+If you look at “FC length ver” for “U10m” you see that AM25_oper (cy381.2, blue) and 40h11b5 (without HARATU, red) are very similar and give a positive wind bias. Then, removing the canopy scheme (nosbl, magenta) reduces wind speed. Then, adding HARATU (har, cyan) again reduces the wind. Then, adding 2 patches (twoP, red) also reduces the wind. So, finally we reach a negative bias wind speed   Other experiments show similar behavior.
+ 
+Our problem now is that introducing 2 patches (includes removing canopy model) generally gives better and very appreciated scores in other variables, like Rh2m and T2m, but U10m goes from slight positive bias to slight negative bias. So, the question to you is: Is there any possible tuning coefficient(s) in HARATU that could be used to increase U10m, hopefully without affecting other variables so much?
+ 
+Cheers,
+ 
+Patrick
+
+'''Response by Wim de Rooij'''
+
+Hi Patrick,
+
+Thanks for the results and the explanation.
+What is not clear to me is that when you seperate the two patches forest and open land and you use the open land (often grass?) for the output u10m, that the wind speed
+decreases...?
+When the underestimation of wind speed above land would be related to the turbulence it means that the scheme is mixing too little, however with the
+HARATU version in cy40 (the updated HARATU, HARATUUP) underestimation of mixing is unlikely.
+Maybe you can have a look at the representativiness of the used roughness lengths? Moreover, these kind of biases can be very domain dependent.
+What if you look at different sub domains? Does this give a clue?
+Succes and please do not hesitate to ask new questions!
+Wim
+
+
+'''Response by Patrick'''
+
+Hi Wim et al.,
+
+Yes, you are right, the decreased wind speed with 2 patches bothered us for a while. Especially in this corresponding experiment where I ran two simulations with the only difference between them is 1 and 2 patches respectively:
+https://hirlam.org/portal/smhi/HARMONIE_MONITOR/2_patches/index.html?choice_ind=0
+As you see in the Parameter list there are two wind variables “U10m” and “U10m 1 patch”. When using the second one the green 2-patches line represents U10m over open land only. The “U10m” is always land averaged.
+Here it is obvious that U10m decreases with 2 patches. The reason is (found by Karl-Ivar running MUSC) that grid averaged momentum flux increases, lowest atmosphere wind speed decreases (including U65 at 13 m height) and therefore U10 decreases over both forest and open land with 2 patches compared to 1 patch.
+Thus, should mean that the effective roughness length with 2 patches is larger than roughness length with 1 patch.
+
+Most sub-areas give similar behavior, see e.g. Denmark and NorthNorway in the Selection list.
+
+Cheers,
+
+Patrick
+
+'''Response by Geert Lenderink '''
+
+Hi Patrick,
+
+So, it seems that the diagnostics is not so trivial.
+Do you know how the 10 m wind is computed for the different patches. Is it interpolated from the lowest model levels, using local roughness, or is it interpolated from a "blending" height to 10 m. The later would be better, at least in principle. If it is done from the lowest model level you underestimate the "wind gain" from the smooth surface.
+
+Cheers,
+
+Geert
+
+'''Response by Patrick'''
+
+Hi Geert and Wim,
+
+It is the lowest model level that is used for all diagnostic quantities. Yes, that's right, U10m for a forest patch and for an open land patch will be "unrealistically" similar since lowest model level is at some 12-13 m. Blending height would be more physically correct but this is for future model development...
+
+There is a project ongoing here at SMHI where the intention is to run SURFEX offline for post processing of NWP forecasts but then use a higher forcing level to achieve more sub-grid horizontal gradients. It's not running yet so no experiences to share yet...
+
+Regarding my HARATU tuning question... How did it work when you came up with the final HARATU now used in cy40h. For example, was some tuning performed to reach good U10m scores? If yes, I assume it was done with the SURFEX canopy model activated since that is the current operational setting. Therefore, since we need to switch the canopy model off using 2 patches, I was wondering if some retuning of HARATU would be appropriate?
+
+Alternatively, or in addition, we could also question the roughness lengths. For example, we recently understood that some coefficient used in SURFEX for roughness over natural grass surfaces is simply a tuned coefficient. Look at details on this wiki page:
+https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Surface201604/Snow_assimilation_plans#SURFEXsettingsoffr_vegandz0_vegaddedbyPatrick
+Bolli has tuned the natural grass surfaces roughness and reached better U10m scores for Iceland in their version of cy38h.
+ 
+Cheers,
+
+Patrick
+
+
+'''Response by Wim'''
+
+Hi Patrick,
+
+thanks for your elucidating answer.
+I (and Geert) would suggest to improve on the diagnostic translation by using a blending height and impose the local (low) roughness from there.
+As you suggest you might investigate in better grass roughnesses but from 13 to 10m there is simply not enough room to effectively use this local roughness for the the derivation of u10m.
+A very easy way to make a better translation is use equation 3.4 in the 
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Diagnostics_development/WAF_deRooy_Kok_downscaling_wind.pdf attached paper] of myself and Kees Kok. It implicitly takes stability into account.
+It would be very easy to implement this (e.g. instead of 140m you might take some nearby model level) Plase keep us informed. This is an important issue.
+Kind regards
+Wim
+
+
+'''Response by Patrick'''
+
+Hi Wim, (now also including Ulf and Bent)
+
+Interesting discussion indeed!
+
+Before going into details I still would like to understand if the HARATU scheme in cy40h1.1 was ever tuned to achieve good scores for U10m as seen in the current Monitor verification system? Or was it tuned against U10m derived in any another way? It is important to understand this because all ongoing discussions on how cy40h1.2 tests should lead forward to a new final release are all based on Monitor verifications!
+
+Thanks for the paper! I have studied it now briefly. Ok, as you claim in the paper "By tuning the model roughness length of a grid box in order to get the right 10-m wind speed for a specific station, an ME may unintentionally be introduced". Ok, so one of the conclusions of this paper is that we should be very careful to interpret the U10m Monitor scores, right? The consequence of your study is that, in model development and in continuous verification studies, we should never verify grid averaged U10m against observed U10m! (Or any grid averaged quantity against its observed quantity).
+
+So, the project I mentioned, now running here at SMHI, where AROME output should force SURFEX offline using atmospheric forcing at some higher height (like blending height) is really supported by your paper (considering the physical approach).
+
+Hmhm, implementing your Eq 3.4 directly into the AROME/SURFEX context to replace current U10m diagnostic is a bit tricky but can be done of course if we consider it important... Now, with 2 patches being introduced, the model roughness length over open land should at least be more comparable to the true local roughness affecting the observed U10m. So, if we assume that this ECOCLIMAP open land roughness is fine, the "only" thing we have to do is to feed the diagnostic code in SURFEX with other atmospheric level data than lowest model level, right? If the instantaneous blending height can be estimated we could pick the most appropriate model level at each specific moment...
+
+But, all fluxes, like momentum flux, would still be calculated using the lowest model level which is also not physically realistic... and those fluxes are used for diagnostic u10m (T2m, q2m) so there would be an inconsistency...
+
+But, the most urgent question now: how much emphasize should we put on meeting U10m scores in Monitor on our way towards cy40h1.2???
+
+Cheers,
+
+Patrick
+
+'''Response by Geert'''
+
+Hi Patrick
+
+the scheme has NOT been tuned to achieve good scores with the verification system. The scheme uses matching with surface layer similarity as a basis - so mainly theory. There has been some tuning using CABAUW tower measurements,  mainly with the update, but also in an earlier state. That's all.
+
+Cheers,
+
+Geert
+
+
+'''Response by Patrick'''
+
+Hi Geert,
+
+Ok, then we should be even more careful "tuning" against Monitor U10m scores.
+
+Hmhm, just so I understand, how was the tuning using CABAUW tower measurements done? Running MUSC...?
+
+Thanks,
+
+Patrick
+
+'''Response by Geert'''
+
+The first step was a tuning with RACMO 
+
+Lenderink, G., and A. A. M. Holtslag, 2004: An updated length-scale formulation for turbulent mixing in clear and cloudy boundary layers. Q. J. R. Meteorol. Soc., 130, 3405–3427, doi:10.1256/qj.03.117. http://onlinelibrary.wiley.com/doi/10.1256/qj.03.117/abstract (Accessed January 21, 2012).
+
+The update was done with MUSC, but then only on a single cases basis  ... it was done only as to influence mixing over land over high wind situations.
+
+BTW Peter Baas also did some verification with the scheme against CABAUW (from what I remember it looked really good ...)
+
+Cheers,
+
+Geert 
+
+
+
+'''Response by Wim'''
+
+Hi Patrick and others,
+
+First an additional remark about the musc experiments.
+We concentrated on the wind profiles (against tower measurements) under high wind speed conditions
+We also experimented with 
+-using a more appropriate Cabauw roughness seeing a (dull) expected improvement in the absolute values of the wind speed.
+-some other conditions to check if they remain oke (and they did)
+
+Now about your other questions
+
+You are right. The model should use an adequate grid-box averaged roughness. Also, a perfect model will generally produce underestimations when compared with u10m from synops and therefore we need a synop station like diagnostic method to judge the model.
+
+Yes, as mentioned in the paper the blending height is e.g. lower for stable conditions and a you could take a lower model level in the equation. But as a first test to see the impact you can keep it simple (wind speeds are also small in very stable conditions). Although I realize thing are never simple in surfex...
+
+
+Hmm, I'm not sure I can completely follow you here. The momentum flux is, as it should, the grid-box aggregated one. You are right that the lowest model level is influenced by the grid-box momentum flux and stability. So this means that the stability correction from the model (that you use implicitly in eq. 3.4) can deviate somewhat from the approprate stability for the synop environment but  I think you can nicely deal with the first order representation mismatches.
+For T2m things are similar a bit more complicated I guess. On the other hand there is more height available (going from 13 to 2m) to translate the lowest model level to the synop-ilke environment.
+Note that it is no problem to use different ways to diagnose different near surface parameters as they are diagnostic and do not influence the model itself.
+Good luck!
+Wim
+
+p.s What is interesting is that by using HARATU instead of CBR, the diurnal cycle in the wind speed bias almost dissappeared and therefore the described statistical postprocessing in the paper would probably be less benificial.
+
+
+'''Response by Patrick'''
+
+Hi again,
+
+Puhh, model development keeping science level high and reach an acceptable release for NWP forecasting by some tuning is not an easy balance… 2 patches give improved and attractive scores for many regions and variables but not for wind… As Ulf pointed out, we sold cy40h1.1 to our community showing at improved U10m scores in Monitor so we cannot ignore now that the scores become a bit worse. Wind is too important… So how to proceed… Ok so we have scientific arguments why a negative U10m score in current Monitor should be “better” taking into account the fact how U10m diagnostic is now calculated, right?
+
+So, a conclusion from this discussion should be that an “honest” cy40h1.2 should include 2 patches in combination with modified diagnostic methods, right?
+
+Revising the diagnostic calculations in SURFEX referring to blending height certainly looks like a scientifically attractive way forward and I’m very tempted to try it out, but the implementation, test and validation of it would take quite some time… Thus, now it looks like a cy40h1.2 release including this is not realistic until earliest summer…
+
+Also, as already mentioned, until now the SURFEX canopy model has been activated over land for all developments and tests and Mariken has shown that switching it off, alone, gives lower U10m over Scandinavia (not sure about how it affects momentum flux…).
+
+Wim, my comment on inconsistency between fluxes and diagnostic calculations was based on an idea in my head that we should use level 65 (12.5 m) for fluxes but e.g. level 62 (90 m) for wind diagnostic. But, then U10m would be based on a mix of u62+v62 in combination with a u’w’ for which u65+v65 have been used… Alternatively, we give SURFEX our suggested blending height level for calculations of both fluxes and diagnostic. But then, the lowest model level at 12.5 m would be given fluxes that are calculated using another model level… Hmhm, would that be fine….?
+
+Hmhm, I should start utilizing MUSC, has not seriously entered it yet… Wim, I understood from Lisa that you will be here at SMHI next week. Would have been fun/useful to continue discussions. Would you have some time during the spring to engage yourself in our discussed diagnostic development? 
+
+Cheers,
+
+Patrick
+
+
+'''Response by Wim'''
+
+> Patrick: Monitor should be “better” taking into account the fact how U10m diagnostic is now calculated, right?
+
+yes.
+ 
+ 
+> Patrick: So, a conclusion from this discussion should be that an “honest” cy40h1.2 should include 2 patches in combination with modified diagnostic methods, right?
+
+yes
+ 
+> Patrick: Wim, my comment on inconsistency between fluxes and diagnostic calculations was based on an idea in my head that we should use level 65 (12.5 m) for fluxes but e.g. level 62 (90 m) for wind diagnostic. But, then U10m would be based on a mix of u62+v62 in combination with a u’w’ for which u65+v65 have been used… Alternatively, we give SURFEX our suggested blending height level for calculations of both fluxes and diagnostic. But then, the lowest model level at 12.5 m would be given fluxes that are calculated using another model level… Hmhm, would that be fine….?
+
+yes I think I understand what you mean. I also discussed it a bit with Fred Bosveld here (expert on surface layer theory) The default u13m wind is the result of the u* en H (sensible heatflux) stability of the grid box mean. So inprinciple we should not use that wind for our translation from blending height. To be more precise we could use an iteration to determine the local ustar (we already have the local the local z0 and H) to calculate wind from 90m to 10m. But this might be too complex/expensive? Maybe assuming the same stability correction model/local and only correct for roughness might be a nice first order.
+BTW 90m is indeed more appropriate as blending height (depends also on the hetereogeneity). John Wieringa (more or less the inventor I believe) is talking of generally 60m.
+
+
+'''Response by Wim'''
+
+Hi Patrick,
+
+Just a last remark about the improvements with Haratu. Is is not so much
+the bias improvement but more the removal of a diurnal cycle in the bias
+(present in all other models),
+the better profiles (Cabauw tower and radiosonds) and the better
+verification against scatterometer (above sea the representation
+mismatch does not play a role)
+that convinced us.
+
+Wim
+
+
+
+
+
+

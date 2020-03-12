@@ -1,0 +1,163 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-C/ALADIN Joint Working Week on GLAMEPS, HarmonEPS and HARP development for EPS''' =
+''KNMI, De Bilt. Monday 29 February - Friday 4 March 2016. ''
+
+[[Center(end)]]
+
+[[Image(20160303_214116.jpg, 30%)]][[Image(20160229_144630.jpg, 30%)]]
+
+More pictures in Attachments
+
+== Purpose ==
+
+First working week 2016 on GLAMEPS, HarmonEPS and HARP development for EPS. 
+Following are the main headlines:
+ 1. Discussions on work plan and priorities for 2016
+ 1. Operational GLAMEPSv2
+ 1. GLAMEPS upgrade to v3
+ 1. Calibration of GLAMEPS and HarmonEPS
+ 1. HarmonEPS perturbation experiments / HarmonEPS system
+ 1. HARP EPS development
+
+
+== Participants ==
+
+ || Name                 || Arriving || Leaving || Working with ||
+ || Inger-Lise Frogner   || Monday morning   || Friday afternoon  || HarmonEPS ||
+ || Alex Deckmyn         || Wednesday        || Friday            || GLAMEPS, HARP ||
+ || Geert Smet           || Monday           || Friday            || HarmonEPS     || 
+ || Andrew Singleton     || Monday           || Friday            || HarmonEPS, HARP ||
+ || Kai Sattler          || Monday           || Thursday          || GLAMEPS ||
+ || Jose A. Garcia-Moya  || Monday           || Friday            || HarmonEPS, HARP ||
+ || Jesus Rodriguez      || Monday           || Friday            || Calibration ||
+ || Maurice Schmeits     || Monday           || Thursday          || Calibration ||
+ || Thomas Nipen         || Monday           || Friday            || Calibration ||
+ || John Bjørnar Bremnes || Monday           || Friday            || Calibration ||
+ || Åke Johansson        || Monday, Tuesday and Friday           ||            || Verification, HARP ||
+ || Sibbo van der Veen   || Monday           || Friday            || GLAMEPS, HarmonEPS ||
+ || Ole Vignes           || Monday lunch     || Friday afternoon  || HarmonEPS ||
+ || Juha Kilpinen        || Monday lunch     || Friday afternoon  || Calibration ||
+ || Karolina Hämäläinen  || Monday lunch     || Friday afternoon  || Calibration ||
+ || Janne Kauhanen       || Monday lunch     || Friday afternoon  || Calibration ||
+ || Bent Hansen Sass     || Monday           || Thursday          || GLAMEPS, HARP ||
+ || Ulf Andrae           || Monday           || Friday            || HarmonEPS ||
+ || Björn Stensen        || Monday           || Thursday          || HarmonEPS || 
+ || Kirien Whan          || Monday, Tuesday and Friday  ||        || Calibration ||
+ || Jeanette Onvlee      ||                  ||                   || Hirlam C PM ||
+
+== Agenda == 
+ * Monday
+   * 1300 Welcome
+   * HarmonEPS presentations:
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/WW-Predict-gSREPS-0216.pptx gSREPS]: Jose A
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/presentationCPEPS_GLAMEPSww_spring2016_Geert_Smet.pdf Toward a convection-permitting RMI-EPS]: Geert
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/MEPS_20160229.pdf MEPS]: Ulf
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/AndrewECLBCandSLAF.pdf SLAF/inflated IFS ENS exp]: Andrew
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/HEPS_MP_WW_Bjorn.pdf First test with multi-physics]: Bjørn
+   * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/GLAMEPS_version_2_operation_status.pdf Status of GLAMEPS V2 operation]: Kai
+   * Calibration perentations:
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/GLAMEPS_calibration_status_201602.pdf Calibration of GLAMEPS status] John Bjørnar
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/EnsembleCalibrationHIRLAM.ppt Ensemble calibration]: Jesus
+   * Discussions of what system updates (HarmonEPS) to achieve this week
+       * Create a boundary strategy using IFS ENS boundaries saved for GLAMEPS, based on Andrew's experiment. '''DONE'''
+        * Introduced in r14724. Activated through the use of BDSTRATEGY=eps_ec
+       * Include Pertsurf program from MF in HarmonEPS. '''DONE'''
+        * Introduced in r14725. Activated by setting PERTSURF=model in sms/config_exp.h. Further tuning in scr/PertSFC.
+       * Clustering of ENS the COSMO-way.
+        * Clustering algorithm working, needs to be evaluated. 
+        * An example experiment with a first version of the clustering can be found under 
+          {{{
+             /home/ms/spsehlam/hlam/hm_home/IFSENSBoundaries_MetCoOp_clust
+          }}}
+       * Clustering of SLAF - can we do something about that? Need to discuss first, then there might be need for some script changes.
+        * Fresh results with SLAF using a constant 6h lag shows much less clustering of the +/- members
+       * Easier warm start from spinup in HarmonEPS
+        * Work started
+       * Speed up of bnd from mars 
+   * HARP:  [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/HARP-developments-1.pptx Ideas for possible future evolution of verification]: Bent
+   * Working session
+   
+ * Tuesday
+   * Working session
+   * 0930-1100: Calibration discussions
+    * For SRNWP EPS Phase II a calibration tool is to be developed. Discussed if what is developed for GLAMEPS can be used as a basis. This week Jesus to get acquainted with the software. Use in SRNWP EPS phase II needs to be discussed with Council because of data policy issues, action: Jeanette
+    * FMI are currently working on calibration for wind energy sector and solar energy sector, calibrating EC ENS with Hirlam software. Plan to introduce new variables: 100m wind speed, radiance/cloudiness. They also plan to start calibrating HarmonEPS.
+    * Kirien is emplyed at KNMI for working with calibration of extreme precipitation - this week to work together with Thomas on calibration of precipitation.
+    * Main goal this week: 1) introduce more spatial dependence in the calibration. Status on Friday: technical work on better modelling of spatial variance almost finished. Included are models land-sea mask, elevation, roughness and local calibration using observations. Additional possibilities are: soil temperature, soil moisture and high resolution topography. Further work will focus on finding the best configuration and evaluate. Aim is to replace with what is operational now.  
+    * Main goal this week: 2) introduce calibration of precipitation. Status on Friday: Technical work finished and evaluation done. To be included in the operational calibration, but for some time only be showed on the test web page and not the main web page. Some plots can be found on this page under Attachment.
+   * 1100-1230: HarmonEPS discussions, with focus on plans and resources for 2016 
+       * Boundary perturbations (SLAF/Random filed pert/IFS ENS and new ideas)
+        * Many experiments run comparing SLAF and IFS ENS. SLAF scores generally better than using IFS ENS as LBCs. A tendency for clustering for SLAF is reduced with keeping the lag at 6 hours.
+        * Experiments with clustering of IFS ENS the cosmo-way remains. 
+       * Surface: plans for experiments and cooperation with MF
+        * Experimentation about to start. One exp without any LBC perturbations to see the effect of the surface perturbations and one with both.
+        * Meeting with MF is planned in Bologna in May.
+       * Multi-physics: status of exp and plans for cooperation with Lace
+        * See Bjørns presentation for multi-physics with Arome. Work with Lace will be discussed at ASW.
+       * EDA
+        * No new results. Would like to compare EDA, LETKF and 4DVar. Only possible if LETKF is available in cy40 -> needs to be checked.
+       * Process related perturbations?
+        * Sibbo estimates experimentation can start before summer.
+       * Initial perturbations
+         * Tests started with perturbation of initial state according to {{{ IN = AN_c + k *( FG_c - FG_m ) }}} with the hope to retain the small scale information from the members.
+ * Wednesday
+       * Working session
+       * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2016-1/GLAMPES_version_3_development.pdf GLAMEPS version 3 development]
+       * 1000 - ??? Discussions on GLAMEPS (Alex arrives on Wednesday)
+        * GLAMEPSv2 continues to score as good as or better than IFS ENS.
+        * GLAMEPSv3:
+         * 1h output - OK
+         * new domain - OK
+         * new resolution - OK (Hirlam 0.05 deg, Alaro ~6km) 
+         * Reduce number of members from 52 to 36 (5+1 from each sub-ensemble). As in HarmonEPS clustring the COSMO-way can be an option. Not to be tried before release of v3.0, but could be for v3.1
+         * AloEPS changes: upgrade to cy38 (from cy37) priority. Status on Friday: running and work almost finished. Validation needed. Inflation of initial perturbations will be tried, should be straight forward. Alex also to look at Pertobs.
+         * CAPE-SVs (in HIRLAM): what is remaining is to implement normalization and adding the perturbations to the analysis, telephone conference between Sibbo and Kai to fix this. 
+         * v3 x1.8 more expensive that v2
+         * Aim to start parallel run with v3 before 1. May. Can afford about 3 months of parallel runs. Replace v2 by v3 around 1. August. 
+         * Kai will ask ECMWF for more disk space 
+         * ENS is available 4 times a day. Will not be tested now due to timing issues. Could be an option for v3.1
+       * After lunch: HARP EPS discussions.
+         * It is about a year since release of HARP v1 and v1.1. Updates such as ability to read vfld files, plots by country and plotting of number of cases, as well as numerous stability improvements and bug fixes are in the master branch, but not in the tagged version. Need for a tagged v1.2. Andrew to contact Daniel about this, after including (basic) quality control of observations.
+         * SQLite tables in HARP as they are are quite inflexible and can be cumbersome in terms of downstream reading of data. A more flexible design will be experimented with, although it is expected that there will be an impact on file size that may need to be taken into consideration. This will require a release of v2.0
+         * Like to change mailing list from harp<at>glameps.org to harp<at>hirlam.org - Andrew to ask Daniel 
+         * Åke worked on the issue for verification that the observations are not uniformly distributed
+         * Spatial verification: After v2.0 of HARP has been established it is the plan to make a coordinated effort
+           on HARP spatial verification. The ingredients for making spatial verification scores such as Fractions Skill Score
+           have been available for a long time, but not in a form which allows general use. The main component requiring 
+           work is the processing of model data and satellite data to a common file format which can then be further
+           processed with the available verification package. 
+           It is suggested to start with the processing of cloud mask data, e.g. based on MSG Nowcasting SAF.
+           Later on it is the goal to process radar data. To be general enough it is necessary to process
+           data on a European scale. Also field storage needs to be taken into account if verification 
+           is to be made for a historical period. It was suggested to use R-programming to transfer model fields
+           and observation fields to the same grid. However, this requires availability of staff resources with 
+           knowledge of R-programming. Alternatives are Python and Fortran.  Bent will contact Christoph from ZAMG 
+           to envestigate the possible availability of ALADIN staff to participate in the remaining work. The spatial
+           verification based on HARP will be discussed further at the ALL-Staff workshop in Lisbon. It is the ambition
+           to make progress on HARP spatial verification as soon as possible and gather involved staff resources 
+           later this year for a coordinated effort.
+   
+     * Thursday
+     * Working session
+     * 19.30: Dinner at Restaurant Umami, Utrecht.
+
+ * Friday
+     * Working session
+     * Report from TAC subgroup on verification: Åke (see attachments)
+     * Wrap-up discussions and close of working week
+      * Next working week will be this autumn at FMI, Helsinki. Time to be decided by Doodle poll before summer. 
+       
+== Preparations ==
+
+* Basic working details
+
+  People should bring their own laptop.
+
+* Hotel
+ 
+ https://www.biltschehoek.com/ 
+
+ http://www.starlodge.nl/ 
+
+ http://www.mitland.nl/ 

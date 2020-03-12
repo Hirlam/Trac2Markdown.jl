@@ -1,0 +1,152 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Copenhagen, 12th - 16th December 2016''
+
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+== Practical ==
+
+The HARMONIE system Working Week will take place in the Danish Meteorological Institute (DMI),Lyngbyvej 100
+2100 Copenhagen,Denmark in conjuntion with [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/HarmonieSystemTraining2016 Hirlam-C Training Week on HARMONIE verification and validation tools]
+
+
+Working week will start on Monday 12/12/2016 at 13:00 in the meeting room ( ), 
+
+* Participants, arrival, departure, hotel:
+ * AEMET: Daniel Santos, Sunday ~1900, Friday ~1800. Hotel Ibsen
+ * SMHI: Ulf Andrae, Patrick Samuelsson, Sunday-Friday, Hotel Wakeup, Borgergade
+ * METIE: Eoin Whelan, Tuesday morning - Thursday night, Hotel Ibsen
+ * KNMI: Toon Moene, Tuesday morning, Friday afternoon, Hotel Ibsen
+ * MET Norway: Ole Vignes, Monday morning - Friday afternoon, Hotel Wakeup, Borgergade
+
+
+ === Transport ===
+
+
+
+
+ === Accomodation ===
+
+* Proposed accommodation  
+ * '''Ibsens Hotel''', Vendersgade 23, Copenhagen, 1363 Danmark: -
+   0,3 km to Nørreport Station 1,0 km to Centre
+ * '''CABINN Scandinavia Hotel''', Vodroffsvej 55, Frederiksberg, 1900 Danmark: -
+   1,0 km to Nørreport Station 1,0 km to Centre
+ * '''Copenhagen Mercur Hotel''', Vester Farimagsgade 17, Copenhagen, 1606 Danmark: -
+   1,0 km to Nørreport Station 0,4 km to Centre
+ * '''First Hotel Twentyseven''', Løngangsstræde 27, Copenhagen, 1468 Danmark: -
+   0,9 km to Nørreport Station 0,3 km to Centre
+ * '''Hotel Østerport''', Oslo Plads 5, Copenhagen, 2100 Danmark: -
+   1,3 km to Nørreport Station 2,1 km to Centre
+ * '''Richmond Hotel''', Vester Farimagsgade 33, Copenhagen, 1606 Danmark: -
+   0,8 km to Nørreport Station 0,5 km to Centre
+ * '''Wakeup Copenhagen Borgergade''', - Borgergade 9, Copenhagen, 1300 Danmark:
+   0,8 km to Nørreport Station 1,2 km to Centre
+ * '''Wakeup Copenhagen Carsten''' Niebuhrs Gade,- Carsten Niebuhrs Gade 11, Copenhagen, 1577 Danmark:
+   1,8 km to Nørreport Station 1,0 km to Centre
+
+
+== Preliminary Agenda ==
+
+- Model placement on ECMWF and improvement model compilation- Daniel and Ulf
+  - Preliminary correction explained in [http://hirlam.org/index.php/forum/2-harmonie-system/1256-preliminary-correction-on-harmonie-arome-placement Forum]
+  - Check new versions of interface generation (make_intbl.pl) 
+  - XC40 vs XC30 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/System201612/XC40%20PBS%20settings.png Table]
+
+- Constant files and data base organization under /project/hirlam/harmonie 
+  - Links are created to reduce space and to ensure that there are some files that are equal between versions
+  - New reorganization related with FLAKE -Ulf, Patrick and Katya. Committed in [15523].
+
+- Dynamical suites(tdf) and variable treatment in ecFlow. Known problems. - Ole
+     - LL, LL_CLA were created for mSMS and now in ecFLOW several suites can run in the same server and these variables can be inherited for other experiments
+     - More modularity using $SCHEDULER variable to avoid loading variables in the server.
+     - This fix will be included in 40h1.1.bf.1 and  back ported as 38h2.1.bf.1
+
+- Joomla upgrade for hirlam.org - Ole, Trygve, Martynas and DMI IT department
+      - Among software a HW upgrade is needed
+      - The hiram.org server setup is documented in [https://hirlam.org/trac/wiki/SystemOnly/WebServer wiki]
+      - The Joomla DB can be transfer to Joomla 3.6.x - Martynas
+      - Backup of hirlam.org in DMI - checked by 
+      - Send a list of software, space and services to DMI to establish approximate year cost of maintenance the server
+      - System people requieres some administrative authorizations in the server that are difficult in Public Met Services facilities.
+      - Evaluate the possibility of comercial provider (Cloud) or other Met Service.
+      - The data for verification and validation was stored in hiram.org. Evaluate other possibilities like ECMWF and the current size of data -Xiaohua
+      - Determine the compatibility between Joomla 3.x and Ubuntu 3.x to avoid security vulnerabilities  - Martynas 
+ 
+- Use of the testbed and ensemble suites for model developers/scientists i.e. DA - Roger and Ole
+      - Roger made some successful tests using EPS suite for testing MTEM. 
+      - New wiki about this testing procedure will be available.
+ 
+- Tutorial and model docs in pdf - '''Eoin''' - "Not started but not forgotten"
+  - Set of video tutorials to introduce different parts of Harmonie-Arome system  
+
+- !EpyGram and Vortex libraries, Alexander Mary
+ * Instructions and documentation on how to create suitable FA libraries with Makeup. [wiki:HarmonieSystemDocumentation/HarmonieSystemTraining2016/EPyGrAM#BuildsharedlibrariesforEPyGrAM First attempt] - '''Eoin''' - "Works (with minor modifications) on local Linux server. Will try to build library on ecgate (using MUSC branch)."
+ * [https://opensource.cnrm-game-meteo.fr/projects/epygram https://opensource.cnrm-game-meteo.fr/projects/epygram]: EPyGram wiki
+ * [https://opensource.cnrm-game-meteo.fr/projects/epygram/wiki/Vortex_packages https://opensource.cnrm-game-meteo.fr/projects/epygram/wiki/Vortex_packages]: Vortex information
+
+- New scripting design: Vortex,PrepIFS, Harmonie scripting, Python 
+   - Design phase by python experts join with system experts
+   - Check Olive (web interface) and Vortex (py script generator) setup in MF
+   - Use of XML in OOPS must be checked
+   - Maintain a single scripting system for research and operations
+   - How to facilitate the model use for Universities
+   - The new ODB-API also has a python interface. 
+   - Obsmon2 is today based on R and the R-package called shiny which creates the HTML/server framework. Bokeh (http://bokeh.pydata.org/en/0.12.3/) which has many of the   same functionalities as shiny. 
+        - The main advantage will be a visualization tool for offline and online direct visualization of the ODB content. 
+        - The disadvantage would be that verification and observation monitoring will diverge and users need to learn more tools.
+
+- Alaro + SURFEX - 
+ 
+- SVN 2 GIT: Kai and Rimvydas  
+   - Connect Hirlam GIT repository with MF GIT is posible (vendor)
+   - Preserve the SVN history is possible some manual intervection is necessary in subbranches.
+   - Best practices and documentation about how to GIT commits
+   - Possible SVN deadline after relising harmonie 40h1.2 
+   -  43h1 will be the first master GIT
+   - Tagging from the master branch and other development branch 
+   - Inform users/developers about SVN deadlines and if they want to port their branches  
+   - Toy setup to test connection with MF. Cheery picking is necessary to only transfer in src directory
+   - Sub repositories are possible
+    
+- cy40h1.2 status - Patrick 
+     -  The fist preliminary date for tagging rc1 (15/01/2017) will be delayed due to the problems of v10 diagnostics in 2 patches
+
+- cy43h status -Niko
+   - Compiles in cca
+   - Problems with some grub_api templates during climate file generation
+   - The problem has been skipped using Gribex and making some code modifications.
+
+- DA starting kit - Roger 
+   - After last videoconf between Aladin, Hirlam and MF a minimun target (SFX DA and blending) was decided a Workshop to discuss following steps will be held in 1Q 2017.
+
+- Single vs double precision and IO server upgrade - Niko & Ole?
+     - Evaluate how difficult to back port to cy40
+
+- 40h1.1 Bugfix version and backport submit.ecgb-cca config.ecgb-cca  and choose_PrgEnv.cca to cy38h.1.2. - Daniel
+     - New harmonie-40h1.1.bf.1 version will be release with the new ECMWF HPC settings and a fix for env variables for ecFLOW
+     - New harmonie-38h2.1.bf.1 version will be release back porting the new ECMWF HPC settings and a fix for env variables
+     - Both of then will be reproduce the current 40h1.1 and 38h2.1 results. Not technical or bug fixes that change results will be included.
+ 
+- [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/System201612/diff_mcp_vs_trunk.txt Suggested changes from MetCoOp]. Committed in [15547].
+  * [https://hirlam.org/pipermail/testbed/2016-December/001627.html Testbed results]
+
+- GLAMEPS V2 and V3: Kai, Toon and Daniel
+      - 1 WW in January-February to transfer V2 and testing V3 
+      - 2 WW to switch between V2-V3
+      - Kai has 1 PM to support these transfer WW and Phone/Video meetings
+      - Alex will stop the dev and only will be available for maintenance purposes.
+ - Scalability -Jacob and Per
+      - Bull-Atos profiled Harmonie for AEMET
+      - Jacob and Per will sent some comments about the model performance.
+      - Simplification, non-spectral dynamical core, increasing OMP parallelism could be necessary in the future.
+      - ESCAPE project has good scalability results in ACRANEB and variable resolution grids - Bent 
+      - Some time from ESCAPE could be assigned to analyze Harmonie-Arome.
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

@@ -1,0 +1,83 @@
+= Scientific Document Template =
+`[`last modified: [[LastModified]]`]`
+
+[[PageOutline(2-3, Contents, inline)]]
+
+
+
+== Introduction ==
+
+This template has been written in order to facilitate for a quick start when writing a wiki document with some scientifc content like images, equations and references. You can use this document by copying it
+using "Download in other formats" at the bottom of this page. The plain text version will be shown in your browser window, from where you can save the text to a file or copy the content into the copy buffer for further use [[FootNote(This template page makes use of several macros (like this footnote macro), which have been added to the Hirlam wiki page in the hope that they will be useful. The aim of this page is to demonstrate their usage. A list of the macros can be found in WikiMacros)]].
+
+
+Please note that the formatting capabilities are limited. If you write a complex document, you should probably rather use an advanced Text processing system that is capable of producing HTML, too.
+
+
+
+== The Contents section ==
+
+Note that the "Contents" section above is created automatically by the macro `PageOutlines()`, in which you can specify what section levels to be shown, as well as the title and the display format. See WikiMacros for details.
+
+
+
+== Useful elements ==
+
+
+=== Internal links ===
+
+Sometimes you want to include a reference to another section of the document, like for example the [[ref(References)]], or alternatively [wiki:ScientificDocumentTemplate#References the reference list].
+
+References to a figure like [wiki:ScientificDocumentTemplate#figxiaohua Fig. 1], or to a table (see [wiki:ScientificDocumentTemplate#table Table 1]) are also possible, but the current implementation is not very convenient yet (sorry).
+
+
+=== Figures ===
+
+The following figure from Xiaohua (2005) is included with the help of the macro `Image()` (see WikiMacros for details):
+
+[[Center(begin)]]
+[[Image(mslp_ana_20050108.png, nolink, align:center, border:solid 1px)]]
+
+[[Color(green, Fig. 1: OPR analysis of MSLP for 18 UTC, Jan 8, 2005.)]]
+[[Center(end)]]
+
+Please note also that the figure including it's caption have been centered using the Center() macro. The caption has been chosen in color green, which is accomplished by the Color() macro. Labeling and automatic numbering of figures or tables is not implemented (yet).
+
+
+=== Tables ===
+
+Tables are handled like figures. The following table is from [wiki:ScientificDocumentTemplate#References Undén et al. 2002] and
+created using simple WikiFormatting:
+
+[[Center(begin)]]
+|| JTYPE || subtype               || note              ||
+|| 1     || sea or inland water   ||                   ||
+|| 2     || sea or inland ice     ||                   ||
+|| 3     || bare land             ||                   ||
+|| 4     || low vegetation        ||                   ||
+|| 5     || forest                ||                   ||
+|| 6     || snow                  || to be implemented ||
+
+[[Color(green, Tab. 1: The surface subtypes in Hirlam.)]]
+[[Center(end)]]
+
+
+=== Equations ===
+
+(to be added)
+
+
+
+== References ==
+
+Undén, P.; Rontu, L.; Järvinen, H.; Lynch, P.; Calvo, J.; Cats, G.; Cuxart, J.; Ereola, K.; Fortelius, C.; Garçia-Moya, J.A.; Jones, C.; Lenderlink, G.; !McDonald, A.; !McGrath, R.; Navascues, B.; Nielsen, N.W.; Ødegaard, V.; Rodriguez, E.; Rummukainen, M.; Rõõm, R.; Sattler, K.; Sass, B.H.; Savijärvi, H.; Schreur, B.W.; Sigg, R.; The, H.; Tijm, S.; 2002:
+HIRLAM-5 scientific documentation.
+[[br]]
+''HIRLAM-5 project Norrköping'',144pp.
+
+Xiaohua Yang, 2005:
+Background blending using an incremental spatial filter.
+[[br]]
+''Hirlam Newsletter'', '''49''', 3-11.
+
+[[FootNote]]

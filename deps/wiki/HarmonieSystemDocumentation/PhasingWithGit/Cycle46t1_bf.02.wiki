@@ -1,0 +1,304 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Cycle 46t1_bf.02 phasing information using our git repository''' =
+[[Center(end)]]
+
+= Introduction =
+
+This page specifies the steps undertaken to merge Cycle CY46T1_bf.02 into our git repository.
+
+Cycle Master: Toon Moene.
+
+Check the first phasing attempt for some more details [wiki:HarmonieSystemDocumentation/PhasingWithGit/Cycle46]
+
+== Quick path to a decent merge ==
+
+The following steps brings us a merge repository
+
+{{{
+
+git clone https://git.hirlam.org/HarmoniePhasing
+cd HarmoniePhasing
+git checkout develop
+git remote add public https://git.hirlam.org/Harmonie
+git remote add arpifs ssh://reader054@git.cnrm-game-meteo.fr/git/arpifs.git
+git pull public develop
+git push origin develop
+git checkout -b pre-CY46h1
+git fetch arpifs master:mf-master
+git checkout mf-master
+git fetch arpifs CY46T1_bf.02:mf-CY46T1_bf.02
+git push origin mf-CY46T1_bf.02      # Make the branch part of our shared phasing repository
+git checkout pre-CY46h1 
+git config merge.renameLimit 50000
+git merge -s recursive -Xsubtree=src mf-CY46T1_bf.02
+}}}
+
+This leads to loads of conflicts that we've decided to deal with later. Let's add these to the repository
+
+{{{
+git status > log
+}}}
+
+Keep all references to files after the "# Unmerged paths:" line
+
+{{{
+...
+#
+# Unmerged paths:
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#
+#       both modified:      src/aeolus/support/height_conv.F90
+#       both modified:      src/aladin/c9xx/ebicli.F90
+#       both modified:      src/aladin/c9xx/eincli9.F90
+#       both modified:      src/aladin/coupling/ecoupl2.F90
+...
+}}}
+
+Now we can add all files, but remove some references to links
+{{{
+cat log | cut -d":" -f2  | cut -d">" -f1  | grep -v " -" | xargs -l1 git add
+}}}
+
+Commit 
+{{{
+git commit
+}}}
+
+Publish the branch
+
+{{{
+> git push origin pre-CY46h1
+Username for 'https://git.hirlam.org': uandrae
+Password for 'https://uandrae@git.hirlam.org': 
+Counting objects: 3190, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (1375/1375), done.
+Writing objects: 100% (2159/2159), 1.51 MiB | 1.85 MiB/s, done.
+Total 2159 (delta 1767), reused 950 (delta 758)
+To https://git.hirlam.org/HarmoniePhasing
+ * [new branch]      pre-CY46h1 -> pre-CY46h1
+}}}
+= Example of committing a fix =
+Workflow for committing a fix is detailed below
+== Make your own, local pre-CY46h1 branch ==
+{{{
+mkdir ~/CY46-phasing
+cd ~/CY46-phasing
+git clone https://git.hirlam.org/HarmoniePhasing
+cd HarmoniePhasing/
+git checkout pre-CY46h1
+}}}
+
+We also need the Meteo-France reference version to compare with
+
+{{{
+mkdir ~/CY46-MFref
+cd ~/CY46-MFref
+git clone https://git.hirlam.org/HarmoniePhasing
+cd HarmoniePhasing/
+git checkout mf-CY46T1_bf.02
+}}}
+Note that Meteo France's repository contains what is in our repository's "src" directory.
+
+== Be prepared ==
+Before starting to work on committing your next fix, do not forget to synchronize your local pre-CY46h1 branch with the one at hirlam.org:
+{{{
+git pull origin pre-CY46h1
+}}}
+== Example: project 'algor' ==
+The work necessary to fix project 'algor' involved several argument lists in
+4 files (see [https://hirlam.org/trac/changeset/dcd7b6b9a51fb27a251772ae5bfc69ae6f40b230/HarmoniePhasing dcd7b6]). Once edited out these are the git commands:
+== Commit fixes locally ==
+Commit, adding all modified files (-a) with the commit message (-m) supplied.
+{{{
+git commit -a -m "Resolve merge conflicts: take theirs"
+}}}
+== Check status ==
+{{{
+git status
+}}}
+== Push the changes to hirlam.org ==
+{{{
+git push origin pre-CY46h1
+}}}
+= Sharing of work =
+
+== Mitraillette tests on cca ==
+ * GMAPDOC: [https://www.umr-cnrm.fr/gmapdoc/IMG/pdf/doc_mitraillette_v122018.pdf MITRAILLETTE CY46T1]: ENVIRONNEMENT FILES AND USER’S GUIDE. VERSION v122018 available on [https://www.umr-cnrm.fr/gmapdoc/spip.php?article162 https://www.umr-cnrm.fr/gmapdoc/spip.php?article162]
+ * Scripts and namelists:
+{{{
+$HM_LIB/src/validation/mitraille
+#
+# For example MUSC:
+#
+$HM_LIB/src/validation/mitraille/protojobs/L1_FCST_HYD_SL2_VFD_AROPHY1D.pjob
+$HM_LIB/src/validation/mitraille/namelist/L1_FCST_HYD_SL2_VFD_AROPHY1D.nam
+$HM_LIB/src/validation/mitraille//namelist/L1_FCST_HYD_SL2_VFD_AROPHY1D.selnam_exseg1
+}}}
+
+ * Reference data at ECMWF (Oct 2 2018):
+{{{
+ec:/hirlam/mitraillette/cy46_data
+}}}
+ * We are missing 
+   * const/rrtm_cst/V02
+   * const/ecoclimap/V8.0, probably not valid since we are running V8.1
+ * We need a binary compiled the same way to compare T and H versions
+ * Namelist changes from CY36 to date are documented in $HM_LIB/src/validation/mitraille/doc/history_difnam
+
+ * [wiki:HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02/mitraillette_tests Test results ]
+
+
+== Full Harmonie tests ==
+
+||= Task               =||= Comment                                                                              =||= On it =||= Commit(s)                              =||= Status                                                          =||
+||Forecast with fullpos || Fails in fullpos setup. POSTP set to none for the time being.                          ||         ||                                          ||!EoWh: Fullpos OK on local server but SURFEX_LSELECT is not        || 
+||Canari                || ABORT!   10 CAREDO : ERROR 1                                                           ||!EoWh    ||[changeset:3df65f/HarmoniePhasing 3df65f] ||!EoWh: issue avoided for now. Further investigation required.      ||
+||Screening             || BLINIT: INVALID USER SYMBOL(S) FOUND                                                   ||         ||[changeset:803453/HarmoniePhasing 803453] ||FIXED     ||
+||Screening             || Crashed in src/arpifs/obs_preproc/gefger.F90 with SYNOP data (suspect ODB)             ||!EoWh    ||                                          ||          ||
+||Minim                 || Fails in namelist reading: "Cannot match namelist object name lqscatt"                 ||!EoWh    ||[changeset:646b3e/HarmoniePhasing 646b3e] ||FIXED     ||
+||Minim                 || Fails in hjo.F90                                                                       ||         ||                                          ||          ||
+||Climate               || gl not reading/writing SURFEX FA correctly due to a bug in lficap. (PGD and PREP OK).  ||         ||[changeset:a46aca/HarmoniePhasing a46aca] ||FIXED     ||
+||Forecast              || Fails in namelist reading                                                              ||         ||[changeset:ae44ec/HarmoniePhasing ae44ec] ||FIXED     ||
+||LSmixBC               || ECHIEN ERROR : ECHIEN(..., KINF=1,...) HAS BEEN REPLACED BY ERIEN(...)                 ||         ||[changeset:e2906f/HarmoniePhasing e2906f] ||FIXED     ||
+
+== Unique files in theirs and ours ==
+
+List of files only present in either theirs or ou repository. The list does not include things not normally included in our repository (cope,scripts,obstat,scat,...). Since surfex is of different origin that's excluded as well. We need to find out if the missing files is correct and that extra files should be kept.
+
+* [wiki:HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02/unqique_mf Unique CY64T1_bf.02 ]
+* [wiki:HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02/unqique_harmonie Unique pre-CY46h1 ]
+
+== Resolving FIXME ==
+
+ * Still 23 files with FIXME 
+
+||= Project      =||= Comment                              =||= Working on it =||= Commit(s) =||= Status =||
+||arpifs          ||#ifdef FIXME, SPP changes ... ||           ||             || ||
+||arpifs          ||#ifdef FIXME, YOMFPHOLD changes ... ||!UlAn            ||             || ||
+||odb             ||#ifdef FIXME - take changes from MF to make it compile || !ToMo     ||[changeset:744ca9/HarmoniePhasing 744ca9] ||FIXED ||
+||odb             ||#ifdef FIXME - needs module CONTEXT from arpifs/cma2odb/context.F90 || !ToMo ||[changeset:cfae86/HarmoniePhasing cfae86] ||FIXED ||
+||mpa             ||#ifdef FIXME - aro_adjust.F90, aro_rain_ice.F90, rain_ice_old.F90 (LGRSN) || !ToMo || || ||
+
+
+== Compile by project ==
+
+By command line compilation with makeup we can "sort of" share the work. Make sure to have the right environment loaded.
+
+{{{ 
+make PROJ=crm
+}}}
+E.g., on Toon's laptop - running Debian Testing with gcc/gfortran 9.2 (assuming a 'build' directory next to !HarmoniePhasing):
+{{{
+(cd build; cp -Rv ../HarmoniePhasing/. .; ./util/makeup/configure config.linux.gfortran.mpi; cd src; make -f main.mk COPT= PROJ=crm)
+}}}
+(the COPT= is necessary to be able to build the output of the blacklist compiler).
+
+||= Project      =||= Comment                                             =||= On it =||= Commit(s) =||= Status =||
+|| aeolus         ||                                                       ||!ToMo    ||N/A ||DONE ||
+|| aladin         ||took utility/create_pert.F90|read_pert.F90 from theirs ||!ToMo    ||[changeset:69c305/HarmoniePhasing 69c305]||DONE ||
+|| algor          ||No changes needed                                      ||!BeUl    || -  ||DONE ||
+|| arpifs         ||Compiles with FIXME and FEMARS_OR_NOT ifdefs           ||!EoWh    ||    ||DONE (I think). Checking full build now ...  ||
+|| biper          ||No changes needed                                      ||!BeUl    || -  ||DONE ||
+|| blacklist      ||No changes needed                                      ||!BeUl    || -  ||DONE ||
+|| coupling       ||No changes needed                                      ||!BeUl    || -  ||DONE ||
+|| crm            ||Interference with utilities/mten                       ||!UlAn    ||[changeset:8ac295/HarmoniePhasing 8ac295]   || DONE ||
+|| ecfftw         ||N/A .Makefile.ecfftw: No such file or directory        ||         ||    ||DONE ||
+|| etrans         ||No changes needed                                      ||!BeUl    || -  ||DONE ||
+|| ifsaux         ||                                                       ||         ||    || DONE ||
+|| ifsobs         ||Integer type mods for HDF5                             ||!BeUl    ||[changeset:5eb5d1/HarmoniePhasing 5eb5d1] ||DONE ||
+|| mpa            ||Some FIXME's left                                      ||!ToMo    ||[changeset:2bf4c8/HarmoniePhasing 2bf4c8], [changeset:6d54ba/HarmoniePhasing 6d54ba]||(almost) DONE ||
+|| mse            ||One fix.                                               ||!ToMo    ||[changeset:095551/HarmoniePhasing 095551]||DONE ||
+|| obstat         ||                                                       ||!ToMo    ||N/A ||DONE ||
+|| odb            ||Some FIXME's left - now solved, see above              ||!ToMo    ||[changeset:3eada9/HarmoniePhasing 3eada9] ||DONE ||
+|| oopsifs        ||                                                       ||!ToMo    ||N/A ||DONE ||
+|| oops_src       ||                                                       ||!ToMo    ||N/A ||DONE ||
+|| radiation      ||No changes needed                                      ||!ToMo    || -  ||DONE ||
+|| satrad ||Add h5lt to EXTMODS in makeup config file ||!ToMo ||[changeset:7ca33d/HarmoniePhasing 7ca33d] ||DONE ||
+|| scat || ||!ToMo ||N/A ||DONE ||
+|| surf ||No changes needed ||!ToMo || - ||DONE ||
+|| surfex || ||!UlAn || || DONE ||
+|| trans ||No changes needed ||!ToMo || - ||DONE ||
+|| utilities || ||!UlAn || || DONE ||
+|| validation || N/A || || || DONE ||
+
+== Resolving conflicts ==
+
+Put your name on the project you're working on. Mark when done and comment if further action is required. If more fine grained structure is required add as appropriate.
+
+||= Project      =||= # conflicts =||= Comment =||= Working on it =||= Commit(s) =||= Status =||
+|| aeolus         ||       0    ||OK                                                                   || !UlAn ||N/A ||DONE ||
+|| aladin         ||       0    ||To be checked: coupling/eseimpls.F90: removed our fix introduced in changeset f1b18e to get cy43 running. || !BeUl || [changeset:3214d3/HarmoniePhasing 3214d3], [changeset:040cef/HarmoniePhasing 040cef]||DONE ||
+|| algor          ||       0    ||Resolved: take theirs                                                ||!ToMo  ||[https://hirlam.org/trac/changeset/dcd7b6b9a51fb27a251772ae5bfc69ae6f40b230/HarmoniePhasing dcd7b6] || DONE ||
+|| arpifs/adiab   ||       0    ||Resolved. Take mostly theirs while trying to retain HIRLAM SPP code  ||!EoWh  ||[changeset:a8008d/HarmoniePhasing a8008d] ||DONE ||
+|| arpifs/ald_inc ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/c9xx    ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/canari  ||       0    ||Resolved. Take mostly theirs.                                        ||!EoWh  ||[changeset:cf7d63/HarmoniePhasing cf7d63] ||DONE ||
+|| arpifs/chem    ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/climate ||       0    ||Think I have taken care of LMCCECSST                                 ||!EoWh  ||[changeset:ae386d/HarmoniePhasing ae386d] ||DONE ||
+|| arpifs/cma2odb ||       0    ||Resolved: take theirs                                                ||!EoWh  ||[changeset:a11d61/HarmoniePhasing a11d61] ||DONE ||
+|| arpifs/common  ||       0    ||                                                                     ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/control ||       0    ||Resolved: take mostly theirs trying to maintain Jan's LFORCE option  ||!EoWh  ||[changeset:a47ad5/HarmoniePhasing a47ad5] ||DONE ||
+|| arpifs/dfi     ||       0    ||OK                                                                   ||!UlAn  ||                                          ||DONE ||
+|| arpifs/dia     ||       0    ||Resolved: take theirs                                                ||!EoWh  ||[changeset:b86a28/HarmoniePhasing b86a28] ||DONE ||
+|| arpifs/fp_serv ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/fullpos ||       0    ||Resolved: take mostly theirs trying to maintain NMAXFPHOLD changes   ||!EoWh  ||[changeset:25adf9/HarmoniePhasing 25adf9] ||DONE ||
+|| arpifs/function ||      0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/gbrad   ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/interpol ||      0    ||Resolved: take theirs                                                ||!EoWh  ||[changeset:6f513c/HarmoniePhasing 6f513c] ||DONE ||
+|| arpifs/io_serv ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/kalman  ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/module  ||       0    ||merge mostly theirs - tried to keep CVALPHA/Hybrid/Brand/SPP code    ||!EoWh  ||[changeset:7e25e8/HarmoniePhasing 7e25e8] ||DONE ||
+|| arpifs/mwave   ||       0    ||OK                                                                   ||!UlAn  ||                                          ||DONE ||
+|| arpifs/namelist ||      0    ||merge mostly theirs - tried to keep our Hybrid/SPP namelist vars     ||!EoWh  ||[changeset:6f6afb/HarmoniePhasing 6f6afb] ||DONE ||
+|| arpifs/nemo    ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/obs_error ||     0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/obs_preproc ||   0    ||keep mostly theirs - keep our blacklisting/NASCAWVC changes          ||!EoWh  ||[changeset:3ea536/HarmoniePhasing 3ea536] ||DONE ||
+|| arpifs/ocean   ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/onedvar ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/oops    ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/op_obs  ||       0    ||take mostly theirs except minor PS change from us                    ||!EoWh  ||[changeset:bdd22a/HarmoniePhasing bdd22a] ||DONE ||
+|| arpifs/parallel ||      0    ||Think dot_product_ctlvec.F90 is taken care of                        ||!EoWh  ||[changeset:90ebda/HarmoniePhasing 90ebda] ||DONE ||
+|| arpifs/phys_dmn/ac*     ||  156  ||Take mostly theirs - watch out for actkezotls called from aplpar ||!EoWh  ||[changeset:48dc1b/HarmoniePhasing 48dc1b] ||DONE ||
+|| arpifs/phys_dmn/ap*-ch*  ||  0  ||NGFL_EZDIAG should be removed from ACRADIN calls in aplpar & apl_arome Check the call to ARO_ADJUST again!!!  ||!UlAn || || ||
+|| arpifs/phys_dmn/in*-mf* ||  156  ||NGFL_EZDIAG should be removed from ACRADIN calls in aplpar & apl_arome  ||!UlAn  || || ||
+|| arpifs/phys_dmn/su*-    ||  0  ||  ||!BeUl  ||[changeset:c358f9/HarmoniePhasing c358f9] ||DONE ||
+|| arpifs/phys_ec ||       0    ||OK                                                                   ||!UlAn  ||                                          ||DONE ||
+|| arpifs/phys_radi ||     0    ||Take mostly theirs, kept our SPP and EZDIAG mods                     ||!BeUl  ||[changeset:4401e4/HarmoniePhasing 4401e4] ||DONE ||
+|| arpifs/pp_obs  ||       0    ||take theirs                                                          ||!EoWh  ||[changeset:1511cf/HarmoniePhasing 1511cf] ||DONE ||
+|| arpifs/programs ||      0    ||OK                                                                   ||!UlAn  ||                                          ||DONE ||
+|| arpifs/raingg  ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/sekf    ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/setup   ||       0    ||take mostly their trying to keep our SPG changes                     ||!EoWh  ||[changeset:36c0a5/HarmoniePhasing 36c0a5] ||DONE ||
+|| arpifs/sinvect ||       0    ||Requires work with forced singular vectors - protected with #ifdef   ||!EoWh  ||[changeset:a93be7/HarmoniePhasing a93be7] ||DONE ||
+|| arpifs/smos    ||       0    ||OK                                                                   ||!UlAn  ||                                          ||DONE ||
+|| arpifs/transform ||     0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| arpifs/utility ||       0    ||take theirs but kept our LMCCECSST/LDALPHA chanegs                   ||!EoWh  ||[changeset:62600a/HarmoniePhasing 62600a] ||DONE ||
+|| arpifs/var     ||       0    ||Eoin: take mostly theirs but keep our hybrid code                    ||!EoWh  ||[changeset:d7abe7/HarmoniePhasing d7abe7] ||DONE ||
+|| biper          ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| blacklist      ||       0    ||OK. Took theirs as HARMONIE no longer uses mf_blacklist.b            ||!EoWh  ||[changeset:d6b61b/HarmoniePhasing d6b61b] ||DONE ||
+|| coupling       ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| cope           ||            ||Not present in our repo                                              ||N/A    ||N/A                                       ||DONE ||
+|| crm            ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| ecfftw         ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| etrans         ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| ifsaux         ||       0    ||Tooks mostly theirs apart from sing prec changes in py_interface     ||!EoWh  ||[changeset:eb11fe/HarmoniePhasing eb11fe] ||DONE ||
+|| ifsobs         ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| mpa            ||       0    || rain_ice[_old].F90 needs further work. New version introduced!                ||!UlAn  ||                                          ||DONE ||
+|| mpa/turb       ||       0    ||                                                                     ||!UlAn  ||                                          ||DONE ||
+|| mse            ||       0    ||Attempted to make ARO_SURF_DIAGH declaration, interface and calls consistent. Might be good to check SURFEX (de)allocation. This is done differently in our and MF's code (e.g . fp2sx2.F90, prep_stepx.F90 and suphmse_surface.F90) ||!BeUl ||[changeset:d5ee51/HarmoniePhasing d5ee51] ||DONE ||
+|| obstat         ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| odb            ||       0    ||Hope I didn't ruin Ole's JPRB->JPRD work                             ||!EoWh  ||[changeset:59adfb/HarmoniePhasing 59adfb], [changeset:414bb8/HarmoniePhasing 414bb8]  ||DONE ||
+|| oopsifs        ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| oops_src       ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| radiation      ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| satrad         ||       0    ||OK                                                                   ||!EoWh  ||[changeset:0e235e/HarmoniePhasing 0e235e] ||DONE ||
+|| scripts        ||            ||Not present in our repo                                              ||N/A    ||N/A                                       ||DONE ||
+|| scat           ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+|| surf           ||       0    || OK || !UlAn || || ||
+|| surfex         ||       0    || Keep all our changes. MF still runs V8.0. Should be a walk in the park... || !UlAn || ||DONE ||
+|| trans          ||       0    || OK || !UlAn  || || ||
+|| utilities      ||       0    || OK || !UlAn || || ||
+|| validation     ||       0    ||N/A                                                                  ||N/A    ||N/A                                       ||DONE ||
+

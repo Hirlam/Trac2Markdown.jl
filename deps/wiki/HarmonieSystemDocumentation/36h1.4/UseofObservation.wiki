@@ -1,0 +1,15 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Use of Observation''' ==
+[[Center(end)]]
+
+== Information about the observation data format used in HARMONIE, --- ODB
+
+  [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/UseofObservation Anne Fouilloux (ECMWF) review presentation about ODB]
+
+== Assimilated observation types in HARMONIE 3DVAR ==
+
+== Documentation of ALADIN use of observation ==
+  [http://rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf Sandor's document about observation dataflow in ALADIN ]
+
+

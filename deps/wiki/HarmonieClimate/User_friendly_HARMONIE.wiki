@@ -1,0 +1,47 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Need for a more user-friendly HARMONIE-Climate''' =
+[[LastModified]]
+[[Center(end)]]
+
+'''At Rossby Centre, SMHI, we have experienced a very user-friendly Regional Climate Model for a while. Here are a few comments on this'''
+
+Our current operational regional climate model at Rossby Centre is RCA4. It is originally based on a HIRLAM version and kept many aspects of HIRLAM code and script structure until version RCA3. Then Marco Kupiainen appeared and  rewrote the whole structure for RCA4. RCA4 is extremely user friendly in my mind:
+
+As new user of RCA4 one checks out the code from repository. You add one architecture dependent config file, config.ARCH, and compile with make (standard gmake) which gives you one (and only one) executable. Not a single script is used. No expected file/directory structure is needed besides what has been checked out.
+
+The executable can be placed in any directory together with three namelist files: (i) one includes path names to boundary data (lateral, ECOCLIMAP, SST and ice), (ii) one includes a list of expected output variables, (iii) one for the rest which includes e.g. grid description and physics options.
+The namelist files are not created or processed by any combinations of scripts. You know exactly that the namelist file you edit is the one directly read by the model.
+
+No pre-processing of data is needed (like processing of lateral BC, SST,…). All input data is global and is processed by the model on the fly. Thus, one can easily setup any model domain and run.
+
+We have offered RCA4 to different university groups in the world and it is normally quite easy for them to get the model running by following our wiki documentation. 
+
+On the contrary, it would be impossible for anyone to setup HARMONIE without system know-how in the corridor. The script system is a beast and it is quite difficult to understand what settings are finally used by the model. I fully understand that HARMONIE system is built for operational use at met offices and provides an environment for that which is probably needed and well motivated.
+
+My point is, if we wish to extend the use of HARMONIE as climate model (or as NWP model) beyond NWP corridors it is not possible today. We can not involve e.g. university groups or non-HIRLAM/LACE institutes in our cooperation. But it would be good and useful if we could I think. I realize that the development of a user friendly HARMONIE (like openIFS) would be a big task but I think we should consider the idea.
+
+Patrick Samuelsson
+
+------------------------------
+
+'''Comments by Xiaohua Yang'''
+
+I am thinking of one dilemma that looks a formidable challenge to me  from the HARMONIE-NWP pomt of view. Sure the route RCA took by Marco is wonderful, but doesn't the success there also have to do with the fact that 1) HIRLAM was roughly mature, (actually, so mature as to have arrived to its death bed from the NWP side), so that whatever Marco did about the system can be considered final, with little fear of future compatibility  challenge such as the endless number of new versions of OOOOPPSSSSSS-ed IFS/HARMONIE.  2) as such, there was little need/expectation in terms of interaction with 'upstream code' of  the NWP origins. 
+
+For HARMONIE, the model system (even if only forecast part is involved) is still evolving rapidly. At NWP groups we have been troubled by a very frequent releases with versions/adaptations.  The need for adaptation in climate branch to that of the upstream sources (quite a few of them on dynamical modules/MPI, presumably) might be huge and Marco may find it much more challenging to do his magic with HARMONIE  in connection with an ever changing dynamic modules... , and how do we keep both of the communities, NWP and climate research, hooked up in a reasonable fashion, so much that we can still talk about synergy?
+
+------------------------------
+
+'''Comments by Patrick Samuelsson'''
+
+
+Yes, you are right, the magic RCA4 appeared ”easily” because we were not dependent on anyone’s opinion or contribution outside Rossby Centre (which is also why RCA is now in principle dead).
+
+Doing the same exercise in the HARMONIE context is much more challenging. But in my view the development of OpenIFS (https://software.ecmwf.int/wiki/display/OIFS/OpenIFS+Home) is a step in this direction. I have not followed OpenIFS ideas/plans/strategy but I think the ambition is that OpenIFS should still offer a way into the IFS system so that model development performed in OpenIFS will contribute to updated version for all.
+
+We should not create a parallel HCLIM environment which has the risk to again separate NWP and climate (as happened with HIRLAM and RCA). What do you think, can OpenIFS be used as a good example for us?
+
+
+
+

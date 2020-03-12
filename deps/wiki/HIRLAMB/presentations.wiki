@@ -1,0 +1,15 @@
+
+== This page was created as a storage of useful presentations not otherwise available in this Wiki ==
+
+  They are meant as source material for various new presentations. Please feel free to add things and edit the structure of the page. Note that the material here is neither   official nor checked for anything so please use it only after checking the authors' permission.
+
+
+ Slides by Laura Rontu about [https://hirlam.org/trac/attachment/wiki/HIRLAMB/presentations/phys_highlight_2013.odp HIRLAM-B physics in 2013, v0]. Format: Libre or Open Office presentation ODP.[[BR]]
+
+ Slides by Laura Rontu about [https://hirlam.org/trac/attachment/wiki/HIRLAMB/presentations/phys_highlight_2013_v1.odp HIRLAM-B physics in 2013, v1]. Format: Libre or Open Office presentation ODP.[[BR]]
+
+ Slides by Laura Rontu about [https://hirlam.org/trac/attachment/wiki/HIRLAMB/presentations/phys_highlight_2013_v2.odp HIRLAM-B physics in 2013, v2]. Format: Libre or Open Office presentation ODP.[[BR]]
+
+ HIRLAM-ALADIN physics plan 2013 [https://hirlam.org/trac/attachment/wiki/HIRLAMB/presentations/physdraft_2013.doc HIRLAM-B physics plan 2013]. Format: MS Word DOC. [[BR]] 
+
+ HIRLAM-ALADIN rolling plan made in 2013 [https://hirlam.org/trac/attachment/wiki/HIRLAMB/presentations/rollingplan_2013.pdf HIRLAM-B rolling plan (v.2013)]. Format: PDF. This is a copy of the Google document version, copy provided by Jelena, summer 2013.

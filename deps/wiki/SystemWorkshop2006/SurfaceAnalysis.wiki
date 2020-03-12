@@ -1,0 +1,193 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Surface analysis''' =
+
+=== '''Main topics''' ===
+[[Center(end)]]
+ * General review (status, method etc.)
+ * Data flow, i/o
+ * Relevent code and scripts in the reference system
+ * namelists, tunables
+ * Relevant monitoring objects
+ * Relevant issues about operational implementation
+ * Overhaul issues
+
+[[Center(begin)]]
+== '''Overview''' ==
+[[Center(end)]]
+=== '''Status''' ===
+ * Surface analysis is performed in reference HIRLAM with 6h interval, updating surface properties TSI, SWI, TSDI, SWDI,SNI using LAND SYNOP observations, SHIP observations and pseudo observations from ECMWF analysis for SST
+ * Ice cover is currently not analysed. It is derived from analysed SST values
+ * For cycles at (odd) hours 03/09/15/21 UTC no surface analysis is used. Instead, background values from forecasts of previous cycle is used
+
+=== '''Method''' ===
+ * Land surface tiles (tiles 3, 4,5) are analysed using Optimal Interpolation, including that of snow depth analysis
+ * SST analysis is made using successive correction
+ * NO ice analysis is performed. No ice cover observation or (ECMWF) pseudo observation for ice cover is used. 
+ 
+=== '''Implementation, data flow, i/o''' ===
+ * Span "analyses"/updates following quantities
+{{{
+  tsi, swi,tsdi, swdi, sni, t2m, rh2m
+}}}
+ * '''input data''':
+   * background, normally the short range forecasts from previous cycle, fort.1
+   * climate file of the month, can be replaced with background file if for same month
+   * SYNOP or SHIP observation in BUFR format
+   * pseudo ECMWF SST analysis in ‘pure’ grib format or ASIMOF interpolated to the model grid
+   * EC orography and land-sea mask matching that of SST data
+   * local SST data in ASCII format
+   * error statistics of the previous cycle
+   * analysis of the previous cycle (-6 h?)
+   * forecast from the previous cycle
+   * snow bias from previous cycle
+   * bufrtables, which is specified in the environment file Env_system 
+   * namelists specifying model domain, data/time
+   * namelists for horizontal interpolation of land sea mask and pseudo SST data
+ * '''output data'''
+   * surface analysis sfcan
+   * statistics of analysis
+   * error statistics of the current cycle
+   * snow bias file
+ [[Center(begin)]]
+== '''Relevant code and scripts''' ==
+[[Center(end)]]
+ * Surface analysis code is mainly placed under span
+ * Scripts that have relevance to Span in the reference system 7.x are
+{{{
+ 4DVARan
+ hirlam.tdf
+ Span
+}}}
+[[Center(begin)]]
+== '''What's new in 7.0''' ==
+[[Center(end)]]
+ * With LSMIX, in the re-forecast step, incremental DFI (IDFI) is used, with the ECMWF analysis used as input (fort.14) and surface analysis as background (fort.15), using namelist option INCMOD=2, which overwrites un-analysed fields in the analysis file (fort.14) by the one in the background file (fort.15).
+[[Center(begin)]]
+== '''What's new in 7.1''' ==
+[[Center(end)]]
+ * With 4D-VAR, surface analysis is either performed within the 4D-VAR data flow, or after 4D-VAR. This is in contrast to the case with 3D-VAR, in which surface analysis is performed ahead of upper air analysis to become background
+ * Modules for assimilating Ocean-Sea Ice SAF data with OI scheme is under development
+[[Center(begin)]]
+== '''Relevant namelists, tunables''' ==
+[[Center(end)]]
+ * Maximum dimension for field and observation data arrays set in span/setdim.F
+{{{ 
+    JMXSYL   =   20000  # MAX. NUMBER OF SYNOP LAND REPORTS 
+    JMXSYS   =   5000   # MAX. NUMBER OF SYNOP SHIP REPORTS 
+    JMXBUO   =   2000   # MAX. NUMBER OF BOUY REPORTS  (But BUOY report is not used in SST analysis
+    JMXSPD   =   5000   # MAX. NUMBER OF SPECIAL SST OBS.
+    JMXPSE   =   2000   # MAX. NUMBER OF PSEUDO OBS.
+}}}
+ * Specified background and observation errors in span/seterr.F
+{{{ 
+ OESTSHP = 3.0      # SST OBSERVATION ERROR STD FOR SHIP REPORTS 
+ OESTBUO = 1.5      # SST OBSERVATION ERROR STD FOR BUOY REPORTS 
+ OESTSPE = 1.5      # SST OBSERVATION ERROR STD FOR SPECIAL OBS.(E.G. SAT DERIVED) 
+ OESTPSE = 1.5      # SST OBSERVATION ERROR STD FOR PSEUDO OBS.(FROM ECMWF ST) 
+ FGERR(JPSST) = 1.  # SST F.G.ERROR STD 
+ FGCC1(JPSST) = 4.  # F.G. CHECK LIMIT 
+ OESNSYN = 3.3      # SNOW DEPTH OBSERVATION ERROR STD FOR SYNOP REPORTS 
+ FGERR(JPSNW) = 3.1 # SNOW DEPTH F.G.ERROR STD 
+ FGCC1(JPSNW) = 25. # SNOW DEPTH F.G. CHECK LIMIT 
+ OET2SYN = 1.       # T2M OBSERVATION ERROR STD FOR SYNOP REPORTS 
+ FGERR(JPT2M) = 2.0 # T2M F.G.ERROR STD 
+ FGCC1(JPT2M) = 16. # T2M F.G. CHECK LIMIT 
+ OEH2SYN = 0.10     # RH2M OBSERVATION ERROR STD FOR SYNOP REPORTS 
+ FGERR(JPH2M)=0.15  # RH2M F.G.ERROR STD 
+ FGCC1(JPH2M) = 16. # RH2M F.G. CHECK LIMIT 
+}}}
+ * Land surface assimilation related parameter settings
+{{{
+LOGICAL SWITCHES TO PERFORM OR NOT OI 
+ LOI(JPSST) = .FALSE. 
+ LOI(JPSNW) = .FALSE. 
+ LOI(JPT2M) = .TRUE. 
+ LOI(JPH2M) = .TRUE. 
+VALUE OF MAX.NUMBER OF BOXES 
+SEA SURFACE TEMPERATURE 
+ NMXBOX(JPSST)   =  600 
+SNOW DEPTH 
+ NMXBOX(JPSNW)   =  3000 
+T2M 
+ NMXBOX(JPT2M)   =  3000 
+RH2M 
+ NMXBOX(JPH2M)   =  3000 
+MAX. NUMBER OF OBS IN ONE BOX 
+ SEA SURFACE TEMPERATURE  NOBMX(JPSST)    =  512 
+ SNOW DEPTH               NOBMX(JPSNW)    =  2000 
+ T2M ´                    NOBMX(JPT2M)    =  2000 
+ RH2M                     NOBMX(JPH2M)    =  2000 
+BOX SIZE FOR DATA CHECKING( IN DEG. ) 
+ SEA SURFACE TEMPERATURE  BOXSIZE(JPSST)    =  2. 
+ SNOW DEPTH               BOXSIZE(JPSNW)    =  2. 
+ T2M                      BOXSIZE(JPT2M)    =  2. 
+ RH2M                     BOXSIZE(JPH2M)    =  2. 
+LENGTH SCALES FOR BACK. ERROR CORRELATION GAUSSIAN
+ SNOW DEPTH 
+  CC           =  0.9E-5 
+  R2(JPSNW)    =  (0.85E5)**2 
+  H2(JPSNW)    =  (0.565E3)**2 
+  L2(JPSNW)    =  (1.4) **2 
+ T2M 
+  R2(JPT2M)    =  (1.E5)**2 
+  H2(JPT2M)    =  (0.4E3)**2 
+  L2(JPT2M)    =  (1.4) **2 
+ RH2M 
+  R2(JPH2M)    =  (75.E3)**2 
+  H2(JPH2M)    =  (0.4E3) **2 
+  L2(JPH2M)    =   1.4   **2 
+TOLERANCE LIMITS FOR NORM. DEVIATIONS IN OI CHECK 
+  TOL1(JPSST)  =  2. 
+  TOL2(JPSST)  =  3. 
+  TOL1(JPSNW)  =  5. 
+  TOL2(JPSNW)  =  6. 
+  TOL1(JPT2M)  =  3. 
+  TOL2(JPT2M)  =  4. 
+  TOL1(JPH2M)  =  3. 
+  TOL2(JPH2M)  =  4. 
+}}}
+ * Definition of analysis parameters for successive correction
+{{{
+ LOGICAL SWITCHES TO PERFORM OR NOT SUCCESSIVE CORRECTIONS 
+  LSC(JPSST) = .TRUE.  
+  LSC(JPSNW) = .FALSE. 
+  LSC(JPT2M) = .FALSE. 
+  LSC(JPH2M) = .FALSE. 
+NUMBER OF ITERATIONS 
+ SEA SURFACE TEMPERATURE   NITER(JPSST)   =   3 
+ SNOW DEPTH                NITER(JPSNW)   =   4 
+VALUES OF RADIUS OF EACH ITERATION 
+ SEA SURFACE TEMPERATURE 
+  RMAX(JPSST,1) = 600000 
+  RMAX(JPSST,2) = 400000 
+  RMAX(JPSST,3) = 150000 
+ SNOW DEPTH 
+  RMAX(JPSNW,1) = 600000 
+  RMAX(JPSNW,2) = 400000 
+  RMAX(JPSNW,3) = 150000 
+  RMAX(JPSNW,4) = 100000 
+}}}
+ * Maximum allowed length of SST history in hours is set (120 h) in span/setlim.F
+
+
+[[Center(begin)]]
+== '''Monitoring subjects, tools''' ==
+[[Center(end)]]
+ * analysis and analysis increments; are they reasonable? 
+ 
+
+[[Center(begin)]]
+== '''Common error messages''' ==
+[[Center(end)]]
+ 
+
+[[Center(begin)]]
+== '''Relevant issues for operational implementation''' ==
+[[Center(end)]]
+
+   
+[[Center(begin)]]
+== '''Overhaul issues, questions''' ==
+[[Center(end)]]
+ 

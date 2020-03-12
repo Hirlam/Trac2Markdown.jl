@@ -1,0 +1,12 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1 rc 1''' =
+[[LastModified]]
+[[Center(end)]]
+
+Hirlam 7.1 rc 1 is the release candidate for the upcoming official reference system [wiki:Hirlam_7.1 Hirlam 7.1]. The system is identical to the third and last beta release in the trial series of the [wiki:Hirlam_7.1 Hirlam 7.1], Hirlam 7.1 beta 3, Feb 16, 2007, see the release notes for [wiki:ReleaseNotes7.1beta3 beta 3].
+
+For information about general introduction of Hirlam 7.1 systems, instruction on the use of the system and reported meteorological and technical evaluations, see the [wiki:Hirlam_7.1 Hirlam 7.1 wiki pages].
+
+Hirlam 7.1 rc 1 is tagged after all the planned source code and scripts updates have been implemented and the preliminary meteorological and technical evaluations have been conducted with favorable results. HIRLAM developers are now invited to help evaluating and improving the system through validation or technical studies. 
+ 

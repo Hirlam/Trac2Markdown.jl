@@ -1,0 +1,152 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''HIRLAM Operational Forecast Systems''' =
+[[Center(end)]]
+
+[[br]]
+[[br]]
+== General properties of the operational HIRLAM configurations ==
+
+|| Models || Main forecast area || Grid spacing || gridmesh || vertical level || coordinate rotation || host model [[br]] analysis blending || initialization || assimilation interval || delivery time[[FootNote(defined as the time when forecast results are delivered available to forecasters and other downstream applications after synoptic hour)]]|| Last major upgrade || planned upgrade ||
+|| DMI-T15 || Europe || 0.15 || 610x568 || 40 || rotated lat-lon || 6 h re-assimilation [[br]] + analysis blending ||  IDFI || 6 h || 2 h 20 m || non-operational since 2011 || - ||
+|| DMI-SKA  || Denmark (main production) || 0.03 ||970x818 || 65 || rotated lat-lon || ECMWF ||  IDFI (incmod=1) || 6 h || 2 h 40 m || 201212 || - ||
+|| DMI-K05  || Greenland (main production) || 0.05 || 874x534 || 65 || rotated lat-lon || ECMWF ||  IDFI (incmod=1) || 6 h || 3 h || 2011 || May 2012 ||
+|| DMI-EPS  || Denmark (main production) || 0.05 ||496x372 || 40 || rotated lat-lon || ECMWF (det) ||  IDFI (incmod=1) || 6 h || 3 h || 2011 || - ||
+|| FMI-RCR [[br]] reference HIRLAM || Europe || 0.068 || 1030x816 || 65 || rotated lat-lon || own analysis + LSANA mixing ||  IDFI (incmod=1) || 6 h || TBA || Mar 06 2012 || - ||
+|| AEMET-ONR || Europe || 0.16 ||582x424 || 40 || rotated lat-lon || own analysis ||  IDFI [[incmod=1]] || 6 h || 3 h 05m || 20091021 ||  ||
+|| AEMET-HNR || Spain || 0.05 ||606x430 || 40 || rotated lat-lon || own analysis ||  IDFI [[incmod=1]] || 6 h  || 3 h 40m || 20091021 ||  ||
+|| AEMET-CNN || Canary I. || 0.05 ||606x430 || 40 || rotated lat-lon || own analysis ||  IDFI [[incmod=1]] || 6 h  || 3 h 40m || 20091021 ||  ||
+|| KNMI D11 || Atlantic + Europe|| 0.10 || 726x550  || 60 || rotated lat-lon || own analysis + LSANA mixing ||  IDFI || 6 h || 2 h 35m || 20100119 || - ||
+|| KNMI H11 || NW Europe|| 0.10 || 306x290  || 40 || rotated lat-lon || own analysis ||  IDFI || 3 h || 1 h 15m || 20100119 || -  ||
+|| met.ie I10 ||Atlantic     || 0.10  || 654x424 || 60 ||  rotated lat-lon || own analysis + LSANA mixing || IDFI  || 6 h || 3 h      || 20100309 || Upgrade to 0.07 grid spacing Q4 2013? ||
+|| met.ie HH7 ||Ireland + UK || 0.07  || 366x344 || 60 ||  rotated lat-lon || own analysis + LSANA mixing || IDFI  || 1 h || 1 h 00 m || 20130527 || none planned ||
+|| met.no 12 || Atlantic || 0.108  || 864x698 || 60 ||  rotated lat-lon || own analysis + LSMIX || IDFI || 6 h || 2h 40m || 20080213 || ||
+|| met.no 8 || N-Europe || 0.072  || 344x555 || 60 ||  rotated lat-lon || own analysis + LSMIX || IDFI || 6 h || 2h 25m || 20080213 || ||
+|| SMHI-C22 || Europe  || 0.20  || 306x306 || 40 ||  rotated lat-lon || own analysis || IDFI  || 6 h || 2 h 20 m || 20120810 || none ||
+|| SMHI-C11 || Europe  || 0.10  || 606x606 || 60 ||  rotated lat-lon || own analysis || IDFI  || 6 h || 3 h 10 m || 20120810 || none ||
+|| SMHI-E11 || Sweden  || 0.10  || 256x288 || 60 ||  rotated lat-lon || own analysis || IDFI  || 6 h || 1 h 50 m || 20120810 || none ||
+|| SMHI-E05 || Sweden  || 0.05  || 506x574 || 65 ||  rotated lat-lon || own analysis || IDFI  || 6 h || 2 h      ||          || none ||
+|| SMHI-G05 || Sweden  || 0.05  || 294x441 || 60 ||  rotated lat-lon || own analysis || IDFI  || 6 h || 3 h 10 m || 20120810 || none ||
+|| EMHI-ETA || Scand. + N.Europe  || 0.1  || 366x280 || 60 ||  rotated lat-lon || own analysis || DFI  || 6 h || 2 h 55 m || 20080117||2013 ||
+|| EMHI-ETB || Estonia + neighbours || 0.03  || 306x306 || 60 ||  rotated lat-lon || own analysis || NMI  || 6 h || 3 h 55 m || 20080122|| continuous  ||
+|| LHMS-HL L7 || Scand. + N.Europe || 0.071 || 492X398 || 60 || rotated lat-lon || own analysis + LSANA || IDFI || 6 h ||2 h 20 m || 2012 october || Nothing planned ||
+|| LHMS-HL L4 || Lithuania + neighbours || 0.036 || 658X580 || 60 || rotated lat-lon || own analysis + LSANA || IDFI || 6 h ||2 h 55 m || 2012 october || Nothing planned  ||
+|| TOON16 [[FootNote(Run on home PC; Linux 3.9, GCC 4.7, glibc 2.17)]] || North Atlantic Ocean and Europe || 0.15 || 486x366 || 60 || rotated lat-lon || 4DVAR + LSMIX ECMWF || Jc || 6 h || 5 h 55 m || [http://moene.org/~hirlam/LAST_UPDATED updated regularly] || TOON11 mid 2013 ||
+ [[FootNote]]
+
+== General properties of the upper air data assimilation ==
+|| Models || DA || version || obs cut-off [[br]] time|| non-conventional data || structure function || FGAT || lowresincr || LSMIX/Reanalysis ||
+|| DMI-T15 || 3DVAR || 7.3beta1 || 1 h 40 m || yes ||  T15, statbal || yes || no || yes ||
+|| DMI-SKA || 3DVAR || 7.3 || 1 h 30 m || yes ||  M09, statbal || yes || yes || yes ||
+|| DMI-EPS || 3DVAR || 7.3beta1 || 1 h 30 m || yes ||  M09, statbal || yes || yes || yes ||
+|| FMI-RCR || 4DVAR || 7.4rc1 || 2 h || yes ||  RCR, statbal ||  || no || yes ||
+|| AEMET-ONR || 3DVAR || 7.2 || 2 h || no ||  ONR, statbal || yes || yes || yes ||
+|| AEMET-HNR || 3DVAR || 7.2 || 2 h || no ||  ONR, statbal || yes || yes|| no ||
+|| AEMET-CNN || 3DVAR || 7.2 || 2 h || no ||  ONR, statbal || yes || yes || no ||
+|| KNMI D11 || 3DVAR || 7.2  || 2 h 5m || no || anabal  || yes || yes || yes ||
+|| KNMI H11 || 3DVAR || 7.2  || 1 h 5m || no || anabal  || yes || yes || no ||
+|| met.ie I10 || 4DVAR || 7.2  || 2 h 00 m  || no  || statbal  || yes || yes || yes ||
+|| met.ie HH7 || 3DVAR || 7.2  || 0 h 20 m  || no   || statbal  || yes || yes || yes ||
+|| met.no || 3DVAR || 7.1.4 || 2 h || yes || statbal || yes || yes || yes ||
+|| SMHI-C22 || 4DVAR || 7.1.2 || 1 h 55 m  || yes || statbal || no || yes || yes ||
+|| SMHI-C11 || 4DVAR || 7.1.2 || 1 h 55 m  || yes || statbal || no || yes || yes ||
+|| SMHI-E11 || 3DVAR || 7.1.2 || 1 h 15 m  || no  || statbal || yes || yes || no ||
+|| SMHI-E05 || 3DVAR || 7.3   || 1 h 15 m  || no  || statbal || yes || yes || no ||
+|| SMHI-G05 || 3DVAR || 7.1.2 || after E11 || no  || statbal || yes || yes || no ||
+|| EMHI-ETA || 3DVAR || 7.1.2 || 2 h || no || statbal || yes || no || no ||
+|| EMHI-ETB || 3DVAR || 7.1.2 || 2 h || no || statbal || yes || no || no ||
+|| LHMS-HL L7 || 3DVAR || 7.3bf.1 ||2 h || no || statbal || yes || no || yes ||
+|| LHMS-HL L4 || 3DVAR || 7.3bf.1 ||2 h || no || statbal || yes || yes || yes ||
+|| TOON16 || 4DVAR || trunk || 2 h 5 m || yes || statbal || || yes || yes ||
+
+== Assimilated observation/pseudo observation in upper air analysis ==
+
+|| Institues  || DMI || FMI || AEMET || KNMI || met.ie || met.no || SMHI || EMHI || reference RCR [[br]]at ECMWF || TOON16 ||
+|| Synop ps   || yes || yes || yes || yes  || yes    || yes    || yes || yes  || yes || yes ||
+|| Synop t2m  || no  || no  || no  || no   ||  no    || no     || no || no  || no || no ||
+|| Synop v10m || no  || no  || no  || no   || no     || no     || no || no  || no || no ||
+|| Synop rh2m || no  || no  || no  || no   || no     || no     || no || no  || no || no ||
+|| Ship ps    || yes || yes || yes || yes  || yes    || yes    || yes || yes  || yes || yes ||
+|| ship v10m  || no  || no  || no  || yes  ||  no    || no     || yes || no  || no || no ||
+|| Buoy ps    || yes || yes || yes || no   ||    yes || yes    || yes ||  yes || yes || yes ||
+|| Buoy t2m   || no  || no  || no  || no   || no     || no     || no || no  || no || no ||
+|| AIREP uv   || yes || yes || yes || yes  || yes    || yes    || yes || yes  || yes || yes ||
+|| ACARS uv   || yes || no  || no  || no   || yes    || yes    || no || no  || no  || no ||
+|| E-AMDAR ASCII [[br]]uv || yes || yes  || yes || yes  || yes  || yes || yes  || no  || yes  || yes (+ Mode-S) ||
+|| E-AMDAR BUFR [[br]]uv || yes || no  || no  || yes[[FootNote(We do not decode them ourselves - they are decoded when put into the Real Time Observation Database at KNMI)]] || yes  || yes || yes  || no  || no  || yes (see KNMI) ||
+|| TEMP/PILOT [[br]] tuvq || yes || yes || yes  || yes  || yes  || yes  || yes  || yes  || yes  || yes ||
+|| SATOB      || no || no || yes || yes || no  || no || no || no  ||  no  || no ||
+|| SATEM      || no || no || yes || no  || no  || no || no ||  no ||  no  || no ||
+|| AMSU-A     || yes || yes  || no || no || no || yes  || yes  || no  || no  || no ||
+|| AMSU-B || yes || yes  || no || no  || no  || no ||  no || no  || no  || no ||
+|| meteosat [[br]] AMV || yes || no  || no || no || no  || no || no ||  no || no  || no ||
+|| !QuickScat [[br]] wind || no || no  || no || no  || no  || no  || no || no  || no  || (ASCAT) ||
+|| Ground GPS || no || no  || no  || no || no  || no || no || no  || no  || no ||
+|| Radar VAD || no || no  || no  || no || no  || no || passive  || no  || no  || no ||
+ [[FootNote]]
+
+== Properties of the forecast module ==
+
+|| Models || Source code version || time-step [[br]] second || boundary source || boundary update || horizontal diffusion ||FCLEN || long FC/day || history output [[br]] interval || Pressure/surface [[br]] output interval||
+|| DMI-T15 || 6.3[[FootNote(DMI-HIRLAM features following main modifications to the forecast model of 6.3: SETTLS advection scheme;RT temperature equation as implemented in 6.3.4; turning of surface stress vectors; tuned CBR;STRACO 7.3+; ini_veg change following the Tijm approach as in 6.4.2)]]|| 450 || ECMWF || 1 h || 6th order || 60 h/ 72 h[[FootNote(DMI-T15 runs to 72h for the 00 UTC cycle)]] ||  4 || 1 h || 1 h||
+|| DMI-SKA || 7.3[[FootNote(DMI-SKA: z0 for 'desert' is adapted to urban roughness length in order to better represent urban areas.)]] || 90 || ECMWF || 1 h || 6th order || 54 h ||  4 || 1 h || 1 h ||
+|| DMI-EPS || 7.2[[FootNote(DMI-EPS: z0 for 'desert' is adapted to urban roughness length in order to better represent urban areas.)]] || 150 || ECMWF (det) || 3 h || 6th order || 54 h ||  4 || - || 1 h ||
+|| DMI-K05 || 7.3rc2[[FootNote(DMI-HIRLAM features following main modifications to the forecast model of 6.3: SETTLS advection scheme;RT temperature equation as implemented in 6.3.4; turning of surface stress vectors; tuned CBR;STRACO 7.3+; ini_veg change following the Tijm approach as in 6.4.2)]] || 150 || M09/ECMWF || 1 h || 6th order || 48 h ||  4 || 1 h || 1 h ||
+|| FMI-RCR [[br]] reference HIRLAM || 7.4rc1[[FootNote(FMI-RCR features following main modifications to the forecast model of 7.4: full SMS instead of mini-SMS; In surface analysis, inclusion of Baltic SST/ice observations, climatological lake observations in Finnish area)]] || 240 || ECMWF || 3 h || 4th order || 54 h/ 126 h[[FootNote(FMI-RCR runs to +126 h for the 18 UTC cycle)]] || 4 || 1 h || 1 h ||
+|| AEMET-ONR || 7.2 || 240 ||ECMWF || 6 h || 4th order ||72 h || 4  || 1 h || 1 h ||
+|| AEMET-HNR || 7.2 || 120 ||ONR || 6 h || 4th order ||36 h || 4 || 1 h || 1 h ||
+|| AEMET-CNN || 7.2 || 120 ||ONR || 6 h || 4th order ||36 h || 4 || 1 h || 1 h ||
+|| KNMI D11 || 7.2 || 240 || ECMWF  || 3 h || 4th order || 48 h || 4 || 3 h || 1 h ||
+|| KNMI H11 || 7.2 || 240 || D11  || 3 h || 4th order || 24 h || 8 || 1 h || 1 h ||
+|| met.ie I10 ||7.2 || 240 || ECMWF || 3 h || 4th order  ||54 h || 4  || 1 h || 1 h ||
+|| met.ie HH7 ||7.2 || 300 || I10   || 1 h || 4th order  || 6 h || 24 || 1 h || 1 h ||
+|| met.no 12  || 7.1.4 || 300 || ECMWF || 3 h || 6th order || 66 h ||  4 || - || 3h/1h ||
+|| met.no 8   || 7.1.4 || 200 || ECMWF[[FootNote(Since 20110222 with full resolution 0.15 deg boundaries in GRIB2 format)]] || 3 h || 6th order || 66 h || 4 || - || 3h/1h ||
+|| SMHI-C22 || 7.1.2[[FootNote(SMHI-HIRLAM features following main modifications to the forecast model: 7.4 condensation, convection, radiation ; KF-RK scheme; reduce snow fraction in forecast)]] || 600 || ECMWF || 3 h || 4th order || 48 h || 4 || 1 h || 1 h ||
+|| SMHI-C11 || 7.1.2[[FootNote(SMHI-HIRLAM features following main modifications to the forecast model: 7.4 condensation, convection, radiation ; KF-RK scheme; reduce snow fraction in forecast)]] || 300 || ECMWF || 3 h || 4th order || 60 h || 4 || 1 h || 1 h ||
+|| SMHI-E11 || 7.1.2[[FootNote(SMHI-HIRLAM features following main modifications to the forecast model: 7.4 condensation, convection, radiation ; KF-RK scheme; reduce snow fraction in forecast)]] || 300 || ECMWF || 3 h || 4th order || 72 h || 4 || 1 h || 1 h ||
+|| SMHI-E05 || 7.3 || 150 || ECMWF || 3 h || 4th order || 48 h || 4 || 1 h || 1 h || 
+|| SMHI-G05 || 7.1.2[[FootNote(SMHI-HIRLAM features following main modifications to the forecast model: 7.4 condensation, convection, radiation ; KF-RK scheme; reduce snow fraction in forecast)]] || 150 || E11 || 1 h || 4th order || 48 h || 4 || 1 h || 1 h ||
+|| EMHI-ETA || 7.1.2 || 360 || ECMWF || 3 h||4th order || 54 h || 4 || 3 h || 3 h||
+|| EMHI-ETB || 7.1.2[[FootNote(The NHHIRLAM extension from University of Tartu is used )]]|| 120 || ETA || 1 h ||4th order[[FootNote(Spectral with FFT and 2nd order in upper layers for sponge)]] || 36 h || 2 || 3 h || 3 h||
+|| LHMS-HL L7 || 7.3 || 180 || ECMWF || 3 hr || 6th order || 54 hr || 4 || 1 h || 1 h ||
+|| LHMS-HL L4 || 7.3 || 100 || ECMWF || 3 hr || 6th order || 54 hr || 4 || 1 h || 1 h ||
+|| TOON16 || trunk || 400 || ECMWF || 3 hr || 6th order || 48 hr || 4 || 3 h || 1 h ||
+
+ [[FootNote]]
+
+== Assimilated observation/pseudo observation data in surface analysis ==
+
+|| Institues || DMI || FMI || AEMET || KNMI || met.ie || met.no || SMHI || EMHI || LHMS ||  reference RCR [[br]] at ECMWF ||
+|| Synop data: T2m, RH2m || yes || yes || yes || yes || yes || yes || yes || yes  || yes || yes ||
+|| Synop data: snow depth || yes || yes || yes || no || no  || yes || yes || yes  || yes || yes ||
+|| Ship data || yes || yes || no || yes || yes  || no || yes || yes  || yes || yes ||
+|| BUOY data || no || no || no || no || no  || no || no || no  || no|| no ||
+|| Lake data || no || yes || no || no || no  || no || no || no  || no || no ||
+|| ECMWF SST || yes || yes || yes || yes || yes  || no || yes || yes || yes || yes ||
+|| ECMWF ice || yes || no || no || no || no  || no || no || no  || no  || no ||
+|| Ocean Sea Ice SAF || yes || no  || no || no || no || yes || no || no  || yes || no  ||
+
+
+== Operational Archive ==
+|| Institues || DMI || FMI || AEMET || KNMI[[FootNote(Forecast data not archived on full area)]] || met.ie || met.no || SMHI || EMHI ||  reference RCR [[br]] at ECMWF || TOON16
+|| Model level [[br]] period ||  1994 || 1990 || 1995 || 1994 || none || 1998 || 200212|| since 2006  || Feb 2000 to Jan 2004 || two weeks ||
+|| Pressure level [[br]] period || since 1994 || 1990 || since 1995 || 1994 || none || 1998 || 200212|| since 2006  || Feb 2000 to Jan 2004 || two weeks ||
+|| Analysis [[br]] period || since 1994 || 1990 || since 1995 || 1994 || none ||1998 || 200212||  since 2006 || Feb 2000 to Jan 2004 || two weeks ||
+|| observation data || since 1994 || 1994 || since 1995 || 1994 || none || 1998 || 200601|| since may 2005  || Feb 2000 to Jan 2004 || two weeks ||
+|| ACMA || since 2002 ||  || since 2004 || none || none || since 200212 || 200304|| none  || none || at hirlam.org ||
+|| verification data || since Oct 1997 || 1995 || since 1995 || 1994 || 2008 || since 1997 || || since 2008  || Feb 2000 to Jan 2004 || at hirlam.org ||
+|| frequency ||  main forecast || main forecast || main forecast || main forecast || || 6 h || 6 h || 6h  || 00 UTC || all ||
+ [[FootNote]]
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

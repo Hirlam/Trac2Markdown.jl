@@ -1,0 +1,66 @@
+= ECFS directory tools =
+`[`last modified: [[LastModified]]`]`
+
+These are some scripts that help to manage directories under ECFS.
+You can get information on how to use each tool by calling the tool
+with the `"-help"` option. This will show the manual page for the tool.
+
+[[PageOutline(2-3, Contents, inline)]]
+
+
+== Important Note ==
+
+Please be aware of the fact that the ECFS tools are very powerfull.
+Especially with the removal tool ''edrm'' you can erase directory trees
+completely and '''without possibility for undo'''. So please only use
+these tools when you are in a sober condition.
+
+
+== Tools ==
+
+=== '''`edch`''' -- ECFS directory tree chgrp and chmod recursively ===
+
+''edch'' can change the group ownership as well as the access mode of a directory
+tree in ECFS. The latter is separated in access mode for the directory including
+all sub-directories, and in access mode for all files under the given diretcory tree.
+
+latest version 0.5: [attachment:edch download]
+
+
+=== '''`edcp`''' -- ECFS directory tree recursive copy ===
+
+''edcp'' can perform two actions:
+
+  1. copy a directory tree recursively within ECFS
+  1. copy a directory tree from disk recursively into ECFS
+
+Note that the time stamps of the objects below the tree are ''not'' retained.
+
+latest version 0.6: [attachment:edcp download]
+
+
+=== '''`edls`''' -- ECFS directory tree recursive listing ===
+
+''edls'' lists the content of an ECFS directory recursively in a simple tree structure. The listing depth can be limited.
+
+latest version 0.5: [attachment:edls download]
+
+=== '''`edrm`''' -- ECFS directory tree recursive removal ===
+
+''edrm'' removes a directory tree in ECFS recursively. This is a very useful and
+very powerful tool, and it should be used with much care, because ECFS
+does not support an undo option.
+
+latest version 0.6: [attachment:edrm download]
+
+
+=== '''`edrs`''' -- ECFS directory tree restore and re-store ===
+
+This tool can be used in two ways:
+
+  1. you have a directory under ECFS and you want to copy it completely onto disk, while timestamps of all objects are retained.
+  1. you have a directory under ECFS and you want to store it as an archive in one file and have it copied to another location under ECFS. The archive retains the original time stamps of the objects under the directory tree.
+
+Both applications work for directories in ECFS with arbitrary depth of the directory tree.
+
+latest version 0.7: [attachment:edrs download]

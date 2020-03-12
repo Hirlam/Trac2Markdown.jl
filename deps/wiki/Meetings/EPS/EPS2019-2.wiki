@@ -1,0 +1,194 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HarmonEPS working week''' =
+''AEMET, Barcelona. Monday 11 November - Friday 15 November 2019. ''
+
+[[Center(end)]]
+
+[[Image(IMG-20191113-WA0003.jpg, 25%)]]
+[[Image(IMG-20191113-WA0004.jpg, 25%)]]
+[[Image(20191111_113923.jpg, 25%)]]
+[[Image(20191113_161349.jpg, 25%)]]
+[[Image(20191113_161359.jpg, 25%)]]
+[[Image(20191113_172113.jpg, 25%)]]
+[[Image(20191113_175216.jpg, 25%)]]
+[[Image(20191113_213054.jpg, 25%)]]
+
+== Location ==
+AEMET
+
+Carrer de l'Arquitecte Sert, 1, 08071 Barcelona
+[[BR]]
+
+== Participants ==
+|| Name                                    || Expect to be at ww        || Leaving       || Working with                 || Hotel     ||
+|| Inger-Lise Frogner, MET Norway   || Monday morning at AEMET ||flight at 13.25 on Friday || HarmonEPS SPP || Ilunion Barcelona             ||
+|| Marvin Kähnert, UiB              || Monday morning || || single tendencies, sensitivity ||                              ||
+|| Pau Escribà, AEMET               || Monday morning || || LETKF / EDA || My house ||  
+|| Alan Hally, Met Éireann          || Monday morning || Friday morning: Flight at 10.30 || HarmonEPS SPPT || Ciutadella Barcelona || 
+|| Ulf Adrae, SMHI                  || Monday morning || Friday lunch || HarmonEPS SPP || Ilunion Barcelona    || 
+|| Karoliina Hämäläinen, FMI        || Sunday evening || Thursday morning || HarmonEPS SPPT ||Hotel SB Icaria barcelona ||
+|| Janne Kauhanen, FMI              || Sunday evening || Thursday morning || HarmonEPS SPPT ||Hotel SB Icaria barcelona || 
+|| John Bjørnar Bremnes, MET Norway || Monday morning || Friday           || Calibration    || Ilunion Barcelona   || 
+|| Andrew Singleton, MET Norway     || Monday         || Thursday         || surface physics perturbations || K+K Hotel Picasso || 
+|| Alfons Callado, AEMET            || Monday         || Friday           || HarmonEPS SPPT || ||
+|| Mauri Martínez, AEMET            || Monday         || Friday           || Verification HARP || ||
+|| Daniel Yazgi, SMHI               || Monday morning || Friday morning   || Verification HARP || Ilunion Barcelona ||
+|| Jelena Bojarova, SMHI            || Monday morning || Friday morning   || Initial Conditions Pert || ||  
+|| Meryl Wimmer, Météo-France       || Monday         || Friday           || SPPT/RP/SPP       ||  ||
+|| Teresa Valkonen, MET Norway      || Monday morning || Wednesday morning  || parameter sensitivity 1D model     || Hotel SB Icaria Barcelona ||
+|| Åke Johansson, SMHI              || Monday         || Friday           || Equally likely ensemble members || Ilunion Barcelona ||
+|| Harold Mc Innes, MET Norway      || Monday morning || Thursday         || Surface pertubations            || Ilunion Barcelona ||
+|| David Quintero, AEMET            || Monday afternoon || Friday           || Calibration || ||
+|| Pirkka Ollinaho, FMI             || Monday morning || Thursday afternoon  || Model uncertainty || Hotel SB Icaria Barcelona ||
+|| Henrik Feddersen, DMI            || Monday morning || Friday: Flight at 13.30 || Humidity perturbations || Ilunion Barcelona ||
+|| Ole Vignes                       ||                ||                  || SPG code issues || Participating externally ||
+
+== Agenda ==
+* Monday 11. November
+  * 09.30: Welcome by Antonio Conesa, AEMET chief in Barcelona
+  * [[https://docs.google.com/presentation/d/1zobNZM_kP8Bf34_7mZB6GOPCh5fV6f2iq5qXMWhwww4/edit#slide=id.p | Status by Inger-Lise]]
+  * Presentations:
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/EPSWorkingWeek_WIMMER3.pdf Meryl: SPPT/RP/SPP]
+    * [[https://docs.google.com/presentation/d/1EB3PaVYyS0b_JRoUxmJWP2uVmBnMgQpYhVBqYDyfnOg/edit#slide=id.g5151874aa5_0_63 | Teresa: Status and plans on parameter sensitivity for fog]]
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/SPPT-Updates.pdf Alan: SPPT status and plans ]
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/Frogner_WW-EPS-2019-2.pdf Inger-Lise: SPP in HarmonEPS ]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-2/201911_HarmonEPS_ww_SPPT_Barcelona_acallado.pdf Alfons: SPPT default pattern generator]
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/HarmonEPSSurfacePerBarcelon.pptx  Harold: surface perturbation experiments]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-2/WP4%20Breakout.pdf Andrew: SST perturbations]
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/CMEPS%20EPS%20WW%20BARCELONA%202019.pdf Ulf: CMEPS]
+  * Work and discussions
+  * 13.00: Lunch
+  * 14.30: Presentations continued:
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/hum_pert.pdf Henrik: humidity perturbations]
+    * Jelena: Structure functions from BRAND-EPS
+    * [https://hirlam.org/trac/raw-attachment/wiki/Meetings/EPS/EPS2019-2/QFR_AEMET.pdf John Bjørnar: Ensemble calibration using quantile function regression with neural nets]
+    * David: Calibration
+  * Work and discussions
+
+* Tuesday 12. November
+  * 09.30: Introduction to new harp by Andrew, followed by harp hands-on work
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-2/harp%20ASM%202019%20(1).pdf What is harp]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-2/harp%20eps%20ww.pdf Basic functions]
+    * [https://andrew-MET.github.io Tutorial]
+    * [https://speakerdeck.com/harp Slides from harp training course]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-2/Accessing_harp_training_material.pdf Tutorials from harp training course]
+  * 13.00: Lunch
+  * Work and discussions
+
+* Wednesday 13. November
+  * 09.00: Work
+  * 13.00: Lunch
+  * Excursion to Montserrat (self payed). Bus from Catalonia Square at 15:00, be there at 14.30. Back at 19:15. https://booking.touristactive.com/barcelona/montserrat-afternoon-tour-from-barcelona-with-guided-monastery-visit-id3529/
+  * 20.00: Common dinner (self payed). The place is colled "Cockteleria Milano". There we will have a drink to begin then the food and finally a cocktail. At 9 pm there is a nice live concert of Piano Jazz. The price is 35 euros and you can pay yourself both in cash or card at the same restaurant in the end. You can locate the place in: https://www.camparimilano.com/
+
+* Thursday 14. November
+  * 09.00: Work
+  * 13.00: Lunch
+  * Work
+
+* Friday 15. November
+  * 09:00: Work
+  * 10.30: Summary
+  * 11.00: End of ww
+  * 12:00 For those interested: At Barcelona University, Sala Eduard Fontserè
+        "More than a quarter century of improving numerical weather prediction models"
+        Greg Thompson (UCAR/NCAR)
+
+
+== !Discussions/Summary ==
+* HarmonEPS paper - proof reading started and some corrections done, eg Jelena updated a figure. Inger-Lise will finish it the week after next.
+* cy43 and EPS: [[https://docs.google.com/presentation/d/12gFbAbHI8puNda072TsIldkuhcewQSjjmb10260oCWs/edit#slide=id.p | cy43 - remaining EPS issues]]
+* SPPT
+  * A large SDEV and the clipping at -1 and +1, which gives a unwanted U-shaped histogram of the pattern (meaning sharp gradients between the min/max perturbations) gives the best scores. Not understood why. This pattern is however nothing we would like to have, so we stick to SDEV=0.3 which is the highest SDEV where the pattern looks as expected.
+[[Image(sharp.png, 25%)]]
+[[Image(smooth.png, 25%)]]
+[[Image(u.png, 25%)]]
+[[Image(n.png, 25%)]]
+  * Settings for further experimentation: SDEV=0.3 with XCLIP_RATIO_SDT at 3.33 to keep clipping at -1 and 1, SPG with XLCOR=200km and Q=0.7, TAU=8h. 
+  * What remains before ready for operations? With the above settings SPPT can now be used!
+  * A log-normal distribution instead of a normal distribution of the pattern for SPPT will give us some more room to play with the standard deviation without changing the sign of the tendencies. Alan will implement and test.
+  * SPP: correlated patterns for some parameters? Would require something like EPPES to establish.
+  * More parameters, SLHD on top of list, will also implement XCTP from Meryl's list. Ulf.
+  * Diagnostics tools: python and epygram.  
+* SPP and SPPT paper:
+  * Main focus on clouds. We need more cloud observations (low clouds, cloud base)
+  * For figures we use Harpv2 and cross sections ++ based on epygram. Stick with Harpv2 mostly, use harp for new stuff if needed. Include spatial verification (if ready).
+  * Test length scale to infinity for SPP? 
+  * Remaining experiments:
+     * Long/full runs with HarmonEPS summer and winter for SPP, SPPT and combined. 
+     * Test periods: Feb 2019 and June 2019. Run the full months. 
+     * number of members = 1+6. 
+     * Inger-Lise has run spinup. 
+     * Janne and Karoliina to run SPPT in full HarmonEPS, summer and winter. 
+     * Inger-Lise rerun June SPP with first SPP settings
+     * Ulf run SPP for Feb. 
+     * Alan test running the combination of SPP and SPPT. Later decide who will run summer and winter periods
+     * Reference HarmonEPS runs are done (10 members, but we use only 6 when verify and do diagnostics).
+     * Inger-Lise will provide the reference setup for the full runs (same as used for the reference runs). This ref will serve as baseline exp setup where we add SPP, SPPT or SPP and SPPT.
+     * Make all exp hirald group.
+     * Alan will use hlameps account for the SPP+SPPT runs
+     * SPP 200km, Q0.7 and 12h, SPPT 200km, Q0.7 and 8h.
+  * Who writes what? 
+     * IL starts with SPP background/sensitivity runs ++, !Janne/Karoliina/Alan same for SPPT. 
+     * IL starts on introduction.
+     * Ask Karl-Ivar if he want to contribute to the paper 
+  * Timeline: depends on experiments, start writing and do diagnostics. Aim draft manuscript ready for May ww 
+  * What journal to aim for? TBD
+* Ensemble nowcasting
+  * What are the relevant perturbations? Brand could be a good candidate.
+* surface perturbations
+  * Short term:
+    * SST issue: Andrew discovered in Alertness experiments that spread over land is higher when SST perturbations are switched off. Action: do a clean test with and without SST - we have cy40 ref with all surf. pert on. Run same without SST pert. Denmark domain, short period. - Andrew
+    * Henrik has identified soil moisture perturbations as a cause for the drying seen in the members. Action: check realistic values first + more diagnostics (eg related to soil type?). 
+      * Is there a drift (as problem is not seen in IREPS which recenter on the control every cycle). To check this: Split verification to forecast date and/or location. 
+      * Check the size of pert with respect to what surface can hold? 
+      * Perturb soil wetness index instead? 
+      * Henrik and Harold to work on this
+   * In cy43 X002VEG always has negative perturbations since the field is constant and equal to the upper clipping limit - Harold will look at this in beginning of 2020 (cy43)
+  * Longer term:
+      * Include XRIMAX (needs to be made 2D field, chose appropriate period for testing) in surface perturbation code. XRIMAX: limitation of Richardson number in drag computation, and is a hot topic at the moment. - Daniel, Andrew and John. 
+      * Also other parameters than XRIMAX eg. XFRACZ0 (Meryl found this a sensitive parameter)
+* SPG in cy43: Ole has coded removal of YRRIP%TDT from SPGSOLVER and SPGTRANS, info now enters via setup as wanted by ECMWF. In addition an abort is added in SPP if SPG is chosen without LELAM=T. Tested and gave bit-identical results and it is committed: https://hirlam.org/trac/changeset/125716b2e53cb496a6e6f691a653bcd66dc99f95/Harmonie
+* Calibration
+  * A large 6-hour precipitation data set with approx. 1.5 million training cases at about 11000 sites is organized for ECMWF ENS forecasts (while waiting for CMEPS)
+  * Brief investigation of important variables by using a variant of random forest (extremely randomized trees). Max. 6-hour precipitation rate and total column cloud liquid water seem useful in addition to 6-hour accumulated precipitation amount
+  * Work on the definition of the quantile loss function in quantile function regression (QFR) for precipitation. Tests carried out in Julia.
+  * Making QFR code available to others (in R and Julia)
+* NEXT WORKING WEEK: 11 - 15 May 2020. Place TBD.
+
+== How to get there ==
+The location of the work place for the working week (Delegation of AEMET in Catalonia) is:
+
+ 
+https://maps.google.es/maps?q=Delegaci%C3%B3n+Territorial+de+AEMET+en+Catalu%C3%B1a&ie=UTF8&ll=41.390204,2.200227&spn=0.009546,0.016565&fb=1&gl=es&hq=delegaci%C3%B3n+aemet&hnear=0x12a45bdc8530f5f3:0x100fae021a3c850,Catalu%C3%B1a&cid=10622546249887988347&t=m&z=16&iwloc=A
+
+ 
+From the airport there are several ways to get there:
+
+ 
+a) By taxi
+
+ 
+You should go along the coast, it is the shortest way. An approximated price for the lift is 40 euros.
+
+ 
+b) By bus ( http://www.aerobusbcn.com/)
+
+ 
+You should stop in "Plaça Catalunya" station. There you should take the underground up to "Vila Olimpica" station, of yellow line. From the station to the work you should walk for 10 minutes. Print the map above in order to find the way.
+
+ 
+c) By train. (http://www.renfe.com)
+
+ 
+The train station is in Terminal 2 (old one). If you land on Terminal 1 you should take a free bus between terminals. You should stop in "Passeig de Gracia" station. There you should take the underground up to "Vila Olimpica" station, and follow indications in b)
+
+ 
+d) By underground ( https://www.barcelona-airport.com/eng/barcelona-airport-metro.php )
+
+ 
+The cheaper option but the one it takes long: aorund one hour to arrive to the city center.
+
+ 
+The airport is around 15 km far from Barcelona city centre

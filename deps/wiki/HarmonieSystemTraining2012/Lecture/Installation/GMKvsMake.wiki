@@ -1,0 +1,60 @@
+== GMKPACK vs. Make ==
+
+The HARMONIE system, like the ARPEGE/ALADIN/AROME system, uses the (set of scripts) GMKPACK to build the libraries and binaries.
+
+GMKPACK builds a script "ics_arome" that performs the following steps, using scripts from the "aux" directory:
+
+ 1. Establishes an order in the "projects" (in fact, the subdirectories of the src/local directory) using the file conf/projects.
+ 1. Constructs interface block header files for the ald and arp directories:
+{{{
+Auto-generated explicit interface blocks on projects ald arp ...
+file=ald/adiab/elarche.F90 dir=local/.intfb/ald elarche.intfb.h : no-changes
+file=ald/adiab/elarmes.F90 dir=local/.intfb/ald elarmes.intfb.h : no-changes
+}}}
+ 1. Generates a list of include paths:
+{{{
+Include/source paths ...
+Include path :
+-I/home/harmonie/pack/31h1_main.01.420./src/local/ald/module
+-I/home/harmonie/pack/31h1_main.01.420./src/local/arp/module
+}}}
+ 1. Builds a ordered list of source files to compile:
+{{{
+Ordered compilation list INCluding dependencies ...
+Source descriptors for local view is trivial ...
+Local view for modules ...
+Check for duplicated modules ...
+Sort all projects together ...
+------ Level 1
+local@xrd/module/parkind1.F90
+------ Level 2
+local@.intfb/arp/tridialcz.intfb.h
+local@xrd/include/dr_hook_util.h
+}}}
+ 1. Builds the precompilers odb98.x and bla95.x.
+ 1. Actually compiles the sources.
+{{{
+------ Start compilation --------------------------------------
+----------- Level 1 / 250 ---------------------------------------
+No recursive update:
+Compile:
+gfortran -c -fconvert=swap -ffree-form -DBLAS -DLINUX -DLITTLE_ENDIAN -DLITTLE -DHIGHRES -g -O2 -fbacktrace local/xrd/module/parkind1.F90
+}}}
+ 1. Then it builds the libraries.
+{{{
+------ Make libraries -----------------------------------------------
+
+ar: creating /home/harmonie/pack/31h1_main.01.420./lib/libsur.local.a
+a - ./surfexcdriversad.o
+}}}
+ 1. Subsequently, it builds the single executable (AROME):
+{{{
+========= Linking binary AROME =========
+
+Top libraries actually used :
+lib[01].a="/home/harmonie/pack/31h1_main.01.420./lib/libald.local.a"
+...
+scanning lib[12].a ...
+
+gfortran -g -fbacktrace -Wl,--start-group ./master.o -L. -l[1] -l[2] -l[3] -l[4] -l[5] -l[6] -l[7] -l[8] -l[9] -l[10] -l[11] -l[12] -Wl,--end-group -L/home/harmonie/auxlibs -lecR64 -lgribexR64 -lfdbdummy_000_gnuR64 -lwamdummy_000_gnuR64 -lnaglitedummy_000_gnuR64 -loasisdummy_000_gnuR64 -llapack -lblas -L/home/harmonie/auxlibs -lmpidummy_000_gnuR64 -libmdummy_000_gnuR64
+}}}

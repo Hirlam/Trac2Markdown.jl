@@ -1,0 +1,77 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Validation of HARMONIE-38h1'' ==
+
+[[Center(end)]]
+=== Lists of validation experiments ===
+|| Experiment || Domain || Model Version || Physics || UA Ana || Surface Ana || Misc || Start of Episode || End of Episode || Observation Verification ||
+|| ~snh/hm_home/summer/dk_arome_38h1_alpha1 || DENMARK || alpha.1 || AROME || blending || Canari_OI-main || || !20100720 || !20100831 || [https://hirlam.org/portal/validation/38h1/Summer_cy38_alpha_1 Summer]  ||
+|| ~snh/hm_home/dk_arome_38h1_alpha1 || DENMARK || alpha.1 || AROME || blending || Canari_OI-main || || !20091220 || !20100131 || [https://hirlam.org/portal/validation/38h1/Winter_cy38_alpha_1 Winter] ||
+|| ~snh/hm_home/dkoexp_trunk_11485 || DKCOEXP || trunk@11485 || AROME || blending || Canari_OI-main || 3h cycling || !20091220 || !20100131 || [https://hirlam.org/portal/validation/38h1/trunkdomain_201001 Winter] ||
+|| ~snh/hm_home/summer/dkoexp_trunk_11485 || DKCOEXP || trunk@11485 || AROME || blending || Canari_OI-main || 3h cycling || !20100720 || !20100901 || [https://hirlam.org/portal/validation/38h1/trunkdomain_201008 Summer] Halted due to crash in the forecast ||
+|| ~snh/hm_home/snh/dk_arome_38h1_alpha2 || DENMARK || alpha.2 || AROME || 3DVAR || Canari_OI-main || 6h cycling || !20091220 || !20100131 ||  ||
+|| ~fnl/hm_home/aro38h1a2_blend_s || FINLAND|| alpha.2 || AROME || blending || Canari_OI-main || 6h cycling || !20120801 || !20120831 ||  [https://hirlam.org/portal/validation/38h1/valid38h1_fi_s 201208 Summer episode ] ||
+|| ~fim/hm_home/aro38h1a2_blend_w || FINLAND|| alpha.2 || AROME || blending || Canari_OI-main || 6h cycling || !20121117 || !20121231 ||  [https://hirlam.org/portal/validation/38h1/valid38h1_fi_w 201212 Winter episode ] ||
+|| ~fim/hm_home/aro38h1b2_3dvar || FINLAND|| beta.2 || AROME || 3DVAR || Canari_OI-main || 6h cycling || !20120801 || !20120831 ||  [https://hirlam.org/portal/validation/38h1/valid38h1_s Summer period with 3DVAR, ATOVS, ECOCLIMAP2 data] ||
+|| ~fni/hm_home/aro38h1b3_sca || SCANDINAVIA25 || beta.3 || AROME || 3DVAR || Canari_OI-main || 6h cycling || !20130101 || !20130131 ||  [https://hirlam.org/portal/validation/38h1/aro38h1b3_sca_201301 winter period with 3DVAR,compared to 36h14, RCR, ECMWF], [https://hirlam.org/portal/validation/38h1/aro_sca_201301 same but compared to 37h1 (run at SMHI), RCR, ECMWF] ||
+|| ~fim/hm_home/aro38h1b3_sca || SCANDINAVIA25 || beta.3 || AROME || 3DVAR || Canari_OI-main || 6h cycling || !20120801 || !20120831 ||  [https://hirlam.org/portal/validation/38h1/aro38h1b3_sca_201208 summer period with 3DVAR,compared to 37h12, RCR, ECMWF] ||
+|| metcoop ||  Metcoop domain || beta.1 || AROME || 3DVAR|| Canari_OI-main || 6h cycling || !20111219 || !20120105 ||  [https://hirlam.org/portal/validation/38h1/201112_cy38b1_export MetCoop winter episode ] ||
+|| metcoop ||  Metcoop domain || beta.1 || AROME || 3DVAR|| Canari_OI-main || 6h cycling || !20111219 || !20120105 ||  [https://hirlam.org/portal/validation/38h1/201112_cy38b1ecl1o2_export MetCoop winter episode, ECL-1 vs. ECL-2 ] ||
+|| ~nhe/hm_home/trunkECO[26] ||  DKCOEXP || trunk (post beta-2) || AROME || 3DVAR|| Canari_OI-main || 3h cycling || !20130526 || !20130731 ||  [https://hirlam.org/portal/validation/38h1/trunkECO2s DKCOEXP summer episode, comparing ECOCLIMAP1/2, no sso] ||
+|| Javier, Daniel and Gema ||  Iberian domain || alfa.2 || AROME || blending || Canari_OI-main || 6h cycling || !20100801 || !20100831 ||  [https://hirlam.org/portal/validation/38h1/38h1a2_aib_37h12 38h1alfa-2 vs 37h1.2 and with ECOCLIMAP2 data, + ecoclimap2 , 201008 ] ||
+|| Javier, Daniel and Gema ||  Iberian domain || alfa.2 || AROME || blending || Canari_OI-main || 6h cycling || !20100101 || !20100131 ||  [https://hirlam.org/portal/validation/38h1/t38h1a2_aib_37h12_201001 38h1alfa-2 vs 37h1.2, both with ecoclimap 1, 201001 ] ||
+|| Martynas ||  LITHUANIA domain || alfa.2 || AROME || blending || Canari_OI-main || 6h cycling || !20130701 || !20130731 ||  [https://hirlam.org/portal/validation/38h1/summer_harmonie_intercomp_export test of 38h1 and ECOCLIMAP II, L_QT, 201307 ] ||
+
+== Real time monitoring runs with 38h1 ==
+
+ * DMI 38h1 suite on DKA domain
+   * [https://hirlam.org/portal/dmi/harmonie/dka38/forecasts/select_date.html forecast maps]
+   * [https://hirlam.org/portal/dmi/harmonie/monitor/dka38h1b3/?choice_ind=Surface Cycle monitoring ]
+ * FMI 38h1 suite on SCANDINAVIA-2.5 domain
+   * [http://fminwp.fmi.fi/WebgraF/HARMONIE_parallel/index.html?choice_ind=Weather_maps FMI 38h1, Upper air]
+   * [http://fminwp.fmi.fi/WebgraF/Surfex_aro38h1b2/index.html?choice_ind=0 FMI 38h1 suite on SCANDINAVIA-2.5 domain, surfex quantities]
+
+== Validation test of 38h1 ==
+
+ * [https://hirlam.org/portal/validation/38h1/trunk38 trunk runs since Jan 2013 with 38h1 (trunk38, on DKCOEXP domain)  compared to branch 37h1 (denmark_trunk, note the name denmark_trunk here is misleading!) ]. 38h1-trunk with blending on DENMARK domain (trunk_DENMARK) and DKCOEXP (trunk38) domains, the latter, 600x600x65, is the current default domain of CY38. 
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201303 201303 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201304 201304, blending is switched to 3DVAR during this month ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201305 201305, n2m changed to 2 since May 27 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201306 201306, locally n2m is changed to 2. ]. Note the significantly amplified dirurnal change of the Td error in the trunk run. Why?
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201307 201307 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201308 201308 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201309 201309 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201310 201310 ]
+   * [https://hirlam.org/portal/validation/38h1/38beta3 201310 with ECOCLIMAP 1 (trunk38) and ECOCLIMAP2 (trunk38n) ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201311 201311 ]
+   * [https://hirlam.org/portal/validation/38h1/trunk38_201312 201312]
+ * [https://hirlam.org/portal/validation/38h1/trunk38var trunk 3DVAR run (trunk38d) since March 3 2013 compared to that of blending (trunk38) ]. on DKCOEXP domains with 600x600x65,  [https://hirlam.org/portal/validation/38h1/trunk38tvar trunk 3DVAR run (trunk38t) on DENMARK domian since March 3 2013 compared to that of blending (trunk_DENMARK) ].
+ * Sensitivity test with ECOCLIMAP I/II data, [https://hirlam.org/portal/validation/38h1/trunkECO trunk (trunk38) run vs trunkECO (3DVAR and with ECOCLIMAP II) ]. Note the first period of trunk run was with blending.
+ * Sensitivity test about ECOCLIMAP I/II data, N2m, canopy_drag and blending [https://hirlam.org/portal/validation/38h1/trunkECO4 trunkECO1 vs trunkECO2 vs trunkECO3 vs trunkECO4  vs trunkECO5 for winter/spring period ].
+|| EXP || ECOCLIMAP data || n2m in SURFEX || CANOPY_DRAG || assimilation || features to pay attention ||
+|| trunkECO1 || 1|| 2|| T || 3DVAR || ||
+|| trunkECO2 || 2|| 2|| T || 3DVAR || the sensitivity on surface humidity especially for coastal stations; the impact on surface wind vs ECOCLIMAP 1||
+|| trunkECO3 || 2|| 1|| T || 3DVAR || the sensitivity on surface humidity especially for coastal stations  || 
+|| trunkECO4 || 2|| 2|| F || 3DVAR || sensitivity on most surface parameters ||
+|| trunkECO5 || 2|| 2|| T || blending || sensitivity on surface humidity ||
+ * Validation test about [https://hirlam.org/portal/validation/38h1/test12362/ inline OIMAIN, where test12362 and test12362_mod1 are trunk-r12362+ECOCLIMAP2 with offline and inline OIMAIN. The inline OIMAIN means running OI_MAIN directly as part of CANARI. This is the default feature in 38h1.beta3 ]
+ * Validation about LSMIXBC
+   * [https://hirlam.org/portal/validation/38h1/JK_LSMIXBC_3DVAR_export/ Per Dahlgren test about Jk and LSMIXBC ]
+   * [https://hirlam.org/portal/validation/38h1/DKA38wlbc DKA (800x600, Danish operational HARMONIE domain) with trunk, 38h1beta3, withDKA (DKA38_mod1) and without LSMIXBC (DKA38_mod2), Feb 2013 ]
+   * [https://hirlam.org/portal/validation/38h1/38beta3wlbc DKCOEXP (600x600, default HARMONIE domain) with trunk, 38h1beta3, with (trunk38n) and without LSMIXBC (trunk38m), Feb 013 ]
+       * [https://hirlam.org/portal/validation/38h1/38beta3wlbc2 DKCOEXP (600x600, default HARMONIE domain) with 38h1beta3 (default with LSMIXBC and cutoff 0.15d, trunk38n), without LSMIXBC (trunk38m), with  LSMIXBC but cutoff with 2 degree), Feb 013 ]
+   * [https://hirlam.org/portal/validation/38h1/38beta3lbc DKACOEXP domain with trunk, 38h1beta3, with (trunk38n) and without LSMIXBC (trunk38m), Oct 2013 ]
+       * [https://hirlam.org/portal/validation/38h1/38beta3lbc2 DKCOEXP (600x600, default HARMONIE domain) with 38h1beta3 (default with LSMIXBC, trunk38o, cutoff 0.15d), without LSMIXBC (trunk38m), with  LSMIXBC but cutoff with 2 degree), Oct 013 ]
+       * [https://hirlam.org/portal/validation/38h1/trunkstr_201310 DKCOEXP (600x600, default HARMONIE domain) with 38h1beta3 (default with LSMIXBC, trunk38o), with increased sigma B (trunk38s), with changed strfun (trunk38s1), Oct 013 ]
+ * Comparison of domain impact
+   * [https://hirlam.org/portal/validation/38h1/Ddomain_201302 DKCOEXP (600x600, default, trunk38n, 38h1beta3, xcdrag=0.1), DKA (800x600, DKA38_mod1, 38h1beta3, xcdrag=0.01) and NEA (1200x1080D, NEA, blending, zcdrag=0.02), Feb 2013 ]
+   * [https://hirlam.org/portal/validation/38h1/Ddomain_201307 DKCOEXP (600x600, default, trunkECO6, trunk with ECOCLIMAP 2), DKA (800x600, DKA38_mod1, 38h1beta3, xcdrag=0.01) and NEA (1200x1080D, NEA, blending, zcdrag=0.02), July 2013 ]
+   * [https://hirlam.org/portal/validation/38h1/Ddomain_201310 DKCOEXP (600x600, default, trunk38o, 38h1beta3, xcdrag=0.1), DKA (800x600, DKA38_mod1, 38h1beta3, xcdrag=0.01) and NEA (1200x1080D, NEA, blending, zcdrag=0.02), Oct 2013 ]   
+ * !MetCoop test of [https://hirlam.org/portal/validation/38h1/38NONE/ sso option with z01d and none ]
+ * !MetCoop test of [https://hirlam.org/portal/validation/38h1/201112_38h1b2_T2MMW_export/ diagnosis of coastal T2m ]
+ * LHMS test
+   * Validation test comparing 37h1 vs 38h1-beta at LHMS, the latter using ECOCLIMAP2, [https://hirlam.org/portal/validation/38h1/38h1_lhms for Lithuania domain, 201307].
+   * Sensitivity test about ECOCLIMAP I/II data for [https://hirlam.org/portal/validation/38h1/ecoclimap_comp_lhms Lithuania domain, 201307], both with 38h1-beta versions.
+ * Note the different Sensitivity about 3DVAR vs blending in [https://hirlam.org/portal/validation/38h1/trunk38b trunk] and in [https://hirlam.org/portal/validation/38h1/37h1b 37h1]
+ * [https://hirlam.org/portal/oprint/data/ObsUse/HARMONIE/trunk38d monitoring interface for trunk run, 3DVAR with 38h1 on DKCOEXP domain ], [https://hirlam.org/portal/oprint/data/ObsUse/HARMONIE/trunk38t 3DVAR with 38h1 on DENMARK domain ]
+ * [https://hirlam.org/portal/oprint/data/ObsUse/HARMONIE/trunk38 monitoring interface for trunk run, blending, with 38h1 ]

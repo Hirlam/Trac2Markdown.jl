@@ -1,0 +1,237 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Harmonie System Training''' ===
+= '''Hands On Practice''' =
+[[Center(end)]]
+
+== Test data and preparations ==
+
+* Testbed data
+ * ECMWF data, observations and climate files for DOMAIN=TEST_11 [https://hirlam.org/portal/download/testbed/37h1/testbed_data.tar]
+* Climate and physiography data [https://hirlam.org/portal/download/harmonie_climate/37h1.tar]
+* Verification data
+ * vobs files, vfld files for C11, AO_SCAND55_SFX for 201109. [https://hirlam.org/portal/download/system_training_2011/monitor_test_data.tar.gz Monitor data]
+ * More data for verification can be found on {{{ ecgate:/scratch/ms/dk/nhz/oprint/ }}}
+* Ubuntu specific
+ * Ubuntu uses /bin/dash as default shell. This does not work with many of the Harmonie scripts, but the script [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2011/Exercises/sh2bash.sh sh2bash.sh] is a script to do convert /bin/sh to /bin/bash for you. Save the script and run it by:
+{{{
+./sh2bash.sh path-to-your-harmonie-check-out
+}}}
+
+=== Tools & Graphics ===
+
+ * [wiki:HarmonieSystemDocumentation/FileFormats Output formats]
+ * [wiki:HarmonieSystemDocumentation/PostPP/gl gl commands]
+
+ * [http://netfam.fmi.fi/Museo/Riga/MetgraF/metg2.htm MetgraF]
+  * on ecgate
+{{{ 
+
+cd $SCRATCH
+rsync -vaux /scratch/ms/spsehlam/hlam/metgraf . 
+
+}}}
+  A set of example scripts are available under the plot directory. Change {{{Plot}}} to get e.g. the following pictures.
+
+  [[Image(HarmonieSystemTraining2011/Exercises:cross_2011083000_018_1.png)]]
+  [[Image(HarmonieSystemTraining2011/Exercises:cross_2011083000_018_2.png)]]
+  [[Image(HarmonieSystemTraining2011/Exercises:map_2011083000_018_T2M.png)]]
+
+  * elsewhere, you also need emoslib installed
+{{{ 
+
+svn co https://svn.hirlam.org/trunk/contrib/metgraf
+gmake COMPILER=gfortran
+
+}}}
+ * Grads
+ * Metview
+ * Python (pygrib)
+
+== General ==
+
+== Installation of HARMONIE model on LinuxPC ==
+
+ * Should have been covered by the lecture
+
+ * A config file suitable for a non-MPI build can be found in [source:tags/harmonie-37h1.1/util/makeup/config.readhat61.gfortran445]
+
+ * To build binaries for MUSC only do like
+ {{{
+    cd util/makeup
+    ./build config.your_favorite
+ }}}
+
+
+
+== Running HARMONIE 37h1.1 on ECMWF hpc or Linux PC
+
+ * Select from a list of proposed configuration options to configure an experiment
+ * run 1 to 2 experiment cycles
+ * examine and diagnose results
+   * monitoring ongoing runs via mXCDp interface.
+     * Halt, resume, kill, resubmit a task.
+   * find input and output data
+   * study run logs
+      * resource consumptions, profiling information...
+ * [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation#Owerviewandinstallation Input data for laptop run] 
+ * Changes required to run on a with non MPI binaries are:
+  * Use the config.LinuxPC file for your system. I.e. setup with "-h LinuxPC"
+  * Set L_GATHERV_WRGP=F in nam/harmonie_namelists.pm
+
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2012/Exercises/fixes_smhi_laptop.tar.gz Fixes for running on an SMHI laptop without MPI]
+ * For faster compilation on ecgate start with MAKEUP=no as an argument to "Harmonie start".
+   {{{
+      ~hlam/Harmonie start MAKEUP=no DTG=... 
+   }}}
+ * '''[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Harmonie-mSMS Documentation]'''
+ 
+
+== Post-processing ==
+
+ === Fullpos ===
+
+ * Post-processing with fullpos, exercise: Try out the different post processing types
+{{{
+PPTYPE=""                               # Postprocessing type, space separated list
+                                        # pp = pressure levels
+                                        # md = model level diagnostics
+                                        # zz = height levels
+                                        # sat = satellite radiances (AROME)
+}}}
+
+ === Xtool ===
+
+[https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README learn to use GL/xtool for file conversion/manipulation]
+  * Run a difference between to files and print the result on the screen
+  * Compare the orography between to files with SAL. Change the thresholds
+  * Make a analysis increment file for a month of RCR data
+
+ === gl ===
+
+ 
+[https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README learn to use GL/xtool for file conversion/manipulation]
+
+   * use basic GL functionalities
+     * Convert from FA/LFI to GRIB
+     * Convert a subset of fields
+     * Interpolate to a new domain
+     * Extract gridpoints
+     * Postprocess to pressure levels
+     * Add missing FA/LFI to GRIB translations
+   * use fldextr to extract model data for obs verification
+     * Find what is wrong with the TD calculation for ALADIN
+   * use obsextr to extract observation data for obs verification
+     * Run with and without station list
+   * use xtool to manipulate fields
+     * Print difference between to fields on the screen
+     * Create accumulated differences 
+     * Create a monthly average
+     * Use SAL to compare different fields from different resolutions
+
+== Dynamics ==
+
+== Physics ==
+
+ *Possible tasks in HARMONIE physics  [http://netfam.fmi.fi/harmonietrain/phystask.pdf (phystask.pdf)]. Background info in the lecture [http://netfam.fmi.fi/harmonietrain/harphys_LR.pdf (harphys_LR.pdf)]
+
+== MUSC ==
+
+ * Modification of cloud layer breakup in MUSC
+   * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2012/Exercises/Harmonie_musc.pdf Instructions]
+   * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2012/Exercises/MUSC_exercise.tar.gz Input data and scripts]
+   * For more practical information about MUSC, please take a look at the [http://netfam.fmi.fi/muscwd11/ 2011 workshop page].
+
+== Monitoring ==
+
+ === Verification ===
+
+     * Download the trunk to your laptop and try the [https://hirlam.org/portal/download/system_training_2011/monitor_test_data.tar.gz testdata] set.
+
+     {{{
+        svn co https://svn.hirlam.org/trunk/harmonie/util/monitor 
+        cd monitor
+        gmake ARCH=linuxgfortran
+        wget https://hirlam.org/portal/download/system_training/monitor_test_data.tar.gz --no-check-certificate
+        gunzip monitor_test_data.tar.gz
+        tar xvf monitor_test_data.tar
+        cd scr
+        ./Run_verobs_all ../monitor_test_data/Env_test_data
+        firefox ../WebgraF/index.html
+     }}}
+
+     The result should look like this [https://hirlam.org/portal/smhi/WebgraF_test_data/]
+
+     * use verobs to inter-compare different experiments to obs.
+     * Play with different forecast lengths, areas parameters
+     * Add a new area, change the map view, define a polygon
+     * Remove the quality control, fix the quality control
+     * Plot some single stations
+     * Blacklist stations
+     * Create new contingency tables
+     * Create monthly averages for several months
+     * Change the time window for time series
+     * Play with the quality control
+
+ === WebgraF ===
+
+   * Download the WebgraF code
+
+    {{{
+        svn co https://svn.hirlam.org/trunk/harmonie/util/monitor/WebgraF
+        cd WebgraF
+        export WEBGRAF_BASE=$PWD/WebgraF
+        WebgraF/bin/WebgraF
+     }}}
+     
+     Open WebgraF/index.html in your browser
+
+   * Present data through WebgraF
+     * Extract the definition file from a page
+     * Create a new project/entry
+     * Add info links
+
+[https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/WebgraF/src/input.html Learn about the page definition file]
+
+     * Change colors titles and texts
+     * Turn on all do_* flags
+     * Create a dynamic date axis
+     * Create a page with links to external plots 
+     * Export a page
+     * Transport a page
+
+[[BR]]
+
+== Data assimilation ==
+
+==== Upper Air assimilation ====
+
+     * Interpolate background error statistics from one area to another by using jbconv
+     * Diagnose the background error statistics of one particular domain using jbdiagnose
+     * Carry out a data assimilation experiment with your newly interpolated statistics
+     * Carry out a single observation impact study and plot data assimilation increments and check sensitivity ro REDNMC
+     * Carry out full scale data assimilation experiment and check sensitivity to REDNMC,REDZONE 
+     * Carry out full scale data assimilation experiment. Put AMDAR observations passive and check sensitivity to the use of AMDAR data
+     * Plot the evolution of the cost function, Jb, and Jo, for a full scale data assimilation experiment. Check sensitivity to REDNMC.
+     * Blacklist NOAA 19 AMSU-A channel 7 and run data assimilation with AMSU data (except ch 7).  
+     * Start to derive structure functions for a new or existing domain utilizing downscaling of ECMWF ensemble data assimilation analyses (extensive, to bring home).
+
+Useful guidance can be found in [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Structurefunctions] and [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SingleObs] and in presentations from data assimilation part of System Traning week.
+
+==== Surface assimilation ====
+
+* 1.) OI_MAIN: Try giving the observations more/less weight and see the impact
+
+The namelist for OI_MAIN is found here [https://hirlam.org/trac/browser/tags/harmonie-37h1.1/nam/surfex_namelists.pm#L221 here].
+
+If you tune the default values below of sigmas for the observation of RH2M and T2M you will get very different results. Try it out!
+{{{
+  SIGH2MO     = 0.10,
+  SIGT2MO     = 1.0,
+}}}
+[https://hirlam.org/trac/browser/tags/harmonie-37h1.1/src/surfex/offlin/assim/oi_cacsts.f90 oi_cacsts is the routine performing the real anaylsis]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2011  Back to the main page of the HARMONIE system training 2012 page]
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]

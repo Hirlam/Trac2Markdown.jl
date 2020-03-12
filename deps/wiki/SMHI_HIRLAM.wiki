@@ -1,0 +1,78 @@
+
+= Operational HIRLAM at SMHI =
+
+----
+
+== Domains ==
+
+The current operational SMHI NWP system is based on HIRLAM v7.1.2. The domains are C11, E11 and G05 with a horizontal resolution of 11km, 11km and 5.5km respectively. 
+
+[[Image(SMHI_domains.gif)]]
+
+|| Model || C11 || E11 || G05 ||
+|| Gridpoints || 606x606 || 256x288 || 294x441 ||
+|| Vertical levels || 60 || 60 || 60 ||
+|| Boundaries || ECMWF 3h || ECMWF 3h || E11 every hour ||
+|| Time step || 300 s || 300 s || 150 s ||
+
+
+== Operational HIRLAM ==
+ * 4 forecasts a day. 00, 06, 12 and 18 UTC 
+ * HIRLAM C11 – analysis +60 hours, 2 hours data cutoff
+ * HIRLAM E11 – analysis +72 hours, 1 hour 25 min data cutoff
+ * HIRLAM G05 – analysis + 48 hours, nested to E11
+ * ECMWF preprocessing
+   * SYNOP,SHIP,TEMP,PILOT,BUOY,AIREP,AMDAR
+   * ATOVS AMSU-A radiances – EARS
+
+
+== HIRLAM system ==
+Based on HIRLAM version 7.1.2
+
+ * Large Scale Mixing (LSM) on C11 
+ * 4DVAR on C11-domain
+ * 3D-VAR  FGAT on E- and G-domain
+ * DFI  ( initialisation )
+ * ISBA  ( surface scheme )
+ * moist CBR ( turbulence )
+ * Kain-Fritsch  from CAM3 ( convection )
+
+== 4D-VAR ==
+ * 66 km linear grid
+ * SL, SETTLS
+ * vert. diff. + large scale cond. Linerised simplified physics
+ * weak digital constraint
+ * linear propagation off assimilation increments
+ * statistical balance background constraints
+ * 2 outer loops 
+
+== Plans ==
+5.5 km resolution on E domain.
+Replace version 7.1.2 with 7.3 ( or 7.4 )
+
+
+
+== Computer systems ==
+
+Run by the National Supercomputing Centre at Linköping University (www.nsc.liu.se)
+
+ * BYVIND – dedicated to operational NWP, oceanograhic and dispersion models
+   * Linux
+   * 2 system nodes
+   * 140 computing nodes
+   * 1 node – 2 INTEL X5550 processors each with 4 cores. 2.66 GHz and 3GB memory
+   * 1120 cores
+   * Infiniband QDR
+   * IntelMPI, OpenMPI
+   * Intel compilers
+
+ * BORE  for backup and research
+  * Linux 
+  * 70 nodes
+  * Intel Harpertown  2.8 GHz, each with 8 cores 16 GB memory
+  * Infiniband interconnect
+  * ScaMPI, OpemMP
+  * Intel compilers
+  * CentOS 5
+  * '''25 nodes available to MET.NO for backup'''
+

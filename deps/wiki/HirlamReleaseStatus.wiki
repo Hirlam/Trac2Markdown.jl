@@ -1,0 +1,24 @@
+= '''Hirlam-A Releases''' =
+
+We provide here information about the upcoming and past HIRLAM releases. Releases are available via [https://svn.hirlam.org/ Hirlam's Subversion repository] or source tarballs. Check ReleaseScenario for how we coordinate features with releases. 
+
+[[PageOutline(2-3, Contents, inline)]]
+
+== Planned Releases ==
+ * [wiki:Hirlam_7.0] rc1, early March 2006, First release candidate for HIRLAM 7.0
+ * [wiki:Hirlam_7.0], late March 2006, First official HIRLAM release in HIRLAM-A
+ * HIRLAM 7.1beta1, late March to Early April 2006, bug fix and feature release. See [wiki:Hirlam_7.1issues] for topics that are targeted for implementation
+ * [wiki:Hirlam_7.0], late 2006, Second official HIRLAM release in HIRLAM-A
+ * [wiki:HIRALD_7.0], first half of 2006, based mainly on Cycle 29t2 with local modification
+ * [wiki:HIRALD_7.1], second half of 2006, based mainly on Cycle 31 with HIRLAM physics
+
+== Done Releases == 
+ * [https://hirlam.knmi.nl/UG/ReleaseNotes/HL6_4_4.html Hirlam 6.4.4], Feb 9 2006, last beta release intended for 7.0 with bug fix and features
+
+== Earlier releases in previous HIRLAM projects ==
+
+Release notes for earlier release under previous HIRLAM projects are [https://hirlam.knmi.nl/HX/index.html available ]via links to User Support -> Release Notes. 
+[[BR]]
+[[BR]]
+
+

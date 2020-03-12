@@ -1,0 +1,99 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Working weeks and other HARMONIE related meetings''' =
+[[Center(end)]]
+== '''HIRLAM/ALADIN Working Weeks''' ==
+ * [wiki:Meetings A new HIRLAM meeting page is under construction here.] 
+
+=== 2017 ===
+ * [wiki:HarmonieWorkingWeek/CAR2017   Hirlam-C/ALADIN ASW17 side meeting on Clouds, aerosol and radiation], Helsinki, Finland, 4 April 2017
+=== 2016 ===
+ * [wiki:HirlamMeetings/Surface201610 HIRLAM/ALADIN/LACE/SURFEX Surface Working Week], Zagreb, October 24-26, 2016
+ * [wiki:HirlamMeetings/HMG_visit_SMHI_September_2016 HIRLAM Management Group visit to SMHI], Norrköping, September 8 2016
+ * [wiki:HarmonieWorkingWeek/Radiation201604 HARMONIE Radiation Working Week], Lisboa, 31th of March - 1th of April 2016
+=== 2015 ===
+ * [wiki:HarmonieWorkingWeek/Radiation201511 HARMONIE Radiation Working Week], Talinn, 23rd - 26th of November 2015
+ * [wiki:HarmonieWorkingWeek/Radiation201504 Harmonie Radiation Working week], 9 Sep - 10 Apr 2014, Copenhagen
+=== pre-2015 ===
+ * [wiki:HirlamMeetings/WorkingWeeks HIRLAM Working Weeks]: All HIRLAM Working Weeks 2006-present
+
+== All-Staff Meetings ==
+[http://www.cnrm.meteo.fr/aladin/spip.php?rubrique25&lang=en All-Staff Meetings (2007-present)]:  ALADIN maintain a web page with link to Joint ''ALADIN Workshop/HIRLAM All-Staff'' meetings
+
+== ''Model'' Meetings ==
+[wiki:HirlamMeetings/ModelMeetings Model Meetings]: Meetings related to HARMONIE/ALADIN/ARPEGE/IFS model development
+
+== '''Organizational Meetings''' ==
+[wiki:HirlamMeetings/OrganisationalMeetings Organisational Meetings]: HIRLAM organisational meetings including MG and joint MG/CSSI meetings (2006-2008) and  Member institute visits (2006-2007)
+
+== '''Principal Steering Body Meetings''' ==
+[wiki:HirlamMeetings/SteeringbodyMeetings Steering Body Meetings]:  HIRLAM Steering Body meetings including HIRLAM Council, ALADIN General Assembly and HIRLAM Advisory Committee/ ALADIN Policy Advisory Committee meetings (2006/2007)
+
+== '''Other scientific meetings''' ==
+ * 
+{{{ 
+#!html 
+<a href="http://www.meteo.lt/vilnius" target="_blank">NetFAM / COST-731 workshop on Uncertainty in fine-scale meteorological and hydrological models</a>, Vilnius, April 26-28 2006
+}}}
+ * SRNWP Workshop on verification at high resolution, 17-18 May 2006, Sofia
+ * 
+{{{ 
+#!html 
+<a href="http://netfam.fmi.fi/SSS06/index.html" target="_blank">NetFAM summer school on NH dynamics and fine scale assimilation</a>, 11-17 June 2006, St.Petersburg
+}}}
+ * COSMO Annual meeting, 18-21 September 2006, Bucharest
+ * 7th Workshop Adjoint applications in dynamical meteorology, 8-13 October 2006, Obergurgl, Austria
+ * EWGLAM Meeting, 9-11 October 2006, Zürich; SRNWP meeting: 12 October 2006 Zürich
+ * Thorpex 2d International Science Symposium, 4-8 December 2006, Landshut
+ * SRNWP workshop on Numerical Techniques, December 2006,  Zagreb.
+ * 
+{{{ 
+#!html 
+<a href="http://netfam.fmi.fi/CBL07/index.html" target="_blank">NetFAM / COST-722 workshop on Cloudy boundary layer</a>, Toulouse 12-14 March 2007
+}}}
+ * 
+{{{ 
+#!html 
+<a href="http://netfam.fmi.fi/Integ07/index.html" target="_blank">COST-728/NetFAM workshop on “Integrated systems of meso-meteorological and chemical transport models </a>, Copenhagen, 21-23 May 2007
+}}}
+ * 
+{{{ 
+#!html 
+<a href="http://netfam.fmi.fi/PBL_course.pdf" target="_blank">FMI/UH international course on "Geophysical turbulence and boundary layers"</a>, Helsinki, 28 May - 1 June 2007
+}}}
+ * EUMENET/SRNWP InterOperability workshop, ECMWF, Reading, UK, Jan 14-15 2008, (see attachement)
+ * 
+{{{ 
+#!html 
+NetFAM summer school and workshop on <a href="http://netfam.fmi.fi/YSSS08" target="_blank">"Integrated Modelling of Meteorological and Chemical Transport Processes / Impact of Chemical Weather on Numerical Weather Prediction and Climate Modelling"</a>, St. Petersburg (Zelenogorsk), Russia, 7-15 July 2008
+}}}
+ * 
+{{{ 
+#!html 
+NetFAM workshop on <a href="http://netfam.fmi.fi/Lake08" target="_blank">"Parameterization of Lakes in Numerical Weather Prediction and Climate Modelling"</a>, St. Petersburg (Zelenogorsk), Russia, 18-20 September 2008
+}}}
+ * 
+{{{ 
+#!html 
+NetFAM-COST workshop on <a href="http://netfam.fmi.fi/OBS09" target="_blank">"Usage of local, micrometeorological and remote-sensing observations for data-assimilation and validation of mesoscale atmospheric models"</a>, Oslo, Norway, 16-20 March 2009
+}}}
+ * 
+{{{ 
+#!html 
+NetFAM-SRNWP workshop on <a href="http://netfam.fmi.fi/CLOUD09" target="_blank">"Moist processes in future high resolution NWP models"</a>, Norrköping, Sweden, 15-17 June 2009
+}}}
+ * 
+{{{ 
+#!html 
+Presentations from the <a href="http://www.ecmwf.int/newsevents/meetings/workshops/2010/high_performance_computing_14th/presentations/index.html" target="_blank">"ECMWF 14th HPC workshop "</a>, Reading, England, 1-5 November 2010
+}}}
+
+
+
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,120 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''SMHI, 12th - 16th of December 2011''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Practical ==
+
+ * Participants:
+  * KNMI:    Toon Moene ( remotely )
+  * SMHI:    Ulf Andrae 
+  * FMI:     Niko Sokka
+  * DMI:     Xiaohua Yang
+  * met.no:  Ole Vignes (except Wednesday 14th)
+
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/System201103/tram_to_smhi.pdf How to get to SMHI]
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2011/Harmonie_training_2011.pdf Hotels]
+
+== Objectives ==
+
+The main goal for the practical part of this working week is to prepare for tagging of cy37h1.1, tagging of 36h1.4.bf1 and start working on cy38t1. We also need to discuss a number of general issues as listed below.
+
+== Agenda ==
+
+ * Monday: Gathering, setup and discussions
+ * Tuesday: "Luciatåg" at 9.00.
+ * Wednesday: Video conf with MF at 2pm. Dinner at Andrae's
+ * Thursday
+ * Friday
+
+== HIRLAM 7.4 ==
+
+ * Remaining technical issues with trunk toward 7.4rc1/7.4
+   * Atovs (Frank,Nils): '''Solved'''
+   * Recycling crashes (Kalle,Niko): '''Solved'''
+   * 32 bits vs 64 bits in connection with surface wind noise at high resolution? to be verified on different platform/domain tests later. 
+     * scheduled tests before final launch about platform equivalence test between IBM and FMI Cray; between Cray O2 and O1  '''Fixed by [10207]'''
+   * HGS server. reproducibility to be checked (Xiaohua)
+     * Test on IBM platform shows that runs with and without the HGS server does not give the same results. '''Matter of priority. To be discussed within MG.'''
+ * Launch of 7.4rc1 and 7.4
+   * validation tests of 7.4beta1 and trunk (including latest updates on structucture function, ATOVS data enaling) show continued good signs
+   * Diverse issues prior to operational launch (settings at ECMWF and FMI platforms, output parameters, archiving)
+     * Output parameters for 7.4 (Laura)
+     * Archiving definition (Niko)
+     * Changes in configuration?
+   * Finalise discussions/implementation) about settings for choice of HIRLAM W10m and T2m verification (Xiaohua, to deliver changeset to Ulf); new versions in GL/fldextr and obsextr with the aim to allow flexible parameter input/definition (Ulf). '''To be implemented in HARMONIE before relase of 7.4'''
+   * Kalle provided a changeset to change grib parameter assignment for lake parameters from 180 to 160. This needs to be validated before committing. '''COMPLETE '''
+   * Optional Jk code by Per Dahlgren. '''Work in progress'''
+   * Implement Karl Ivar's modifications about physics before 7.4rc1 '''In progress'''
+   * 7.4 rc1 to be tagged this week. Final launch at FMI expected in Feb 2012. '''INCOMPLETE, awaiting the previous items'''
+
+== Cy38 ==
+
+ * Preparations for cy38
+   * On Wednesday a video conference was held about the contributions to cy38t1.  A number of coordination actions came out of the meeting and a new meeting is scheduled to the end of January. Notes from the meeting can be found HERE(soon).
+   * cy38 was brought to the vendor branch and a new phasing branch was [source:branches/phasing/cy38 created] by Niko. The phasing branch will only be filled with the contributions that should be sent to phasing. The trunk will be kept for the cy37t1 development until the phasing is complete.
+
+
+== Cy37h1.1 status and tasks ==
+
+ * mSMS
+  * Work started to allow to run mSMS as a batch job on ecgate. This would allow a longer life time of the mSMS jobs. (Ole)
+
+ * HARMEPS
+  * Makegrib, Postpp and Run_fldver called from one task. (Ole)
+  * MARS stage corrected and activated. (Ulf)
+  * Discussions on how to redesign the boundary extraction from MARS.
+
+ * Clear the outstanding tickets for [https://hirlam.org/trac/query?status=accepted&status=assigned&status=new&status=reopened&version=37h1&order=priority&report=11 37h1]
+
+ * GL
+  * Correct gl to handle HIRLAM 7.3 data. gl works for 7.3 but the quality is uncertain. Stefan G has started coding of a new translation routine suitable for newsnow.  '''POSTPONED'''
+
+  * Correction of soil ice interpretation in gl (Toon,Sander)
+   Sander informed his assessment about current deficiency in soil moisture conversion from HIRLAM/ECMWF to HARMONIE, which causes un-realistic soil ice at the conditions below zero, which may take long time for system to adjust. This problem may have contributed to the positive temperatur bias in winter conditions. Sander and Toon are working to find some solution for this. The new proposed solution, upon installation, shall be validated against default in 37h1.beta.
+  
+ * Port RUNNING_MODE=operational from SMHI branch. Check how it works for SURFEX (not tested yet) (Ulf) '''DONE'''
+
+ * Adding of WARMUP_PERIOD [10133],[10152] (Ulf)
+
+ * Add internal consistency check to testbed
+   * AROME deterministic vs AROME_EPS control
+
+ * '''Any other problem in cy37h1?'''
+ * Examine the trunk runs with AROME, ALARO and ALADIN so far
+   * contact MF on updated AROME/ALADIN namelists (Xiaohua)
+     * Yann Seity, Francois Bouyssel provided latest sets for AROME and ALADIN namelists.
+ * Initiate and examine AROME and ALARO validation runs
+   * Tag a 37h1.beta1 as basis (Ulf) '''DONE'''
+   * Setting up validation runs. See [wiki:Harmonie_37h1/ValidationTests#ValidationExperimentswith37h1.beta1 the follow-up in the wiki] and [http://hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=2&id=520 forum discussion around the topic]
+
+ * Introduce the observation monitoring as prepared by Trygve and Per Dahlgren '''POSTPONED'''
+
+ * Introduce inline postprocessing as described [https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2011/Agenda/HARMONIE_Climate.pdf, here] '''POSTPONED'''
+
+ * Try the new [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/System201106/io-server.pdf I/O server] on a suitable platform. '''POSTPONED'''
+
+ * Some discussion/preparation about agenda items at the HARMONIE post-processing meeting at KNMI in late Jan. 2012 '''POSTPONED'''
+
+ * Add variables like Tmax/Tmin from HARMONIE
+     * T2m (max, min) is to be looked at later. Need further enhancement of fldextr and monitor. '''POSTPONED'''
+
+== Cy36h1.4 ==
+
+== Outstanding tasks from previous working weeks ==
+
+   * Streamlining of GRIB parameter-translation problems, 
+     * In first go, examine what's currently applied in GL
+     * '''ACTIONS (Toon, Ulf, Laura)'''
+       * Bring this up in the coming interoperability meeting at ECMWF to see what general recommendations can be made in GRIB-II framework 
+       * Try to avoid conflict between HARMONIE and HIRLAM parameter definitions; A discussion about conventions shall be done within a few months
+
+== Summary ==
+ 
+== Reference: previous HARMONIE working weeks on cy36/cy37 ==
+
+ * [wiki:HarmonieWorkingWeek/System201103 HARMONIE System Working Week], SMHI
+ * [wiki:HarmonieWorkingWeek/System201106 HARMONIE System Working Week], DMI

@@ -1,0 +1,526 @@
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Assimilation of ATOVS data''' =
+= '''The RTMSYS program''' =
+[[Center(end)]]
+
+
+= RTMSYS man page =
+
+{{{
+NAME
+       rtmsys - ATOVS tool for generating templates and maintaining bias 
+       coefficients and innovation limits in the rtmsys files.
+
+SYNTAX
+       rtmsys.x < rtmsys.in
+
+AVAILABILITY
+       The program source code is in hirlam/mainsrc/rtmsys.F
+
+DESCRIPTION
+       The rtmsys program can be used to generate template rtmsys files that
+       are needed by hirvda in order to process any ATOVS data. When hirvda
+       processes ATOVS data, the ATOVS innovations are placed in the ACMA file
+       and the ACMA file can in turn be read by rtmcmaextr.x which produces a
+       rtm.raw file. The rtm.raw ASCII file contains the innovations, and rtm.raw
+       files from a large time interval can be used to by rtmsys.x to update
+       the bias coefficients and innovation data in the rtmsys files.
+
+       The rtmsys.x can also be used to generate bias plots (PostScript).
+
+       Headers
+       The  rtmsys.x  program  uses  the NUKE subroutine to read the input file.
+       Enter the command 'x' (or '?') in the input file to see the list of valid headers.
+       The following headers will be accepted :
+ 
+ RTMSYS V1.0 [0]
+     data body -  none.
+
+ SATELLITE AND INSTRUMENT [1]VFLR &
+     data body - 1 line. Mandatory. Name of satellite and instrument (e.g. noaa16 amsu-a).
+     The hirvda.x log file will contain a list of all satellites/instruments found
+     in the observation file.
+
+ RTM-RAW FILES [*]VFMLR
+     data body - many lines. The name of the rtm.raw files (with innovation) that
+     should be used.
+
+ DO NOT ABORT AT CORRUPT FILES [0]VFMLR
+     data body - none. Do not abort if any of the rtm.raw files are corrupted.
+
+ MOST RECENT NO OF DAYS USED [1]VFMLR
+     data body - 1 line. Use latest data that spans over a time interval not larger than
+     that given by the data body.
+
+ DATA REDUCTION FACTOR [1]VFLR
+     data body - 1 line. Only use each nth data body, where nth is given by the data body.
+
+ RTMSYS INDEX FILE[1]VFMLR
+     data body - 1 line. Use an index file if the rtmsys files are to be placed
+     at other location than run-dir (or have other name).
+
+ RTMSYS FILE DIRECTORY [1]VFLR
+     data body - 1 line. Directory to put the rtmsys files as default if the
+     index file is used.
+
+ OUTPUT BIAS POSTSCRIPT FILE (SATINS,CH,PCAT) [1]VFLR
+     data body - 1 line. Name of bias correction plot files. Use SATINS/CH/PCAT as 
+     wildcards in file name. For instance testSATINS.ps will generate testnoaa15amsu-a.ps
+     if appropriate data is available.
+ 
+ DO NOT PLOT LEGEND [0]
+     data body - none. Do not make legend in bias plots (useful if the plots will be published).
+
+ DO NOT PLOT BARS [0]VFMLR
+     data body - none. Do not make stdv bars in bias plots.
+
+ REDO BIAS CORRECTION [0]VFMLR
+     data body - none. Set this flag if the program should maintain bias correction coefficients.
+
+ REDO INNOVATION QC [0]VFMLR
+     data body - none. Set this flag if the program should maintain innovation limits.
+
+ DO NOT SHIFT THE BIAS IN THE INNOVATION QC [0]
+     data body - none. set this flag if the innovation quality control bias should be set to zero.
+
+ OPTIMAL INNOVATION QC STDV CROP FACTOR [1]VFLR
+     data body - 1 line. Inflation factor for the stdv in the optimal innovation probability 
+     distribution (i.e. the Normal innovation stdv approximation that gives best impact) 
+     before the innovation limits are determined. Default is 1.0 (no inflation/deflation).
+
+ INNOVATION QC GROSS ERROR Q AND S-FACTOR [1]VFLR
+     data body - 1 line. The artificially added gross error term in the estimate of the
+     actual innovation probability distribution modelled as a sum of Normal distributions.
+     Q is the a-priori probability of gross error, S is the standard deviation of the gross
+     error.
+
+ CREATE TEMPLATE IF NO RTMSYS FILE IS AVAILABLE[0]VFMLR
+     data body - none. Use this header (without any data) to generate the rtmsys file template.
+
+ TEMPLATE RESIDUAL BIAS QC LIMITS (IN STDV) [1] VFLR
+     data body - 1 line. Multiplication factor for the bias correction stdv, which is used
+     by the bias correction quality control to reject invalid bias corrections for a cycle.
+
+ TEMPLATE OBSERVATION ERROR [1]VFLR
+     data body - 1 line. The default observation error used in the template.
+
+ TEMPLATE (TWO) LATITUDES FOR SPLITTING BIAS CORRECTION [1]VFLR
+     data body - 1 line. The default two latitudes that are used to split the three latitude
+     bands in the bias correction.
+
+ DO NOT USED DATA OVER OCEAN [0]VFMLR
+     data body - none. Use this flag to ignore data over open ocean.
+
+ DO NOT USED DATA OVER LAND [0]VFMLR
+     data body - none. Use this flag to ignore data over land.
+
+ DO NOT USED DATA OVER SEA-ICE [0]VFMLR
+     data body - none. Use this flag to ignore data over sea ice.
+ 
+ DO NOT USED DATA OVER OTHER [0]VFMLR
+     data body - none. Use this flag to ignore data over other surfaces.
+
+ ONLY USE THESE CHANNELS OVER OCEAN [*]VFLR
+     data body - many lines. List of channels that should be used over open ocean.
+     
+ ONLY USE THESE CHANNELS OVER LAND [*]VFLR
+    data body - many lines. List of channels that should be used over land.
+ 
+ ONLY USE THESE CHANNELS OVER SEA-ICE [*]VFLR
+    data body - many lines. List of channels that should be used over sea ice.
+ 
+ ONLY USE THESE CHANNELS OVER OTHER [*]VFLR
+    data body - many lines. List of channels that should be used over other surfaces.
+ }}}
+
+= Input file for generating {{{rtmsys}}} template =
+
+The following example demonstrates how to generate a template rtmsys file for
+satellite noaa15, instrument amsu-a (remember to delete {{{noaa15amsu-a_rtmsys.dat}}}),
+{{{
+rm -f noaa15amsu-a_rtmsys.dat
+rtmsys.x << EOF
+# specify the name of the satellite and instrument
+SATELLITE AND INSTRUMENT [1]VFLR
+  noaa15 amsu-a
+# tell the program that you want to create a template
+CREATE TEMPLATE IF NO RTMSYS FILE IS AVAILABLE[0]VFMLR
+EOF
+}}}
+
+= The {{{rtmsys}}} template file =
+A {{{rtmsys}}} template file may look like this
+{{{
+RTMSYS V1.0 RTTOV8 [0]VFMLR
+SATELLITE [1]VFMLR
+noaa15
+INSTRUMENT [1]VFMLR
+amsu-a
+CHANNEL INDEX FOR USED CHANNELS [*]VFMLR
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+         10
+         11
+         12
+         13
+         14
+         15
+PREDICTOR INDEX FOR USED PEDICTORS [*]VFMLR
+   Constant  
+   ScanAngle 
+   ScanAnlge2
+   # Latitude  
+   # T0m       
+   # Channel 6 
+   # Int WatV  
+   # T300-1000 
+   # T50-200   
+   # T321-840  
+   # T56-194   
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+        0.000      5.000 No data available.
+        5.000     65.000 No data available.
+       65.000     90.000 No data available.
+MAX ABS ALLOWED BIAS RESIDUAL (IN STDV) PER CYCLE FOR EACH CHANNEL USED [*]VFMLR
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+MAX AND MIN INNOVATION FOR EACH CHANNEL USED [*]VFMLR
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+OBSERVATION ERROR FOR EACH CHANNEL USED [*]VFMLR
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+#
+THE FOLLOWING SETTINGS APPLY TO SEA SURFACES [0]
+#
+THE FOLLOWING SETTINGS APPLY TO LAND SURFACES [0]
+#
+THE FOLLOWING SETTINGS APPLY TO ICE SURFACES [0]
+#
+THE FOLLOWING SETTINGS APPLY TO OTHER SURFACES [0]
+#
+}}}
+
+= Changing predictors in the {{{rtmsys}}} file =
+
+The predictor list is found under the header
+{{{
+PREDICTOR INDEX FOR USED PEDICTORS [*]VFMLR
+}}}
+while the corresponding bias correction coefficients are found under the header
+{{{
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+}}}
+
+You may want to change the predictor list at some point.
+This is done by looking at the section
+
+{{{
+PREDICTOR INDEX FOR USED PEDICTORS [*]VFMLR
+   Constant  
+   ScanAngle 
+   ScanAnlge2
+   # Latitude  
+   # T0m       
+   # Channel 6 
+   # Int WatV  
+   # T300-1000 
+   # T50-200   
+   # T321-840  
+   # T56-194   
+}}}
+and commenting "in" or "out" the predictors you want to use. Remember always to include the "Constant". 
+You must make sure there are no existing bias correction coefficients for the surface type you are editing, since this could cause inconsistencies in your {{{rtmsys}}} file. If bias correction coefficients exist in your {{{rtmsys}}} file, replace them with
+{{{
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+        0.000      5.000 No data available.
+        5.000     65.000 No data available.
+       65.000     90.000 No data available.
+}}}
+
+= Input file for updating bias correction coefficients in {{{rtmsys}}} file =
+The following rtmsys input file to the {{{rtmsys.x}}} program can be used to
+update the bias coefficients in the {{{noaa15amsu-a_rtmsys.dat}}} file.
+The program will read, process, store and re-write the contents in the {{{rtmsys}}} file. 
+Note that comments that were added by the user are lost. 
+{{{
+# the next line lists all possible headers:
+   x
+
+# specify the name of the satellite and instrument (mandatory)
+SATELLITE AND INSTRUMENT [1]VFLR
+  noaa15 amsu-a
+
+# list of the rtm_raw files that were generated by rtmcmaextr.x
+RTM-RAW FILES [*]VFMLR
+rtm_raw.out.20060308_06
+
+# the list can also be put into a file, for instance one called "filelist"
+#include(filelist)
+
+# inform the system of which channels you want to use over Ocean (default is all)
+ ONLY USE THESE CHANNELS OVER OCEAN [*]VFLR
+    4
+    5
+    6
+    7
+
+# do not abort if some of the input files are corrupt
+DO NOT ABORT AT CORRUPT FILES [0]VFMLR
+
+# set the following flag if you want to update bias correction coefficients
+REDO BIAS CORRECTION [0]VFMLR
+
+# set the following flag if you want to update the innovation limits
+REDO INNOVATION QC [0]VFMLR
+
+#OUTPUT BIAS POSTSCRIPT FILE (SATINS,CH,PCAT) [1]VFLR
+#  testSATINS_CH_PCAT.ps
+
+CREATE TEMPLATE IF NO RTMSYS FILE IS AVAILABLE[0]VFMLR
+
+# set the maximum number of stdv the cycle residual bias is allowed to deviate
+TEMPLATE RESIDUAL BIAS QC LIMITS (IN STDV) [1] VFLR
+  1.5
+
+#TEMPLATE OBSERVATION ERROR [1]VFLR
+#  999.0 
+
+#TEMPLATE (TWO) LATITUDES FOR SPLITTING BIAS CORRECTION [1]VFLR
+#  20.0 60.0
+
+# the stop command stops reading the input file and starts the processing
+stop
+# here follows a list of headers for easy reference (which will not be processed)
+ RTMSYS V1.0 [0]VFMLR
+ SATELLITE AND INSTRUMENT [1]VFLR &
+ RTM-RAW FILES [*]VFMLR
+ DO NOT ABORT AT CORRUPT FILES [0]VFMLR
+ MOST RECENT NO OF DAYS USED [1]VFMLR
+ DATA REDUCTION FACTOR [1]VFLR
+ RTMSYS INDEX FILE[1]VFMLR
+ RTMSYS FILE DIRECTORY [1]VFLR
+ OUTPUT BIAS POSTSCRIPT FILE (SATINS, CH) [1]VFLR
+ DO NOT PLOT LEGEND [0]
+ DO NOT PLOT BARS [0]VFMLR
+ REDO BIAS CORRECTION [0]VFMLR
+ REDO INNOVATION QC [0]VFMLR
+ DO NOT SHIFT THE BIAS IN THE INNOVATION QC [0]
+ OPTIMAL INNOVATION QC STDV CROP FACTOR [1]VFLR
+ INNOVATION QC GROSS ERROR Q AND S-FACTOR [1]VFLR
+ CREATE TEMPLATE IF NO RTMSYS FILE IS AVAILABLE[0]VFMLR
+ TEMPLATE RESIDUAL BIAS QC LIMITS (IN STDV) [1] VFLR
+ TEMPLATE OBSERVATION ERROR [1]VFLR
+ TEMPLATE (TWO) LATITUDES FOR SPLITTING BIAS CORRECTION [1]VFLR
+ DO NOT USED DATA OVER OCEAN [0]VFMLR
+ DO NOT USED DATA OVER LAND [0]VFMLR
+ DO NOT USED DATA OVER SEA-ICE [0]VFMLR
+ DO NOT USED DATA OVER OTHER [0]VFMLR
+ ONLY USE THESE CHANNELS OVER OCEAN [*]VFLR
+ ONLY USE THESE CHANNELS OVER LAND [*]VFLR
+ ONLY USE THESE CHANNELS OVER SEA-ICE [*]VFLR
+ ONLY USE THESE CHANNELS OVER OTHER [*]VFLR
+}}}
+
+
+A typical {{{rtmsys}}} file with bias correction coefficients may look like this
+{{{
+#
+RTMSYS V1.0 RTTOV8 [0]VFMLR
+SATELLITE [1]VFMLR
+noaa15
+INSTRUMENT [1]VFMLR
+amsu-a
+CHANNEL INDEX FOR USED CHANNELS [*]VFMLR
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+         10
+         11
+         12
+         13
+         14
+         15
+PREDICTOR INDEX FOR USED PEDICTORS [*]VFMLR
+   Constant  
+   ScanAngle 
+   ScanAnlge2
+   # Latitude  
+   # T0m       
+   # Channel 6 
+   # Int WatV  
+   # T300-1000 
+   # T50-200   
+   # T321-840  
+   # T56-194   
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+        0.000      5.000 No data available.
+        5.000     65.000 No data available.
+       65.000     90.000 No data available.
+MAX ABS ALLOWED BIAS RESIDUAL (IN STDV) PER CYCLE FOR EACH CHANNEL USED [*]VFMLR
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+        1.000
+MAX AND MIN INNOVATION FOR EACH CHANNEL USED [*]VFMLR
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+    -9999.990   9999.990      0.000
+OBSERVATION ERROR FOR EACH CHANNEL USED [*]VFMLR
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+     9999.990
+#
+THE FOLLOWING SETTINGS APPLY TO SEA SURFACES [0]
+CHANNEL INDEX FOR USED CHANNELS [*]VFMLR
+          2
+          3
+          4
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+        0.000      5.000 No data available.
+        5.000     65.000      240     3.8070   0.7170485275E+01  -0.7263576190E-01  -0.2361779202E-02
+        5.000     65.000      240     2.5836   0.6885428624E+01  -0.1721965621E-01  -0.1839769327E-02
+        5.000     65.000      240     0.5704   0.7238787695E+00   0.1359813162E-02  -0.4408077878E-03
+       65.000     90.000 No data available.
+MAX ABS ALLOWED BIAS RESIDUAL (IN STDV) PER CYCLE FOR EACH CHANNEL USED [*]VFMLR
+        1.000
+        1.000
+        1.000
+MAX AND MIN INNOVATION FOR EACH CHANNEL USED [*]VFMLR
+    -9999.990   9999.990      0.000
+        0.455      4.039      1.827
+        2.516     12.071      4.074
+OBSERVATION ERROR FOR EACH CHANNEL USED [*]VFMLR
+     9999.990
+     9999.990
+     9999.990
+#
+THE FOLLOWING SETTINGS APPLY TO LAND SURFACES [0]
+LATITUDE RANGE, BIAS STDV AND BIAS COEFFICIENTS FOR EACH CHANNEL USED [*]VFMLR
+        0.000      5.000 No data available.
+        5.000     65.000      206     5.8368  -0.5877564552E+01  -0.3492255032E-01  -0.2488119827E-02
+        5.000     65.000      206     6.8705  -0.5803575543E+01  -0.5925621232E-01  -0.3480917704E-02
+        5.000     65.000      206     2.2463  -0.7508007229E+00  -0.2728619878E-01  -0.1251854528E-02
+        5.000     65.000      206     0.3292  -0.3592592046E+00  -0.1336311804E-02  -0.1025733860E-03
+        5.000     65.000      206     0.2710  -0.8439996456E-01   0.3344059626E-02   0.2893876521E-04
+        5.000     65.000      206     0.2049  -0.1383812880E+01   0.8507762773E-02   0.1764319617E-03
+        5.000     65.000      206     0.1646  -0.4962252010E+00   0.5097597050E-02   0.2720100069E-03
+        5.000     65.000      206     0.2424  -0.3455074718E+00   0.2005411690E-02   0.6006764670E-04
+        5.000     65.000      206     0.2800  -0.5270997791E+00   0.6456857994E-02  -0.3433311584E-04
+        5.000     65.000      206     0.3702  -0.1131365799E+01   0.1362528470E-01   0.7970596687E-04
+        5.000     65.000      206     1.0800  -0.1262164705E+03  -0.9234094871E-01  -0.1773050897E-02
+        5.000     65.000      206     1.1177  -0.5189456736E+00   0.7657336925E-01   0.4260128215E-03
+        5.000     65.000      206     1.8759   0.2057727704E+01   0.8587342104E-01  -0.3632657567E-03
+        5.000     65.000      206     0.1385  -0.1606521159E+03  -0.4429918363E-02  -0.1367358071E-02
+        5.000     65.000      206     3.0109  -0.2197138283E+00  -0.1047508698E+00  -0.2888939138E-02
+       65.000     90.000 No data available.
+MAX AND MIN INNOVATION FOR EACH CHANNEL USED [*]VFMLR
+      -13.849     13.358      0.687
+        0.773      9.686      3.131
+        0.606      2.208      1.014
+       -0.635      0.033     -0.160
+        0.060      0.082      0.069
+       -0.387      0.505      0.002
+       -0.297      0.350      0.022
+       -0.246      0.603      0.048
+       -0.307     -0.204     -0.241
+       -1.177      0.851      0.028
+       -0.418      2.442      0.328
+        0.163      0.973      0.375
+       -0.871      0.576      0.013
+       -0.372      0.699      0.003
+       -4.701      6.214      0.306
+#
+THE FOLLOWING SETTINGS APPLY TO ICE SURFACES [0]
+#
+THE FOLLOWING SETTINGS APPLY TO OTHER SURFACES [0]
+#
+}}}

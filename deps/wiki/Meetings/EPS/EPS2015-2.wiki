@@ -1,0 +1,139 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Joint Working Week on GLAMEPS and HarmonEPS''' =
+''Tenerife. Monday 19 October - Friday 23 October 2015. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+Second GLAMEPS/HarmonEPS working week 2015. 
+Following are the main headlines (to be updated depending on who will participate):
+
+ 1. Discussions on work plan for 2016
+ 1. Operational GLAMEPSv2
+    * Review of status
+      * Production: updates, regularity
+      * Products
+      * Quality
+ 1. GLAMEPS upgrade to v3
+    * CAPE-SVs?
+    * Further increase in horizontal resolution? (8km -> 5km)
+    * Upgrades to Alaro part?
+    * performance
+ 1. Calibration of GLAMEPS and HarmonEPS
+    * Evaluate how the calibration is working now. Are we ready to call it operational? Spatial variation ok?
+    * Calibration for precipitation, can we use what is developed for yr.no?
+ 1. HarmonEPS perturbation experiments / HarmonEPS system
+    * EDA with 3D-Var
+    * MSG cloud mask perturbations, stochastic perturbations to “freezing probability per unit time”. Perturb (stochastically) the thresholds for autoconversion.
+    * Experiment with perturbations of surface parameters (e.g. soil moisture, albedo, snow, SST, LAI, vegetation fraction, roughness length and soil temperature)
+    * Surface physics: study perturbations in momentum, heat and moisture flux parameterizations
+    * LBC studies
+    * SLAF perturbations
+    * get vfld2sqlite to work properly
+    * .....
+
+== Participants ==
+
+ || Name                 || Arriving || Leaving || Working with ||
+ || Inger-Lise Frogner   || Sunday arriving at airport at 20.05    || Sunday leaving from airport at 10.00  || HarmonEPS ||
+ || José A               || Sunday 23:50  || Sunday 17:00 || HarmonEPS ||
+ || John Bjørnar Bremnes || Arrived  || Sunday 10:00  || GLAMEPS calibration ||
+ || Andrew               || Sunday 20.05   || Friday  || HarmonEPS ||
+ || Åke Johansson        || Monday   || Friday  || Verification, HARP ||
+ || Thomas Nipen         || Sunday 20.05   || Friday  || GLAMEPS calibration ||
+ || Björn Stensen        || Sunday 20.05   || Sunday 08.55  || HarmonEPS ||
+ || Maurice Schmeits     || Sunday 20.30   || Friday  || GLAMEPS calibration ||
+ || Karoliina Hämäläinen || Sunday arriving at ariport at 20:05  || Friday leaving from airport at 15:05  || Calibration ||
+ || Janne Kauhanen       || Sunday arriving at ariport at 20:05        ||         ||             ||
+ || Ole Vignes           || Sunday 20.05   || Sunday 10.00  || HarmonEPS ||
+ || Xiaohua Yang         || Sunday 12.20  || Sunday 13.40 || GLAMEPS, HarmonEPS ||
+ || Sibbo van der Veen   || Sunday 20.30   || Friday  || Glameps/HarmonEPS ||
+ || Henrik Feddersen     || Sunday 12.20  || Sunday 13.40 || HarmonEPS ||
+ || Kai Sattler          || Sunday  16:35 || Friday Morning 10:50 || GLAMEPS ||
+
+
+== Agenda == 
+
+ * Monday
+   * 0930 Welcome
+   * Status of GLAMEPS V2 with quality aspects
+   * Calibration of GLAMEPS V2: presentation of current status and discussions about further work
+   * HarmonEPS presentations
+       * Jose A: SLAF and AEMET strategy for new operational system
+       * Inger-Lise: Brief presentation of results with EDA
+   * Discussions of what system updates (HarmonEPS) to achieve this week
+       * Get vfld2sqlite to work properly
+       * SLAF-updates?
+       * Arome multi-physics updates?
+       * MetCoOp updates?
+       * parallel extraction of boundary data from mars for speed up?
+       * HarmonEPS output: one file or multiple? grib1/grib2?, how to set ensemble number and get correct centre ID if using grib1?
+       * need for reducing default output from HarmonEPS more?
+   * Åke: The perceived dispersion characteristics of GLAMEPS: From strongly under-dispersive to slightly over-dispersive: A tale in seven parts"
+   * HARP issues?
+   * Working session
+   
+ * Tuesday
+   * 0900-1100 Working session
+   * 1100-1230 (tentative)  Teleconf using (skype??) with discussion mainly on configuration of GLAMEPS V3, (Alex from Brussels, Kai, Inger-lise, Xiaohua, +??)
+     * Kai: where we are with the configuration on HIRLAM model and on SMS script; Main issues. (10 min)
+     * Alex: status of the ALARO component for V3. Main issues (5-10 min)
+     * Discussion
+       * estimation about CPU cost and storage
+       * issue of computation efficiency: delivery time, consequence of resources
+       * issue of ALARO model version: alaro 0 or alaro 1; perturbation
+       * issue of HIRLAM model: perturbation (singular vector, use of ENS perturbation)
+       * envisaged script/data flow changes
+       * staff resource for GLAMEPS next year
+   * After lunch: HarmonEPS discussions, with focus on plans and resources for next year 
+       * Boundary perturbations (SLAF/Random filed pert/IFS ENS and new ideas)
+       * Surface: can we strengthen this work in 2016?
+       * EDA
+       * Process related perturbations?
+       * Discuss MeteoFrance/Lace plans on EPS, and look for cooperation activities
+   * Working session
+ * Wednesday
+       * Working session
+ * Thursday
+     * Excursion to Izaña Observatory and volcano Teide
+ * Friday
+     * Working session
+     * Wrap-up discussions and close of working week
+       * GLAMEPS v2.
+         * Things appear normal from HARP shiny interface and monitoring of monthly comparison of control suites. Especially, calibrated T2m and W10m seemed to be generally positive. Bias trend since May month has been in right direction also. It is suggested to use calibrated T2m and W10m in the default GLAM-o-gram pages, this to swap with the uncalibrated one, the latter to be in alternative pages.
+         * Calibration team.
+       * GLAMEPS v3
+         * An urgent current issue for v3 is the dramatically increased cost and delivery time seen from the initial test of HIRLAM components (increase of 4 nodes to max of 22 nodes for HIRLAM components in v3 in order for normal delivery). After discussion, the fresh test, mainly through use of HGS server, seemed to have returned the cost to be roughly within expectation. ( 9 nodes for v2 vs v3 HIRLAM component with similar delivery).  Ole continues explore possibility of running HIRLAM with hybrid mpi-opm parallelisation.
+         * It is agreed that for ALARO members in v3, the first priority is to get it technically working with the current version (CY37). Then the addition of model error perturbation with horizontal diffusion. After these it can be considered about adding inflation to ECMWF ENS perturbation, and upgrade of ALARO 0 to ALARO 1.
+         * ALARO-ISBA (CY37) crashed in Alex's initial forecast test and question about problem in climate generation is raised. To help diagnosing problem Xiaohua used HARMONIE 38h1.2 to generate climate files for ISBA and SURFEX components and have sent to Alex for comparison. The HARMONIE test with 38h1.2 also indicate that ALARO ISBA on glameps-v3 domain can deliver in time with about use of 10 nodes. 
+
+== Preparations ==
+
+* Basic working details
+
+  People should bring their own laptop.
+ 
+* Hotel/meeting place
+Hotel Jardin Tropical in the southern part of the Tenerife Island (Canary Islands) (www.jardin-tropical.com)
+Please book by 30. September.
+
+The rates of the rooms are:
+               
+|| Room rate per person                      || Room rate 18-23/10  || Room rate  24&25/10 ||                     
+|| Double room (two persons) with breakfast  || 95.00 €    || 79.00 € ||                                                                                                                     
+|| Double  room (one person) with breakfast  || 126.60 €   || 110.60 €||                   
+         
+You make the reservations yourself emailing to reservas<at>jardin-tropical.com reference AEMET (don't forget the reference). Please send to Jose (jgarciamoyaz<at>aemet.es) copy of the email.
+Note that you MUST book the hotel in this way (and not use booking.com), this is due to price for meeting room facilities. 
+
+* How to get there:
+How to reach the hotel from the airport (Tenerife Sur Airport is the most convenient): Taxi or you can book transportation from the hotel and prices are a bit cheaper:
+
+1-4 persons 37 € (total amount); 5-8 persons 57 € and 9-12 persons 80 €.
+ 
+
+Bus see:    http://www.titsa.com, for example bus 111. or
+https://www.google.no/maps/dir/Tenerife+South+Airport,+Granadilla,+Spania/Hotel+Jard%C3%ADn+Tropical,+Calle+Gran+Breta%C3%B1a,+s%2Fn,+38660+Costa+Adeje,+Santa+Cruz+de+Tenerife,+Spania/@28.062385,-16.7143713,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xc6a9f99a43507b5:0x8a9085b696593001!2m2!1d-16.576216!2d28.0457718!1m5!1m1!1s0xc6a975da90c973b:0x77e3b4094ed0745c!2m2!1d-16.7335585!2d28.0758295!3e3?hl=no
+

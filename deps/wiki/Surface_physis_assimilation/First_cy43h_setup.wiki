@@ -1,0 +1,355 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''cy43h release setups - surface options''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Background ==
+
+cy43h does include SURFEX8.1 which comes with a number of new possible options. [#NewSurface A major step to take is to activate the new ISBA physics]. A few of us are working on that which means running cy43h in climate mode to identify, and possibly reduce, biases. But, the first release of cy43h will not yet include the new ISBA physics but will be a hopefully improved version of our cy40h setup with a few new flavors activated. I.e. Force-restore and D95 snow with OI surface assimilation. So, what may these new flavours be? Next section lists some possibilities...  please add!!
+
+== New surface options in combination with Force-restore and D95 snow for possible contribution to a cy43h2.1 meteorological release ==
+
+These options should not require any major development efforts. Thus, it concerns options which have already been developed and partly tested or development that will be done and ready during the spring are relevant. Major efforts are more relevant for the next step when we also activate new surface physics. 
+
+Many of the suggestions need to be evaluated by individual test simulations to see their impact. Thus, the final list that can enter cy43h2.1 depends on how long time these tests will take and when deadline for contributions to cy43h2.1 is set.
+
+=== ECOCLIMAP-SG, Second Generation === #ECOSG
+
+We are not happy with some aspects of our current ECOCLIMAP II: LAI is not well described in many areas which means for example unrealistic increase of LAI during spring time. Also the summer maximum LAI is questionable in some areas. How does ECOCLIMAP-SG look? Some of us have started to look into different aspects of it but it would be good to investigate the full potential of ECOCLIMAP-SG. John de Vries has made a thorough investigation...
+
+Some comments:
+
+ * LAI looks in general more realistic. Especially spring values.
+ * Margarita at ECMWF has looked into ECOCLIMAP-SG town parameters and her experience is that they look quite realistic compared to other global physiography data sets with urban information. The urban density is higher than in ECOCLIMAP-II, especially over the Netherlands, and look for realistic.
+ * According to Katya, ECOSG might work okay in combination with the lake depth data base, GLDB, as used for FLake. Thus, we try and see what happens…
+ * Some sea/lake areas need modification, e.g. along the coast of the Netherlands.
+ * The relative fractions of forest/open-land have changed considerably. Hard to judge what is more realistic. We await the evaluation results…
+ * We agree that e.g. a critical evaluation of the LAI fields themselves against independent data sets would be difficult since in practice there are no totally independent data sets (they have been used in the construction of ECOSG). Thus, we start to evaluate ECOSG through the meteorological impact in cy43h and if something looks suspicious we investigate it further. 
+
+The develop branch of cy43h can now be used with ECOCLIMAP-SG on the ECMWF machine. Only to activate ECOCLIMAP_VERSION=SG in config_exp.h. Any other HPC/installation requires the physiography data which is some 460 GB. These data you find here on cca:/project/hirlam/harmonie/climate_in_order/ECOCLIMAP2G . See [https://opensource.umr-cnrm.fr/projects/ecoclimap-sg/wiki ECOCLIMAP-SG documentation on this wiki] for further information. Problems we had with crazy tree height in ECOSG have now been solved.
+
+'''Actions'''
+
+ * We decided to set up four test domains for ECOCLIMAP-SG with cy43h; Iberia (Samuel), KNMI (John), Irish (Emily) and !MetCoOp (Patrick).
+* In evaluation special attention should be given to
+    * some lake and coastal areas as the coast of the Netherlands, west-coast of Denmark and southern Finland lake area.
+    * We should look into changes in energy fluxes (Bowen Ratio).  
+ * Katya looks into the lake/sea distribution and modify the ecosg_final_map.dir file where necessary according to her.
+ 
+'''Results'''
+
+'''!MetCoOp'''
+
+A NWP experiment with ECOCLIMAP_VERSION=SG (!SecondGeneration) for April 2018 (start March 15) has been completed. '''However, it is now rerunning using bugfix for crazy tree height.''' It is compared with corresponding experiment using cy43h default ECOCLIMAP_VERSION=2.5_plus.
+Please note that ECOSG tree height was not used but replaced with Nordic tree height data in both experiments.
+[https://hirlam.org/portal/smhi/HARMONIE_MONITOR/Test_ECOCLIMAP_Second_Generation_export/ The Monitor validation is available here]. Red line is default setup and green line is with ECOSG.
+Most of Sweden was snow covered in the beginning of April but Götaland (Southern Sweden) was snow free from April 13th.
+
+The overall (ALL) impact on T2m is neutral but a small degradation is seen for northern Scandinavia while an improvement is seen in the south. The improvement is due to a higher mid-day maximum temperature.
+Rh2m shows similar pattern, a degradation for northern Scandinavia and an improvement in the south. Here the improvement is due to a lower mid-day minimum relative humidity.
+Overall U10m impact is neutral but regionally we see a negative bias in the north and a positive bias in the south.
+
+
+=== Modified vegetation height for grass and crop === #vegheight
+
+ECOSG gives some good results, especially for the Iberia domain. In general a good increase of maximum daytime T2m (exceptions are Ireland). However, the main problem, probably created by a lower LAI  for the open-land patch, is an increase in U10m which creates a considerable positive bias over many sub-domains (Iberia outside forested regions, the Netherlands, Ireland, …). The idea to tackle this is by a tuning of the roughness length formulations for grass and C3 crops:
+
+ * z0_grass = 0.13 * LAI / 6 → 0.13 * LAI / 3
+ * z0_C3crops = 0.13 * min( 1.0, zallen )  where zallen = exp( (LAI-3.5)/1.3 )  → exp( (LAI-2.5)/1.3 )
+
+[[Image(roughness_length.png, 30%)]]
+
+The coefficients for vegetaion height can now be modified in ecf/config_exp.h :
+{{{
+# Coefficients for vegetation roughness length for grass and crops
+XALLEN_TERM=2.5                         # crops: zallen=exp((LAI-XALLEN_TERM)/1.3); default=3.5
+XGRASS_H_DNM=3.0                        # grass: z0=0.13*LAI/XGRASS_H_DNM; default=6.0
+}}}
+
+'''Results:'''
+
+Sensitivity experiment on changes in roughness length for grass and crop has been performed by Samuel over the AEMET domain. [http://www.umr-cnrm.fr/aladin/IMG/pdf/nl14.pdf See results at pages 175-178 in this ALADIN-HIRLAM Newsletter].
+
+=== CANARI issues ===
+
+At our meeting in Tromsø we listed a few issues with CANARI. [wiki:Meetings/Surface/Surface201805#CANARIissues See memory notes on here]). Katya is currently looking into the problem on how the binary land/sea mask in CANARI affects the snow assimilation. 
+
+'''Actions:'''
+
+* Katya continues her investigation of CANARI with the ambition that her “Short term” list will be done for cy43h2.1 ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Norrkoping_2019_kourzeneva.pdf see slide 16 in Katya’s presentation]):
+    * To implement the fractional land cover in CANARI instead of the land-sea mask. The field already exist in mXX files but not used by CANARI
+    * To improve the weights calculation as simple as possible, but still leave the weights for the very problematic stations unchanged
+    * To continue blacklisting stations basing on operational experience
+
+
+=== ECUME scheme for the water fraction of the sea tile ===
+
+At the All Staff meeting in Toulouse 2018 Patrick Le Moigne showed impact on 
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/LeMoigne_ASM_TLS.pdf improvements of the ECUME flux parametrisation used over sea water]. The new ECUME may change evaporation. Thus, it would be interesting to see if it may have some impact on e.g. fog formation, cloud formation and precipitation rates. It is activated in SURFEX namelist like this (we now use the default option which is named ECUME): 
+
+{{{
+NAM_SEAFLUXn
+    CSEA_FLUX = ECUME6
+}}}
+
+'''Actions:'''
+
+ * We decided to test ECUME6 for domains: Iberia (Samuel), Irish (Emily) and !MetCoOp (Karl-Ivar).
+
+'''Results:'''
+
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/ECUME_report_MetCoOp.pdf Karl-Ivar and Patrick have summarized the !MetCoOp tests of ECUME6 in this report.]
+
+=== Modified increments of soil moisture in the OI assimilation scheme === #WGincr
+
+In connection to the investigation lead by Sander Tijm of [wiki:Harmonie_40h1/ConvectionCases problems with convection] it was discovered that Météo-France has used a modified table for the OI coefficients for quite a long time. The modified coefficients reduce the increments in deep soil moisture, wg2, by 1/6. [https://hirlam.org/trac/browser/tags/harmonie-40h1.1.1/const/sa_const/POLYNOMES_ISBA Our current table in cy40h111 is this, const/sa_const/POLYNOMES_ISBA].
+
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/analyse.isba.03 The modified table by Météo-France is this].
+
+We should test how this modified table affect our soil moisture, evapotranspiration and Monitor validation. Mariken has started such comparisons over a Scandinavia domain…
+
+'''Actions:'''
+
+* Mariken has summarized results of summer 2017 experiments [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/POLYNOMES_ISBA_190321.pdf here. ]
+
+=== Orography - turbulence (OROTUR) ===
+
+OROTUR will affect the final grid-averaged momentum flux based on sub-grid orography information. Thus, largest impact will be seen in lower atmosphere wind fields. In Tromsø we discussed how the effect of OROTUR should be validated. We agreed that U10m is not perfect since observations are sensitive for local conditions and may not always be representative. Still, a careful selection of SYNOP stations may give a number of stations that can be useful. 
+
+We should implement OROTUR in cy43h and include this in the tests for cy43h, first in case studies to see the effects and tune the parameters, understanding the interactions with turbulence due to the roughness of the forest and soil. In Tromsø we discussed possible test domains, !MetCoOp (Laura), Ireland (Emily), Spain (Javier?), Iceland (Bolli).
+
+Laura recommends that XCOROT=500.
+
+[https://hirlam.org/trac/raw-attachment/wiki/Meetings/Surface/Surface201805/Rontu_Surf18.pdf Documentation of OROTUR (and ORORAD) can be found in this presentation by Laura.]
+
+'''Actions:'''
+
+* Laura makes sure the OROTUR code enters the git develop branch of cy43h. LR 20190523: done
+* Javier repeats the AEMET tests (with cy40h1.1.1) with XCOROT=500. AEMET will also check the behaviour of some none-Monitor variables like e.g. momentum flux.
+* Patrick asks Bolli et al. to test OROTUR over Iceland.
+* Hmhm, what did we say for !MetCoOp domain…? Laura can you please extend your test period beyond the currently evaluated 11 February days and also specify mountain sub-areas in Monitor. LR 20190523: https://hirlam.org/portal/smhi/HARMONIE_MONITOR/43_LRfeb/index.html?choice_ind=0 contains 2 weeks of orotur, soilgrids, camsaod, cleaned apl_arome. 
+
+'''Results:'''
+
+In [https://hirlam.org/portal/aemet/verif43tg1_tg2/43tg1orotur_autumn/ this experiment validation] OROTUR has been tested over the AEMET domain using its default settings.
+
+=== Modified values of minimum stomatal resistance Rsmin === #Rsmin
+
+Connected to the problems with convection Patrick made a literature study on minimum stomatal resistance Rsmin. This
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/Hoshika_RSMIN.pdf Rsmin investigation]
+suggests that we should increase Rsmin for a few vegetation types...  which would decrease daytime transpiration from vegetation and as a consequence e.g. increase surface temperature (and T2m) and possibly have some impact on cloud and precipitation formation...
+
+'''Actions:'''
+
+* No actions at the moment. We wait for the judgement of ECOSG first...
+
+=== Assimilation of satellite product of snow extent ===
+
+Assimilation of satellite product of snow extent is now implemented in the CARRA setup by Mariken.
+Based on this Katya has now an experiment done where the snow extent product H-SAF is used. But the results are not analyzed yet. This work will be done, also overlapping with CARRA project.
+
+Based on Mariken’s CARRA experience we can expect a positive impact of assimilation of snow extent although very minor in areas with dense SYNOP data. Thus, implementation is most important for e.g. the operational AROME-Arctic domain.
+
+'''Actions:'''
+
+* For HARMONIE-AROME, H-SAF data should first enter via Bator. Who does this? 
+
+=== New clay and sand database ===
+
+A new sand and clay data set, [https://hirlam.org/trac/raw-attachment/wiki/Surface_physis_assimilation/pgd_ecoclimap_work/soilgrids_docu.pdf SOILGRIDS],
+has been tested in cy40h
+* for a spring and early autumn period over the !MetCoOp domain. [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/First_cy43h_setup/Sand_Clay_report.pdf Look here for a brief summary].
+* for a XXX period over the Iberia domain. [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/soilgrids_vs_fao_report_AEMET.pdf Look here for a brief summary].
+* Ireland report: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201911/nwp-note-201907.pdf here]
+
+'''Actions:'''
+
+ * Changes are in general small but in a positive direction. Suggestion is to include this new data set in the cy43h2.1 release without further tests.
+
+=== Remove surface assimilation in the TEB tile  ===
+
+In Tromsø we suggested not to apply any assimilation for TEB right now: i) Observations representing town areas are missing and ii) as for FLake, town areas are smaller than nature areas. 
+
+The biggest impact of such a change can be expected over the KNMI domain…
+
+'''Actions:'''
+
+* John setup cy43h for a test over the KNMI domain. Biggest impact is expected for summer night time.
+
+=== Test of soil-ice bug reported by Météo-France  ===
+
+During the autumn Météo-France reported about a soil-ice bug in Force-restore. Patrick has tested the impact of this bug for November 2017 over !MetCoOp (DTGBEG=2017092000). Settings include sice, FLake and two patches but no modified tree height. There are three experiments; (i) "default_1_o_2" represents the default !MetCoOp setup with pi removed, (ii) "bugcor_1_o_2" represents a test of the bug, and (iii) "bugcor_1_o_2pi" represents a test of the bug and with 2pi used again. [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/cy40h111_tagged_soilbug_export/ See Monitor verification results here].
+
+Changes in T2m bias goes in general in more and more cold direction (i) -> (iii) which leads to worse results, except for Norrland. Changes in T2m stdv are quite small but for longer forecast length (ii) and (iii) are in general worse than (i). Changes in Rh2m are quite small but those changes that exist show in general a smaller negative bias for (ii) and (iii).
+
+Hmhm, how to proceed...? From a pragmatic meteorological view point a bug correction does not seem very favourable based on this test. But one could argue that a bug should be corrected to avoid risk of tuning of other components as compensating errors...    
+
+'''Actions:'''
+
+ * Patrick extends the experiment so a cold period is well enough covered. Based on results we make futher decisions...
+
+=== Test of modified XRIMAX  ===
+
+Mariken has identified that the limitation of XRIMAX=0.0 as used in cy40h1.1.1 should probably be adjusted to a higher value.
+XRIMAX=0.0 was [https://hirlam.org/trac/changeset/12406/trunk/harmonie/nam/surfex_namelists.pm introduced in the development of cy38h] since it was beneficial for the results back then. However, since then we have
+introduced e.g. two patches and removed the canopy surface model. Thus, now it seems we should use a higher value of XRIMAX.
+
+It should be noted that XRIMAX affects all tiles.
+
+'''Actions:'''
+
+ * Mariken looks further into the coastal problem...
+ * A higher XRIMAX should carefully be evaluated in combination with e.g. OROTUR since both of them affects the wind in mountain regions, especially during winter time.
+
+'''Results:'''
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/surface_ww_SMHI_XRIMAX_190226.pdf Sensitivity tests of XRIMAX] by Mariken show 
+a high sensitivity. It looks like XRIMAX=0.2 is beneficial for inland low winter temperatures (it gets colder) but along the coast it becomes
+too extreme for some reason...
+
+Sander has tested XRIMAX=1.0 over the Dutch domain and reports: The maximization of the Richardson number clearly has an impact on the surface temperature (much lower with higher XRIMAX) and the lowest model level temperature (higher with higher XRIMAX). Consequently there is also an impact on the T2m. Here are two plots. The first one shows the T2m at midnight in the reference HARMONIE setup. In the southeastern half of the Netherlands there is no fog and there you can not so easily distinguish the cities from the rural areas. In the run with XRIMAX=1 you can see much more variability in the T2m and cities stand out much more clearly from the rural areas:
+
+[[Image(T2_REF_12.png, 20%)]] [[Image(T2_XRI_12.png, 20%)]] 
+
+Sander says: Therefore I conclude that XRIMAX=0 is a strong smoother of temperature fields in weak wind stable conditions and increasing it to higher values
+(0.2 in HARMONIE CY36, or even higher?) will lead to a 'rebirth' of the cities in HARMONIE. So consider the urban problem solved. Now we only have to check the impact of XRIMAX=0.2/0.5/1/inifinity on the quality of the forecasts.
+
+Karl-Ivar has tested the impact of higher XRIMAX on fog formation over land and sea. The result is a general decrease of problematic over-forecasting of fog...
+
+=== Test of modified exchange coefficients Cm and Cd  === #modcmcd
+
+Many tests have been done with modified exchange coefficients. The settings that can be made now are in ecf/config_exp.h
+{{{
+# Coefficients for exchange coefficients CD and CH in stable case over nature tile
+XCD_COEFF1=10.0				# ZFM = 1. + XCD_COEFF1*PRI(JJ) / SQRT( 1.+XCD_COEFF2*PRI(JJ) )
+XCD_COEFF2=5.0                          # ZFM = 1. + XCD_COEFF1*PRI(JJ) / SQRT( 1.+XCD_COEFF2*PRI(JJ) )
+XCH_COEFF1=15.0                         # PAC(JJ) = ZCDN(JJ)*ZVMOD(JJ)/(1.+XCH_COEFF1*ZSTA(JJ)*ZDI(JJ)
+}}}
+
+This figure illustrates what different settings of the coefficients mean
+
+[[Image(Cm_and_Ch_alternatives.png, 30%)]]
+
+The impact of these settings are shown by the validation pages of experiments. Patrick has usually used the settings illustrated by the dashed lines and
+Mariken the settings illustrated by the dashed-dotted lines.
+
+[wiki:Harmonie_43h2/Validation_for_tagging_43h2.1#Modifiedtargetexperiments Some of them are gathered here on the page for Validation for tagging Harmonie-43h2.1].
+
+[wiki:Surface_physis_assimilation/XRIMAX_docu#Results And some are described here on the page for XRIMAX - tests and results].
+
+
+=== Implement satellite albedo climatologies for glaciers ===
+
+Suggestion from Kristian to use the CARRA development for glacier albedo update into the official release. Hmhm, is there real-time satellite data available for this?
+
+=== Consider to replace ECMWF SST analysis with OSISAF data ===
+
+Kristian argues that OSISAF data ([http://osisaf.met.no/p/ice/]) should be better as SST boundary condition for us than current ECMWF analysis.
+Kristian has implemented the possibility to read OSISAF data into CARRA. [https://hirlam.org/trac/changeset/17351 See this changeset]. 
+
+
+== Final surface options in combination with Force-restore and D95 snow for the cy43h2.1 meteorological release == #FinalSurfacecy43h21
+
+The official HIRLAM release could include (compared to target settings):
+
+ * ECOCLIMAP SG with modified tree height and modified roughness for grass and crops.
+   * Tree height is reduced by the factor XSCALE_H_TREE=0.658 as used in the tg1 tests.
+   * Roughness formulations for grass and crops are increased according to [wiki:Meetings/Surface/Surface201911#ECOCLIMAPSecondGeneration what was proposed during the working week in Maynooth].
+
+ * XRIMAX=0.2 but with no other Cm nor Ch modifications. Results with increased XRIMAX is mostly promising over all domains with some exceptions.
+   * Further tuning (snow fraction, Cm- and Ch modifications) will be done for e.g. the !MetCoOp domain to avoid too cold winter T2m bias.
+
+ * N2M=3 [wiki:Surface_physis_assimilation/Diagnostics_development (See more info here)]
+
+ * Reduced increase for Rsmin: apply only 25% of the increase tested in the targets, i.e.
+   * RSMIN_DECIDUOUS_FACTOR=1.13
+   * RSMIN_CONIFEROUS_FACTOR=1.44
+   * RSMIN_C3_FACTOR=1.5
+   * RSMIN_C4_FACTOR=1.13
+
+ * New default clay/sand
+   * SOIL_TEXTURE_VERSION=SOILGRID
+
+ * No default activation of OROTUR but it is recommended that OROTUR is considered in further tuning of U10m at each NWP center.
+
+=== Problems in model performance and possible solutions === #TuningOpportunities
+
+ * Bias in U10m
+   * OROTUR decreases U10m in mountainous or hilly terrain. Is in principle recommended but needs tuning in combination with other effects that have impact on U10m. [wiki:Surface_physis_assimilation/First_cy43h_setup#Orography-turbulenceOROTUR See more info here on OROTUR].
+   * If the bias is connected to forest dominated areas the scaling factor for tree height can be tuned, deafult set to XSCALE_H_TREE=0.658.
+   * If the bias is connected to open-land dominated areas the roughness formulations of grass and crops can be modified. [wiki:Surface_physis_assimilation/First_cy43h_setup#vegheight See here for more info.]
+
+ * Bias in T2m
+   * The heat capacities for soil, vegetation and snow can be considered as options for tuning. [http://www.umr-cnrm.fr/surfex/IMG/pdf/surfex_scidoc_v8.1.pdf See Equation 4.8 in the SURFEX Scientific documentation]. In SURFEX the heat capacity values are expressed as 1/Cg, 1/Cv and 1/Cs, respectively. Mariken shows nicely in her [https://hirlam.org/trac/raw-attachment/wiki/Surface_physis_assimilation/XRIMAX_docu/XRIMAXstatusJanuray2020.pdf presentation on slide 12] how the heat capacity settings relate to each other. The heat capacity settings can now be modified in ecf/config_exp.h 
+{{{
+# Coefficients for soil, vegetation and snow heat capacities
+XCGMAX=2.0E-5				# Maximum value for soil heat capacity; default=2.0E-5
+CV_LOWVEG=2.0E-5			# Value for low vegetation heat capacity; default=2.0E-5
+CV_HIGHVEG=1.0E-5			# Value for high vegetation heat capacity; default=1.0E-5
+XCSMAX=2.0E-4				# Maximum value for snow heat capacity; default=2.0E-4
+}}}
+   Decreasing both XCGMAX and CV_LOWVEG to 1.5E-5 has shown to increase the amplitude of the diurnal variation in T2m over Spain, during wintertime and/or periods where the surface oscilates above & below 0ºC daily (thawing period), as found by Patrick through surfex offline runs using the Marsta setup. The effect is more evident where the fraction of soil is large compared to lowveg & snow. (i.e. crops and grasslands are more affected than forests). [wiki:Surface_physis_assimilation/XRIMAX_docu#AdditionaltestsbySamueloverAEMETdomain See more comments here.]
+   * In cy43h2.1 XRIMAX is now default set to 0.2 which allows a stable surface layer to evolve. This leads in general to colder temperature during nighttime than if XRIMAX=0.0. In many cases (domains and seasons) this leads to an improvement but e.g. in northern Europe it leads to too cold T2m in general during winter time. Also, it seems to lead to too high U10m during nighttime. One way to reduce the impact of the stable surface layer is to modify the exchange coefficients for momentum and heat, Cd and Cm. This can now be done in ecf/config_exp.h by modifying some coefficients:
+{{{
+# Coefficients for exchange coefficients CD and CH in stable case over nature tile
+XCD_COEFF1=10.0				# ZFM = 1. + XCD_COEFF1*PRI(JJ) / SQRT( 1.+XCD_COEFF2*PRI(JJ) )
+XCD_COEFF2=5.0                          # ZFM = 1. + XCD_COEFF1*PRI(JJ) / SQRT( 1.+XCD_COEFF2*PRI(JJ) )
+XCH_COEFF1=15.0                         # PAC(JJ) = ZCDN(JJ)*ZVMOD(JJ)/(1.+XCH_COEFF1*ZSTA(JJ)*ZDI(JJ)
+}}}
+   [wiki:Surface_physis_assimilation/First_cy43h_setup#modcmcd See here for more info on suggestions for values and what impact it has].
+
+ * Bias in Q2m
+   * In summer time Q2m is quite tightly connected to the transpiration from active vegetation. In [wiki:Surface_physis_assimilation/First_cy43h_setup#ECOSG ECOSG] both forest/open-land fractions and LAI are changing with respect to cy40h so only for that reason evapotranspiration will change. Also, we have now changed the [wiki:Surface_physis_assimilation/First_cy43h_setup#WGincr WG increments] and the values for [wiki:Surface_physis_assimilation/First_cy43h_setup#Rsmin minimum stomatal resistance].
+   * A spring-summer-autumn bias in Q2m can be attacked by modifying the RSMIN settings in config_exp.h. They are specified per groups of vegetation types so depending on if the bias is similar everywhere or not there is a possibility to adjust for each type of group. An increased value will decrease transpiration and decrease Q2m. Values of 1 mean default SURFEX setting.
+{{{
+# Rsmin settings
+RSMIN_DECIDUOUS_FACTOR=1.13             # Multiply forest and trees default RSMIN values with this factor
+RSMIN_CONIFEROUS_FACTOR=1.44            # Multiply coniferous trees default RSMIN values with this factor
+RSMIN_C3_FACTOR=1.5                     # Multiply C3 crops and grass default RSMIN values with this factor
+RSMIN_C4_FACTOR=1.13                    # Multiply C4 crops default RSMIN values with this factor
+}}}
+
+ * Bias in Rh2m
+   * Bias in Rh2m is more tricky since it is connected to biases in both T2m and Q2m. Thus, a good Q2m in combination with a cold bias in T2m gives a positive bias in Rh2m.
+
+== New surface physics in combination with SEKF surface assimilation == #NewSurface
+
+The SURFEX options connected to the new SURFEX physics are described in the [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h SURFEX8.1 wish list]. These are currently tested in climate mode and in NWP mode with a combination of TITAN/gridPP/EKF.
+
+The new surface physics must come with corresponding new surface assimilation. In [wiki:Meetings/Surface/Surface201805#Memorynotes Tromsø we decided] to use SEKF as our first step (later EnKF, maybe via EKF). There is quite some experience here to build upon from work in the SURFEX team by us in HIRLAM. But there are still some challenging questions to solve:
+ * Which layers and which control variables should we use for the Explicit snow (12 layers and three prognostic variables per layer (SWE, snow heat content, density) + albedo at the top).
+ * Now with 2 patches we put the same innovation of T2m and Rh2m from CANARI to the two patches (open land and forest). Is that the way to do it? Should we use SEKF for the forest soil or should we nudge the forest soil column towards the open land soil column?
+ * At ECMWF they utilize information from the EDA system to estimate the Jacobians for EKF in the soil. In this way they avoid running the system separately to calculate the Jacobians. Something for us to consider?
+ 
+Please note that most options listed above are relevant also for the new SURFEX physics.
+
+=== gridPP and TITAN as an alternative for CANARI ===
+
+TITAN/gridPP is a promising long term replacement of CANARI. Development is ongoing at !MetNorway and Trygve has made TITAN/gridPP available as an option in cy43h. 
+
+
+=== Orography - radiation (ORORAD) ===
+
+ORORAD exists in cy43t2. However, it does not exist in cy43h, which is based on SURFEX 8.1. This means that in practice there is no possibility to currently test ORORAD within cy43h. Continue testing and studies within cy4x where SURFEX 9 will be available or continue now with the ALADIN colleagues within 43t2-based systems?
+This leads to question of the coming SURFEX versions (v9) and cy46 preparation.
+
+
+=== Parametrisation of interception of hydro meteors (e.g. cloud water fog) in the vegetation ===
+
+=== Some system aspects in Harmonie-43development ===
+
+(comments by LR, 24.2.2019)
+
+ * Coordination of orography and fractions between SURFEX and atmospheric model physiography (PGD and m-climate files)
+
+ * Switches (for MUSC at least) in the SURFEX forecast to control options independently of the contents of ICM...sfx and Const Clim.sfx contents. Currently for example ororad and orotur include switches allowing to exclude parametrizations even when their initial state variables exist in the input files. However, it seems that for example SICE, FLake, Canopy PFL sublayer scheme, Patches cannot be controlled this way?
+
+ * Question of the physics main routine apl_arome and its interfaces related also to surface. There seems to be a need for cleaning, streamlining, some bug corrections.
+
+ * Question about working within the git repository for development of Harmonie cycles since cy43 (development). How to arrange optimal way of introducing (surface-related) modifications? Relation to the evolving SURFEX versions and repository.
+
+
+

@@ -1,0 +1,221 @@
+Working days in Norrköping 17-19 September 2019
+
+[[PageOutline]]
+[[Center(begin)]]
+= '''PRECISE working days, 17-19 September, 2019 '' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+
+
+== Attendees ==
+||=Name                  =||=  Institute    =||=    Arr.-Dep.    =|| 
+||Martin Ridal            ||SMHI             || 17-19 September  || 
+||Per Undén               ||SMHI             || 17-19 September  || 
+||Semjon Schimanke        ||SMHI             || 17-19 September  ||
+||Esbjörn Olsson          ||SMHI             || 17-19 September  ||
+||Eric Bazile             ||Meteo France     || 17-19 September  ||
+||Patrick Le Moigne       ||Meteo France     || 17-19 September  ||
+||Adam El Said            ||Meteo France     || 17-19 September ||
+||Zheng Qi Wang           ||MET Norway       || 17-19 September ||
+
+
+
+Michael Glinton can probably participate remotely for some session and Antoine Verrelle
+Pierre Brousseau Metéo-France (maybe remotely for some session?)
+At video conference : Per Dahlgren and Roger Randriamampianina
+Some sessions Susanna Hopsch and Lars Berggren 
+
+
+
+
+= Agenda =
+
+
+
+Issues:
+
+   
+    Status of experiments and tests : 
+
+    Physics final namelist options and status of reference alpha_2 
+
+    SICE solution and results, possible quality of RCO
+
+    Observation spin up and impact runs:
+
+    AMV, AMSU A/B (MHS), IASI, GPS RO, GPS ZTD (and AMSU), (Blacklist new or old)
+
+    Inclusion of local_obs from UERRA, CARRA, any other MF and SMHI, implementation and validation 
+
+
+    EDA performance and quality and noise ?  
+
+    cost issues of EDA and cost savings
+
+    Update of structure functions (for beta version ?)
+
+    Structure function computations in production 
+
+    Any more Experiments needed ?, table of reference and periods
+
+    
+    Making an alpha3? version imminently for spin-up runs or near production (urgent)
+
+    Making an beta  tag or beta version for production, what more needs to be validated
+
+  
+   
+
+    Obsmon issues, ?
+
+    Archiving parameters GRIB2 , tests and validation
+
+    ODB(2) and archiving (as far as is ready)
+
+    Diagnostic tools for production Operational monitoring tools, verification 
+
+    Coordination of production SMHI-MF
+
+
+
+  
+
+    
+
+= Tuesday morning: 9-12  Nordkoster 11/355
+
+   
+   Status of (ready or almost ready) experiments and tests
+
+    and SICE solution and test
+
+                      Ritsem 22/366 10-12
+
+    Physics final namelist options and status of reference alpha_2
+
+    Experiments needed, table of reference and periods (to be updated at the end of the week) 
+
+
+= Tuesday afternoon 13.30-17  (Visjövalen 11-17 ) 
+
+   Satellite inputs, spin-ups and bias coefficients, list and check re-cap
+
+        (Possibly with MET as well)
+   
+   List of impact experiments, results and plans
+
+
+   Observation input choices and impact studies done
+
+
+   14.30 - 15.30 Common Video conference with CARRA (Nordkoster 11/355)
+
+   1. Overall status of both projects
+
+   2. Obs usage, including satellite
+
+   3. Efficiency and optimization issues
+
+   4. Output data, user interaction
+
+   5. Overview and expectations on uncertainty estimation
+
+   6. Summary on plans for validation/verification and data sets for that Observation inputs and impacts 
+
+  
+
+  Excursion to Linköping SAAB Arena 
+
+
+= Wednesday morning 9-12  ( Almagrundet 24/151 and for the rest of the week )
+
+
+    EDA results and noise problems 
+
+    EDA choices, cost savings 
+
+    EDA used for background statistics and communication with 3D-VAR 5.5 km (flow dependency?)
+ 
+    EDA for operationalisation    (this session with Susanna Lars too?) (Martin for this session too )
+
+    
+
+
+  
+= Wednesday afternoon 13.30 -17 =
+
+
+    Inclusion of local_obs from UERRA, CARRA, any other MF and SMHI, status and plans and use
+
+  Near real time updates of fetched data (some of the SAT, IASI and GNSS) (Any local data?)
+
+      
+  3D-VAR and CANARI and the MESCAN with also ECA&D, local obs
+
+ 
+
+
+
+
+
+    Obsmon issues,? probably not much now, 
+
+    
+    GRIB2 archiving parameters], software and how to archive, scripts or sms changes needed ( with Ulf (and Martin) (and Susanna?) 
+
+   Archiving parameters - possible thoughts on EDA content and model levels ( default EDA as deterministic and model levels only for analysis)
+
+   SURFEX archiving  
+
+   ODB(2) and archiving (as far as is ready) (with Per D (Roger?)
+
+
+
+
+= Thursday morning 9-12 = 
+
+   Continuation of issues from Wednesday
+
+   MESCAN and SURFEX issues, quality control,
+
+
+   Verification, monitoring, diagonostic software 
+
+   Production monitoring
+
+   Production SMHI/MF coordination , MESCAN SURFEX
+
+
+
+   
+
+
+= Thursday afternoon 13.30-17 =
+
+
+
+
+   Updates of scripts and programmes 
+
+    
+
+   Making an alpha-3 tag or beta version for spin-up and near production, contents and time
+
+   Making a beta version (for production ), what is needed and planning 
+ 
+   Experiments needed, table of reference and periods
+
+   Conclusions and actions
+
+
+
+
+   
+   
+
+
+
+ Minutes of the meeting on google 

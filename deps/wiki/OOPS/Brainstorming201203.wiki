@@ -1,0 +1,56 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE OOPS brainstorming meeting''' =
+''SMHI Norrköping, 13 - 14 March 2012''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Purpose ==
+
+Discuss the actions needed to accomodate LAM aspets in the future OOPS design.
+
+== Contact ==
+
+ Please contact Ulf.Andrae@smhi.se and Jelena.Bojarova@met.no for any questions.
+
+== Participation, period and location ==
+
+The working meeting starts at 1400 on Tuesday, Mar 13, at SMHI, Rossbyrummet, finishes at 1200 on Wednesday, 14 Mar 2012 
+
+Participates are,
+ * SMHI: Ulf Andrae, Nils Gustafsson, Magnus Lindskog, Åke Johansson, Tomas Landelius
+ * met.no: Jelena Bojarova, Trygve Aspelien
+ * FMI: Niko Sokka
+ * KNMI: Toon Moene
+ * AEMET: Jesús Manuel Montero Garrido ( On video link )
+ * ECMWF: Tomas Wilhelmsson
+ * RMI: Piet Termomnia
+ * RHMS: Roger Randriamampianina
+ * DMI: Mats Dahlbom
+
+== Accomodation ==
+
+ A block booking is done on [http://www.kneippen.se/eng/eng.htm Hotell Kneippen]. Booking code: HIRLAM, email:hotel@kneippen.se. 650 SEK, breakfast included. Please confirm your room directly to the hotel with your arrival/departure before March 1st.
+
+== Preliminary agenda  ==
+
+  * Tuesday 14.00 - 18.00
+    * 14.00 Introduction, purpose of the meeting
+    * Tomas Wilhelmsson, ECMWF OOPS, history, status, plans
+    * Jesus Montero, C++ and OOPS, Assessment of the C++ desing. Needs for C++ training
+    * Nils Gustafsson, Trygve Aspelien: LAM OOPS
+    * Piet Termonia, OOPS-ALADIN plans
+    * Discussions
+
+    * 19.00 Joint dinner at Durkslaget ( nearby Hotel Kneippen ).
+
+  * Wednesday
+    * 09.00 Summary of discussions from the Tuesday   
+    * 10.00 Video/Tele conf with Meteo France
+    * Discussions, plans
+
+== References ==
+  * [https://hirlam.org/trac/attachment/wiki/OOPS/Brainstorming201203/OOBS_brainstorming_call.txt Call for this meeting]
+  * [http://www.cnrm.meteo.fr/aladin/spip.php?rubrique57 GMAPDOC OOPS pages]
+

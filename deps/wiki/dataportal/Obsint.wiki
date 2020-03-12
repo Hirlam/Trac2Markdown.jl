@@ -1,0 +1,41 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Hirlam Data Portal''' ===
+== '''Monitoring and Intercomparison of Operational and Real time HARMONIE/HIRLAM ''' ==
+= '''Diagnosis of HARMONIE/HIRLAM Analysis and Frecast System''' =
+[[Center(end)]]
+
+== '''Monitoring and statistics of the HARMONIE/HIRLAM Data Assimilation''' ==
+ * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_obstat  Daily use of observations and analysis departure in HARMONIE]
+ * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_obs_ts  Monthly time series of use of observations in HARMONIE]
+ * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_satarea Monitoring of use of satellite observation and analysis departure (in development) ]
+ * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HARMONIE_satbias Monitoring of bias statistics for satellite observation in HARMONIE, (in development)]
+ * [https://hirlam.org/portal/oprint/WebgraF/ObsUse/?choice_ind=HIRLAM_Obs_coverage Daily use of observations in operational HIRLAM]
+   * Please be aware that, data usage plot for those using 4D-VAR analysis has hourly map; these includes FMI-RCR, SMHI-C11, met.ie ICH, TOON22 and Trunk at ECMWF with pre-7.4;   For system using 3D-VAR, the data use plots are for 6h combined
+   * [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html  FMI analysis monitoring interface]
+   * [https://hirlam.org/portal/dmi/WebgraF/DMI_Hirlam/index.html  DMI analysis monitoring:  interface]
+
+== '''Diagnosis and statistics of daily operational runs''' ==
+ * [https://hirlam.org/portal/oprint/WebgraF/Logplot/HARMONIE37 Performance monitoring, minimisation and domain averaged statistics from forecast model for HARMONIE 37h1+ ]
+ * [https://hirlam.org/portal/oprint/WebgraF/Logplot/HARMONIE HARMONIE 3DVAR minimisation and forecast model domain averaged statistics, surface analysis increment average ]
+ * [https://hirlam.org/portal/oprint/WebgraF/Logplot/HIRLAM  Diagnosis of operational HIRLAM analysis and forecast ]
+
+== '''Real-time observations''' ==
+ * [http://testbed.fmi.fi/index.html  Helsinki Testbed ]
+ * [http://www.vaisala.com/vantaaweather/ Vaisala, Current Weather in Vantaa, Finland]
+ * [https://hirlam.org/portal/oprint/WebgraF/OBSCPP/OBS/index.html?choice_ind=0 MSG Satellite-derived cloud physical properties], available under day-light for [https://hirlam.org/portal/oprint/WebgraF/OBSCPP/OBS/?choice_ind=NORDIC North Europe] and for [https://hirlam.org/portal/oprint/WebgraF/OBSCPP/OBS/?choice_ind=DK Danish area]. Under development.
+
+[[Center(begin)]]
+[wiki:dataportal Back to the main page of Hirlam data portal]
+[[Center(end)]]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+
+
+
+

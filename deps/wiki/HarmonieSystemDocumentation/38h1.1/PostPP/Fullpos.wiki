@@ -1,0 +1,109 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie system Documentation''' =
+== '''Postprocessing with fullpos''' ==
+[[LastModified]]
+[[Center(end)]]
+== Introduction
+
+Fullpos is a powerful postprocessing package, which is part of the 
+common ARPEGE/IFS cycle. Fullpos is documented by [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article17 El Khatib (2002)] and [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article157 Yessad (2011)].
+
+Fullpos is a full special configuration (9xx) when running the full model for setup and initialization. In other words it is a 0 hour forecast, with extra namelist settings for variables to process and to write out. When generating initial or boundary files we are calling a special configuration of fullpos, e927.
+
+== Setup ==
+The [source:tags/harmonie-38h1.1/scr/Postpp Postpp] script takes care about ''Fullpos'' postprocessing in HARMONIE system. [source:tags/harmonie-38h1.1/scr/Postpp Postpp] handles all the requested ''PPTYPE''s from one hour period. In case of hourly output and one ''PPTYPE'' only, Postpp executes ''Fullpos'' only once.
+
+ * ''POSTP'' switch in [source:tags/harmonie-38h1.1/sms/config_exp.h config_exp.h] activates ''Fullpos''. 
+
+ * POSTP options:
+   * pp = pressure levels
+   * md = model level diagnostics
+   * zz = height levels
+   * sat = satellite radiances (AROME)
+
+
+ * Input data:   
+   1. Forecast files ('''ICMSHHARM+*''') from directory ''WRK''.
+   2. Climate files for both input and output geometry ('''m01''','''m02'''...'''m12'''). For now, postprocessing has been performed only in the same forecast grid. Therefore input and output climate files are identical. 
+   3. In case of satellite radiances (''PPTYPE''='''sat'''), ''Fullpos'' needs information from satellite coefficient files ('''rtcoef*.dat''' see e.g. [source:tags/harmonie-38h1.1/const/sat_const/rtcoef_noaa_17_amsua.dat rtcoef_noaa_17_amsua.dat]).
+ * Output data: Postprocessed, spectral files ('''PFHARMALADIN+*[md|pp|zz|sat]''') are stored in ''ARCHIVE'' directory. If Makegrib="yes", they are also converted to grib.
+
+== Fullpos namelists ==
+
+The current postprocessing switches in the HARMONIE system (in [source:tags/harmonie-38h1.1/sms/config_exp.h config_exp.h]) provide only very limited possibility to control the variety of the aspects in ''Fullpos''. Currently, in different ''PPTYPE'' modes parameter lists, postprocessed domain and requested levels are fixed in  [source:tags/harmonie-38h1.1/scr/Postpp Postpp].
+
+In the ''Fullpos'' namelist '''NAMFPC''' (variables explained in [source:tags/harmonie-38h1.1/src/arp/module/yomfpc.F90 yomfpc.F90]), the variables are placed into different categories:
+
+ * '''CFP3DF''' = names 3D dynamics fields to compute.
+ * '''CFP2DF''' = names 2D dynamics fields to compute.
+ * '''CFPPHY''' = names of physical fields to be postprocessed.
+ * '''CFPXFU''' = names of instantaneous fluxes fields to be postproc.
+ * '''CFPCFU''' = names of cumulated fluxes fields to be postproc.
+
+Postprocessing can also be done in various type of levels:
+
+ * '''RFP3P''' = postprocessing pressure levels
+ * '''RFP3H''' = postprocessing height (above orography) levels.
+ * '''RFP3TH''' = postprocessing potential temperature levels.
+ * '''RFP3PV''' = postprocessing potential vorticity levels.
+
+The default FA-names for parameters in different categories can be found from [source:tags/harmonie-38h1.1/src/arp/setup/suafn1.F90#L687 suafn1.F90].
+
+The current default pressure level variables processed are defined in the Postpp script as
+{{{
+
+  pp)
+
+      # Pressure level data
+
+cat << EOF >> namfpc
+   CFP3DF='GEOPOTENTIEL',     'TEMPERATURE', 'WIND.U.PHYS',  'WIND.V.PHYS', 
+          'HUMI_RELATIVE',    'THETA_PRIM_W','PRESSURE',    'ABS_VORTICITY',
+          'TEMPE_POTENT',     'POT_VORTICIT','SIM_REFLECTI',
+          'SOLID_WATER',      'LIQUID_WATER','DIVERGENCE',  'HUMI.SPECIFI',
+          'ISOT_ALTIT',
+          $CFP3DF_EXTRA
+   CFP2DF='SURFPRESSION',     'MSLPRESSURE',     'SURFTOT.WAT.VAPO', 
+          'SURFISOTPW0.MALT',
+   CFPPHY='SURFTEMPERATURE','SURFGEOPOTENTIEL',$CFPPHY_EXTRA 
+   RFP3P=$RFP3P
+   RFP3I(1) =-273.15,
+   LFITI = T,
+EOF
+
+
+}}}
+
+It's worth mentioning some of the variables postprocessed by fullpos
+ * True vertical velocity w [VW] (for NH ALADIN only).
+ * Potential vorticity P V [PV].
+ * Pressure coordinate vertical velocity ω [VV].
+ * Eta coordinate vertical velocity η [ETAD].
+ * Absolute vorticity ζ + f [ABS].
+ * Relative vorticity ζ [VOR].
+ * Divergence D [DIV].
+ * Satellite equivalents
+  * MSAT7 MVIRI channels 1 and 2 ([MSAT7C1] and [MSAT7C2]).
+  * MSAT8 MVIRI channels 1 to 8 ([MSAT8C1] to [MSAT8C8]).
+  * MSAT9 MVIRI channels 1 to 8 ([MSAT9C1] to [MSAT9C8]).
+  * GOES11 IMAGER channels 1 to 4 ([GOES11C1] to [GOES11C4]).
+  * GOES12 IMAGER channels 1 to 4 ([GOES12C1] to [GOES12C4]).
+  *  MTSAT1 IMAGER channels 1 to 4 ([MTSAT1C1] to [MTSAT1C4]).
+
+== Inline postprocessing with fullpos ==
+It's also possible to call fullpos when running the model. In such a configuration we can e.g. configure to write some parameters with a different frequency than the standard historical files. Read more in [source:tags/harmonie-38h1.1/scr/Setup_inline_postp Setup_inline_postp].
+
+== Problems with fullpos on large domains ==
+From time to time fullpos becomes to demanding for you setup. Here are some things to look out for.
+
+ * Increase the MBX_SIZE if you run out of MPI buffer space. 
+ * Increase number of cores if you run out of memory.
+ * Make sure NFPROMA and NFPROMA_DEP are small and equal to NPROMA.
+ * Set NSTRIN=NSTROUT=NPROC in nampar0 if one of the above mentioned doesn't help.
+ 
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----

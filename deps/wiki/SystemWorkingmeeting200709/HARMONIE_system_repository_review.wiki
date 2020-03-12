@@ -1,0 +1,74 @@
+
+== System developments in HARMONIE ==
+
+
+'''What is the purpose of the repository:'''
+
+
+Easy access to an updated version of a NWP-system. This doesn't mean
+that it is easy to use, yet.
+
+
+'''Content of respository:'''
+
+
+trunk/harmonie
+
+- src ALADIN source code cy31t1
+
+- scr Scripts to run HARMONIE cy31t1
+
+- nam namelists for ALADIN -cy32t2
+
+- util/
+    - ddh : DDH utilities
+    - gl  : file manipulation
+    - hirmars : MARS filter
+    - monitor : Verificaion and monitoring
+    - gmkpack : Compiling and version control
+
+
+Vendor branches
+
+- aladin
+    - cy31t1
+    - cy32t1
+
+- gmkpack version 6.2 - 6.2.2
+
+
+
+'''What is done since ASM in Oslo'''
+
+    - namelists up to cy32t2 added
+    - Postprocessing added, includes "fullmix" which enables us to posprocess arome forecasts with fullpos
+    - Climate generation of SURFEX files added
+    - Pseudosatellite variables
+    - Contingency tables added in verification
+    - Add DDH tools
+    - Other technical changes
+    - Improved wiki
+
+
+'''Things in the plan/pipeline ( system + dynamics+validation )'''
+
+    - Rotated mercator in interpolation (INM)
+    - Replace FA with GRIB (UA not started)
+    - Update repository to CY32t2, gmkpack 6.2.3 (SOMEONE) 
+    - Coupling :-(UA)
+          - Surfex needs a new coupling 
+          - gl/fullpos
+          - NH-fields
+    - Radarsimulator
+
+'''On the interaction with ALADIN/MF'''
+    - The MF installation of cycles at HPCE are pure technical implementations. It compiles but that's all.
+    - The new export versions does always contain namelists. Personal interaction always needed.
+    - How do we "sell" the repository to the rest of ALADIN?
+    
+
+'''Things to be done/decided'''
+    - Assimilation environment added or not. If it is there it can be used!
+    - The procedure and responsibility of updating the repository, specially for MF input
+    - Climate and Surfex climate file generation in system
+    - Until assimilation for mesoscale available -> cycling of surface variables.

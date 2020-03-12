@@ -1,0 +1,227 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM/ALADIN/LACE/SURFEX Surface Working Days''' =
+''Ljubljana, September 18-20, 2017''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Background ==
+
+Last year when some of us met in [https://hirlam.org/trac/wiki/Meetings/Surface/Surface201610 Zagreb for a joint HIRLAM/ALADIN/LACE/SURFEX Surface Working Days] we concluded that it would be good to meet again this year and maybe coordinate it with the LACE Data Assimilation Working Days. This will happen now! At the ALADIN Workshop & HIRLAM All Staff meeting in Helsinki in April it was decided to arrange this meeting in Ljubljana, September 18-20, 2017. So, we are kindly invited to Ljubljana by our Slovenian colleagues.
+
+We have many activities going on at our institutes connected to various surface issues. Many aspects can be covered but as in Zagreb I suggest that the main connection point will be around EKF surface assimilation since many of us have parallel developing going on concerning this. Any aspects are welcome to discuss but please especially prepare questions/material related to EKF if you have such activities ongoing.
+
+== Working items and comments ==
+
+=== Based on participants signed up and our expertise interest the following items can probably be covered  ===
+
+'''Please add items'''
+
+ * Progress with EKF: Unfortunately, for different reasons, a few hard core surface assimilation people don't have the possibility to join this meeting. We report status of work and share experience. Can we proceed beyond that at this meeting? Any ideas/issues you have in mind?
+ * SURFEX forcing package in python: Trygve has been working on this for a while now. Presentation and test of the package by Workshop participants may be possible? Can interested participants download/install something beforehand?
+ * Glacier development for SURFEX: A modified version of the Explicit snow scheme will be used for glaciers. Development is ongoing. [https://hirlam.org/trac/wiki/Surface_physis_assimilation/Glacier_plans See comments and plans from latest meeting on glacier development in Toulouse here]. Emily and Kristian are the experts.
+ * CANARI/MESCAN development: Utilisation of more SURFEX variables in CANARI. Currently, as first guess grid-averaged values of T2m and Rh2m are used. But it would be more physically correct to use land (ISBA) and/or patch (open land) values. Ideas on how to proceed have been discussed but no concrete setup is available yet. Can we make some progress here?
+ * cy43 includes SURFEXv8 which means that we can seriously start to look into more advanced surface options in our NWP systems. Test using the wish list for new physics options in SURFEXv8 has been formulated. [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h See current suggestions here]. Samuel Viana (AEMET) is currently trying this wish list out using HARMONIE-AROME in climate mode. Patrick is working on merging Météo-France SURFEX updates with most recent SURFEXv8.1 updates. Can we try to setup cy43h in climate mode now...  
+
+=== Ideas on items that can be covered (depending on participants) ===
+
+ * Progress with EKF.  
+   * Jelena Bojarova has now implemented STAEKF for LAI in a test version of cy40h1.1. It works technically...
+   * Crazy Jacobian values:
+     * Magnus Lindskog, Jelena Bojarova and Patrick Samuelsson have experienced problems with crazy Jacobian values. Now, for practical reasons we have limited the Jacobians, otherwise it crashes in chelosky decomposition due to singular matrix etc.
+     * Clément Albergel says: When I was working at ECMWF we used the following limits for soil moisture analysis: analysis was locally switched off if the Jacobians become larger than 50K/m3m-3, 5/m3m-3 and 2m3m-3 for T2m, RH2m and ASCAT satellite derived surface soil moisture. Figure 4 of the GMD paper illustrates Jacobians distributions for different layers using the diffusion soil scheme of ISBA (ISBA-DIF), they tend to be smaller than those from ISBA-3L and I obtained much less spurious values. However I did not consider T2m or RH2m.
+   * Stefan has tested sEKF with ISBA diffusion scheme (using the standard 14 soil layers) for SWI (soil layers 1 to 6) in SURFEX 8.0
+
+   * Steps toward EKF with evolving B-matrix. [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/EKF_surface_work/EKFvsSEKF.pdf See slides by Katya explaining the principles behind SEKF and EKF.]
+
+   * HARMONIE-AROME includes 2 patches but these are not fully coordinated with EKF yet.
+   * Rearranging the Offline SURFEX runs in the HARMONIE system, Ecflow (move them from the Forecast part to the the post processing part).
+   * [https://hirlam.org/portal/validation/40h1/OI_versus_EKF_13_16_May_export/ Monitor validation of first S(imple)EKF (versus OI) simulation with HARMONIE-AROME looks promising]. But no investigation of increments have been done yet. And no sensitivity test w.r.t. limitations of Jacobian values have been done. Validation is shown for the !MetCoOp domain for a short period !20160513-!2060619 proceeded by a spinup period from !20160501.
+
+ * Progress with SURFEXv8 related processes
+   * Glacier development: A modified version of the Explicit snow scheme will be used for glaciers. Development is ongoing. [https://hirlam.org/trac/wiki/Surface_physis_assimilation/Glacier_plans See comments and plans from latest meeting on glacier development in Toulouse here].
+   * A wish list for new physics options in SURFEXv8 has been formulated. [https://hirlam.org/trac/wiki/Surface_physis_assimilation/New_SURFEX_options_cy43h See current suggestions here]. Samuel Viana (AEMET) is currently trying this wish list out using HARMONIE-AROME in climate mode. The plan is to setup cy43/44 in climate mode as soon an official t-cycle is released.  
+ * CANARI/MESCAN development
+   * Start to utilize MESCAN and its non-isotropic structure functions. [https://hirlam.org/trac/wiki/Surface_physis_assimilation/MESCAN_tests See comments on MESCAN settings here.] Mariken Homleid is working on this now.
+   * Utilisation of SURFEX variables in CANARI: Currently, as first guess grid-averaged values of T2m and Rh2m are used. But it would be more physically correct to use land (ISBA) and/or patch (open land) values. Ideas on how to proceed have been discussed but no concrete setup is available yet.
+
+ * other topics
+   * use GL to convert SURFEX output to GRIB1
+
+
+== Location of meeting, hotels and communication ==
+
+The meeting will take place at the Slovenian Met Service (ARSO): [https://goo.gl/maps/DFcee2YHhoG2 ARSO Vojkova 1b, Ljubljana].
+
+It is a busy time with meetings in Ljubljana so please don't wait too long to book hotels.
+
+A block reservation was made at the Austria Trend Hotel (https://www.austria-trend.at/en/hotels/ljubljana),
+which is approximately 3 km from the city center in the same direction as ARSO and has good bus
+connection towards ARSO. The booking at Austria Trend Hotel should be made before 20 July by
+filling in and submitting the form in the attached pdf. The single room price with breakfast is 115 EUR + city
+tax (1.27 EUR).
+
+If you prefer a more central location for your accommodation, you are encouraged to find it
+yourself. Some recommended hotels are:
+- City hotel Ljubljana https://www.cityhotel.si/
+- Hotel Center Ljubljana http://www.hotelcenter.si/HotelCenterWeb/default.aspx
+- Hotel Park http://www.hotelpark.si/
+Again, we recommend you to book as soon as possible because the hotel rooms for this week are in high demand!
+
+'''TRANSPORT from the AIRPORT'''
+
+The most convenient way is to use one of the shuttle minibus services. They are operated by Goopti,
+Markun, MNJ and perhaps some other companies. They stand just outside the arrivals exit. The price should be 9 EUR and
+they usually take you directly to the desired hotel.
+In case you prefer a taxi the price should be around 40 EUR.
+
+'''TRANSPORT from Austria Trend Hotel to ARSO and around Ljubljana'''
+
+In case of fair weather most of the distances in Ljubljana can be covered on foot. 
+The distance from the centre to ARSO is around 1 km (15 min) and from Austria Trend hotel around 2 km (30 min).
+
+To use the public transport you need to buy a city card Urbana, sold in kiosks, at machines on bigger
+stops and probably in the hotel. Onto this card you must load some money. A single trip will cost 1.2 EUR and
+this is valid for 90 minutes. 
+
+For the Austria Trend Hotel, use buses no. 6, 8 or 11 at Smelt bus stop (just across the street from the hotel) and exit
+at Astra stop (5th stop), see also https://goo.gl/maps/s8n4EAh7kmq. 
+The buses 6 and 11 can also be used when going to/from the city centre.
+
+'''TRANSPORT from RAILWAY STATION'''
+
+To reach Austria Trend hotel from the railway station use the same buses (6,8,11) from station
+Bavarski dvor (a few minutes waking from the station), see https://goo.gl/maps/1zdHYfdxsRU2.
+
+'''COMING by CAR'''
+
+If you plan to arrive in the morning just before the meeting you can park on ARSO premisses (the
+entrance is from Vojkova street). Otherwise check for parking options with the hotel.
+
+
+== Agenda ==
+
+Usually it works good if we have all presentations after each other so everyone can share their results and ideas before we divide into more item-specific groups.
+
+=== Monday September 18 ===
+
+Room: the large conference room at ARSO, terrace floor - follow the signs.
+
+The first day is joint LACE Data Assimilation Working Days and HIRLAM/ALADIN/LACE/SURFEX Surface Working Days. So we start with status presentations and surface data assimilation talks during the first day together. [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/dawd_agenda2017_final.pdf See agenda here.]
+
+The surface specific presentations for this day are:
+
+ * Status of HIRLAM surface DA activities (Patrick) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/HIRLAM_Surface_DA_170918.pdf presentation]. See more details in presentations by [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/magnus_tomas_sudaok.pdf Magnus/Tomas] and [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/MESCAN_tests/MESCAN_summary_170908.pdf Mariken]
+ * Surface assimilation activities at Météo-France (Camille) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/birman_presentation_workshop_surfex.pdf presentation]
+ * Offline SURFEX forcing package in python (Trygve) [https://docs.google.com/presentation/d/1evSqkjUrhAA1lA6yrnbiQ1qqiCl24xe-zaXrBqtm65Y presentation][https://docs.google.com/a/met.no/presentation/d/1q4wa-ZmxfGfTyITTUUIsEsK5dNBIj6kR2ebqqYyuVEE/edit?usp=sharing ISBA-ES] 
+ * EKF surface assimilation activities at ZAMG (Stefan) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/EKF_activities_at_ZAMG.pdf presentation]
+ * Validation of EKF (conventional observations and 1D experiments) (Viktor) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/vt-dawd_ljubljana_sept2017.pdf presentation]
+
+=== Tuesday September 19 ===
+
+The second day we split into two groups (upper air and surface) so this day we go into more details and cover also non-assimilation surface aspects.
+
+ * Status of tests with [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h new SURFEX namelist] with the HARMONIE-AROME configuration in climate mode and status of cy43 (Samuel) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/Samuel_Viana_SU3_update_and_plans.2.pdf presentation ]
+ * Status and plans for implementataion of glaciers in SURFEX (Emily, Kristian, Bolli)[https://hirlam.org/trac/raw-attachment/wiki/Meetings/Surface/Surface201709/Bolli_SFX-meeting-201709.pdf presentation]
+ * Status of SURFEX tuning for cy40 over the Met Éireann domain (Emily) [https://hirlam.org/trac/raw-attachment/wiki/Meetings/Surface/Surface201709/MetEireann_T2mIssue_Cycle40.pdf presentation]
+ * [wiki:Surface_physis_assimilation/MESCAN_tests#ModificationofCANARI CANARI development ideas] (Trygve, Patrick)
+ * HIRLAM surface-related activities not mentioned yesterday and before today (Patrick) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201709/HIRLAM_Surface_activities_170919.pdf presentation]
+
+==== Sub-group constellations/discussions and memory notes ====
+
+  '''Surface data assimilation'''
+
+    * We will revisit the SURFEX branch for 1D-SODA development that was created for the Zagreb meeting last autumn. Patrick will make it up-to-date with latest SURFEXv8.1 and LACE colleagues will install it on the ECMWF machine. The joint problem seems to be the behaviour of Jacobians. After some initial tests we will arrange a Hangouts meeting where we will discuss concrete development/test to tackle the Jacobian behaviour. Include Maria Montero in the loop.
+    * Please refer to wiki page [https://hirlam.org/trac/wiki/HirlamMeetings/Surface201610/SODA_development HIRLAM/ALADIN/LACE/SURFEX SODA development for NWP] for information on how to access the SURFEX/SODA development branch.
+    * Jozef reports that unscented Kalman filter (UKF) may be an alternative to EKF since it is not limited by a linear behaviour assumption(?). Therefore, it may give less problems with crazy Jacobians. Patrick will forward this information to Jelena who is currently looking into alternative surface assimilation methods with Peter Hessling, a researcher in mathematics.
+    * Development of EnKF surface data assimilation systems is ongoing. Active people/groups are e.g. Tomas Landelius (SMHI), Jostein Blyverket (NILU), Camille Birman (Météo-France), Clément Albergel (SURFEX team Météo-France). Patrick makes these people aware of each other. 
+    * In HARMONIE-AROME, data assimilation of SYNOP based Snow Water Equivalent is implemented and is used operationally by e.g. !MetCoOp. At Météo-France they are working on this now (Camille). No LACE country is currently considering snow data assimilation but in e.g. Austria they are mapping snow offline with snow model SNOWPACK. This is used to initialise snow in the operational NWP model.
+    * Stefan points out that we are working on pre-processing (e.g. normalisation) of satellite data for surface assimilation in parallel. For example, both Magnus and Stefan has pre-processing scripts for ASCAT soil moisture product. It would be good if we can join around the methods used...
+
+  '''MESCAN'''
+    * Use and test of MESCAN settings in CANARI is ongoing at a few places. People mentioned, who are more or less active in this now are Mariken Homleid (!MetNorway), Magnus Lindskog (SMHI), Camille Birman and Eric Bazile (Météo-France), Antonio (Croatia, see his presentation from Zagreb). Patrick sends an email to these people to make them aware of each other.
+    * Results based on Magnus IMPREX work over France indicates that it may be worth testing MESCAN settings over Spain to see if it may help current problems with initiation of convective precipitation.
+
+  '''CANARI'''
+
+    Voices and thoughts are raised that CANARI may not be the future for surface spatialisation and that we should consider alternatives. If so
+
+    * we should understand for what purposes CANARI is used now besides surface spatialisation and how such needs can be fulfilled by other tools (CANARI can still of course be used in parellel with any new surface spatialisation tool)
+    * what needs should a new surface spatialisation tool fulfil?
+      * It should be adaptable for any new development
+      * Have a flexible interface towards different Land Surface Models
+      * Fulfil both global and limited area needs.
+    * an alternative could be to join together with ECMWF and Météo-France in surface spatialisation tool development. Then...
+      * could there be a license question
+      * it requires an open development environment for all partners involved
+      * could it fulfil any offline needs
+    * Another alternative could be to adapt another existing tool. One such candidate is the open source package gridpp which is intended to be used for operational nowcasting/post-processing at MET-Norway and would meet most of the above demands.
+    * What to do now?
+      * initialise a discussion with ECMWF at the upcoming EWGLAM meeting (be sure that some Météo-France representative can join (e.g. by webex)
+
+  '''SURFEX forcing python development and Epygram'''
+
+    * Trygve presented his development in Github of forcing preparation for SURFEX offline. Jozef has installed it and will take a look at it. Parallel tools and development to solve similar needs are in use. Thus, there is no immediate need to join around a cross-consortia common tool. So for now we keep each other informed about the need/tools/development that takes place.
+    * Epygram is used at a few institutes. For those who build AROME/ALARO with gmkpack (e.g. in Slovakia) it seems pretty straight forward to couple the fa-reading/writing routines to Epygram and have it working. HIRLAM has the idea to build Epygram as part of the HARMONIE configuration (using make). But it is still unclear if needed compiling flags may influence the performance of the model in an unwanted manner. Thus, this still needs to be investigated by the HIRLAM system group. It is said that Alexander Mary (Méteó-France) has the intention to install Epygram at the ECMWF machine. This would be useful…
+
+ '''Glacier development'''
+
+    * Bolli, Emily and Kristian has summarized their discussions and plans on the [wiki:Surface_physis_assimilation/Glacier_plans glacier wiki].
+
+ '''Validation of cy43 in climate mode''' 
+
+    * Samuel Viana has applied part of the SURFEX wish list in the climate set up of the HARMONIE-AROME configuration (cy38h). Samuel and Patrick are now setting up cy43h in climate mode but are currently experiencing some technical problems. Once cy43h is running, multi-year simulations will be performed over selected domains to identify any significant biases. For such validation, observational data sets are needed. Examples of such are: 
+      * Stefan Schneider says that “layers 2-5” in the satellite soil moisture product he is applying for soil moisture assimilation could be used to give a rough estimate of soil moisture in a climate simulation. This data currently covers 1.5 years, 2015 – autumn 2016 but will be extended within a Copernicus project.
+      * For soil/hydrology validation it can be useful to contact the SIM2 (SAFRAN-ISBA/SURFEX-MODUCO) partners. A possible contact is Patrick Le Moigne at Météo-France. 
+      * Bert van Ulft (KNMI) says: Jan Fokke Meirink (jan.fokke.meirink at knmi.nl) is working on the retrieval of cloud properties, precipitation and radiation from satellites and has also been working on a cloud simulator with Erik van Meijgaard. He me might be able to provide data that can be used to evaluate HARMONIE-AROME. 
+      * Ulrika Willén (ulrika.willen at smhi.se) says:
+        * From ESA-CCI you can get cloud information but to use it except for possibly cloud fraction you need a simulator run on the model data as Jan Fokke / Erik have done for RACMO. The cloud simulator has been developed by SMHI and KNMI.
+        * There will be radiation fields from ESA CCI cloud group later this year. But it is calculated using satellite input for cloud fraction and then radiation models as is done for CMSAF/EUMETSAT satellitebased SW&LW, which are available already from [http://www.cmsaf.eu/EN/Products/AvailableProducts/Available_Products_node.html].
+        * The CMSAF surface data has been tested compared to surface observations and used for evaluation of the high resolution German model, as far as I remember especially the SW fluxes are good.
+        * I also have SW data from 30 European surface stations that I can dig out, I got it about 5 years ago from someone at GEBA, their might be more data via them and or through BSRN.
+
+    * Other aspects:
+      * We should estimate/benchmark how heavy the new surface options are with respect to computer resources.
+      * Irrigation is substantial in some regions. Omission of water supply through irrigation may then lead to warm/dry biases in such regions. We should critically examine biases in the climate set up with this in mind and consider if irrigation should be added.
+      * As NWP team we will have limited resources to validate the slow hydrological processes of the system (e.g. runoff and river discharge). Maybe our climate colleagues can be engaged in such validation.
+      * We should add a column to our table on SURFEX wish list where we comment at which level options have been tested and whet conclusions are drawn.
+
+ '''Sea-wave modelling'''
+
+      * Lichaun Wu (lichaun.wu at smhi.se) has just started a new position at SMHI and he will focus on sea-wave modelling in the ALADIN-HIRLAM NWP system. Therefore, a new [wiki:Surface_physis_assimilation/Sea_wave_modelling HIRLAM wiki page dedicated to sea-wave modelling] has been created. It is now complemented with status, ideas and plans. 
+
+ '''Other aspects'''
+
+    * ALARO1-SURFEX coupling: Rafiq Hamdi and Daan in Belgium has been working on the ALARO1-SURFEX TOUCANS coupling. Also Peter Smerkol (ARSO) is involved in testing. Martin Dian (SHMU) will work on its scientific evaluation.
+    * Kristian points out that root depth in SURFEX is not a function of time but in reality, for e.g. crops, there is a considerable variation of root depth over the year. Therefore, he argues, the root depth should include a time dimension.
+    * Martina Tudor inform us of the existence of the [https://global-surface-water.appspot.com/ Global Surface Water Explorer] database. Useful to check the presence of water surfaces and how they have changed through time.
+
+Workshop dinner at Gostilna Pri kolovratu in down town Ljubljana.
+
+=== Wednesday September 20 ===
+
+ * 09:00 - 11:00 Surface group concluding discussion. Notes from this discussion can be found under each sub-group item above.
+ * 11:00 - 12:00 Joint upper air and surface session: Common discussion and possibilities for cooperation.
+
+== Participants ==
+
+ * Patrick Samuelsson (SMHI), Mon-Wed
+ * Trygve Aspelien (!MetNorway)
+ * Samuel Viana (AEMET),Sun - Wed~3:30pm., Hotel Meksiko
+ * Stefan Schneider (ZAMG), Mon-Wed
+ * Emily Gleeson (Met Éireann)
+ * Martina Tudor (CMHS)
+ * Antonio Stanešić (CMHS)
+ * Kristian P. Nielsen (DMI)
+ * Jeanette Onvlee (KNMI)
+ * Camille Birman (Météo-France)
+ * Jasmin Vural (ZAMG), Mon-Wed
+ * Bolli Palmason (IMO)
+ * Jozef Vivoda (SHMU)
+ * Viktor Tarjani (SHMU)
+ * Matic Šavli (University of Ljubljana)
+ * Žiga Zaplotnik (University of Ljubljana)
+
+ 

@@ -1,0 +1,143 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Reports on surface activities November 2016''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+Quite some discussions were done in connection to Rolling plan for 2017. Based on these discussions I have compiled a "progress" report.
+
+== HIRLAM/ALADIN/LACE/SURFEX Surface Working Week ==
+
+A joint HIRLAM/ALADIN/LACE/SURFEX Surface Working Week took place in Zagreb, October 24-26, 2016. [wiki:Meetings/Surface/Surface201610 See wiki including presentations, memory notes and concluding remarks here.]
+HIRLAM colleagues in Zagreb were: Patrick Samuelsson, Tomas Landelius, Alexander Mahura and Bolli Palmason. From Norway, Åsmund Bakketun (MSc student at !MetNorway) and Jostein Blyverket (NILU) participated.
+    
+== Glacier plans ==
+
+I have discussed priorities in glacier plans with Emily and Bolli. The suggestion is now to concentrate efforts on glacier development 
+in SURFEXv8 for cy43 and to skip development of temporary solution in
+cy40h and trust the method of using initialisation of huge amount of snow over permanent snow areas. 
+
+== Sea-ice progress and plans ==
+
+Regarding progress Yurii Batrak says
+{{{
+I've spent some time on initialization problem and now we can use information about old ice profile
+as an additional source of information to set temperatures of new ice. As for me results are not so bad
+(at least SIST with new profile looks better than with linear init). I think 'GRIB-less' patch for
+cy40rc1 that I sent to Ulf also has this 'ice shape' update.
+}}}
+
+Regarding plans for his PhD thesis work Yurii says
+{{{
+I have two main topics in my mind. These are: improved snow-on-ice handling and implementation
+of ice sheet evolution block.
+
+Current version of SICE snow-enabled setup is still not so usable. After some test runs and comparisons
+with data from SIMBA buoys and HIGHTSI output provided by Bin I got very clear understanding
+that even if common snow scheme for NATURE and SEA might be OK it still need to be adjusted to provide
+realistic output for the ice-covered areas. And I'm thinking about a lightweight fork of 3-L from v8
+without any NATURE-related code which could be tweaked and configured only for usage within SICE.
+
+Ice growth and melting parameterizations should be taken from HIGHTSI.
+
+One of the problems with snow-enabled setup in Svalbard region is lack of ice drift. As result we
+have noticeable irregularities in snow upon the ice that represent areas with new ice. But we can use
+external information about ice drift and during assimilation stage advect the old SICE forecast and
+use these transformed fields as a some kind of pseudo observations to setup new ice and adjust old.
+
+And of course it would be great to use some satellite products for ice assimilation.
+}}}
+
+Regarding plans Bin Chen says:
+{{{
+We have the EC project (Integrated Arctic Observation system), INTAROS, I will work on SIMBA
+buoy deployment and automatically data retrieve algorithm study. There are already a number of
+SIMBA deployed in the Arctic and the data can be used for model validation or data assimilation(I suppose).
+I am also work with one Finnish Academy project: Towards better tailored weather and marine forecasts in
+the Arctic to serve sustainable economic activities and infrastructure (TWASE). The ice model development
+is also partly of my work in TWASE and can be useful for HIRLAM sea-ice work.
+}}}
+
+Yurii and Bin discuss when to meet to proceed with HIGHTSI --> SICE work.
+
+== Physiography plans ==
+
+Bolli gave presenetation in Zagreb on physiography work over Iceland and Greenland and also gave a crash course in 
+how to visualise and modify ECOCLIMAP data. Bolli will 
+create documentation on the HIRLAM wiki for others to create MODIS LAI maps for comparison with ECOCLIMAP database.
+
+== LAI/evapotranspiration plans ==
+
+As reported by Bart van den Hurk (KNMI), work on LAI was carried out as an internship this year by Nadia Bloemendaal under supervision by Sander Tijm. Continuation of that work is not guaranteed. However, new internships will be facilitated, and also we’re hopeful to get a research grant to work on land surface evaporation.
+
+Comment by Patrick: It has been shown that modification of LAI can be helpful over certain areas/periods to decrease biases in the model. The method developed by Bolli (above) can be used to develop modified LAI "maps". In the longer term development of ECOCLIMAP-SG (second generation) in combination with simplified use of national physiography data bases will hopefully give us a better data and better opportunities to tackle remaining issues. Also, utilisation of better process descriptions in SURFEX in combination with EKF surface data assimilation will help to tackle identified evapotranspiration issues. The STAEKF method for LAI is also attractive (see Rafiq's Zagreb presentation). So, the balance is whether to attack evapotranspiration issues with temporary LAI solutions or invest this time in development to reach the longer term solution via data assimilation and physics options. Both aspects are important but now I would say, given limited personnel resources, that we concentrate on the road towards data assimilation and physics options. 
+
+== Surface EKF plans ==
+
+In Zagreb we all agreed to join with development contributions to the SODA_V8 branch,
+http://svn.cnrm-game-meteo.fr/projets/surfex/branches/SODA_V8.
+A [wiki:Surface_physis_assimilation/SODA_development corresponding wiki is used to document] what went in and what should go into the branch.
+A [http://hirlam.org/index.php/forum/surface-development/1249-surface-data-assimilation HIRLAM Forum topic on "Surface Data Assimilation"] is offered for communication.
+
+Highest priority for HIRLAM now is to proceed with replacing OI with EKF in combination with current physics options (i.e. Force-restore and D95 snow).
+Patrick has setup a cy40h1.1 experiment over the !MetCoOp domain where {{{ANASURF=CANARI_EKF_SURFEX}}} is activated in {{{sms/config_exp.h}}} following work
+done by Magnus for the IMPREX project but in cy38h1.2.
+
+As part of his Master thesis work Åsmund Bakketun (!MetNorway) is currently setting up SURFEXv8 offline to study diffusion soil scheme in combination with
+EKF and EnKF assimilation methods.
+
+When going to diffusion soil scheme and explicit snow scheme processes we should seriously consider if it would be useful to also go for EnKF surface assimilation at
+the same time. The motivation for this would be that EKF with many surface prognostic variables can be too expensive and an ensemble approach may be more
+affordable. But, this is only an idea now to keep in mind for further development.
+
+Discussions last week between Patrick, Tomas Landelius, Ulf Andrae: New SURFEX physics options may give in the order of 100 prognostic variables which may be quite expensive to treat with EKF. Also, since we are investing more and more in EPS forecast systems we should maybe use EKF only for the Force-restore situation but move to EnKF when we move to new SURFEX physics options. Otherwise we need one EKF solution for each EPS atmospheric member. Makes connection between EPS and soil data assimilation more reasonable. A strategic decision we should discuss together!
+
+== Lake development ==
+
+Katya is running the FLake branch (https://svn.hirlam.org/branches/harmonie-40h1_FLake) on the ECMWF machine with the ambition to get FLake operational in cy40h.
+
+== Orographic development ==
+
+Laura has opened a new wiki for [wiki:Surface_physis_assimilation/ORO_development planning and communication between the developers of orographic parametrizations in SURFEX for the ALADIN-HIRLAM forecasting system]
+
+== Progress with snow analysis and assimilation ==
+
+Laura says:
+{{{
+Doing some technical inquiries to understand the fate of SYNOP snow observations entering or not entering
+the FMI and MetCoOp snow analyses. In Nov - Dec need to participate in planning work with satellite snow
+usage in HARMONIE analysis.
+}}}
+
+== Plans with evaluation of Force-restore versus diffusion soil scheme ==
+
+Bart van den Hurk says:
+{{{
+support your conclusion that FR cannot reproduce the most important modes of variability properly, nor on
+the seasonal/annual time scale nor on the daily-weekly time scale. It is this kind of evaluation that make me
+be convinced that indeed we should invest in DIF/EKF instead of continued work on FR-compatible assimilation schemes.
+
+I've discussed with John that a first paper of his study should contain such a comparison that actually sets
+the scene for the further development of this part of the model. He will use offline land models first,
+followed by coupled model evaluation. As a land surface modeller by training I really focus on the development
+of a physically sound system that needs DA only to correct for random errors and not to repair systematic model
+deficiencies, such as apparently currently is the case with the FR model.
+}}}
+
+== Urban plans ==
+
+Discussions between Patrick, Alexander and Carl on urban ideas for TEB in the future has now been summarized in
+[wiki:Surface_physis_assimilation/TEB_development a new wiki page dedicated for "Applications and developments of TEB for use in HARMONIE-AROME configuration"].
+Urban plan discussions also took place at the Zagreb meeting and conclusions from those discussions can also be found on this wiki page. Patrick has the ambition to gather urban people
+for a meeting at SMHI including HIRLAM colleagues, UrbanSIS people and Valery Masson from Météo-France.
+
+== T2m problems for weak wind and stable conditions  ==
+
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Surface_status_November_2016/hm_shflx_gm.pdf Nikolai Nawri (IMO) has reported] problems with T2m problems for weak wind and stable conditions.
+
+
+
+
+

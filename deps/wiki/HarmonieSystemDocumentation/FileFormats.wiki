@@ -1,0 +1,66 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+= '''Harmonie System Documentation''' =
+== '''File formats in HARMONIE''' ==
+[[Center(end)]]
+
+== Introduction ==
+
+ The HARMONIE system reads and writes a number of different formats. 
+
+== FA files ==
+
+ Default internal format input/output for HARMONIE for gridpoint, spectral and SURFEX data. GRIB is used as a way to pack data, but the grib record cannot be used as such.
+
+ * The header contains information about model domain, projection, spectral truncation, extension zone, boundary zone, vertical levels. 
+ * Only one date/time per file.
+ * FA routines are found under ifsaux/fa
+ * List or convert a file with [wiki:HarmonieSystemDocumentation/PostPP/gl_grib_api gl_grib_api]
+ * Other listing tool [http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=PINUTS PINUTS]
+
+ [http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=FA+ Read more]
+
+
+== GRIB/GRIB2 ==
+
+ All FA files may be converted to GRIB after the forecast run. For the conversion between FA names and GRIB parameters check [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/43h2 this table].
+
+ * List or convert a GRIB file with [wiki:HarmonieSystemDocumentation/PostPP/gl_grib_api gl_grib_api]
+
+== NETCDF ==
+
+ In climate mode all FA files may converted to NETCDF after the forecast run. For the conversion between FA names and NETCDF parameters check [source:Harmonie/util/gl_grib_api/inc/nc_tab.h?rev=release-43h2.beta.3 this table].
+
+ * For the manipulation and listing of NETCDF files we refer to standard NETCDF tools.
+ * NETCDF is also used as output data from some SURFEX tools.
+
+== BUFR and ODB ==
+
+ BUFR is the archiving/exchange format for observations. Observation Database is used for efficient handling of observations on IFS. ODB used for both input data and feedback information.
+
+ Read more about observations in HARMONIE [wiki:HarmonieSystemDocumentation/UseofObservation here].
+
+== DDH (LFA files ) ==
+
+ Diagnostics by Horizontal Domains allows you to accumulate fluxes from different packages over different areas/points. 
+ 
+ * LFA files ( Autodocumented File Software )
+ * [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article44&var_recherche=LFA&var_lang=en gmapdoc]
+ * under util/ddh
+
+== Misc ==
+ 
+ * vfld/vobs files in a simple ASCII format used by the [wiki:HarmonieSystemDocumentation/PostPP/Verification verification].
+ * Obsmon files are stored in sqlite format.
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

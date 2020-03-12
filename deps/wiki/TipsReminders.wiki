@@ -1,0 +1,20 @@
+== Tips of the day ==
+ * 20060313: Specifying forecast length for the main synoptic hours
+   * For versions after 7.0beta1, one may specify at command line the forecast length, LLMAIN, designed for those at synoptic hour. e.g, LLMAIN=60 will enable ong forecast at 00, 06,12 and 18 UTC while the forecast length for other cycles will be limited to the leadtime needed for data assimilation cycling purpose.
+
+ * 20060310: using Subversion at ECMWF platform   
+   * ECMWF has promised to intall 'svn' to its system. Before that happen, you need to make sure that svn command is in your path. You may add ~nhz/local/bin into your path by, e.g., editing your ~/.cshrc.
+
+ * 20060309: Running experiment with 7.0beta1 on ecgate
+   1. mkdir ~/hl_home/$expname
+   1. cd ~/hl_home/$expname
+   1. ~nhz/Hirlam setup -r 7.0beta1
+   1. ~nhz/Hirlam start DTG=2006030500
+  * replacing the above 7.0beta1 with 6.4.1 will enable you to run versions between 6.4.1 and 6.4.4.
+
+ * 20060308: Adjust PLEN value in the problemsize.dat for 3DVAR
+   * The parameter PLEN should be chosen so that plen = maximum CMA file size / 8 / PE. A too large PLEN value risks excessive use of memory when running 3DVAR on many PEs such as MPP platforms. Try to reduce that size when encounting memory problem.
+
+ * 20060307: How to specifying alternative forecast length for long forecast cycle
+   * currently, the default forecast length for long cycle is 48 h in the reference script system. In order to choose a different forecast length, one needs to edit submisison.db script to change the string 48 by the prefered number, say 60h. However, if one does the change of LL on command line, it will force all cycles including re-forecast cycle to run the specified LL length. Be careful.  
+   * A change is introduced in 7.0beta1 to enable a simpler approach. One may change the forecast length by specifying LLMAIN value instead.

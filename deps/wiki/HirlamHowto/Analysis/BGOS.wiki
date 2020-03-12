@@ -1,0 +1,311 @@
+
+== '''Background Errors in Observation Space, BGOS''' ==
+
+
+ The control-vector is perturbed with random numbers that
+ are N(0.,1./sqrt(2)) distributed. This is followed by a
+ transformation to model space, dx. For each such model space 
+ perturbation, observation operators are applied to obtain the 
+ model perturbation in observation space.
+
+ BGOS calculations are useful to determine the observation
+ errors, because one can then appreciate the obs-error in
+ relation to the background error.
+
+
+== '''BGOS and ATOVS data''' ==
+
+
+ The BGOS code, jb_obspace.F, is now coded so that it
+ calls the general interface to RTTOV8 directly: rtmcalc.F. The 
+ benefit of that is that the BGOS code will be easier 
+ to maintain when the RTTOV code is updated.
+
+ BGOS was previously introduced for both RTTOV-5 and 7,
+ but then it used a special designed interface to RTTOV. The
+ result was that the ATOVS BGOS was not updated with the
+ rest of the code, and eventually became useless.
+ This new design will hopefully not meet that destiny.
+
+ Which ATOVS instruments and satellites that one wants to 
+ calculate BGOS statistics for are now controlled via
+ the prepobstypes.dat namelist:
+
+ LLRTM=.TRUE.,[[BR]]
+ LLRTMNOAA15AMSUA=.TRUE.,[[BR]]
+
+
+== '''Running BGOS on the hpce platform with the RCR domain''' ==
+
+
+ Running BGOS is easiest in a stand-alone setup. You will need
+ the following files at hand:
+
+ * hirvda.x binary executable
+ * First guess file, +6h forecast
+ * Climate file
+ * scalefactors.dat
+ * statbal60_stats.dat (the structure functions)
+
+ Put these in a run directory on your hpce $TEMP 
+ directory and launch a run-script, example below.
+ BGOS is controlled via the namelist namrun.dat:
+
+{{{
+ l_bgos     = .true.,  ! Run BGOS
+ nsample    = 500,      ! Number of samples
+}}}
+
+
+== '''Example of a script for running BGOS''' ==
+
+
+{{{
+#!/bin/sh
+# @ node             = 1
+# @ tasks_per_node   = 8
+# @ resources        = ConsumableCPUs(1) ConsumableMemory(2500 MB)
+# @ wall_clock_limit = 01:00:00
+# @ output = "some-path"/bgos.out.$(jobid)
+# @ error  = "some-path"/bgos.err.$(jobid)
+# @ job_type         = parallel
+# @ input            = /dev/null
+# @ class            = np
+# @ network.MPI      = css0,,us
+# @ notification     = never
+# @ queue
+
+# Go to your run-directory
+cd $TEMP/bgos_rt8/rundir_2
+
+# A first guess file can be copied from the RCR archive
+#ecp ec:/hirlam/RCRa/2008/10/08/00/fc20081008_00+006 .
+ln -s fc20081008_00+006 fort.10
+
+# Climate file
+ln -s cl00100000 fort.77
+
+# Structure functions
+ln -s statbal60_stats.dat fort.7
+
+# Make sure that scalefactors.dat i available
+
+# The following files are also needed:
+#noaa15amsu-a_rtmsys.dat
+#rtcoef_noaa_15_amsua.dat
+
+
+cat > problemsize.dat <<EOF
+ &problemsize
+  nxl_global=640,
+  nyl_global=512,
+  nx_global=582,
+  ny_global=448,
+  kmax_global=213,
+  lmax_global=170,
+  nlev=60,
+  len_loops=10,
+  plen=2000000,
+  nobsh_sub=5,
+  nobsv=300,
+  nobsh_local=10000,
+  nobsh_hi=15000,  
+;
+EOF
+
+cat > namrun.dat <<EOF
+ &namrun
+        lowresincr = .f.,
+        lscreen    = .t.,
+        lsstana    = .f.,
+        lfcst      = .f.,
+        dtdyn      = 240,
+        dtphys     = 240,
+        dtvdif     = 240,
+        niter      = 0,
+        ncyc       = 200,
+        alpha_ini  = 0.00,
+        alpha_bnd  = 0.00,
+        nstep_fc   = 0,
+        nstep_da   = 00,
+        bytes_word = 8,
+        timeppm    =  21600., 43200., 64800., 86400.,
+                     108000.,129600.,151200.,172800.,
+        ldf        = .f.,
+        gammadf    = 200.,
+        taucdf     = 21600.,
+        dxmin_qn   = 1.e-10,
+        df1_qn     = 1.e+03,
+        niter_qn   = 200,
+        nsim_qn    = 200,
+        niterqcstart    = 20,
+        niterqcend      = 70,
+        epsg_qn    = 0.02,
+        ljb        = .t.,
+        lprint     = .f.,
+        iprint     =119,
+        jprint     =032,
+        lunprn     =  6,
+        ldatass    = .t.,
+        lcmaobs    = .t.,
+        lsimobs    = .f.,
+        lunfis     = 77,
+        lconv      = .f.,
+        lcond      = .f.,
+        lsund      = .t.,
+        lvdiff     = .f.,
+        llouis     = .t.,
+        sqc_coef   = 10000.,
+        pmscrdt    =  3.001,
+        l_gpsbcorr = .false.,
+        l_indexfld = .false.,
+        lnewmoist  = .false.,
+        lstatbal   = .true.,
+        ljbvblf    = .true.,
+        lwriteall  = .true.,
+        l_bgos     = .true.,
+        kmax_bgos  = 10,
+        lmax_bgos  =  8,
+        nsample    = 10,
+        nbgfi      = 1,
+        linbal     = .true.,
+        l_grib_bgos= .true.,
+        l_ascii_bgos = .true.,
+        nx_bgos    = 40,
+        ny_bgos    = 32,
+        lisba      = .true.,
+;
+EOF
+
+cat > naminterp.dat <<EOF
+ &naminterp
+      lint_ini=.f.,lint_bnd=.t.,num_srffld=14,lun_srffld=77,
+      par_srffld=006,011,011,011,086,086,086,011,081,091,084,083,066,197,
+      lev_srffld=000,000,999,998,000,999,998,000,000,000,000,000,000,000,
+      ltp_srffld=105,105,105,105,105,105,105,102,105,102,105,105,105,105,
+      ahalf_model=
+          0.00000000,      2000.05135426,      4033.40907891,
+       6074.40328124,      8099.63670588,     10087.89367010,
+      12020.06658606,     13879.06676239,     15649.75041085,
+      17318.83964105,     18874.85209658,     20308.02335589,
+      21610.23752964,     22774.95349175,     23797.14016962,
+      24673.19673574,     25400.90458140,     25979.33203475,
+      26408.79136269,     26690.74701491,     26827.77478534,
+      26823.47214753,     26682.39550616,     26409.99528681,
+      26012.54977341,     25497.08526683,     24871.31302372,
+      24143.55208429,     23322.66080848,     22417.97990382,
+      21439.22595692,     20396.44798444,     19299.92669234,
+      18160.12861384,     16987.58390227,     15792.86806530,
+      14586.45478044,     13378.69029188,     12179.68413384,
+      10999.25363904,      9846.77794029,      8731.20481400,
+       7660.88648378,      6643.53270367,      5686.12140321,
+       4794.80922574,      3974.84219208,      3230.45458673,
+       2564.80865572,      1979.88863358,      1476.41314284,
+       1053.75138659,       709.81576221,       441.03262309,
+        242.16324537,       106.30163568,        24.73731477,
+          0.00000000,         0.00000000,         0.00000000,
+          0.00000000,
+      bhalf_model=
+          0.00000000,         0.00000000,         0.00000000,
+          0.00023670,         0.00092292,         0.00224844,
+          0.00438079,         0.00746615,         0.01163013,
+          0.01697863,         0.02359864,         0.03155913,
+          0.04091181,         0.05169201,         0.06391953,
+          0.07759939,         0.09272279,         0.10926775,
+          0.12720022,         0.14647459,         0.16703484,
+          0.18881506,         0.21174059,         0.23572858,
+          0.26068905,         0.28652551,         0.31313601,
+          0.34041375,         0.36824815,         0.39652539,
+          0.42512962,         0.45394336,         0.48284882,
+          0.51172809,         0.54046468,         0.56894389,
+          0.59705391,         0.62468618,         0.65173687,
+          0.67810731,         0.70370500,         0.72844406,
+          0.75224667,         0.77504346,         0.79677456,
+          0.81739014,         0.83685163,         0.85513240,
+          0.87221834,         0.88810912,         0.90281875,
+          0.91637651,         0.92882764,         0.94023440,
+          0.95067674,         0.96025322,         0.96908170,
+          0.97730036,         0.98506843,         0.99256705,
+          1.00000000,
+      lecmwf=.t.,
+;
+EOF
+
+cat > prepobstypes.dat <<EOF
+ &obstypes
+        LLTEMP =.TRUE.,
+                LTEMPu=.TRUE.,
+                LTEMPv=.TRUE.,
+                LTEMPT=.TRUE.,
+                LTEMPq=.TRUE.,
+                LTEMPlnps=.FALSE.,
+                LTEMPfis=.FALSE.,
+        LLPILOT =.TRUE.,
+                LPILOTu=.TRUE.,
+                LPILOTv=.TRUE.,
+                LPILOTT=.FALSE.,
+                LPILOTq=.FALSE.,
+                LPILOTlnps=.FALSE.,
+                LPILOTfis=.FALSE.,
+        LLSYNOP =.TRUE.,
+                LSYNOPu=.FALSE.,
+                LSYNOPv=.FALSE.,
+                LSYNOPT=.FALSE.,
+                LSYNOPq=.FALSE.,
+                LSYNOPlnps=.FALSE.,
+                LSYNOPfis=.TRUE.,
+                LSYNOPu10=.FALSE.,
+                LSYNOPv10=.FALSE.,
+                LSYNOPRH2=.FALSE.,
+        LLSHIP  =.TRUE.,
+                LSHIPu=.FALSE.,
+                LSHIPv=.FALSE.,
+                LSHIPT=.FALSE.,
+                LSHIPq=.FALSE.,
+                LSHIPlnps=.FALSE.,
+                LSHIPfis=.TRUE.,
+                LSHIPu10=.TRUE.,
+                LSHIPv10=.TRUE.,
+        LLAIREP =.TRUE.,
+                LAIREPu=.TRUE.,
+                LAIREPv=.TRUE.,
+                LAIREPT=.TRUE.,
+                LAIREPq=.FALSE.,
+                LAIREPlnps=.FALSE.,
+                LAIREPfis=.FALSE.,
+        LLDRIBU =.TRUE.,
+                LDRIBUu=.FALSE.,     
+                LDRIBUv=.FALSE.,                
+                LDRIBUT=.FALSE.,                
+                LDRIBUq=.FALSE.,                
+                LDRIBUlnps=.FALSE.,
+                LDRIBUfis=.TRUE.,
+        LLSATOB =.FALSE.,
+                LSATOBu=.TRUE.,
+                LSATOBv=.TRUE.,        
+        LLTOVS  =.FALSE.,
+                LTOVSTML=.TRUE.,
+                LTOVSPWC=.TRUE.,
+                LTOVST=.FALSE.,
+                LTOVSQ=.FALSE.,
+        LLGBGPS =.FALSE.,
+                LGBGPSIWV=.FALSE.,
+                LGBGPSTDEL=.FALSE.,
+                LGBGPSWDEL=.FALSE.,
+                LGBGPSPS=.FALSE.,
+        LLRADAR =.FALSE.,
+                LRADARWD=.TRUE.,
+                LRADARIN=.FALSE.,
+        LLRTM=.TRUE.,
+                LLRTMNOAA15AMSUA=.TRUE.,
+                LLRTMNOAA16AMSUA=.FALSE.,
+                LLRTMNOAA16AMSUB=.FALSE.,
+;
+EOF
+
+./hirvda.x
+
+exit
+}}}
+
+

@@ -1,0 +1,40 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Hirlam Data Portal''' ==
+= '''Monitoring of HARMONIE/HIRLAM Development Versions''' =
+[[Center(end)]]
+
+== '''Harmonie Forecast System''' ==
+=== '''Harmonie 38h1 (trunk)''' ===
+ * [wiki:Harmonie_38h1/ValidationTests Verification and intercomparisons]
+=== '''Harmonie 37h1''' ===
+ * [wiki:Harmonie_37h1/ValidationTests Verification and intercomparisons]
+=== '''Harmonie 36h1''' ===
+ * [https://hirlam.org/portal/oprint/Charts/AROME_WebgraF/index.html Forecast charting]
+ * [wiki:Harmonie_36h1/ValidationTests Verification and intercomparisons]
+== '''Hirlam Forecast System''' ==
+=== '''Hirlam 7.4 (trunk)''' ===
+ * [https://hirlam.org/portal/oprint/Charts/CHARTS/ Forecast Charting comparing 7.4 trunk to other operational suites]
+ * [wiki:Hirlam_7.4/ValidationTests Verification]
+=== '''Hirlam 7.3''' ===
+ * [https://hirlam.org/portal/oprint/Charts/CHARTS/ Forecast Charting comparing RCR-7.3 to other operational suites]
+ * [wiki:Hirlam_7.3/ValidationTests Verification]
+
+== '''Contact''' ==
+
+If you need assistance in presenting your results about monitoring and verification of development verisons of HARMONIE/HIRLAM forecast system, please contact maintainer] of this page.
+
+[[Center(begin)]]
+[wiki:dataportal Back to the main page of Hirlam data portal]
+[[Center(end)]]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+
+
+
+

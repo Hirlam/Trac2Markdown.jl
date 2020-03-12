@@ -1,0 +1,75 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM activities related to development in surface physics and assimilation''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Active working groups and links to their specific wiki pages ==
+
+ * [wiki:Surface_physis_assimilation/EKF_surface_work Surface data assimilation and SODA]
+ * [wiki:Surface_physis_assimilation/pgd_ecoclimap_work Modifications of physiography in PGD/ECOCLIMAP]
+ * [wiki:Surface_physis_assimilation/DIF_versus_Force_restore Test of DIF versus force-restore]  
+ * [wiki:Surface_physis_assimilation/SURFEX-ice Sea-ice development  (look at the bottom of this page for news)]
+ * [wiki:Surface_physis_assimilation/Glacier_plans SURFEX glacier development]
+ * [wiki:Surface_physis_assimilation/Two_patches_development Work on 2 patches in HARMONIE/SURFEX]
+ * [wiki:Surface_physis_assimilation/Snow_assimilation_plans Work on snow validation/assimilation]
+ * [wiki:Surface_physis_assimilation/LAI_modifs_for_evaporation Modified LAI to control evaporation deficiencies]
+ * [wiki:Surface_physis_assimilation/MESCAN_tests Test of MESCAN as a replacement of CANARI]
+ * [wiki:Surface_physis_assimilation/TEB_development Applications and development of TEB]
+ * [wiki:Surface_physis_assimilation/ORO_development Work with orography-related parametrizations]
+ * [wiki:Surface_physis_assimilation/Diagnostics_development Work with diagnostic parametrizations]
+ * [wiki:Surface_physis_assimilation/SURFEX_after_cy43t SURFEX development from cy43t and onwards]
+ * [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h Plan for new SURFEX options in relation to new processes available in cy43h/SURFEXv8]
+ * [wiki:Surface_physis_assimilation/Parameter_calibration_ISBA Parameter calibration of ISBA]
+ * [wiki:Surface_physis_assimilation/Sea_wave_modelling Modelling of sea waves]
+ * [wiki:Surface_physis_assimilation/First_cy43h_setup cy43h release setups - surface options]
+ * [wiki:Surface_physis_assimilation/XRIMAX_docu Documentation of XRIMAX tests and results]
+
+== Rolling Work Plan and corresponding status development reports ==
+
+=== 2016 ===
+
+ * [wiki:Surface_physis_assimilation/Surface_status_September_2016 September 2016]
+ * [wiki:Surface_physis_assimilation/Surface_status_November_2016 November 2016]
+
+=== 2017 ===
+
+[http://hirlam.org/index.php/hirlam-documentation/doc_download/1800-rolling-workplan-hirlam-2017-v20170223 Rolling Work Plan 2017]
+
+ * [wiki:Surface_physis_assimilation/Surface_status_January_2017 January 2017]
+ * [wiki:Surface_physis_assimilation/Surface_status_March_2017 March 2017]
+ * [wiki:Surface_physis_assimilation/Surface_status_May_2017 May 2017]
+ * [wiki:Surface_physis_assimilation/Surface_status_September_2017 September 2017]
+
+=== 2018 ===
+
+[http://hirlam.org/index.php/hirlam-documentation/doc_download/1840-rolling-workplan-2018-v-29-nov-2017-approved-by-ga-c Rolling Work Plan 2018]
+
+ * [wiki:Surface_physis_assimilation/Surface_status_January_2018 January 2018]
+ * [wiki:Surface_physis_assimilation/Surface_status_August_2018 August 2018]
+ * [wiki:Surface_physis_assimilation/Surface_status_October_2018 October 2018]
+
+=== 2019 ===
+
+[http://hirlam.org/index.php/hirlam-documentation/doc_download/1852-rolling-workplan-2019-approved-by-ga-c-20112018 Rolling Work Plan 2019]
+
+ * [wiki:Surface_physis_assimilation/Surface_status_January_2019 January 2019]
+ * [wiki:Surface_physis_assimilation/Surface_status_May_2019 May 2019]
+ * [wiki:Surface_physis_assimilation/Surface_status_September_2019 September 2019]
+
+=== 2020 ===
+
+[https://docs.google.com/spreadsheets/d/1p9cl_XqQbSYZ7uA3t4CltGd4VfGS_cQhknooSX56P00/edit#gid=512389136 Rolling Work Plan 2020]
+
+ * [wiki:Surface_physis_assimilation/Surface_status_February_2020 February 2020]
+
+== Surface related meetings ==
+
+ * [wiki:Meetings/Surface Surface related meetings]
+
+== External, links, resources ==
+
+
+ * Waterloo university (Canada): Lake workshop held on 11 April 2017, presentation about HIRLAM lake experiences by [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Rontu_Waterloo.pdf Laura] 

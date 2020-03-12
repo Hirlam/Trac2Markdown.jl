@@ -1,0 +1,170 @@
+
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-A HARMONIE Data Assimilation Working Week''' =
+'''5-9 May 2008, met.no, Oslo'''
+[[Center(end)]]
+
+== '''Presentations''' ==
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/Guidard_3DVAR_theory.ppt ALADIN 3D-Var theory (Vincent Guidard)] '''attachment not available :-( '''
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/Trojakova_canari_2.ppt CANARI optimum interpolation with emphasis on technical aspects (Alena Trojakova) ]  '''attachment not available :-( '''
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/R_Roger_data_handeling.ppt The data flow in HARMONIE data assimilation (Roger)]  '''attachment not available :-( '''
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/magnus_oslo.ppt Review of HIRLAM HARMONIE 3DVAR work (Magnus Lindskog) ]  '''attachment not available :-( '''
+
+=== HARMONIE script system for data assimilation (Xiaohua) ===
+
+Harmonie script system enables users to configure a Harmonie experiment setup, build forecast system softwares, perform experiment cycles, post-process, verify and archive experiment runs.
+
+The script system is inspired from the synoptic-scale Hirlam mini-SMS script system and in the first phase, it tried to mirror incresingly more the functionalities of the synoptic Hirlam mSMS.
+
+ * Basic facts about the Hirlam mSMS system
+   1. SMS and XCDP
+     * SMS, Supervision and Monitoring System, is an ECMWF invention and handles dependencies between different tasks and loops on a multiple host environment. It can be used conveniently to control background or batch jobs, either scalar or parallel.
+     * XCDP is a graphic user interface which enable users to manipulate jobs, such as launch/stop/pause/resume/restart.
+   1. HIRLAM adaptation
+     * Hirlam mSMS was introduced during Hirlam-6.
+     * mSMS (By G. Cats) is a subset of ECMWF Supervision and Monitoring System with intended enhancement in portability and flexibility
+     * The Graphic User Interface (O. Vignes) mXCdp is the subset of the ECMWF XCDP.
+     * There are some syntax differences between SMS and mSMS. It is an option goal to phase out such differences.
+     * SMS is now used in FMI, met.no for general operational environment. HIRLAM mSMS are called by SMS for HIRLAM and HARMONIE forecasts suits. Some ALADIN countries work also with SMS (France via OLIVE/SWAPP, Slovenia, ...)
+     * mSMS is used in all other HIRLAM services except DMI.
+   1. mSMS scripts in Harmonie system
+     * mSMS scripts are included as part of the Harmonie repository and version controled as other sources of the system
+     * Harmonie repository includes
+{{{
+      config-sh          # System configure files
+      config             # Compilar/Architecture dependent setup
+      msms               # mini-SMS scripts
+      sms                # experiment configuration, suite definition files
+      src                # Arpege/IFS/ALADIN code, cycle 33t1 for the time being
+      scr                # scripts for various model components
+      nam                # namelists for model components
+      util               # utilities (gmkpack, gl, monitor, oulan, ddh, scum...)
+      const              # constant files (for DA)
+}}}
+     * Harmonie system defined ECMWF HPC as reference platform
+     * In addition to the Harmonie repository, full installation of the Harmonie system in non-ECMWF playform needs
+       * external libraries EMOS, LIBEC and platform-specific ones
+       * data base for climate generation
+       * source code for SURFEX climate data
+   1. Install
+     * Harmonie system repository can be acquired directly from hirlam.org. For platforms without svn client, one can download tarballs for trunk or tagged versions, e.g. from ECMWF platform
+{{{
+   /scratch/ms/dk/nhz/trunk.tar.gz          # updated daily at around 5 am
+   ec:/hirlam/src/tar/harmonie-33h0.tar.gz  # ECFS archive
+}}}
+     * To install the system, first define a location for system repository. For a shared platform, this is best done by local system manager, e.g.
+{{{
+    mkdir -p $ROOTDIR/harmonie_release
+    svn co https://svn.hirlam.org/tags/harmonie_33h0 33h0  # for latest release
+    svn co https://svn.hirlam.org/trunk/harmonie trunk     # for trunk version
+    tar zxvf {location_of_the_tarball}/harmonie-33h0.tar.gz
+}}}
+       * On ECMWF platform, the most commonly used harmonie system codes are installed, and daily updated if necessary, on
+{{{
+   ~nhz/harmonie_release/$version         #version=trunk/33h0/33h2 etc.
+}}}
+     * Set up ROOT installation or normal experiment environment
+{{{
+  mkdir -p $HOME/hm_home/$EXP
+  Harmonie setup -r $ROOTSRCDIR/$revision -h $HOST
+                        # Harmonie script can be linked to $ROOTSRCDIR/$revision/config-sh/Harmonie
+                        # $ROOTSRCDIR=~nhz/harmonie_release (default) on ecgate
+                        # $revision=trunk/33h0/...
+                        # $HOST=ecgate(default), hpce...
+}}}
+     * This will copy some basic configuration files to $HOME/hm_home/$EXP for you to customize
+{{{
+   config-sh/hm_rev                       # specify location of the source
+   config-sh/main                         # basic specify location of the source
+   config-sh/config.$HOST => Env_system   # basic computer environment settigs such as compiler, data
+   config-sh/submit.$HOST => Env_submit   # job submission data base
+   msms/config_exp.h                      # main experiment configuration file
+}}}
+   1. Build
+     * The main (IFS/ALADIN) source code are compiled with gmkpack. gmkpack is part of the Harmonie code system and needs not to be installed separately
+     * For each platform, either HPC or laptop, at least one build for ROOTPACK (reference installation) per release/major code versions are need. The build will create a rootpack directory $REVISION_$BRANCH_$VERSION.$OPTION, where typical variables are defined in sms/config_exp.h as, e.g.,
+{{{
+   REVISION=33h0    # 33h0, 33h1,...
+   BRANCH=main      # main, trunk...
+   VERSION=1
+   OPTION=x         # gmkpack/arch/SYSTEM.HOST.OPTION
+}}}
+     * Compile reference ROOTPACK
+{{{
+  Harmonie start DTG=2008040500 PLAYFILE=Install_rootpack
+                         # DTG information here is mandatory but only for syntax formality
+                         # On ECMWF, users can skip this step. The ROOTPACK by default points to HPCE: /ms_perm/hirlam/harmonie/pack
+}}}
+     * The Harmonie specific code (gl, monitor, xtool etc) will be compiled separately when running experiment
+   1. Preparation of data
+   1. Main
+   1. Postprocessing
+   1. Archive
+ * Running Harmonie on ECMWF
+   1. On ecgate, setup an experiment directory
+{{{
+   mkdir -p $HOME/hm_home/test_harmonie
+   cd $HOME/hm_home/test_harmonie
+   ~nhz/Harmonie setup -r ~nhz/harmonie_release/33h0                # for running a tagged version, or
+   ~nhz/Harmonie setup                                              # for running trunk version on ~nhz/harmonie_release/trunk
+}}}
+   1. You will see on config-sh, files Env_submit, Env_system, hm_rv and main; And sms/config-h
+   1. This will enable you to start a forecast-only run directly if you issue "Harmonie start"
+   1. In order to run 3DVAR, which is currently not a default, edit sms/config_exp.h
+{{{
+   ANAATMO=3DVAR    # change from no (default)
+   ANASURF=no       # change to yes to try Canari
+}}}
+   1. Launch the job by
+{{{
+   ~nhz/Harmonie start DTG=2008040500 LL=06      # do not pick up a date newer than 2 days due to missing MARS OBS data
+}}}
+ * Some mSMS tips
+   * Before re-launching an experiment directory from scratch, clean your experiment data directory/archive with
+{{{
+     ~nhz/Harmonie CleanUp -ALL -go               # Check scr/Actions for syntax
+}}}
+   * re-launch the GUI for experiment $EXP from the previously closed one
+{{{
+    cd $HOME/hm_home/$EXP
+    ~nhz/Harmonie mXCdp
+}}}
+   * 'Check out' a Harmonie script by "Harmonie co" for editing, e.g,
+{{{
+     cd $HOME/hm_home/$EXP
+     ~nhz/Harmonie co msms/harmonie.tdf
+              # currently the command does not handle multi-level directory structure. To be extended
+     vi msms/harmonie.tdf
+}}}
+   * If you do not get GUI at launch time, check if there are error messages on $SCRATCH/hm_home/$EXP/mSMS.log. Make sure
+{{{
+    setenv mXCdp 1  or setenv mXCdp ENABLE      # if you want to activate it; or
+    setend mXCdp 0  or setenv mXCdp DISABLE     # if e.g X-connection fails
+}}}
+   * If you need to modify source or script in the middle of the experiment (crashed, interrupted, ongoing...), try to use the GUI interface.
+     1. do changes in $HOME/hm_home/$EXP
+     1. left-click on 'InitRun' -> Submit. This will force the changes to be syncronised to the experiment directory $HL_DATA to affect execution of next steps
+     1. re-start a previously halt/crashed/ job such as Build, Forecast etc.
+   * "Harmonie prod" mode and progress.log
+     * on $HOME/hm_home/$EXP, progress.log and progressPP.log are updated with cycle information after each cycle is successfully finished. e.g, if a jobs is launched with command "Harmonie start DTG=2008040500", a progress.log will be created at the launch in $HOME/hm_home/$EXP and updated. At the beginning DTG and DTGBEG are specified in progress.log, both as 2008040500. After the cycle is finished, DTG in the progress.log is updated to 2008040506. Likewise, DTGPP in progressPP.log will be updated from 2008040500 to 2008040506 after post-processing tasks are finished.
+     * If one wants to perform/resume a cycle following previous cycle which has been successful, one can launch experiment with
+{{{
+   Harmonie prod       # no DTG information shall be given together with 'prod' option.
+                       # The former is to be acquired from progress.log file.
+}}}
+     * The above instruction will perform a single cycle run and stop after a successful cycle with progress.log and progressPP.log updated after finishing, (with DTG and DTGPP updated to be 2008040512). If you want to run multi cycle, you may do, e.g.
+{{{
+  Harmonie prod DTGEND=2008040900             # the cycling will continue until the last cycle 2008040900 has been finished.
+}}}
+ * Current status with reference Harmonie on ECMWF
+   * [https://hirlam.org/trac/wiki/Harmonie_33h0#Testedmodeldomainscomponentsandcomputerarchitecture Harmonie 33h0 Technical test page] lists the model domains and tested configurations so far for 33h0, which were tagged on Apr 22
+   * Current default setting (forecast_only, toy domain TEST_11) needs modification (with reduced PE requests) in Env_submit to work.
+   * For Canari, cycled experiments have now been tested through after similar changes as implemented to trunk [5890], [5891]
+     * no surface analysis in first cycle
+     * namelist changes to avoid elimination/distortion of un-analysed variables in Canari i/o, such as those for cloud water etc.
+   * For 3DVAR, deficiency has been identified in which some of the unanalysed fields (cloud water) have been distorted during the procedure. A solution is to be worked out for introduction in trunk
+   * RCR_POLAR (RCR-alike domain with polar-stereographic projection) has been tested through with forecast, 3DVAR and Canari with trunk version up to [5891]
+
+== '''References''' ==
+  * [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/ASM_2008_uandrae.pdf Ulf Andrae's presentation about mSMS system]                                        

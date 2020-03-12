@@ -1,0 +1,163 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Organisational Meetings''' =
+[[Center(end)]]
+
+Below is a list of HIRLAM Organisational Meetings:[[BR]]
+[[BR]]
+
+[[Color(blue, MG and joint MG/CSSI meetings)]]
+ * HIRLAM-C MG meeting, 9-10 November 2016, Reykjavik
+ * HIRLAM-C MG meeting, 6-7 September 2016, Norrkoping
+
+ * ...
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM1_minutes.pdf" target="_blank">
+MGM-1, 10-11 January 2006, De Bilt</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM2_minutes.pdf" target="_blank">
+MGM-2, 13-14 February 2006, Norrkjoping</a>
+}}}
+ * LACE steering committee, 16-17 February 2006, Budapest
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM3_minutes.pdf" target="_blank">
+MGM-3, 9-10 March 2006, combined with member institute visit, Madrid</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM4_minutes.pdf" target="_blank">
+MGM-4, 19 April 2006, telephone conference</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/hmg_cssi_minutes.pdf" target="_blank">
+MG/CSSI meeting, 14 May, Sofia</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM5_minutes.pdf" target="_blank">
+MGM-5, 19-20 June, combined with member institute visit, Oslo</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM6_minutes.pdf" target="_blank">
+MGM-6, 25 August 2006, telephone conference</a>
+}}}
+ * LACE steering committee, 28-29 September 2006, Zagreb
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM7_minutes.pdf" target="_blank">
+MGM-7, 2-3 October 2006, combined with member institute visit, Helsinki</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM8_minutes.pdf" target="_blank">
+MGM-8, 3 November 2006, telephone conference</a>
+}}}
+ * Telephone conference on Reference System, 18 December 2006
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM9_minutes.pdf" target="_blank">
+MGM-9, 10-12 January 2007, combined with member institute visit, De Bilt</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM10_minutes.pdf" target="_blank">
+MGM-10, 15 February 2007, Telephone conference</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM11_minutes.pdf" target="_blank">
+MGM-11, 12-13 March 2007, Copenhagen</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HMG-CSSI_Oslo07_Minutes_draft3.pdf" target="_blank">
+MG/CSSI meeting, 122 Apr 2007, Oslo</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM12_minutes.pdf" target="_blank">
+MGM-12, 31 May - 1 June 2007, Dublin</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM13_minutes.pdf" target="_blank">
+MGM-13, 15 August 2007, Telephone meeting</a>
+}}}
+ * MGM-14, 17-18 September 2007, Tallin, MG discussion on science and work plan for 2008.
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM15_minutes.pdf" target="_blank">
+MGM-15, 26-27 November 2007, Copenhagen</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM16_minutes.pdf" target="_blank">
+MGM-16, 24-25 January 2008, De Bilt</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM17_minutes.pdf" target="_blank">
+MGM-17, 22 February 2008, Telephone conference</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/MGM18_minutes.pdf" target="_blank">
+MGM-18, 10-11 March 2008, Norrkøping</a>
+}}}
+
+[[Color(blue, Member institute visits)]]
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/INM_200603" target="_blank">
+ Member institute visit to INM, 9-10 March 2006, Madrid</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/metno_200606" target="_blank">
+ Member institute visit met.no, 19-20 June 2006, Oslo</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/fmi_200610" target="_blank">
+ Member institute visit FMI, 2-3 October 2006, Helsinki</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/knmi_200701" target="_blank">
+ Member institute visit KNMI, 10-12 January 2007, De Bilt</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/metie_200705" target="_blank">
+ Member institute visit MetEirean, 30 May - 1 June 2007, Dublin</a>
+}}}

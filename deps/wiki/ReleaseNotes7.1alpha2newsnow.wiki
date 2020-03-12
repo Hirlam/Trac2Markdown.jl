@@ -1,0 +1,56 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1 alpha 2-newsnow''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Hirlam 7.1 alpha 2-newsnow ==
+
+Hirlam 7.1 alpha 2-newsnow is the merged code of the development branch "newsnow" with the second tagged trial release for [wiki:Hirlam_7.1 Hirlam 7.1], [wiki:ReleaseNotes7.1alpha1 Hirlam 7.1 alpha2 ]. Comparing to the [wiki:ReleaseNotes7.1alpha1 Hirlam 7.1 alpha2 ], the code contains the significantly updated surface parameterisation scheme. The new surface scheme features a physically more solid formulation, with more potential to describe diurnal cycle in the forest and snow covered areas. The scheme describes better the water storage in the snow, which is important during the melting season.
+
+== Description of the new surface scheme ==
+
+In the new surface scheme, the force-restore formulation for temperature is replaced by heat conduction with three time dependent layers in the soil, forced from below by the climatological deep soil temperature. For sea ice there is a weak bottom heat flux from the sea water; For soil moisture, the force-restore formulation is kept for the time being, but the total layer (containing the roots) is kept between wilting point and field capacity, with a subgrid runoff formulation.
+
+With the new surface scheme, the tiles of low vegeatation and bare soil can be partly covered with snow, which have
+new time dependent variables: snow temperature, water suspended in the snow (which can refreez), snow density and snow albedo. The effect of strong isolation of the snow is parameterized as a function of snow depth. Same scheme is also applied to the forest floor, but not yet on sea ice.
+
+The forest tile is completely new, the main feature is the separate canopy temperature, which is not directly involved in the soil heat conduction. Instead, a no heat capacity equilibrium temperature, called canopy air temperature, is computed. Also a canopy air humidity is calculated at the same time, so that the total energy flux is zero in the conopy air. Thus the atmosphere (lowest model layer) is feeling only the canopy air temperature and humidity, and the fluxes are computed using the Monin-Obhukov theory. The fluxes between the canopy air and the forest floor (partly snow covered, with separate snow temperature) is parameterized using a formulation of Choudhury and Monteith (1988).
+
+The separate soil ice is temporarily replaced by a simpler parameterisation (Viterbo et.al. 1999), until the force-restore soil moisture is replaced. 
+
+A slightly different model, applied for climate simulations, is described in Samuelsson, Gollvik and Ullerstig, 2006.
+
+== Technical implementation of the new surface scheme ==
+
+Since the new surface scheme involves a number of new surface variables, the subroutine "getgrb.F" is modified so that the new variables are estimated from a standard Hirlam start file, to make cold starts possible. Changes have been done to libraries grdy, prpo, phys, util and span. Much of the changes are technical for transporting the new variables through the system. There are now 7 tiles in the model, but the fractions 6 and 7 (snow on bare ground/open land, snow in forest) are zero outside phys, where these fractions are temporarily calculated in the routine newfractions, and snow is put back to tiles 3,4 and 5 in the routine mirroring. To faciltate the use of the output, the variable frsn (the fraction of snow, as a fraction of the whole gridsquare, for ice, open land and forest respectively) are calculated (81,105,702; 81,105,706; 81,105,705).
+
+In surface analysis module Span, the corresponding changes have been done to match the new scheme. After the T2m analysis, the soil/snow temperatures are estimated as before, but to update the corresponding deeper temperatures,
+a separate estimation of the heat conduction since last analysis time is done. 
+
+That this tagged system is an 'alpha' release instead of 'beta' reflects the fact that the currently assembled system is still an incomplete one compared to the target for 7.1, (e.g., the new surface scheme has not been merged in), and that neither the individual components nor the assembled system has been tested thoroughly. 
+
+We encourage developers involved with preparation of components for 7.1, especially those involved in physics test, to use the current alpha release as much as possible until the next assembled code version is available. Please remember to exchange experiences and report problems/bugs to fellow developers. Meanwhile, we do not encourage operational centers to adopt the current one for operational use.
+
+== Meteorological and Technical Evaluations,  Outstanding problems, bugs ==
+
+Examination of meteorological impact of the updated snow scheme is ongoing. Comparing to the corresponding model version currently available ([wiki:Hirlam_7.1 Hirlam 7.1] alpha2 ), several obvious short comings have been observed. These includes:
+ 
+ 1. PMSL problem. Problem has been observed in MSLP fields against a relatively normal surface pressure and surface temperature fields. It is suspected that some bugs exists in postprocessing in connection with swapping procedure in MPI.
+ 1. Problem with too low night time temperature in Sahara;
+ 1. Too low T2m forest. Too low soil temperature at forest and low vegetation fraction, probably associated with snow depth problem. Too low temperature in mountains when cloud free and with snow cover. 
+ 1. Snow depth problem for low vegetation tile;
+
+For characteristics of remaining part of this release which is unrelated to the new surface scheme, see descriptions in wiki page for [wiki:Hirlam_7.1 Hirlam 7.1].
+
+== How to run Hirlam 7.1 alpha 2 Newsnow ==
+
+The current release is tagged with version name hirlam-7.1alpha2newsnow. To run the version, see e.g. instructions on wiki page for [wiki:Hirlam_7.1 Hirlam 7.1]
+
+== References ==
+
+Choudhury, B.J., Monteith,J.L., 1988. A four-layer model for the heat budget of homogenious land surfaces. Q.J.R. Meteorol.Soc. 114, 373-398.
+
+Samuelsson, P., Gollvik, S. and Ullerstig, A., 2006. The land-surface scheme of the Rossby Centre regional atmospheric climate model (RCA3). Report in Meteorology 122, SMHI. SE-601 76 Norrköping, Sweden.
+
+Viterbo, P.,Beiljaars, A., Teixeira, J., 1999. The representation of soil moisture freezing and  its impact on the stable boundary layer. Q.J.R. Meteorol. Soc. 125, 2401-2426.

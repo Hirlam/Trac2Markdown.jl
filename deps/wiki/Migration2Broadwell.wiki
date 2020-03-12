@@ -1,0 +1,40 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+= '''Staus of HARMONIE and HIRLAM running on Broadwell processors on cca''' =
+[[Center(end)]]
+
+ECMWF wiki information available here: [https://software.ecmwf.int/wiki/display/UDOC/HPC+Phase+2+system https://software.ecmwf.int/wiki/display/UDOC/HPC+Phase+2+system]
+
+== HARMONIE ==
+The compilation environment has been updated to use gcc/gfortran 5.3. The original default version made available (gcc/gfortran 4.8) was not suitable, see [http://joomla.hirlam.org/index.php/forum/2-harmonie-system/1228-bator-38h1-2-crashing-on-cca-broadwell-cpus forum thread 1228] for further details.
+=== trunk ===
+trunk code has been updated to run on the new cca Broadwell processors. Any trunk issues should be raised on the forum.
+
+=== 40h1.1.rc.1 ===
+tags/harmonie-40h1.rc.1 code has been updated to compile on the new cca Broadwell processors. Any issues with this tag should be raised on the forum.
+
+=== 38h1.2 ===
+???
+
+=== 38h1 branch ===
+branches/harmonie-38h1 code has been updated to run on the new cca Broadwell processors. Any issues with this branch should be raised on the forum.
+
+=== 38h1.2 bugfix branch ===
+branches/bugfix/harmonie-38h1.2 code has been updated to run on the new cca Broadwell processors. Any issues with this branch should be raised on the forum.
+
+== HIRLAM ==
+???
+
+== '''SHELL problem''' ==
+
+'''This is still an issue.'''
+
+It has been noticed that ksh and csh at ecgb doesn’t pass the environment properly to cray. '''It seems that only bash behaves correctly, but just opening a bash session doesn’t solve the problem'''. See forum post from Elena at FMI: [http://www.hirlam.org/index.php/forum/19-general-topics/1142-ssh-feature-in-ecmwf-cca-solved http://www.hirlam.org/index.php/forum/19-general-topics/1142-ssh-feature-in-ecmwf-cca-solved]
+
+To change the default shell on ecgb type:
+{{{
+changesh
+}}}
+
+and follow the instructions.

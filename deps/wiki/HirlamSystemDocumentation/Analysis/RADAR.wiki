@@ -1,0 +1,258 @@
+
+== USE OF RADAR RADIAL WIND OBSERVATIONS IN HIRLAM ==
+
+'''
+
+== Superobservations ==
+
+
+Radar radial winds are used in HIRLAM as spatial averages, so called[[BR]]
+superobservations. Superobservations are produced utilising the RAVE[[BR]]
+software. 
+
+
+
+RAVE software and installation instructions can be obtained[[BR]]
+from ecgate: /ms_perm/hirlam/radar_processing/src.tar [[BR]]
+Untar the package, and read the detailed installation instructions [[BR]]
+from /src/rave/README[[BR]]
+RAVE can be run for example on a linux laptop.  However, it can not be installed[[BR]]
+on ecgate because of some technical issues related to Python, AIX, and enable-shared option[[BR]]
+(status August 2010).
+
+ 
+
+From /ms_perm/hirlam/radar_processing/ you can find also an[[BR]]
+example python script to use RAVE (run_superob.py), an example file of input[[BR]]
+(200806301805_UTA.PPI2_C.h5; input for RAVE is in hdf5 format), and an example file of[[BR]]
+superobservations (so200806301800). Modify run_superob.py so that it finds your[[BR]]
+raw data, and run it by typing python run_superob.py to the command line. [[BR]]
+
+
+
+In RAVE, the area size for spatial averging is determined by two free[[BR]]
+parameters: azimuthal averaging (aavg in run_superob.py) and range bin[[BR]]
+spacing (ravg in run_superob.py). Model experiments have indicated that[[BR]]
+parameter values of the order of 2 deg and 10 km are appropriate for[[BR]]
+model resolutions of the order of 10 km.
+
+
+
+RAVE ascii output file is used as inputfile for HIRLAM. The ascii file[[BR]]
+contains:[[BR]]
+
+
+SUPEROB 20080201 0607[[BR]]
+# LON: 21.646  LAT: 60.128  ALT: 61  WMO: 2933  dR: 10000.0  BEAMWIDTH: 0.9  dAZ: 2.000[[BR]]
+21.646 60.173  6.0   5000   0.0   585.1    86.9    81.6  23.60    2     1.5  0   0.0  16.25    2    25.9  0   0.0[[BR]]
+
+
+'''- First line:''' The observation time, in this example 1st Feb 2008 at 6.07 UTC[[BR]]
+
+
+'''- Second line: [[BR]]'''
+
+Coordinates of the radar (LON, LAT) [[BR]]
+
+Altitude of the radar (ALT) [[BR]]
+
+Radar wmo number (WMO) [[BR]]
+
+Range bin spacing used in RAVE (dR) [[BR]]
+
+Radar beamwidth (BEAMWIDTH)[[BR]]
+
+Azimuthal averaging used in RAVE (dAZ)[[BR]]
+
+
+'''- Third line etc.:[[BR]]'''
+
+
+Cordinates of the observation (lon, lat)[[BR]]
+
+Elevation angle of the observation (degrees)[[BR]]
+
+Distance of the observation from the radar (m)[[BR]]
+
+Azimuth angle of the observation (deg)[[BR]]
+
+Height of the observation (m)[[BR]]
+
+Horizontal averaging length (m)[[BR]]
+
+Vertical averaging length (m)[[BR]]
+
+Radial wind value (m/s)[[BR]]
+
+Number of raw observations used in superobservation generation[[BR]]
+
+Inner variance of the superobservation[[BR]]
+
+Quality of radial wind value (not used)[[BR]]
+
+Observation error of radial wind value (not used)[[BR]]
+
+Reflectivity factor (not used)[[BR]]
+
+Number of raw observations used in superobservation generation (not used)[[BR]]
+
+Inne variance of the superobservation (not used)[[BR]]
+
+Quality of reflectivity value (not used)[[BR]]
+
+Observation error of reflectivity (not used)[[BR]]
+
+
+
+
+
+== HIRLAM ==
+
+
+To get the radar radial winds into HIRLAM analysis, scripts[[BR]]
+Env_expdesc and MakeCMA need to be modified.[[BR]]
+
+
+Env_expdesc: set RADAR_RDWD = yes[[BR]]
+
+
+MakeCMA: Modify the script so that it finds your superobservation[[BR]]
+files and links them to fort.87 (examples of modifications below, insert similar [[BR]]
+blocks to appropriate places in MakeCMA).
+
+
+
+
+{{{
+#========================== get radar radial wind data
+
+if [ $RADAR_RDWD = yes ]; then
+
+    DT1=`mandtg $DTG + -3 | cut -c1-10`
+    DT2=`mandtg $DTG + -2 | cut -c1-10`
+    DT3=`mandtg $DTG + -1 | cut -c1-10`
+    DT4=`echo $DTG | cut -c1-10`
+    DT5=`mandtg $DTG + 1 | cut -c1-10`
+    DT6=`mandtg $DTG + 2 | cut -c1-10`
+
+    rm -f ../ob${DT1}rdwd
+    rm -f ../ob${DT2}rdwd
+    rm -f ../ob${DT3}rdwd
+    rm -f ../ob${DT4}rdwd
+    rm -f ../ob${DT5}rdwd
+    rm -f ../ob${DT6}rdwd
+
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT1}00 ../ob${DT1}rdwd
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT2}00 ../ob${DT2}rdwd
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT3}00 ../ob${DT3}rdwd
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT4}00 ../ob${DT4}rdwd
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT5}00 ../ob${DT5}rdwd
+    ecp ec:/hirlam/cis/obs/radar_rdwd/so${DT6}00 ../ob${DT6}rdwd
+
+fi
+
+}}}
+
+
+----
+
+
+{{{
+# Check if radar radial wind data exits and link it to fort.87
+
+if [ $RADAR_RDWD = yes ]
+then
+
+ if [ $ANALYSIS = 4DVAR ]; then
+  timeshift=`expr $iwin - 4`
+  DTW=`mandtg $DTG + $timeshift | cut -c1-10`
+  ob=ob${DTW}rdwd
+ else
+  ob=ob${DTG}rdwd
+ fi
+
+ if [ ! -s ${HL_DATA}/$ob ]
+ then
+  echo "MakeCMA: No radar radial wind data available for observation window $iwin !"
+  rm -f $ob
+ else
+  ln -sf ${HL_DATA}/$ob fort.87 # input link for radial winds
+ fi
+fi
+###
+
+
+}}}
+
+----
+
+
+
+Programme obsproc/hirlam/scanradar.F90 reads the superobservation[[BR]]
+files from fort.87. The programme performs various quality checks for[[BR]]
+the data. In the programme you can define[[BR]]
+
+
+RDWDMAX=50. [[BR]]
+Maximum accepted wind speed, this should be equal to the maximum unambiguous velocity in your data.[[BR]]
+
+RDWDVARMAX=10.	[[BR]]
+Maximum variance of the raw observations constituting the superobservation.[[BR]]
+
+RELEMAX=6.0		   [[BR]]
+Largest accepted elevation angle. The observation operator does not take into account the fall speed of the hydrometeors. Thus, radar observations only from low elevation angles should be used (~< 10 deg).[[BR]]
+
+RELEMIN=0.1		   [[BR]]
+Smallest accepted elevation angle. (Data from very low elevation angle can be contaminated by ground clutter.) [[BR]]
+
+RRANGEMAX=100000.	   [[BR]]
+Maximum accepted range (should be smaller or equal than the max unambiguous range in your data).	  [[BR]]
+
+RRANGEMIN=0.		   [[BR]]
+Minimum accepted range (can be used to exclude data near the radar which is often contaminated by ground clutter.)[[BR]]
+
+ISMPMIN=2		   [[BR]]
+Minimum number of raw observations within the superobservation. If data is good quality and non-meteorological echoes have been cleaned out with other quality control procedures, can be set to 1, otherwise depends on the parameter values used in the superobservation generation. [[BR]]
+
+DAZMIN=2		   [[BR]]
+Minimum difference between adjacent azimuth angles. Can be used to thin the data in azimuthal direction.[[BR]]
+
+
+
+== More information ==
+
+
+
+The work done so far is documented in the following articles:[[BR]]
+
+
+Järvinen H., Salonen K., Lindskog M., Huuskonen A., Niemelä S.,
+Eresmaa R., Doppler radar radial winds in HIRLAM. Part I: observation
+modelling and validation, Tellus, 61A, 278-287, 2009.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/tellus1.pdf]
+
+Lindskog, M., Salonen, K., Järvinen, H., and Michelson, D.B., Doppler
+radar wind data assimilation with HIRLAM 3DVAR, Mon. Weather Rev.,
+132, 1081-1092, 2004.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/mwr.pdf]
+
+Salonen K., Järvinen H., Eresmaa R., Niemelä S., Bias estimation
+of Doppler-radar radial-wind observations,
+Quart. J. Roy. Meteor. Soc., 133, 1501-1507, 2007.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/bias_estimation.pdf]
+
+Salonen K., Järvinen H., Järvenoja S., Niemelä S., Eresmaa R.,
+Doppler Radar Radial Wind Data in NWP model validation,
+Met. Applications, 15, 97-102, 2008.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/validation.pdf]
+
+Salonen, K., Järvinen, H., Haase, G., Niemelä, S., Eresmaa, R.,
+Doppler radar radial winds in HIRLAM. Part II: optimizing the
+super-observation processing, Tellus, 61, 288-295, 2009.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/tellus2.pdf]
+
+Salonen K., Haase, G., Eresmaa, R., Hohti, H., and Järvinen, H.,
+Towards the operational use of Doppler Radar Radial Winds in
+Hirlam. Atmos. Res., in press. doi:10.1016/j.atmosres.2010.06.004,
+2010.
+[https://hirlam.org/trac/attachment/wiki/HirlamSystemDocumentation/Analysis/RADAR/ATMOS_2205.pdf]

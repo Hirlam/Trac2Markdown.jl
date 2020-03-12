@@ -1,0 +1,173 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on Conventional Data and COPE''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== 5th meeting: 23 March 2018, 14:00 CET ==
+
+=== Participants ===
+
+
+ * Eoin Whelan
+ * Maria Diez
+ * Roohollah Azad 
+ * Alena Trojakova
+ * Maria Monteiro
+ * Claude Fischer
+ * Mats Dahlbom
+ * Bjarne Amstrup
+ * Kasper Stener
+ * Trygve Aspelien
+ * Roel Stappers
+ * Roger Randriamampianina
+
+=== Topics of the day: ===
+
+**Overview of the previous Actions**
+ - **Action-1 on Claude** to ask about the progress at Meteo France about the assimilation of RS humidity above 300 hPa.[[BR]]
+  ===> **closed**[[BR]]
+
+ - **Action-2a on Claude, Jean-Francois and Roger** to have a consensus about the sub-type to be used, then communicate with ECMWF for agreement and final decision.[[BR]]
+  ===> **Kept**. A meeting will be organised in Toulouse during the ASM to also discuss this issue.[[BR]]
+
+ - **Action-2b on Eoin** to follow up with ECMWF "ODB Governance staff" on this matter (raised in October 2016).[[BR]]
+  ===> **closed**, See the Annex.[[BR]]
+
+ - **Action-3 on Maria and Roger** to contact Mate Mile from Hungary to discuss the implementation procedure and figure out the source of the bad statistics. **Roger** asked Mate about their implementation. Mate mentioned that the definition of the observation error is not trivial. This needs to be taken into account seriously.[[BR]]
+  ===> **Kept**[[BR]]
+
+ - **Action-4 on Claude** to ask Meteo France colleagues if they observed similar problem before we send a warning to all centres. Claude mentioned that this kind of problem was observed with the aircraft data and not with the surface data. [[BR]]
+  ===> **closed**[[BR]]
+
+
+* **Radiosonde (RS) BUFR Format:**[[BR]]
+ **Descend observations:**
+ - **Eoin** mentioned that this is on his to-do list.[[BR]]
+ - **Roger** mentioned that they are figuring out how to extract these observations at MET Norway. [[BR]]
+
+* **Wind profilers**:[[BR]]
+ **Aeolus wind data:**[[BR]]
+ - **Roohollah** mentioned that he observed coordinate (Lat/Lon) mismatch when comparing the BUFR data with the created ODB in Metview. The observed difference is up to 0.5 degrees (~50km). Roohollah mentioned that there are 3 kinds of coordinates in the BUFR file. One needs to find what is the most representative one. He will investigate what further this issue.[[BR]]
+
+* **Aircraft derived data (ADD):**[[BR]] 
+ - **Claude** mentioned that the Mode-S data are not yet ready to included in the next e-suite at Meteo France. He mentioned that the Scatterometter data have higher priority to be introduced in the parallel suite.[[BR]]
+ - **Alena** mentioned that they are testing the KNMI Mode-S data in LACE. They have done impact studies. They found that these data have good impact. These data are operational in Slovenia. The results of the assimilation test at ZAMG will be reported at ASM. However, they observed that using the high resolution Mode-S data needs longer (from 60 to 150) iteration to provide good convergence.[[BR]]
+
+ **Action 1 to Claude** to ask Jean-Francois Mahfouf about the status of the Mode-S data at Meteo France.[[BR]]
+
+* **VARBC for ADD:**[[BR]]
+ - **Roger** informed that with Magnus, they have planned to test the VarBC in a reanalysis system using the ECMWF coefficients in warm start.[[BR]]
+
+* **Aircraft Humidity observations:**[[BR]]
+ - No much discussed. [[BR]]
+
+* **Near surface Observations:**[[BR]]
+ - **Kasper** reported that his (data collection) tool is now implemented in one of the telephone provider in Denmark providing much more observations than earlier. When asked about the data processing, Kasper mentioned that better quality of the observations is reached by doing combined temporal and spatial superobbing. [[BR]]
+ - **Trygve** reported that he is testing the "Titan quality control" and the gridpp for spatial interpolation of T2m, Hu2m, and snow observations. He will present his results at ASM. When asked by Alena about the reason of choosing the gripp instead of CANARI, **Trygve** mentioned that gridpp is used for Nowcasting and post-processing at MET Norway.[[BR]]
+ - **Alena** is not aware of any crowd observations investigation in LACE.[[BR]]
+ - **Claude** said, although crowd observation is very important for Meteo France, no study have been started yet. There was a PhD position opened in this topic and the management is still pushing this idea.[[BR]]
+ - **Kasper** mentioned that Lars Isaksen told him that they started also to look at the crowd data.[[BR]]
+
+* **SAPP:**[[BR]]
+ - **Eoin** mentioned that a workshop can be organised in the end of the year depending on the decision taken by the ECMWF.[[BR]]
+ - **LACE** colleagues are happy with the OPLACE and are not interested in SAPP, so far.[[BR]]
+ - **Maria** said that Portugal is going to test the package. She also mentioned that Algeria is also interested in getting this package. Since, they are not member of ECMWF, this needs special agreement.[[BR]]
+ - **Roger and Eoin** said that the new !MetCoOp group consider this package as common solution for observation collection, when implemented in different member institutes.[[BR]]
+
+* **COPE:** [[BR]]
+ - So far nothing to report.[[BR]]
+
+* **Bator for all observations:**[[BR]]
+ - **Claude** said that they don't use anymore the Oulan.[[BR]]
+ - **Eoin** said that in the new tag of the Harmonie system, Bator will be the default option, while in 43h2 no more oulan option will maintained.[[BR]]
+ - **Trygve** mentioned that !MetCoOp is not using anymore Oulan.[[BR]]
+
+
+=== Annex ===
+ 
+
+--------------------------------------
+
+== 4th meeting: 11 December 2017, 10:00 CET ==
+
+=== Participants ===
+
+
+ * Martin Ridal
+ * Eoin Whelan
+ * Jana Sanchez Arriola
+ * Maria Diez
+ * Roohollah Azad 
+ * Alena Trojakova
+ * Sigurdur Thorsteinsson
+ * Maria Monteiro
+ * Claude Fischer
+ * Mats Dahlbom
+ * Bjarne Amstrup
+ * Kasper Stener
+ * Trygve Aspelien
+ * Roger Randriamampianina
+
+=== Topics of the day: ===
+* **Roger** asked the importance of conversion of local data to any local BUFR data format. The reason of asking is that Bator is more oriented to handle WMO BUFR format convention. It is then better to build the local data using the WMO template after dealing with the data duplicates and any kinds of data correction.
+
+* **Radiosonde (RS) BUFR Format:**[[BR]]
+ - **Eoin** reported that the backphased Bator from CY43 to CY40 allows the use of WMO BUFR formatted data and with some option to use some local BUFR format templates. It allows to switch on and off the thinning of the radiosonde data.[[BR]]
+ - There is a hard code of use of data thinning to ARPEGE model levels. Since this includes more levels than the HARMONIE-AROME, we can leave with it.[[BR]]
+ - We discussed the use of the radiosonde measurements during the fall down process. **Eoin** mentioned that (about 5 years ago) a similar study at Valentia Observatorty showed that the measurements during the descent were biased due to the rate of descent, even with parachute. These studies were also limited by the loss of signal caused by local orography. **Maria Monteiro** mentioned that there is software able to process these kind of data to make it usable (see for example [https://www.eol.ucar.edu/software/aspen the Aspen webpage] with [https://www.eol.ucar.edu/system/files/Aspen%2520Manual.pdf its manual]).[[BR]]
+
+ **Action-1 on Claude** to ask about the progress at Meteo France about the assimilation of RS humidity above 300 hPa.[[BR]]
+
+* **Wind profilers:**[[BR]]
+ Not much discussed.[[BR]]
+
+* **Aircraft derived data (ADD):**[[BR]]
+ - **MODE-S data:** All participants recognised the importance of having two ADD sub-type definition. This will prevent us to make additional work during the implementation and fixing the observation error after the implementation.[[BR]]
+ **Action-2a on Claude, Jean-Francois and Roger** to have a consensus about the sub-type to be used, then communicate with ECMWF for agreement and final decision.[[BR]]
+ **Action-2b on Eoin** to follow up with ECMWF "ODB Governance staff" on this matter (raised in October 2016). [[BR]]
+ - The participants informed each other about the implementation process of the MODE-S receivers. MET Norway have got some sample data for testing . The data were not only from their local reception, but also from other companies in Norway.[[BR]]
+ - Meteo France get the MODE-S data from different sources and they have also test data from their local reception.[[BR]]
+ - **Bjarne** Informed us that at last E-AMDAR meeting, Florence Besson reported that they observed less data in the Eastern part of France compared to the western part. It was also mentioned that a reception system can be implemented in the western part of France to get reasonable data (Bjarne???).[[BR]]
+ - **VARBC:** No specific report about the functionality of the VarBC with ADD. **Claude** informed that at last video meeting with ECMWF, it was said that it's difficult to compare the standard 4DVar with OOPS-based one, probably because of the different set up of VarBC. **Claude** also said that they switched back to off-set only for VarBC to correct biases for GNSS ZTD.[[BR]]
+ - **Humidity data from Aircraft:** Maria Diez reported about the results from her implementation work with passive assimilation of humidity observation from aircraft. She found relatively bad statistics of O-B in the lower model levels, which she couldn't understand. **Bjarne** mentioned that it's important to account for the super-saturation when using the mixing ratio.[[BR]]
+ **Action-3 on Maria and Roger** to contact Mate Mile from Hungary to discuss the implementation procedure and figure out the source of the bad statistics.
+
+* **Near surface data:** [[BR]]
+ - **Kasper** reported about his work with collecting and processing pressure data from Smart Phones. He use special software to collect the data to DMI server. The data then can be downloaded at any time. He is collecting the raw data including, among others, the acceleration of the moving phones and the altitude of of the device. He compares the measurements against a model at DMI. He mentioned that the iPhone and Samsung smart phones are measuring in different frequencies. During his visit to DMI, **Roger** showed to Kasper how to add additional pressure observations in the ODB. [[BR]]
+   -- There are few issues with the pressure data: There is need for the device hight correction, bias correction and good definition of the measurement time interval. [[BR]]
+   -- **Kasper** compared the phone pressure measurement against a synop station. He found that both instruments are showing very similar pressure tendencies. So, one can also thinking about using the measured tendencies using nudging scheme.[[BR]]
+
+ - **Roger** showed some slides from **Tomas Nipen** and **Cristian Lussana** on Netatmo data quality, their processing and their use in precipitation analysis and post-processing. He showed that these data, combined with regular synop network, can be very valuable and very good for analysis and post-processing.[[BR]]
+
+* **Surface observations:**[[BR]]
+ - **Martin** reported that, in Metcoop, they observed missing ship station ID with Oulan data processing. Processing the observations with Bator finds more ship data. **Bjarne** said that the processing of the ship data with WMO BUFR convention is an ongoing process. This can provide substantial difference in the database.
+
+ **Action-4 on Claude** to ask Meteo France colleagues if they observed similar problem before we send a warning to all centres.
+
+* ** SAPP ** 
+ - **Eoin** promised to keep us informed about the ongoing implementation work at Met Éireann. He also promised to coordinate with ECMWF and organise a workshop on SAPP next year.
+
+
+* **COPE:**[[BR]]
+ - **Eoin, Mats and Bjarne** reported that not too much was done with COPE. They all follow the development work at ECMWF.[[BR]]
+
+* **ODB-API:**
+ - **Roger** asked about the readiness of our system to handle data in ODB2 format. **Eoin** said that there shouldn't be problem with converting ODB2 to ODB1. The ODB-API software bundle has the required tools.[[BR]]
+
+* **Bator for all observations:**
+ - **Eoin** said that he is working Bator to make it handling all observations. He is progressing well.[[BR]]
+ - **Martin** reported that in METCOOP they are ready to use Bator with all observations. The exception will be that they will use the MSLP as pressure observation at surface, instead of station hight. The pre-operational test will start soon this week. [[BR]]
+
+=== Annex ===
+ * **Action 2b - Eoin**: I spoke again with Lars Isaksen and Bruce Ingleby (ECMWF, January 19th) regarding Mode-S observation entries in the ODB database. A follow-up e-mail was sent with Siebren cc'ed.
+ * **SAPP**: 
+  * Sarah Gallagher (Met Éireann) has completed an initial evaluation of SAPP and has summarised her findings in an internal report. [raw-attachment:preliminary-evaluation-sapp.pdf preliminary-evaluation-sapp.pdf]. 
+  * Enrico Fucile (ECMWF) has informed me that the provision of SAPP to member states has been taken up by senior management and an internal discussion is ongoing at ECMWF. This means that, for now, ECMWF will not be in a position to provide SAPP system updates or host a proposed workshop.
+  * If your institute is still interested in evaluating/using SAPP you should:
+    1. contact Enrico directly "registering" your interest
+    1. through your TAC representative, you should request SAPP stating whether you want the system for testing or operational purposes and what kind of support you would expect from ECMWF.
+
+
+----

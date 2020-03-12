@@ -1,0 +1,7 @@
+The MSGinit project goal is to incoporate the work of Sibbo van der Veen to initialise humidity in the model by nudging it with data from MSG satellite information (cloud mask and cloud top temperature), combined with SYNOP observations of cloud base height.
+
+The latest update of this part of the software (reading in the observation data) is [14419].
+
+The comments in the software (some of the routines are skeletons only, at the moment) should guide you to what should happen there.
+
+The companion piece deals with the nudging itself, which is planned to be done in the Blend program. This part hasn't been written at all yet (but shouldn't be hard).

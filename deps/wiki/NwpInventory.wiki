@@ -1,0 +1,24 @@
+[[PageOutline]]
+This page contains links to information on the operational implementation of HIRLAM and HARMONIE at member NMSs.
+== Operational HARMONIE ==
+ * [wiki:HarmonieInventory/Operational Operational and other real time HARMONIE forecast system inventory at Hirlam services]
+ * More information from [https://hirlam.org/trac/wiki/HirlamInventory/HarmonieSystem earlier link ] about overview on configuration and status of the real-time HARMONIE suite
+{{{
+#!html
+<ul>
+<li> <a href="https://hirlam.org/portal/oprint/Charts/AROME_WebgraF/"  target="_blank">
+     Collection of real time HARMONIE charts (experimental)</a> 
+<li> <a href="http://fminwp.fmi.fi/AROME/" target="_blank">
+     FMI's real time AROME suite</a>
+<li> <a href="https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA" target="_blank">
+     Harmonie vs Hirlam models</a>
+}}}
+
+== Operational HIRLAM ==
+ * [https://hirlam.org/trac/wiki/HirlamInventory/Operational operational HIRLAM forecast system inventory at Hirlam services]
+ * [wiki:AEMET_HIRLAM AEMET operational NWP suite]
+ * [wiki:FMI_RCR FMI operational NWP suite], using '''the reference HIRLAM'''
+ * [wiki:DMI_HIRLAM DMI operational NWP suite]
+ * [wiki:KNMI_HIRLAM KNMI operational NWP suite]
+ * [wiki:metno_HIRLAM met.no operational NWP suite]
+ * [wiki:Lhms_HIRLAM Lhms operational NWP suite]

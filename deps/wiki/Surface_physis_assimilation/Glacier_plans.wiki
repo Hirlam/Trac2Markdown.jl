@@ -1,0 +1,476 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Ideas and plans for glacier development in SURFEX''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+=== Notes from snow discussions during the surface physics working week in Tromsø, May 2018 ===
+
+Participants: Mariken Homleid (Met Norway), Bolli Palmason (IMO), Kristian Pagh Nielsen (DMI), Rafael Grote (Met Norway, Tromsø). 
+
+Several issues were discussed:
+
+'''Resetting snow on glaciers on September 1^^st^^.'''
+
+MH: In the .../scr/Canari script a new variable (XSWEPSMIN) can be added. This value can be set to 1000 mm Snow Water Equivalent 
+(SWE) for "permanent snow" (glaciers) in general and to 10000 mm SWE on September 1^^st^^. The actual modification is then done in 
+the subroutine .../surfex/ASSIM/assim_isba_update_snow.F90.
+
+KPN: An issue here is that snow data assimilation has to be switched on to do this.
+
+BP: Snow data assimilation could affect glacier snow in a bad way by removing this based on snow depth measurements at lower 
+level beyond the glacier areas. We should only do this, if the glaciers are not affected by this.
+
+MH: Snow data assimilation can be done without affecting anything, if there are no observations.
+
+MH: It is also important to have a threshold for the fraction of "permanent snow" that should be present before the resetting 
+is done. The issue here is that snow fraction is computed in the model independent of "permanent snow". Thus, 10 m of SWE could 
+be added to grid boxes in the model with even 1% of "permanent snow" fraction.
+
+BP and MH are working on how to do this in practice in a way that works both for the AROME-Arctic and the IGB domains...
+
+'''Satellite snow cover assimilation'''
+
+MH: For AROME-Arctic we wish to assimilate both snow depths and satellite snow cover observations.
+
+'''Snow (and ice) albedos over glaciers''' 
+
+KPN: For the C3S Arctic reanalysis project we need a solution based on the MOD10A1 C6 snow albedo product and the Douville (1995)
+"D95" snow scheme.
+
+KPN: The albedo of the "permanent snow" (glacier) areas vary strongly in ablation areas. The minimum values also vary a lot from
+year to year. In particular extreme variations are seen in the minimum albedos in Svalbard. ''In situ'' data from Thomas Schuler from 
+Nordaustfonna suggest that these extreme variations are realistic, however, the MODIS products is only updated rarely for Svalbard 
+due to many clouds. Thereby precipitation events that whiten the snow for some days are missed in this....
+
+=== Notes from C3S Arctic reanalysis project meeting in Copenhagen, May 2018 ===
+
+< Kristian fills in here >
+
+=== Notes from C3S Arctic reanalysis project meeting at ECMWF, January 2018 ===
+
+< Kristian fills in here >
+
+=== Notes from PROMICE workshop in Copenhagen, October 2017 ===
+
+< Kristian fills in here >
+
+=== Notes from surface working days in September 2017 ===
+
+Plans on how to proceed:
+
+1. Bolli will provide point/column SURFEX 8.0 standalone setup (forcing/obs) for glacier stations to Emily.
+
+2. Bolli and Kristian will meet with MF people on Oct. 21-22 in Copenhagen PROMICE workshop and discuss possibilites with ISBA-ES/Crocus. 
+
+3. Emily and Bolli will try to get the glacier ice and albedo working for the standalone version based on recommendations from MF.
+
+4. Kristian will look into what version of HARMONIE-AROME should be used for ISBA-ES and CARRA will be a factor in that.
+
+5. Use the EPyGrAM to grid satellite albedo products (MODIS) into the "snow-age" of the glacier ice layers.
+
+6. There is a need to modify how the lower "glacier ice" snow layers evolve, so that the younger lower density snow is not mixed into these from above.
+
+=== Notes from Glacier E-mails September 2017 ===
+
+==='''From Bolli:'''===
+
+1. Initialize in autumn the snow over glaciers with thick (10+ meters),
+dense (900+ kg/m3) and old (900+ days) bottom layers as the glacier ice
+and a thin snow layer on-top.
+
+2. Modify the "snow-age" parameter with external tools so that if we have i.e.
+MODIS albedo on the glacier ice we could translate the albedo values to snow
+age and make it 1000-10000 days.
+
+3. Modify the albedo routine in ISBA-ES so that snow-age is used to look
+up reasonable albedo values based on a late summer modis map or
+appropriate values for ice for areas where modis maps are not available,
+for example:
+
+ a) If snow-age is 900 days, then put a common value for glacier ice,
+ like maybe 0.4
+ b) If snow-age is >=1000 then albedo becomes a function of snow-age and
+ can range from 0.1 and up. We actually see values on our dirties
+ glacier ice down to 0.1, but sometimes our firn gets exposed and it
+ normally has higher values than ice.
+
+4. No age should be added to snow if age of 365 days is reached.
+
+This would give us the option of using observed albedo like MODIS to set
+varying values over the glacier ice when it becomes exposed during summer
+melt season, but otherwise get a reasonable default value elsewhere, like
+Greenland.
+
+One thing we would need to change for this to work is the aggregation of
+the snow layers in the snow scheme, it works quite differently that the
+snow layers in Crocus, so that if the top of a seasonal snow layer
+reaches the dense ice layer below, it will modify the density,age,etc.
+
+==='''From Kristian:'''===
+
+I am currently trying to set up the branch version harmonie-40h1_ISBASFX8 for a test run at the HPC in Reading. If this is successfull, I plan to merge this version with the soon-to-be-tagged version 40h1.2.
+
+Regarding the snow scheme, this appears to have a snow-aerosol-age coefficient that has been tuned to the conditions in the Alps. This is set to decrease with elevation (Table 4 in Vionnet et al. 2012). Here we should consider what to do for the glaciers in our domain. Perhaps regional loess and ash conditions are important for this?
+
+Also, Jason from GEUS asks what the grid properties in PGD are. The ECOCLIMAP grid is a 1 km Plate Carre grid with the WGS84 geoid system (Faroux et al. 2013). In the coming ECOCLIMAP 2^^nd^^ generation dataset the resolution will be 1/360^^th^^ of a degree (approx. 309 m).
+
+Jason will help with the MODIS albedos - at least for the exposed glaciers.
+
+==='''More from Bolli:'''===
+
+I tried the harmonie-40h1_ISBASFX8 branch soon after Patrick gave the
+command to use it, but I got crashes at ECMWF. I'm currently using a
+local setup of standalone SURFEX for my developments.
+
+The PGD in HARMONIE-AROME is currently using a 1km global binary maps
+for ECOCLIMAP-I/II, FAO/HWSD (sand/clay) and GLDB (lakes). For the
+topography you can chose between similar 1km binary map from GTOPO30 and
+the GMTED2010 at 250m resolution. The 250m tiles are the ones you list
+below and for each model domain the necessary files are merged together
+into one file.
+
+For the albedo, I'm currently using my own MODIS albedo maps for Iceland
+and they come from the MCD43A3.005 product. What we do is to put
+together a late-summer multi-year mean from this product and that gives
+us a resonable albedo of the exposed glacier ice in end of summer.
+For Greenland it would be great to get maps from you Jason.
+
+My ideas on how to get the MODIS maps into the gridded snow-age parameter
+is to use the new EPyGrAM tool from MF. So basically load the SURFEX FA
+file and load the MODIS map and then translate the albedo values into
+snow-age and overwrite the values in the FA file. I'm currently trying
+to build this tool with the necessary FA file format support.
+
+
+
+
+== Notes from the glacier side meeting at SURFEX Workshop Meteo France ==
+
+Monday 27^th^ February 10:00-12:00
+International Conference Centre, Meteo France, Toulouse
+
+
+'''ATTENDING'''
+
+- '''Meteo France:''' 	Aaron Boone (AB), Bertrand Decharme (BD), Marie Dumont (MD), Stephanie Faroux (SF), Patrick Le Moigne (PLM), Vincent Vionnet (VV)
+
+- '''Met Norway:'''	Trygve Aspelien (TA), Yurii Batrak (YB), Hanneke Luijting (HL), Mariken Homleid (MH)
+
+- '''DMI:''' 		Ruth Mottram (RM), Kristian Pagh Nielsen (KPN)
+
+- '''FMI:'''              Ekaterina Kurzeneva (EK)
+
+- '''Met Eireann:''' 	Emily Gleeson (EG)
+
+- '''SMHI:''' 		Patrick Samuelsson (PS)
+
+
+'''AGENDA'''
+
+'''1. Round table introduction of all partners'''
+
+- PLM: Responsible for SURFEX
+- EK: Lakes
+- SF: Princple developer of the ECOCLIMAP physiographic data set
+- HL: Snow modelling (not glaciers so far)
+- YB: Sea ice
+- TA: Operational NWP -> snow modelling
+- MH: Snow modelling
+- AB: Land surface aspects (scientifically). Principle developer of the Explicit Snow (ES) scheme
+- PS: HIRLAM surface assimilation
+- RM: Glaciologist and regional climate modelling (HIRHAM)
+- EG: Works on glaciers and radiation in HARMONIE-AROME
+- VV (Grenoble): Principle developer of the CROCUS scheme
+- KPN: Radiation physics, interested in the glaciers of Greenland
+- MD (Grenoble): Works with VV on developing CROCUS, satellite data assimilation, and surface radiative properties of snow and ice.
+
+
+'''2. Progress update on AROME and HARMONIE-AROME'''
+- ''How far along are we?''
+- ''What is the aim/reason for doing glacier work for different groups?''
+
+  - EG, KPN & RM: We have implemented a melting glacier surface in SURFEX version 7.2 in the D95 scheme. We would rather do a more comprehensive glacier implementation in the ES scheme. 
+    - AB: This should not be to difficult. We can make the glacier as a deeper snow layer with higher density.
+    - RM: It is important that the ice can melt, so that we can model glacier surface mass balance.
+    - AB: This would come automatically with the ice as a deep snow layer with high density. It can also be done with CROCUS.
+
+  - PLM: Satellite albedo option (CM13) in SURFEX8, with 10-day global climatologies. The namelist option is CALBEDO.
+    - PLM: This is Dominic Carrer's scheme.
+    - KPN: How about the snow dependencies? The snow schemes calculate the albedo; thus, this should be used only for the exposed glaciers.
+    - MH: Is this only for non-snow covered areas?
+    - AB: Yes, exactly.
+
+  - PS: SURFEX8 ISBA has been included in an experimental HARMONIE-AROME branch. Cy43 for climate mode is on its way - probably for climate purposes before for NWP purposes.
+
+  - PS: Can we use a single albedo value for the exposed ice.
+    - KPN: No, this varies very much.
+    - RUM: No, in HIRHAM we also look to implement a 2D ice albedo.
+    - PS: So a 2D ice-albedo field is needed.
+    - RUM: Yes, the RACMO regional climate model uses the darkest data from historical MODIS albedo data as the ice albedo.
+
+  - EK: Maybe the density profiles will give more error than the albedo?
+    - RUM: From HIRLAM K05 (Greenland) simulations we actually forecast the ice exposure times quite well.
+    - KPN: What we do is to remove the snow on September 1^st^ every year and then run spin up for 1-2 months before making the model operational. This works reasonably.
+
+
+'''3. SURFEX developments:'' 
+- ''What’s new?''
+
+  - AB: Bertrand de Charme has published a new version of the ES scheme for CMIP6 (The Cryosphere 2016). It has been 
+    tested with an atmospheric model coupled system. Thermal conductivity,
+    snow layering, and some other processes have been adopted from CROCUS. 
+    This gives better results. The albedo has also been updated. It is now 
+    much more realistic as compared with CROCUS. It is now a "baby-CROCUS" of sorts.
+
+  - Updates to the Explicit Snow (ES) scheme that are needed
+
+    - '''a)''' Water from melted snow mass loss issue – Eric Brun
+             - MD: Eric Brun and I did some Greenland simulation with CROCUS. The melt water goes down to the bottom of the snow and ice column, which is unrealistic. 
+
+    - '''b)''' When the snow density exceeds 850 kg/m³ snow albedo should be set to ice albedo (this is what is currently done in CROCUS)
+             - AB: This could be done analogously to vegetation.
+             - AB: A binary type switch could be risky. 
+
+    - '''c)''' accounting for more than one layer for the albedo computation NB when snow thickness is small since the albedo of a thin layer of snow over dark ice is affected by the ice albedo (ISBA-ES albedo computation is based on one layer only; this has to be modified)
+             - RM: We introduced this to HIRHAM last year. When the snow is less than 3 cm water equivalent we activates this. This eases the step (binary) change, but overall it does not make all that much of a difference.
+             - MD: We tested this in CROCUS as well. It was easy to implement and made only a small difference.
+
+    - '''d)''' Redefining NPATCH=3 into (i) permanent snow (ii) forest (iii) remaining open land. This requires modification of the PGD step. Comments on this?
+             - PS: A challenge here is how to treat the marginal glacier zone!
+             - RUM: ... which is the most important area!
+             - PS: A namelist flag will be used for the glacier option.
+             - PS: Bertrand has suggested 4 patches including vegetated land and bare soil.
+             - PS: Emily and I are planning to implement this.
+
+
+'''4. Forcing files for running off-line SURFEX8 to test glacier options'''
+
+- EG: This is my question. In order to run SURFEX8 I lack forcing files. How can they be made?
+  - TA: This a very important point to discuss.
+  - MH: I have some forcing files that have been created with an R script. 
+  - VV: In Grenoble we generate forcing files with Python scripts. The are always 
+    in NetCDF format. We use the SAFFRON reanalysis system.
+  - EK: You can also talk to Carl Fortelius (FMI) about this.
+  - VV: We have forcings files specifically for glaciers in the French Alps. We 
+    also have evaluation files for the Alps. Thus, these are very good test 
+    cases.
+  - PLM: We use epigram to convert between data formats.
+  - PS: A global data set called WATCH in 0.5 degrees resolution is available. I 
+    have made some FORTRAN programs for making NetCDF forcing files from these. 
+    I can offer these.
+
+
+'''5. Planned work'''
+''- Who will do what?'' 
+
+- EG and KPN will work on implementing an improved glacier representation in the ES scheme during 2017. 
+- PLM: We can help with this, depending on how much HIRLAM is pushing for it. EG & KPN can come to MF-Toulouse for 2-3 weeks to work with us on this.
+
+
+'''6. Any other business'''
+
+- AB: Any field campaigns for comparison?
+- RUM: Check out the PROMICE automatic
+
+
+
+********
+
+
+== Current status of work ==
+
+Tests of glacier treatment in HARMONIE/SURFEX so far is presented in this poster [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Surface201604/Glacier_plans/Harmonie_glaciers_poster_large_v2.pdf Mottram et al.]
+
+An NWP style of treating glaciers was implemented in HIRLAM by [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Surface201604/Glacier_plans/Vatna_MAP_LR_21Sept.pdf Rontu et al.], http://dx.doi.org/10.1007/s00703-008-0339-y
+
+(from Emily):
+- So far using the operational version of cycle 38h1 by DMI, we've restricted PTS_RAD (snow-free radiative temperature in ISBA) to a max of 0C when XCOVER=6 (i.e. over permanent snow (glacier)). This improves the surface temperature immensely but since PTG and not PTS_RAD is used in the calculation of T2m, the values of T2m are still way too high. 
+- LCANOPY=T in these experiments.
+- albedo is too low once the overlying snow melts as the patch is a mixture of surface types and not purely glacier.
+- Some info from Florian Meier on T2m formulas in AROME: There are 3 schemes for T2m diagnostics in the SURFEX code: CANOPY, Geleyn, Paulson. CANOPY is used, if LISBA_CANOPY=.TRUE. in  &NAM_PREP_ISBA in the PREP offline or 927surface interpolation steps. If LISBA_CANOPY is false, it depends on the N2M switch in SURFEX namelist for integration NAM_DIAG_SURFn, N2M=1 means Paulson, N2M=2 Geleyn scheme. While Paulson extrapolates downward from the model levels, Geleyn makes an interpolation between soil and model level. Find attached also some chaotic flow charts for diagnostics, I produced quite long time ago to detect some diagnostic problem in cy37t1. Even if the directories of some source files might have changed (I think it is now almost all in surfex/SURFEX), it still might be helpful. Unfortunately I forgot the details, but slide 1 and 4,5 might be relevant for your issue (mode_coupling_canopy.F90/Interpol_sbl.F90(CANOPY), cls_tq.F90,cls_wind.F90 (Geleyn), param_cls.F90 (Paulson).  As far as I know MF switched off CANOPY and use Geleyn now, due to better results, while we use still CANOPY in Austria. I would not recommend to use Paulson, because this delivered strange warm bubbles in our case in the past.
+
+'''Current IMO setup:'''
+
+Cycle 38h1.2 with single layer snow scheme is used. Start of "snow-year" is 1.Sept. and therefore we run Harmonie start and reset at that time. We use Surfex_prep=yes and during the prep step we do the following:
+
+* Add 10000 kg/m2 of SWE on permanent snow areas (glaciers)
+* Change PTG=272.8 for all levels below permanent snow areas (glaciers)
+
+This fixes problems over permanent snow areas during the next summer season, i.e. there is always seasonal snow over the glaciers. This is a "dirty" fix and we would like to investigate if this could be done better. In reality when seasonal snow melts away from the edges of the glaciers, we are left with a very dirty glacier ice and albedo drops considerably (see Rontu et al).    
+
+== Idea by Patrick S to rearrange the VEGTYPES for NPATCH=3 to have permanent snow separately == #new3patches
+
+I will refer to the SURFEXv8 code since that is what will be used in the development, right?
+
+The arrangement of VEGTYPES (19 all together in SURFEXv8, 12 all together in SURFEXv7) into patches, depending on what has been defined for NPATCH in the SURFEX namelist, is done in subroutine vegtype_to_patch.F90. Here, search for “INPATCH==3” and you will see the place where it is done:
+
+{{{
+!forest + low vegeation differenciation
+IF (INPATCH==3) THEN
+   IF (IVEGTYPE== NVT_NO .OR. IVEGTYPE== NVT_ROCK .OR. IVEGTYPE== NVT_SNOW ) IPATCH_NB= 1
+   IF (IVEGTYPE== NVT_TEBD  .OR. IVEGTYPE== NVT_TRBD .OR. IVEGTYPE== NVT_TEBE .OR. &
+       IVEGTYPE== NVT_BOBD  .OR. IVEGTYPE== NVT_SHRB .OR. IVEGTYPE== NVT_BONE .OR. &
+       IVEGTYPE== NVT_TENE  .OR. IVEGTYPE== NVT_BOND .OR. IVEGTYPE== NVT_TRBE)     &
+       IPATCH_NB=2
+   IF (IVEGTYPE== NVT_GRAS .OR. IVEGTYPE== NVT_BOGR .OR. IVEGTYPE== NVT_TROG .OR. &
+       IVEGTYPE== NVT_PARK .OR. IVEGTYPE== NVT_C3   .OR. IVEGTYPE== NVT_C4   .OR. &
+       IVEGTYPE== NVT_IRR ) IPATCH_NB=3
+END IF
+}}}
+
+My idea is that if some new glacier namelist option is set to TRUE we should have another arrangement of surfaces:
+
+{{{
+IF(new glacier namelist)
+!forest + low vegetation and permanent snow differentiation
+IF (INPATCH==3) THEN
+   IF (IVEGTYPE== NVT_GRAS .OR. IVEGTYPE== NVT_BOGR .OR. IVEGTYPE== NVT_TROG .OR. &
+       IVEGTYPE== NVT_PARK .OR. IVEGTYPE== NVT_C3   .OR. IVEGTYPE== NVT_C4   .OR. &
+       IVEGTYPE== NVT_IRR .OR. IVEGTYPE== NVT_NO .OR. IVEGTYPE== NVT_ROCK)          &
+       IPATCH_NB=1   ! All open land VEGTYPES except permanent snow
+   IF (IVEGTYPE== NVT_TEBD  .OR. IVEGTYPE== NVT_TRBD .OR. IVEGTYPE== NVT_TEBE .OR. &
+       IVEGTYPE== NVT_BOBD  .OR. IVEGTYPE== NVT_SHRB .OR. IVEGTYPE== NVT_BONE .OR. &
+       IVEGTYPE== NVT_TENE  .OR. IVEGTYPE== NVT_BOND .OR. IVEGTYPE== NVT_TRBE)         &
+       IPATCH_NB=2    ! All forest VEGTYPES
+    IF (IVEGTYPE== NVT_SNOW ) IPATCH_NB= 3   ! The permanent snow VEGTYPE
+END IF
+END IF
+}}}
+
+Thus, this will give you three patches where
+ * 1 All open land VEGTYPES except permanent snow
+ * 2 All forest VEGTYPES
+ * 3 The permanent snow VEGTYPE
+
+So, I would say that this is the only modification needed to rearrange the VEGTYPES for NPATCH=3. Then, the same new glacier namelist option should be used in the PREP part, in combination with Explicit snow scheme (CSNOW=3-L), one has to initialise the deep snow layers (how many?) as ice, like some 900 kg/m2(?). 
+
+Please note that SURFEX can be tested for permanent snow, without any modifications of patches, as long NPATCH>=7 since NVT_SNOW then will have its own patch.
+
+Also, as I understand it now, no changes are necessary in the physics part, i.e. under isba.F90, since the snow patch will be taken care of automatically with the glacier initial values given at the PREP step... right?
+
+
+
+== Google Hangouts meeting May 12, 2016, 12:30 CET == #HangoutsMay12
+
+Please also check the Glacier discussion on the HIRLAM Forum page: http://hirlam.org/index.php/forum/surface-development/1216-glaciers-plans-and-work
+
+See "Memory notes" from the meeting following after the "Agenda"...
+
+'''Agenda:'''
+
+ * We have discussed two different complexity levels of glacier models.
+  * One is fairly advanced and would fulfil the needs requested by regional climate modelling. Ruth Mottram at DMI tells us more details.
+  * One is fairly simple to fulfil the needs requested by NWP (current method to initialize permanent snow areas with huge snow layers does not work well over e.g. Iceland and Greenland).
+
+  Shall we go for both or could the "fairly advanced" also fulfil NWP needs?
+
+  The SURFEX team believes that the use of ISBA-ES snow model based on Surfexv8 should solve most of our glacier problems, both for NWP and the Regional Climate Model. [http://hirlam.org/index.php/forum/surface-development/1216-glaciers-plans-and-work See their comments in the Forum]. Ruth, please let us know your opinion with respect to your HIRHAM glacier plan.
+
+ * The NWP idea has again two alternative ideas discussed:
+   * To utilize the ES snow scheme (or Crocus) by defining very dense snow layers (ice) at the bottom of the snow pack which then should represent the glacier ice and that the upper layers are more “normal” snow. But I’m not sure how it would work… We should be able to simulate the situation when seasonal snow pack disappears and an ice surface appears which has quite different albedo (given e.g. dust accumulated with time)….
+   * Utilize the sea-ice model a la Yurii as now implemented in a HIRLAM version of SURFEX7.3. According to Yurii this should be pretty straight forward. Then the Explicit snow scheme would be used for the snow on ice. Here the characteristics of the ice itself can be specified and the interface snow/ice is well defined.
+
+  As above, the SURFEX team thinks that the ISBA-ES snow model should fulfil our NWP needs. See next point... However, a short term solution as presented in the poster by Mottram et al. is still needed for the current NWP setup based on D95 snow scheme to avoid the crazy surface temperature when snow disappears (hmhm, but has the LGLACIER option been used...?).
+
+ * Modifications needed of the ISBA-ES snow model in SURFEXv8 to fulfil glacier needs which will be looked into by the Météo-France SURFEX team:
+   * there's a need to take care of the water from melted snow to avoid a mass loss (currently melt "runs off"). Eric Brun had worked on a simple solution to retain this water somehow, we're digging into the past to check what he did
+   * when snow density becomes greater than 850kg/m³ then snow albedo for each spectral band should be set to ice albedo (this is what is currently done in Crocus)
+   * accounting for more than one layer for the albedo computation is especially important when snow thickness is small since the albedo of a thin layer of snow over dark ice is affected by the ice albedo. Currently, ISBA-ES albedo computation is based on one layer only, this has to be modified. 
+
+ * PGD/patch strategy
+   * Independent on above ideas, I guess whatever glacier scheme we call, it should be done from isba.F90 when some glacier namelist option is activated, right? We should not implement a separate tile, right? For grid boxes with 0 or 100% permanent snow it is not a problem but for other grid boxes (given NPATCH<12 or 19) it would be very strange to lump the permanent snow (glacier) characteristics with soil/veg characteristics since we look for realistic ice-melting conditions. In our NWP setup we are now testing 2 patches (forest and open land) but with glaciers we would need 3 patches to keep the ice patch physically realistic. But that would mean a redefinition of the case NPATCH=3 into (i) permanent snow (ii) forest (iii) remaining open land. Hmhm, or how can we proceed…?
+
+  [http://hirlam.org/index.php/forum/surface-development/1216-glaciers-plans-and-work The SURFEX team confirms] that we should go for the option using three patches by redefining NPATCH=3 into (i) permanent snow (ii) forest (iii) remaining open land. We can try testing with NPATCH=12 which does not require any redefinition.
+
+ * The SURFEX team would like to know about ongoing modifications of ECOCLIMAP/PGD for Greenland and Iceland. This job is described under the [https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Surface201604/pgd_ecoclimap_work PGD/ECOCLIMAP sub-working-group].
+
+ * How to proceed?
+   * A HIRLAM/Météo-France glacier core team including...
+   * Patrick Le Moigne listed three points above where the SURFEX team will look into the ES snow scheme.
+   * Maybe some HIRLAM colleagues can start to test ES snow in SURFEXv8 in offline mode over Greenland using 12 patches and initialising the permanent snow patch with ES snow as ice at the bottom...
+
+
+'''Memory notes:'''
+
+Long term solution:
+
+ * We concluded that the Explicit snow scheme as available in SURFEXv8 will fulfil our glacier needs for both NWP and climate applications. Some updates are needed as listed by the three bullet points above where the Météo-France SURFEX team will do some work. After these updates the Explicit snow scheme will cover those processes that are now available in the glacier scheme of the HIRHAM model by Ruth Mottram et al.
+ * For tests of Explicit snow as glacier over permanent snow we can start using NPATCH=12 since permanent snow will then be a separate patch. In September Ruth should have the opportunity to start testing SURFEXv8 in offline mode for the glacier tests.
+ * We will go for the option using three patches by redefining NPATCH=3 into (i) permanent snow (ii) forest (iii) remaining open land. This requires modifications of the PGD step since NPATCH=3 has to be redefined. Emily will contact Patrick S when she has the opportunity to start to look into the PGD modifications.
+ * As already concluded in the [https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Surface201604/pgd_ecoclimap_work PGD/ECOCLIMAP sub-working-group], Bolli will report about modifications done for Iceland and Greenland.
+ * We conclude that glacier ice albedo varies geographically, like quite dark over Iceland and at the ice edge of Greenland. But, currently we will not consider this complication but stick to some predefined glacier-ice albedo value. 
+
+ The development of this glacier option in SURFEX should be done in a branch of SURFEX trunk in the SURFEX repository. So, the one that takes the initiative to start the development creates this branch...
+
+Short term solution:
+
+ * Since SURFEXv8 will be officially available in cy43 we need a pragmatic solution for the glaciers in current operational NWP (cy40 including SURFEX7.3). '''Please correct this part/Patrick:''' So, the team Ruth, Emily, Kristian will implement the solution where snow-free Tg1 is forced to to be <=0 degC for grid boxes where permanent snow is 100%... Maybe something should be done to adjust soil heat capacity and heat conduction to more ice-like conditions as well...? As it was done for HIRLAM [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Surface201604/Glacier_plans/Gollvik_Mottram_correspondence_on_Greenland_snow_2012-05.pdf according to Stefan Gollvik]. 
+
+ The development of this short-term solution should be done in a branch of HARMONIE trunk cy40h1, right?
+
+
+== Comments on the Mottram et al. poster at EGU, April 2016 ==
+
+A slightly modified version of "The Glaciers of HARMONIE" poster by Ruth Mottram, Emily Gleeson & Kristian Pagh Nielsen was presented at the EGU meeting in Vienna on the 18^th^ of April 2016. Some of the comments made were particularly interesting:
+
+- '''Georg Käser''' from the University of Innsbruck remarked that wet glacier ice can have shortwave albedos of 0.2-0.3, even when it is not dirty. Thus, the current low glacier ("permanent snow") albedo may not be too far off realistic albedo values for melting mountain glaciers during summer. As the ice dries up shortwave albedoes around 0.5 are more realistic. On the Greenlandic, Icelandic and Svalbardian ice sheets dry exposed ice is more common than for smaller mountain glaciers on the European main land.
+- '''Marie Dumont''' from Meteo France mentioned that new snow surface options are available in SURFEX version 8. The '''ER scheme''' is a new alternative to the Douville 1995, 3-L and CROCUS schemes that should be both better than the simpler schemes and much more efficient than the elaborate CROCUS scheme. Marie also presented a poster on assimilating satellite-measured reflectances into SURFEX.
+- A group from the University of Cambridge (Katie Miles, Corinne Benedek, Marco Tedesco & Ian Willis) presented a poster on mapping lakes on the Greenland ice sheet using 25-40 m resolution SAR images taken from the '''Sentinel-1''' satellite. Since lakes are abundant on the exposed Western Greenland ice sheet during summer, such data are also of interest for improving the albedo and energy balance of this!
+
+== Report from discussion at Oslo Surface meeting April 13, 2016 ==
+
+Patrick contacts Stephanie to find out what the definition is of permanent snow. Is the intention that it should represent current glaciers or does it also include multi-year snow layers which have not yet been forming proper glaciers? 
+
+Two ideas on how to represent the physics of glaciers in ISBA:
+
+ * Call SICE scheme a la Yurii from ISBA. Yurii needs to modify SICE slightly so it can be called from ISBA. But, for this it is crucial to have snow on ice working. What about the bottom boundary condition?
+ * Can the new ISBAv8 version of the Explicit snow scheme (3-L) work as glacier model? Patrick contacts Aaron to discuss this question.
+
+== Report from discussion in Lisboa April 7, 2016 ==
+
+At the end of the All Staff meeting we had a discussion between Emily Gleeson (Met Éireann), Ekaterina Kourzeneva (FMI), Laura Rontu (FMI) and Patrick Samuelsson (FMI). Unfortunately Ruth Mottram (DMI) and Kristian Pagh Nielsen (DMI) were not able to be around at this moment. 
+
+Ruth would like to implement a glacier model in SURFEX based on the model used in HIRHAM, right? This is a glacier model meant for processes and time scales appropriate for climate model, right? Ruth, please edit this part and give some more info and references (web pages/papers) on the model. Also, what would be the efforts needed to implement this model in SURFEX and who would be involved?
+
+Would this model be also appropriate for the NWP needs where the bottom boundary condition for the atmosphere and near surface conditions are the highest priorities but not necessarily the ability to treat the long-term ice mass balance? If yes fine, but meanwhile we concluded that a more simple-ice approach is needed.
+
+In any way, the SURFEX PGD step needs modifications. The glacier would probably be one of the patches in the land/ISBA tile. But, since the glacier has such specific characteristics it would be ridiculous to average its characteristics with some other patches soil characteristics (e.g. the ice should be able to melt when its surface temperature reaches 0 degC). Therefore, the permanent snow patch (glacier) should be specifically present among the patches selected. Now, HIRLAM is heading for two patches over land (forest and open land). So, with permanent snow as an individual patch this would mean three patches, right? So, if yes, we have a need to redefine the arrangement of patches in ISBA so that if NPATCH=3 is specified it would mean (i) forest, (ii) permanent snow and (iii) open land (except permanent snow). This way of treating patches should be handled under a specific namelist option in SURFEX.
+
+This, or some similar, PGD modifications would be needed independent on if HIRHAM-style or simple ice style glacier is finally called in ISBA.
+
+The simple ice approach would need some ice characteristics parameters specified like heat capacity and heat transfer of ice. Also, a logical glacier option is needed which tells the ISBA part that a specific patch is going to be treated as ice with respect to surface energy (ice surface should melt at 0 degC).
+
+'''Permanent snow/glaciers in ECOCLIMAP:'''
+
+So who does what? Katya checks how permanent snow is represented in ECOCLIMAP. Especially over Greenland where, as far as we know, it has not been checked before. Patrick contacts the SURFEX team to discuss the ideas on modifications of SURFEX (PGD and glacier patch in ISBA). Emily, Ruth and Patrick coordinate the code implementation work.
+
+Comment from Bolli:
+
+For the Greenland ice sheet I got a shapefile from Ruth at DMI and it's from the PROMICE project and compared with [http://nsidc.org/data/docs/measures/nsidc-0645/ GIMP]. The plan is to change the areas of permanent snow in ECOCLIMAP where there is no snow in GIMP into rocks. I should have this ready soon in our local version of ECOCLIMAP-II.
+
+[[Image(ecoclimapII_greenland_gimp.png, 20%)]]
+
+White areas in the image show the ice sheet in GIMP, but black areas is the extent of permanent snow areas in ECOCLIMAP-I/II. 
+
+== Additional information ==
+
+Article by DMI on current melt (a month earlier than normal) over Greenland, highlighting their need for a glacier model in harmonie: http://www.dmi.dk/en/groenland/maalinger/greenland-ice-sheet-surface-mass-budget/
+
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Surface201604/Glacier_plans/Gollvik_Mottram_correspondence_on_Greenland_snow_2012-05.pdf Email correspondence (from May 2012) between Stefan Gollvik and Ruth Mottram on setting up HIRLAM for Greenland ice sheet surface simulations]. In order to initialise the snow every year, DMI removes all snow from the ice sheet on September 1^st^ and runs 1-2 months of snow spin up.
+
+== Check of raw information from ECOCLIMAPII about permanent snow/glaciers ==
+(by Katya)
+
+Glaciers and permanent snow in ECOCLIMAPII have Cover number 6.This is in red in the following figures. Also see a real photo from Google Maps. So, it seems that glaciers and permanent snow are overestimated over Northeast Greenland (and probably over Iceland). This is in agreement with Bolli's opinion and activities in changing ECOCLIMAPII.
+Major covers over Greenland and Iceland in ECOCLIMAPII are:
+
+* 6   - permanent snow and glaciers
+* 5   - rocks
+* 123 - bare soil and sparse polar vegetation 
+* 85  - NH Polar OS 
+
+[[Image(GreenlandW6.png, 20%)]] 
+[[Image(GreenlandE6.png, 20%)]]
+[[Image(Greenland.png, 20%)]]

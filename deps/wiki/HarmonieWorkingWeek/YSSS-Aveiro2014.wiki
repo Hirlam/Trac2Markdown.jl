@@ -1,0 +1,49 @@
+== This page is intended for HIRLAM-HARMONIE preparation and communication for the EUMETCHEM Aveiro Summer School [[BR]]
+http://aveirosummerschool2014.web.ua.pt
+
+----
+
+HARMONIE
+
+[https://www.hirlam.org/trac/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/YSSS14_harmoexe Working notes] for exercise preparation, please edit!
+
+Serge's notes on aerosol in HARMONIE [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/STSM_Ivanov_OSENU_FMI.pdf pdf]
+
+Notes about exercises 12.5.2014 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/exerciseplans.txt txt] [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Experiment_descriptions_Velle.pdf pdf by Velle]
+
+Slides from Kristian's lecture [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Nielsen_20140709_Direct_and_semi-direct_effects_of_aerosols.pptx pptx]
+
+Kristian's suggestion about aerosol exercise [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Nielsen_2014-07_exercise_aerosol_direct_and_semi-direct_feedbacks.pdf pdf]
+
+Summary of Laura's lecture [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Rontu_2014-07_cloud_radiation.pdf pdf]
+
+Draft/material for Laura's cloud-radiation lecture - for commenting [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Rontu_YSSS14_v1.pdf pdf] (20 MB)
+
+Summary of HARMONIE exercises [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Exercises_HARMONIE_MUSC.pdf pdf]
+
+Guides from/via Odessa: [https://www.hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Harmonie_System_doc.pdf HARMONIE system] [https://www.hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/metview_TUTOR_vk_2005.pdf Metview tutorial] [https://www.hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/metview_gui_course.pdf Metview gui course]
+
+----
+
+Enviro-HIRLAM
+
+Enviro-HIRLAM description [https://www.hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/EnviroHH_descr_vf.pdf pdf] updated 25 June
+
+Exercise URBAN by Alexander Mahura [https://www.hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/YSSS2014_Exercise_URBAN_vf.pdf pdf] updated 25 June
+
+Exercise Aerosol by Roman Nuterman [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/YSSS2014_Exercise_AEROSOL_vf.pdf pdf] updated 25 June
+
+Summary of Alexander M's lecture [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Lecture7_Mahura_v2.pdf pdf]
+
+Summary of Roman's lecture [ pdf]
+----
+
+Useful links and material
+
+For MUSC_cy38h1 experiment radaero - code and input, with README, for testing, editing i.e. no guarantee yet. Find in: [https://hirlam.org/trac/browser/branches/harmonie_MUSC_cy38h1 code browser] . 
+
+University of Helsinki [http://www.helsinki.fi/~jaraisan/numlab2013/NumLab13.html NumLab13]
+
+WRF Chem exercise by Yang Zhang (for information) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/YSSS-Aveiro2014/Exercise_WRF_Chem..pdf pdf]
+
+Laura's presentation on ALARO-I working days 12-14.5.2014 [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_LR_rad_may14.pdf link to pdf]

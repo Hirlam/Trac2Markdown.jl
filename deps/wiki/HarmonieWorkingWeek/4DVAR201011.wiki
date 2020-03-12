@@ -1,0 +1,23 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE 4D-VAR Working Week''' =
+''SMHI, 22 / 26 Nov 2010''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Participation, period and location ==
+
+== Objectives ==
+
+== Preparation materials; Presentation ==
+
+== Progress Status, Summary ==
+Summary report of the working week
+
+ * [wiki:HarmonieWorkingWeek/4DVAR201011/NamelistCheck Checking of namelists used in 4D-Var against 3D-Var/Forecast namelists]
+
+== Reference ==
+
+ * [wiki:HarmonieWorkingWeek/4DVAR200911 HARMONIE 4D-VAR Working Week in 2009 ]
+ * [wiki:HarmonieWorkingWeek/System201011 HARMONIE System Working Week, 29 Nov-3 Dec 2010, Copenhagen ]

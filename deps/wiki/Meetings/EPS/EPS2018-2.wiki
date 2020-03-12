@@ -1,0 +1,176 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HarmonEPS working week''' =
+''Norrköping. Monday 19 November - Friday 23 November 2018. ''
+
+[[Center(end)]]
+
+[[Image(20181122_184008.jpg, 20%)]]
+[[Image(20181123_095842.jpg, 20%)]]
+[[Image(20181123_095848.jpg, 20%)]]
+[[Image(20181123_095856.jpg, 20%)]]
+
+
+
+== Location ==
+SMHI, Folkborgsvägen 17, Norrköping
+[[BR]]
+Room:Nikkaloukta
+
+== Participants ==
+|| Name                   || Expect to be at ww     || Leaving || Working with                 || Hotel     ||
+|| Inger-Lise Frogner, MET Norway             || Monday morning         || Friday  || HarmonEPS SPP                || Hotel President  ||
+|| Ulf Andrae, SMHI                   || Monday morning         || Friday  || HarmonEPS SPP, misc technical || Casa Andrae ||
+|| John Bjørnar Bremnes, MET Norway           || Wednesday morning      || Friday  || calibration                  || Hotel President  ||
+|| Maurice Schmeits, KNMI               || Wednesday              || Friday  || calibration                  || Hotel President  ||
+|| Alan Hally, Met Eireann             || Monday morning         || Thursday afternoon || HarmonEPS SPPT/SPG        || Elite Grand Hotel || 
+|| Pau Escribà, AEMET            || Monday morning         || Friday  || HarmonEPS LETKF              || Hotel President   ||
+|| Rafael Grote, MET Norway           || Monday morning         || Friday  || HarmonEPS SST pert./Arctic Domain || Hotel President ||
+|| Mauri Martínez-Sánchez, AEMET || Monday morning         || Friday  || AEMET-gSREPS & HarmonEPS     || Hotel President  ||
+|| Karoliina Hämäläinen, FMI   || Monday lunchtime       || Friday  || HarmonEPS                    || Best Western Princess Hotel ||
+|| Henrik Feddersen, DMI                || Monday lunchtime       || Friday morning || HarmonEPS, verification ||Best Western Princess Hotel ||
+|| Marvin Kẽnert, UiB Norway                || Monday morning         || Friday  || tendencies, SPP              || Strand Hotel     ||
+|| Andrew Singleton, MET Norway                || Monday morning         || Friday  || harmonEPS, harp || Strand hotel ||
+|| Jennie Molinder, UU                || Monday  afternoon      || Friday  || harmonEPS || Borgs villahotell ||
+|| Andreas Carlsson, SMHI       || Monday                 || Friday  || calibration || Casa Carlsson ||
+|| Janne Kauhanen, FMI         || Monday lunchtime       || Friday  || HarmonEPS                    || Best Western Princess Hotel ||
+|| Ole Vignes, MET Norway                   || Monday lunchtime       || Friday  || HarmonEPS                   || Hotel President  ||
+|| Åke Johansson, SMHI                    || Monday morning         || Friday  || Equally likely ensemble members  ||                  ||
+|| Pirkka Ollinaho, FMI                || Monday lunchtime       || Thursday || HarmonEPS SPP              || Hotel President ||
+|| Jelena Bojarova, SMHI                 || Monday                 || Friday  || HarmonEPS initial perturbations ||           ||   
+|| Alfons Callado  Pallarès, AEMET || Remote ||         
+
+== Agenda == 
+* Monday 19. November
+  * 09:00: Working session
+  * 10:30: Coffee break
+  * 12:30: Lunch
+  * 13:30: Presentations:
+     * Alan:[https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/EPS-WW-Sweden-2018.pdf SPPT experiments plus IREPS updates] 
+     * Ulf: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/MetCoOp%20status%20%26%20plans.pdf MEPS plans]
+     * Inger-Lise: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/EPSww-SPP%20and%20tendency%20output.pdf Current status of SPP]
+  * 15:00: Coffee break
+  * 15:30: Presentation and discussion:
+     * Marvin: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/Nörrkopingen_MarvinK.pdf SPP and use of tendency output in Alertness]
+     * Discussion: SPPT - SPP - tendency output
+
+* Tuesday 20. November
+  * 09:00: Presentations and discussions to follow after the presentations:
+     * Jennie: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/ Snow albedo perturbations---First Results
+     * Pau: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/LETKF_in_HARMONIE_WWEPS_Nov18.ppt LETKF and PERTSFC and comparison with PERTANA]
+  * 10:30: Coffee break
+  * 11:00: Presentations, discussions and demo of Harp v3:
+     * Henrik: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/verification_ww_norrkoping_2018_henrik.pdf Ensemble Verification Scores]
+     * Andrew: [https://docs.google.com/presentation/d/1zoi8JFQUhxEOewRF_ouOru2mDQs51pAnwcVRAyMNFDM/edit?usp=sharing harp]
+     * harp demo by Andrew
+  * 12:30: Lunch
+  * 13:30: Discussions:
+     * HarmonEPS paper status and remaining issues
+     * LETKF/BRAND/EDA
+  * 15:00: Coffee break
+  * 15:30: Working session
+
+* Wednesday 21. November
+  * 09:00: Working session
+  * 10:00: Presentation and discussion
+     * Maurice: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/MEPS_windspeed_calibration.pptx Calibration of MEPS wind speed forecasts over Denmark]
+  * 10:30: Coffee break
+  * 11:00: Working session
+  * 12:30: Lunch
+  * 13:30: Presentation: Jelena: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/EPS_20181120_jelena.pdf]
+  * 15:00: Coffee break
+  * 15:30: Working session
+  * 18:30: Common dinner, see information below
+
+* Thursday 22. November
+  * 09:00: Working session
+  * 10:30: Coffee break
+  * 11:00: Working session
+  * 12:30: Lunch
+  * 13:30: Working session
+  * 15:00: Coffee break
+  * 15:30: Working session
+
+* Friday 23. November
+  * 09:00: Working session
+  * 10:30: Coffee break
+  * 11:30: Wrap-up
+  * 12:30: Lunch
+
+== Notes ==
+* SPP:
+  * Due to problems with SPPT pattern generator used in SPP, we will switch to SPG also for SPP. Ole implemented this, see here: https://hirlam.org/trac/changeset/17986/branches/harmonEPS-40h1.1.1
+  * A set of experiments for testing SPP have been designed where we only perturb SPP (9 parameters) and not LBC, INI or surface. 6+1 members, MetCoOp area and for one week.
+    * Testing time correlations: 1h, 6h, 12h, 18h, 24h, 36h, INF. Also tested 12h with 2 and 3 times SDEV. Some exp are still running. We see clear impact of changing the SDEV, both on spread and skill. 
+    * Will continue to test correlation length scales when time scale is finished, using SPG.
+    * Pirkka and Inger-Lise to run the experiments.
+    * To be compared also with new SPPT experiments.
+    * Harp and tendency diagnostics to be used in the evaluation.
+    * We need more advice from physics experts on parameters, Alan will ask French colleagues for advise.
+  * Turbulence parameters now working, SPP now has 11 parameters. See here: https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/EPS/SPP
+* SPPT:
+  * SPG works well. We will switch to using SPG and not spend time on fixing SPPT default pattern generator. SPG is also more flexible.
+  * In recent experiments we see impact on using SPPT (see Alan's presentation), but more experimentation is needed.
+  * A new set of experiments to be started using the same approach/domain/period as we do in SPP experiments. Here only SPPT perturbations will be used, no perturbations to LBC, ini or surface, to see the impact of SPPT only. Alan has prepared a list of experiments, see here: https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/EPS/SPPT (testing time and length scales of pattern, stdev of perturbations) These experiments can then be directly compared to SPP experiments. We will use Harp and tendency diagnostics for this. Alan, Janne and Karoliina to run the experiments. 
+* SPP vs SPPT: priorities and man power. Should we develop SPPT further or focus on SPP?
+  * We continue to focus on both SPPT and SPP. As described above we have designed clean experiments that probably will give better insight to both SPP and SPPT, and which makes clean comparison possible.
+* Tendency output:
+  * There is no conflict between tendency output code from Ole and KNMI, both are Eulerian. KNMI code also has dynamical tendency output.
+  * Marvin has implemented the KNMI code in Arome Arctic.
+  * A factor of 60 between current output values from total physics and KNMI version is under investigation
+* LETKF:
+  * LETKF and surface perturbations score well, see Pau's presentation.  
+  * LETKF and combination of surface perturbation code and perturbed observations for the surface was tested by Pau, including the observation perturbations did not have impact on the scores when surface perturbations are switched on.
+* Surface perturbations:
+  * Snow albedo perturbations (see Jennie's presentation): some impact seen on T2m when verifying for first days. Next could be to verify only in regions where there is snow.
+* Comparison of LETKF and EDA
+  * Pau to do this.
+* HarmonEPS system
+  * [https://hirlam.org/trac/log/branches/harmonEPS-40h1.1.1/ A few minor corrections]
+* EPS verification:
+  * status of Harp 3: beta testers wanted
+  * Installation for beta testing of harp - in R do the following:[[BR]]
+    install.packages("devtools")[[BR]]
+    devtools::install_github("andrew-MET/harpIO")[[BR]]
+    devtools::install_github("andrew-MET/harpPoint")[[BR]]
+    devtools::install_github("andrew-MET/harpVis")[[BR]]
+    devtools::install_github("andrew-MET/mepsr")[[BR]]
+    library(harpIO)[[BR]]
+    library(harpPoint)[[BR]]
+    library(harpVis)[[BR]]
+  * Simple documentation with basic examples to come [https://github.com/andrew-MET here]
+* Calibration:
+  * Wiki-page with status, ongoing work and recommendations created here: https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Calibration
+* HarmonEPS paper
+  * Remaining issues were identified and persons assigned [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-2/Remaining_issues_HarmonEPS_paper.pdf Remaining issues] 
+  * We will submit to Weather and Forecasting
+  * Submit before end January 2019
+* Automatic scaling (as for SLAF) also for ENS - Henrik
+* Next working week at KNMI 6-10 May 2019, next next working week in Barcelona autumn 2019.
+
+
+
+
+== Accommodation ==
+Make your own arrangements by using eg. booking.com.
+
+
+== Common dinner ==
+
+On Wednesday 18.30 we suggest to meet at [[http://www.krogasken.se|Asken]] [[https://www.google.se/maps/place/Kvarterskrogen+Asken/@58.5891324,16.183171,17z/data=!3m1!4b1!4m5!3m4!1s0x46593bb4ca3d2b13:0x6336b11eb5bf8b55!8m2!3d58.5891296!4d16.1853598|here]]
+
+There are three choices to pick from. Please write your name:
+ * Bräserat lammlägg, västerbottenpuré, smörad rödvinsås, bakad pärllök och örtcrunch. ( 215 SEK )
+ * Braised lamb, cheesepuré, red wine sauce, baked onion with herbs
+  * Ulf, Ole, Rafael, Jennie, Maurice, Pau
+ * Halstrad Uerfilé med avrugacaviar, citronrostad savoykål, rökt palsternackspuré och friterad palsternacka. ( 179 SEK )
+ * Grilled redfish with caiar, roaste savoycabbage, smoked puré from parsnip and deep-fried parsnip.
+  * Karoliina (mjölkfritt)
+  * Janne, Andrew, Andreas, Henrik, Mauri, Pirkka, Åke
+ * Askens ostburgare med cheddarost, stekt lök, senap, ketchup och inlagd gurka ( 169 SEK, double 199 SEK )
+ * Cheeseburger with chddar, fried onion, mustard, ketchup and pickled cucumber.
+  * Alan, Inger-Lise, Marvin
+
+
+
+

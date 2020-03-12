@@ -1,0 +1,104 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''HIRLAM Source Code and Structure''' =
+[[Center(end)]]
+
+
+== Brief summary of the HIRLAM source code ==
+
+The HIRLAM system produced by the HIRLAM projects/programme consists of mainly Fortran-77 programs with recent extensions/conversions to Fortran-90, a small number of c programms, scripts to compile, load and execute. The basic HIRLAM system data such as source code, climage and other constant data base, system scripts are maintained at the [https://svn.hirlam.org/ HIRLAM repository server], which is presently located and maintained by the Danish Meteorological Institute. 
+
+The HIRLAM uses the ECMWF super-computer facility as its reference platform. The basic/default HIRLAM system version that is maintained on the ECMWF computer configuration is refered to as the reference HIRLAM system. The reference script enables regular forecast cycling on that platform, although presently the real time operational runs with the reference HIRLAM is only carried out in Helsinki, Finnish Meteorological Institute, on its computer platform. In addition, various locally adapted HIRLAM systems are also used at member services for operational NWP in Denmark, Ireland, the Netherland, Norway, Spain and Sweden. These local adaptation may include technical adaptations needed to fit local computer architecture, data format, run schedule, etc., or modifications in various system modules such as scripts, climate data generation, assimilation, integration scheme, physcal parameterizations, post-processings etc. The [https://hirlam.org/trac/wiki/HirlamInventory/Operational HIRLAM system inventory] wiki page provides a reasonably updated and accurate picture of the current implementation of HIRLAM system at member services.
+
+With the [https://hirlam.org/trac/wiki/HirlamSystemDocumentation#ReferenceScripts reference scripts], [https://hirlam.org/trac/wiki/HirlamSystemDocumentation#BasicConfiguration environment variables] are used to define the default HIRLAM system and to define the user's particular deviations from the default. With proper settings of those variables, a local system manager can use the script system to maintain the local default version and experiments with the HIRLAM system can be carried out on the basis of that system. Deviations of the operational and experimental systems from the standard systems (the reference, local default, development branches etc.) can be specified in a limited number of constant data, source code and script files. The script system automatically incorporates those deviations when it is invoked. Thus, it gurantees the consistency of the modified system with that of the reference system. 
+
+== HIRLAM source code libraries ==
+
+The HIRLAM system consists of various programme modules for performing climate data generation, preprocessing of observation data, data assimilation, forecast integration, post-processing/verification etc. The latest HIRLAM system release, 7.0, dated on May 2, 2006, consists of following file and directories:
+
+    1. [https://svn.hirlam.org/trunk/hirlam/Makefile Makefile] System make file
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/alsl alsl]: Optimal Interolation analysis algorithm
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/bfrx bfrx]: Extract data to be veiified against BUFR records
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/bufr bufr]: Decode BUFR for surface analysis
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/cmastat cmastat]: VAR data usage statistics
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/cmatoobs cmatoobs]: convert CMA to modules and back
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/common common]: External (ECMWF) codes needed by VAR modules (obsproc and hirvda)
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/config config]: Configuration files for individual architectures/platforms
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/config-sh config-sh]: Basic system configuration files
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/data data]: Basic data needed for Surface, VAR analyses and forecast
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/gcod gcod]: Encode and decode GRIB
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/grdy grdy]: Grid point dynamics of forecast model
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/grw1 grw1]: Interface to GRIB/ASIMOF
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hdfg hdfg]: Construct climatological files
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hitmerge7 hitmerge7]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlbufr hlbufr]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlcma hlcma]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlcmaio hlcmaio]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlhelp hlhelp]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hljb hljb]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlmemory hlmemory]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/hlvar hlvar]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/htdocs htdocs]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/ifs ifs]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/ifsaux ifsaux]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/include include]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/intp intp]: Horizontal interpolation
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/invcalc invcalc]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/libadvar libadvar]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/libgen5 libgen5]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/librt5 librt5]: RTTOV-5 package for TOVS data (to be phased out)
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/librt7 librt7]: RTTOV-7 package for TOVS data
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/miansrc mainsrc]: HIRLAM system master programmes
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/maof maof]: Create Analysis Observation files from BUFR file
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/mfphys mfphys]: Meteo-France Simplified Physics package
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/modules modules]: Observation modules
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obop obop]: observation operators in VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obsallc obsalloc]: allocation of allocatable arrays in modules
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obscompress obscompress]: compressions of modules so only needed info is kept in the minimization
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obsort obsort]: External (ECMWF) code used by obsproc for data sorting
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obsproc obsproc]: Observation pre-processing package for VAR module
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/obssupport obssupport]: Various support routines for VAR observation module
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/phys phys]: Physical package of grid-point forecast model
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/PHYS_AD PHYS_AD]: Physical package of spectral model including those for tangent linear and adjoint of earlier version of HIRLAM physics
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/port port]: Non-standard, 'unportable' routines
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/prepobs prepobs]: calculation of the forward operators in VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/prpo prpo]: Pre- and Postprecessing of fields data
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/qdp qdp]: Quickscat preprocessor from NWP-SAF
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/recalcobs recalcobs]
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/rtmmisc rtmmisc]: misc for TOVS/RTM data handling
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/scripts scripts]: HIRLAM mini-SMS scripts
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/scrobs scrobs]: Observation screen in VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/simobs simobs]: Simulated observation in VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/span span]: Surface parameter analysis
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/spdy spdy]: Spectral model dynamics
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/stat stat]: Statistics of fits to observations
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/statis statis]: Various statistics utilities (to be cleaned away)
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/strfun strfun]: Derivation of forecast error structure function and covariance files for VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/strgen4 strgen4]: String handling in VAR
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/tools tools]: VAR tools to search specified module path
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/tsfs tsfs]: Create time series files for meteograms
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/util util]: Unix callable utilities, e.g., manipulation of date/time
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/vari vari]: Coordinate transformations
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/verification verification]: Another field and observation verification package
+    1. [https://hirlam.org/trac/browser/trunk/hirlam/vrfy vrfy]: Compare analysis or forecast to observations
+
+Note that the constant data sets needed for climate data generation, in HDF format, are not included in the standard release package or the HIRLAM repository server due to the size of files. They are instead stored at the ECMWF archive system under ecfs:/hirlam/dat/hdfdb-7.0 and available to all HIRLAM users.
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

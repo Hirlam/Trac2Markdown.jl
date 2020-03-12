@@ -1,0 +1,73 @@
+
+== Apache HTTP(S) server at hirlam.org ==
+
+The server configuration files are located under {{{/etc/apache2}}}.
+
+The master configuration file is {{{apache2.conf}}}.
+
+There are several subdirectories under {{{/etc/apache2}}}:
+ * {{{ssl}}}: certificate(s) for https access
+ * {{{sites-enabled}}}: the active virtual hosts (symlinks into {{{../sites-available}}})
+ * {{{sites-available}}}: configuration files for the various virtual hosts (www, svn, trac, git, glameps)
+ * {{{mods-enabled}}}: the active modules, symlinks into {{{../mods-available}}}
+ * {{{mods-available}}}: the available modules (PHP5, MySQL, etc.)
+
+=== Access control ===
+
+Access control to all the virtual hosts/sites is controlled the same way (with the exception of the
+joomla administrator panel, see below).
+
+First, a list of allowed institues ({{{/data/www/allowed_institutes.conf}}}) is checked. If the
+visitor request comes from within one of the allowed institutes, authentication is bypassed.
+If the IP-address does not come from one of the allowed institutes, authentication is always
+through the Joomla user database, which is a MySQL database (called ''joomla'').
+
+Unfortunately, the auth-mysql module provided by the deb package ''libapache2-mod-auth-mysql''
+did not work for us on the new server. It turned out that a slightly different module was
+used on the old server, and this module was also patched (C code changed) to do the joomla
+style authentication properly.
+
+Therefore, on the new server, we decided to compile and use the old, patched module to
+get authentication working again. The patched source code can be found in {{{~root/mod_auth_mysql-3.0.0}}}.
+
+In the config files, the following lines control the joomla MySQL table access:
+{{{
+     AuthMySQLEnable On
+     AuthMySQLAuthoritative On
+     AuthMySQLHost localhost
+     AuthMySQLUser joomla
+     AuthMySQLPassword not_shown_here
+     AuthMySQLDB joomla
+     AuthMySQLUserTable jom_users
+     AuthMySQLNameField username
+     AuthMySQLPasswordField password
+     AuthMySQLGroupField usertype
+     AuthMySQLPwEncryption md5
+     AuthMySQLSaltField <>
+}}}
+except that for the joomla password, you have to look at the file {{{~root/MySQL-joomla-password}}}
+(only readable to root user of course).
+
+The access to the joomla administrator pages is controlled by {{{/data/www/admin_institutes.conf}}}.
+
+=== Virtual hosts ===
+
+There are currently 6 different virtual hosts running on the same server. These are:
+ * '''www''':  Main host for joomla, mailman, portal, etc.
+ * '''svn''':  subversion host
+ * '''trac''': wiki
+ * '''git''' : git access over https
+ * '''glameps''': GLAMEPS site
+ * '''shiny''': Rstudio shiny server (proxy) for HARP, Obsmon, etc.
+
+=== Restarting of server ===
+
+As root, run
+{{{
+service apache2 restart
+}}}
+
+=== Log files ===
+
+The log files from the server can be found under {{{/var/log/apache2/}}}.
+

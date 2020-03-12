@@ -1,0 +1,85 @@
+[[PageOutline]]
+[[Center(begin)]]
+== CARRA: Copernicus Arctic Regional Re-Analysis ==
+= '''CARRA.beta.2''' =
+
+[[Center(end)]]
+
+== Description of carra.beta.2 ==
+carra.beta.2 is an intermediate code repository for CARRA toward final CARRA reanalysis system due in April 2019. The repository was branched off from the CARRA development branch on Dec 23 2018 at changeset [18066]. carra.beta.2 is an evolution from the previously tagged carra.beta.1 with several changes of meteorological impacts, such as 
+ * Final harmonisation of configuration options between east (North Scandinavia and Svalbard) and west (Greenland and Iceland) domains, including harmonisation of PGD cover types and the use of surface albedo from PGD data base
+ * Activation of local (non-GTS) SYNOP observation data collected from ASIAQ and GCNETn
+ * Assimilation of reprocessed ATOVS 8AMSU-A, AMSU-B, MHS) in upper air data assimilation
+ * Use of blacklist information based on ERA 5. Note that for the time being separate compilation is needed by use of St script
+ * Assimilation of satellite snow data for visible channels in surface assimilation for summer months (March - Sept)
+In addition carra.beta.2 also contains non-default options for evaluation,
+ * a tuning in surface parameterisation (snow roughness, tree height correction)
+ * large scale constraint  Jk
+ * incremental analysis update, IAU
+ * 3DVAR assimilation of satellite microwave radiance (AMSU, MHS, MSU)
+ * 3DVAR assimilation of satellite infrared radiance (IASI)
+ * MESCAN, an improved surface analysis with CANARI
+=== Anticipated development efforts toward final CARRA system and release plan ===
+A series of parallel experimentation has been scheduled to validate the tagged carra.beta.2. In Jan 2019, last group of changes may be considered before tagging of CARRA release candidate, Carra-RC, latest by Feb 2019.
+To commit future code corrections or updates, please use [https://hirlam.org/trac/log/branches/CARRA/carra carra development branch). The coming test activities are mainly around following aspects,  
+ * Upper air data assimilation
+  * Derivation of climatological structure function with EDA or Brand scheme for three representative period: 1997, 2007, 2017; Evaluation of evolving structure functions to partly account for changes of observation system
+  * Provide a measure of uncertainties for through EDA for selected episodes
+  * Assimilation of IASI, MSU, use of dynamic emmisivity for ATOVS data
+  * Use of non-GTS observation from Iceland, and nordic stations for 1997/2007/2012
+ * Forecast model
+  * Improved snow parameterisation (snow roughness, tree height)
+  * Use of ARCTIC DEM data
+  * Development and adaptation about output data stream (GRIB, ODB2)
+  * HARMONIE on extended domain covering North Polar with changed projection
+ * Verification and validation
+  * Collection of station information and extended observation data for verification
+  * CARRA production monitoring/diagnosis platform
+  * Field verification
+Next CARRA code release, carra.rc, is targeted for mid Feb 2019, ca 2 weeks before a scheduled CARRA working week on production. Final release of CARRA repository, CARRA.1, is expected by mid-April 2019.
+
+== Experiment Configuration ==
+Users are referred to the system wiki documentation about [wiki:HarmonieSystemDocumentation/Installation Information and Instruction on basic system installation and experiment configuration] and to the [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Harmonie system documentation] for running an experiment at ECMWF.
+The steps to set up an experiment on ecgb/cca is:
+{{{
+~hlam/Harmonie setup -r ~nhx/CARRA_repository/tags/carra.beta.2 -c $config-option   ## where config-option = CARRA_NE (default), IGB
+~hlam/Harmonie co St 
+}}}
+To run one of the month-long periods and with 10 additional days for warm up, following are launching command
+{{{
+./St 1997082000 1997093021
+}}}
+{{{
+./St 1999122000 2000013121
+}}}
+{{{
+./St 2007032000 2007043021
+}}}
+{{{
+./St 2012062000 2012073121
+}}}
+{{{
+./St 2016122000 2017013121
+}}}
+== Known Issues ==
+ * Be sure to use the script ./St to launch beta.2 experiment, which involves selection of suitable blacklist in compilation.
+== Validation experiments ==
+
+||= Provisional CARRA =||= Periods of experiment run =||= East / West or both domains =||= Involved staffs =||= Link to model intercomparison =||
+||beta.2||all previously defined periods||west||Xiaohua, Carlos||[https://hirlam.org/portal/validation/carra/beta2_IGB_1997 WEST,199709] [https://hirlam.org/portal/validation/carra/beta2_IGB_2000 WEST,200001] [https://hirlam.org/portal/validation/carra/beta2_IGB_2007 WEST,200704] [https://hirlam.org/portal/validation/carra/beta2_IGB_2012 WEST,201207] [https://hirlam.org/portal/validation/carra/beta2_IGB_2017 WEST,201701]||
+||beta.2||all previously defined periods||east||Xiaohua, Carlos||[https://hirlam.org/portal/validation/carra/beta2_NE_1997 EAST,199709] [https://hirlam.org/portal/validation/carra/beta2_NE_2000 EAST,200001] [https://hirlam.org/portal/validation/carra/beta2_NE_2007 EAST,200704] [https://hirlam.org/portal/validation/carra/beta2_NE_2012 NE,201207] [https://hirlam.org/portal/validation/carra/beta2_NE_2017 EAST,201701]||
+
+=== CARRA system managers ===
+Contact xiaohua@dmi.dk or olev@met.no
+
+
+[[Center(begin)]]
+
+==  Back to [https://hirlam.org/trac/wiki/CARRA%20Reanalysis CARRA Re-analysis] main page ==
+
+[[Center(end)]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

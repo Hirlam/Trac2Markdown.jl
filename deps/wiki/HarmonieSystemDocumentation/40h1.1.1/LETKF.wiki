@@ -1,0 +1,121 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Local Ensemble Transform Kalman Filter (LETKF) in HARMONIE-AROME tag 40h1.1.1''' =
+[[Center(end)]]
+
+== Background ==
+
+Besides variational methods (3DVAR, 4DVAR and EDA), Ensemble Kalman Filtering (EnKF) algorithms appear as an alternative to perform atmospheric analysis. EnKF are used operationally in some NWP centres like Deutscher Wetterdienst (DWD, Schraff et al. 2016), Canadian Meteorological Centre (CMC, Houtekamer et al., 2005) or National Centre for Environmental Prediction (NCEP, Pan et al., 2014). Within the family of EnKF algorithms, Local Ensemble Transform Kalman Filter (LETKF) stands out mainly due to its high computational efficiency because it does analysis independently in each grid point, so it is highly parallelizable. In particular Schraff et al. (2016) describe the implementation of LETKF to perform data assimilation for its high resolution convective permitting operational forecast. To have full details about the algorithm, the reader is referred to Hunt et al. (2007). 
+
+ECMWF decided to code an EnKF system based on IFS model to have an alternative data assimilation system that allowed comparisons to its 4DVAR-EDA operational system. Detailed information on the technical implementation of EnKF at ECMWF and its performance can be found in Hamrud et al. (2015) and Bonavita et al. (2015). IFS EnKF contains two EnKF algorithms, LETKF (Hunt et al, 2007) and EnSRF (Whitaker and Hamill, 2002). From these, LETKF is used to perform analysis in model space and EnSRF in observation space, to look at innovation statistics. IFS EnKF code has been ported to HARMONIE trunk and now it is available to perform high resolution deterministic and probabilistic analyses and forecasts. From now on, the terminology LETKF will be used to refer to the HARMONIE EnKF system because this is the algorithm to perform the analysis in the model space of the assimilation system.
+
+== Compilation of LETKF code within HARMONIE package ==
+
+Due to the fact that LETKF is written in FORTRAN2003 object-oriented language, it can happen that some of the fortran compilers used to compile the code need to be upgraded to understand F2003. In order to make this upgrade a smooth process, a variable called COMPILE_ENKF="yes" ("no") has to be defined in /config-sh/config.LOCALCOMPUTER file. In the case of ecgb/cca in ECMWF this is tested and works fine with the current HPCF (CrayXC40) (see [source:tags/harmonie-40h1.1.1/config-sh/config.ecgb-cca]).
+
+LETKF package consists of a series of source code below directory [source:tags/harmonie-40h1.1.1/src/enkf]) in addition to some modifications of Fortran90 routines in arpifs and ODB source code. After proper compilation, 2 main executables are created in ./bin directory: MASTER_ENKF and OPER_ENS, which performs different tasks on LETKF analysis suite. Besides, a number of new scripts have been coded below ./scr directory (see [source:tags/harmonie-40h1.1.1/scr/LETKF] for example).
+
+== Setting up a basic LETKF experiment in HARMONIE-AROME ==
+
+Once the two LETKF binaries are created, LETKF can be easily set up in harmonie-40h1.1.1 tag, harmonEPS-40h1.1.1 or harmonie-trunk. To have a complete description of a basic LETKF experiment set up, one can take a look to AROME_LETKF testbed configuration in [source:tags/harmonie-40h1.1.1/scr/Harmonie_configurations.pm].  
+
+Two files need to be modified. In [source:tags/harmonie-40h1.1.1/sms/config_exp.h] one needs to change:
+
+{{{
+ANAATMO=LETKF            
+ANASURF_MODE=after
+NOUTERLOOP=1
+CH_RES_SPEC=no
+BDINT=1                                     # It could be BDINT=3...
+HH_LIST=0-21:3                          
+HWRITUPTIMES="00-03:1"                      # It could be HWRITUPTIMES=00-03:03...                    
+PWRITUPTIMES="00-03:1"                      # It could be PWRITUPTIMES=00-03:03...
+PFFULLWFTIMES="00-03:1"                     # It could be PFFULLWFTIMES=00-03:03...
+VERITIMES="00-03:1"                         # ...
+SFXWFTIMES="00-03:1"                        # ...
+SFXFULLTIMES="00-03:1"                      # ...
+BDSTRATEGY=simulate_operational
+ENSMSEL=0-10                                # Number of ensemble members... 
+PERTSURF=model                              
+LL_LIST="3"                                 # So far it works in a 3-hour assimilation cycle...
+LETKF_LAG=no                                # If LETKF_LAG="yes" it doubles the size of the ensemble using the previous ensemble forecast...
+SCALE_PERT=yes                              # Useful Boundary Scaling Function based in energy norm
+}}}
+
+In [source:tags/harmonie-40h1.1.1/msms/harmonie.pm] one needs to change to:
+
+{{{
+'ANAATMO'  => { 0 => 'LETKF' },
+'LSMIXBC'  => { 0 => 'yes' },
+}}}
+
+At the moment (October 3rd 2018), LETKF has been tested to properly assimilate Conventional Observations, ATOVS and GNSS (see [source:tags/harmonie-40h1.1.1/scr/include.ass]). Attention! While Conventional Observations and GNSS can be assimilated with harmonie-40h1.1.1 tag, ATOVS observations need to use harmonie-trunk (or contact to pescribaa @ aemet.es)
+
+== Special configurations of LETKF ==
+
+There are at least three special configurations of LETKF that need to be mentioned. One of them, the hybrid 3DVAR-LETKF is explained in a separate page https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/40h1.1.1/HYBRID. Here we focus in the other two, the Lagged LETKF and the 4D-LETKF:
+
+** Lagged LETKF: ** The idea is to run 6 hour ensemble forecasts in a 3 hour analysis cycle and to take the 6 hour forecasts of the previous cycle as different members for our LETKF analysis system. Doing so we double the size of the LETKF ensemble in a very easy way. Increasing the size of the ensemble should have a positive impact in the analysis, since the low rank of the B matrix is increased accordingly and, at the same time, the sampling noise of our statistical estimations is reduced (see Hunt et al, 2007). To use the lagged in [source:tags/harmonie-40h1.1.1/sms/config_exp.h] one needs to also change (in addition to basic LETKF configuration explained above):
+
+{{{
+LETKF_LAG="yes"
+HWRITUPTIMES="00-06:3"                                       
+PWRITUPTIMES="00-06:3"                     
+PFFULLWFTIMES="00-06:3"                     
+VERITIMES="00-06:3"                       
+SFXWFTIMES="00-06:3"                       
+SFXFULLTIMES="00-06:3"                     
+LL_LIST="6"                            
+}}}   
+
+** 4D-LETKF: ** Like 3DVAR, the reference version of LETKF treats all observations in a [ -1.5,+1.5 ] window around the analysis time as if they were observed at the analysis time, in other words, no integration of the model along the analysis window is performed. 4D-LETKF allows to integrate the model along a 2 hour analysis window to compute First Guess Pseudo-Observations at the exact observation time, like we do in 4DVAR. With this we have a better definition of Pseudo-Observations but at the same time the computing cost is significantly increased (around 40%). Attention! 4d-letkf works properly only in harmonie-trunk, not in harmonie-40h1.1.1 tag. To use the 4d-letkf in [source:trunk/harmonie/sms/config_exp.h] one needs to also change:
+
+{{{
+LETKF_3DSCREEN="no"
+HWRITUPTIMES="00-03:1"                                       
+PWRITUPTIMES="00-03:1"                     
+PFFULLWFTIMES="00-03:1"                     
+VERITIMES="00-03:1"                       
+SFXWFTIMES="00-03:1"                       
+SFXFULLTIMES="00-03:1"                     
+LL_LIST="3"                            
+}}}  
+
+== Comparison of LETKF and 3DVAR ==
+
+** Deterministic forecasting: ** LETKF has been tunned during the last months to reach a quite mature status. All this work has been performed assimilating only Conventional Observations. Although more comprehensive look at spin up period, larger periods of verification and more types of observations assimilated are needed, first results show LETKF performs better than 3DVAR: It seems to clearly outperform 3DVAR forecasts in Humidity fields, either in the vertical and on the surface, and also in T2m. For wind at 10 metres, and wind and temperature in the vertical, LETKF is a bit better than 3DVAR. For MSLP and Geopotential the impact is neutral. On the other hand, it has to be said that 3DVAR scores could be better if Rh2m and T2m observations were assimilated in Upper Air and if LSMIX in Q was done in the vertical; these two options are default options for LETKF and although they are not reference options so far in 3DVAR, experiments are being performed to quantify this impact. A drawback of LETKF is its computational cost due to the fact of running and ensemble. In any case with a 10 member ensemble a signifcant potential of LETKF can be achieved. As an example, a 20 member LETKF costs the same as 14 3DVARS. See presentation attached "LETKF_in_HARMONIE_WWDA_Des18.ppt" for more details. Some verification scores for RH2m, T2m and MSLP, where green is LETKF and red is 3DVAR, are below:
+
+[[Image(3DVAR_LETKF_SFC.2.png, 1200px, align=center)]]
+
+One of the explanations to have better scores in T2m and RH2m surface parameters is because the analysis increments are more realistic (if compared with the local orography) due to the flow dependence of the background error estimation. Below can be seen the analysis increment of temperature at level 65 (around 15 metres over surface) for LETKF (left) and 3DVAR (right). In the centre, the Orography. In the case of LETKF it can be seen how the analysis increments are more realistic in the sense that follow much better the orographic features (in black circles baisins of two big Spanish rivers, Ebro and Guadalquivir) 
+
+[[Image(analysis_incr_orog.2.png, 1200px, align=center)]]
+
+** Probabilistic forecasting: ** Compared to [source:tags/harmonie-40h1.1.1/scr/PertAna] reference method to produce initial states in HarmonEPS, LETKF clearly produces in general more skillful probabilistic predictions for surface parameters T2m and Rh2m in the whole forecast period, and for the first hours for some representative upper air parameters. On the other hand, PERTANA seems to produce more skilfull spread in the upper air due to using perturbations of boundary conditions to construct initial states. An experiment to look if these perturbations are benefitial for LETKF is going on. So far these results make LETKF a promising candidate as initial states generator to do probabilistic forecasting. Here as being in EPS mode, the drawback of computing cost in LETKF disappears. Finally, comparison with Ensemble Data Assimilation (EDA) and BRAND method to create intial perturbations is required. Below some nice comparisons of RH2m and T2m Spread-Skill and CRPS scores for LETKF (black) and PERTANA (orange). 
+
+[[Image(PERTANA_LETKF_SFC.png, 1000px, align=center)]]
+
+== Open issues and further work ==
+
+So far there are some open issues in the development of LETKF, here some of the main ones:
+
+* Bias Correction of observations. So far LETKF can not compute its own Bias Correction for some types of observations like GNSS or ATOVS. To address this point, LETKF needs VARBC.cycle files from an existing 3DVAR experiment (see [source:trunk/harmonie/scr/Fetch_assim_data]). Better addresing should be compute LETKF own Bias Corrections.
+* Errors of observations are taken from the 3DVAR way to compute these errors. This should be upgraded to own computation of observation errors.
+* Study a better selection of observations for the local analysis in each grid point
+* Study alternatives to localization... Flow dependent adaptative localization?
+* ...
+* Look at strategies followed by other centres like DWD (Schraff et al., 2016), CMC or NCEP.
+
+== Contact ==
+ 
+In case of questions you can send an email to Pau Escribà (AEMET), pescribaa @ aemet.es.
+
+== References ==
+
+* Bonavita, Massimo, Mats Hamrud, and Lars Isaksen, 2015:  EnKF and Hybrid Gain Ensemble Data Assimilation. Part II: EnKF and Hybrid Gain Results. Mon. WEa. Rev., 143, 4865-4882. https://doi.org/10.1175/MWR-D-15-0071.1
+* Hamrud, Mats, Massimo Bonavita, and Lars Isaksen. 2015: EnKF and Hybrid Gain Ensemble Data Assimilation. Part I: EnKF Implementation. Mon. Wea. Rev. 143, 4847-4864. https://journals.ametsoc.org/doi/pdf/10.1175/MWR-D-14-00333.1
+* Houtekamer, P. L., H. L. Mitchell, G. Pellerin, M. Buehner, M. Charron, L. Spacek, and B. Hansen, 2005: Atmospheric data assimilation with an ensemble Kalman filter: Results with real observations. Mon. Wea. Rev. 133, 604–620, doi: https://doi.org/10.1175/MWR-2864.1
+* Hunt, B. R., E. J. Kostelich, and I. Szunyogh, 2007: Efficient data assimilation of spatiotemporal chaos: A local ensemble transform Kalman filter. Physica D, 230, 112–126, doi: https://doi.org/10.1016/j.physd.2006.11.008. 
+* Pan, Y., K. Zhu, M. Xue, X. Wang, M. Hu, S. G. Benjamin, S. S. Weygandt, and J. S. Whitaker, 2014: A GSI-based coupled EnSRF-En3DVar hybrid data assimilation system for the operational rapid refresh model: Tests at a reduced resolution. Mon. Wea. Rev. 142, 3756–3780, https://doi.org/10.1175/MWR-D-13-00242.1.
+* Schraff, C., H. Reich, A. Rhodin, A. Schomburg, K. Stephan, A. Periáñez and R. Potthast. (2016). Kilometre-scale ensemble data assimilation for the COSMO model (KENDA). Q. J. R. Meteorol. Soc. 142: 1453–1472. https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/qj.2748
+* Whitaker, J. S., and T. M. Hamill, 2002: Ensemble data assimilation without perturbed observations. Mon. Wea. Rev. 130, 1913–1924. https://doi.org/10.1175

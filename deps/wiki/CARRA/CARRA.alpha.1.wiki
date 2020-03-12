@@ -1,0 +1,82 @@
+[[PageOutline]]
+[[Center(begin)]]
+== CARRA: Copernicus Arctic Regional Re-Analysis ==
+= '''CARRA.alpha.1''' =
+
+[[Center(end)]]
+
+== Description of CARRA.alpha.1 ==
+CARRA.alpha.1 is a technical code repository dedicated to development of the CARRA re-analysis system. The repository was branched off from the HARMONIE trunk dated Oct 12 2017 at changeset [16325] and adapted for the CARRA needs. From meteorological point of view the carra.alpha.1 is very close to the candidate settings for the coming Harmonie-40h1.2 by HIRLAM-C consortia.
+
+By its default CARRA.alpha.1 features
+ * A meso-scale NWP deterministic forecast system with non-hydrostatic dynamics on a model-grid with 2.5 km grid-spacing in horizontal and 65 vertical level with bottom at 12 m and top at 10 hpa
+ * A convection-permitting atmospheric physics packages (HARMONIE-AROME) with HARATO turbulence parameterisation, EDMFM shallow convection with mixed phase microphysics option OCND2, IFS radiation
+ * An quadratic grid type in terms of spectral truncation to grid point space, and vertical boundary relaxation LUNBC
+ * Surface parameterisation with SURFEX 7.3 with optional two patch scheme, and a simple sea ice model (SICE)
+ * 3D-VAR upper air assimilation with 3h cycling, enabling assimilation of conventional observation and microwave radiance (with VarBc), AMV wind, scatterometer wind, radio occultation bending angel data.
+ * Optimal interpolation-based surface analysis using CANARI for spatialization and SODA/OI-main for the update of soil variables
+ * Use of ECMWF ERA5 hourly analysis as lateral boundary in forecast integration, and use of ECMWF large scale through spectral nudging for background in 3DVAR (LSMIX)
+ * Use of GMTED2010 250 m resolution orographic dataset and ECCOCLIMAP II PGD data with local improvement over Iceland and Greenland
+ * Use ECMWF HPC (Cray XC40), gnu compiler and forecast integration with MPI parallelisation 
+ * HARMONIE utilities for observation preprocessing, model diagnostics, monitoring and verification.
+ * A job scheduler with ecflow.
+The full list of CARRA code changes on top of the original HARMONIE-trunk can be found in the following [https://hirlam.org/trac/log/branches/CARRA/harmonie-40h1.2_carra?rev=16574 wiki listing].
+=== Anticipated development efforts toward final CARRA system and release plan ===
+It is expected that the CARRA re-analysis system system will go through further changes associated with activities as listed below, which will lead to several more intermediate system releases toward start of CARRA production in mid-2019. To commit future code corrections or updates, please use code branch https://svn.hirlam.org/branches/CARRA/harmonie-40h1.2_carra
+ * Upper air data assimilation
+  * Control of large scale information (Jk vs LSMIX)
+  * Derivation of climatological structure function with EDA or Brand scheme
+  * Use of evolving structure functions to partly account for changes of observation system
+  * Provide a measure of uncertainties for through EDA for selected episodes
+  * Assimilation of Radiance, AMV, Scatterometer, RO data
+  * Application of VarBC for aircraft data
+  * Use of ECMWF MARS data stream and use of blacklist information
+  * Use of locally collected observation data
+ * Surface data assimilation and representation of sea/ice states
+  * Use of locally collected surface observation data including those of snow
+  * Use of high resolution regional SST/ice fraction analysis data
+ * Forecast model
+  * Exploration of improved snow parameterisation and handling of glacier ice
+  * Improvement in PGD data including local corrections
+  * Test/tuning about physical parameterisation: two patches/Canopy scheme, SSO, ocnd2, microphysics.
+  * Code optimisation (optimal use of compilor/options, i/o server, hybrid parallelisation)
+  * Development and adpatation about output data stream
+  * HARMONIE on extended domain covering North Polar with changed projection
+  * Alternatice compiler/compilation and parallelisation options
+ * Verification and validation
+  * CARRA production monitoring/diagnosis platform
+  * Collection of station information and extended observation data for verification
+  * Field verification
+Next CARRA code release, carra.beta.1, is scheduled for end April 2018.
+Release candidate of carra.rc.1, is expected by end Dec 2018.
+Final release of CARRA repository, carra.1, is expected by mid-April 2019.
+== Tested configurations ==
+The following configurations have been tested and are working technically.
+ * AROME_ARCTIC_3DVAR: 3DVAR on AROME_ARCTIC domain, linear grid
+ * CARRA_NE domain: blending on CARRA_NE domain, quadratic grid
+ * IGB_3DVAR: 3DVAR on IGB/CARRA_SW domain
+ * IGB_blending: blending on IGB_CARRA domain
+== Experiment Configuration ==
+Users are referred to the system wiki documentation about [wiki:HarmonieSystemDocumentation/Installation Information and Instruction on basic system installation and experiment configuration] and to the [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Harmonie system documentation] for running an experiment at ECMWF.
+The steps to set up an experiment on ecgb/cca is:
+{{{
+~hlam/Harmonie setup -r ~nhe/CARRA_repository/tags/carra.alpha.1 -c $config-option   ## where config-option = CARRA_NE_blending, AROME_ARCTIC_3DVAR, IGB_blending, IGB_3DVAR
+}}}
+== Known Issues ==
+* Running 3DVAR requires matching structure function, Currently such exists for IGB/CARRA_SW and AROME_ARCTIC domains but not for CARRA_NE domain
+* The script "Fetch_assim_data" from the recent trunk version had been buggy in connection of fetching of VARBC.cycle for radiance data assimilation. Be careful when testing 3DVAR.
+* PGD/soil database for CARRA_NE and CARRA_SW are currently different
+=== CARRA system managers ===
+Contact xiaohua@dmi.dk or olev@met.no
+
+
+[[Center(begin)]]
+
+==  Back to [https://hirlam.org/trac/wiki/CARRA%20Reanalysis CARRA Re-analysis] main page ==
+
+[[Center(end)]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

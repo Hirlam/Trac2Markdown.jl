@@ -1,0 +1,16 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Harmonie System Training''' ===
+= '''Hands On Practice: Local System Installation''' =
+[[Center(end)]]
+
+
+== Instructions or links to instructions ==
+== Practice tasks ==
+
+== [wiki:HarmonieSystemTraining2008/Lecture/LocalInstallation Back to the relevant lecture notes] ==
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2008  Back to the main page of the HARMONIE system training 2008 page]
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]

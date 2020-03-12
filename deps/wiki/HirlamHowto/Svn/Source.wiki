@@ -1,0 +1,39 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= ''' Access to HIRLAM releases''' =
+[[Center(end)]]
+
+
+== Who can get the Hirlam source code? ==
+
+HIRLAM is not an open-source project and the use of its source code is limited to authorized parties. 
+
+Employees at any of the HIRLAM member services are automatically authorised to use HIRLAM system. Members of HIRLAM's associated partner organisations and research communities can also be authorized to access the HIRLAM code, upon approval by HIRLAM programme manager on individual or collective basis.
+
+== How to get the latest Hirlam release? ==
+
+For authorized users, there are a variety of ways to acquire the latest Hirlam releases. 
+
+ * via checkout using Subversion client. e.g., for version 7.0, 
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.0
+}}}
+ * via a svnroot tarball of the latest HIRLAM source code repository, svnroot.tar.gz, is available on ECMWF:ecgate as /scratch/ms/dk/nhz/svnroot.tar.gz which is updated daily at 4 AM UTC. e.g., for version 7.0, 
+{{{
+   svn co file://$HOME/svnroot/tags/hirlam-7.0
+}}}
+ * via a sandbox tarball of the latest HIRLAM source code. The sandbox (source code checkout with Subversion feature) of the latest HIRLAM release, (currently Hirlam 7.0, released on May 2 ,2006), is available on ECMWF:ecgate (/scratch/ms/dk/nhz/hirlam-7.0.tar.gz), or on ECFS: (ec:/hirlam/src/tar/hirlam-7.0.tar.gz)
+ * A tarball of the check-out of the latest head version of the HIRLAM source code repository, is available on ECMWF:ecgate at /scratch/ms/dk/nhz/head.tar.gz which is updated daily at 4 AM UTC.
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

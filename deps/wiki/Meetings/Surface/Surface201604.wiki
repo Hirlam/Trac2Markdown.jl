@@ -1,0 +1,155 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Surface Working Week''' =
+''Oslo, April 11-14, 2016''
+
+Last modified [[LastModified]]
+
+[[Image(20160413_130922_new.jpg, 40%)]][[Image(20160414_194814_new.jpg, 15%)]]
+
+[[Center(end)]]
+
+
+== Purpose and working items ==
+
+One of the most important aspects of HARMONIE we should develop further within the next few years is more advanced surface data assimilation methods.
+This meeting will focus on development of assimilation methods, primarily EKF, in SURFEX with focus on processes related to snow/land, ice and lakes.
+The meeting is planned April 11-14, Monday-Thursday, but main presentations and discussions will take place Tuesday-Wednesday. So please try to attend
+at least those two days. Besides presentations and discussions we will work as well :-)
+
+ * In Metcoop we currently work on implementing the use of two patches over land instead of only one. The reason why we try this is because we believe we sometimes have problems with excess evaporation in our AROME simulations. Such excess evaporation could be caused by too large roughness length due to land average of roughness for one patch only. Using two patches require modifications of CANARI/OI and decisions on how increments should be distributed between the two patches (similar problem as in HIRLAM newsnow). This work is ongoing. We report progress... (Patrick)
+ * Surface physics based on SURFEXv8 (ISBAv8) is now available in a cy40h branch (https://svn.hirlam.org/branches/harmonie-40h1_ISBASFX8). The purpose of this branch is to give opportunity to develop HARMONIE utilizing the Explicit Snow Scheme (CSNOW="3-L") and diffusion soil scheme (CISBA="DIF"). The initialisation of the 3-L snow prognostic variables in PREP needs consideration. This part has not been compared with the corresponding SURFEX8 subroutines. Current implementation works technically but not necessarily how it should. For technical reasons the number of soil layers for DIF is hard coded to 14 layers. Just a few layers beneath the surface the time scale of change is far beyond the NWP forecast time scale. Thus, how do we identify the relevant prognostic variables to include in the assimilation and which ones to leave for peaceful coexistence? (Patrick) The SURFEX part of the branch harmonie-40h1_ISBASFX8 is also available as an offline setup of SURFEX. This setup is available here https://svn.hirlam.org/branches/SURFEXcy40h_with_ISBAv8 .
+ * Assimilation of sea-ice temperature. Now when we have Yurii's sea-ice scheme running we can also deal with assimilation of sea-ice temperature. How to proceed?
+ * Improved representation of glaciers: Currently glaciers are described as permanent snow in the Ecoclimap database. However, in the Harmonie model they do not have the physical properties of actual snow surfaces, especially with regard to radiation and heat fluxes. This leads to systematic errors in a number of variables, including surface ground and air temperatures. We will introduce and evaluate more realistic simulations over permanent snow surfaces. [wiki:Surface_physis_assimilation/Glacier_plans See ideas and plans on glacier development here.].
+ * List of satellite products relevant for surface assimilation on [wiki:Surface_physis_assimilation/Satellite_list separate page].
+ * List of people involved in surface data assimilation on [wiki:Surface_physis_assimilation/Surface_assimilation_people separate page].
+
+== Location of meeting ==
+
+The meeting will take place at the Met Norway office. [https://www.google.se/maps/place/Norwegian+Meteorological+Institute/@59.943272,10.720463,17z/data=!4m2!3m1!1s0x0000000000000000:0x062f6d2aec00d71b?hl=en See google map here]. Exact location is the Tallhall building which is the modern style architecture building in the upper left corner of the Goggle map window. Nearest subway (T-bane) station is "Forskningsparken" which is located along the subway lines 4 and 5 (valid from April 3, 2016). A 7-day ticket is recommended ([https://ruter.no/en/buying-tickets/tickets-and-fares/7-day-tickets/ see more info here]). 
+
+== Draft Agenda ==
+
+=== Monday April 11 ===
+
+ * Arrival day and working in sub-constellation on ongoing/known items
+
+=== Tuesday April 12 ===
+
+Idea is in general to have presentations/discussions during morning hours and time for work in different sub-group constellations during afternoon hours.
+
+ * 09:00-12:00 
+   * Opening of Workshop
+   * Practical matters
+   * Purpose of Workshop, combination of HIRLAM and Met Norway-IMO collaboration (HIRLAM, Met Norway, IMO representatives)
+   * Input from IMO on surface physics and assimilation. Experiences/challenges/plans/questions (Bolli) ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/harmonie_imo-201604.pdf Presentation])
+   * HIRLAM plans on surface development and data assimilation (to be updated at end of Workshop) (Patrick)
+     ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Patrick_Samuelsson_Oslo_160412.pdf Presentation])
+   * Report from SURFEX steering committee (March 24) and All Staff in Lisbon (Katya and [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Patrick_Samuelsson_Oslo_160412.pdf Patrick presentation])
+     * [http://www.cnrm-game-meteo.fr/aladin/spip.php?article287 Look here]
+       for all presentations and posters at Joint 26th ALADIN Workshop & HIRLAM All Staff Meeting 2016, 4-8/04/2016, Lisbon, Portugal.
+       At All Staff we have a side meeting on surface data assimilation. The presentations given there are available here:
+       [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Patrick_Samuelsson_Lisbon_160406.pdf Patrick Samuelsson (HIRLAM)],
+       [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/expose_EBazile_ASM2016_wg_surfex.pdf Eric Bazile (Météo-France)],
+       [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/LACE_surface_assim_activities.pdf Máté Mile (LACE)],
+       [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Hamdi_ALADIN_SODA2016.pdf Rafiq Hamdi (ALADIN)].
+
+
+ * It is suggested that the rest of the presentations are limited to 10 minutes each but that they can inspire to sub-group constellations during the afternoons where more details can be covered:
+   * [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/ASM_2016_SODA.pdf SODA in SURFEXv8] (Trygve)
+   * Application of an EKF for HARMONIE surface data assimilation.  [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/magnus_etal_surf_oslo.2.pdf Presentation](Magnus)
+   * Status and plans for the use of 2 patches in SURFEX (Trygve, Mariken, [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Patrick_Samuelsson_2patches_ISBAv8.pdf Patrick presentation])
+   * ISBAv8 --> cy40h: Potential/plans/problems with tests for 3-L snow and DIF soil ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Patrick_Samuelsson_2patches_ISBAv8.pdf Patrick presentation])
+   * Snow assimilation: Methods and products, potential/plans/problems (Mariken [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/snow_assimilation_20160412.pdf Presentation])
+   * Remarks on snow DA (Laura) ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Rontu_snow16.pdf Presentation]) 
+   * Sea-ice assimilation: Methods and products, potential/plans/problems (Yurii) ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/ice-assim-optim.pdf Presentation])
+   * Improved representation of glaciers (see [wiki:Surface_physis_assimilation/Glacier_plans Lisbon notes by Patrick])
+   * FLake peaceful coexistence status? FLake EKF development (Katya)([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/OSLO_SURFACE.pdf Presentation])
+   * Current and future work at ZAMG concerning SURFEX (Stefan)  ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/SURFEX_activities_at_ZAMG.pdf Presentation])
+   * Work and plans for surface assimilation at NILU (Jostein [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/nilu_ldas.pdf Presentation])
+   * Upgrade of the Land Surface in HARMONIE. Status of KNMI plans. (John de Vries [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Surfex_workingweek_KNMI_20160412.ppt Presentation])
+   * Snow modelling with offline SURFEX/ISBA-Crocus (Hanneke [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/SURFEX_snow.pdf Presentation])
+
+ * ~12:00 Lunch
+
+ * 14:00-17:00 work in different sub-group constellations
+   * 14:30 - 15:30 [wiki:Surface_physis_assimilation/EKF_surface_work SODA & spotty Jacobians]
+   * 14:30 -15:30 [wiki:Surface_physis_assimilation/pgd_ecoclimap_work PGD/ECOCLIMAP]  
+   * 16:00 - 17:00 [wiki:Surface_physis_assimilation/DIF_versus_Force_restore Test of DIF versus force-restore, sensitivity]
+
+ * Dinner at Frognersetern restaurant and a refreshing walk to Holmenkollen
+
+=== Wednesday April 13 ===
+
+Idea is in general to have presentations/discussions during morning hours and time for work in different sub-group constellations during afternoon hours.
+
+ * 09:00-12:00  
+   * Summary of yesterday's group meetings
+   * 10:00-11:00 (CET) A Google Hangouts session with surface assimilation colleagues in ALADIN/LACE/SURFEX/Météo-France. Please use this link to join the meeting: https://hangouts.google.com/call/vz25egdtmvdwfevro45pmxop6qe
+   * Behaviour of canopy model on/off in combination with HARATU in cy40h (Mariken [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/lisba_canopy_exp_20160409.pdf Presentation])
+
+ * ~12:00 Lunch
+
+ * 13:00-15:00 work in different sub-group constellations
+   * 13:00-14:00 [wiki:SURFEX-ice Sea ice (look at the bottom of this page)]  + [wiki:Surface_physis_assimilation/Glacier_plans Glacier]
+   * 14:00 - 15:00 [wiki:Surface_physis_assimilation/Two_patches_development 2 patches + canopy model] 
+
+ * 15:00 - 15:30 Town-Energy Balance ideas (Mats [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Oslo_meet_UrbanEffects_v2.pptx Presentation on behalf of Alexander Mahura, DMI]
+ * 15:30-16:30 NILU platform: Land surface modelling and land data assimilation. To be set up within “EO Innovation Europe” – ESAPB-EO(015)34 (William Lahoz, NILU, [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/Lahoz_platform_Nordic_v1.pptx Presentation])
+   * Background to the NILU platform concept is available here [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/NILU-platform-v4.docx NILU-platform-v4.docx] and [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/ESAPB-EO(2015)34.pdf ESAPB-EO(2015)34.pdf]. The platform is discussed the week before this meeting among Norwegian colleagues. The purpose of this hour is to check the interest of the platform among Nordic institutes.
+
+ * Dinner at Chinese restaurant
+
+=== Thursday April 14 ===
+
+ * 10:00- 
+   * Summary of yesterday's group meetings
+   * [wiki:Surface_physis_assimilation/Surface_assimilation_people Update list of surface people]
+   * [wiki:Surface_physis_assimilation/Satellite_list Update list of satellite products]
+   * HIRLAM plans on surface development and data assimilation (update of plans) (Patrick)
+   * Concluding remarks
+   * How do we proceed with work on surface?
+     * Idea: Use evolving wiki pages for specific work items and keep momentum going by Google hangout meetings where we report progress and problems and distribute work among us.
+     * Communication: [https://hirlam.org/mailman/listinfo/surface surface at hirlam.org] and [http://hirlam.org/index.php/forum/surface-development HIRLAM Forum on Surface development]
+     * Autumn working week...
+
+ * Afternoon: [wiki:Surface_physis_assimilation/Snow_assimilation_plans Sub-group meeting on snow] including a [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/David-hirlam-surface-da-worskhop-oslo.pdf presentation by David] and a [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201604/OSLO_SNOW.pdf presentation by Katya].
+
+ * Continued work in different sub-constellations
+
+== Participants ==
+
+Please indicate arrival, departure and hotel
+
+A popular hotel among SMHI people is [https://www.nordicchoicehotels.no/comfort/comfort-hotel-borsparken/ Comfort Hotel Børsparken].
+
+ * Mariken Homleid (Met Norway)
+ * Trygve Aspelien (Met Norway)
+ * Yurii Batrak (Met Norway)
+ * Roger Randriamampianina (Met Norway)
+ * Hanneke Luijting (Met Norway)
+ * Jostein Blyverket (NILU)
+ * John de Vries (KNMI)
+ * Jeanette Onvlee (KNMI), Sunday - Thursday afternoon, Hotel Thon Munch
+ * Laura Rontu (FMI) Tuesday - Friday, Scandic Holmenkollen Park 
+ * Ekaterina Kurzeneva (FMI)
+ * Patrick Samuelsson (SMHI), Monday ~afternoon - Friday ~1500, Comfort Hotel Børsparken
+ * Jelena Bojarova (SMHI)
+ * Magnus Lindskog (SMHI)
+ * David Gustafsson (SMHI)
+ * Stefan Schneider (ZAMG) Monday afternoon - Thursday evening. Hotel: HTL Karl Johan
+ * Mats Dahlbom (DMI), Monday ~afternoon - Thursday noon, Comfort Hotel Børsparken
+ * Bolli Palmason (IMO), Sunday - Saturday, Lovisenberg
+ * Nikolai Nawri (IMO), Sunday - Saturday
+ * Sigurdur Thorsteinsson (IMO), Sunday - Saturday
+ 
+
+== Useful links and references ==
+
+[http://www.the-cryosphere-discuss.net/tc-2015-206/ Link to paper on new version of Explicit snow scheme in SURFEXv8]
+
+[http://www.cnrm-game-meteo.fr/surfex-lab/ Link to the SURFEX-lab pages].
+
+http://harmosnow.eu/workshops/02.11.2015,%20Helsinki/FMI_seminar2015_SPullen.pdf
+
+http://harmosnow.eu/workshops/02.11.2015,%20Helsinki/derosnay_etal_201511.pdf

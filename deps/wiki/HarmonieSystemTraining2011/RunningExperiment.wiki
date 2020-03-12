@@ -1,0 +1,163 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE Training Course September 2011 (and 2012)''' ==
+= '''First Time You Run HARMONIE Experiment''' =
+[[Center(end)]]
+
+
+This lecture briefly reviews various aspects that a first time HARMONIE modeller goes through when running a HARMONIE experiment. Most of the relevant topics will take as starting point the presentation material reviewed by other lecturers as well as exisiting wiki documentation.  
+
+== '''Preparation''' ==
+
+'''NOTE:''' This step is only necessary if you are the "local system manager". A novice user can expect that someone else at your system has already gone through most parts of the preparation, possibly except providing input data for your run.
+
+ * non-ECMWF platform
+   * Hardware
+     * [wiki:HarmonieSystemTraining2011/Lecture/Installation/PreqHard Toon's listing about Linux platform]
+     * Tested platforms: IBM pwr6 (ECMWF, met.no), Cray XT5 (DMI, FMI), Cray X1E (AEMET), Linux Cluster (SMHI, !MetEireann, LHMS),SGI (KNMI), Laptop Linux (system group)
+   * Compilers, libraries & auxiliary software
+     * [wiki:HarmonieSystemTraining2011/Lecture/Installation/PreqSoft Toon's listing about Linux platform]:  gfortran 4.4 (+), flex, bison
+     * mpi, openmp, perl, perl-tk, blas, lapack, netcdf, grib-api
+   * [https://svn.hirlam.org/tags/harmonie-37h1.1 HARMONIE source], data, utilities
+ * HARMONIE input data
+   * Physiographic data and climate constants
+     * downloadable: https://hirlam.org/portal/download/harmonie_climate/
+   * Initial state data
+     * First guess, or from coupling model 
+   * Lateral boundary data (from external or nesting models)‏
+     * Model level data up to at least 10 hpa, every 1 to 6h interval
+   * Observation data, if data assimilation
+     * Minimum: in-situ data (bufr format)‏
+     * Remote sensing data (satellite constants and observations)‏
+     * Pseudo or analysed SST, ice fraction & snow depth
+     * Background error statistics for the domain
+     * Blacklist, whitelist
+ * ECMWF platform
+   * ECMWF HPC is the reference HPC platform for HIRLAM models
+     * All HIRLAM model releases have as minimum been tested at ECMWF platform
+     * All HIRLAM research team has access to ECMWF HPC
+     * No need for individual users to install or prepare source, software, data etc.
+   * Access
+     * User access: available from member states computer representatives. SBU allocation necessary
+       * Access via ssh and ftp: ecaccess.ecmwf.int
+       * Access via web-client: https://ecaccess.ecmwf.int
+     * Access to use HARMONIE software (via HIRLAM system manager)‏
+       * Test accessing ecgate: ~hlam/harmonie_release to find out if you have access barrier for HARMONIE system
+   * HPC hosts at ECMWF, file directories and quota
+     * ecgate: front-end of ECMWF HPC
+       * /home/ms/$country/$user, with quota
+       * /scratch/ms/$country/$user, with quota
+       * Both of above are accessible from c1a via prefix /ws/, e.g.,  /ws/scratch/ms/$country/$user
+     * c1a:  mainframe for computation
+       * /home/ms/$country/$user, with quota
+       * /perm/ms/$country/$user, with quota
+       * Both of above accessible from ecgate via prefix /c1a/, e.g., /c1a/perm/ms/$country/$user
+       * /ms_tmp/ms/$country/$user : not subjected to quota
+   * ECFS (ec:) and ECFSTMP (ectmp): permanent and temporal storage
+== '''Set up and configure experiment''' ==
+ * On ecgate, do the following to create the basic setup files "Env_system", "Env_submit" and "sms/config_exp.h":
+{{{
+   mkdir -p ~/hm_home/test; cd ~/hm_home/test
+   ~hlam/Harmonie setup
+}}}
+ * customise your experiment (selection of options, change of source code, scripts..., See also Toon's presentation and wiki documentation)
+  * ''default'' and alternative HARMONIE options
+   * System versions: ''official release'', stable branch, trunk
+   * Platform: ''ECMWF'', Linux, local HPC
+   * Build: ''makeup''/gmkpack
+   * Domain/resolution: ''384x400x65, 2.5km'' other options as in scr/harmonie_domains.pm, scr/vertical_levels.pl
+   * Forecast model: ''non-hydrostatic''/hydrostatic, ''arome''/alaro/aladin physics, ''surfex''/surface_old scheme
+   * Assimilation: Upper air 4DVAR/''3DVAR/''blending/none, surface analysis (''canari-oi_main''/canari/none), dfi/''none'' initialisation
+   * Observation data: ''conventional'' + amsu, amv, ascat, gbgps, radar observation data
+   * Boundary data:'' ECMWF''/HIRLAM/HARMONIE (nesting) forecasts at 1h-''3h'' interval.
+   * Model output in ''h'' or min.  Data archived to ''ectmp'', ec
+   * [wiki:HarmonieSystemDocumentation#PostprocessingVerification Post-processing ] with [wiki:HarmonieSystemDocumentation/PostPP/Fullpos Fullpos] and/or HarmonieSystemDocumentation/PostPP/gl gl]
+  * Main interface for configuration changes are in
+    * sms/config_exp.h. See also [wiki:HarmonieSystemDocumentation/ConfigureYourExperiment wiki page]. Some common settings are available via setup -c option. This file specify experiment configurations to select
+       * Build options
+        * Domain, forecast length, cycle interval
+        * Forecast model options: dynamics, physics, surface, dfi
+        * Assimilation: upper air, surface, sequence, lsmixbc
+        * Coupling: host model, boundary strategy, frequency, methods
+        * Options on post-processing and data extraction
+        * Location of input, output and archive data
+    * Env_system -> config-sh/config.${arch-ecgate}: Platform and experiment-specific settings, specify
+       * Hosts, computer centre
+       * Compilers, system libraries, modules
+       * Experiment and file information  PATH, HM_EXP, HM_HOME, HM_DATA, HM_LIB, HM_CLDATA, HM_ARC... ...
+    * Env_submit -> config-sh/submit.${arch-ecgate}: specification about 
+       * how each task to be executed in background/batch queue: Some tasks can only be run in serial mode, such as Batodb, Canari, OI_main, gl, climate generation
+       * subscription of resources (serial/parallel, nodes/tasks, memory, cputime limit, decomposition)‏
+       * experiment and look at run logs to fine tune, since adaptation is usually needed for optimal options for individual platform/experiments, such as
+         * number of nodes/PEs;  Memory (64 GB/node)‏; Decomposition
+   * Source code/script changes
+     * Some assimilation data switches are located in scr/include.ass
+     * Less modified options are ”hidden” in namelist script and in source: Hirlam-7.1 physics; Alternative orographic smoothing method; MBX_SIZE 
+   * Namelists changes
+   * Use the HARMONIE tool "Co" to "check out" and replace source code, scripts etc. (any file)
+{{{  
+   Harmonie co dir/file
+}}}
+   * [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/DrHook Profiling and Traceback with Dr Hook ]
+== '''Launch and control experiment''' ==
+   * Launch
+{{{
+   cd ~/hm_home/$exp; Harmonie start DTG=2011091500 DTGEND=2011092500 LLMAIN=24        # this launches a multi-cycle experiment at 6h interval, with a
+                                                                                       # forecast length of 24h at 00 and 12 UTC and 6 h at 06/18 UTC
+}}}
+   * Monitor
+{{{
+   cd ~/hm_home/$exp
+   Harmonie mon                                     # open up mini-XCdp interface to monitor and control (suspend, resume...) progress of ongoing experiment $exp
+}}}
+   * Resume
+{{{
+   cd ~/hm_home/$exp;  Harmonie prod BUILD=no       # this command resumes experiment with DTG and DTGPP taken from that of progress.log and progressPP.log
+                                                    # no build is done since experiment has been launched before (and no source code changes since)
+}}}
+== '''Examine results''' ==
+  * analyse & diagnose results
+   * Analysis (analysis increment, data usage, other feedback data)‏
+   * Forecasts: model level, post-processed data
+     * Check at wiki page for GRIB definition of HARMONIE mode
+  * Monitoring information
+   * Monitoring data/graphics, vfld, vobs...
+  * Logfiles, Utilities
+   * $SCRATCH: harmonie.log, msms.log, HM_Date*html, HM_MakeCycleInput*html, HM_PostP*html
+   * /c1a/perm/ms/$country/$user/HARMONIE/$exp/
+   * Information about the runs: costs, elapsed time, resources, profiling information
+  * Examples of often encountered problems
+   * Problems with input data (mismatch in time, format, availability)‏
+   * Insufficient resource requests (memory, CPU time limit)‏
+   * Un-matching scripts and source. HARMONIE system is maintained per releases. Often problems arise with unmatching source and scripts. When working on a changing source/release base, do not simply copy experiment settings such as scripts, namelists. Are you running untagged version? The repository may have been updated during your two launches, and the source may not have been tested for the type of problems you experiment with. 
+   * Untested options. Be aware that not all combination of HARMONIE options would work (AROME-4DVAR...)‏
+   * Disk quota full! ($HOME, $SCRATCH and $PERM partitions)‏; ECMWF system session
+   * Please report problems, use the forum
+== '''Proposal on hands on exercise''' ==
+ * Set up and build HARMONIE system (LinuxPC ...)‏
+   * Following Toon's presentation and wiki material
+{{{
+  mkdir -p ~/hm_home/exp; cd ~/hm_home/exp
+  Harmonie setup,  (eventually with additional, non-default options -r, -h and/or -c )
+  Harmonie install
+}}}
+ * Configure experiment with alternative options
+{{{
+Harmonie setup
+}}}
+ * Modify options, scripts, namelist or source about
+   * Build (makeup/gmkpack), compiler, ...
+   * Domain, time-stepping. Start with "Harmonie co harmonie_domains.pm"
+   * Forecast options:dynamics,physics, surface, dfi
+   * Assimilation option: upper air, surface,  lsmixbc
+   * Options on post-processing and data extraction
+ * Insertion of Dr Hook profiling. Start with "Harmonie co Forecast"
+ * Test remote sensing data, start with "Harmonie co include.ass"
+ * Test use of mXCdp interface to monitor and control runs: "Harmonie mon"
+
+[[Center(begin)]]
+[wiki:HarmonieSystemTraining2011/Agenda Other Presentations at the HARMONIE training workshop 2011]
+
+[wiki:HarmonieSystemDocumentation HARMONIE System Documentation]
+[[Center(end)]]
+----

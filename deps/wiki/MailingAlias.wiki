@@ -1,0 +1,30 @@
+= HIRLAM Mailing Alias =
+
+With HIRLAM mailing list, we hope to gradually channel most of the internal communication and discussion between the HIRLAM developers through mailing list conversations. In addition, we setup a number of mail alias to make internal communication easier.
+
+The following mailing alias are candidates to be setup:
+
+ * mg: members of the management group[[br]]
+ * hac: members of the HAC members[[br]]
+ * council: members of the council[[br]]
+ * da: members of the data assimilation project[[br]]
+ * phys: physics project[[br]]
+ * dynamics: model dynamics project[[br]]
+ * eps: predictability project[[br]]
+ * system: system management[[br]]
+ * application: system and application project[[br]]
+ * hirald: HIRLAM-ALADIN project[[br]]
+ * monitor: everyone that is interested in quality monitoring of the HIRLAM system[[br]]
+ * verification: SIG on verification issue[[br]]
+ * graphics: SIG on graphic display[[br]]
+ * scripts: SIG on HIRLAM scripts[[br]]
+ * code: SIG on coding issue[[br]]
+ * coregroup: for core group staffs
+ * chemistry: SIG on hirlam-chemistry coupling [[br]]
+ * dispersion: SIG on hirlam-dispersion coupling [[br]]
+ * oceanography: SIG on hirlam-ocean model coupling [[br]]
+ * climate: SIG on hirlam-climate modelling[[br]]
+
+
+
+

@@ -1,0 +1,265 @@
+[[BR]]
+
+== Information regarding the HARMONIE workshop ==
+
+'''Helsinki 10-14th of September 2007'''
+
+[[Image(HARMONIE.jpg)]]
+
+=== Lectures ===
+
+[https://hirlam.org/portal/fmi/HarmonieWS2007/HARMONIE_intro_tijm.pdf Introduction to workshop]	'''Sander/Laura'''[[BR]]
+
+1) [https://hirlam.org/portal/fmi/HarmonieWS2007/Bent_helsinki070910.pdf What is HARMONIE]	'''Bent'''[[BR]]
+
+2) [https://hirlam.org/portal/fmi/HarmonieWS2007/Sylvie_Aromonie.pdf Experience with AROME at MF]	'''Sylvie'''[[BR]]
+
+3) [https://hirlam.org/portal/fmi/HarmonieWS2007/ALARO_helsinki.pdf ALARO developments]	'''Radmila'''[[BR]]
+
+4) [https://hirlam.org/portal/fmi/HarmonieWS2007/Harmonie_scripts.pdf HARMONIE script system]	'''Sami'''[[BR]]
+
+5) [https://hirlam.org/portal/fmi/HarmonieWS2007/Bjarne.pdf Experimenting with the HARMONIE system]	'''Bjarne'''[[BR]]
+
+6) [https://hirlam.org/portal/fmi/HarmonieWS2007/hw_6_files.pdf File formats, pre- and postprocessing]	'''Ulf'''[[BR]]
+
+7) [https://hirlam.org/portal/fmi/HarmonieWS2007/hw_7_verification.pdf Overview of verification tools]	'''Ulf'''[[BR]]
+
+8) [https://hirlam.org/portal/fmi/HarmonieWS2007/SCUM_sylvie.pdf SCUM (single column model)]	'''Sylvie'''[[BR]]
+
+9) [https://hirlam.org/portal/fmi/HarmonieWS2007/hw_9_DDH.pdf DDH-files]	'''Ulf'''[[BR]]
+
+[https://hirlam.org/portal/fmi/HarmonieWS2007/HARM_workpackages.pdf HIRLAM-A physics plan 2008]  '''Sander''' [[BR]]
+
+[http://www.rclace.eu/?page=99 Lectures in training course on ALARO-0] (March 2007)
+
+=== Tentative schedule ===
+|| Time || Monday || Tuesday || Wednesday || Thursday || Friday || 
+|| || Part I: ''General'' || Part II: ''HARMONIE system'' || Part III:''Physics development tools'' || ''Work and discussions'' ||  ''Discussions'' || 
+||  9-12 ||  || 4. HARMONIE script system[[BR]] 5. Experimenting with the HARMONIE system[[BR]] 6. File formats, pre- and postprocessing ||7. Overview of verification tools[[BR]] 8. SCUM (single column model)[[BR]]  9. DDH-files || Exercises continued + reports and feedback || Discussions and plans[[BR]] 11.45-12.00 Closing ||
+|| 12-13 || Lunch || Lunch || Lunch || Lunch || Lunch ||
+|| 13-17 || Introduction to workshop[[BR]] 1. What is HARMONIE[[BR]] 2. Experience with AROME at MF[[BR]] 3. ALARO developments[[BR]] Preparation of exercises || Exercises, Part II [[BR]] [[BR]]after 16:15 - Social evening|| Exercises, Part III || Discussions and plans || || 
+
+Both morning and afternoon sessions include a coffee break in appropriate gap.
+
+=== Exercises ===
+
+ - '''Case 1:''' 28 Nov 2005 [http://www.knmi.nl/~tijm/HARMONIE_cases.html Convection over sea dying out inland; the Netherlands]
+ - '''Case 2:''' 30 Apr 2006 [http://www.knmi.nl/~tijm/HARMONIE_cases.html Daily cycle of convection in cold air mass over the Netherlands]
+ - '''Case 3:''' 16 Jun 1996 [http://netfam.fmi.fi/harmoniews/VATRAD_plan.html HARMONIE radiation comparison, Iceland]
+ - '''Case 4:''' 23 Dec 2006 [http://www.smhi.se/sgn0106/if/hirald/MKU4/2006122300/ Mountain waves over Northern Sweden]
+
+=== Contents of the lectures ===
+
+''1. What is HARMONIE?''
+
+- Length: 45 mins.[[BR]]
+- Content:[[BR]]
++ What is the purpose of the HARMONIE activity?[[BR]]
++ In which way HIRLAM code is included in HARMONIE (i.e. HIRLAM physics interface)?[[BR]]
++ What is included in HARMONIE system/repository (i.e. code,scripts,namelists,tools)?[[BR]]
+
+- Lecturer: Bent
+
+[[BR]]
+
+''2. MF experience with AROME''
+
+- Length: 45 min[[BR]]
+- Content:[[BR]]
++ What are the new developments in AROME?[[BR]]
++ What are the know remaining deficiencies?[[BR]]
++ What are the differences with CY31?[[BR]]
+
+- Lecturer: Sylvie Malardel
+
+[[BR]]
+
+''3. ALARO developments''
+
+- Length: 45 min[[BR]]
+- Content:[[BR]]
++ What is ALARO?[[BR]]
++ How to control it?[[BR]]
++ What are the experiences so far?[[BR]]
+
+- Lecturer: Radmila Brozkova
+
+[[BR]]
+
+''4. HARMONIE script system.''
+
+- Length: 45 mins.[[BR]]
+- Content:[[BR]]
++ How are the scripts organised?[[BR]]
++ In depth information from each process mentioned below?[[BR]]
+For example, overview of the script system, choice of area and climate generation, boundary generation, running a forecast (namelist options), postprocessing.[[BR]]
+
+- Lecturer: Sami
+
+The overview is already well covered by Ulf (http://hirlam.org/open/meetings/ASM2007/s4_andrae.pdf).
+
+[[BR]]
+
+''5. Experimenting with HARMONIE system.''
+
+- Length: 45 min.[[BR]]
+- Content:[[BR]]
++ How to build and run different model experiments? Basic usage of gmkpack + export of namelists and scripts [[BR]]
++ What do I need to set in "Env_expdesc" in order to run[[BR]]
+i hydrostatic/non-hydrostatic ALADIN with MF physics[[BR]]
+ii h/nh ALADIN with HIRLAM physics[[BR]]
+iii AROME[[BR]]
+iv ALARO (? not a choice at the moment)[[BR]]
+v something else?[[BR]]
++ How do I define the choice of boundary data?[[BR]]
+i HIRLAM boundaries[[BR]]
+ii ALADIN boundaries[[BR]]
+iii IFS boundaries[[BR]]
+
+Covered examples could possibly be used directly in experimentation exercise.
+
+- Lecturer: Bjarne
+
+[[BR]]
+
+''6. File formats (input and output, postprocessing.)''
+
+- Length: 45 min[[BR]]
+- Content:[[BR]]
++ What are the used file formats (FA,LFI,GRIB)?[[BR]]
++ What format and sturcture is required for the input?[[BR]]
+i) boundaries (spectral FA-files)[[BR]]
+ii) SURFEX initial file (grid point LFI-file)[[BR]]
++ How to convert files to Grib by using ''gl''.
++ How to build ''gl''.
+
+- Lecturer: Ulf
+
+[[BR]]
+
+''7. Verification tools''
+
+- Length: 45 min[[BR]]
+- Content[[BR]]
++ fldextr and obsextr for data extraction.[[BR]]
++ monitor-tool for verification.[[BR]]
++ anything else?[[BR]]
+
+- Lecturer: Ulf
+
+[[BR]]
+
+''8. SCUM (1D AROME)''
+
+- Length: 45 min[[BR]]
+
+- Content:[[BR]]
++ What is SCUM?[[BR]]
++ How to use it?[[BR]]
++ Can it be used with HIRLAM physics?[[BR]]
+
+- Lecturer: Sylvie Malardel
+
+[[BR]]
+
+''9. DDH-files (Diagnostics by Horizontal Domains)''
+
+- Length: 45 min[[BR]]
+- Content:[[BR]]
++ An introduction to DDH-files[[BR]]
+
+- Lecturer: Ulf
+
+[[BR]]
+
+=== Updated information ===
+
+[[BR]]
+
+
+''Observations''
+
+The MARS extraction has failed for everyone. Do the folloing
+
+- on ecgate go to your gl directory. Run {{{ svn update }}}[[BR]]
+
+- on hpce, recompile gl, copy all the new binaries to your BINDIR[[BR]]
+
+- Rerun Postp_harmonie by {{{llsubmit Postp_harmonie}}} if the CYCLDATE file is still valid. I you are brave you can remove all tasks but the Fetchobs task[[BR]]
+
+
+[[BR]]
+
+''Grib conversion''
+
+- In the Makegrib script the FA and the SURFEX files are concatenated to one GRIB file. However there are duplicated fields such as T2M.[[BR]]
+
+- For SCUM output {{{ gl -c SCUMFILE -o OUTPUTFILE }}} will create a simple ASCII file. The correction will be added to the repository during the morning.[[BR]]
+
+[[BR]]
+
+''Plotting''
+
+{{{ qmd PAR LEV TYPE FILE }}}
+
+[[BR]]
+
+''Verification''
+
+For future comparison with HIRLAM forecast you have to extract data with fldextr like in 
+{{{
+cat > fldextr.dat << EOF
+ &NAMFLD
+  MODEL = 0 or -1,
+  EXP     = 'EXP',
+  NLEV_T  = 11,
+  PRES_T  = 925.,850.,700.,600.,500.,400.,300.,200.,150.,100.,50.,
+;
+EOF
+
+ln -fs $SCRDIR/synop.list ewglam.list
+ln -fs $SCRDIR/temp.list .
+ln -sf $F fort.10
+
+$BINDIR/fldextr
+
+}}}
+
+
+''ALARO''
+
+There is now an ALARO namelist available in the repository. Set flag="alaro_h" in Env_expdesc
+
+
+=== SCUM exercise ===
+
+Step-to-step instructions to perform simple SCUM exercise.
+
+1. At '''HPCE''', copy a tar-file for SCUM.
+
+{{{ cp /ws/scratch/ms/fi/fim/scum_test.tar . }}} 
+
+2. Untar the tar-file at '''HPCE'''
+
+3. Run SCUM, at '''HPCE'''
+
+{{{ cd scum }}}
+
+{{{ llsubmit scum_test_32t2bf }}}
+
+4. Output should be in ''$TEMP/SCUM/''
+
+5. Convert the FA-files from SCUM to ascii
+
+{{{ gl -c ICMSHFIRE+0060 -o OUTPUTFILE }}}
+
+6. To run with different physics, modify ''scum_test_32t2bf''. See variables ''NAMELIST'' and ''FAFILE''.
+
+__NAMELIST FIX__
+
+SCUM with ALADIN and ALARO physics didn't work. '''Copy new namelists from'''
+
+{{{ /scratch/ms/fi/fim/nam_scum_32t2_STRAPRO_fire }}}
+
+{{{ /scratch/ms/fi/fim/nam_scum_32t2_ALDOP_fire }}}
+

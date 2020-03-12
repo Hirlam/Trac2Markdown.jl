@@ -1,0 +1,55 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM/ALADIN/LACE/SURFEX SODA development for NWP''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+The intention of this wiki is to share and document Surface (Offline) Data Assimilation (SODA) work. Initially following the initiative at the [wiki:Meetings/Surface/Surface201610 meeting held in Zagreb, October 2016].
+
+This wiki is tightly connected to the '''SODA_V8''' branch in the SURFEX Git repository. [http://www.umr-cnrm.fr/surfex/spip.php?article415 Please refer to this page on how to access the SURFEX Git repository]. The purpose with this branch is that we can share SODA development by committing it to the repository. 
+
+Please share development/subroutines via the branch instead of sending tar-files to each other. Of course this is the case when one expects that any development may be useful for others. Very concretely, create a parallel directory to src/SURFEX with your code + a README file (and/or commit information) what it is about. The code does not even need to be compatible with SURFEXv8 (can be cy40/SURFEXv7.3 or cy38/SURFEXv7.2 code as well but please indicate). If you wish your development to become an official contribution to SURFEX then you have to make sure that your sub-directory compiles and runs of course (please indicate status of your code in the branch and/or here in the wiki). If you are more than one person involved in such development you should also consider a sub-branch to SODA_V8 for your work. It would be good with two NWP representatives who are familiar with SODA code who can be development contact people for the SODA_V8 branch. Clément can be expert advisor but not involved in NWP practical needs.
+
+Please also share experimental set ups that can be used to run SURFEX/SODA in offline mode. Add such experiments under {{{MY_RUN/KTEST}}} in the SODA_V8 branch.
+
+We would prefer to use the [https://opensource.cnrm-game-meteo.fr/projects/surfex SURFEX open source environment] for communication but while some issues still remain to be solved there we offer the HIRLAM environment meanwhile. To spread and follow news about SODA development please also consider to use the [http://hirlam.org/index.php/forum/surface-development/1249-surface-data-assimilation Surface Data Assimilation topic in the HIRLAM Forum].
+
+== Status of the code ==
+
+2017-10-24: The branch is now up to date with the SURFEXv8.1 code.
+
+== Ongoing development and contributions ==
+
+Please document here what is available, or is planned to become available, in the SODA_V8 branch in the SURFEX Git repository.
+
+=== A SODA experiment setup: Sodankyla_ASSIM ===
+
+A SODA experiment set up based on observational data collected at the FMI observation site Sodankylä during the 2-years period January 2008 - December 2009. The meteorological data are from a tower located in a sparse pine forest. The forcing level is at 18 m and the trees are 12 m tall. The set up has been added by Patrick Samuelsson (SMHI)
+
+This set up is available in directory {{{MY_RUN/KTEST/Sodankyla_ASSIM}}} of the SODA_V8 branch. Please refer to the README file in this directory for more information.
+
+=== A SODA experiment setup: 1D_test_case ===
+
+A SODA experiment set up has been prepared by Clément Albergel in the SURFEX team at Météo-France. This setup is available in directory {{{MY_RUN/KTEST/1D_test_case}}} of the SODA_V8 branch.
+[wiki:HirlamMeetings/Surface201610/1D_test_case Please see here for more details.]
+
+=== Ensemble Kalman Filter (EnKF): ===
+
+MF_EnKF is included in SODA8.0. See {{{src/ASSIM/assim_nature_isba_enkf.F90}}}.
+
+The NILU (Norway) development of SODA EnKF has been added under {{{src/ASSIM_NILU}}}. Please contact Jostein Blyverket at NILU for more information.
+
+A test case that shows an application of the MF_EnKF would be good. Can Clément add such a test case?
+
+Particle filter is under development by Jostein at NILU.
+
+=== Extended Kalman Filter (EKF) and diffusion soil ===
+
+In SURFEXv8.1 EKF, {{{assim_nature_isba_ekf.F90}}}, can now be used in combination with the DIF scheme.
+
+=== Extended Kalman Filter (EKF) Force-restore ===
+
+Parallel development for cy40/SURFEX7.3 is ongoing involving e.g. Magnus Lindskog, Helga Toth, Stefan Schneider. This development is currently quite technical realted to each specific NWP environment. Thus, at the moment there is not much SODA code/development which is meaningful to share. However, if you are interested in this subject please contact any of the people involved.
+

@@ -1,0 +1,55 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HIRLAM newsnow20080508''' ==
+[[LastModified]]
+[[Center(end)]]
+
+== What is '''newsnow20080508''' ==
+
+'''newsnow20080508''' is a snapshot of the Hirlam code branch ''newsnow'' dated on May 8, 2008. '''newsnow''' refers to the modified Hirlam surface scheme, with source code syncronised to the latest Hirlam trunk version dated on May 8 2008. newsnow20080508 is fully compatible with the recently tagged version of [wiki:Hirlam_7.2 Hirlam_7.2] rc3, with following special features
+ * new surface scheme (Stefan Gollvik et al)
+ * major update in condensation scheme, with the earlier HIRLAM Rasch-Kristjansson implementation replaced by the new adaptation based on CAM3 with Fortran 90. (K-I Ivarsson et al) 
+
+== '''newsnow20080508''' source code downloads ==
+
+ * '''newsnow20080508''' can be browsed online via [https://hirlam.org/trac/browser/tags/newsnow20080508 HIRLAM wiki page]
+ *  '''newsnow20080508''' can be obtained via Subversion command, e.g.,
+{{{
+   svn export https://svn.hirlam.org/tags/newsnow20080508                      
+}}}
+ * On ECMWF, a checkout version of the newsnow20080508 is available on ecgate as
+{{{
+   ecgate:/home/ms/dk/nhz/hirlam_release/newsnow20080508
+}}}
+ * The export tarball of the Hirlam newsnow20080508 is available on ECMWF:ecgate as `/scratch/ms/dk/nhz/newsnow20080508.tar.gz`, or on ECFS: `ec:/hirlam/src/tar/newsnow20080508.tar.gz`
+
+=== Running newsnow20080508 on the ECMWF platform ===
+
+Following steps can be used to setup a newsnow20080508 experiment, say, NEWSNOW
+ * Create experiment set-up
+{{{
+  mkdir ~/hl_home/NEWSNOW; cd ~/hl_home/NEWSNOW
+  ~nhz/Hirlam setup -r newsnow20080508              
+}}}
+ * If needed, review and modify source code and scripts
+{{{
+  ~nhz/Hirlam co grdy/putdat.F; vi scripts/putdat.F
+  ~nhz/Hirlam co scripts/Env_expdesc; vi scripts/Env_expdesc                 # main configuration file
+  ~nhz/Hirlam co scripts/FCinput                                             # Forecast settings
+}}}
+ * Launch experiment, e.g,
+{{{
+  ~nhz/Hirlam start DTG=2007020100 DTGEND=2007022818    # to perform cycled experiments from start cycle DTG to end cycle DTGEND
+                                 # by default 48 h forecasts are made at 00 and 12 UTC, 6h fcsts for 06 and 18 UTC
+}}}
+
+== Acknowledgement ==
+
+
+== Reference ==
+
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

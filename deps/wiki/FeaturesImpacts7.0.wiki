@@ -1,0 +1,21 @@
+= Features and Impacts of HIRLAM 7.0 =
+
+'''New features compared to 6.4''', HIRLAM 7.0 features which are of meteorological significance:
+ * __Coupling method__. A re-forecast procedure is introduced, following similar practices used in DMI, met.no and KNMI. The purpose of the re-forecast is to utilize late-arriving, high quality ECMWF analyses and forecasts in a re-forecast for previous cycle of the HIRLAM synoptic-scale operational system, so as to improve quality of the background fields, especially in terms of representation of large scale features;
+ * __Assimilation module__. A reduction of the specified background error statistics so that effectively less weight is given to observation in 3D-VAR minimization;
+ * __Observation data usage__. ATOVS AMSU-A data is assimilated now;
+ * __Physics tuning__. Revisions to stomatal resistance and leaf area index;
+ * __Other technical changes__. 
+   * The changes needed to adjust to the increased vertical resolution in the ECMWF model; 
+   * Updated time correction for individual TEMP station. 
+   * Modified postprocessing for PMSL, geopotential;
+   * Improved diagnosis of 2m relative humidity;
+   * Reference boundary strategy changed from "analysis-only" to "operational"
+   * Most of other changes do not have meteorological importance. 
+ * __non-standard options__. 
+   * 4DVAR: introduction of lateral boundary control algorithm; a large number of script changes involving configuration, options which enables a wide range of 4D-VAR experiments
+   * Assimilation of land SYNOP 10 m wind observation using whitelist
+   * Modification on assimilation of GPS-slant delay data
+   * Adaptation to Cray X1E and Sun platforms
+
+'''Meteorological Impacts'''. From the meteorological point of view, the latest validation of 6.4.4 for a winter month, Dec 2005 and a summer month, Aug 2005, both demonstrate a clear advantage with 6.4.4 in terms of root-mean-square scores of practically all key parameters, when compared to the equivalent results for 6.4.1 (the de facto official release 6.4). See also the part about [wiki:TestEvaluation7.0#MeteorologicalEvaluation], and[https://hirlam.knmi.nl/UG/ValidationNotes/HL6_4_4V.html the code test and validation notes for 6.4.4]. [[BR]] [[BR]]

@@ -1,0 +1,222 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on Radar data processing''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== 3rd meeting: 14 March 2017, 10:00 CET ==
+
+== Participants ==
+- Jana Sanchez
+- Zahra Sahlaoui
+- Eoin Whelan
+- Jan Barkmeijer 
+- Wim Verkleij
+- Martin Ridal
+- Roohollah Azad
+- Maria Monteiro
+- Jeanette Onvlee
+- Roger Randriamampianina
+
+**Review of Actions from the 2nd meeting:**[[BR]]
+**Action-1:** Video meeting on !PrepOpera and Bator: After short discussion on the processing of radar data from OPERA, we found that it's important to involve all developers from Aladin, LACE, Meteo France and Hirlam. **Roger** will propose dates for this meeting. The following colleagues are highly encouraged to join this meeting: **Mats, Martin, Frank G., Eric W, Eoin for COPE**. [[BR]]
+ ===>**Done, see below for the minutes**[[BR]]
+
+**Action-2:** Participation to radar meeting at EWGLAM: **Martin and Roohollah** were kindly asked to raise the question on processing of OPERA data at EWGLAM meeting and report to the group about the experience of the other consortia. [[BR]]
+ ===>**Done, more colleagues attended the meeting**[[BR]]
+
+**Action-3:** **Jean-Francois** will report about the source of differences in their radial wind data from OPERA and the locally in use. **Martin** can also contact his radar colleagues at SMHI. [[BR]]
+ ===>**Done** [[BR]]
+
+**Roger** Informed the participants about the meeting on !PrepOpera and Bator (see below).[[BR]]
+
+**Data pre-processing:** [[BR]]
+**Action 1:** Roger report about how to get the OIFS account from the mail sent by Elena.[[BR]]
+ - **Elena Saltikoff** informed the group through Roger and Mats with the following information: "To get a OIFS account: Email to cmr_odc at meteo.fr. Anyone from EUMETNET member institutes gets this with no further application process."[[BR]]
+ - **Jan** asked the frequency of the new OPERA data. **Elena** informed that OPERA delivers data every 15 minute. **Maud Martet** confirmed this information with the following additional information: "More precisely, we are producing one file per radar every 15 minutes where we gather all the PPIs available between H-10minutes and H+5 minutes. For instance, the file _PAZZ84_C_EUOC_20170320124500_demem.h5 will contain all the PPIs for the radar of Memmingen observed between 12h35 and 12h50."  [[BR]]
+
+
+**Use of European radar network:** [[BR]]
+** Reflectivity:**
+ - **Wim** continues working on the radar data from their neighbouring countries.[[BR]]
+ - **Martin** reported that Danish and Finnish data are now tested in !MetCoOp preop system. The impact is so far neutral, although the reflectivity data are well used.[[BR]]
+
+**Radial wind:**
+ - **Wim** reported that they found positive impact mainly on surface parameters. Other skill scores did not show differences. He also have an other experiment, but did not have time to look at the results yet.[[BR]]
+ - **Florian** reported that they use the same processing scheme reported during 2nd video meeting (see minutes). They see positive impact in case studies.[[BR]]
+
+**Radar data in 4D-VAR:**[[BR]]
+ - Mainly the work with 4D-Var is blocked due to technical problem.
+ - **Jan** reported that with LAROME=.F., every thing in spectral, the adjoint test shows satisfactory results. The work with 4D-Var debugging with be continued in Iceland during the working week.[[BR]]
+
+**Radar quality control:**[[BR]]
+ - **Roger** informed the group that at MET Norway, they are planning to check the performance of Baltrad vs Prorad through impact studies in !MetCoOp model. They were asked to check both reflectivity and wind data.[[BR]]
+ - **Jeanette** would like to see this study extended to other countries in Europe. [[BR]]
+ - **Jan** asked about progress in identification of sea clutter, because they observed some false precipitation over sea. **Roger** said that one of the latest development at MET Norway is the improvement of detection and flagging of sea clutter (to be confirmed with his colleague).[[BR]]
+
+**Action 2:** Ask Meteo France on the procedure they are using for sea clutter detection.[[BR]]
+
+**Radar data & COPE:**[[BR]]
+ - **Mats and Eoin** will work on reading the HDF5 volume data through COPE. Eoin informed the group that ECMWF consider that all observation are handled through BUFR format.[[BR]]
+
+**Annex:** (Need to ask Mats about additional inputs)
+
+
+
+**-----------------------------------------------------------------------------------------------------**
+
+== Meeting on !PrepOpera and Bator for processing of the OPERA radar data: 2 December 2016 10:00 CET ==
+
+== Participants ==
+- Jean-Francois Mahfouf
+- Eric Wattrelot
+- Mats Dahlbom
+- Michal Nestiak
+- Carlos Geijog
+- Jeanette Onvlee
+- Roohollah Azad
+- Tuuli Perttula
+- Elena Saltikoff
+- Roger Randriamampianina
+
+The meeting was organized to better coordinate the developments in radar data pre-processing at Meteo France, in LACE and in Hirlam.[[BR]]
+
+At the beginning we explained each other the role of the created tools.[[BR]]
+**!PrepOpera** is created to detect the scan strategy in each file. It also perform a superobbing of data in each radar. It's important to mention that !PrepOpera works exclusively with HDF5 formatted data.[[BR]]
+
+**Bator** reads radar data in both formats (BUFR and HDF5). Bator does additional quality control.[[BR]]
+
+It was clear that colleagues at Meteo France thought that the !PrepOpera tool is doing quality control of the data, while it does not.[[BR]]
+
+The participants defined the following issues are important to take care when talking about OPERA or radar data pre-processing:[[BR]]
+ -- different HDF files from BALTRAD and ODYSSEY. [[BR]]
+ -- The are quality controlled differently.[[BR]]
+
+Elena introduced briefly the OPERA4 programme. She mentioned that most of the requirements on reflectivity data are met in ODYSSEY HDF5 data. The file contains four quality flags and the raw data.[[BR]]
+
+Which tools are used in the production of the ODYSSEY HDF5 files?[[BR]]
+ -- It contains some of the BALTRAD tool boxes like removal of ground clutters and handling of blocked data. [[BR]]
+ -- But it comprises also satellite-based quality check and data filter.[[BR]]
+ -- for more details see (Maud Martet 2016 [http://www.umr-cnrm.fr/aladin/IMG/pdf/odc_aladin_hirlam.pdf presentation ] ) [[BR]]
+
+The OIFS data (Maud Martet, 2016) was recommended for use. Elena provided the necessary information to access the data. For those who are interested to do so, please contact Elena Saltikoff.[[BR]]
+
+Back to the topic of the day, !PrepOpera deal with different scan strategies, but Meteo France started to implement similar processing in Bator. The following Action was adopted during the meeting.[[BR]]
+
+**Action 1**: Do synergy of !PrepOpera/Bator/Opera QC to decide on how to harmonize the radar data processing and make common strategy.[[BR]]
+
+**Action 2**: Document !PrepOpera/Bator/OperaQC. [[BR]]
+
+Elena expressed her interest to know about where the radar filters is functioning well? Feedback to OPERA about this is very welcome.[[BR]]
+
+Development of COPE was also discussed shortly, where the existing observation area selection was questioned.[[BR]]
+**Action 3**: Eric, Frank, Máté, Alena, Martin and Mats will first analyse the existing solution and work out a better one if necessary.[[BR]]
+
+
+
+
+**------------------------------------------------------------------------------------------------------------------------------**
+
+== Second meeting: 31 August 2016, 10:00 CET ==
+
+== Participants ==
+- Jean-Francois Mahfouf
+- Zahra Sahlaoui
+- Siham Sbii
+- Serguei Ivanov 
+- Wim Verkleij
+- Martin Ridal
+- Roohollah Azad
+- Roger Randriamampianina
+
+**Actions from the meeting:**[[BR]]
+**Action-1:** Video meeting on PrepOper and Bator: After short discussion on the processing of radar data from OPERA, we found that it's important to involve all developers from Aladin, LACE, Meteo France and Hirlam. **Roger** will propose dates for this meeting. The following colleagues are highly encouraged to join this meeting: **Mats, Martin, Frank G., Eric W, Eoin for COPE**.[[BR]]
+
+**Action-2:** Participation to radar meeting at EWGLAM: **Martin and Roohollah** were kindly asked to raise the question on processing of OPERA data at EWGLAM meeting and report to the group about the experience of the other consortia.[[BR]]
+
+**Action-3:** **Jean-Francois** will report about the source of differences in their radial wind data from OPERA and the locally in use. **Martin** can also contact his radar colleagues at SMHI.[[BR]]
+
+**Data pre-processing:** [[BR]
+As it can be seen from the Actions, pre-processing of data was very much discussed. Beside, the following tasks were discussed: !PrepOpera, superobbing, and pre-screening. For example, **Serguei** proposed an idea on how to make the !PrepOpera tool more flexible in handling the screening along the radar beam. Serguei is encouraged to bring this idea to the next meeting on !PrepOpera.[[BR]]
+
+**Use of European radar network:** [[BR]]
+**- Wim (KNMI)** reported that he is working on radar data from their neighbouring countries (France, Denmark, France, ..) to an e-suite. Data will not be implemented at the same time. The order of implementation will be: 1rst the reflectivity, then the radial winds.[[BR]]
+**- Zahra** reported that she was working with Eric in assimilation of data from Dutch and German radars.
+
+**Radar data in 4D-VAR:**[[BR]]
+**- Martin** reported that the radar data are added to the system at right time and half-hourly slots. But, testing it in the Harmonie system fails in minimization.. The test was done with radiance data.[[BR]]
+
+**Beam blockage:**[[BR]]
+**- Martin** presented his work with beam blockage. So far the elevation below 1 degree were blacklisted. As impact on the forecast, there is clear improvement on cloud cover, but slight drying effect was detected at lower part of the model, including 2m level.[[BR]]
+
+**Annex:** report on use of radar data from those who were absent (waiting for more inputs ...).[[BR]]
+**Annex-1:**
+**Use of field alignment (FA) in variational framework:** [[BR]]
+We would like to call your attention on **Carlos's report** on using the radial winds and FA. [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201605/WorkingWeekMadridMay2016.pptx pptx] [[BR]]
+
+**Annex-2:**
+**Progress on RADAR assimilation at ZAMG (F. Meier)** [[BR]]
+RADAR data assimilation was switched to cy40t1 export in spring 2016. It was found that HDF5 flags for “no data” and “undetect” were changed (-1->255, 0->254 respectively) in Austrian HDF5 RADAR files, which caused several problems in CONRAD format conversion (hard coded flags and offset). Therefore, HIRLAM HDF5 reader was compiled and tested. HDF5 reader needs to be slightly adapted to Austrian format and data need to be pre-thinned. Otherwise there are crashes due to exceeded memory. A pre-thinning C routine was written ([https://hirlam.org/trac/attachment/wiki/HarmonieVideoMeetings/Meeting_on_radar_data_processing/thinn_radar.c radar thinning in C]), which might be replaced by Hirlam superobs script later. The HDF5 reader delivers better precipitation scores than corrupted CONRAD version. LHN was tested for a two week period delivering mostly neutral impact, while it was found to be beneficial in several case studies. Austria has now access to OPERA volume data. Probably, we will do some tests with it in the near future. [[BR]]
+
+
+**------------------------------------------------------------------------------------------------------------------------------**
+
+
+== First meeting: 18 February 2016, 10:00 CET ==
+
+== Participants ==
+- Eric Wattrelot
+- Florian Meier
+- Máté Mile
+- Wim Verkleij
+- Jeanette Onvlee
+- Mats Dahlbom
+- Martynas Kazlauskas
+- Martin Ridal
+- Günther Haase
+- Roohollah Azad
+- Sigurður Þorsteinsson
+- Roger Randriamampianina
+
+== Could not attend due to technical problem: ==
+- Carlos Geijo
+- Eoin Whelan
+
+Roger informed the participants that video meeting (VM) aims to allow experts working with similar topics to get closer and hence help in their current work. It also intended to reduce redundancy («double work») of works done in Aladin and Hirlam consortia. There is plan to have regular VM, but the frequency is TBD up on the experience. Any member of the topic group can call a meeting at any time if needed.[[BR]]
+
+The following topics were presented and discussed during the meeting. The list is not in line with the chronological order of the meeting.[[BR]]
+**- Use of OPERA data:**[[BR]]
+ **Eric** pointed the need for a consensus on the product (content and format) of the OPERA data.[[BR]]
+ The group agreed that it's important to test/use data from OPERA and report (to OPERA) about the experiences. [[BR]]
+
+**- Common pre-processing tool:**[[BR]]
+ **Eric** asked the participants about their plan regarding the OPERA data (pre-)processing. He reported that at Meteo France they use CONRAD to convert ODIM HDF5 to MFBUFR and they have to do some additional quality control to the radar data.[[BR]]
+ **Mats** reported that he is able to process and assimilate (OPERA) data from 70 radar stations from 10 European countries using his prep-opera tool. The pre-opera tool was successfully included in Wim's experiments. Maté commented that LACE is willing to use the pre-opera tool in the near future.
+ The group agreed to consider pre-opera tool as potential common pre-processing tool for OPERA volume radar data in Aladin and Hirlam.[[BR]]
+
+**- Radar data processing:**[[BR]]
+ **Martin** reported a case when in !MetCoOp model in October (a relatively dry month) using radar data dried quite a lot the model over Sweden. This investigation was initiated by a problem related to low level clouds. Martin thinks that the drying effect was due to the fact that the model produced artificial very low values reflectivity. This model behaviour can be related to the minimum detectable signal of the radar. The lower limit of the Swedish radars is -30 dBz while in MFBUR data the limit is -10.5 dBz. As solution to this problem, Martin changed the following check condition in the routine  inv_refl1dstat:
+ IF (PREFL2D(JLEN,JCOUNT,1,1) <= ROBODY(IBODY,MDBVAR)) THEN ! no pseudo...[[BR]]
+ to [[BR]]
+ IF (PREFL2D(JLEN,JCOUNT,1,1) <= 0) THEN ! no pseudo...[[BR]]
+ This change reduced the drying effect by Swedish radar in !MetCoOp. Mats reported also positive impact of the modification in his studies. 
+ **Eric** commented that he also have seem similar effect of radar reflectivity in their system. He thinks that it could be provided by the microphysics (producing too much autoconversion): there is too much rain/drizzle in the simulated cloud from the model (drizzle which doesn't reach the ground...) and some negative simulated reflectivities can be found. He suggested to use the following check condition instead of Martin's one:[[BR]]
+ IF ( (PREFL2D(JLEN,JCOUNT,1,1) <= ROBODY(IBODY,MDBVAR)) .OR. (PREFL2D(JLEN,JCOUNT,1,1) <= 0) ) THEN ! no pseudo...[[BR]]
+ because all the cases where: ( 0 <= PREFL2D(JLEN,JCOUNT,1,1) <= ROBODY(IBODY,MDBVAR)) will not be removed and a pseudo-observation can be produced. However, one don't have to do anything if PREFL2D(JLEN,JCOUNT,1,1) <= ROBODY(IBODY,MDBVAR)  (after SATBODY(IBODY,MDB_FLGDYN_AT_RADAR_BODY) == 0). Because in this latest case, there is no drying effect in the model. (???)[[BR]]
+
+ **Florian** presented very good work on radar Doppler wind (DOW) de-aliasing comparing local (ZAMG), Baltrad and He et al. 2012 techniques. This kind of study is very useful to report to the OPERA. Mats is willing to do similar study.[[BR]]
+
+ **Roohollah** reported about study done at MET Norway to take into account blocked reflectivity data. He reported that correcting blocked data up to 50%  gives positive impact in forecast. Günther commented that in Baltrad blocked data are efficiently corrected up to 70%.[[BR]]
+
+**- Latent heat (LH) nudging based on Jones and MacPherson 1997:** [[BR]]
+ **Florian** reported his work in frame of LACE stay at Meteo France. With Ludovic Auger they implemented a two steps nudging technique. Nudging process is done during the forecast model (conf. 001) (observation in FA file read at the beginning of integration like in IAU, LH-tendency added on top of physics LH tendency at end of observation period in apl_arome.F90, new namelist group was added to the configuration 001, which turned out to be efficient. Florian reported some problems meaning that this scheme needs to be further improved.[[BR]]
+
+**- Impact study:** [[BR]]
+ **Wim** reported his work on assimilation of 2 (De Bilt and Den Helder) Dutch radars. He used the pre-opera tool to pre-process the data. He reported that the bias of the 10m wind was reduced substantially (although the bias in the humidity fields was increased). When only reflectivities were used, the bias in the 2m humidity fields was reduced substantially, without much, if any, change in the bias of the 10m wind.[[BR]] 
+
+**- Action from this meeting to all participants:**[[BR]]
+ All participants are invited to test/use the pre-opera tool with the OPERA data and report to the group experiences when available.
+
+
+

@@ -1,0 +1,24 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= '''Source Code Update''' =
+[[Center(end)]]
+
+== How can I propose updates or bugfixes? ==
+
+The HIRLAM-A management group and system managers have been discussing lately about the source code revision procedure and at the moment we would suggest developers to base their updates on the latest released HIRLAM version, which is hirlam-rc1 as of Arpil 18 2006. For "advanced users", (i.e, if you are familiar with revision control systems and/or a frequent contributor of patches etc), we appreciate even more if your contribution is based on the current HEAD version of the code. But it is not mandatory.
+
+In [https://hirlam.org/trac/wiki/CodeUpdate wiki] page about code update, a detailed listing of the newly committed source code changes are listed and updated at each commit of the new code. Currently the code updates are exclusively for the 'HEAD' of the main repository ('trunk') and they are targeted to be included in the coming release. Note that the HEAD version is normally not a stable version and we do not encourage users to use that one for main experiment unless you are HEAD-testers or the author of the new codes in the HEAD version.
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,130 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Snow and Ice Working Week''' =
+''SMHI, Norrköping, 11^th^ - 13^th^ of March 2013''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Practical ==
+
+ * Participants (all or part of the time):
+  * SMHI:    Patrick Samuelsson, Stefan Gollvik, Tomas Landelius, Magnus Lindskog, Sebastien Villaume
+  * met.no:  Mariken Homleid, Jelena Bojarova
+  * IMO:     Sigurdur Thorsteinsson
+  * FMI:     Kalle Eerola, Ekaterina Kurzeneva, Laura Rontu
+
+== Objectives ==
+
+The goal of this meeting is to review and coordinate HARMONIE/SURFEX work related to snow and ice data assimilation and modelling. It continues the work of a similar meetings in Helsinki, March 2011, Oslo, January 2012, and an earlier MUSCATEN workshop http://muscaten.ut.ee/SNOW10/ .
+
+== Agenda ==
+
+ * Monday March 11 13.00 - 18.00. Tour de table, short presentations by the participants
+ * Tuesday March 12 09.00 - 17.00. Work with the topics as agreed after Monday discussions
+ * Wednesday March 13 09.00 - 13.00 Final discussions, notes and plans.
+
+
+== Monday 11 April ==
+
+* Tomas: 
+  2DVAR MESCAN ([https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Ens2DVar_130308.pdf Ens2DVar_130308.pdf]):
+  CANARI uses isotropic structure functions. Tomas shows experiments to introduce MESAN non-isotropic structure functions in CANARI. Examples on T2m. This method should be used for other surface variables in the future but for now we stick to the old isotropic CANARI (for snow and ice). 
+
+* Mariken and Stefan (together or separately): 
+  SURFEX sea ice analysis and first steps in sea ice modelling [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Seaice_130310.pdf some slides]. 
+
+* (Laura): 
+  A couple of [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Bin_Snow2013.pdf slides] (with [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Bin_notes.pdf notes]) from Bin about his recent sea/lake ice work. The plan is to implement HIGHTSI in SURFEX as one optional ice and snow thermodynamics model later.
+
+* Mariken: 
+  Snow analysis experiments, [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/snow_report_DRAFT.pdf DRAFT of a report on HARMONIE snow analysis experiments]. The data assimilation cycle does now work for the simple D95 snow scheme in SURFEX but development is needed for the 3-L snow scheme. Presently ground based snow observations are used in CANARI but not yet any satellite data. 
+
+* Sigurdur: 
+  [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Hrob.pdf Icelandic HARMONIE snow] analysis and forecast.
+  Icelandic snow map browser http://www.snaps-project.eu/snow-maps/iceland-snow-maps/ Experiences of HARMONIE 37h1.2 snow analysis are good. It includes a comprehensive set (from more than 200 stations) of Icelandic local snow depth measurements, which do not yet enter the WMO GTS network.  
+
+* [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/KeSummary.pdf Kalle] and [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/GLOBSNOW.pdf Katya]: 
+  Snow depth and extent from satellite - Oslo meeting update. Link to [http://www.globsnow.info/newsletters/GlobSnow-2_newsletter1.pdf Globsnow newsletter]. At the moment evaluation of a updated test data set of SWE provided by Globsnow researchers is not done yet, need to find a person to work with this.
+
+* Patrick: 
+  Status and plans of MEB work in SURFEX. MEB is now in a development branch in SURFEX (MEB_DEV2) which is kept up to date with developments in the trunk. It will probably take another year before MEB is available in an official SURFEX version. 
+
+* Stefan: 
+  Turbulent exchange over tiles depending on TKE and patchiness [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/exchange.pdf (slides)]. Maybe we can use measurement site over lake Valkea Kotinen, surrounded by forest, to test the hypothesis.
+
+* [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Cycles.pdf Laura] and [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/SURFEX_ver.pdf Katya]: 
+  A short update on HARMONIE/SURFEX cycles -  operational and planned, relation to snow and ice
+
+* Katya: 
+  One [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/NorthHydr.pdf slide] info about the ESA North Hydrology project results over wintertime lakes. Learned a lot about how lake surface temperature from satellites may be may be assimilated in HIRLAM with the lake model FLake. Publications are being prepared for the Tellus special lake issue due to the end of 2013. 
+
+* Laura: 
+  [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/SNAPS_upd.pdf Update] on the SNAPS project on snow and avalanche applications, [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/SNAPS_LR_201208.pdf background] slides . Also available [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/Newsletter3_hg.pdf SNAPS Newsletter-3]
+
+
+* Laura: 
+  The [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/COST.pdf snow COST] application [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/COST_SNOW_LR20130310.doc to be edited] during the meeting. A new application to be written, concentrating on snow observations and their usage in data assimilation (deadline March 29).
+
+
+== Tuesday 12 April ==
+
+* Sea ice in SURFEX
+   * short-term tasks with the operational SST-ice analysis. At the moment SURFEX uses the ECMWF SST as a proxy for ice (<=-1.8degC) which effects albedo, roughness,.... gl extrapolates SST to HARMONIE grid boxes where ECMWF has no sea points. SST and ice temperature is updated in each cycle and kept constant during the forecast. Mariken add some documentation on how sea-ice is treated at the moment in HARMONIE/SURFEX. No evident problems with the present way to treat sea ice is reported. We add SST and ice in the FMI HARMONIE monitoring system.
+   * introduction of prognostic sea ice temperature (at least) to SURFEX. Mariken has prepared pgd and prep to receive ice on/off data and introduced prognostic ice temperatures in the prep part but there is no physics for ice implemented yet. Our idea now is to call the soil_heatdif.F90 with ice specific parameters as input to solve for prognostic ice temperature. We assume that SST and possibly a diagnostic ice fraction enter SURFEX from the surface analysis or elsewhere. In each sea gridpoint we should make the prognostic sea ice temperature variables and (presently constant) sea water temperature variables, available along with the diagnostic ice fraction. We should check the status of the Gelato implementation and if/how they implement fractional ice in the physics. The sea ice work is considered of high priority and additional resources would be useful, in addition to Mariken who might continue the work in the end of 2013.
+
+* Turbulent exchange initiative
+
+The idea by Stefan about the interactions between tiles in terms of turbulent (heat, moisture and momentum) fluxes and differences in surface roughness, was considered promising. This is basic study, where carefully formulated/selected case studies including observation comparison and leading to a journal article, are necessary. Development work might be started in 1D SURFEX and/or MUSC with external forcing. During the meeting, a message from Sander was received, where similar idea was suggested with relation to melting snow. The study is considered to have high priority in long-term research and should be related to developments in 1D and 3D turbulence parametrisations. A suggestion to the HIRLAM-B physics plan will be formulated by Stefan et al. and SMHI people will be responsible for the work, in contact with interested people from other institutes. 
+
+* Snow analysis in SURFEX : 
+   * short- and long term tasks with snow extent observations from satellite and Globsnow SWE
+
+15 Feb - end of May HARMONIE experiments on snow cover by Mariken. Inclusion of snow depth observations from the precipitation stations helps to improve two-metre temperature forecast. Cryorisk satellite snow extent data seemed to have a positive impact especially in melting season. There are no plans for operational usage of these satellite observations in met.no. These experiments have been run with D95 snow scheme combined with three-layer ISBA force-restore (detault in HARMONIE 37h1) and CANOPY surface sublayer scheme. A more advanced combination will be possible within cycle 38 which includes SURFEX 7.2. We would prefer the 3-layer snow scheme, which will influence the interactions with surface data assimilation, which needs further attention.
+
+Snow extent is mainly used to correct the analysis of snow water equivalent (border of snow/no snow). Possible sources of snow extent satellite observations for HARMONIE data assimilation (see also Kalle's presentation):
+* 1. NESDIS snow data
+* 2. Land-SAF snow extent from EUMETSAT
+* 3. Second generation snow extent data from Globsnow
+* 4. Icelandic MODIS-based snow extent data
+
+Thinning/super-obs/screening of the high-resolution data?  Quality control? Observation error statistics for satellite snow? Experience from LWST/lake ice analysis? Kalle could [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/KeSummary.pdf continue] the work before summer 2013, with the support by Mariken, starting from the NESDIS.
+
+* Globsnow SWE
+Testing of the updated test-data set from Globsnow. We need to find someone to continue the work started by Suleiman. See also the presentation by Katya [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/GLOBSNOW.pdf above].
+
+* Snow COST application
+   * The application should be made more focused on snow observations and data assimilation. Division and level of generality in different parts of the application should be made more clear, in order to advance from general benefits to more specific plans to realise them. We should bring for discussion a list of past and ongoing related projects and networks where we have participated. How could we benefit from this COST? 
+   * The European operational NWP models would benefit from unified regular transmission of  space-born snow extent, snow water equivalent, ice extent and SST suitable for data assimilation (EUMETSAT SAF's in principle do this). For the NWP modellers it is impossible to follow each individual satellite mission/instrument type in operational regime, even if these can be used for development and testing. It wuold be very useful for the modelling community to receive draft data sets quite early so the work to implement such data in the assimilation cycle could start well before actual data arrives.
+   * COST might help to solve the problems with using the precipitation station observations. From different countries, the climatological/precipitation station snow observations should be made available in WMO GTS. Both HIRLAM and HARMONIE should be able to utilize these observations in analysis, even if they have nonstandard WMO number definitions. HIRLAM presently handles them incorrectly, Norwegian and Icelandic experience seems to show that they can be used in HARMONIE without extra work?  
+
+
+* HARMONIE operational problems (related or not related to snow)
+   * FMI snow analysis: the FMI preoperational HARMONIE analysis [http://fminwp.fmi.fi/WebgraF/Surfex_aro36h14/index.html page] shows problems in snow depth, SWE, snow density. Part of the errors are expected to be corrected within 37h1.2 but even in this framework snow analysis will require monitoring to detect the remaining problems. The water temperature field looks reasonable, and should be directly interpolated by the ECMWF boundary analysis based on OSTIA.
+   * met.no [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/report_exp_201212-201302.pdf various]
+   * Icelandic z0oro: IMO 37h1.2 experiments show that wind bias is largest (-2 m/s) if the default settings of orographic roughness are used, when the so-called Beljaars SSO parametrisations are switched off. Discussion between Sigurdur and SMHI people who have seen similar problem when preparing MetCoop operational HARMONIE.
+
+
+== Wednesday 13 April ==
+
+Summary of our results/suggestions and their relations to ongoing or planned projects :
+
+* HARMONIE surface physics and DA [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Snow201303/physdraft_2013.doc plan] and documentations
+   * sea ice analysis document links to hirlam.org (Mariken)
+   * update sea ice prognostic plan (Mariken, Sebastien)
+   * snow analysis plans to be checked/updated in HIRLAM-B physics plan (Kalle and Katya)
+   * TKE exchange between tiles - short text for the HIRLAM-B plan (Stefan, Patrick, Sebastien)
+   * Test and make sure that FLake works in SURFEX as expected (Katya, Patrick)
+
+
+* For the SURFEX steering committee
+   * Check status in Gelato implementation and how that can be used in our development of simple prognostic ice temperature, inform the committee about our approach and plans
+   * Information to them about Snow COST initiative
+   * Rotated lon-lat is implemented in a branch from SURFEX7.3
+   * The initiative of mixing of turbulent exchange coefficients between tiles/patches
+   * Structure of SURFEX: restricted usage of variables from modules, definition of new output
+   * Check and validate FLake implementation
+   * Katya will contact HARMONIE colleagues and ask for input/comments for steering committee.
+
+* Snow COST application
+* SNAPS

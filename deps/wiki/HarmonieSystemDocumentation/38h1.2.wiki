@@ -1,0 +1,150 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie System Documentation''' =
+[[Center(end)]]
+
+ This page describes how to get started with the latest version of HARMONIE. For older documentation follow one of the links below.
+
+ * [wiki:Harmonie_38h1 Harmonie system 38h1], [wiki:HarmonieSystemDocumentation/38h1.1 documentation], latest version [wiki:ReleaseNotes/harmonie-38h1.1 38h1.1] released on 12th February 2014.
+ * [wiki:Harmonie_37h1 Harmonie system 37h1], [wiki:HarmonieSystemDocumentation/37h1.2 documentation], latest version [wiki:ReleaseNotes/harmonie-37h1.2 37h1.2] released on 20th December 2012.
+ * [wiki:Harmonie_36h1 Harmonie system 36h1], [wiki:HarmonieSystemDocumentation/36h1.4 documentation], latest version [wiki:ReleaseNotes36h1.4 36h1.4] released on 13th July 2011.
+
+== '''Overview and installation''' ==
+
+ * [wiki:HarmonieSystemDocumentation/38h1.2/General General requirements]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/Centos6Install CentOS 6 PC requirements/installation instructions]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/Content Harmonie structure and content]
+ * Installation
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Installation New installation and build with gmkpack]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Build_with_makeup Build with Makeup]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Binaries Binaries in HARMONIE]
+  * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/cpp_macros.odt CPP macros explained (odt)], [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/cpp_macros.pdf (pdf)]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/FileFormats File formats]
+
+ === Download data ===
+
+  * [https://hirlam.org/portal/download/harmonie_climate/38h1.1.tar.gz Climate and physiography data]
+  * [https://hirlam.org/portal/download/sat_const/sat_const_cy38h1.2tar.gz Satellite constants]
+  * [https://hirlam.org/portal/download/testbed/38h1/38h1.tar Testdata set with boundaries and observations for a small 50x50 domain]
+
+=== '''Tutorials''' ===
+
+ * [wiki:HarmonieSystemDocumentation/38h1.2/Harmonie-mSMS Running your first experiment with Harmonie]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/TheHarmonieScript The Harmonie master script]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/ConfigureYourExperiment The main configuration file] - the environment variables in [source:tags/harmonie-38h1.2/sms/config_exp.h sms/config_exp.h] explained
+ * [wiki:HarmonieSystemDocumentation/38h1.2/scripts/mSMS A few words about mSMS]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/SMS Documentation of the original ECMWF full SMS]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/mSMS_CLI.html mSMS interface: command line and environment]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/mXCdp mini-XCdp: graphical display] with an [wiki:HarmonieSystemDocumentation/38h1.2/scripts/mXCdp update]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/Namelists Finding the right namelist]
+
+==== System Trainings ====
+
+ * [wiki:HarmonieSystemTraining2014 HARMONIE System Training Norrköping 2014]
+ * [wiki:HarmonieSystemTraining2012 HARMONIE System Training Norrköping 2012]
+ * [wiki:HarmonieSystemTraining2011 HARMONIE System Training Norrköping 2011]
+ * [wiki:HarmonieSystemTraining2008 HARMONIE System Training Copenhagen 2008]
+
+=== '''NWP Components''' ===
+
+ * Climate generation
+  * [wiki:HarmonieSystemDocumentation/38h1.2/ClimateGeneration Domain and Climate Generation]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/How_to_use_hires_topography How to upgrade to high-resolution topography]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/VerticalGrid Vertical grid]
+ * Initial and boundary data
+   * [wiki:HarmonieSystemDocumentation/38h1.2/BoundaryFilePreparation Initial and Lateral Boundary Interpolation]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/gl/Interpolation Interpolations with gl ]
+ * Data Assimilation 
+   * [wiki:HarmonieSystemDocumentation/38h1.2/UseofObservation Use of observations]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/ObservationPreprocessing Preprocessing of observation data using Oulan/Bator]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/Conrad CONRAD: radar data pre-processing]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/StandaloneOdb ODB: software, data and visualization]
+   * 3D-VAR
+    * [wiki:HarmonieSystemDocumentation/38h1.2/Structurefunctions Instruction about derivation of structure functions]
+    * [wiki:HarmonieSystemDocumentation/38h1.2/Structurefunctions_ensys Instruction about derivation of structure functions from cy38h1.2]
+    * [wiki:HarmonieSystemDocumentation/38h1.2/SingleObs Instruction about running single observation experiment]
+    * [wiki:HarmonieSystemDocumentation/38h1.2/SingleObs_ensys Instruction about running single observation experiment from cy38h1.2]
+    * [wiki:HarmonieDAWorkshop200805 Presentation and Instructions from Harmonie 3DVAR and CANARI working week 200805]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/Analysis/SurfaceAnalysis Surface Data Assimilation]
+   * Observation impact diagnostics [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/DesroziersHarm.tar.gz]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/Forecast Forecast model]
+   * Harmonie forecast model output: [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/38h1 38h1.1]
+   * Harmonie forecast model output: [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/37h1 37h1.2]
+   * Harmonie forecast model output: [wiki:HarmonieSystemDocumentation/38h1.2/Forecast/Outputlist/37h1.1 37h1.1]
+   * [wiki:HarmonieSystemDocumentation/HHoutputlist Co-listing of HIRLAM 7.3 and HARMONIE 36h1 output from model level GRIB]
+   * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/listegrib_36t1_op1.pdf Meteo France AROME output list (36t1_op1)]
+ * [wiki:MUSC MUSC, Harmonie single column model]
+
+ 
+ === '''Postprocessing''' ===
+ * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP Postprocessing overview] 
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/FileConversions Convert data to GRIB]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Fullpos Postprocessing with FULL-POS]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/gl Postprocessing with gl]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/gl_grib_api Postprocessing with gl_grib_api]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/xtool Postprocessing with xtool]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Diagnostics Diagnostics]
+   * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Obsmon Obsmon]
+
+ === '''Verification''' ===
+
+ * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Extract4verification Extract data for verification]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Verification Verification]
+ * [wiki:HirlamSystemDocumentation/PostPP/CommonVerification Multi-model Observation Verification Intercomparison]
+ * [wiki:HarmonieSystemDocumentation/38h1.2/PostPP/Obsmon Observations monitoring]
+
+ === '''Ensemble prediction (HarmonEPS)''' ===
+
+  * [wiki:HarmonieSystemDocumentation/38h1.2/EPS/Howto How to run an ensemble experiment]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/EPS/Setup How to set up HarmonEPS experiments]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/EPS/System Ensemble mode in the script system]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/EPS/Testperiods Available test periods for HarmonEPS]
+
+ === '''Climate simulations with Harmonie''' ===
+
+  * [wiki:HarmonieSystemDocumentation/38h1.2/ClimateSimulation How to run a climate simulation]
+
+ === '''System''' ===
+  * [wiki:HarmonieSystemDocumentation/38h1.2/DrHook Profiling with DrHook]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/MFaccess Access to Météo-France servers]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Phasing Phasing instructions]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/UpdateNamelists Create new namelists]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Evaluation/Mitraillette Mitraillette]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/Evaluation/HarmonieTestbed Harmonie testbed]
+  * [wiki:HarmonieSystemDocumentation/38h1.2/HarmonieBenchMark HARMONIE RAPS benchmark]
+  * Meteo France/ECMWF 2011: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article213 Coding standards for ARPEGE-IFS]
+  * Coordination documents
+    * [http://www.cnrm.meteo.fr/aladin/spip.php?article219&lang=en OOPS & technical video meeting minutes]
+    * [http://www.cnrm.meteo.fr/aladin/spip.php?article170&lang=en Coordination meeting minutes]
+    * [http://www.cnrm.meteo.fr/aladin/spip.php?article124&lang=en Technical memorandums]
+
+ '''Code browsers'''
+
+  * [https://hirlam.org/codebrowser/ Code browsers (ftagshtml), 36h1.3, 37h1.1, 38h1.beta.1]
+  * [https://hirlam.org/portal/doxygen_browser/cy36h1.4/ Doxygen code browser (36h1.4)]
+  * [source:tags/harmonie-38h1.2/ Trac code browser]
+
+== '''HARMONIE Reference materials''' ==
+
+ * '''[http://www.cnrm.meteo.fr/gmapdoc/spip.php?rubrique1 Excellent ALADIN/Arome documentation]'''
+ * [http://www.ecmwf.int/research/ifsdocs IFS documentation]
+ * Meteo France/ECMWF 2011: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article213 Coding standards for ARPEGE-IFS]
+ * Guidard Vincent and C. Fischer, [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/Guidard_3DVAR_theory.ppt ALADIN 3D-Var Theory and Practice]
+ * Kert'esz, S., 2001: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article64 A short overview of ODB]
+ * Kert'esz, S., 2002: Using ODB in ALADIN. Internal note, 21pp, available on "http://www.cnrm.meteo.fr/gmapdoc/" (topics "ODB")
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/report.pdf M. Lindskog, 2010: Study with extended extension zone, manuscript for HIRLAM Newsletter 2010]
+ * R. Roger, [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/R_Roger_data_handeling.ppt The data flow in HARMONIE data assimilation ]
+ * S. Saarinen: [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/AROME_2_ECMWF_20nov2009v5.pdf Initial Optimisation of AROME forecasts on FMI's Cray XT5m, Presentation at ECMWF, Nov 20 2009]
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Drag_orog_report.pdf Yann Seity's unofficial documentation about Surfex surface drag options]. Note the options described are those featured in CY36 and CY38, and some of the options for CY38 need back porting to CY37.
+ * Trojakova Alena, [https://hirlam.org/trac/attachment/wiki/HarmonieDAWorkshop200805/Trojakova_canari_2.ppt CANARI optimum interpolation with emphasis on technical aspects ]
+ * Yessad K.: Aug 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article23 LIBRARY ARCHITECTURE AND HISTORY OF THE TECHNICAL ASPECTS IN ARPEGE/IFS, ALADIN AND AROME IN THE CYCLE 32T2 OF ARPEGE/IFS]
+ * Yessad, K., 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article29 Basics about ARPEGE/IFS, ALADIN and AROME in the cycle 32T2 of ARPEGE/IFS]
+ * Vignes, O., 2011: [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/lsmixbc.ppt Short presentation of LSMIXBC option]
+ * Bengtsson, L., 2014: [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/progress_report_CA.pdf CA scheme description]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

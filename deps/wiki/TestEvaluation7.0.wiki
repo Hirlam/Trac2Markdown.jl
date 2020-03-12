@@ -1,0 +1,171 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Meteorological Evaluation and code test for HIRLAM 7.0''' =
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+
+== Meteorological Evaluation ==
+
+=== Validation test at cycling mode ===
+Two month-long data assimilation cycling tests, one for winter season, Dec 2005, another for summer season, Aug 2005, have been tested successfully with 6.4.4 using 'operational' boundary strategy on ECMWF-HPCD platform (Xiaohua Yang). 
+
+Two month-long data assimilation cycling tests, one for winter season, Jan 2006, another for summer season, July 2005, have been tested successfully with 7.0beta1 using 'RCR_parallel' boundary strategy on ECMWF-HPCD platform(kalle Eerola).
+
+=== Pre-operation parallel test ===
+
+At FMI, the real-time pre-operational suite implementing 6.4.4 has been running in parallel to the official suite since March 2, 2006. The realtime forecast results as well as other monitoring information are available in the [http://fminwp.fmi.fi/visuhir_V644/ beta-suite website], which can be compared to the official [http://fminwp.fmi.fi/ FMI-RCR website] using 6.4. On May 2, 2006, with the official launch of RCR 7.0, the two suites are merged.
+
+
+=== Validation results ===
+
+
+Two full-month (Aug and Dec 2005) data assimilation runs using the reference 6.4.4 have been performed, the results are compared to the equivalent runs using 6.4.1 (= 6.4). 
+
+[[Image(6416440508ewgsurf.png, 120px)]] [[br]]
+Surface observation verification (rms and bias) for EWGLAM area, '''200508'''
+
+[[Image(6416440508ewgupper.png, 120px)]] [[br]]
+Upper air observation verification for EWGLAM area, '''200508'''
+
+[[Image(6416440508ewgts.png, 120px)]] [[br]]
+Daily averaged surface observation verification (STD and bias) for EWGLAM area, '''200508'''
+
+Surface observation verification for EWGLAM area, '''200512'''
+
+Upper air observation verification for EWGLAM area, '''200512'''
+
+[[Image(6416440512ewgts.png, 120px)]] [[br]]
+Daily averaged surface observation verification for EWGLAM area, '''200512'''
+[[PageOutline]]
+
+From the averaged observation verification for EWGLAM station-list in form of key parameter rms/bias for upper air (Aug 2005, Dec 2005) and for upper air (Aug 2005, Dec 2005), the daily averaged std/bias for Aug 2005 and Dec 2005 for surface parameters and the precipitation contingency table for Aug 2005 and Dec 2005, it is concluded that the latest HIRLAM version improves model forecast skills, especially in root-mean-square errors of almost all key parameters. The improvement over Greenland area (rms+bias for two months; (daily averaged 24 h forecast error time series for surface parameters for Aug and Dec 2005)  is especially significant, presumably due mostly to the re-forecast scheme.)
+
+
+[[Image(64164405080512GRsurf.png, 120px)]] [[br]]
+Surface observation verification for Greenland area, '''200508+200512'''
+
+[[Image(64164405080512GRupper.png, 120px)]] [[br]]
+Upper air observation verification for Greenland area, '''200508+200512'''
+
+[[PageOutline]]
+
+[[Image(6416440508GRts.png, 120px)]] [[br]]
+Daily averaged surface observation verification for Greenland area, '''200508'''
+
+[[Image(6416440512GRts.png, 120px)]] [[br]]
+Daily averaged surface observation verification for Greenland area, '''200512'''
+
+The 6.4.4 validation results have also been compared to a corresponding run using 6.4.3 for a two week episode. The results with observation verification suggest same conclusion, that is, the introduction of LSMIX and ATOVS improves model skills.
+
+Note that in the above test results,  the skill improvement associated with the introduction of large scale blending scheme may have been limited due to two reasons. First the operational suite has access to the ECMWF analysis and boundary data 4 times a day, instead of 2 times a day in the current case at the ECMWF platform;  Second the current reference system only makes use of a very coarse reslution ECMWF analysis (1.5 degree at minimium), compared to a typical case with 0,5 deree in operational suites. Both should results in even better results in this connection.
+
+Further comparison results validating 6.4.4 against 6.4 will be soon made available from the comparison done within the FMI-RCR framework.
+
+'''ATOVS AMSU-A data''': Two one month tests, one for June 2005 and another for Oct 2005,  have been run. For the first  period (June 2005), the reference system 6.4 was used in the validation, for the second episode, version 6.4.2 was used. [[BR]]
+
+'''10m Synop Wind''': the meteorological impact has been shown in several tests using Release 6.3.8. A description of the results is to appear in Hirlam Newsletter 50. Code tests have been performed with a merged version over 6.4.3. From Alberto's parallel test using 6.3.8, he noted improvements in wind speed at all levels, no changes in surface parameters and slight improvements in relative humidity in high and medium levels. At the same time, he noted slight worsening of scores in temperature and RH2m for lower levels. The scores in geopotential heights are comparable. From innovations of u and v components in both 3D-VAR  and 4D-VAR tests, a slightly positive impact is seen for the use of 10m wind obs.[[BR]]
+
+'''GPS slant delay''' : The code updates have been validated through comparisons between modeled and observed slant delays. In addition, the tangent-linear and adjoint codes have been tested. The assimilation increments in a hypothetical data experiment have been checked; these tests are based on hl_vn 6.3.7.
+
+[[BR]]
+[[PageOutline]]
+== Technical Evaluation ==
+
+=== Tested Architecture ===
+
+||tested version||computer platform||testers||
+|| 7.0 || ECMWF-HPCD || Xiaohua Yang ||
+|| 7.0rc1 || ECMWF-HPCD || Xiaohua Yang,Kai Sattler ||
+|| 7.0beta1 || ECMWF-HPCD || Xiaohua Yang,Kalle Eerola,Kai Sattler,Ole Vignes ||
+|| 7.0 || Debian GNU/Linux AMD64, Athlon 64, gfortran 4.1 || Toon Moene ||
+|| 7.0rc1 || kbuntu Linux, intel, gfortran 4.1 || Xiaohua Yang ||
+|| 6.4.4 || SGI-ATIX || FMI, Kalle Eerola ||
+||   || Linux Cluster|| SMHI ||
+|| 6.4.4 || NEC-SX6|| DMI compilation, Maryanne Kmit[[FootNote(compilation only)]]||
+ [[FootNote]]
+
+=== Tested model domains ===
+
+||model||grid-mesh||resolution||
+||T50[[FootNote(On LinuxPC by Xiaohua Yang)]]||50x50x40||1.25d||
+||T114[[FootNote(On LinuxPC by Xiaohua Yang)]]||114x100x40||0.5d||
+||T166[[FootNote(On LinuxPC by Toon Moene, using the up-till-March-2002 KNMI domain)]]||166x130x31||0.5d||
+||SMHI-C22||306x306x40||0.2d||
+||RCR 7.0[[FootNote(For the default reference domain up to 7.0)]]||438x336x40||0.2d||
+||RCR 7.1[[FootNote(For the targeted reference domain with 7.1)]]||582x448x60||0.15d||
+||DMI-T15||610x586x40||0.15d||
+||INM-ONR||582x424x40||0.16d||
+||INM-BIG[[FootNote(For Jose Antonio's large domain, high resolution test)]]||1158x878x60||0.08d||
+ [[FootNote]]
+
+=== Computation cost === 
+
+
+'''3D-VAR'''
+
+||model||tested 7.0 release||platform||nr of node,processors||plen||elapse time||Billing unit||
+||T50||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||1,1,1||7e5||110-217s||-||
+||T114||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||1,1,1||7e5||160-300s||-||
+||T166||7.0||PcLinux[[FootNote(HP Pavillion zv6025EA, 2 Ghz Athlon 64, using fftw3)]]||1,1,1||3e6||108-176s||-||
+||RCR 7.0[[FootNote(For the default reference domain up to 7.0)]]||6.4.4||HPCD||1,16,16||7e6||108s||3.6||
+||RCR 7.0[[FootNote(For the default reference domain up to 7.0)]]||7.0||HPCD||1,32,32||7e5||80s||5-6||
+||RCR 7.0[[FootNote(For the default reference domain up to 7.0)]]
+||7.0.1||HPCD||1,32,32||7e5||79s||5-6||
+||7.0.1||HPCE||2,16,32||7e5||53s-63s||6-7||
+||RCR 7.1[[FootNote(For the targeted reference domain with 7.1)]]||7.0rc1||HPCD||1,32,32||7e5||170s||12||
+||SMHI-C22||6.4.4[[FootNote(with modification)]]||HPCD||1,32,32||7e5||64s||4.4||
+||DMI-T15||6.4.4[[FootNote(with modification)]]||HPCD||2,32,64||4e5||123s||16.8||
+||INM-ONR||6.4.4[[FootNote(with modification)]]||HPCD||1,32,32||7e5||111s||7.6||
+||INM-BIG||6.4.4[[FootNote(with modification)]]||HPCD||2,32,64||7e5||460s||62||
+ [[FootNote]]
+
+[[BR]]
+
+'''4D-VAR'''
+
+||model||tested 7.0 release||platform||simplified phys||structure function||nr of node,processors||plen||elapse time||Billing unit||
+||T50||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||MFSP2||analytic||1,1,1||7e5||1200s||-||
+||T114||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||MFSP2||analytic||1,1,1||7e5||5000s||-||
+||T166||7.0||PcLinux[[FootNote(HP Pavillion zv6025EA, 2 Ghz Athlon 64, using fftw3)]]||BUIZZA||analytic||1,1,1||3e6||2200-2400s||-||
+||RCR 7.0||6.4.4||HPCD||BUIZZA||analytic||1,32,32||7e6||1154s||78||
+||RCR 7.0||6.4.4[[FootNote(with modification)]]||HPCD||MFSP1||analytic||1,32,32||7e5||1200-1600s||88-113||
+||RCR 7.0||7.0||HPCD||MFSP2||analytic||1,32,32||7e5||1300-1600s||86-110||
+||RCR 7.1||6.4.4[[FootNote(with modification)]]||HPCD||BUIZZA||analytic||2,32,64||7e5||1971s||262||
+||SMHI-C22||6.4.4[[FootNote(with modification)]]||HPCD||BUIZZA||analytic||1,32,32||7e5||740s||69||
+||INM-ONR||6.4.4[[FootNote(with modification)]]||HPCD||BUIZZA||statistic||1,32,32||7e6||1836s||125||
+||INM-ONR||6.4.4[[FootNote(with modification)]]||HPCD||BUIZZA||statistic||2,32,32||7e5||1400s||190||
+||DMI-T15||6.4.4[[FootNote(with modification)]]||HPCD||BUIZZA||analytic||2,32,64||4e5||2170s||295||
+||INM-BIG||6.4.4[[FootNote(with modification)]]||HPCD||MFSP2||analytic||4,32,128||7e5||crashed||crashed||
+ [[FootNote]]
+
+[[BR]]
+
+'''Forecast'''
+
+||domain||tested 7.0 release||platform||nr of nodes||nprocx||nprocy||ncpu_hgs||nhalo||time step||elapsed time per step||48 h Forecast elapsed time||Forecast Billing cost||
+||T50||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||1||1||1||0||6||900s||2s||220-255s[[FootNote(12h forecast)]]||-||
+||T114||7.0rc1||PcLinux[[FootNote(Dell Latitude D410)]]||1||1||1||0||6||900s||10s||1100s[[FootNote(12h forecast)]]||-||
+||T166||7.0||PcLinux[[FootNote(HP Pavillion zv6025EA, 2 Ghz Athlon 64)]]||1||1||1||0||6||900s||12.1s||2700s||-||
+||SMHI-C22||6.4.4[[FootNote(with modification)]]||HPCD||1||7||9||1||6||450s||0.8s||385s||54||
+||RCR 7.0||6.4.4[[FootNote(with modification)]]||HPCD||2||7||9||1||6||450s||1.35s||574s||78||
+||RCR 7.0||7.0||HPCD||2||7||9||1||6||450s||1.3s||605s||82||
+||RCR 7.0||7.0.1||HPCE||3||8||11||2||6||450s||0.56s-1.1s||525s||91||
+||RCR 7.0||7.0.1||HPCD||2||7||9||1||6||450s||1.3s||606s||83||
+||RCR 7.0||7.0.1||HPCE||2||6||10||2||6||450s||0.81s||731s||85||
+||RCR 7.0||7.0.1||HPCE||4||7||17||1||6||450s||0.42s||397s||92||
+||RCR 7.1||7.0rc1||HPCD||2||7||9||1||6||450s||3.9s||1420s||290||
+||INM-ONR||6.4.4[[FootNote(with modification)]]||HPCD||2||7||9||1||6||450s||2.58s||1065s||145||
+||DMI-T15||6.4.4[[FootNote(with modification)]]||HPCD||3||5||19||1||7||450s||2.15s||1017s||207||
+||INM-BIG||6.4.4[[FootNote(with modification)]]||HPCD||6||12||16||0||8||240s||5.16s||5050s||2053||
+||INM-BIG||7.0beta1[[FootNote(with modification)]]||HPCD||3||5||19||1||10||360s||10.5s||6005s||1222||
+ [[FootNote]]
+
+[[BR]]
+
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+
+

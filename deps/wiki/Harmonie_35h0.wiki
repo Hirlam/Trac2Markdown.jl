@@ -1,0 +1,77 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 35h0''' ==
+ (UNDER DEVELOPMENT)
+[[Center(end)]]
+
+== Highlights of Harmonie 35h0 ==
+
+Harmonie 35h0 is currently under development, it is an HARMONIE system adaptation to the IFS/ALADIN  cycle 35.
+
+HARMONIE is the acronym for Hirlam's meso-scale forecast system (Hirlam Aladin Regional/Meso-scale Operational NWP In Europe). The HARMONIE system is the product of the HIRLAM-ALADIN joint project HARMONIE: Hirlam-Aladin Research towards Meso-scale Operational NWP in Europe.
+
+The highlights of Harmonie 35h0 include
+ * features in cycle 35
+ * Hirlam source code updates
+ * Hirlam scripts update
+
+== Source code and script updates in Harmonie-35h0 ==
+
+
+
+
+== Harmonie-35h0 source code downloads ==
+
+=== Default experiment configuration and available alternatives ===
+
+=== Configure and Launch Harmonie experiments from ECMWF-ecgate ===
+
+=== Build HARMONIE ROOTPACK on non-ECMWF platforms ===
+
+=== Performing model inter-comparison using Harmonie verification tools ===
+
+
+== Technical aspects with 35h0 ==
+
+=== Tested HARMONIE model configurations, components  ===
+
+COLOR SCHEME: GREEN for 'TESTED' and RED for 'TO BE TESTED'
+
+|| Check of components || model || domain ||platform||  configurations etc. || cycling || reported status || reporters ||
+|| build || [[Color(red, gmkpack, rootpack, target pack)]] ||   || [[Color(red, ECMWF, DMI,met.no,FMI)]],[[Color(green, SMHI)]] ||  || || tested || ||
+|| climate generation ||  || [[Color(red, SCANDINAVIA, RCR_POLAR, FINLAND_SOUTH, TEST_2.5, DENMARK )]] || [[Color(red, ECMWF, SMHI, DMI)]] || || || ||
+|| Boundary coupling || [[Color(red, ifs2ald,hir2ald,ald2aro,ifs2aro,hir2aro )]]  || [[Color(red, SCANDINAVIA,RCR_POLAR, DENMARK, FINLAND_SOUTH)]] || [[Color(red, ECMWF, DMI, SMHI, met.no, FMI)]]  ||  || ||  ||  ||
+|| forecast || [[Color(red, ALADIN, ALARO )]] || [[Color(red, SCANDINAVIA, RCR_POLAR )]] || ECMWF, SMHI  || MF/ALARO physics,hydrostatic  ||  || || ||
+|| forecast || [[Color(red, AROME)]]  || [[Color(red, TEST_2.5)]]   || ECMWF || AROME physics,nonhydrostatic. || 24h forecast ||  ||   ||
+|| data assimilation, 3DVAR+Canari || [[Color(red, ALADIN )]]  || [[Color(red, SCANDINAVIA,RCR_POLAR )]] || [[Color(red, ECMWF, DMI, SMHI, FMI,met.no )]]  ||  synop+airep+dribu+ pilot+amsu-A/B+scatterometer || 2 consecutive cycles ||  ||||
+
+|| post-processing || [[Color(red, gl, monitor )]] || [[Color(red, SCANDINAVIA,RCR_POLAR )]], [[Color(red, TEST_2.5 and FINLAND_SOUTH (gl,Fullpos,fldextr))]] || [[Color(red, ECMWF )]]  ||  data archiving; verification || multi cycles || tested ||  ||
+|| documentation ||  ||    || [[Color(red, hirlam.org wiki )]]  ||  [[Color(red, release notes, list of new features )]], HOWTO, technical test data || ||  ||   ||
+
+=== Technical Information about the tested HARMONIE 33h1 configurations and components  ===
+
+|| model domain || computer platform || model || grid || tested configurations || nr of nodes || nr of tasks per nodes || total elapse time || Billing costs || reporter and last experiment date ||
+
+||  || ecgate/HPCE || AROMODB || master build|| || 1 || 1 ||   ||  ||   ||
+||  || DMI XT4 || AROMODB || master build|| ||   ||   ||   || ||   ||
+||  || SMHI clustre || AROMODB || master build|| ||   ||   ||   || ||   ||
+|| SCANDINAVIA with HIRLAM_60 || HPCE || ALADIN 12 h Forecast ||   ||   ||   ||   ||   || || ||
+|| SCANDINAVIA with HIRLAM_60 || HPCE || ALADIN  Surf Ana ||   ||  ||    ||  ||  ||   ||   ||
+|| SCANDINAVIA with HIRLAM_60 || HPCE || ALADIN 3DVAR ||   ||  ||    ||  ||  ||   ||   ||
+|| RCR_POLAR with HIRLAM_60 || HPCE || ALARO 12 h Forecast ||   ||  ||    ||  ||  ||   ||   ||
+|| RCR_POLAR with HIRLAM_60 || HPCE || ALADIN Surf Ana ||   ||  ||    ||  ||  ||   ||   ||
+|| RCR_POLAR with HIRLAM_60 || HPCE || ALADIN 3DVAR ||   ||  ||    ||  ||  ||   ||   ||
+|| DENMARK with HIRLAM_60 || HPCE || AROME 12 h forecast ||  ||  ||    ||  ||  ||   ||   ||
+
+
+
+ [[FootNote]]
+
+== Acknowledgement ==
+
+== References and documentation ==
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]''

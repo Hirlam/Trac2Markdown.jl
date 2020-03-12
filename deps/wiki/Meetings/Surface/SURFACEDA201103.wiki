@@ -1,0 +1,10 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''SURFACE DA Meeting on Nordic Aspects''' =
+''FMI, Helsinki, 9-11 March 2011''
+
+Please find the presentations and report linked to the working week programme at http://atmos.physic.ut.ee/~muscaten/index_files/course.htm  : previous workshops, surface data assimilation working days, press the link summary and presentations.
+
+Last modified [[LastModified]]
+[[Center(end)]]
+

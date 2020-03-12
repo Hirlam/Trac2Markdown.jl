@@ -1,0 +1,236 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on retrieval data''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Fourth meeting: 15 December 2017, 14:00 CET ==
+
+== Participants ==
+ 
+ * Mihal Nestiak
+ * Eoin Whelan 
+ * Jana Sanchez Arriola
+ * Maria Diez
+ * Carlos Geijo
+ * Martin Ridal 
+ * Siebren de Haan
+ * Jana Sanchez
+ * Isabel Monteiro
+ * Roel Stappers
+ * Roohollah Azad
+ * Teresa Valkonen
+ * Harald Schyberg
+ * Sigurdur Thorsteinsson 
+ * Erik Gregow
+ * Roger Randriamampianina 
+
+== Topics of the day: ==
+
+**AMV – atmospheric motion vectors: **[[BR]]
+ * **Roger** informed the attendees that he found positive impact of the AMV data on rapid refresh scheme using the MetCoOp model. **Erik** will assimilate the AMV data in MetCoOp with earlier observations (with the ones taken from Vilje HPC and provided by Roger) in 38h1.2. He plans to move to cycle 40 later. **Erik** said that he would like to get in touch with all colleagues working with AMV. **Roger** mentioned that he will update the trunk and the howTo wiki with polar wind assimilation.[[BR]]
+
+ * **Sigurdur** talked about the problem of monitoring of AMV data in passive way. Controlling this process through mf_blacklist.b puts the AMV data in blacklist also.[[BR]]
+
+**ASCAT data **[[BR]]
+ * **Siebren** said that, at KNMI, the next operational suit will use the ASCAT data. They are also testing the ASCAT data in 4DVar with cycle 40.[[BR]]
+ * **Florian** mentioned they are using the ASCAT data, but he haven't checked yet the impact of these data.[[BR]]
+ * **Isabel** found neutral to positive impact of the ASCAT data over ocean, when testing them, using CY40, over the Spanish Iberian domain.[[BR]]
+
+**GPS ZTD: **[[BR]]
+ * In continuation of the problem related to the bias correction of GPS-ZTD (the convergence of the bias at the assimilation times without radiosondes data was not so good), **Jana** tried to update the GPS-ZTD coefficients only twice a day and only when radiosonde data are available (00 and 12 UTC). By moving to this way of updating the VarBC, she could find better impact on precipitation. Also, better impact was found when more radiances data are available in the DA. She also found a diurnal cycle of the bias. **Roger** said that Mate Mile informed him that in Hungary they use only the off-set part of VraBC to correct bias of GPS-ZTD.
+
+**GPS Gradients in ZTD**: [[BR]]
+ - Not discussed. [[BR]]
+
+**GPS STD: **[[BR]]
+ * **Siebren** said that they are porting the necessary code to CY40 and test the assimilation of the GPS-STD in 4DVar. **Roger** asked: when the additional code be seen in the trunk? **Siebren** said that the code is not yet ready to be shared. Too many comments in the codes. He promised to make the code ready for testing to other in May 2018. [[BR]]
+ * **Jana** was keen test "the not fully ready code" with 3DVar. It was said that the code will be also ready to be tested with 3DVar in CY40. **Eoin** will be happy to put into the DA branch "the not fully ready code" for testing.[[BR]]
+
+**GPS RO**: [[BR]]
+ * **Mats**, who didn't attend the meeting but asked by Roger, reported that he is running experiments to check the impact of GPS RO on VarBC. The DFS estimates show very good impact of GPS RO data on the analysis.
+ * The observation value (refractivity vs bending angle) was also discussed. Experts (like for ex. Sean Healy) will be contacted regarding this question. Today, the bending angle is used at DMI, but probably the use of refrectivity can be more advantageous for low top model like the HARMONIE-Arome.
+
+**ADM Aeolus: **
+ * **Roger** informed the participants about the project started at MET Norway, which deals with the CAL/VAL of the simulated observations. **Roohollah and Roger** are in touch with Meteo France colleagues (Vivien Pourret and Frank Guillaume) regarding the needed update for handling of the ADM Aeolus data in our models. Vivien made the necessary update to CY43, but these modifications are not seen in the code we have got from Meteo France. **Eoin** said that he will be happy to help to put the data into ODB from BUFR.  
+
+**Cloud initialisation:**
+ * **Erik** added two more experiments (to the four already done). The cloud initialisation is done after the analysis and the experiments were done with CY38. **Erik and Magnus** are providing the code to CY40. **Erik** showed improvement in radiation and cloud forecast when using the additional initialisation scheme. But, in the upper-air, slightly worse score in observed at lower troposphere. Probably, this is the consequence of low quality of the definition of the cloud base. Until now, Erik tested two kinds of cloud base products: 1) interpolated synop observations; and 2) first guess-based information. The two products have pros and cons. Probably more cons. At SMHI, they are looking for product from the MESAN (combining 1) and 2) ).
+ * **Siebren** added that they implemented this technique in HIRLAM model with 11 km resolution, where the representation of cloud base by SYNOP observation was good enough, while this is not true for high resolution model like the HARMONIE-Arome.
+ * **Mihal** said that it is worth to distinguish manual SYNOP from automatic ones. They have slightly different quality.
+ * **Carlos** said that in EUMETSAT cloud mask data there should be information about cloud base estimate. This is worth to check in the real-time data from EUMETSAT. 
+ * **Carlos** continued his explanation with the following mail: "Regarding the cloud-base products. What i wanted to say is that, at the CM-SAF (ClimateSAF, leading institue DWD), they have a product for Downward Longwave Irradiance at surface level, and that in order to produce this kind of product cloud-base estimates are necessary. In fact, in 2002-2003, when i collaborated with CM-SAF, i worked on this Longwave Irradiance retrievals. Another thing is that they also offer cloud-base product as such. It can be that only the Irradiance is in the catalogue. But if they were asked, maybe they could provide this parameter along with the rest of cloud products. At that time, the OSI-SAF (MeteoFrance) had also another way of estimating this cloud-base parameter, based on observed cloud-type and cloud-albedo. By means of RT simulations they obtained regressions that seemed to work well. One of the tasks was to compare both ways, OSI-SAF and CM-SAF, which at that time was a more crude approach, based on climatology."
+
+====================================================
+
+== Third meeting: 27 March 2017, 10:00 CET ==
+
+== Participants ==
+
+ * Mats Dahlbom 
+ * Bjarne Amstrup
+ * Eoin Whelan 
+ * Jana Sanchez Arriola
+ * Martin Ridal 
+ * Magnus Lindskog
+ * Siebren de Haan
+ * Jeanette Onvlee
+ * Jana Sanchez
+ * Isabel Monteiro
+ * Roger Randriamampianina 
+
+== Topics of the day: ==
+
+**AMV – atmospheric motion vectors: **[[BR]]
+ -**Roger** Informed that they have written a final report about their study with EUMETSAT produced, locally produced and polar satellite based AMV data. They made study with both 3-hourly cycling and rapid refresh assimilation systems. The report will be available in this minutes. [[BR]]
+
+**Action 1:** **Roger** to set up ftp server for real-time distribution of the locally produced high resolution winds. [[BR]]
+ 
+ - **Mats** mentioned that at DMI they are able to use only few observations with close to neutral impact. [[BR]]
+ - **!MetCoOp** have plan to test the AMV data.
+ 
+ 
+**ASCAT:** [[BR]]
+ - **KNMI** have plan to use the ASCAT data in their next operational system. **Siebren** mentioned that they have new project, which aims at studying the impact of different observations, including ASCAT, in 4D-VAR. [[BR]]
+ - **Roger** informed that **Teresa** is working on the assimilation of ASCAT data in a coupled atmosphere-wave system. Due to problem related to the setup of the coupled system this study is delayed. [[BR]]
+ - **Isabel** asked about the results of ASCAT data at MET Norway. **Roger** mentioned that the ASCAT data are assimilated operationally in both AROME-!MetCoOp and AROME-Arctic. Isabel informed that she is doing experiments with conventional, ASCAT and OSCAT surface winds using the Harmonie system and on the ECMWF platform. [[BR]]
+ 
+
+**GPS ZTD: **[[BR]]
+ - **Magnus** informed that with **Martin** and **Sigurdur**, they studied the impact of the updated GNAA observations. They tested the following settings: 1) use of one versus more predictors; 2) different thinning distances; and 3) use of improved background errors. While 1) provides moderate positive impact, 2) provide positive, but they observed problem related to remaining bias at lower model levels. 3) gives positive impact. [[BR]]
+ - **Siebren** mentioned that they have plan to compare the impact of GPS ZTD against GPS slant delay in the near future. [[BR]]
+ 
+ - **Jana** informed that at AEMET they use 50 km thinning distance in the pre-operational run with the ATOVS radiances. As next task, they would like to tune the observation errors of the ZTD observations. [[BR]]
+
+**GPS Gradients in ZTD**: [[BR]]
+ - Not discussed. [[BR]]
+
+**GPS STD: **[[BR]]
+- **Siebren** [https://hirlam.org/trac/attachment/wiki/HarmonieVideoMeetings/Retrieval_data_assimilation/FWS-WG2-SdH.pptx presented] the updated observation operator for STD. He made a 10 days observation usage monitoring. He found out that his setup uses 5% of STD observations. The statistics of O-B and O-A look good. Verification of a short period run against observations shows positive impact up 9 – 12 hour forecasts. Impact on humidity is negative on bias. [[BR]]
+ - ** Siebren** showed case studies comparing 2,5 km, 1 km models with radar observations. He showed that STD have clear local effect/impact. He also mentioned that signature on precipitation forecasts is well seen throughout series of forecasts. He plans to do longer test with STD observations from Germany and Belgium using June 2016. 
+ - Next plan is to insert the STD data into E-GVAP real-time system. [[BR]]
+
+** GPS RO**: [[BR]]
+ - **Mats** informed that DMI is running OSEs now also with GPS RO. Running hindcast experiments allow access to more observation compared to real-time access. They expect a indirect impact of GPS RO also on radiances assimilation. [[BR]]
+ - **Magnus** answered to question from Roger that in !MetCoOp Mode-S data have higher priority than GPS RO. [[BR]]
+
+
+
+========================================================================
+
+
+== Second meeting: 16 September 2016, 10:00 CET ==
+
+== Participants ==
+
+ * Angeles Hernandez 
+ * Mats Dahlbom 
+ * Bjarne Amstrup
+ * Eoin Whelan 
+ * Gert-Jan Marseille  
+ * Sigurður Þorsteinsson 
+ * Mate Mile 
+ * Roohollah Azad  
+ * Teresa Valkonen
+ * Roel Stappers
+ * Jana Sanchez Arriola
+ * Martin Ridal 
+ * MAgnus Lindskog
+ * Michal Nestiak
+ * Siebren de Haan
+ * Jean-François Mahfouf
+ * Roger Randriamampianina 
+
+== Topics of the day: ==
+
+**Actions from the previous meeting**: 
+ -**Action-1** is done and closed. Although Jean-Francois promised to send more info about the MF setup (??).
+
+**AMV – atmospheric motion vectors: **[[BR]]
+ -**Roger** shortly presented the results of their study on using Geostationary (both locally produced and those produced at EUMETSAT) and polar AMVs. He mentioned that clear positive impact was found when both geo- and polar winds are assimilated together in the AROME-!MetCoOp model. Concerning the geowinds, more clear impact is observed in the combination with the locally produced winds. They decided to check the impact on summer period and July 2016 was chosen for that study. The thinning 45 (final)/25 (minimum) km.[[BR]]
+ -**Angeles** mentioned that she had brought issues to the 13th International Winds Workshop (which took place last June) that she considers particularly important for the assimilation of AMVs in mesoscale NWP. One of these is the time of the Meteosat-10 AMVs produced and disseminated from EUMETSAT. These AMVs are hourly, but the time is always HH:30, not HH:00. She said it is important in her view (as with other observations or retrievals) that the time is the same or close to the time of the analysis (if possible, which luckily is the case with GEO AMVs). As recommended by the EUMETSAT experts in the Workshop, she made an official request to EUMETSAT through AEMET representative in the EUMETSAT Operations meeting that took place on 8-9 Sep, i.e. the week before this video meeting. She had informed colleagues in HIRLAM and Meteo-France before the EUMETSAT meeting, for information and to invite them to back the request. [[BR]]
+ -**Angeles** informed that there is work in progress regarding a new BUFR template for AMVs, common to all producers (she is in the group working on this). The idea is to have a BUFR template flexible enough to accommodate (current and near future) information from all AMV producers, so that it is usable for several years ahead. [[BR]]
+ -At last winds conference, the possibility of asking EUMETSAT to produce high resolution winds (locally -- HRW) was mentioned.[[BR]] 
+ -**Jean-Francois** informed us that MF implemented the use of zenith angle (62 deg.) threshold instead of latitudinal (50 deg.). This will open more possibility of using more obs in the analysis.[[BR]]
+ 
+ 
+**ASCAT:** [[BR]]
+ -**Teresa** mentioned that their paper on the use of ASCAT in !MetCoOp model is published. ASCAT data are used in both AROME-!MetCoOp and AROME-Arctic models.[[BR]]
+ -**Teresa** presented her plan on using the ASCAT data in a coupled Wave-Atmospheric system. The motivation is based on the fact that the errors (for ex. bias) is less in the coupled system. ECMWF is also observing the same impact of coupled system.[[BR]]
+ -**Gert-Jan** mentioned that ASCAT impact is well seen in the bias of strong winds and the impact of ASCAT is good for short lead time and get lost for longer lead times.[[BR]]
+ -**Jean-Francois** mentioned that they observe more impact of ASCAT on global model. Probably SURFEX is playing role in the impact seen at 10m wind (??)?.[[BR]]
+ -**Magnus** reported the issue observed in the computation of absolute and relative DFS for ASCAT. This can come from the fact that all ambiguities are present in the ODB causing triple or quadruple of the normal value computed.[[BR]]
+ 
+
+**GPS ZTD: **[[BR]]
+ -Merging VarBC works and it's in the trunk waiting for the next release.[[BR]]
+ -**About additional predictors for GPS ZTD**: Hungary uses 0, 3 and 4, while MF and HIRLAM use 0, 1 and 4. Hungary did not face yet the problem of merging since their test did not use radiances so far next to GPS ZTD. At MF more predictor is OK in both AROME and ARPEGE.[[BR]]
+ -**Magnus** commented that the VarBC impacts the neighbouring stations.[[BR]]
+ -**Magnus** presented the results of their test with the updated NGAA data. The used one month period, but roughly 100km thinned data. The impact is rather neutral than slightly negative for certain parameters.[[BR]]
+ -**Jana** reported that a 1,5 month impact study with 60 km thinning of data, 40h1.1 plus HARATU show positive impact. In this experiment, only the off-set was used in VarBC.[[BR]]
+
+**GPS Gradients in ZTD**:
+ -Meteo France started activities in collaboration with Morocco.
+
+**GPS STD: **[[BR]]
+ -**Siebren** reported that the obs operator is in good shape. It uses distributed memory. Monitoring using dataset for 2 weeks (roughly 400 sites), where most of them look good.[[BR]]
+ -There was long discussion on the behaviour of the cost function with STD, because of the increase at the beginning and reduction starts from the second iteration. **Jelena** commented that the problem can be a consequence of biased data or normalisation of the gradient (??). **Claude** suggested to look at the obs errors (sigma-o) if they are well set.[[BR]]
+ -**Claude** asked about the decision on thinning. **Siebren** said that so far there is no thinning applied.[[BR]]
+ -One single satellite and site can provide 10-12 profiles.[[BR]]
+ -Now the system is using the "normal" (no x by 100) value of the B matrix.[[BR]]
+ -The VarBC for STD will come as next task, so far.[[BR]]
+
+
+
+
+========================================================================
+
+
+== First meeting: 1rst April 2016, 10:00 CET ==
+
+== Participants ==
+
+ * Angeles Hernandez 
+ * Mats Dahlbom 
+ * Eoin Whelan 
+ * Gert-Jan Marseille 
+ * Jelena Bojarova 
+ * Sigurður Þorsteinsson 
+ * Mate Mile 
+ * Roohollah Azad 
+ * Harald Schyberg 
+ * Teresa Valkonen
+ * Jana Sanchez Arriola
+ * Martin Ridal 
+ * Michal Nestiak
+ * Jean-François Mahfouf
+ * Roger Randriamampianina 
+
+== Topics of the day: ==
+
+**AMV – atmospheric motion vectors: **[[BR]]
+ – **Mate** reported that OMSZ (Hungary) uses MPEF (EUMETSAT produced data) in operational in Aladin model. But, tested both MPEF and high resolution winds (produced using SAF-NWC package) in the AROME model. He reported positive impact of AMV data on precipitation forecast. [[BR]]
+ – One need to modify Bator to use both winds data at the same time.[[BR]]
+ – **Roger** reported that at MET Norway, they are working with types of AMV data: MPEF, HRW, and polar (produced by EUMETSAT using dual Metop (B and A) satellites) winds. They also found promising impact of these data in both the AROME-!MetCoOp and AROME-Arctic models. The Bator was modified in Harmonie to make these data extracted and assimilated.[[BR]]
+ – MF commented that they don't use polar winds, because the impact of these data in their earlier studies was not good enough.[[BR]]
+ – **Michal** pointed that rapid scan data can be good for AMV retrieval.[[BR]]
+ – **Angeles** (AEMET) expressed that they are interested to use the AMV data. She mentioned that MARS AMV data is not extracted in Harmonie.[[BR]]
+ – Accounting the good performance of averaging in model space in case of ASCAT, Angeles mentioned that accounting for footprint resolution (retrieval resolution) in model space can be also beneficial for AMV data assimilation.[[BR]]
+
+**ASCAT:** [[BR]]
+ – **Gert-Jan** presented their experiments with the ASCAT data at KNMI. The experiments used ASCAT (from Metop B and A) and conventional observations. They checked both 12.5 and 15 km data. All observations found within 3 hour windows are used. Using 3D-VAR, the impact is lost after 1 – 2 hours. With the HARATU turbulence scheme, using ASCAT data improves the wind forecast.[[BR]]
+ – **Gert-Jan** reported also that averaging in model space improve the statistics of observation-minus-first-guess by 10 – 20 %.[[BR]]
+ – Thinning the ASCAT data with 50 km is better than 100 km.[[BR]]
+ – More SCAT data are coming, for example the Indian ones.[[BR]]
+ – MF uses rapid SCATT since December 2015. There was a period whe they had to blacklist these data, but they are back again in the MF DA system.[[BR]]
+ – At MET Norway ASCAT data were put in operational in both AROME models (MetCoOp and Arctic). The 12.5 km coastal (?) products are used. It was noted that narrowing the assimilation windows improves the impact.[[BR]]
+
+**GPS ZTD: **[[BR]]
+Note that GPS data were also discussed during the meeting on conventional data and COPE.[[BR]]
+ – **Sugurdur** (IMO, Iceland) reported that they are testing more than 26 new GPS stations in there model. No surface pressure at stations is not vital for ZTD retrieval (?).[[BR]]
+ – Testing more predictors in VarBC is problematic in Harmonie, but successful at MF. [[BR]]
+
+**Action1:** to get in touch with Patrick Moll to clarify the possible source of failure with more predictors. (note: this was the situation at the meeting time, this problem is solved in Harmonie). So, Action is closed.[[BR]]
+
+ – **Jana S** reported that in CY40, the handling of white list has changed. It's now done during screening.

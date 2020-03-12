@@ -1,0 +1,42 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Operational HIRLAM RCR Data Archive at ECMWF =
+[[Center(end)]]
+
+=== HIRLAM RCR data archive ===
+The HIRLAM forecast model writes its primary output to history file (fcyyyymmdd_hh+lll), which is designed to be a complete snap shot of the model state described by HIRLAM model for a particular time point ( in even hour). In addition, through specification of namelist NAMPPP more model output including post-processing/diagnostic fields can be written out during the forecast model integration, such as those model diagnostics ( with suffix ''ve'' such as fcyyyymmdd_hh+lllmd),  pressure and single level parameters for field verification and observation verification ( with suffix ''ve'' such as fcyyyymmdd_hh+lllve).
+
+At the HIRLAM reference computer platform ECMWF, up till March 1, 2004, main results of a HIRLAM forecast cycle are archived into a tar file, ARyyyymmdd_hh.tar under ECFS. The files for verification (fc*ve) and the ascii file with verification results (ve*) , are collected into a second tar file, VEyyyymmdd_hh.tar. The lateral boundary files are stored into a third tar file, MFyyyymmdd_hh.tar, which is also archived. These files as well as other older archives can be found in ec:/rui/hirlam/RCRa
+
+For the period after March 1 2004, the reference HIRLAM forecast as conducted operationally at FMI, RCRa, the data archives are maintained in untarred form in the ECMWF's ECFS at address 
+   * ec:/rui/hirlam/RCRa/yyyy/mm/dd/hh    (March 1, 2004 - March 31, 2006) 
+   * ec:/hirlam/RCRa/yyyy/mm/dd/hh         (April 1, 2006 -  ) 
+
+=== Parameter List, GRIB Definition ===
+ * [wiki:HirlamSystemDocumentation/Forecast/Outputlist HIRLAM-7.2 ]
+ * [wiki:HirlamSystemDocumentation/Forecast/Outputlist73  HIRLAM-7.3 ]
+ * [wiki:HirlamSystemDocumentation/Forecast/Outputlist74 HIRLAM-7.4 ]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

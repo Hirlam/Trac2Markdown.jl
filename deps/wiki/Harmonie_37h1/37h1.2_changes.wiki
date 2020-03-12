@@ -1,0 +1,62 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+= Changes between Harmonie 37h1.1 and 37h1.2 =
+[[Center(end)]]
+
+Harmonie 37h1 is HIRLAM's adaptation to the IFS/ALADIN Cycle 37T1 released in June 2011 and the subsequent bugfix versions 1 to 5. On 13th of June 2012, [source:tags/harmonie-37h1.1 harmonie-37h1.1] was tagged as the first official release of cy37h1. The major updates in the current trunk compared to cy37h1.1 are listed below. 
+
+Due to the evolution of the general IFS-ARPEGE code we would like to conclude cy37h1 with a cy37h1.2 during this year. If there are local changes missing below or in the pipeline please make sure they are introduced in the trunk before '''15th of November''' to allow for a final testing before tagging.
+
+[[BR]]
+
+== [wiki:HarmonieSystemDocumentation/EPS/Howto HARMONEPS] ==
+   * Multi physics capabilities
+   * Perturbation of analyses
+
+== [wiki:HarmonieSystemDocumentation/ClimateSimulation Harmonie Climate] ==
+   * Integration of the climate simulation branch [10995]
+   * Treatment of SWI for ERA-interim data as initial condition [10994]
+   * Treatment of RACMO surface data as initial condition
+
+== Surface physics ==
+  * Switch off canopy model over sea/water in SURFEX. [10936]
+  * Optional generation of initial conditions directly through PREP. Controlled by SURFEX_PREP=yes. This is still experimental.
+  * Correct inconsistent LSM treatment between boundary interpolation (gl) and the model [10732]
+  * Correct inconsistent LSM treatment in Climate generation [10731]
+  * Avoid double adjust of temperature due to height differences when generating the surfex initial file. [10817]
+  * Support of offline SURFEX runs. [10720]
+  * Updates to CA coupling to 3MT convection [11064]
+  * Exclude lowest model level from low cloud diagnostics [11072]
+
+== Upper air assimilation ==
+  * LSMIXBC, spectral mixing of host model data prior to 3DVAR set default to yes.
+  * Updated varbc and blacklisting for assimilation of ATOVS.
+  * Integration of RADAR assimilation changes. [11219]
+
+== Surface assimilation ==
+  * Stronger coupling between surface analysis increments of T2M and RH2M and deep soil temperature changes. [10709]
+  * Generalization of surface assimilation code through SODA.
+  * Speedup of SODA(OI_MAIN) through less extensive calls to extrapolation routines. [11146]
+ 
+== Dynamics, coupling ==
+  * Reduce forecast model noise by using native start file (da or blended analysis, first guess) as first LBC. [10951]
+  * Updated settings for ALARO-NH.[11194]
+ 
+== Diagnostics, postprocessing, misc ==
+   * Inline fullpos for more output streams controlled by INLINE_FULLPOS=yes and defined in [source:trunk/harmonie/scr/Setup_inline_postp Setup_inline_postp]
+   * Monitoring of gridpoint and spectral norm time evolution.
+   * Monitoring of CPU time evolution.
+   * Monitoring of surface assimilation increment time evolution.
+   * Several bugfixes in FA to GRIB conversion
+   * Support (experimental ) for FA to NETCDF conversion in gl [11164]
+   * More testbed configurations
+   * Support for reading lfi files in xtool [10991] 
+   * Correction of lambert projection problem for the southern hemisphere in gl. [10800]
+
+== Technical ==
+  * Flexible number of tasks for boundary interpolation through NBDMAX.
+  * Set number of listener tasks to fork by LISTENER_MAXPIDS.
+  * Correction of several out of bounds and portability bugs.
+  * Added configuration files for new platforms
+  * Correct WebgraF web page problem due to a bug in firefox.

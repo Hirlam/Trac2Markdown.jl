@@ -1,0 +1,60 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM SURFEX development from cy43t and onwards''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Background ==
+
+In the phasing of cy43t it turned out to be difficult to include HIRLAM contributions to SURFEX.
+Some HIRLAM SURFEX contributions have entered via the SURFEX repository, e.g. SODA, while some
+HIRLAM SURFEX modifications were made directly in cy40h and never entered the SURFEX repository.
+The latter ones were finally omitted in the phasing of cy43t. We would like to avoid similar situations in the future.
+
+Until now the NWP AROME/SURFEX community has based surface processes on Force-restore and D95 snow scheme but we are
+now looking into how to go for more advanced surface processes like diffusion soil scheme, explicit snow scheme and multi-energy balance.
+Since the SURFEX repository is continuously updated with bug fixes and improvements related to these more advanced processes it becomes
+important for the NWP community to keep us up-to-date with the latest SURFEX versions. If we would only rely on an "old" SURFEX revision
+used to build a cycle we may suffer from bugs that are found and corrected for later.
+Like in the case of cy43t which is build using SURFEX_r3681 (SURFEXv8.0) from 2016-03-16.
+
+== New strategy ==
+
+To solve problems related to new contributions and phasing and to keep us up to date with latest SURFEX development we
+plan to create a NWP branch in the SURFEX repository which will be used as a vendor branch in the NWP system.
+The intention is that all new SURFEX developments by HIRLAM will go via this branch and not at all via the NWP phasing of t-cycles.
+
+With such a branch we can also keep us up to date with latest SURFEX development (bug fixes) by merging trunk changes into the branch.
+
+[https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/SURFEX_after_cy43t/SURFEX_HIRLAM_development.pdf The new strategy is described in this sketch.]
+
+To succeed with this strategy as smoothly as possible it is important that established version control strategies are followed for SURFEX and NWP code/repositories.
+
+== Status == 
+
+ * The new strategy idea was supported by the HIRLAM Management Group in June 2016.
+ * The idea (with reference to this wiki) was circulated by email to Claude Fischer, Yann Seity, Patrick Le Moigne, Daniel Santos, Niko Sokka, Ulf Andrae, and Stéphanie Faroux in November 2016.
+ * The plan by HIRLAM was presented at the HMG/CSSI meeting in Helsinki in April 2017 where NWP representatives from ALADIN/HIRLAM/LACE were present. Claude Fischer decided to bring this strategy by HIRLAM for discussion at Météo-France. It was also discussed if the whole consortia ALADIN/HIRLAM/LACE should all together join behind such a ALADIN/HIRLAM/LACE. Patrick Samuelsson was asked if he is willing to volunteer as a consortia wide coordinator for this strategy if the NWP groups support it. His answer is a preliminary yes.
+
+
+== Suggestion on how HIRLAM NWP SURFEX development should proceed after the release of cy43t ==
+
+ * Identify which revision of SURFEX that was used for cy43t (here named rSURFEXcy43t, which corresponds to revision SURFEX_r3681)
+ * Identify the changes made in SURFEX for cy43t by Météo-France (e.g. ororad) with respect to rSURFEXcy43t (here named SFX+cy43t)
+ * Create a branch in the SURFEX repository based on rSURFEXcy43t (here named SFXHIRLAMbranch )
+ * Commit the SFX+cy43t increments to SFXHIRLAMbranch.
+ * Identify the changes HIRLAM needs in SURFEX to reach cy43h (e.g. SICE) with respect to cy43t (here named SFX+cy43t+cy43h).
+ * Commit the SFX+cy43t+cy43h increments to SFXHIRLAMbranch.
+ * Now use SFXHIRLAMbranch as a vendor branch in cy43h
+ * From here on all contributions from HIRLAM to SURFEX development should go via SFXHIRLAMbranch
+ * In addition, development done in the SURFEX trunk (e.g. bug corrections) can easily be merged into SFXHIRLAMbranch.
+
+In conclusion, by following the suggested development of SFXHIRLAMbranch the intention is that
+
+ * Anyone can identify precisely what is SFX+cy43t, SFX+cy43t+cy43h and additional HIRLAM contributions. 
+ * The Météo-France AROME team can identify precisely what is the HIRLAM contribution to SURFEX with respect to SFX+cy43t.
+ * It will be easier to include HIRLAM SURFEX contributions to next cycle phasing.
+
+All HIRLAM colleagues contributing to SURFEX development should follow the general rules of code development (to be formulated). Local development is of course fine but in the end all development intended for operational use should enter via SFXHIRLAMbranch. Patrick Samuelsson coordinates HIRLAM contributions to SFXHIRLAMbranch.

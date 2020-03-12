@@ -1,0 +1,53 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Hirlam Surface Parameterisation =
+[[Center(end)]]
+
+== '''Introduction''' ==
+== '''Publication''' ==
+
+ The links are outdated, please use search in [http://hirlam.org/index.php?option=com_docman&Itemid=70 DocMan] for old newsletter articles.
+
+ * [https://hirlam.org/open/publications/NewsLetters/49/31_ABa_Urb.pdf ISBA Scheme Performance in High Resolution Modelling for Low Winds Conditions], Alexander Mahura, Baklanov A., Petersen C., Sattler K., Amstrup B. and Nielsen N.W. 
+ * [https://hirlam.org/open/publications/NewsLetters/49/33_STi_Dew.pdf A jump in the Hirlam 2-m dewpoint], Sander Tijm
+ * [https://hirlam.org/open/publications/NewsLetters/49/71_ABa_urf.pdf Approaches for urbanization of DMI-HIRLAM NWP model], Alexander Baklanov, Mahura A., Nielsen N.W. and C.  Petersen, Xiaohua Yang 
+ * [https://hirlam.org/open/publications/NewsLetters/49/92_KEe_sst.pdf The effect of sea surface temperature into the forecasts], Kalle Eerola 
+ * [https://hirlam.org/open/publications/NewsLetters/48/23_MHo_osi.pdf Daily updates of sea surface temperature and sea ice concentration fields based on OSI SAF data in HIRLAM at the Norwegian Meteorological Institute], Mariken Homleid, Jon Albretsen, Steinar Eastwood and Ole Vignes
+ * [https://hirlam.org/open/publications/NewsLetters/48/31_STi_Dew.pdf Problems with the HIRLAM dew point], Sander Tijm
+ * [https://hirlam.org/open/publications/NewsLetters/48/34_TVi_ASM.pdf Modelling of the atmospheric boundary layer over sea], Timo Vihma
+ * [https://hirlam.org/open/publications/NewsLetters/47/Nordicproblems.pdf The Nordic temperature problems], Sander Tijm
+ * [https://hirlam.org/open/publications/NewsLetters/44/ModifiedroughnessISBA.pdf  Modified roughness in ISBA and validation of CBR updates], Wim de Rooy
+ * [https://hirlam.org/open/publications/NewsLetters/43/freezing.pdf Comparison of two algorithms to simulate the effect of soil moisture freezing and thawing on the energy balance], J.A. Parodi, Ernesto Rodriguez and Beatriz Navascues
+ * [https://hirlam.org/open/publications/NewsLetters/41/ISBA_update.pdf ISBA tests in a Nordic area - an update], Simo Jarvenoja
+ * [https://hirlam.org/open/publications/NewsLetters/40/coup.pdf Coupled atmosphere-wave model for FMI and FIMR], Simo Jarvenoja and Laura Tuomi
+ * [https://hirlam.org/open/publications/NewsLetters/39/t2m.pdf HIRLAM T2m problems], Sander Tijm, Wim de Rooy, Cisco de Bruijn, Han The, Toon Moene and Bart van den Hurk
+ * [https://hirlam.org/open/publications/NewsLetters/38/14ASM2001_texto.pdf The ISBA scheme for HIRLAM-5: latest results prior to the operational implementation], Ernesto Rodriguez, Simo Jarvenoja, Beatriz Navascues and Juan Jose Ayuso
+ * [https://hirlam.org/open/publications/NewsLetters/38/18VPe_hir_newsletter.pdf Implementation of a new parameterisation of the surface turbulent fluxes for stable stratification in the 3-D HIRLAM], Veniamin Perov
+ * [https://hirlam.org/open/publications/NewsLetters/37/Zilitinkevich.pdf Calculation techniques of near-surface turbulent fluxes in stable stratification for numerical weather prediction models], Zilitinkevich, S.S., V.L. Perov, and C.J. King
+ * [https://hirlam.org/open/publications/NewsLetters/36/BjornBringfelt A land-surface  treatment at the Rossby centre  intended for RCA2], Bjorn Bringfelt,  Jouni Raumisnen, Stefan Gollvik and Anders Ullerstig
+ * [https://hirlam.org/open/publications/NewsLetters/36/CarlFortelius.ps.gz Anomalous evaporation in arid regions], Carl Fortelius
+ * [https://hirlam.org/open/publications/NewsLetters/35/SimoJarvenoja Missing snow cover in the HIRLAM system in winter - A catastrophe or not], Simo Jarvenoja
+== '''Workshop contributions''' ==
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/02_MBe.pdf Representing urban areas in weather forecasting models], Martin Best
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/03_Two.pdf The Meteo-France externalized surface scheme and its integrated physiographical database ECOCLIMAP], Patrick Le Moigne
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/03_Two.pdf Overview of the main physical processes of the externalized surface scheme Hydrological applications], Patrick Le Moigne
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/05_SJa.pdf Problems in predicted HIRLAM T2m in winter and spring at high latitudes], Simo Jarvenoja
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/06_SGo.pdf A new surface scheme for HIRLAM], Stefan Gollvik  
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/10_EKo.pdf Lake model Flake, coupling with atmospheric model: first steps], Ekaterina Kourzeneva
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/12_PSa.pdf The future of the Rossby Centre land surface model], Patrick Samuelsson
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/14_ERo.pdf Further tests with the ECOCLIMAP physiographic database in HIRLAM], Ernesto Rodriguez
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/REs.pdf Parameterization of snow processes], Richard Essery
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/EBa.pdf Improvement of the snow parameterization in ARPEGE/ALADIN], E.Bazile, M. ElHaiti, A. Bogatchev and V. Spiridonov
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/SGo.pdf A snowmodel intended for ISBA], S. Gollvik
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/AFe.pdf Sensitivity to liquid water storage in INM snow model], Alberto Fernandendez Matia
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/ERo.pdf The tiling surface scheme for HIRLAM-5: features and latest results], E. Rodriguez, B. Navascues and  J.J. Ayuso
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/SJa.pdf ISBA tests in a Nordic area], Simo Jarvenoja
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

@@ -1,0 +1,355 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Harmonie System Training''' ===
+= '''Hands On Practice''' =
+[[Center(end)]]
+
+== Test data and preparations ==
+* Get harmonie-38h1.1, [https://hirlam.org/portal/download/harmonie-38h1.1.tar.gz]
+* Input data
+ * The testbed data set including boundaries, observations, climate files and background statistics for assimilation can be downloaded [https://hirlam.org/portal/download/testbed/38h1/38h1.tar here].
+ * Climate data for cy38h1 can be found under [https://hirlam.org/portal/download/harmonie_climate/38h1.1.tar.gz] or on c2a under {{{/project/hirlam/harmonie/climate/38h1.1}}}.
+ * RTTOV constants for cy38h1 can be found under [https://hirlam.org/portal/download/sat_const/sat_const_cy38h1.tar.gz] or on c2a under {{{/project/hirlam/harmonie/sat_const/cy38h1.2}}}.
+* Verification data
+ * vobs files, vfld files for AROME 38h1.1 and 38h1.2.beta.2 for 201401. [https://hirlam.org/portal/download/system_training/monitor_test_data.tar.gz Monitor data]
+ * More data for verification can be found on {{{ ecgate:/scratch/ms/dk/nhz/oprint/ }}}
+* Ubuntu specific
+ * Ubuntu uses /bin/dash as default shell. This does not work with many of the Harmonie scripts, but the script [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2011/Exercises/sh2bash.sh sh2bash.sh] is a script to do convert /bin/sh to /bin/bash for you. Save the script and run it by:
+{{{
+./sh2bash.sh path-to-your-harmonie-check-out
+}}}
+
+=== Tools & Graphics ===
+
+ * [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/38h1 Output variables and names]
+ * [wiki:HarmonieSystemDocumentation/FileFormats Output formats]
+ * [wiki:HarmonieSystemDocumentation/PostPP/gl gl commands]
+ * Metview on ecgb:
+   * Note 1: The old Metview 3 is still alive on ecgate so on ecgate users need to use '''metview4''' to open metview GUI or run macros.
+   * Note 2: If you want to play with the GUI the "-desktop" option gives a nicer interface
+   * Note 3: If your HARMONIE GRIB has centre identifier set to 233 (default) the following environment variable settings on ecgate may be useful:
+{{{
+export GRIB_DEFINITION_PATH=/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/util/gl_grib_api/definitions:/usr/local/apps/grib_api/1.11.0/share/grib_api/definitions
+export METVIEW_EXTRA_GRIB_DEFINITION_PATH=/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/util/gl_grib_api/definitions
+}}}
+   * Now let's get going:
+{{{ 
+# load module metview ## I don't think this is needed on ecgate
+cd $SCRATCH
+rsync -vaux /scratch/ms/spsehlam/hlam/Training/metview .
+cd metview/macros
+vi README
+## metview4 -desktop &                                    # Command to open GUI
+metview4 -b macroName macroOption1 macroOption2 ...       # Command to run macro
+metview4 -slog -b macroName macroOption1 macroOption2 ... # Command to run macro with debugging output
+}}}
+   * A set of example scripts are available. Check the macros/README file
+
+  [[Image(harplt.1.png, 20%)]]
+  [[Image(harxsect.1.png, 20%)]]
+
+
+ * MetgraF
+  * [http://netfam.fmi.fi/Museo/Riga/MetgraF/metg2.htm MetgraF]
+  * on ecgb
+{{{ 
+
+cd $SCRATCH
+rsync -vaux /scratch/ms/spsehlam/hlam/Training/metgraf
+
+}}}
+  A set of example scripts are available under the plot directory. Check the README file
+
+  [[Image(HarmonieSystemTraining2014/Exercises:map_cloud_wind.png, 20%)]]
+  [[Image(HarmonieSystemTraining2014/Exercises:map_T2M.png, 20%)]]
+  [[Image(HarmonieSystemTraining2014/Exercises:cross_1.png, 20%)]] 
+  [[Image(HarmonieSystemTraining2014/Exercises:cross_2.png, 20%)]]
+
+
+  * elsewhere, you also need emoslib installed
+{{{ 
+
+svn co https://svn.hirlam.org/trunk/contrib/metgraf
+gmake COMPILER=gfortran
+
+}}}
+ * Grads
+ * Python (pygrib)
+
+== General ==
+
+== Installation of HARMONIE model on LinuxPC ==
+
+ * Should have been covered by the lecture
+
+ * A config file suitable for a non-MPI build can be found in [source:tags/harmonie-38h1.2.beta.2/util/makeup/config.redhat63.gfortran446]
+
+ * To build binaries for MUSC only do like
+ {{{
+    cd util/makeup
+    ./build config.your_favorite
+ }}}
+
+
+== Running the test example for HARMONIE 38h1.2.beta.2 at ECMWF 
+
+  A small (277x288) experiment domain without 3DVAR but with surface assmilation has been setup as a suitable example.
+  Copy the experiment setup on ecgb
+
+  {{{
+   cd $HOME ; mkdir hm_home ; cd hm_home
+   rsync -vaux /scratch/ms/spsehlam/hlam/Training/38h12_b2_exp_example .
+   cd 38h12_b2_exp_example
+  }}}
+
+  Define your own domain by editing {{{scr/Harmonie_domains.pm}}}. 
+
+  {{{
+
+      'TSTEP'  => '60',                                # Time step
+      'NLON'   => '277',                               # Number of points (x)
+      'NLAT'   => '288',                               # Number of points (y)
+      'LONC'   => '13.0',                               # Longitude of domain centre (degrees)
+      'LATC'   => '55.6',                              # Latitude of domain center (degrees)
+      'LON0'   => '13.0',                               # Reference longitude of the projection (degrees)
+      'LAT0'   => '55.6',                              # Reference latitude of the projection (degrees)
+      'GSIZE'  => '2500.',                             # Grid size in meters (x,y)
+  }}}
+
+  Start the experiment by ( feel free to pick your own date )
+  
+  {{{
+     ~hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/config-sh/Harmonie start DTG=2014803021 LL=24 DTGEND=2014083100
+  }}}
+
+== Running HARMONIE 38h1.2.beta.2 at ECMWF 
+
+ To get your experiment through as fast as possible we suggest that you run on c2a, the old ECMWF IBM computer.
+
+ Setup your experiment
+ {{{
+   ~hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/config-sh/Harmonie setup -h ecgb-c2a
+ }}}
+
+ Set {{{MAKEUP=no}}} in Env_system 
+ Set {{{MAKEGRIB=yes}}} and {{{DOMAIN=DENMARK}}} in {{{sms/config_exp.h}}}
+ and start your experiment
+
+ {{{
+    Harmonie start DTG=2014090100 LL=12 DTGEND=2014090106 MAKEUP=no 
+ }}}
+
+ * Select from a list of proposed configuration options to configure an experiment
+ * run 1 to 2 experiment cycles
+ * examine and diagnose results
+   * monitoring ongoing runs via mXCDp interface.
+     * Halt, resume, kill, resubmit a task.
+   * find input and output data
+   * study run logs
+      * resource consumptions, profiling information...
+ * For faster compilation on ecgb start with MAKEUP=no as an argument to "Harmonie start".
+   {{{
+      ~hlam/Harmonie start MAKEUP=no DTG=... 
+   }}}
+ * '''[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Harmonie-mSMS Documentation]'''
+
+== Postprocessing exercises ==
+
+=== FULL-POS ===
+
+[wiki:HarmonieSystemDocumentation/PostPP/Fullpos FULL-POS documentation] will hopefully help with the following exercise.
+ * Exercise 1:Instructions to add extra FULL-POS parameters in the [source:trunk/harmonie/scr/Select_postp.pl Select_postp.pl] perl script to your 38h12_b2_exp_example experiment are detailed below.
+   * On ecgate "check out" scr/Select_postp.pl:
+{{{
+cd $HOME/hm_home/38h12_b2_exp_example
+~hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/config-sh/Harmonie co scr/Select_postp.pl
+cp scr/Select_postp.pl scr/Select_postp.pl_original
+}}}
+   * Add ''u'' and ''v'' (only) on height above ground levels at 75m, 125m and 150m to the model output.
+     * Hint 1: RFP3H will need to changed
+     * Hint 2: namfpdyh_lev will need to be changed and namfpdyh_lev2 will need to be created to allow for extra ''u'' and ''v'' levels
+   * Run a short forecast to test your changes:
+{{{
+~hlam/harmonie_release/tags/harmonie-38h1.2.beta.2/config-sh/Harmonie prod LL=03 BUILD=no
+}}}
+
+=== gl ===
+[wiki:HarmonieSystemDocumentation/PostPP/gl gl documentation] will hopefully help with the following exercises.
+
+ * Exercise 2: Convert FA file (ICMSHHARM+0003, say) to GRIB with gl_grib_api à la Makegrib:
+   * On cca or your PC choose a forecast FA file to convert to GRIB
+   * Convert this file to GRIB1 using gl_grib_api
+   * Use gl_grib_api or grib_ls to list the contents of your GRIB file
+
+ * Exercise 3: Vertical interpolation with gl exercise (model levels --> pressure levels)
+   * Use the forecast FA file from ''Exercise 2'' to convert to GRIB and carry out vertical interpolation
+   * Output temperature on heights above ground at levels 1.0m, 1.5m, 2.0m, 2.5m and 3.0m only
+   * Test impact of using  VINT_Z_ORDER=0 vs  VINT_Z_ORDER=1
+     * Hint 1: Use lwrite_pponly= .TRUE.,
+     * Hint 2: Use level type'heightAboveGroundHighPrecision',
+
+ * Exercise 4: Horizontal interpolation with gl exercise (lambert --> rotated lat-lon)
+   * Use the forecast FA file from ''Exercise 2'' to convert to GRIB and carry out horizontal interpolation
+   * Use gl_grib_api to produce a 50x50 0.02° rotated lat-lon grid of data centred on Malmo (if you are using the MALMO domain)
+     * Hint 1: Ole's domain tool may help: [https://www.hirlam.org/nwptools/domain.html https://www.hirlam.org/nwptools/domain.html]
+
+ * Exercise 5: Extract set of grid-points with gl exercise:
+   * Use the forecast FA file from ''Exercise 2'' to extract some grid-point information
+   * Use gl_grib_api to extract 2m temperature for the following SYNOP locations: "LUND, SOL"; "MALMO"; "MALMO-STURUP"
+     * Hint 1: Use [source:trunk/harmonie/util/gl_grib_api/scr/allsynop.list util/gl_grib_api/scr/allsynop.list] to get the lat/lon information
+
+ * Exercise 6: Produce postprocessed parameters using gl
+      * Use the forecast FA file from ''Exercise 2'' to produce some postprocessed parameters
+      * Use gl_grib_api to produce ''Total precipitation'', '' Visibility'' from your model output file.
+        * Hint 1: Have a look at [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Forecast/Outputlist/38h1#Variablespostprocessedbygl HarmonieSystemDocumentation/Forecast/Outputlist/38h1#Variablespostprocessedbygl]
+
+=== xtool ===
+
+[https://hirlam.org/trac/browser/trunk/harmonie/util/gl/README learn to use gl/xtool for file conversion/manipulation]
+  * Run a difference between to files and print the result on the screen
+  * Compare the orography between to files with SAL. Change the thresholds
+  * Make a analysis increment file for a month of RCR data
+   * use xtool to manipulate fields
+     * Print difference between to fields on the screen
+     * Create accumulated differences 
+     * Create a monthly average
+     * Use SAL to compare different fields from different resolutions
+
+=== fldextr/obsextr ===
+
+   * use fldextr to extract model data for obs verification
+     * Find what is wrong with the TD calculation for ALADIN
+   * use obsextr to extract observation data for obs verification
+     * Run with and without station list
+
+
+
+== Dynamics ==
+
+== Physics ==
+
+ *Possible tasks in HARMONIE physics  [http://netfam.fmi.fi/harmonietrain/phystask.pdf (phystask.pdf)]. Background info in the lecture [http://netfam.fmi.fi/harmonietrain/harphys_LR.pdf (harphys_LR.pdf)]
+
+== MUSC ==
+
+=== Install MUSC on ecgb ===
+
+  A setup is prepared on ecgb. To copy the setup do ( and have patience ... )
+
+ {{{
+   cd $SCRATCH
+   rsync -vaux --exclude=.svn /scratch/ms/spsehlam/hlam/Training/harmonie_MUSC_cy38h1 .
+   cd harmonie_MUSC_cy38h1
+ }}}
+
+ Follow the instructions from the Run step in the README_ecgb file 
+
+=== Exercise ===
+
+ * Modification of cloud layer breakup in MUSC
+   * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2014/Exercises/Harmonie_musc.pdf Instructions]
+     * Scripts for extracting an plotting cloud fractions see
+     {{{
+         /scratch/ms/spsehlam/hlam/Training/harmonie_MUSC_cy38h1/Extract_cloudfraction.ksh 
+         /scratch/ms/spsehlam/hlam/Training/harmonie_MUSC_cy38h1/Plot_cloud.ksh
+     }}}
+         
+   
+   * For more practical information about MUSC, please take a look at the [http://netfam.fmi.fi/muscwd11/ 2011 workshop page].
+
+== Monitoring ==
+
+ === Verification ===
+
+     * Try the setup on ecgb available under
+
+     {{{
+       cd $SCRATCH 
+       rsync -vaux /scratch/ms/spsehlam/hlam/Training/monitor .
+       cd monitor/scr
+       ./Run_verobs_all ./Env_exp_example_data 2>&1 | tee logfile
+
+     }}}
+
+     The result should look like this [https://hirlam.org/portal/smhi/Training2014/monitor_export]
+
+     * Verify two experiments by using the Env_exp_example_data_2_exp as input
+       *      The result should look like this [https://hirlam.org/portal/smhi/Training2014/monitor_2_exp_export]
+     * use verobs to inter-compare different experiments to obs.
+     * Play with different forecast lengths, areas parameters
+     * Add a new area, change the map view, define a polygon
+     * Remove the quality control, fix the quality control
+     * Plot some single stations
+     * Blacklist stations
+     * Create new contingency tables
+     * Create monthly averages for several months
+     * Change the time window for time series
+     * Play with the quality control
+
+ === WebgraF ===
+
+   * Download the WebgraF code
+
+    {{{
+        svn co https://svn.hirlam.org/trunk/harmonie/util/monitor/WebgraF
+        cd WebgraF
+        export WEBGRAF_BASE=$PWD/WebgraF
+        WebgraF/bin/WebgraF
+     }}}
+     
+     Open WebgraF/index.html in your browser
+
+   * Present data through WebgraF
+     * Extract the definition file from a page
+     * Create a new project/entry
+     * Add info links
+
+[https://hirlam.org/trac/browser/trunk/harmonie/util/monitor/WebgraF/src/input.html Learn about the page definition file]
+
+     * Change colors titles and texts
+     * Turn on all do_* flags
+     * Create a dynamic date axis
+     * Create a page with links to external plots 
+     * Export a page
+     * Transport a page
+
+[[BR]]
+
+== Data assimilation ==
+
+==== Upper Air assimilation ====
+
+     * Interpolate background error statistics from one area to another by using jbconv
+     * Diagnose the background error statistics of one particular domain using jbdiagnose
+     * Carry out a data assimilation experiment with your newly interpolated statistics
+     * Carry out a single observation impact study and plot data assimilation increments and check sensitivity ro REDNMC
+     * Carry out full scale data assimilation experiment and check sensitivity to REDNMC,REDZONE 
+     * Carry out full scale data assimilation experiment. Put AMDAR observations passive and check sensitivity to the use of AMDAR data
+     * Plot the evolution of the cost function, Jb, and Jo, for a full scale data assimilation experiment. Check sensitivity to REDNMC.
+     * Blacklist NOAA 19 AMSU-A channel 7 and run data assimilation with AMSU data (except ch 7).  
+     * Start to derive structure functions for a new or existing domain utilizing downscaling of ECMWF ensemble data assimilation analyses (extensive, to bring home).
+
+Useful guidance can be found in [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Structurefunctions_ensys] and [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SingleObs_ensys ] and in presentations from data assimilation part of System Traning week.
+
+==== Surface assimilation ====
+
+     * Have a look at the initial surface fields in SURFXINI.lfi - with gl, Metview or your own plotting routines
+
+     * Have a look at the surface fields after ANASURF, (ANAATMO and DFI) in ICMSHHARM+0000.sfx
+
+     * Download CANARI Technical Documentation, by Françoise TAILLEFER, 2002 (see under Attachments)
+
+     * Run two different experiments to study the effect of quality control in the snow analysis
+   {{{
+RCSNSY in namelist NAMCOK defines the limits for rejection of snow observations
+when compared to the first guess. 
+The default value in CANARI is 2.5 which correspond to 12.5 kg/m2.
+The value applied currently in HARMONIE, given in nam/harmonie_namelists.pm, 
+is RCSNSY=20 which correspond to 100 kg/m2. 
+   }}}
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2011  Back to the main page of the HARMONIE system training 2012 page]
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]

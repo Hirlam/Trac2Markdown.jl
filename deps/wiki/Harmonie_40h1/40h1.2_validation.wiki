@@ -1,0 +1,56 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Validation of HARMONIE-40h1.2'' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+This page is a working document for experiments to reach harmonie-40h1.2. Please check [wiki:Harmonie_40h1/40h1.2_contributions HARMONIE 40h1.2 updates] for a background and explanations to what tests should be done.
+
+== List of suggested tests ==
+
+This list includes suggested tests and testers. Please add/edit!
+
+||= Institute =||= Model versions                         =||= Domain      =||= Period                              =||= Upper air DA         =||=  Additional options  =||=  Testers =||
+|| MetCoOP     || branches/MetCoOp/harmonEPS-40h1_2patches || MetCOOP25B    || March 2016, March 2012, Jan-Feb 2015  || 3DVAR                  || no SICE                || Patrick Samuelsson, Mariken Homleid, Karl-Ivar Ivarsson ||
+|| KNMI        || branches/harmonie-40h1_patchy_assim      || NETHERLANDS   || ?                                     ||                        ||                        || Sander Tijm? ||
+|| DMI         || Glacier updates                          || Greenland     || ?                                     ||                        ||                        || Ruth Mottram, Emily Gleeson, Kristian Pagh Nielsen?
+|| FMI         || cy40h FLake branch                       || Scandinavia25 || ?                                     ||                        ||                        || Ekaterina Kourzeneva? ||
+|| MetCoOP     || cy40h1.1 rc1                             || MetCOOP25B    || March 2016                            || 3Dvar                  ||   LLCRIT update        || Lisa Bengtsson ||
+|| MetCoOP     || cy40h1.1 rc1                             || MetCOOP25B    || March 2016                            || 3Dvar                  ||   HARATU tuning        || Lisa Bengtsson ||
+|| MetCoOP     || cy40h1.1 rc1                             || MetCOOP25B    || ?                                     || 3Dvar                  ||   Freezing rain mod    || Karl-Ivar Ivarsson? ||
+|| KNMI        || cy40h1.1 rc1                             || Netherlands   || ?                                     || 3Dvar                  ||   Freezing rain mod    || Sander tijm? ||
+|| MetCoOP     || cy40h1.1 rc1                             || MetCOOP25B    || ?                                     || 3Dvar                  ||   Microphys mod        || Karl-Ivar Ivarsson? ||
+
+== List of validation experiments ==
+
+This list includes running or done experiments. Please continuously add/modify! Also please link to existing Monitor verification pages when such are available. 
+
+||= Experiment name              =||= Domain     =||= Model Version                   =||= UA Ana =||= Surface Ana  =||= Misc                =||= Start of Episode =||= End of Episode =||= tester  =||= cluster =||= Observation Verification =||
+|| MetCoOp_2patches_O3_nb12       || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches (r15117) || 3DVAR    || Canari-SODA-OI ||                       || !20160301          || !20160401        || Patrick S || SMHI-bi   || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/2_patches_export/ verification]  ||
+|| MetCoOp_2patches_May16         || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches (r15117) || 3DVAR    || Canari-SODA-OI ||                       || !20160501          || !20160601        || Patrick S || SMHI-bi   || '''done''' [https://hirlam.org/portal/validation/40h1/2_patches_May2016_export/ verification] ||
+|| MetCoOp_2patches_July16        || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches (r15117) || 3DVAR    || Canari-SODA-OI ||                       || !20160701          || !20160801        || Patrick S || SMHI-bi   || '''done''' [https://hirlam.org/portal/validation/40h1/2_patches_July2016_export/ verification] ||
+|| MetCoOp_2patches_SepOct16      || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches (r15117) || 3DVAR    || Canari-SODA-OI ||                       || !20160925          || !20161019        || Patrick S || SMHI-bi   || '''done''' [https://hirlam.org/portal/validation/40h1/2_patches_October2016_export/ verification] ||
+|| MetCoOp_2p_Oct16_VSIGQSAT      || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches (r15117) || 3DVAR    || Canari-SODA-OI || 'VSIGQSAT' = 0.04     || !20160925          || !20161016        || Patrick S || SMHI-bi   || '''done''' [https://hirlam.org/portal/validation/40h1/2_patches_VSIGQSAT_October2016_export/ verification] ||
+|| KI402PA                        || MetCOOP25B   || !MetCoOp/harmonEPS-40h1_2patches || 3DVAR    || Canari-SODA-OI ||                       || !20120301          || !20120401?       || Karl-Ivar || !MetNorway-vilje   || '''done''' [https://hirlam.org/trac/attachment/wiki/Harmonie_40h1/40h1.2_validation/KII_2PATCH.pdf verification slides]  ||
+|| snow_40h11b5_twoP              || SNOW_2.5KM   ||  cy40h1.1.beta.5                  || blending || Canari-SODA-OI || 2 patches, HARATU=yes || !20160301          || !20160331        || Mariken   || ecgate    || running [https://hirlam.org/portal/smhi/snow_2016_export/ verification] ||
+|| snow_40h11b5_ref               || SNOW_2.5KM   ||  cy40h1.1.beta.5                  || blending || Canari-SODA-OI || SBL, HARATU=no        || !20150201          || !20150430        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/smhi/snow_export/ verification] ||
+|| snow_40h11b5_nosbl_v65         || SNOW_2.5KM   ||  cy40h1.1.beta.5                  || blending || Canari-SODA-OI || noSBL, HAR=no      || !20150201          || !20150430        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/smhi/snow_export/ verification] ||
+|| snow_40h11b5_har_no65          || SNOW_2.5KM   ||  cy40h1.1.beta.5                  || blending || Canari-SODA-OI || noSBL, HAR=yes     || !20150201          || !20150430        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/smhi/snow_export/ verification] ||
+|| snow_40h11b5_pa_twoP           || SNOW_2.5KM   ||  harmonie-40h1_patchy_assim       || blending || Canari-SODA-OI || noSBL, HAR=yes, 2patch || !20150201          || !20150310        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/validation/40h1/twoP_export/ verification] ||
+|| snow_40h11b5_pa_twoP           || SNOW_2.5KM   ||  harmonie-40h1_patchy_assim       || blending || Canari-SODA-OI || noSBL, HAR=yes, 2patch || !20150320          || !20150430        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/validation/40h1/twoP_B_export/ verification] ||
+|| snow_40h11b5_pa_twoP           || SNOW_2.5KM   ||  harmonie-40h1_patchy_assim       || blending || Canari-SODA-OI || noSBL, HAR=yes, 2patch || !20151001          || !20151031        || Mariken   || ecgate    || '''done''' [https://hirlam.org/portal/validation/40h1/twoP_okt2015_export/ verification] ||
+|| Metcoop_40h1rc_ref             || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI ||                       || !20160301          || !20160401        || Lisa      || ecgate    || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/40h12_validation_export/ verification]    ||
+|| Metcoop_40h1rc_haratu_tuning   || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || FAC_TWO_COEF = 1.0    || !20160301          || !20160401        || Lisa      || ecgate    || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/40h12_validation_export/ verification]     ||
+|| Metcoop_40h1rc_llcrit          || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || LLCRIT update         || !20160301          || !20160401        || Lisa      || ecgate    || running ||
+|| Metcoop_40h1rc_sigma           || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || 'VSIGQSAT' = 0.04     || !20160301          || !20160401        || Lisa      || ecgate    || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/40h12_validation_export/ verification]  ||
+|| Metcoop_40h1rc_lbc             || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || coupling of hydro.    || !20160301          || !20160401        || Lisa      || ecgate    || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/40h12_lbc_export/ verification] ||
+|| Metcoop_40h1rc_lbc             || METCOOP25B   ||  cy40h1.1                         || 3DVAR    || Canari-SODA-OI || LTOTPREC              || !20170201          || !20170228        || Lisa      || ecgate    || '''done''' [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/ltotprec_export/ verification] ||
+|| cy40C                          || METCOOP25B   ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || OCND2 updates         || !20160301          || !20160401        || Karl-Ivar || ecgate    || '''done''' [https://hirlam.org/portal/validation/40h1/201603_export/ verification] ||
+|| AIB_40h11rc1                   || IBERIAxxm    ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || rc_1 reference        || !20141225          || !20151231        || Javier    || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||        
+|| AIB_40h11rc1_HAR1              || IBERIAxxm    ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || FAC_TWO_COEF = 1.0    || !20141225          || !20151231        || Daniel    || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||
+|| AIB_40h11rc1_HAR2              || IBERIAxxm    ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || FAC*=1.0 VSIGQSAT=0.04|| !20141225          || !20151231        || Gema      || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||
+|| AIB_40h11rc1_COMAD             || IBERIAxxm    ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || COMAD + QM off        || !20141225          || !20151231        || Alvaro    || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||
+|| AIB_40h11rc1_COMAD_QM          || IBERIAxxm    ||  cy40h1.1.rc1                     || 3DVAR    || Canari-SODA-OI || COMAD + QM on         || !20141225          || !20151231        || Alvaro    || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||
+|| AIB_40h11rc1_2p                || IBERIAxxm    ||  harmonie-40h1_patchy_assim       || 3DVAR    || Canari-SODA-OI || noSBL, HAR, 2patches  || !20141225          || !20151231        || Javier    || ecgate    || '''done''' [https://hirlam.org/portal/aemet/verif40h12/ verification] ||

@@ -1,0 +1,47 @@
+[[PageOutline]]
+= '''The HIRLAM wiki''' =
+The Hirlam system wiki is open to the research and operational community within HIRLAM and ALADIN consortia. For general information about the HIRLAM programme, please visit the HIRLAM web site [http://hirlam.org http://hirlam.org].
+== Documentation ==
+ * [wiki:HarmonieSystemDocumentation HARMONIE System Documentation]
+ * [wiki:HirlamSystemDocumentation HIRLAM System Documentation]
+ * [wiki:GlamepsProductionUserInfo GLAMEPS data documentation]
+== Model Releases ==
+ * [wiki:Harmonie_40h1 Harmonie-40h1].1.1, is tagged on 19th of July 2018. See [wiki:ReleaseNotes/harmonie-40h1.1.1].
+ * [wiki:Harmonie_40h1 Harmonie-40h1].1., is tagged on 23th of September 2016. See [wiki:ReleaseNotes/harmonie-40h1.1].
+ * [wiki:Harmonie_38h1 Harmonie-38h1].2, is tagged on 4th of December 2014. See [wiki:ReleaseNotes/harmonie-38h1.2].
+ * [wiki:HarmonieSystemRelease Full list of recent HARMONIE system releases and release notes]
+
+ * [wiki:Hirlam_7.4], HIRLAM forecast system Hirlam-7.4, is tagged on 9 Mar 2012. See [wiki:ReleaseNotes7.4].
+ * [wiki:HirlamSystemRelease List of recent HIRLAM system releases and release notes]
+
+== Community ==
+ * [http://hirlam.org/index.php/forum/index HIRLAM Forum]: discussion and help within the HIRLAM community.
+ * [wiki:Meetings HIRLAM Meetings]: Working weeks and other HARMONIE-related meetings
+ * [wiki:HarmonieSystemDocumentation/TrainingCourses HIRLAM Training]: Training courses for new users of HARMONIE.
+ * [wiki:NwpInventory HIRLAM NWP]: Information on operational implementation of HIRLAM and HARMONIE
+ * [wiki:dataportal HIRLAM Data Portal]: Monitoring and Inter-comparison of Operational and Real time Harmonie/HIRLAM/GLAMEPS
+
+ * [https://hirlam.org/mailman/listinfo HIRLAM mailing lists]: subscribe to receive common interest e-mails 
+ * [http://joomla.hirlam.org/index.php/communication/contact HIRLAM staff]: contact information on HIRLAM web site
+
+ * [wiki:Surface_physis_assimilation Surface physics and assimilation]: HIRLAM activities related to development in surface physics and assimilation
+ * [wiki:Upper_air_physics Upper air physics, dynamics and high resolution]: HIRLAM activities related to development in upper air physics, dynamics and high resolution modeling
+ * [wiki:HarmonieClimate Harmonie Climate]: status, development and documentation of HARMONIE Climate (HCLIM), the climate version of HARMONIE
+ * [wiki:HirlamChemicalBranch Hirlam Chemical Branch]: HIRLAM Chemical branch & Enviro-HIRLAM online integrated NWP-ACTM model
+
+== Rolling Workplan ==
+
+ * Rolling Workplan 2018, approved 29 November 2018 [raw-attachment:rwp2018-approved-v2.pdf pdf]
+ * Rolling Workplan 2019, approved 20 November 2019 [raw-attachment:RollingWorkplan2019-approved-20112018.pdf pdf]
+
+== wiki access ==
+Access policy: The Hirlam system wiki is open to the research and operational community within HIRLAM and ALADIN consortia. Please log-in using your Hirlam user-id and password for that purpose. If you do not currently have an user-id and password, please contact [mailto:dsantosm@aemet.es Daniel Santos], AEMET, to acquire one.
+
+News policy: Please contact the Scientific Secretary if you would like to publish a new news item.
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

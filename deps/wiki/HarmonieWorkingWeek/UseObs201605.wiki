@@ -1,0 +1,172 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie DA&UO Working Week 2016''' =
+''Madrid, 17th - 20th of May 2016''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+The HARMONIE DA&UO Working Week 2016 will be held this year at AEMET.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =||= Hotel           =||= Pref. restaurant  =|| 
+||Roger Randriamampianina || MET Norway      || Mon (~12:00)- Sat || Hotel Exe Moncloa ||  Both OK            ||
+||Angeles Hernandez       ||AEMET            || Tue am - Fri pm   ||        -          ||  Both OK            ||
+||Magnus Lindskog         ||SMHI             || Tue am - Fri am   || Hotel Exe Moncloa || Cruz Blanca Paseo   ||
+||Sigurdur Thorsteinsson  ||IMO              || Tue am - Fri pm   || Hotel Exe Moncloa ||  Both OK            ||
+||Eoin Whelan             ||METIE            ||Tue(~11)- Fri lunch||Hotel Exe Moncloa  ||  Both OK            ||
+||Martin Ridal            ||SMHI             ||Mon(~19)- Fri lunch||Hotel Exe Moncloa  ||  Both OK            ||
+||Maria Diez              ||AEMET            ||                   ||        -          ||  Both OK            ||
+||Gema Morales            ||AEMET            ||                   ||        -          ||  Casa Valencia      ||
+||Mats Dahlbom            ||DMI              ||Mon(~19)- Fri lunch|| Hotel Exe Moncloa ||  Both OK            ||
+||Joan Campins            ||AEMET            || Mon(~21)-Fri am   || Hotel Exe Moncloa || Cruz Blanca         ||
+||Wim Verkley             ||KNMI             || Tue am - Fri am   || Hotel Exe Moncloa || Cruz Blanca         ||
+||Jana Sanchez            ||AEMET            || Mon(~19)- Fri     || Hotel Exe Moncloa || Cruz Blanca         ||
+||Carlos Geijo            ||AEMET            ||                   ||        -          ||                     ||
+||Daniel Santos           ||AEMET            || Tue am - Fri am   ||        -          ||                     ||
+||Javier Calvo            ||AEMET            ||        ?          ||        -          || Cruz Blanca         ||
+== Draft agenda ==
+
+17.05.16 Tuesday: [[BR]]
+09:00 - 15:00: Status report from participating Institute:[[BR]]
+**Roger:** Status of use of observations and plan on observation usage at MET Norway [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201605/MET_Norway_report.pdf pdf] [[BR]]
+
+**Martin:** Report about the operational use and ongoing work related to radar data at SMHI. He also reported about the progress in Nordic GNSS ZTD data processing, where big progress has been achieved. Swedish processing centre deliver good quality data (with latency of ~ 1 hour 45 min) comparable to other processing centres. Martin reported also some results of sensitivity studies and observed problem related to observations over sea. [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201605/SMHI_status_may2016.pdf pdf] [[BR]]
+
+**Mats:** Report about the status of use of observations and plan on observation usage at DMI. [[BR]]
+
+**Maria:** Report about the use of observations at AEMET. She gave comprehensive report about different data assimilation activities at AEMET, including use of ATOVS (AMSU-A and AMSU-B/MHS), GNSS ZTD, and plan with AMV. [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201605/WW_Madrid.pdf pdf] [[BR]]
+
+**Carlos:** Gave an update on the development and validation of the Field alignment scheme using radar winds. [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201605/WorkingWeekMadridMay2016.pptx pptx] [[BR]]
+
+**Wim:** Reported the observation impact study, including radar data, at KNMI. He also presented their plan with respect to extension of use of radar data by adding data from Denmark, Ireland, France and Belgium. [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201605/status_2016_KNMI.pdf pdf] [[BR]]
+
+**Eoin:** Reported his latest development related to treatment of "new BUFR" data, and in particular by fully avoiding reading of conventional data in Oulan. [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201605/eoinWhelan_obsPreProcessingUODAWW2016.pdf pdf] [[BR]]
+Sigurdur: Although, Iceland runs operational system without data assimilation, intensive work is going on with testing data assimilation with ATOVS radiances and GNSS ZTD data. [[BR]]
+
+Relevant topics have been discussed during the presentations and the following Actions were taken:[[BR]]
+**Action-1:** Martin talked about the fact that when adding radar data from Finland and Denmark, he is using the Norwegian radar data processed through Baltrad and in HDF5 format. Recently, at MET Norway creation of HDF5 formatted data is ongoing. Martin's experiment can be used to evaluate the quality of data processed through Batrad versus data processed through the Prorad tool box.[[BR]]
+
+**Action-2:** At SMHI, the impact GNA-processed data is under test. It was recommended to have this test extended to other processing centres (ROBH and METO) for comparison.[[BR]]
+
+**Action-3:** At DMI, the GPS-RO is used in operational. Closer check to the performance of the observation operator (with relatively low model top -- 10 hPa) was encouraged.[[BR]]
+
+**Action-4:** When discussing the different steps of ATOVS radiances implementation at AEMET, we agreed that an up-to-date table describing the commonly blacklisted channels will be of interest to all community.
+
+**Action-5:** to Carlos to test in FA scheme radar data in HDF5 and processed by Baltrad toolbox. As example for this exercise, KNMI data will be taken.
+
+**Action-6:** we decided to have a follow up discussion meeting on the choice of field of views for ATMS radiances.
+
+**Action-7:** Wim was encouraged to follow his work with radial wind using different evaluation techniques.
+
+**Action-8:** Create a system branch for the implementation of the diagnostic tools and testing of the new observations like IASI, ASCAT and AMV.
+
+The following groups were formed: Radiance assimilation; AMV assimilation; Radar data assimilation; implementation of the DFS and MTEN diagnostic tools.
+
+**Outcome of the working groups:**[[BR]]
+
+**Radiance assimilation group (Maria, Jana, Joan, Sigurdur, Mats, Roger):**[[BR]]
+The cycle 40 was taken as reference.[[BR]]
+
+**1- Implementation of ATOVS radiances:**[[BR]]
+From the video meeting, one Action was on Roger to check the settings for ATOVS (AMSU-A and AMSU-B /MHS) bias coefficients estimates, because they report strange behaviour (some sudden change in number of active observation) of the assimilation system. In fact, the large drop in number of active (in fact passive) observations happen after some changes in the radiance data were chosen (in mf_blacklist.b). The selection process for active, blacklist and passive radiances was discussed at length, which will be reported to the wiki documentation page. Concerning the use of mf_blacklist.b for channels selection, we found out that Meteo France uses different selection for AROME and ARPEGE models. The changes were due to the difference in model tops (lower for the AROME model) (see the details on doc wiki). The estimation of the bias coefficients was restarted for both Spanish (both domains) and Icelandic domains.
+
+**2- Implementation of IASI radiances:**[[BR]]
+Mats tested data received through the EUMETCast in their assimilation system. He encountered problem related to BUFR templates. Note that BUFR template issue is not surprising with IASI radiances extraction. Mats succeed to have the IASI radiances processed through screening and minimisation. Next step is to evaluate the bias correction coefficients for IASI data together with ATOVS and ATMS radiances.[[BR]]
+
+**3- Assimilation of ATMS radiances:**[[BR]]
+Mats reported the implementation of ATMS radiances at DMI (see wiki doc for more details). See also Action-6.[[BR]]
+
+**4- Assimilation of Seviri radiances:**[[BR]]
+Magnus report the implementation of Seviri radiances at SMHI. The implementation was based on the OPLACE solution (see wiki doc for more details). Jana is interested on Seviri radiances and decided to start with using the grib files produced at SMHI. After a success assimilation in their system, she will find the best solution of producing the Seviri grib radiances at AEMET.[[BR]]
+
+**Radar data assimilation (Martin, Mats, Wim, Carlos):**[[BR]]
+Wim reported the radar data impact study at KNMI (ref here). Carlos reported the impact field alignment (FA) scheme using radar wind on mesoscale analyses and short-range forecasts (ref here). The group discussed issues related to radar velocity computation and in particular they solved some practical problems observed at KNMI. As specific Action from this group, see Action-7. The group discussed also how to handle the radar data in 4D-VAR (naming and contribution timeslots). 
+
+**Retrieval data assimilation (Angeles, Eoin, Mats, Martin, Roger):**[[BR]]
+**1-Atmospheric Motion Vectors:**[[BR]]
+Roger explained the processing of High-resolution winds as implemented by Mate Mile at Hungarian Meteorological Service (using differrent param file and reading routines). Taking into account the new features of Bator in CY40 -- flexible handling of different "BUFR codage" in one routine -- the group aimed think the different BUFR AMV data can be processed by single routine but using multiple param information. The work started with processing of EUMETSAT produced data extracted by Angeles. The different steps of this group can be found in wiki doc page (ref).[[BR]]
+
+**2- GNSS ZTD (Jana, Magnus, Sigurdur):**[[BR]]
+The group think that the problem related to two predictors for variational bias correction is solved, but Sigurdur wil double check this assumption.[[BR]]
+Jana would like to assimilate with the Spanish model the GNSS ZTD data with horizontal thinning distance about 20km first, but she is also interested to test data thinning at 50 and 100km. Sigurdur will be also working on assimilation of GNSS data in Icelandic model with the following horizontal thinning distances: 100, 50, and 20 km.[[BR]]
+
+**Assimilation of conventional observation:**[[BR]]
+**1- Surface observations at high altitudes:** Maria was interested to exchange expertise on the work under progress at SMHI with the assimilation of station altitude instead of mean sea level pressure for mountainous stations.[[BR]]
+
+**Diagnostic tools (Magnus, Mats, Martin, Eoin, Daniel, Roger):**[[BR]]
+**1- Degrees of Freedom for Signals (DFS):** DFS shows the impact of of observations on the analysis (data assimilation) ([https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201605/Chapnicketal2006.pdf See Chapnik et al, 2006] for reference and [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201605/qj_Randriamampianina_etal_2011.pdf Randriamampianina ate al. 2010] for its application).[[BR]]
+Roger explained to the group the DFS computation technique they have adopted with Andrea Storto. Magnus implemented the assimilation part of the tool, while Marting tested the programs (case and average DFS computation) for DFS computation together with plotting scripts (using R package). After some local environmental adjustment, Magnus succeed to compute a DFS of for one case on Swedish HPC. The results the test run were successfully plotted by Martin. More about this implementation process can be found on doc wiki page. The step to fulfil the regular DFS computation under the Harmonie system is to build a scheduler, which perform the DFS computation for the selected cases of an experiment or of an operational data assimilation system.[[BR]]
+
+**2- Moist Total Energy Norm (MTEN):** MTEN shows the sensitivity of the forecast model to different observations withdrawn from the full analysis system ([https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201605/Relative_Impact_AS_RR_2010.pdf see Storto and Randriamampianina, 2010] for more details).[[BR]]
+Roger explained to the group the principle and the computation procedure of the MTEN tool.[[BR]]
+
+The group added more priority to the DFS tool this time. But, since the computation of both tools is based on very similar principle, Daniel started to build a playfile for MTEN, but can be modified for DFS computation later on. He worked out a scheduler that able to define and start different experiments for a dedicated dates and times. The scheduler was not fully ready at the end the working week, but Daniel will continue working on it.[[BR]]
+
+
+
+Normal daily agenda:[[BR]]
+09:00 - 10:30: Working in groups[[BR]]
+10:30 - 11:00: coffee break[[BR]]
+11:00 - 12:30: working in groups[[BR]]
+12:30 - 13:30: lunch break[[BR]]
+13:30 - 15:30: working in groups[[BR]]
+15:30 - 16:00: coffee break[[BR]]
+16:00 - 17:00: working in groups[[BR]]
+17:00 - 17:30: (5-10min) progress report from groups[[BR]]
+
+
+== Suggestion for groups: ==
+||=     Tasks  and groups                             =||=    Contributors               =||
+|| An introductory lecture will be worth to have before starting for each group work. Radiance (Roger, Magnus, Mats), DFS(Roger), MTEN(Roger), AMV(Roger), GNSS(Magnus or Jana), Mode-S and ASCAT (?),  Radiosonde and Bator (Eoin), Radar (Martin) ||                                ||
+||Bator: look at options that can allow us to get rid of Oulan ||                                ||
+||Radiance (ATOVS- AMSU-A, AMSU-B/MHS, Seviri, IASI, ATMS, CrIS) assimilation. Depending on the size of the group, we will see if sub-groups will be needed ||    ||
+|| Implementation of the DFS tool in Harmonie system  ||           ||
+|| Implementation of the MTEN diagnostic tool in Harmonie system ||          ||
+|| Retrieval data: GNSS, Mode-S, AMV, ASCAT,... Here as well, we will see if a sub-group needs to created ||     ||
+|| Radar data processing and assimilation  ||       ||
+|| (near) Surface and high-resolution radiosondes ||   ||
+|| obsmon installation          ||               ||
+
+
+
+
+== Practical Information: ==
+=== Where: Aquinas and AEMET ===
+The working week will take place in Aquinas (AEMET nearby neighbour). A pdf with local information, including how to get to Aquinas and to AEMET, is in the attachment list (twice, by mistake). The meetings and the coffee breaks will be in Aquinas. About lunch, the best is to have it in AEMET, although this is of course a personal decision, as AEMET restaurant has agreed to serve an early lunch to our group. Added 3 May 2016.
+
+Please bring your passport with you on the first day of the WW if you are not from AEMET. This is needed for AEMET security, but not in Aquinas. It is not a problem if you forget it, as you can get in the building as a guest of any of the participants from AEMET, but you will be more independent if you bring your passport. Added 11 May 2016.
+
+=== Transport ===
+Apart from the information in the attachement list, the following may be of help. Added AH 13 May.
+
+From **Airport to Moncloa or Aquinas**, if you are going by taxi there is no need to book in advance. There are always taxis waiting (famous last words). Exe Moncloa, Aquinas and AEMET are all within the area where the flat rate of 30 EUR applies. 
+
+From **Exe Moncloa to Aquinas**, between 8 AM and 9 AM, metro and bus G are crowded. At this time, probably the best options are taxi, walk or buses 132 o 82 (see attachments). These buses may take a bit longer (~20 mins) but they depart from very close to Exe Moncloa, frequently at that time, and they are not so crowded. The closest stops to Aquinas are: Paraninfo - Matematicas for bus 82 (just after the last stop in Avenida Complutense in the PDF), and AVENIDA MORERAS - COLEGIO.MAYOR ALFONSO X EL SABIO (stop no. 3281 = Avenida Moreras in the PDF) for bus 132. **Jana and Joan know**.
+
+=== Local info ===
+The attached pdf contains general local info, part of it not necessary for our group. The file was kindly supplied by our colleagues in AEMET International Relations, and it has been slightly adapted for the WW. Added 3 May 2016.
+
+**Madrid la Nuit**. If you are interested in cinema, theater, exhibitions, etc, you can have a look at http://www.timeout.com/madrid or http://www.guiadelocio.com/madrid (only Spanish, it seems).
+
+=== Dinner on Thu 19 May ===
+Please write your preference about the restaurant: Casa de Valencia / Cruz Blanca (see my email of 15th Apr). Please also let us know if you have other plans. Added Angeles 15 Apr 2016.
+
+There is a clear majority for **Cruz Blanca Paseo de la Florida**, the informal option. Jana, María and Angeles have discussed the menu, and our idea is to do a pre-selection of dishes to share, to make things easier and have a wide range. We can add more on the spot if it is not enough, etc. But if you wish to order your own choice, for whatever the reason (e.g. you are vegetarian, have some allergy or just feel like it) please let us know, and then you just order your food at the restaurant. **Please let us know if you are coming with a partner**. Added 11 May 2016.
+
+=== Accomodation ===
+Hotel Exe Moncloa (4 stars) - http://www.exehotels.com/exe-moncloa.html. This is a good choice regarding location, distance to AEMET, rooms, price, reception, breakfast, cleanliness, etc. The only problem I see is that the roof bar is not open in May ;-) Actually, when I have to stay in a hotel in Madrid for whatever the reason, this is where I stay.
+
+But these are other choices from AEMET list, all reasonably close to AEMET:
+
+- Colegio Mayor Santo Tomas de Aquino (Aquinas) - http://www.aquinas.es. This is not a hotel, but a university residence. It is in the university area, just 2 mins walk from AEMET. Rooms are basic, with private bathroom, in a leafy environment (trees, garden, birds), but a bit isolated. The price is 42 euros per day, including full board (basic canteen meals) and use of the facilities, which include a gym, a football field and several other fields (sports not clear to me, I'm afraid, as I'm not the sporty type). If you are interested, you can contact them (say that you are visiting AEMET for the WW 17-20 May) by phone (+34 91 543 88 00) or email (director at aquinas.es).
+
+- T3 Tirol Hotel (3 stars) - http://en.t3tirol.com.
+
+- NH Alberto Aguilera Hotel (3 stars) - http://www.nh-hotels.com/hotel/nh-madrid-alberto-aguilera.
+
+The three hotels are in a lively area, Moncloa-Arguelles, with plenty of bars and restaurants, and good transport to AEMET by bus or metro.
+
+Added Angeles 13 Apr 2016
+

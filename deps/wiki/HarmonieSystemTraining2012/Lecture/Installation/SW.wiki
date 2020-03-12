@@ -1,0 +1,71 @@
+=== Compilers and standard software ===
+
+The system requires the following standard unix/linux software 
+
+ * A fortran compiler
+ * A C compiler
+ * flex & bison for lex & yacc
+ * ksh and sh
+ * perl
+
+Read more about the tested compilers under [wiki:HarmonieSystemDocumentation/Installation installation].
+
+=== MPI and OpenMP ===
+
+Harmonie supports parallelization through message passing or shared memory multiprocessing. 
+
+ * mpi libraries such as mpich2, openmpi or similar.
+ * OpenMP libraries
+
+The system can also be compiled without support for MPI.
+
+=== BLAS and LAPACK libraries ===
+
+You need [http://netlib.org/ BLAS and LAPACK-lite] libraries.
+
+If they are already on your system, verify they have been made with the correct compiler, or rebuild them. Instructions on how to (re-)build BLAS and LAPACK follow below:
+ * Download [http://www.netlib.org/blas/index.html BLAS] and [http://www.netlib.org/lapack/index.html LAPACK]
+ * First build BLAS (untarring blas.tgz places it in the BLAS directory). Go to that directory, and edit make.inc to set the compiler and linker to '''gfortran'''. Then type 'make'.
+ * Subsequenty, for LAPACK, after untarring lapack-lite-3.1.1.tgz, go to the lapack-lite-3.1.1 directory.
+ * Copy make.inc.example to make.inc.
+ * Edit make.inc to point to the proper compiler/loader ('''gfortran''') and to put the variable PLAT to the empty string. Set TIMER to INT_ETIME.
+ * Copy the blas.a library from the BLAS directory to the lapack-lite-3.1.1 directory, run ranlib on it, then type 'make'.
+ * Then copy the libraries in '''/usr/local/lib''' with names libblas.a and liblapack.a, respectively, otherwise the default configuration will not find them. Run ranlib on them.
+
+=== NETCDF ===
+
+ Netcdf is required for some routines. Make sure you have development version installed on your system.
+
+ http://www.unidata.ucar.edu/software/netcdf
+
+=== GRIB, BUFR and auxiliary software ===
+
+The software for reading GRIB and BUFR is included in the HARMONIE system an comprises
+
+ * grib-api 1.9.9
+ * bufr 000381
+ * gribex 000370
+
+In addition there are some extra support libraries.
+
+ * dummies_001/2/3
+ * eclite_001
+ * rgb_001
+
+
+If you compile with [wiki:HarmonieSystemDocumentation/Build_with_makeup Makeup] these are built for you. If you use gmkpack you have to build them yourself. For grib-api follow the instructions. For the other libraries follow the instructions below. Read more in the [source:trunk/harmonie/util/auxlibs/README README file].
+
+In each of the directories in auxlibs, run the script ./build_library.  You'll have to answer the following
+questions:
+
+ * Which compiler to use
+ * Whether you want 64 bit reals (yes)
+ * Where to store the library on completion of the build (choose a subdirectory of your home directory
+   where you have write permission - note: full path; e.g. the GFORTRAN.LINUX configuration assumes these
+   libraries are in $HOME/auxlibs and include files in $HOME/auxinclude)
+ 
+After build_library finishes, run ./install - this will put the library in the directory you've chosen above. 
+
+=== Perl requirements ===
+
+To be able to launch the mSMS mXdcp window you need to have perl toolkit installed. Define PERL_TK and PERLTKDIR in your system config file.

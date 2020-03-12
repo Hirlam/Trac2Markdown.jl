@@ -1,0 +1,94 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''AROME mini working week at SMHI, 6-8th of November 2006''' =
+[[LastModified]]
+[[Center(end)]]
+
+Tasks discussed/worked on/solved. 
+This report can be used as input for Helsinki meso-scale working week.
+
+Participants: Sami Niemela, Ulf Andrae
+
+== '''Status''' ==
+
+SMHI is running CY31t0 with :
+
+ * ALADIN Scandinavia 10km, 60 levels, 00,12 UTC+48
+ * AROME South Sweden 2.5km, 60 levels, 00 UTC+24
+ * AROME North Sweden 2.5km, 60 levels, 00 UTC+24
+
+FMI is running CY30t1 with :
+
+ * ALADIN Scandinavia 11km, 40 levels, 00,12 UTC+24
+ * AROME South Finland 2.5km, 40 levels, 00,12 UTC+24
+
+== '''Unification of scripts''' ==
+
+So far the ALADIN/AROME reference scripts created by Ulf have only been
+reference in a sense that they have been available to everyone. They
+haven't been widely used, at least not to our knowledge. Work was done
+to modify the scripts to fit under FMI's SMS system and eventually also
+under HIRLAM mSMS. Sami will continue the work and Ulf will later test
+the scripts at ECMWF ( with or without mSMS ) and update them at hirlam.org
+
+
+== '''Coupling''' ==
+
+There is strong need to be able to couple AROME directly to HIRLAM. This
+is not possible today since the SURFEX part of AROME cannot handle
+HIRLAM data. Instead of modifying SURFEX we took the simple approach and
+used gl for conversion of ECMWF/HIRLAM files to an ALADIN file. This
+file was then fed to fullpos which creates inital/boundary data for
+ALADIN-NH/AROME. We were able to run a forecast but the quality of the approach 
+has not yet been evaluated. Since cycle 31t1 both ALADIN and AROME distinguish between water and ice
+cloud condensate. The possibility to add ice and water condensate to the
+initial/boundary condition was introduced. If ice cloud condensate is
+asked (HIRLAM/ECMWF --> AROME), it is diagnosed in gl from the total
+condensate and the temperature using the probability function from HIRLAM.
+
+== '''AROME quality''' ==
+
+The quality of AROME was discussed and we both felt that the quality of
+the surface parameters is not satisfying. This is not resolution
+dependent since experiments with ALADIN-NH at 2.5km gave similar results
+as HIRLAM. Recently it was found that the lfi files, i.e. the surfex files, 
+were decode in the wrong way. After a correct decoding and interpolation
+the scores are now comparable with the scores from HIRLAM and ALADIN.
+
+See also https://hirlam.org/pipermail/hirald/2006-November/000002.html
+
+At SMHI there are still computer related problems with
+spurious cold temperatures. The influence of data representativeness
+issues (obseravtion stations on small islands) will be further studied
+by looking the land and sea areas separately.
+
+The quality of the precipitation forecast seems to be promising, both
+qualitatively and quantitatively. It seems that AROME is able to create
+meso-scale convective systems with realistically looking wind and
+precipitation structures. However, there is an indication that with
+current implementation, the AROME is overdeveloping the convective
+activity (i.e. too intense precipitation).
+
+== '''Verification''' ==
+
+The 11-km ALADIN at FMI ( CY30t1 ) underestimates the cloud cover. This
+is however not seen at SMHI for the same cycle. Comparison of the
+namelists revealed nothing. One lesson to learn (again) is that it is
+important to compare results regularly. It was suggested already in
+Copenhagen last spring that we should collect the vfld-files for ALADIN
+10 km from each institute ( FMI/SMHI/DMI) and compare them on the same
+plot. If FMI and DMI put their daily vfld files ( with stations as
+defined in gl_extract/scr/ewglam.list ) at hirlam.org Ulf will take care
+of the verification and the display. Perhaps the verification can be run at hirlam.org in the future?
+
+
+== '''Repository''' ==
+
+It is felt that it would be beneficial if the AAA cycles were included
+in subversion. It would be would be easier to handle local changes and
+gather corrections to be sent to Meteo France. The code also becomes a
+more natural part of the HIRLAM distribution. The functionality of the
+code browser is another strong argument for putting the code in to
+subversion. The scripts and gl should preferably also be put under
+revision control. Ulf have with help from Tomas W tested to merge CY31t0
++  local changes + CY31t1 without any problems.

@@ -1,0 +1,1712 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Phasing information for Cycle 46T1''' =
+[[Center(end)]]
+
+
+= Cycle Master =
+
+Cycle Master: Toon Moene
+
+= Potential contributions=
+
+Summary of all differences between 40h1 ( trunk@14582 ) and cy46t1_main
+
+
+Last updated:2018-05-23
+
+[https://hirlam.org/trac/attachment/wiki/Phasing/cy46t1/content46T1_rollingversion.pdf List of contributions coordinated by MF]
+
+== Harmonie-Arome and Arome physics (upper-air)and dynamics ==
+
+=== A Microphysics 1 ===
+
+Authors:Karl-Ivar Ivarsson, Bjarne Stig Andersen 
+
+Description: Fixes 
+
+- Snow to graupel conversion + autoconversion fix[[BR]]
+
+- Reduces the amount of ice nucleus avoiding too dry atmosphere for temperatures below freezing [[BR]]
+
+- Stratospheric bugfixes and rain_ice.F90 correction [[BR]]
+              
+svn changesets: 14664,14739,14894,15821 
+
+=== A Microphysics 2 ===
+
+Authors:Karl-Ivar Ivarsson
+
+Description:
+
+Freezing rain updates in IC3 Modifications in rain_ice.F90 in order to improve the forecast of freezing rain
+(not only for OCND2). [[BR]]
+Modifications of cloud microphysics in passive form, which means that without changing the default values in namelist, the meteorological resultis not changed
+
+svn changesets: 15588,15781
+
+=== A Microphysics 3 ===
+
+Authors: Karl-Ivar Ivarsson
+
+Description: 
+
+- Modifications of cloud microphysics which are bug fixes and attempts to optimize the code. 
+
+- Modifications of EDMF scheme which are mainly optimizations. (about 25 % faster) agreed with Wim De Rooij. Also with some small updates. [ Not included in this set of modifications ] 
+
+- Both updates leads to minor changes of the meteorological result.
+
+svn changeset: 16880 (minus updates to EDMF, to be supplied separately by Wim de Rooij), 17015, 17048
+
+Changed:
+{{{
+#	modified:   arpifs/phys_dmn/apl_arome.F90
+#	modified:   arpifs/phys_dmn/suphmpa.F90
+#	modified:   mpa/micro/externals/aro_adjust.F90
+#	modified:   mpa/micro/externals/aro_rain_ice.F90
+#	modified:   mpa/micro/externals/aroini_micro.F90
+#	modified:   mpa/micro/interface/aro_adjust.h
+#	modified:   mpa/micro/interface/aro_rain_ice.h
+#	modified:   mpa/micro/interface/aroini_micro.h
+#	modified:   mpa/micro/internals/condensation.F90
+#	modified:   mpa/micro/internals/ice4_fast_rg.F90
+#	modified:   mpa/micro/internals/ice4_fast_rs.F90
+#	modified:   mpa/micro/internals/ice4_nucleation.F90
+#	modified:   mpa/micro/internals/ice4_nucleation_wrapper.F90
+#	modified:   mpa/micro/internals/ice4_sedimentation_split.F90
+#	modified:   mpa/micro/internals/ice4_sedimentation_stat.F90
+#	modified:   mpa/micro/internals/ice4_slow.F90
+#	modified:   mpa/micro/internals/ice4_tendencies.F90
+#	modified:   mpa/micro/internals/ice4_warm.F90
+#	modified:   mpa/micro/internals/ice_adjust.F90
+#	modified:   mpa/micro/internals/icecloud.F90
+#	modified:   mpa/micro/internals/ini_rain_ice.F90
+#	modified:   mpa/micro/internals/rain_ice.F90
+#	modified:   mpa/micro/internals/rain_ice_old.F90
+#	modified:   mpa/micro/module/modd_rain_ice_param.F90
+#	modified:   mpa/micro/module/modi_condensation.F90
+#	modified:   mpa/micro/module/modi_ice4_fast_rg.F90
+#	modified:   mpa/micro/module/modi_ice4_fast_rs.F90
+#	modified:   mpa/micro/module/modi_ice4_nucleation.F90
+#	modified:   mpa/micro/module/modi_ice4_nucleation_wrapper.F90
+#	modified:   mpa/micro/module/modi_ice4_sedimentation_split.F90
+#	modified:   mpa/micro/module/modi_ice4_sedimentation_stat.F90
+#	modified:   mpa/micro/module/modi_ice4_tendencies.F90
+#	modified:   mpa/micro/module/modi_ice4_warm.F90
+#	modified:   mpa/micro/module/modi_ice_adjust.F90
+#	modified:   mpa/micro/module/modi_rain_ice.F90
+#	modified:   mpa/micro/module/modi_rain_ice_old.F90
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	mpa/micro/internals/ice4_fast_si.F90
+#	mpa/micro/internals/ini_snow.F90
+#	mpa/micro/module/modi_ice4_fast_si.F90
+#	mpa/micro/module/modi_ini_snow.F90
+}}}
+
+I got a fresh set of updates to start from with source files and their original contents from Karl-Ivar. First I created a set of diffs from that:
+{{{
+#
+# ... At home ...
+#
+cd Phasing/CY46/contributions/A
+#
+# Create diffs from source and original files (.orig)
+#
+for f in `find arpifs mpa -name '*.orig'`
+do
+   b=`basename $f .orig`
+   d=`dirname $f`
+   diff -u $f $d/$b > $b.diff
+done
+#
+# Tar the results.
+#
+cd ..
+tar zcvf A.tgz A
+#
+# Then log into host merou at Meteo France ... and pick up the tar file.
+#
+scp harmonie@moene.org:Phasing/CY46/contributions/A.tgz .
+#
+# Untar it in its destination directory of HIRLAM A contributions.
+#
+cd cy46
+ls
+A1  A2	B  C  CommitMessage.example  D	E
+tar zxvf ~/A.tgz
+#
+# Check results.
+#
+ls
+A  A1  A2  B  C  CommitMessage.example	 D  E
+cd A
+ls
+#
+# Prepare for the git actions.
+#
+cd
+. ./.bashrc
+cd ~/git-dev/arpifs
+git fetch
+#
+# Create the branch for this contribution (BTW, this is wrong. It should have been: git_branch -r 46 -b t1 -v 02 -u hirlam_A).
+#
+git_branch -r 46 -v 02 -u hirlam_A
+#
+# Prepare for applying the updates to this branch - a dry run of the diffs.
+#
+for f in ~/cy46/A/*.diff
+do
+   echo '*** ' $f ' ***' >> ~/cy46/A/diff-results.txt
+   patch -l -p0 --dry-run < $f >> ~/cy46/A/diff-results.txt
+done
+#
+# View the results - ouch, several rejects.
+#
+less  ~/cy46/A/diff-results.txt
+#
+# Nevertheless, apply the patches - we have to move on.
+#
+for f in ~/cy46/A/*.diff
+do
+   echo '*** ' $f ' ***' >> ~/cy46/A/initial-patch.log
+   patch -l -p0  < $f >> ~/cy46/A/initial-patch.log
+done
+#
+# Repair the rejected patch hunks in mpa/micro/externals/aro_rain_ice.F90.rej
+#
+vi mpa/micro/externals/aro_rain_ice.F90
+#
+# Repair the rejected patch hunks in mpa/micro/internals/condensation.F90.rej
+#
+vi mpa/micro/internals/condensation.F90
+#
+# Tar the resulting branch contents.
+#
+tar zcvf ~/moene_CY46_hirlam_A.tgz .
+#
+# ... Then go to beaufix to build the code ...
+# ... but ...
+#
+# The fix for the rejections to mpa/micro/externals/aro_rain_ice.F90 turned out to
+# be wrong, so I used the original code by Karl-Ivar
+#
+cp -i ~/cy46/A/mpa/micro/externals/aro_rain_ice.F90 mpa/micro/externals/aro_rain_ice.F90
+#
+# ... *then* go to beaufix ...
+#
+# Finally, after the mitraillette results are in, commit the branch
+#
+# First, add the new files
+#
+git add mpa/micro/internals/ice4_fast_si.F90 mpa/micro/internals/ini_snow.F90 mpa/micro/module/modi_ice4_fast_si.F90 mpa/micro/module/modi_ini_snow.F90
+#
+# Then, perform the commit with the prepared commit message
+#
+git commit -a -F ~/cy46/A/CommitMessage.txt 
+[moene_CY46_hirlam_A 290bd6b] 10/10/2018 Karl-Ivar Ivarsson, smhi.se Sweden Bjarne Stig Andersen, dmi.dk Denmark
+ 40 files changed, 1190 insertions(+), 394 deletions(-)
+ create mode 100644 mpa/micro/internals/ice4_fast_si.F90
+ create mode 100755 mpa/micro/internals/ini_snow.F90
+ create mode 100644 mpa/micro/module/modi_ice4_fast_si.F90
+ create mode 100644 mpa/micro/module/modi_ini_snow.F90
+#
+# Check the resulting diff between the current contents of
+# the branch and its original contents (at creation).
+#
+git diff HEAD^ HEAD > ~/cy46/A/Commit1.diff
+less ~/cy46/A/Commit1.diff
+#
+# Final status check before ...
+#
+git status
+# On branch moene_CY46_hirlam_A
+nothing to commit (working directory clean)
+#
+# ... telling Meteo France it's there
+#
+git_post
+
+Your post request will be processed by the server soon.
+
+Git user    : moene
+Git family  : arpifs
+Remote host : merou
+Repository  : /home/mrpe737/git-dev/arpifs
+Branch      : moene_CY46_hirlam_A
+Force       : 0
+Test mode   : 0
+
+Status will be sent by mail in a few minutes at the address: moene@knmi.nl .
+}}}
+Then, on beaufix, build the branch.
+{{{
+#
+# Get the sources from merou
+#
+ftp merou
+<user>
+<password>
+bin
+get moene_CY46_hirlam_A.tgz
+quit
+#
+# Create the build environment
+#
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; gmkpack -r 46 -v 02 -n 02 -a -l IMPIFC1801 -o 2y -p masterodb)
+#
+# Unpack the branch into the source directory
+#
+cd pack/46_main.02.IMPIFC1801.2y/src/local/
+tar zxvf ~/moene_CY46_hirlam_A.tgz 
+#
+# Remove the directories of sources that inhibit the build - they are not necessary
+#
+rm -rf oops cope oopsifs/ scripts/
+cd ../..
+#
+# Apply a change recommended by Ryad el Khatib (odb_nmxupd=10 instead of 3)
+#
+vi ics_masterodb
+#
+# Start the build
+#
+(export GMK_THREADS=20; export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; ./ics_masterodb) >& compile.log &
+#
+# ... back to merou to fix several trivial syntactical errors:
+#
+# mpa/micro/module/modi_ice4_tendencies.F90
+# mpa/micro/module/modi_ice4_fast_rg.F90
+# mpa/micro/internals/ice4_fast_rs.F90
+# mpa/micro/internals/condensation.F90
+# mpa/micro/internals/ice4_warm.F90
+# mpa/micro/internals/ice4_slow.F90
+# mpa/micro/internals/ice4_nucleation.F90
+# mpa/micro/internals/ice4_fast_rg.F90
+#
+# ... and back to beaufix for building ... (see above)
+#
+# ... then noticed I forgot the completely new files
+#       mpa/micro/internals/ice4_fast_si.F90
+#       mpa/micro/module/modi_ice4_fast_si.F90
+# ... and later
+#       mpa/micro/internals/ini_snow.F90
+#       mpa/micro/module/modi_ini_snow.F90
+# ... so back to beaufix for building ... (see above)
+#
+# Finally, an executable !
+#
+...
+/home/gmap/mrpm/khatib/public/bin/impifc-18.1.163 -v -fp-stack-check -qopenmp -qopenmp-threadprivate compat -shared-intel -lrt -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -Wl,-rpath,/opt/bullxde/utils/boost/lib -Wl,-rpath,/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -Wl,--start-group ./_odb_glue.o ./master.o -L. -l[1] -l[2] -l[3] -l[4] -l[5] -l[6] -l[7] -l[8] -l[9] -l[10] -l[11] -l[12] -l[13] -l[14] -l[15] -l[16] -l[17] -l[18] -l[19] -l[20] -l[21] -l[22] -l[23] -l[24] -l[25] -l[26] -l[27] -l[28] -Wl,--end-group -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lbufr -lgribex -L/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -lnetcdff -lnetcdf -L/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -leccodes_f90 -leccodes -L/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -lhdf5hl_fortran -lhdf5_fortran -lhdf5 -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lfdbdummy -lwamdummy -lnaglitedummy -loasisdummy -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -llapack -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -lblas -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -libmdummy
+mpiifort for the Intel(R) MPI Library 2018 Update 1 for Linux*
+Copyright(C) 2003-2017, Intel Corporation.  All rights reserved.
+
++ mv a.out /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
++ set +x
+-rwxr-xr-x 1 moene mrpe 625724946 Nov 24 14:12 /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+
+Finished on Sat Nov 24 14:12:06 UTC 2018
+}}}
+Use mitraillette to test this executable:
+{{{
+[moene@beaufixlogin0 46_main.02.IMPIFC1801.2y]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 46_main.02.IMPIFC1801.2y]$ checkpack.py -c cy46 -r ~saez/mitraille/cy46
+-------------- checkpack ---------------
+WARNING: no convenient binary (['PGD']) has been found in '/home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin' for job L3_PGDI_LELAM_FRANCE
+Test binaries:
+GE_C901 : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_C601_HYD_SL2_VFE_VSIPHY : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_C923_TL798S : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FPIN_HYD_GPLALON_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_H2L : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_L2H : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPLELAM_ARU : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SURFLELAM : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LALON_FRANX01 : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LELAM_FRANCE : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.02.IMPIFC1801.2y/bin/MASTERODB
+L3_PGDI_LELAM_FRANCE : None
+Build Mitraillette scripts (from /home/gmap/mrpe/moene/mitraillette_v042018) ...
+Bench: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0009
+Running 16 jobs with scheduling rules: 'Run jobs simultaneously, with a maximum of 3 in parallel.'
+Status update every 5s
+JobName                                                     |  JobID   |   Status   | EndCNT0  
+-----------------------------------------------------------------------------------------------
+GE_C901                                                     | 59777799 |   ended    |    OK    
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA                             | 59777800 |   ended    |    OK    
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA                             | 59777801 |   ended    |    OK    
+GM_C601_HYD_SL2_VFE_VSIPHY                                  | 59777827 |   ended    |    OK    
+GM_C923_TL798S                                              | 59777831 |   ended    |    ?     
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S           | 59777837 |   ended    |    OK    
+GM_FPIN_HYD_GPLALON_ARPPHYISBA                              | 59777850 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_H2L                                     | 59777861 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_L2H                                     | 59777886 |   ended    |    OK    
+GM_FPOF_HYD_SPLELAM_ARU                                     | 59777945 |   ended    |    OK    
+GM_FPOF_HYD_SURFLELAM                                       | 59777972 |   ended    |    OK    
+L3_C923_LALON_FRANX01                                       | 59778018 |   ended    |    OK    
+L3_C923_LELAM_FRANCE                                        | 59778104 |   ended    |    ?     
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300              | 59778113 |   ended    | crashed  
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 | 59778292 |   ended    | crashed  
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA                         | 59778304 |   ended    | crashed  
+=== Parsing outputs for Ciboulette ===
+Validation of: cy46 vs. cy46
+Test location: /home/gmap/mrpe/moene/mitraillette_v042018/cy46
+Ref location: /home/gmap/mrpm/saez/mitraille/cy46
+Output name: /home/gmap/mrpe/moene/mitraillette_v042018/cy46-cy46_0009.html
+Link: ftp:moene@beaufix/mitraillette_v042018/cy46-cy46_0009.html
+Benches for test (cy46): ['mitraille_0009']
+Benches for ref (cy46): ['mitraille_0245', 'mitraille_0334', 'mitraille_0335', 'mitraille_0336', 'mitraille_0337', 'mitraille_0338', 'mitraille_0339', 'mitraille_0340', 'mitraille_0342', 'mitraille_0343', 'mitraille_0344', 'mitraille_0348', 'mitraille_0357', 'mitraille_0363', 'mitraille_0364', 'mitraille_0376', 'mitraille_0442', 'mitraille_0443', 'mitraille_0444', 'mitraille_0445', 'mitraille_0449', 'mitraille_0450']
+Number of jobs processed: 17
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0009/OGM_C923_TL798S.o59777831
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0009/OL3_C923_LELAM_FRANCE.o59778104
+=== Jobs counts ===
+Compared: 9
+Crashed: 3
+Failed comparison: 4
+Missing outputs: 1
+}}}
+The results of [http://moene.org/~harmonie/mitraillette_v042018/cy46-cy46_0009.html the mitraillette runs]
+
+=== B Shallow convection ===
+
+Authors:Lisa Bengtsson
+
+Description:
+            Modifications to shallow convection scheme in orde to improve precipitation falling from shallow convective clouds. LTROPEC=TRUE (default=FALSE) precipitation tendencies in SC scheme are added to the source terms of precipitation entering in the cloud microphysics, such that ther are advected before next time step
+ 
+svn changesets: 15765
+
+Changed:
+{{{
+arpifs/module/yomparar.F90 
+arpifs/namelist/namparar.nam.h
+arpifs/phys_dmn/apl_arome.F90 
+arpifs/phys_dmn/suparar.F90 
+arpifs/phys_dmn/vdfhghthl.F90 
+arpifs/phys_dmn/vdfhghtnhl.F90
+}}}
+20180920 Assessment by Toon Moene:
+I have created the equivalent changeset for CY 46. Some hand editing was necessary, and some reasoning-by-analogon, which I hope I did correctly.
+Creation of the branch containing this change on merou:
+{{{
+#
+# Prepare to use git
+#
+. ./.bashrc
+cd git-dev/arpifs
+#
+# Make the git repository up-to-date
+#
+git fetch
+#
+# Make the branch for this HIRLAM contribution (BTW, this is wrong. It should have been: git_branch -r 46 -b t1 -v 02 -u hirlam_B)
+#
+git_branch -r 46 -v 02 -u hirlam_B
+#
+# Try the patch
+#
+patch -p0 -l --dry-run < ~/cy46/B/cy46.diff
+#
+# No errors, apply the patch
+#
+patch -p0 -l < ~/cy46/B/cy46.diff
+#
+# Check the results
+#
+git status
+git diff
+#
+# Add the modified files for commit
+#
+git add arpifs/module/yomparar.F90 arpifs/namelist/namparar.nam.h arpifs/phys_dmn/apl_arome.F90 arpifs/phys_dmn/suparar.F90 arpifs/phys_dmn/vdfhghthl.F90 arpifs/phys_dmn/vdfhghtnhl.F90
+#
+# Check the result
+#
+git status
+#
+# Try the commit
+#
+git commit --dry-run
+#
+# OK - do it
+#
+git commit -m "HIRLAM contribution "LTOTPREC" modifications"
+... followed by updating with several compilation fixes ...
+#
+# Announce the modifications
+#
+git_post
+#
+# Then I realized it would be expedient to include Wim de Rooij's "cloud fraction" fix (svn changeset 16603)
+# to apl_arome and did
+#
+git add arpifs/phys_dmn/apl_arome.F90
+git commit -F ~/cy46/B/CommitMessage.txt
+#
+# which needed another
+#
+git_post
+}}}
+Build on beaufix (gmkpack version according to Ryad el Khatib) [updated because Alexandre Mary told me the correct gmkpack argument: "-l IMPIFC1801 -o 2y" which has the "-fp-model source" compiler option, necessary for reproducibility.]:
+{{{
+#
+# Get the sources from merou
+#
+ftp merou
+<user>
+<password>
+bin
+get moene_CY46_hirlam_B.tgz
+quit
+#
+# Create the build environment
+#
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; gmkpack -r 46 -v 02 -n 01 -a -l IMPIFC1801 -o 2y -p masterodb)
+#
+# Go to the location of the source directories
+#
+cd pack/46_main.01.IMPIFC1801.2y/src/local
+#
+# And unpack the sources
+#
+tar zxvf ~/moene_CY46_hirlam_B.tgz
+#
+# Remove the directories that lead to build failures
+#
+rm -rf oops cope oopsifs scripts
+#
+# Go to the build directory
+#
+cd ../..
+#
+# Apply the change recommended by Ryad (odb_nmxupd=10 instead of 3)
+#
+vi ics_masterodb  
+#
+# Run the build process
+#
+(export GMK_THREADS=20; export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; ./ics_masterodb) >& compile.log &
+#
+# and view the result
+#
+...
+/home/gmap/mrpm/khatib/public/bin/impifc-18.1.163 -v -fp-stack-check -qopenmp -qopenmp-threadprivate compat -shared-intel -lrt -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -Wl,-rpath,/opt/bullxde/utils/boost/lib -Wl,-rpath,/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -Wl,--start-group ./_odb_glue.o ./master.o -L. -l[1] -l[2] -l[3] -l[4] -l[5] -l[6] -l[7] -l[8] -l[9] -l[10] -l[11] -l[12] -l[13] -l[14] -l[15] -l[16] -l[17] -l[18] -l[19] -l[20] -l[21] -l[22] -l[23] -l[24] -l[25] -l[26] -l[27] -l[28] -Wl,--end-group -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lbufr -lgribex -L/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -lnetcdff -lnetcdf -L/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -leccodes_f90 -leccodes -L/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -lhdf5hl_fortran -lhdf5_fortran -lhdf5 -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lfdbdummy -lwamdummy -lnaglitedummy -loasisdummy -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -llapack -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -lblas -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -libmdummy
+mpiifort for the Intel(R) MPI Library 2018 Update 1 for Linux*
+Copyright(C) 2003-2017, Intel Corporation.  All rights reserved.
+
++ mv a.out /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
++ set +x
+-rwxr-xr-x 1 moene mrpe 625655327 Nov 16 21:54 /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+
+Finished on Fri Nov 16 21:54:39 UTC 2018
+}}}
+Run mitraillette on the resulting binary (the comments are by Alexandre Mary):
+{{{
+# 1/ [once] add the content of /home/gmap/mrpe/mary/public/mocuba/_install_bull
+#    to your profile, and export the given variables. You will probably
+#    need to de-comment the lines concerning Vortex, and add a line with
+#    "module load python"
+
+[moene@beaufixlogin0 ~]$ cat .bash_profile
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+# For testing with mitraillette using the "validation" project
+
+# ifneedbe: Vortex > 1.1.4 for latest arpifs_listings
+VORTEX_INSTALL_DIR=/home/mf/dp/marp/verolive/vortex/vortex-olive
+PYTHONPATH=$VORTEX_INSTALL_DIR:$VORTEX_INSTALL_DIR/src:$VORTEX_INSTALL_DIR/site:$PYTHONPATH
+export PYTHONPATH
+
+MOCUBA_ROOTDIR=/home/gmap/mrpe/mary/public/mocuba
+export PYTHONPATH=$MOCUBA_ROOTDIR:$PYTHONPATH
+export PATH=$MOCUBA_ROOTDIR/bin:$PATH
+
+export PATH
+
+module load python
+[moene@beaufixlogin0 ~]$ logout
+
+... relogin ...
+
+Python Programming Language (2.7.5) is loaded.
+	|-> Binaries  installed under PYTHON_BIN_DIR=/opt/softs/python/2.7.5/bin
+	|-> Headers   installed under PYTHON_INC_DIR=/opt/softs/python/2.7.5/include
+	|-> Libraries installed under PYTHON_LIB_DIR=/opt/softs/python/2.7.5/lib
+Additional Python Modules
+	|-> basemap (1.0.7)
+	|-> Cython (0.19.1)
+	|-> h5py (2.3.1)
+	|-> matplotlib (1.3.1)
+	|-> NetCDF4 (1.0.6)
+	|-> nose (1.3.0)
+	|-> NumPy (1.9.3)
+	|-> PySLURM (2.5.6)
+	|-> PyYAML (3.11)
+	|-> ScientificPython (2.9.2)
+	|-> pyproj (1.9.5.1)
+	|-> pygrib (2.0.1)
+	|-> scipy (0.17.1)
+	|-> pyresample (1.5.0)
+	|-> pykdtree (1.2.1)
+	|-> mpi4py (1.3.1)
+	|-> Joblib (0.11)
+	|-> Xlsxwriter (0.9.6)
+
+# 2/ [when testing a new cycle] run /home/gmap/mrpe/mary/public/mocuba/bin/mitraillette_install.py
+#    and export MIT_INSTALL_DIR if you change the default value.
+
+[moene@beaufixlogin0 ~]$ /home/gmap/mrpe/mary/public/mocuba/bin/mitraillette_install.py
+Mitraillette version = v042018
+being installed under /home/gmap/mrpe/moene/mitraillette_v042018
+Do you want to specify a different install directory ? (y/n) [n]
+copy files...
+Do you want to (re)link /home/gmap/mrpe/moene/mitraillette to the current install directory ? (y/n) [y]
+Installation successful !
+Please export variable MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 ~]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+
+# 3/ go to the root directory of the pack you want to check, then run:
+#    checkpack.py -c cy46 -r ~saez/mitraille/cy46
+#    (to test your branch on top of cy46, against the cy46 reference at P.Saez's directories)
+
+[moene@beaufixlogin0 ~]$ cd pack/46_main.01.IMPIFC1801.2y/ 
+[moene@beaufixlogin0 46_main.01.IMPIFC1801.2y]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 46_main.01.IMPIFC1801.2y]$ checkpack.py -c cy46 -r ~saez/mitraille/cy46
+-------------- checkpack ---------------
+WARNING: no convenient binary (['PGD']) has been found in '/home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin' for job L3_PGDI_LELAM_FRANCE
+Test binaries:
+GE_C901 : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C601_HYD_SL2_VFE_VSIPHY : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C923_TL798S : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPIN_HYD_GPLALON_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_H2L : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_L2H : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPLELAM_ARU : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SURFLELAM : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LALON_FRANX01 : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LELAM_FRANCE : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.01.IMPIFC1801.2y/bin/MASTERODB
+L3_PGDI_LELAM_FRANCE : None
+Build Mitraillette scripts (from /home/gmap/mrpe/moene/mitraillette_v042018) ...
+Bench: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0008
+Running 16 jobs with scheduling rules: 'Run jobs simultaneously, with a maximum of 3 in parallel.'
+Status update every 5s
+JobName                                                     |  JobID   |   Status   | EndCNT0  
+-----------------------------------------------------------------------------------------------
+GE_C901                                                     | 59269256 |   ended    |    OK    
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA                             | 59269257 |   ended    |    OK    
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA                             | 59269258 |   ended    |    OK    
+GM_C601_HYD_SL2_VFE_VSIPHY                                  | 59269273 |   ended    |    OK    
+GM_C923_TL798S                                              | 59269288 |   ended    |    ?     
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S           | 59269299 |   ended    |    OK    
+GM_FPIN_HYD_GPLALON_ARPPHYISBA                              | 59269300 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_H2L                                     | 59269307 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_L2H                                     | 59269332 |   ended    |    OK    
+GM_FPOF_HYD_SPLELAM_ARU                                     | 59269346 |   ended    |    OK    
+GM_FPOF_HYD_SURFLELAM                                       | 59269347 |   ended    |    OK    
+L3_C923_LALON_FRANX01                                       | 59269353 |   ended    |    OK    
+L3_C923_LELAM_FRANCE                                        | 59269357 |   ended    |    ?     
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300              | 59269364 |   ended    |    OK    
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 | 59269373 |   ended    | crashed  
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA                         | 59269382 |   ended    | crashed  
+=== Parsing outputs for Ciboulette ===
+Validation of: cy46 vs. cy46
+Test location: /home/gmap/mrpe/moene/mitraillette_v042018/cy46
+Ref location: /home/gmap/mrpm/saez/mitraille/cy46
+Output name: /home/gmap/mrpe/moene/mitraillette_v042018/cy46-cy46_0008.html
+Link: ftp:moene@beaufix/mitraillette_v042018/cy46-cy46_0008.html
+Benches for test (cy46): ['mitraille_0008']
+Benches for ref (cy46): ['mitraille_0245', 'mitraille_0334', 'mitraille_0335', 'mitraille_0336', 'mitraille_0337', 'mitraille_0338', 'mitraille_0339', 'mitraille_0340', 'mitraille_0342', 'mitraille_0343', 'mitraille_0344', 'mitraille_0348', 'mitraille_0357', 'mitraille_0363', 'mitraille_0364', 'mitraille_0376', 'mitraille_0442', 'mitraille_0443', 'mitraille_0444', 'mitraille_0445', 'mitraille_0449', 'mitraille_0450']
+Number of jobs processed: 17
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0008/OGM_C923_TL798S.o59269288
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0008/OL3_C923_LELAM_FRANCE.o59269357
+=== Jobs counts ===
+Compared: 10
+Crashed: 2
+Failed comparison: 4
+Missing outputs: 1
+}}}
+The results of [http://moene.org/~harmonie/mitraillette_v042018/cy46-cy46_0008.html the mitraillette runs]
+
+=== C Radiation ===
+
+Authors:Laura Rontu
+
+Description: Radiation updates to introduce LHLRADUPD switch and new namelist setings
+
+svn changesets: 14792
+
+'''Postponed''' - see below.
+
+Changed:
+{{{
+arpifs/module/yoesw.F90
+arpifs/module/yomphy.F90
+arpifs/namelist/namphy.nam.h
+arpifs/phys_dmn/apl_arome.F90
+arpifs/phys_ec/radheat.F90 
+arpifs/phys_radi/suecrad.F90 
+arpifs/phys_radi/suswn.F90 
+arpifs/setup/su0phy.F90 
+}}}
+20180920 Assessment by Toon Moene: This change is too far removed from the current (cy46) sources to be salvable; in particular, note all the failures on the central routine apl_arome. Note the comments of the utility "patch": Comment by Laura 20181011: LHLRADUPD is not needed since cy43, but there are other minor modifications we could suggest. apl_arome from cy43t2 is a good starting point.
+{{{
+$ patch -p4 --dry-run < ../contributions/C/changeset_14792.diff 
+checking file arpifs/phys_dmn/apl_arome.F90
+Hunk #1 FAILED at 71.
+Hunk #2 succeeded at 332 with fuzz 2.
+Hunk #3 FAILED at 340.
+Hunk #4 succeeded at 521 with fuzz 2 (offset 1 line).
+Hunk #5 FAILED at 536.
+Hunk #6 succeeded at 550 with fuzz 2 (offset 1 line).
+Hunk #7 FAILED at 562.
+Hunk #8 FAILED at 683.
+Hunk #9 succeeded at 764 (offset 36 lines).
+Hunk #10 FAILED at 846.
+Hunk #11 FAILED at 889.
+Hunk #12 succeeded at 945 with fuzz 2 (offset 36 lines).
+Hunk #13 FAILED at 948.
+Hunk #14 FAILED at 1245.
+Hunk #15 succeeded at 1654 with fuzz 2 (offset 265 lines).
+Hunk #16 FAILED at 1488.
+Hunk #17 FAILED at 1574.
+Hunk #18 FAILED at 1592.
+Hunk #19 FAILED at 1634.
+Hunk #20 FAILED at 1655.
+Hunk #21 FAILED at 1666.
+Hunk #22 FAILED at 1706.
+Hunk #23 FAILED at 1713.
+Hunk #24 FAILED at 1745.
+Hunk #25 succeeded at 2366 (offset 585 lines).
+Hunk #26 FAILED at 1799.
+Hunk #27 succeeded at 2394 with fuzz 2 (offset 585 lines).
+Hunk #28 FAILED at 1822.
+Hunk #29 FAILED at 1833.
+Hunk #30 succeeded at 2414 with fuzz 1 (offset 534 lines).
+Hunk #31 FAILED at 1928.
+Hunk #32 FAILED at 1959.
+Hunk #33 FAILED at 1970.
+Hunk #34 FAILED at 1984.
+Hunk #35 FAILED at 2044.
+Hunk #36 FAILED at 2088.
+Hunk #37 FAILED at 2115.
+Hunk #38 FAILED at 2130.
+Hunk #39 FAILED at 2661.
+Hunk #40 FAILED at 3045.
+Hunk #41 FAILED at 3060.
+32 out of 41 hunks FAILED
+checking file arpifs/phys_radi/suswn.F90
+Hunk #1 FAILED at 51.
+Hunk #2 succeeded at 64 with fuzz 2.
+Hunk #3 FAILED at 80.
+Hunk #4 succeeded at 145 with fuzz 1 (offset 8 lines).
+Hunk #5 succeeded at 954 with fuzz 2 (offset 8 lines).
+Hunk #6 succeeded at 1031 with fuzz 2 (offset 8 lines).
+Hunk #7 succeeded at 1108 with fuzz 2 (offset 8 lines).
+Hunk #8 succeeded at 1193 with fuzz 2 (offset 8 lines).
+Hunk #9 succeeded at 1274 with fuzz 2 (offset 8 lines).
+Hunk #10 succeeded at 1353 with fuzz 2 (offset 8 lines).
+Hunk #11 FAILED at 1492.
+Hunk #12 FAILED at 1512.
+Hunk #13 succeeded at 1542 with fuzz 2 (offset 18 lines).
+Hunk #14 succeeded at 1576 with fuzz 2 (offset 18 lines).
+Hunk #15 succeeded at 1608 with fuzz 2 (offset 18 lines).
+4 out of 15 hunks FAILED
+checking file arpifs/phys_radi/suecrad.F90
+Hunk #1 succeeded at 84 with fuzz 2.
+Hunk #2 FAILED at 100.
+Hunk #3 FAILED at 117.
+Hunk #4 succeeded at 190 with fuzz 2.
+Hunk #5 FAILED at 292.
+Hunk #6 FAILED at 306.
+Hunk #7 FAILED at 340.
+Hunk #8 succeeded at 802 (offset 347 lines).
+Hunk #9 FAILED at 542.
+Hunk #10 FAILED at 1379.
+Hunk #11 FAILED at 1394.
+Hunk #12 FAILED at 1677.
+Hunk #13 FAILED at 1687.
+Hunk #14 FAILED at 1720.
+11 out of 14 hunks FAILED
+can't find file to patch at input line 1061
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|Index: /trunk/harmonie/src/arpifs/phys_ec/radheat.F90
+|===================================================================
+|--- /trunk/harmonie/src/arpifs/phys_ec/radheat.F90	(revision 13537)
+|+++ /trunk/harmonie/src/arpifs/phys_ec/radheat.F90	(revision 14792)
+--------------------------
+File to patch: arpifs/phys_radi/radheat.F90
+checking file arpifs/phys_radi/radheat.F90
+Hunk #1 FAILED at 1.
+Hunk #2 succeeded at 79 with fuzz 2.
+Hunk #3 FAILED at 120.
+Hunk #4 succeeded at 163 (offset 7 lines).
+Hunk #5 FAILED at 234.
+3 out of 5 hunks FAILED
+checking file arpifs/setup/su0phy.F90
+Hunk #1 FAILED at 177.
+Hunk #2 succeeded at 1100 (offset 600 lines).
+Hunk #3 FAILED at 1150.
+Hunk #4 FAILED at 1213.
+Hunk #5 succeeded at 1860 with fuzz 1 (offset 636 lines).
+3 out of 5 hunks FAILED
+checking file arpifs/namelist/namphy.nam.h
+Hunk #1 FAILED at 31.
+1 out of 1 hunk FAILED
+checking file arpifs/module/yoesw.F90
+Reversed (or previously applied) patch detected!  Assume -R? [n] 
+Apply anyway? [n] y
+Hunk #1 FAILED at 14.
+Hunk #2 succeeded at 116 with fuzz 2.
+1 out of 2 hunks FAILED
+checking file arpifs/module/yomphy.F90
+Hunk #1 succeeded at 300 with fuzz 2.
+Hunk #2 succeeded at 452 with fuzz 2.
+}}}
+=== D Dynamics ===
+Authors:Xiaohua
+
+Description: change suggested by Mariano Hortal in Nov 2015 in connection with use of grid-type other than linear
+ 
+svn changesets: 14897
+
+'''Dropped''' - see below.
+
+Changed:
+{{{
+arpifs/adiab/gnhd3.F90
+}}}
+20180920 Assessment by Toon Moene:
+This changeset isn't relevant anymore. The variable GRID_TYPE_LCQ doesn't occur in the entire model anymore and the structure of gnhd3.F90 is completely different now.
+
+= Possible contributions for cy46T1 (rev 16040 onwards) = 
+
+ 
+== Physics and Dynamics ==
+
+=== A3 Microphysics ===
+
+Authors: Karl-Ivar Ivarsson
+Description: 
+- Modifications of cloud microphysics which are bug fixes and
+attempts to optimize the code. 
+
+- Modifications of EDMF scheme which are mainly
+optimizations. (about 25 % faster) agreed with Wim De Rooij. Also with some small updates. 
+
+- Both updates leads to minor changes of the meteorological result.
+
+svn changeset: 16880, 17015, 17048
+
+'''Subsumed''' into Part A - see above.
+
+Changed:
+{{{
+arpifs/module/yomparar.F90 
+arpifs/phys_dmn/apl_arome.F90 
+arpifs/phys_dmn/suparar.F90 
+arpifs/phys_dmn/vdfexcuhl.F90 
+arpifs/phys_dmn/vdfhghthl.F90 
+arpifs/phys_dmn/vdfhghtnhl.F90 
+arpifs/phys_dmn/vdfparcelhl.F90
+mpa/micro/externals/aro_adjust.F90 
+mpa/micro/externals/aro_rain_ice.F90 
+mpa/micro/externals/aroini_micro.F90 
+mpa/micro/interface/aro_adjust.h 
+mpa/micro/interface/aro_rain_ice.h 
+mpa/micro/internals/condensation.F90 
+mpa/micro/internals/ice_adjust.F90 
+mpa/micro/internals/icecloud.F90 
+mpa/micro/internals/ini_rain_ice.F90 
+mpa/micro/internals/ini_snow.F90
+mpa/micro/internals/rain_ice.F90 
+mpa/micro/module/modd_rain_ice_param.F90 
+mpa/micro/module/modi_condensation.F90 
+mpa/micro/module/modi_ice_adjust.F90 
+mpa/micro/module/modi_ini_snow.F90
+mpa/micro/module/modi_rain_ice.F90 
+}}}
+
+=== B2 Shallow Convection ===
+
+Authors: Wim de Roy
+
+Description: TOTPREC bugfix When LTOTPREC=TRUE the rain and snow sources from the shallow convection
+scheme were multiplied by the mean convective cloud fraction twice. This bugfix corrects this. 
+
+svn changesets: 16603
+
+'''Subsumed''' into the shallow convection modification (by Lisa Bengtsson) branch: moene_CY46_hirlam_B.
+
+Changed:
+{{{
+arpifs/phys_dmn/apl_arome.F90
+}}}
+
+== E Data Assimilation ==
+
+Authors:Jelena Bojarova
+
+Description: Corrections needed to allow 4DVAR with 2 outer loops (based on Nils' and Magnus' work)
+	     Allow spectral change of resolution, allow JcDFI, allow trajectory run with AROME
+ 
+svn changesets: 16108
+
+Changed:
+{{{
+src/arpifs/control/cva1.F90 
+src/arpifs/dfi/suini.F90 (1 diff)
+src/arpifs/module/yomvar.F90 (2 diffs)
+src/arpifs/namelist/namvar.nam.h (1 diff)
+src/arpifs/setup/su0phy.F90 (3 diffs)
+src/arpifs/setup/su0yomb.F90 (1 diff)
+src/arpifs/setup/su_surf_flds.F90 (2 diffs)
+src/arpifs/var/evjcdfi.F90 (3 diffs)
+src/arpifs/var/getmini.F90 (5 diffs)
+src/arpifs/var/savmini.F90 (2 diffs)
+src/arpifs/var/suvar.F90 (2 diffs)
+src/arpifs/var/wrchres.F90
+}}}
+
+Authors: Magnus Lindskog
+
+Description:  Reintrodution of MSGinit to initialise humidity in the model by nudging it with data from MSG satellite information (cloud mask and cloud top temperature), combined with SYNOP observations of cloud base height.
+
+svn changeset: 16850, 16852
+
+Changed:
+{{{
+arpifs/module/yomct0.F90 
+arpifs/module/yomgfl.F90 
+arpifs/namelist/namct0.nam.h 
+arpifs/phys_dmn/mf_phys.F90 
+arpifs/phys_dmn/msginit.F90
+arpifs/setup/suct0.F90 
+arpifs/setup/sugridua.F90 
+arpifs/setup/sumpini.F90 
+}}}
+
+
+== F Bator ==
+
+Authors:Eoin Whelan
+
+Comment: many of these changes have either entered in CY45 inside "#ifdef HIRLAM" or have been superseded by MF/ALADIN developments (amdar treatment). No further Bator changes from harmonie-40h1 should be brought to CY46. 
+
+Description: Some (cosmetic) observation pre-processing enhancements
+ 
+svn changesets: 16267
+
+Changed:
+{{{
+odb/pandor/module/bator_impr_mod.F90 
+odb/pandor/module/bator_saisies_mod.F90 
+odb/tools/Bator.F90 
+}}}
+
+Authors:Eoin Whelan, Ulf Andrae and the MetCoOp? gang, Maria Monteiro: various BATOR changes
+
+Description
+ - Revert amdar subroutine to MF code to allow easier merging in future (Eoin)
+ - Add amdarv01 subroutine for BUFR template 311001 (Eoin)
+ - Add amdarv10 subroutine for BUFR template 311010 (Maria)
+ - Add ECMWF BUFR SYNOP subtypes in synop subroutine (Eoin)
+ - Adjust treatment of high altitude SYNOPs (Ulf et al)
+ - Redefine many date variables as INT instead of re-casting REAL variables
+ - Change BUFR PILOT sub-types to ECMWF subtypes
+ - Add more user control to treatment of radiosonde data (Ulf et al)
+ - Add switch for the use of Ps or PMSL from SYNOP reports
+ - Update treatment of BUFR PILOT. C
+ - Correct BUFR BUOY codetypes and reading of BUFR BUOY winds (MF CY45)
+ - Stop reading Z from SYNOP reports
+ - Prevent reading of indicated altitude/flight level from ACAR reports
+ 
+svn changesets: 16284, 16291, 16325, 16386, 16741 
+
+Changed:
+{{{
+odb/pandor/module/bator_decodbufr_mod.F90
+}}}
+
+Authors: Eoin Whelan
+
+Description: Further obs pre-proc updates 
+
+ -arpifs/module/yomcoctp.F90, src/arpifs/setup/cmoctmap.F90, src/arpifs/setup/cmoctmap_inv.F90 - add "BUFR MOORED BUOY" and "BUFR DRIFTING BUOY" (CY45)
+
+ -odb/cma2odb/subuoctp.F90, src/odb/module/yomboctp.F90 - bring back some CY45 ODB (TEMP) changes
+
+ -odb/pandor/module/bator_impr_mod.F90, src/odb/pandor/module/bator_saisies_mod.F90 - account for BUFR BUOY data in Bator
+
+ -odb/pandor/module/bator_util_mod.F90 - update "codetype <-> reportype" mappings in Bator
+
+ 
+svn changesets: 16325, 16342
+
+Changed:
+{{{
+arpifs/module/yomcoctp.F90 
+arpifs/setup/cmoctmap.F90 
+arpifs/setup/cmoctmap_inv.F90 
+odb/cma2odb/subuoctp.F90 
+odb/module/yomboctp.F90 
+odb/pandor/module/bator_impr_mod.F90 
+odb/pandor/module/bator_saisies_mod.F90 
+odb/pandor/module/bator_util_mod.F90 
+}}}
+
+== G Technical changes ==
+
+The listed technical changes have been checked against a git repository obtained from Toon on September 25th 2018:
+{{{
+# Created new branch for technical mods in local git repository copied from Toon:
+> mkdir -p /nobackup/users/ulft/HARMONIE/phasing/cy46t1
+> cd /nobackup/users/ulft/HARMONIE/phasing/cy46t1
+> cp ~moene/HIRLAM-AROME-Contributions/CY46/cy46t1.tgz .
+> tar xvf cy46t1.tgz 
+> git checkout -b ulft_CY46_hirlam_techmods
+
+# git log after creating the new branch shows:
+> git log
+commit b3049dac4a4c870c1ea7257fc2067b57b3f3d6e3 (HEAD -> ulft_CY46_hirlam_techmods, tag: CY46, tag: CY45T1_r1.06, origin/master, origin/gco_CY45T1_r1)
+Author: GCO Equipe <dirop_compas_gco@zimbra.meteo.fr>
+Date:   Mon Apr 9 11:25:02 2018 +0000
+
+    Protect some code changes (introduced in CY45T1_r1.01) by key LECMWF.
+
+}}}
+
+Then created changesets for all listed changes in the section. Note that only changes under src directory are included and ignore changes to scripts, namelists, etc.:
+{{{
+> mkdir hirlam_changesets
+> for chset in 16299 16488 16715 16780 16789 16849 16874 17033; do
+>     svn diff --git -c $chset https://svn.hirlam.org/trunk/harmonie/src > hirlam_changesets/c${chset}.diff
+> done
+}}}
+
+These patches were then applied 1 by 1, solving encountered issues where possible. Things that still need to be checked are indicated by TODO. The final git clone is available on ecgate under /scratch/ms/nl/nkl/harmonie_phasing/cy46t1. The modified patches are stored in subdirectory hirlam_changesets.
+
+=== G patch 1 ===
+
+Authors: Trygve Aspelinen
+
+Description: Correct use of interface blocks detected by gmkpack. Add abort in the code where it states it should abort
+ 
+svn changesets: [16299]
+
+Changed:
+{{{
+aladin/utility/create_pert.F90
+aladin/utility/read_pert.F90
+arpifs/control/cva1.F90
+arpifs/phys_dmn/apl_arome.F90
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16299.diff
+}}}
+
+Problems and fixes:
+- patch failed: arpifs/control/cva1.F90:83.
+  In HARMONIE the following line was added:
+  #include "wrchres.intfb.h"
+  This was already in cy46t1, so this mod was commented out in changset c16299.diff.
+- patch failed: arpifs/phys_dmn/apl_arome.F90:729.
+  In HARMONIE the following two lines were removed:
+  #include "ecr1d.intfb.h"
+  #include "wrscmr.intfb.h"
+  In cy46t1 ecr1d.intfb.h is still required as ECR1D is called. The other line was already deleted. Therefore this mod was commented out in changset c16299.diff.
+
+Then applied the patch and committed:
+{{{
+d93fa42094d6d8fce238a8fcb16cfcf4c95ac8a8 (HEAD -> ulft_CY46_hirlam_techmods) HARMONIE changeset 16299 applied: Add abort in the code where it states it should abort. Some irrelevant changes left out of the changeset.
+}}}
+
+Status:[[BR]]
+OK, all required mods applied
+
+=== G patch 2 ===
+
+Authors: Yann Michel, Magnus Lindskog, Eoin Whelan 
+
+Description: CHKEVO changes: Add WRITE statement to output values - for easier plotting
+ 
+svn changesets: [16488]
+
+Changed:
+{{{
+arpifs/dia/chkevo.F90
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16488.diff
+}}}
+
+Problems and fixes:
+- patch failed: arpifs/dia/chkevo.F90:60.
+  This patch adds a write statement for ZDIAGS. But this mod has been superseded by c17268 where ZDIAGS is written to a separate file, so decided to leave this changeset out. Note that this new change c17268 is not in the list here and hence not included in the phasing now.
+
+Status:[[BR]]
+OK, write statement not added, change superseded.
+
+=== G patch 3 ===
+
+Authors: Martin Ridal
+
+Description: Radar updates 
+
+-More robust handling of missing date/time information in HDF5 files
+
+-Unify quality index
+
+svn changesets: [16715]
+
+Changed:
+{{{
+odb/pandor/module/bator_decodhdf5_mod.F90
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16715.diff
+}}}
+
+Problems and fixes:
+- Removed trailing whitespace and files for which only mergeinfo property had changed as `git apply` doesn't like this.
+- patch failed: odb/pandor/module/bator_decodhdf5_mod.F90:79.
+  This file has been modified beyond recognition. Back to the experts! Martin Ridal?
+
+Status:[[BR]]
+TODO: check odb/pandor/module/bator_decodhdf5_mod.F90 completely.
+
+=== G patch 4 ===
+
+Authors: Bjarne, Eoin
+
+Description: Technical update to allow assimilation MSG4 AMV observations (mf_blacklist.b updated to slavishly follow MSG3 entries). Tested with EARS data for 2018022612 over Irish domain.
+
+svn changesets: [16780]
+
+Changed:
+{{{
+arpifs/var/getsatid.F90 
+blacklist/mf_blacklist.b 
+odb/cma2odb/map_reportype.F90 
+odb/pandor/module/bator_util_mod.F90 
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16780.diff
+}}}
+
+Problems and fixes:
+- Removed trailing whitespace from patch where git complained about it.
+- odb/cma2odb/map_reportype.F90: No such file or directory.
+  This file doesn't exist anymore. Much of odb/cma2odb/map_reportype.F90 has been moved in to odb/pandor/module/bator_util_mod.F90 (map_mfids) for Bator. ECMWF now read all of this information from a code mapping text file. (Thanks to Eoin)
+- patch failed: blacklist/mf_blacklist.b:853.
+  The modified code adds support for MSG4, satellite id 70, but this seems already incorporated in cy46t1, but slightly different. Commented out mods in this routine.
+- patch failed: arpifs/var/getsatid.F90:41
+  The modified code adds support for MSG4, satellite id 70, added lines were already incorporated in cy46t1 identically.
+
+Then applied the patch and committed (only odb/pandor/module/bator_util_mod.F90 affected):
+{{{
+dc24bc022e2cad78683bc67e77e9275f92236233 (HEAD -> ulft_CY46_hirlam_techmods) HARMONIE changeset 16780 applied: Technical update to allow assimilation MSG4 AMV observations (mf_blacklist.b updated to slavishly follow MSG3 entries). Mods to odb/cma2odb/map_reportype.F90 could not be copied. File doesn't exist anymore. Mods to blacklist/mf_blacklist.b and arpifs/var/getsatid.F90 for MSG4 were already in cy46t1.
+}}}
+
+Status:[[BR]]
+OK.
+
+=== G patch 5 ===
+
+Authors:Ulf Andrae
+
+Description: Contributions from MetCoOp
+
+- Bugfix in pressure calculations
+  aladin/programs/addpert.F90
+
+- Avoid usage of uninitialized data
+  arpifs/op_obs/dopplsim.F90
+  arpifs/obs_preproc/dupli_no_sq.F90
+
+- Change satellite blacklisting: blacklist/mf_blacklist.b
+
+- Fix for potential MPI deadlock: ifsaux/support/gstats_psut.F90
+
+
+svn changeset: [16789]
+
+Changed:
+{{{
+aladin/programs/addpert.F90 
+arpifs/fullpos/endpos.F90
+arpifs/fullpos/sufpc.F90
+arpifs/module/yomfpc.F90 
+arpifs/namelist/namfpc.nam.h 
+arpifs/obs_preproc/dupli_no_sq.F90 
+arpifs/op_obs/dopplsim.F90 
+arpifs/pp_obs/pos.F90 
+blacklist/mf_blacklist.b 
+ifsaux/support/gstats_psut.F90 
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16789.diff
+}}}
+
+Problems and fixes:
+- blacklist/mf_blacklist.b:474
+  1 line removed, this line is already absent in cy46t1, so comment out this change
+- blacklist/mf_blacklist.b:712
+  1 line modified which was completely absent in cy46t1. Initially, added latest HARMONIE version of this line to cy46t1 manually. Then Roger mentioned mods to mf_blacklist.b are not phased to MF, so undid this merge.
+- arpifs/namelist/namfpc.nam.h:10
+  variable LISOT_ABOVEG has been added to the end of the namelist in HARMONIE, but in cy46t1 many others have been added. Manually added LISOT_ABOVEG to the end of the namelist and commented it out in the patch.
+- arpifs/pp_obs/pos.F90:142
+  In cy46t1 namelist variables are no longer accessed via module (USE ..) but via a user defined type TNAMFPSCI passed as argument YDNAMFPSCI and an associate statement. Added this manually and commented it out in the patch.
+- arpifs/fullpos/sufpc.F90:101
+  In cy46t1 namelist variables are no longer accessed via module (USE ..) but via a user defined type TNAMFPSCI and pointers to it. Added LISOT_ABOVEG manually, following LCRITSNOWTEMP as example and commented it out in the patch.
+- arpifs/fullpos/sufpc.F90:395
+  Added line "LISOT_ABOVEG=.FALSE." could not be added because code around it had changed, added it manually and removed it from the patch.
+- arpifs/fullpos/sufpc.F90:999
+  Write statement showing value of LISOT_ABOVEG could not be added because code around it had changed, added it manually and removed it from the patch.
+- arpifs/fullpos/endpos.F90:122
+  In cy46t1 namelist variables are no longer accessed via module (USE ..) but via a user defined type TNAMFPSCI passed as argument YDNAMFPSCI and an associate statement. Added this manually and commented it out in the patch.
+- arpifs/fullpos/endpos.F90:813
+  Added code for LISOT_ABOVEG, to set ISOT_ALTIT to missing value when below the orography, could not be added automatically, done manually.
+- arpifs/module/yomfpc.F90:327
+  Declaration of LISOT_ABOVEG could not be added automatically, done manually.
+- aladin/programs/addpert.F90: No such file or directory
+  This is a new file from HARMONIE. Ole advised not to add this file.
+
+Then applied patch again and committed in parts:
+{{{
+675377147c2ca93a4e8949eedc0076204586c89f HARMONIE changeset 16789, part 1, applied: Introduce namelist variable LISOT_ABOVEG, to set isothermal levels to missing data below orography
+3ce42284e15faef5f1ef168e35d9cc1c8119c4bc HARMONIE changeset 16789, part 2, applied: fix for potential MPI deadlock
+aa06ffaaf5bb2f3e365716c1f10926679d7a44c8 HARMONIE changeset 16789, part 3, applied: avoid usage of uninitialized data
+}}}
+
+Status:[[BR]]
+OK, mf_blacklist.b ignored.
+
+=== G patch 6 ===
+
+Authors: Martynas 
+
+Description: Fix missing space. Used to compile ok with gcc < v7
+
+svn changeset: [16849]
+
+Changed:
+{{{
+aladin/programs/spg.F90
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16849.diff
+}}}
+
+Problems and fixes:
+- aladin/programs/spg.F90: No such file or directory
+  New file. Could be added but comment at beginning of file says (to be checked by Ole):
+{{{
+  	! Routines from https://github.com/gayfulin/SPG packaged into a single (f90) file
+	! Quick and dirty, if ever phased to the common reference it should be done
+	!  differently, poosibly put under utilities/spg with original file structure
+	! Ole Vignes, 09.11.2017
+}}}
+Ole advised not to add this file.
+
+Status:[[BR]]
+OK.
+
+=== G patch 7 ===
+
+Author:Ole Vignes
+
+Description: Generalize surface perturbations to multiple nature patches
+
+svn changeset: [16874]
+
+Changed:
+{{{
+aladin/programs/pertsfc.F90
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c16874.diff
+}}}
+
+Problems and fixes:
+- aladin/programs/pertsfc.F90: No such file or directory
+  This is a new file from HARMONIE, contacted Ole who advised not to add this file.
+
+Status:[[BR]]
+OK.
+
+=== G patch 8 ===
+
+Authors: Jan Barkmeijer
+
+svn changeset [17033]
+
+Description: correct the number of aircraft codetypes
+
+Changed:
+{{{
+arpifs/module/yomcoctp.F90 
+}}}
+
+Checking:
+{{{
+> git apply -p3 hirlam_changesets/c17033.diff
+}}}
+
+Patch applied and commit:
+{{{
+954cdc30b1fb98cb7877c38d611ed4dadbe6b46d HARMONIE changeset 17033 applied: correct the number of aircraft codetypes.
+}}}
+
+Status:[[BR]]
+OK
+
+=== G Summary and further processing ===
+
+Changed:
+{{{
+#	modified:   aladin/utility/create_pert.F90
+#	modified:   aladin/utility/read_pert.F90
+#	modified:   arpifs/fullpos/endpos.F90
+#	modified:   arpifs/fullpos/sufpc.F90
+#	modified:   arpifs/module/yomcoctp.F90
+#	modified:   arpifs/module/yomfpc.F90
+#	modified:   arpifs/namelist/namfpc.nam.h
+#	modified:   arpifs/obs_preproc/dupli_no_sq.F90
+#	modified:   arpifs/op_obs/dopplsim.F90
+#	modified:   arpifs/pp_obs/pos.F90
+#	modified:   ifsaux/support/gstats_psut.F90
+#	modified:   odb/pandor/module/bator_util_mod.F90
+}}}
+Create the branch containing this change on merou:
+{{{
+#
+# Create the branch (BTW, this is wrong. It should have been: git_branch -r 46 -b t1 -v 02 -u hirlam_G)
+#
+git_branch -r 46 -v 02 -u hirlam_G
+#
+# Try the prepared patch without changing anything ....
+#
+patch -p1 --dry-run < ~/cy46/G/CY46_vs_ulft_CY46_hirlam_techmods.diff
+#
+# Looks OK, go for it
+#
+patch -p1 < ~/cy46/G/CY46_vs_ulft_CY46_hirlam_techmods.diff
+#
+# Check the result
+# 
+git diff
+#
+# Make a tar file to build the resulting branch on beaufix
+#
+tar zcvf ~/moene_CY46_hirlam_G.tgz .
+#
+# Everything went well - we got an executable and tested it with mitraillette
+# so commit the branch
+#
+git commit -a -F ~/cy46/G/CommitMessage.txt 
+[moene_CY46_hirlam_G 2a2561f] 16/11/2018 Bert van Ulft, knmi.nl The Netherlands
+ 12 files changed, 53 insertions(+), 14 deletions(-)
+#
+# Final check ...
+#
+git status
+# On branch moene_CY46_hirlam_G
+nothing to commit (working directory clean)
+#
+# Save the differences between the committed branch and its origin
+#
+git diff HEAD^ HEAD > ~/cy46/G/Commit1.diff
+#
+# Check it
+#
+less ~/cy46/G/Commit1.diff
+#
+# Tell Meteo France this branch is ready for use
+#
+-bash-3.2$ git_post
+
+Your post request will be processed by the server soon.
+
+Git user    : moene
+Git family  : arpifs
+Remote host : merou
+Repository  : /home/mrpe737/git-dev/arpifs
+Branch      : moene_CY46_hirlam_G
+Force       : 0
+Test mode   : 0
+
+Status will be sent by mail in a few minutes at the address: moene@knmi.nl .
+}}}
+Build the branch on beaufix:
+{{{
+#
+# Get the sources from merou
+#
+ftp merou
+<user>
+<password>
+bin
+get moene_CY46_hirlam_G.tgz
+quit
+#
+# Create the build environment
+#
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; gmkpack -r 46 -v 02 -n 03 -a -l IMPIFC1801 -o 2y -p masterodb)
+#
+# Go to the directory that need to contain the sources of the branch
+#
+cd pack/46_main.03.IMPIFC1801.2y/
+cd src/local
+#
+# Unpack the sources there
+#
+tar zxvf ~/moene_CY46_hirlam_G.tgz
+#
+# Remove the directories / projects that prohibit building
+#
+rm -rf oops cope oopsifs/ scripts/
+#
+# Apply a change suggested by Ryad el Khatib
+#
+cd ../..
+vi ics_masterodb
+#
+# Finally, start the build
+#
+(export GMK_THREADS=20; export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; ./ics_masterodb) >& compile.log &
+#
+# ... First time - correct !
+#
+....
+/home/gmap/mrpm/khatib/public/bin/impifc-18.1.163 -v -fp-stack-check -qopenmp -qopenmp-threadprivate compat -shared-intel -lrt -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -Wl,-rpath,/opt/bullxde/utils/boost/lib -Wl,-rpath,/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -Wl,--start-group ./_odb_glue.o ./master.o -L. -l[1] -l[2] -l[3] -l[4] -l[5] -l[6] -l[7] -l[8] -l[9] -l[10] -l[11] -l[12] -l[13] -l[14] -l[15] -l[16] -l[17] -l[18] -l[19] -l[20] -l[21] -l[22] -l[23] -l[24] -l[25] -l[26] -l[27] -l[28] -Wl,--end-group -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lbufr -lgribex -L/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -lnetcdff -lnetcdf -L/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -leccodes_f90 -leccodes -L/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -lhdf5hl_fortran -lhdf5_fortran -lhdf5 -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lfdbdummy -lwamdummy -lnaglitedummy -loasisdummy -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -llapack -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -lblas -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -libmdummy
+mpiifort for the Intel(R) MPI Library 2018 Update 1 for Linux*
+Copyright(C) 2003-2017, Intel Corporation.  All rights reserved.
+
++ mv a.out /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
++ set +x
+-rwxr-xr-x 1 moene mrpe 625646587 Nov 25 19:34 /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+
+Finished on Sun Nov 25 19:34:10 UTC 2018
+}}}
+Run mitraillette on the resulting binary:
+{{{
+[moene@beaufixlogin0 46_main.03.IMPIFC1801.2y]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 46_main.03.IMPIFC1801.2y]$ checkpack.py -c cy46 -r ~saez/mitraille/cy46
+-------------- checkpack ---------------
+WARNING: no convenient binary (['PGD']) has been found in '/home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin' for job L3_PGDI_LELAM_FRANCE
+Test binaries:
+GE_C901 : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_C601_HYD_SL2_VFE_VSIPHY : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_C923_TL798S : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FPIN_HYD_GPLALON_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_H2L : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_L2H : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPLELAM_ARU : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SURFLELAM : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LALON_FRANX01 : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LELAM_FRANCE : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_main.03.IMPIFC1801.2y/bin/MASTERODB
+L3_PGDI_LELAM_FRANCE : None
+Build Mitraillette scripts (from /home/gmap/mrpe/moene/mitraillette_v042018) ...
+Bench: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0010
+Running 16 jobs with scheduling rules: 'Run jobs simultaneously, with a maximum of 3 in parallel.'
+Status update every 5s
+JobName                                                     |  JobID   |   Status   | EndCNT0  
+-----------------------------------------------------------------------------------------------
+GE_C901                                                     | 59837065 |   ended    |    OK    
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA                             | 59837066 |   ended    |    OK    
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA                             | 59837067 |   ended    |    OK    
+GM_C601_HYD_SL2_VFE_VSIPHY                                  | 59837127 |   ended    |    OK    
+GM_C923_TL798S                                              | 59837154 |   ended    |    ?     
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S           | 59837185 |   ended    |    OK    
+GM_FPIN_HYD_GPLALON_ARPPHYISBA                              | 59837190 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_H2L                                     | 59837226 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_L2H                                     | 59837315 |   ended    |    OK    
+GM_FPOF_HYD_SPLELAM_ARU                                     | 59837399 |   ended    |    OK    
+GM_FPOF_HYD_SURFLELAM                                       | 59837475 |   ended    |    OK    
+L3_C923_LALON_FRANX01                                       | 59837486 |   ended    |    OK    
+L3_C923_LELAM_FRANCE                                        | 59837573 |   ended    |    ?     
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300              | 59837591 |   ended    |    OK    
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 | 59837715 |   ended    | crashed  
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA                         | 59837833 |   ended    | crashed  
+=== Parsing outputs for Ciboulette ===
+Validation of: cy46 vs. cy46
+Test location: /home/gmap/mrpe/moene/mitraillette_v042018/cy46
+Ref location: /home/gmap/mrpm/saez/mitraille/cy46
+Output name: /home/gmap/mrpe/moene/mitraillette_v042018/cy46-cy46_0010.html
+Link: ftp:moene@beaufix/mitraillette_v042018/cy46-cy46_0010.html
+Benches for test (cy46): ['mitraille_0010']
+Benches for ref (cy46): ['mitraille_0245', 'mitraille_0334', 'mitraille_0335', 'mitraille_0336', 'mitraille_0337', 'mitraille_0338', 'mitraille_0339', 'mitraille_0340', 'mitraille_0342', 'mitraille_0343', 'mitraille_0344', 'mitraille_0348', 'mitraille_0357', 'mitraille_0363', 'mitraille_0364', 'mitraille_0376', 'mitraille_0442', 'mitraille_0443', 'mitraille_0444', 'mitraille_0445', 'mitraille_0449', 'mitraille_0450']
+Number of jobs processed: 17
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0010/OGM_C923_TL798S.o59837154
+ERROR reading output listing: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0010/OL3_C923_LELAM_FRANCE.o59837573
+=== Jobs counts ===
+Compared: 10
+Crashed: 2
+Failed comparison: 4
+Missing outputs: 1
+}}}
+The results of [http://moene.org/~harmonie/mitraillette_v042018/cy46-cy46_0010.html the mitraillette runs]
+== H MODE-S implementation ==
+Eoin Whelan provided me with a fresh set of updates to add MODE-S (amdars) processing to cycle 46
+
+On merou:
+{{{
+#
+# Prepare for using git
+#
+. ./.bashrc
+cd git-dev/arpifs/
+#
+# Create the new branch 'H'
+#
+git_branch -r 46 -b t1 -v 04 -u hirlam_H
+#
+# Get the new (updated) sources
+#
+tar zxvf ~/cy46/H/branchHt1_try2.tgz
+#
+# Check that they are visible as updated
+#
+git status
+#
+# Tar the resulting source tree for testing on beaufix
+#
+tar zcvf ~/moene_CY46_hirlam_H.tgz .
+#
+# and record the initial diff
+#
+git diff > ~/cy46/H/initialt1_try2.diff
+#
+# After testing on beaufix, check status again
+#
+git status
+}}}
+On beaufix:
+{{{
+#
+# Get the sources from merou
+#
+ftp merou
+<user>
+<password>
+bin
+get moene_CY46_hirlam_H.tgz
+quit
+#
+# Prepare the build environment
+#
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; gmkpack -r 46 -b t1 -v 04 -n 01 -a -l IMPIFC1801 -o 2y -p masterodb)
+#
+# Go to the source location ...
+#
+cd pack/46_t1.01.IMPIFC1801.2y/src/local
+#
+# ... and unpack the updated sources
+#
+tar zxvf ~/moene_CY46_hirlam_H.tgz
+#
+# Remove the directories that prevent building
+#
+rm -rf oops cope oopsifs/ scripts/ oops_src/
+#
+# Go to the build directory
+#
+cd ../..
+#
+# Apply a change suggested by Ryad el Khatib ...
+#
+vi ics_masterodb 
+#
+# ... and start the build
+#
+(export GMK_THREADS=20; export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.8/util; ./ics_masterodb) >& compile.log &
+#
+# Check progress ...
+tail -f compile.log 
+#
+# ... and finally, we have the executable ready for testing
+#
+...
+
+/home/gmap/mrpm/khatib/public/bin/impifc-18.1.163 -v -fp-stack-check -qopenmp -qopenmp-threadprivate compat -shared-intel -lrt -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -Wl,-rpath,/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -Wl,-rpath,/opt/bullxde/utils/boost/lib -Wl,-rpath,/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -Wl,--start-group ./_odb_glue.o ./master.o -L. -l[1] -l[2] -l[3] -l[4] -l[5] -l[6] -l[7] -l[8] -l[9] -l[10] -l[11] -l[12] -l[13] -l[14] -l[15] -l[16] -l[17] -l[18] -l[19] -l[20] -l[21] -l[22] -l[23] -l[24] -l[25] -l[26] -l[27] -l[28] -Wl,--end-group -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lbufr -lgribex -L/home/gmap/mrpm/khatib/opt/i-16.1.150/netcdf/lib -lnetcdff -lnetcdf -L/home/gmap/mrpm/khatib/opt/i-16.1.150/eccodes-2.7.0-mf/lib -leccodes_f90 -leccodes -L/opt/softs/libraries/ICC16.1.150/hdf5-1.8.16/lib -lhdf5hl_fortran -lhdf5_fortran -lhdf5 -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -lfdbdummy -lwamdummy -lnaglitedummy -loasisdummy -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/netlib -llapack -L/home/gmap/mrpm/khatib/opt/i-13.1.4.183/openblas/lib -lblas -L/home/gmap/mrpm/khatib/opt/i-16.1.150/auxlibs/lib -libmdummy
+mpiifort for the Intel(R) MPI Library 2018 Update 1 for Linux*
+Copyright(C) 2003-2017, Intel Corporation.  All rights reserved.
+
++ mv a.out /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
++ set +x
+-rwxr-xr-x 1 moene mrpe 723059031 Dec  8 07:46 /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+
+Finished on Sat Dec 8 07:46:44 UTC 2018
+}}}
+Running mitraillette with the resulting binary (unforturnately, all jobs crashed - this needs further investigation):
+{{{
+[moene@beaufixlogin0 46_t1.01.IMPIFC1801.2y]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 46_t1.01.IMPIFC1801.2y]$ checkpack.py -c cy46 -r ~saez/mitraille/cy46
+-------------- checkpack ---------------
+WARNING: no convenient binary (['PGD']) has been found in '/home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin' for job L3_PGDI_LELAM_FRANCE
+Test binaries:
+GE_C901 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C601_HYD_SL2_VFE_VSIPHY : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C923_TL798S : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPIN_HYD_GPLALON_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_H2L : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_L2H : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPLELAM_ARU : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SURFLELAM : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LALON_FRANX01 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LELAM_FRANCE : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_PGDI_LELAM_FRANCE : None
+Build Mitraillette scripts (from /home/gmap/mrpe/moene/mitraillette_v042018) ...
+Bench: /home/gmap/mrpe/moene/mitraillette_v042018/cy46/mitraille_0011
+Running 16 jobs with scheduling rules: 'Run jobs simultaneously, with a maximum of 3 in parallel.'
+Status update every 5s
+JobName                                                     |  JobID   |   Status   | EndCNT0  
+-----------------------------------------------------------------------------------------------
+GE_C901                                                     | 60494530 |   ended    | crashed  
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA                             | 60494531 |   ended    | crashed  
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA                             | 60494532 |   ended    | crashed  
+GM_C601_HYD_SL2_VFE_VSIPHY                                  | 60494544 |   ended    | crashed  
+GM_C923_TL798S                                              | 60494556 |   ended    | crashed  
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S           | 60494563 |   ended    | crashed  
+GM_FPIN_HYD_GPLALON_ARPPHYISBA                              | 60494569 |   ended    | crashed  
+GM_FPOF_HYD_SPGAUSS_H2L                                     | 60494573 |   ended    | crashed  
+GM_FPOF_HYD_SPGAUSS_L2H                                     | 60494574 |   ended    | crashed  
+GM_FPOF_HYD_SPLELAM_ARU                                     | 60494583 |   ended    | crashed  
+GM_FPOF_HYD_SURFLELAM                                       | 60494592 |   ended    | crashed  
+L3_C923_LALON_FRANX01                                       | 60494595 |   ended    | crashed  
+L3_C923_LELAM_FRANCE                                        | 60494596 |   ended    | crashed  
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300              | 60494616 |   ended    | crashed  
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 | 60494622 |   ended    | crashed  
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA                         | 60494654 |   ended    | crashed  
+=== Parsing outputs for Ciboulette ===
+Validation of: cy46 vs. cy46
+Test location: /home/gmap/mrpe/moene/mitraillette_v042018/cy46
+Ref location: /home/gmap/mrpm/saez/mitraille/cy46
+Output name: /home/gmap/mrpe/moene/mitraillette_v042018/cy46-cy46_0011.html
+Link: ftp:moene@beaufix/mitraillette_v042018/cy46-cy46_0011.html
+Benches for test (cy46): ['mitraille_0011']
+Benches for ref (cy46): ['mitraille_0245', 'mitraille_0334', 'mitraille_0335', 'mitraille_0336', 'mitraille_0337', 'mitraille_0338', 'mitraille_0339', 'mitraille_0340', 'mitraille_0342', 'mitraille_0343', 'mitraille_0344', 'mitraille_0348', 'mitraille_0357', 'mitraille_0363', 'mitraille_0364', 'mitraille_0376', 'mitraille_0442', 'mitraille_0443', 'mitraille_0444', 'mitraille_0445', 'mitraille_0449', 'mitraille_0450']
+Number of jobs processed: 17
+=== Jobs counts ===
+Compared: 0
+Crashed: 16
+Failed comparison: 0
+Missing outputs: 1
+}}}
+Alexandre Mary pointed out to me that - in testing pre-cycle CY46t1 - I have to invoke the checkpack.py script differently.
+
+This way I get better results:
+{{{
+[moene@beaufixlogin0 46_t1.01.IMPIFC1801.2y]$ export MIT_INSTALL_DIR=/home/gmap/mrpe/moene/mitraillette_v042018
+[moene@beaufixlogin0 46_t1.01.IMPIFC1801.2y]$ checkpack.py -c cy46t1 -r ~saez/mitraille/cy46t1
+-------------- checkpack ---------------
+WARNING: no convenient binary (['PGD']) has been found in '/home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin' for job L3_PGDI_LELAM_FRANCE
+Test binaries:
+GE_C901 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C601_HYD_SL2_VFE_VSIPHY : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_C923_TL798S : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPIN_HYD_GPLALON_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_H2L : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPGAUSS_L2H : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SPLELAM_ARU : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+GM_FPOF_HYD_SURFLELAM : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LALON_FRANX01 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_C923_LELAM_FRANCE : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA : /home/gmap/mrpe/moene/pack/46_t1.01.IMPIFC1801.2y/bin/MASTERODB
+L3_PGDI_LELAM_FRANCE : None
+Build Mitraillette scripts (from /home/gmap/mrpe/moene/mitraillette_v042018) ...
+Bench: /home/gmap/mrpe/moene/mitraillette_v042018/cy46t1/mitraille_0012
+Running 16 jobs with scheduling rules: 'Run jobs simultaneously, with a maximum of 3 in parallel.'
+Status update every 5s
+  
+JobName                                                     |  JobID   |   Status   | EndCNT0  
+-----------------------------------------------------------------------------------------------
+GE_C901                                                     | 61272498 |   ended    |    OK    
+GM_C401_HYD_SL2_VFE_SIM4PHYISBA                             | 61272499 |   ended    |    OK    
+GM_C501_HYD_SL2_VFE_SIM5PHYISBA                             | 61272500 |   ended    |    OK    
+GM_C601_HYD_SL2_VFE_VSIPHY                                  | 61272506 |   ended    |    OK    
+GM_C923_TL798S                                              | 61272508 |   ended    |    OK    
+GM_FCTI_HYD_SL2_VFE_ARPPHYISBA_SETTLS_NDEC_TL030S           | 61272509 |   ended    |    OK    
+GM_FPIN_HYD_GPLALON_ARPPHYISBA                              | 61272515 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_H2L                                     | 61272516 |   ended    |    OK    
+GM_FPOF_HYD_SPGAUSS_L2H                                     | 61272522 |   ended    |    OK    
+GM_FPOF_HYD_SPLELAM_ARU                                     | 61272533 |   ended    |    OK    
+GM_FPOF_HYD_SURFLELAM                                       | 61272561 |   ended    |    OK    
+L3_C923_LALON_FRANX01                                       | 61272574 |   ended    |    OK    
+L3_C923_LELAM_FRANCE                                        | 61272579 |   ended    |    OK    
+L3_FCST_HYD_SL2_VFD_AROPHYSFEX_MAD_AROMALP1300              | 61272596 |   ended    |    OK    
+L3_FCST_NHE_SL2_VFD_AROPHYSFEX_GWADV2_PCCMADIOS_AROMALP1300 | 61272610 |   ended    | crashed  
+L3_FPOF_HYD_GPLALON_OPE2_ARPPHYISBA                         | 61272630 |   ended    | crashed  
+=== Parsing outputs for Ciboulette ===
+Validation of: cy46t1 vs. cy46t1
+Test location: /home/gmap/mrpe/moene/mitraillette_v042018/cy46t1
+Ref location: /home/gmap/mrpm/saez/mitraille/cy46t1
+Output name: /home/gmap/mrpe/moene/mitraillette_v042018/cy46t1-cy46t1_0012.html
+Link: ftp:moene@beaufix/mitraillette_v042018/cy46t1-cy46t1_0012.html
+Benches for test (cy46t1): ['mitraille_0012']
+Benches for ref (cy46t1): ['mitraille_0447', 'mitraille_0448', 'mitraille_0451', 'mitraille_0452', 'mitraille_0454', 'mitraille_0455', 'mitraille_0456', 'mitraille_0457', 'mitraille_0458']
+Number of jobs processed: 17
+=== Jobs counts ===
+Compared: 10
+Crashed: 2
+Failed comparison: 4
+Missing outputs: 1
+}}}
+The results of [http://moene.org/~harmonie/mitraillette_v042018/cy46t1-cy46t1_0012.html the mitraillette runs]

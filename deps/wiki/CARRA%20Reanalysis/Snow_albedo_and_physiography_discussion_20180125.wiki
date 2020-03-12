@@ -1,0 +1,121 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''CARRA: Copernicus C3S 322 Lot2: Regional Climate Reanalysis for the Arctic '' =
+= Discussion on snow, albedo and physiography at ECMWF, the 25^^th^^ of January 2018 =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+Chair: Kristian Pagh Nielsen, DMI
+
+----
+
+== Agenda ==
+ 
+* '''Short status reports on'''
+  1. merge of SURFEX v8.1 for CARRA plans for using the Explicit Snow “3-L” scheme/solutions for glaciers
+  1. albedo input data
+  1. adaptation of surface assimilation to 2 patches and Explicit Snow
+  1. satellite snow extent assimilation
+* '''Discussion on the CARRA setup'''
+  1. snow scheme: D95/Explicit Snow
+  1. adaption of the snow scheme from Alpine to Arctic conditions
+  1. 1 or 2 patches
+  1. special treatment of glaciers
+  1. use of satellite snow extent data (which data set; !CryoClim or HSAF)
+  1. use of IFS shortwave radiation components in ISBA and the snow schemes
+
+----
+
+== Meeting minutes ==
+
+
+=== Status reports ===
+
+1. merge of SURFEX v8.1 for CARRA plans for using the Explicit Snow “3-L” scheme/solutions for glaciers
+
+a) Kristian and Bolli have merged SURFEX8.1 into the CARRA alpha version. It is now running smoothly but still requires some work to optimise the namelists etc. There have also been some changes to the version from the pure SURFEX 8.1 - bug fixes have been included but not all changes between 8 and 8.1. Data assimilation has not been included, it is still as it is used in the operational version. Some work is also required on the explicit snow scheme in the fully coupled version. The ES scheme should be run with 12 layers as that has been tested by !MeteoFrance. This also works for snow on land with the snow depth assimilation.
+We still plan to run with the full Explicit Snow scheme in SURFEX 8.1 to deal with snow and glacier melt, but there are some time and manpower constraints. 
+
+The following options are considered:
+* Plan A: SURFEX v8.1 with the explicit snow scheme and 12 layers - albedo input from MODIS data for exposed glacier surfaces.
+* Plan B: 3 layer scheme in SURFEX 7.3 with explicit snow - albedo input from MODIS data.
+* Plan C (Fallback solution): Use D95 with large amounts of snow piled on top so that the bare glacier ice surface is never exposed but still melts in summer (an important energy sink); in this case a solution needs to be found for the albedo in summer, probably also using the MODIS albedo data. 
+
+Bolli Palmason has tested the snow schemes with stand-alone SURFEX as already presented at the Oslo kick-off meeting: offline runs of SURFEX-CROCUS tested against AWS observations on the ice caps of Iceland. The crude fix is to put large amounts of snow on the surface such that the bare glacier ice is never exposed (as currently done in operational IGA and IGB), more sophisticated is setting a very dense layer of snow at the base of the seasonal snow-pack which when exposed acts like glacier ice. The explicit snow scheme has 12 layers but the density gets blended between layers - this needs to be fixed. Ruth offered to share code showing how this is done in HIRHAM.
+
+MODIS multi-year mean albedo or the daily MODIS albedo or some combination of the two could also be used in this case to determine the albedo of bare ice. It's important to try and include the time series as there are seasonal effects that alter glacier albedo such as the melt out of dust in the ice and the growth of algae and bacteria on the surface. Icelandic glaciers are significantly darker than Greenland due to the large amounts of volcanic tephra in the ice.
+
+2. albedo input data
+The reading in of the MODIS albedo for the glacier surfaces in the explicit snow scheme can probably done by reading in similarly to tree heights, LAI etc. 
+The MODIS albedo data is now being delivered by Jason Box - we already have data for Greenland and Iceland, while the data for Svalbard is in production. There are some potential issues with Iceland that Bolli and Kristian will look at with Jason. 
+
+'''Sea Ice Albedo'''
+
+Update from Terhikki: Weekly means of 2016 from CM SAF has been downloaded to compare with the Met Norway modelled albedo results. Comparison based on pixel basis and on distributions. First results expected next week. 
+How big is the difference between direct and diffuse albedo? Discussion on how the albedo is put into ISBA is needed. There is some concern that the surface temperature may be unrealistic if the albedo is assimilated, hence the comparison. If it is found that the satellite-derived sea ice albedos should not be used as input these will be used for validation in stead. The OSISAF ice surface temperature product might also be helpful for verification here. Yuri is also interested in using the sea ice albedos in ISBA and in the S-ICEmodel.
+
+3. adaptation of surface assimilation to 2 patches and Explicit Snow
+Assimilation of snow into the land patch is working at least for land, there are still some issues with the two patches. The observed snow depth is distributed between the layers - it's easier to use it in one patch (land) as there are some problems with the forest patch. The snow in the forest patch is melting too fast. The explicit snow scheme would be an advantage for the snow on land part because of the fractional snow issue. It is therefore worth putting some effort into this. Adjusting the forest fractions and snow patch schemes could help to improve this.
+
+4. satellite snow extent assimilation
+If we have a perfect snow modelling scheme then satellite assimilation is not necessary, But... 
+
+Snow analysis experiments with !CryoClim snow extent by Mariken Holmleid who has also experimented with !CryoRisk data and showed improvements previously but not operationalised previously as good observations on the ground in Norway really add a significant improvement. However in Svalbard and Greenland where there are few observations, this could be very valuable as a source of extra data.
+
+Ruth pointed to a mismatch at the Greenland coastline with the snow product. Mariken responds that she need to check this. After the meeting it was discussed that Ruth can go to Oslo and check the !CryoClim snow extents for Greenland together with Mariken and colleagues.
+
+FMIs HSAF product is a global snow cover product that is live and has been made operational and is also a possible product. 
+!CryoClim is global optical snow product at 5km resolution (based on AVHRR).
+
+Experiments were carried out for a small domain (2.5km res) on Svalbard with !CryoClim data - thinned to 10km resolution. No snow values used as 0, snow used only when 1.guess<25kg/m2, and set equal to 1.guess.
+The !CryoClim data were weighted less than the synop observations. The experiments were cold starts - most likely it is better to start in early September with snow-free conditions and run through from there. There is a significant improvement in T2m for the !CryoClim runs in Svalbard. There may be some issues with masking out glaciers as for Greenland. 
+
+=== Discussion on the CARRA setup ===
+
+1. snow scheme: D95/Explicit Snow
+The first option is still to run Explicit snow (also recommendation from !MeteoFrance), particularly important for snow melt rates. Coupling the albedo in SURFEX with both direct and diffuse with spectral bands is possible from Arome. Kristian finds that this should be done at least for the glaciated areas.
+
+Cy43 is crashing with SURFEX 8.1 but Cy38 works well with SURFEX 8.1 in HCLIM mode. It seems that problems are encounteres at high resolution in complex terrain so Greenland may give problems with Explicit snow in SURFEX 8.1. This will need good testing so focus on problems we know have to be solved but can be used for the fall-back plans - eg. Albedo. But if we have to run D95 then the albedo will need to be corrected with the observed so this part is critical. Patrick Samuelsson recommended that testing of running with SURFEX 8.1 ISBA should be done for at least one year. Kristian responded that this will be done with one of the smaller DMI domains for southwestern Greenland.
+
+With the D95 solution we need always snow on the glaciers, but then the albedo will be too high when there is bare glacier ice sp Alternative C, piling lots of snow on top of D95 so that bare ice is never exposed - it's an improvement but at very least option B - with some kind of albedo added would also be a good improvement. The snow needs to be reset every year in this case - ideally in Autumn, it's effectively a cold start in terms of snow. Such yearly cold starts must me avoided, thus a method for changing the snow depths without having to restart the model is essential! This would also need to be done for Svalbard so it would need to be a means of updating snow cover and depth without disrupting the full reanalysis run. 
+It may be possible to use some kind of satellite data to identify non-glacier snow that should be preserved in extent but reduced by thickness when the glacier snow is reset in order to avoid growing new glaciers.
+
+Whatever the solution is settled upon, it should be applied to both domains. There are likely to be significant spinoffs for the operational Harmonie with these improvements. 
+
+'''We should have some results by the next group meeting in May to help determine which option we expect to run with!'''
+
+We will need to test the ES scheme in both domains due to the forest patch issues in the eastern domain and the glaciers in the western. The plan is to run it first for Greenland, then pass over to !MetNo for testing in Svalbard. 
+
+ It's important to show it is stable over complex terrain with some long runs over smaller test domains (eg GLA, GLB). A year or so experimental run is required to test if it is stable. "!MeteoFrance" have some resources on the snow part of CARRA and we plan a meeting with and possibly a few weeks working at MF  
+
+Bolli mentioned the idea of having variable glacier extent over the reanalysis period, possibly also variable elevation over the ice sheets. This would require ECOCLIMAP and topography files for every year, respectively. We would need to check first how signficant the changes are. Xiaohua: the deadline is our next meeting to examine this. 
+
+2. adaption of the snow scheme from Alpine to Arctic conditions
+One of the problems is that MF have tuned ES and Crocus to work in the Alps - eg there is a pollution term to the albedo calculation which should be removed or adapted. There are also some calibration coefficients. The Arpege climate model is also using ES for CMIP6 - so discussing with Arpege group is likely to be useful on the snow scheme. Albedo distribution also needs to be looked at. 
+
+3. 1 or 2 patches
+MetCOOP are moving from one to two patches, as are DMI for Denmark, so it would make sense (and be consistent with operational runs) to move to two patches in CARRA. As there are no forests in the western domain there is unlikely to be much affect. If it gives problems with snow handling then it may be better to keep to one patch in the western domain.
+Jelena: There may be some issues with EKF and OI scheme with data assimilation in the more advanced snow models. OI has been made for D95 and force-restore. EKF is now being tested but only in single patches. It's very important to understand how the physics interacts. With the patches we are fairly comfortable with OI as it's been tested, but it has not been tested with snow layers. If the obs temperature is on a land patch, then what to do with the forest patch. EKF has been shown to work technically, but results have not been looked at to determine if improves performance. 
+If OI is run with ES - then soil water, diffusion soil scheme etc should be turned off where snow is (only assimilated?). The diffusion scheme has not been tested with EKF. It has a lot of variables and probably not enough observed information to     
+Switching to the soil diffusion scheme is probably the way forward but too much work needs to be done for CARRA so it will not be implemented here. 
+
+After the meeting, Eric Bazile stated that OI needs to be tuned for explicit-snow with force-restore soil model, or for the diffusive soil model with explicit snow.
+
+4. special treatment of glaciers
+Is it necessary to change the glacier mask and the elevation as the ice sheet changes? A deadline set for the next meeting to determine if changes in elevation and ice mask based on the ESA-CCI Greenland data are significant enough to be included. Ruth and Bolli will work with Danish partners to investigate this.
+
+5. use of satellite snow extent data (which data set; !CryoClim or HSAF)
+In Greenland it appears that some of the !CryoClim data is masked by a glacier mask that is wrong - too much snow in northern Greenland where there should not be - this can be tested by looking at weather station temperatures in the relevant zones. 
+
+It may be therefore that this data is only used in Iceland and the Eastern domains. Mariken will investigate with Katya the use of the Finnish HSAF snow cover product. It is an optical product (and therefore doesn't give much data in winter) and has been pre-operational since 2015 and is operational since 2018. There is a plan to process a time series of this product in CM SAF, but only test data can be made available this year. Terhikki, Mariken and Ruth will look at the two different data products to assess how useful they are together with other !Greenland/Iceland products. Terhikki mentions that there is a difference in calibration for A2 and A3.
+
+!CryoClim is already available for the CARRA period, HSAF should be available for the pan-Arctic domain simulation.
+Pan-Arctic production will need good quality snow cover data. Important to bear in mind when preparing input data that it will be needed also for the pan-Arctic region. In general, Harald stressed that we aim for similar setups for both our domains so that this can be used for the pan-Arctic production also.
+
+
+6. use of IFS shortwave radiation components in ISBA and the snow schemes
+This will need to be discussed with !MeteoFrance collaborators who were not present. 
+
+----

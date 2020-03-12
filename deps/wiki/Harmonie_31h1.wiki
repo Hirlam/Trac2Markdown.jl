@@ -1,0 +1,97 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 31h1''' ==
+(Released on 3 May 2007)
+[[Center(end)]]
+
+This page contains information/links about the HARMONIE release 31H1, such as release notes, description of new features, meteorological impacts, HOWTOs, information about the code changes, code test and validation, known problems
+and bug reports, acknowledgment and references.
+
+== What is HARMONIE ==
+HARMONIE is the acronym for Hirlam's meso-scale forecast system (Hirlam Aladin Regional/Meso-scale Operational NWP In Europe). The HARMONIE system is the product of the HIRLAM-ALADIN joint project HARMONIE: Hirlam-Aladin Research towards Meso-scale Operational NWP in Europe.
+== Harmonie 31h1 Release Information ==
+ * On May 3, 2007, Harmonie 31h1 is released
+ * On Nov 30, 2006, the trunk version of the Harmonie is introduced into the Hirlam source code repository via changeset [4792].
+== Harmonie 31h1 source code downloads ==
+ * the trunk version of Harmonie system can be obtained via Subversion command
+{{{
+   svn co https://svn.hirlam.org/trunk/harmonie
+}}}
+ * On ECMWF, the sandbox (checkout of the source code with Subversion checkout command) of the Harmonie trunk version is updated daily and available, on
+{{{
+   ecgate:/home/ms/dk/nhz/harmonie_release/trunk/harmonie
+   hpce:/ms_perm/hirlam/harmonie_release/trunk/harmonie
+}}}
+ * The sandbox tarball of the Harmonie trunk, is available on ECMWF:ecgate as /scratch/ms/dk/nhz/harmonie_trunk.tar.gz
+== Main features of Harmonie 31h1 ==
+ * Harmonie 31h1 is based on the export version of IFS/ALADIN Cycle 31t1 with scripts, namelists and utilities developed/used by HIRLAM users.
+ * Harmonie 31h1 contains a complete source code for forecast production from global to kilometer scale. In Hirlam community the system has so far been tested mainly for forecast-only mode for a typical grid-resolution of 10 km (hydrostatic) and 2.5 km (non-hydrostatic) scales. Normally for such runs with hydrostatic mode, HIRLAM analyses and forecasts have been used as initial and lateral boundaries.  The results are in turn used to drive nonhydrostatic runs at higher resolution. Use of HARMONIE 3DVAR component is currently in experimental stage
+ * A reference system is defined, using the ECMWF supercomputer platform as reference
+ * A Meteo-France utility __gmkpack__ is used for compilation and creation of libraries and binaries from IFS system. The gmkpack is composed of a number of Perl and Shell scripts. It works to syncronise local changes with the standard source code repositories to compile or re-compiled source codes
+ * A set of system scripts to configure, submit, post-processing numerical experiments on the reference platforms have been developed, for typical scenarios relevant to HIRLAM communities. 
+ * A set of utilities to make file conversions between different data format, conduct monitoring with diagnosis and graphic tools, post-process results with conventional verification etc. have been developed
+== Harmonie system ==
+ * The Harmonie system is maintained at the HIRLAM source code repository with subversion, by the HIRLAM system group. 
+ * Harmonie 31h1 release contains following components:
+   * __source code__: a copy of, plus updates on, the export version of the ALADIN/IFS release Cycle 31t1, which includes the first exported version of basic HIRLAM F90 physics package for turbulence, condensation and radiation processes
+   * __scripts__: the scripts needed to prepare, perform and post-process Harmonie forecasts at the ECMWF HPCE platform for various configuration options
+     * forecast model with hydrostatic or nonhydrostatic dynamics
+     * generation of climate constants
+     * physical parameterisation with ALADIN physics, HIRLAM physics or AROME physics
+     * model domain, resolution, forecast length, coupling method etc.
+   * __namelists__: namelists used to define experiment configuration
+   * __utilities__: which include
+     * the Meteo France compilation tool, GMKPACK, for building the executible
+     * tools to prepare and convert data files
+     * tools for carrying out monitoring, post-processing and graphic display
+== Set up and compilation of Harmonie experiments ==
+A preliminary [wiki:HarmonieSystemDocumentation/Install_HARMONIE_ECMWF procedure to prepare and compile main HARMONIE executables on ECMWF platform ] has been developed by HIRLAM researchers. Currently, this part of procedure is separated from the reference set of scripts for running HARMONIE forecast system at ECMWF. A guide to [wiki:HarmonieMainPackOnHPCE build a HARMONIE main pack on HPCE] is under construction. 
+
+The standard procedure of installing and compiling HARMONIE codes at ECMWF HPCE assumes a pre-installed standard object, which is currently prepared by system staff from Meteo France. For a completely independent installation of HARMONIE codes, an [wiki:HarmonieSystemDocumentation/CompileHarmonie instruction ] for such procedure exists.  A preliminary [wiki:HarmonieSystemDocumentation/LocalInstall32 local installation guide for version 32h2 ] is under construction.
+
+== Preparation of experiments ==
+ * __[wiki:HarmonieSystemDocumentation/Scripts#Modeldomain Choice of model domain]__
+ * __[wiki:HarmonieSystemDocumentation/Scripts#Climategeneration Climate generation]__
+ * __[wiki:HarmonieSystemDocumentation/Scripts#Boundaryfilepreparation Coupling to HIRLAM runs]__
+ * __Use of namelist to configure experiments __
+== Performing experiments with Harmonie 31h1 ==
+Performing ALADIN/AROME experiments at HPCE is done by using the [wiki:HarmonieSystemDocumentation/Scripts Harmonie scripts]. Following steps are needed to run ALADIN/AROME experiment at HPCE:
+ 1. Make sure that all the needed executables are in $HOMEPACK/$your_exp/bin/
+  * AROMODB
+  * [source:trunk/harmonie/util gl]
+  * fldextr
+  * obsextr
+  * mandtg, is a HIRLAM utility, written in Perl, with a functionality similar to ECMWF newdate. Take a look in the scripts to see how it is used.
+ 1. Update experiment name where needed by changing NEWEXP in '''Change_exp''', Run '''Change_exp'''
+ 1. Update '''Env_expdesc''' for your configuration.
+ 1. Set __start__ and __end__ time in '''Start_harmonie''', Run '''Start_harmonie''' ( on hpce!!!! )
+  * '''Start_harmonie''' will submit the script '''Prepare_harmonie''', which will prepare climate and boundary files
+  * '''Prepare_harmonie''' will submit the script '''Run_harmonie''', which will run the forecast
+  * '''Run_harmonie''' will submit '''Postp_harmonie''', which will extract files for verification and archive at ECFS
+Each of the jobs '''Prepare_harmonie''', '''Run_harmonie''', '''Postp_harmonie''' can be restarted separately. If you have not reached end cycle defined by __end__ time, the next '''Prepare_harmonie''' will be submitted.
+The experiment will by default take forecasts from RCRa. Change in '''ExtractBD''' for adjusting to your needs.
+== Monitoring, post-processing, verification ==
+ * __[wiki:HarmonieSystemDocumentation/File_Conv_Postp_Verif File conversion, post-processing, verification]__
+== Technical Aspects ==
+=== Tested model version, domains, components and computer architecture ===
+||computer platform||tested ALADIN/IFS version|| model domain || dynamic core || physics || purpose of || nr of nodes || task per node || time stepping || forecast /day || forecast length || forecast elapse time || reporter ||
+|| MF Fujitsu || cycle 31t2 || S-France 2.5km[[FootNote(240x240x41)]]|| Non-Hydrostatic || AROME ||   real-time run [[FootNote(since Nov 2006)]] || ? || ? || 60s || 1 [[FootNote(at 00 UTC)]] || 30 h || ?s[[FootNote(Currently the grid-point-cost of AROME run is 2.5 to 3 times that of ALADIN-France, although AROME has 4 times higher resolution than ALADIN-France and 7 times shorter timestepping. For AROME runs, the costs for dynamics and physics part are roughly 60% vs 40% )]] ||Gwenaelle Hello ||
+|| DMI NEC-SX6 || cycle 31t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||  real-time run [[FootNote(since Jan 2006)]] || 2 || 8 || 300s || 1 [[FootNote(at 00 UTC)]] || 24 h || 536s ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||  real-time run [[FootNote(since Nov 2006)]] || 2 || 8 || 300s || 1 [[FootNote(at 00 UTC)]] || 24 h || 599s ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || DMI-2.5km[[FootNote(373x389x40)]]|| Non-Hydrostatic || HIRLAM  ||  real-time run [[FootNote(since Nov 2006)]] ||  2 || 8 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || 4495s ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || DMI-2.5km[[FootNote(373x389x40)]]|| Non-Hydrostatic || AROME  ||  real-time run [[FootNote(since Nov 2006)]] || 2 || 8 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || 7178s ||Bjarne Stig Andersen ||
+|| FMI SGI ALTIX || cycle 30t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||   real-time run [[FootNote(since 19 May 2006)]] || 1 || 64 || 300s || 2 [[FootNote(at 00 12 UTC)]] || 24 h || ~10 min ||Sami Niemela||
+|| FMI SGI ALTIX || cycle 30t1 || FMI-2.5 km [[FootNote(300x300x40)]]|| Non-Hydrostatic || AROME   ||   real-time run [[FootNote(since 19 May 2006)]] || 1 || 64 || 60s || 2 [[FootNote(at 00 12 UTC)]] || 24 h || ~2:20 h ||Sami Niemela ||
+|| KNMI SGI ALTIX || cycle 31t1 [[FootNote(directly nested in 0.1x0.1 operational HIRLAM)]] || KNMI-2.5 km [[FootNote(300x300x40)]]|| Non-Hydrostatic || AROME   ||   real-time run [[FootNote(since 7 July 2007)]] || 1 || 64 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~1:45 h || Toon Moene ||
+|| ECMWF HPCD|| cycle 29t2 || INM 11 km ?|| Hydrostatic || ALADIN  || technical test || ? || ? || ?s || ? || ? h || ?s ||Ana Morata ||
+|| ECMWF HPCD|| cycle 29t2 || INM 2.5 km ?|| Non-Hydrostatic || ALADIN  || technical test || ? || ? || ?s || ? || ? h || ?s ||Ana Morata ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-11km[[FootNote(245x277x60)]]|| Hydrostatic || ALADIN  ||  real-time run [[FootNote(since 04 Jul 2006)]] || 16 || 2 || 300s || 2 [[FootNote(at 00 12 UTC)]] || 48 h || 2700s ||Ulf Andrae ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-2.5 km north [[FootNote(277x259x60)]]|| Non-Hydrostatic || AROME  ||   real-time run [[FootNote(since 16 Aug 2006)]] || 16 || 2 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~5h ||Ulf Andrae ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-2.5 km south [[FootNote(259x277x60)]]|| Non-Hydrostatic || AROME  ||   real-time run [[FootNote(since 16 Aug 2006)]] || 16 || 2 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~5h ||Ulf Andrae ||
+|| ECMWF HPCE|| cycle 31t1 || ? || Non-Hydrostatic || AROME  ||   technical test || ? || ? || ?s || ? || 24 h || ?s ||Ulf Andrae ||
+|| HP Pavilion zv6025EA [[FootNote(2 GHz AMD64, 512 Mbyte RAM)]] || cycle 31h1 || 50x50x40, 2.5 km || Non-Hydrostatic || AROME  || technical test || 1 || 1 || 60s || - || 24 h || 1:40h || Toon Moene ||
+
+ [[FootNote]]
+
+[[BR]]
+

@@ -1,0 +1,40 @@
+== '''Operational suite at FMI''' ==
+
+[[PageOutline]]
+
+== Brief Information about FMI-HIRLAM ==
+
+
+ * Domain configuration
+
+   http://fminwp.fmi.fi/docs/FMI_Hirlam_areas.png
+
+ * Operational Cycling Schedule
+
+ * Surface Analysis
+
+ * Upper Air Analysis
+
+ * Forecast
+
+ * Post-Processing
+
+ * Verification
+
+ * Graphic Tools
+
+
+== Activities in meso-scale modelling ==
+
+
+
+== Operational Products ==
+
+ * Links to [http://fminwp.fmi.fi/ Daily Forecast]
+ * Links to [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html observation monitoring]
+ * Links to [http://fminwp.fmi.fi/report/HirReport.html monthly report on verification, data monitoring etc.]
+
+
+== Contact staff ==
+
+

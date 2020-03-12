@@ -1,0 +1,262 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HIRLAM 41_t1.03 contributions''' ==
+
+This page summarizes the potential contributions for the cy41_t1.03 due on the 16th of January 2015
+
+[[Center(end)]]
+
+== '''Introduction to the changes''' ==
+
+Below is a list of all differences between the current branch for [source:harmonie/branches/phasing/cy41/src cy41h1] and [source:vendor/aladin/current cy41_t1.02] as extracted from git. 
+
+
+== '''Summary table''' ==
+|| '''Contribution'''    || '''Author'''            || '''Comments''' || 
+|| '''Up for CY41_t1.03'''||
+|| [#Radiationchanges Radiation updates ] || Kristian Pagh Nielsen et.al. || Missing set to zero ||
+|| [#Alarosurfexinterface Alaro to SURFEX interface] || || Different values on initialization ||
+|| [#LGRADSPchanges LGRADSP] || Mariano Hortal, AEMET || Work ongoing ||
+|| [#RenameofFESTAT Rename stat.F90 to festat.F90] || Ulf Andrae || || 
+|| '''For later cycles'''||
+|| [#LUNBC LUNBC] || Mariano Hortal, AEMET || Not subject  ||
+|| '''Keep in HIRLAM repository only/under investigation'''||
+|| [#Emptypoolfix Empty pool fix] || || Check if still needed ||
+|| [#LDAmethod LDA method] || || Put under ifdef? || 
+|| [#mten Moist energy norm] || Roger R. Met Norway || Contains duplicated routines, needs further checking ||
+|| [#Compilationproblemfix GFORTRAN fix] || || ||
+|| [#Batorchanges Bator] || || ||
+|| [#Blacklisting Blacklist] || || ||
+|| [#a4DVARfixes 4DVAR] || || || 
+|| [#Nameconventionofcloudfields Field names] || || ||
+|| [#Soilincrementtuning OI_CACSTS] || Magnus Lindskog || || 
+
+[[BR]]
+[[BR]]
+
+------------------------------------------------------------------------
+
+=== Radiation changes ===
+
+ - Correct calculation and output of direct and diffuse radiation
+ - Add direct normal irradiation ( not yet merged to cy40h1 )
+
+{{{
+ --- /local_disk/local/harmonie/vendor/aladin/current-wc/arpifs/phys_ec/radheat.F90	2014-12-17 12:49:26.315187938 +0100
+ +++ /local_disk/local/harmonie/branches/phasing/cy41/src/arpifs/phys_ec/radheat.F90	2014-12-17 13:04:19.726647927 +0100
+@@ -154,6 +154,11 @@
+ 
+ !*         1.     SECURITIES.
+ !                 -----------
++DO JL=KIDIA,KFDIA
++   PFRSODS  (JL)=0.0_JPRB
++   PFRSOFS  (JL)=0.0_JPRB
++   PFRSOPS  (JL)=0.0_JPRB
++ENDDO
+ 
+ !     ------------------------------------------------------------------ 
+}}}
+
+------------------------------------------------------------------------
+
+=== Alaro surfex interface ===
+
+ Changes to make ALARO0 work with SURFEX
+
+{{{
+--- /local_disk/local/harmonie/vendor/aladin/current-wc/arpifs/phys_dmn/initaplpar.F90	2014-12-17 12:49:28.093232458 +0100
++++ /local_disk/local/harmonie/branches/phasing/cy41/src/arpifs/phys_dmn/initaplpar.F90	2014-12-17 13:04:15.252534920 +0100
+@@ -575,7 +575,7 @@
+ ENDIF
+
+ PALB    (:) = 0.0_JPRB
+-PCD     (:) = 0.0_JPRB
++PCD     (:) = 0.001_JPRB
+ PCDN    (:) = 0.0_JPRB
+ PCH     (:) = 0.0_JPRB
+ PEMIS   (:) = 0.0_JPRB
+}}}
+
+{{{
+--- /local_disk/local/harmonie/vendor/aladin/current-wc/surfex/SURFEX/get_fluxn.F90	2014-12-17 12:49:49.787775679 +0100
++++ /local_disk/local/harmonie/branches/phasing/cy41/src/surfex/SURFEX/get_fluxn.F90	2014-12-17 13:04:06.881323482 +0100
+@@ -121,6 +121,9 @@
+   PCD      = XUNDEF
+ ENDIF
+ !
++!
++PCD      = XAVG_CD
++!
+ IF (LHOOK) CALL DR_HOOK('GET_FLUX_N',1,ZHOOK_HANDLE)
+ !==============================================================================
+ !
+
+}}}
+
+
+------------------------------------------------------------------------
+
+=== Rename of FESTAT ===
+
+{{{
+--- /local_disk/local/harmonie/vendor/aladin/current-wc/utilities/bcov_lam/programs/festat.F90	2014-12-17 12:49:41.690572927 +0100
++++ /local_disk/local/harmonie/branches/phasing/cy41/src/utilities/bcov_lam/programs/festat.F90	2014-12-17 13:32:59.843064443 +0100
+@@ -1,4 +1,4 @@
+
+-PROGRAM STAT
++PROGRAM FESTAT
+ 
+ !       Modifications :
+ !       ---------------
+@@ -46,4 +46,4 @@
+ 
+ IF (LHOOK) CALL DR_HOOK('STAT',1,ZHOOK_HANDLE)
+ 
+-END PROGRAM STAT
++END PROGRAM FESTAT
+}}}
+
+
+------------------------------------------------------------------------
+
+=== LGRADSP changes ===
+
+ Mariano Hortal
+
+ - Elimination of aliasing on vorticity and pressure departure following Wedi
+
+{{{
+ aladin/control/espcm.F90
+ aladin/coupling/elswa3.F90
+ aladin/setup/suehdf.F90
+ aladin/setup/sueldynb.F90
+ aladin/transform/etransinv_mdl.F90
+ arpifs/adiab/lacdyn.F90
+ arpifs/adiab/lavent.F90
+ arpifs/ald_inc/namelist/nemelbc0b.nam.h
+ arpifs/module/gmv_subs_mod.F90
+ arpifs/module/yomdyna.F90
+ arpifs/namelist/namdyna.nam.h
+}}}
+
+------------------------------------------------------------------------
+
+== HIRLAM specific changes ==
+
+=== LUNBC ===
+
+ Mariano Hortal
+
+ - Apply Davies relaxation at the upper boundary condition. Controlled by LUNBC in nemelbc0b. 
+
+
+
+{{{
+ arpifs/module/elbc0b_mod.F90
+ ...
+}}}
+
+
+------------------------------------------------------------------------
+
+=== Varbc ===
+
+ - VarBC predictor levels
+
+{{{
+ arp/module/varbc_pred.F90
+}}}
+
+------------------------------------------------------------------------
+
+=== Empty pool fix ===
+
+ - Check if this is still needed
+
+{{{
+ odb/cma2odb/shuffle_odb.F90
+ arp/obs_preproc/readoba.F90
+}}}
+
+------------------------------------------------------------------------
+
+=== Compilation problem fix ===
+
+{{{
+Files:
+  odb/tools/Simulobs2odb.F90
+}}}
+
+------------------------------------------------------------------------
+
+
+=== Soil increment tuning ===
+
+{{{
+ surfex/ASSIM/oi_cacsts.F90
+}}}
+
+------------------------------------------------------------------------
+
+
+=== Bator changes ===
+
+- Reading of HDF5
+- Decoding of satellite BUFR data, LMFBUFR flag.
+- Radar settings
+
+{{{
+  odb/pandor/module/bator_decodbufr_mod.F90
+  odb/pandor/module/bator_init_mod.F90
+  odb/pandor/module/bator_lectures_mod.F90
+  odb/pandor/module/bator_module.F90
+  odb/pandor/module/bator_rad_postproc_mod.F90
+  odb/pandor/module/bator_util_mod.F90
+  odb/pandor/namelist/bator_namelist.nam.h'
+  odb/pandor/module/bator_decodhdf5_mod.F90
+  odb/tools/Bator.F90
+
+}}}
+
+------------------------------------------------------------------------
+
+=== Blacklisting ===
+
+{{{
+Files
+  bla/mf_blacklist.b
+}}}
+
+------------------------------------------------------------------------
+
+=== 4DVAR fixes ===
+r7973 | ovignes | 2010-04-26 15:36:10 +0200 (Mon, 26 Apr 2010) | 2 lines
+
+Port 4DVAR changesets (7141,7167,7181,7200,7220,7545,7957) from 35h1branch
+
+{{{
+Files:
+  ald/fullpos/suefpg3.F90
+  ald/programs/blendsur.F90
+}}}
+
+------------------------------------------------------------------------
+
+=== Name convention of cloud fields ===
+
+r9414 | trygveasp | 2011-06-07 09:27:54 +0200 (Tue, 07 Jun 2011) | 32 lines
+
+{{{
+Files:
+  ald/programs/blend.F90
+}}}
+
+
+------------------------------------------------------------------------
+
+=== Interface block problem ===
+
+{{{
+ satrad/rttov/mw_scatt_coef/set_spectra.F90
+}}}
+

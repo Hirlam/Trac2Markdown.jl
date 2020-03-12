@@ -1,0 +1,34 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''NWP Surface Working Week - June 8-12, 2020 - Madrid, Spain''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Background ==
+
+We are kindly invited by Samuel Viana at AEMET to have our working week in Madrid June 8-12.
+
+== Participants ==
+
+Based on a [https://doodle.com/poll/ukhrwadab4xvuidk doodle poll] the winning week was June 8-12. 
+
+When you have finally decided to join please sign up for the meeting in this table:
+
+
+|| '''Name''' || '''Institute''' || '''Accomodation''' ||
+|| Patrick Samuelsson    || SMHI          || Sun-Fri  ||
+|| Kristian Pagh Nielsen || DMI           || ?-?      ||
+|| Emily Gleeson || Met Eireann          || Tues-Thurs      ||
+|| Geoffrey Bessardon || Met Eireann          || ?-?      ||
+|| Samuel Viana    || AEMET          || Mon-Fri  ||
+
+The general idea is, as we did in Ireland, to use Monday for working in different constellations and start with presentations on Tuesday morning. Thus, if you could arrive on Sunday and work together on Monday it is good of course but using Monday for traveling is also okay. Please coordinate with your colleagues! Then we use all week and plan to smoothly end the meeting on Friday. Thus Friday is kind of optional :-).
+
+== Location of meeting, hotels and transport ==
+
+The meeting will take place at AEMET's Headquarters in Madrid.
+More info about transport to AEMET, hotel suggestions, etc can be found [http://www.aemet.es/documentos/en/conocenos/quienes_somos/informacion_util/info_visitors_AEMET_2018.pdf here ].
+
+For the daily transport to AEMET, it is also possible to take the special bus service for AEMET staff; it departs daily at 8:45am from the Moncloa area ( the exact spot is [https://goo.gl/maps/rxUR5WG7VMYDfVcC7 this ] ), arriving at AEMET's headquarters at 8:55. The return journey departs from AEMET at 15:15 & 17:30 Mon-Thu. A similar bus service from AEMET to Nuevos Ministerios (easy connection to the Airport) departs daily at 15:15 (15:05 on Friday).

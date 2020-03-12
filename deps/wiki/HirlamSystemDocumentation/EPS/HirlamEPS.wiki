@@ -1,0 +1,16 @@
+= HirlamEPS =
+== 19.01.2007 == 
+
+''' Hirlam ensemble prediction system ''' is under development as a part of
+a multi-model system called: 
+
+Grand Limited Area Ensemble Prediction System ''' GLAMEPS '''.
+
+The scientific and methodological experimentation for the development of a real-time operational system takes place in a '' Laboratory Phase ''. Central in this phase is a special project
+at ECMWF as a common platform in addition to resources at national met-services.
+News about GLAMEPS Laboratory Phase can be found[https://hirlam.org/trac/wiki/GLAMEPS_laboratory here].
+
+GLAMEPS is a HIRLAM - ALADIN common project which will contribute to TIGGE. 
+It is intended to share the distributed resources amongst members in fully operational mode in order to produce a scientifically based probabilistic forecasting system. System documentation of the real-time GLAMEPS will be published here when it becomes operational.  
+
+'' Trond Iversen ''

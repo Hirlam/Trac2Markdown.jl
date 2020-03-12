@@ -1,0 +1,121 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+
+== ''Working page for'' ==
+= HARMONIE Data Archive and Parameter List, GRIB Definition - work page for snow variables =
+[[Center(end)]]
+
+
+= HARMONIE =
+
+||     ||''File''     || ''Name''               || '' Table'' || ''Param. '' || ''Level'' || '' Type'' || '' Note'' || 
+||     ||     ||                        ||    ||      ||     ||      ||           ||
+||  10 ||     || !SURFRESERV.NEIGE! ||  1 ||   66 ||   0 || 105 || !!SnowCov.! ||
+||  14 ||     || !SURFALBEDO NEIGE!     ||  1 ||  190 ||   0 || 105 || !Snow Albedo! ||
+||  28 || atm || !SURFFL.COND.N.GE!     ||  1 ||   79 || 999 || 105 || !Str. snow flux! ||
+||  29 ||     || !SURFPREC.EAU.CON!     ||  1 ||   63 ||   0 || 105 || !Con.Prec! ||
+||  30 ||     || !SURFPREC.NEI.CON!     ||  1 ||   78 ||   0 || 105 || !Conv. Snow! ||
+||  31 ||     || !SURFPREC.GRA.CON!     ||  1 ||  203 ||   0 || 105 || !Conv. Graupel! ||
+||  32 ||     || !SURFPREC.GRE.CON!     ||  1 ||  206 ||   0 || 105 || !Conv. Hail! ||
+||  33 ||     || !SURFPREC.EAU.GEC!     ||  1 ||   62 ||   0 || 105 || !Str.Prec! ||
+||  34 ||     || !SURFINSPLUIE!         ||  1 ||   61 || 456 || 105 || !Inst. rain! ||
+||  35 ||     || !SURFINSNEIGE!         ||  1 ||   62 || 456 || 105 || !Inst. snow! ||
+||  36 ||     || !SURFINSGRAUPEL!       ||  1 ||   63 || 456 || 105 || !Inst. graupel! ||
+||  37 ||     || !SURFACCPLUIE!         ||  1 ||   61 || 457 || 105 || !Accu. rain! ||
+||  38 ||     || !SURFACCNEIGE!         ||  1 ||   62 || 457 || 105 || !Accu. snow! ||
+||  39 ||     || !SURFACCGRAUPEL!       ||  1 ||   63 || 457 || 105 || !Accu. graupel! ||
+||  40 ||     || !#!                    ||  1 ||   61 ||   0 || 105 || !Total Precip.! ||
+||  41 ||     || !#!                    ||  1 ||   65 ||   0 || 105 || !Snow Precip.! ||
+||  42 ||     || !SURFPREC.NEI.GEC!     ||  1 ||   79 ||   0 || 105 || !Strat. Snow! ||
+||  43 ||     || !SURFPREC.GRA.GEC!     ||  1 ||  201 ||   0 || 105 || !Strat. Graupel! ||
+||  44 ||     || !SURFPREC.GRE.GEC!     ||  1 ||  204 ||   0 || 105 || !Strat. Hail! ||
+||  66 ||     || !SURFFLU.MSUBL.NE!     ||  1 ||  246 ||   0 ||   1 || !Snow sublimation! ||
+||  99 ||     || !SURFDENSIT.NEIGE!     ||  1 ||  191 ||   0 || 105 || !Snow density! ||
+|| 100 ||     || !SURFALBEDO HISTO!     ||  1 ||  247 ||   0 || 105 || !Snow history ???! ||
+|| 143 ||     || SNNNGRAUPEL            ||  1 ||  201 ||   1 || 109 || Graupel ||
+|| 144 ||     || SNNNRAIN               ||  1 ||   62 ||   1 || 109 || Rain ||
+|| 145 ||     || SNNNSNOW               ||  1 ||   79 ||   1 || 109 || Snow ||
+|| 227 ||     || #                      ||  1 ||   91 ||   0 || 102 || !Ice concentration - ice/non-land???! ||
+|| 278 ||     || PNNNNNSNOW             ||  1 ||   79 ||   1 || 100 || Snow ||
+|| 279 ||     || PNNNNNRAIN             ||  1 ||   62 ||   1 || 100 || Rain ||
+|| 280 ||     || HNNNNNPRESSURE         ||  1 ||    1 ||   1 || 105 || Pressure - !from here: surface level??? which surface???! ||
+|| 299 ||     || HNNNNNRAIN             ||  1 ||   62 ||   1 || 105 || Rain ||
+|| 300 ||     || HNNNNNSNOW             ||  1 ||   79 ||   1 || 105 || Snow ||
+|| 345 ||     || !SURFRESERV.NEIGE!     || 28 ||  141 ||   0 ||   1 || !Snow depth! ||
+|| 346 ||     || !SURFALBEDO NEIGE!     || 28 ||   32 ||   0 ||   1 || !Snow Albedo! ||
+|| 347 ||     || !SURFDENSIT.NEIGE!     || 28 ||   33 ||   0 ||   1 || !Snow density! ||
+|| 348 ||     || !SURFSEA.TEMPERA!      || 28 ||   34 ||   0 ||   1 || !SST! ||
+|| 361 ||     || SURFPREC.EAU.CON       || 28 ||  143 ||   0 ||   1 || Con.Prec ||
+|| 362 ||     || SURFPREC.EAU.GEC       || 28 ||  142 ||   0 ||   1 || Str.Prec ||
+|| 369 ||     || COVER006               ||  1 ||    6 ||   0 || 113 || PERMANENT_SNOW ||
+|| 619 ||sfx  || WSNOW_VEG1             ||  1 ||   13 || 750 || 105 || WSNOW_VEG1 ||
+|| 620 ||     || RSNOW_VEG1             ||  1 ||   14 || 750 || 105 || RSNOW_VEG1 ||
+|| 621 ||     || ASNOW_VEG              ||  1 ||   15 || 750 || 105 || ASNOW_VEG1 ||
+|| 623 ||     || INPRR                  ||  1 ||   59 || 755 || 105 || Liquid precipitation - !instant?! ||
+|| 624 ||     || INPRS                  ||  1 ||   64 || 755 || 105 || Snow precipitation ||
+|| 625 ||     || INPRG                  ||  1 ||  202 || 755 || 105 || Graupel precipitation ||
+|| 626 ||     || ACPRR                  ||  1 ||   62 || 755 || 105 || Acc. Liquid precipitation ||
+|| 627 ||     || ACPRS                  ||  1 ||   79 || 755 || 105 || Acc. Snow precipitation ||
+|| 628 ||     || ACPRG                  ||  1 ||  201 || 755 || 105 || Acc. Graupel  precipitation ||
+|| 726 ||     || WSNOW_ROOF1            ||  1 ||   30 || 950 || 105 || WSNOW_ROOF1 ||
+|| 727 ||     || RSNOW_ROOF1            ||  1 ||   31 || 950 || 105 || RSNOW_ROOF1 ||
+|| 728 ||     || TSNOW_ROOF1            ||  1 ||   32 || 950 || 105 || TSNOW_ROOF1 ||
+|| 729 ||     || ASNOW_ROOF             ||  1 ||  333 || 950 || 105 || ASNOW_ROOF ||
+|| 730 ||     || WSNOW_ROAD1            ||  1 ||  334 || 950 || 105 || WSNOW_ROAD1 ||
+|| 731 ||     || RSNOW_ROAD1            ||  1 ||   35 || 950 || 105 || RSNOW_ROAD1 ||
+|| 732 ||     || TSNOW_ROAD1            ||  1 ||   36 || 950 || 105 || TSNOW_ROAD1 ||
+|| 733 ||     || ASNOW_ROAD             ||  1 ||   37 || 950 || 105 || ASNOW_ROAD ||
+[[BR]]
+
+= HIRLAM 7.4 =
+
+|| Variable ||	Unit ||	IPAR ||	LTYP ||	LEV ||	File ||	Note ||
+|| albedo || fraction || 084 || 105 || 0 || fc || basic value + snow ; value from climate files not used || 
+|| water equivalent of snowpack || m || 066  || 105  || 0  || fcmd, fcve ||  || 
+|| snow depth  || m || 138  || 105  || 0  || fcmd || diagnostic. grid average ||
+|| open land snow depth  || m || 139  || 105  || 0  || fcmd || diagnostic, grid average ||
+
+=== Accumulated surface fluxes ===
+
+|| total precipitation || kg/m2 || 061  || 105  || 0  || fcve, fcmd ||  || 
+|| grid-scale precipitation || kg/m2 || 062  || 105  || 0  || fc, fcmd ||  ||
+|| subgrid-scale precipitation || kg/m2 || 063  || 105  || 0  || fc, fcmd ||  ||
+|| total snowfall || kg/m2 || 065  || 105  || 0  || fcve ||  ||
+|| grid-scale snowfall || kg/m2 || 079  || 105  || 0  || fcmd ||  || 
+|| subgrid-scale snowfall || kg/m2 || 078  || 105  || 0  || fcmd ||  ||
+
+
+=== Near-surface state and diagnostic variables for subtypes ===
+
+The variable written as level height parameter is obtained by combination of subtype and sublevel parameters: LEV = LTYPE + JTYPE. E.g. the two-metre temperature over forest is now denoted by combination of parameters IPAR = 11, LTYP = 105, LEV = 805. The following variables may have subtype values:
+
+|| temperature of snow covering tiles 3 and 4  || K || 011  || 105  || 706  || fc ||  || 
+|| temperature of snow in the forest  || K || 011  || 105  || 707  || fc ||  || 
+|| water in open land snow  || m3/m3  || 086  || 105  || 706  || fc ||  || 
+|| water in forest snow  || m3/m3  || 086  || 105  || 707  || fc ||  || 
+|| water equivalent of snowpack/snow cover || m  || 066  || 105  || 901-907  || fc || always zero for tiles 6 and 7 ||
+|| canopy snow water equivalence || m  || 066  || 105  || 605  || fc ||  ||
+|| snow albedo  || fraction  || 190  || 105  || 901-907  || fc || || 
+|| snow density  ||  || 191  || 105  || 901-907  || fc ||  ||
+|| fraction of snow on ice || fraction  || 194  || 105  || 702  || fc || as compared to whole grid ||
+|| fraction of snow on open land || fraction  || 194  || 105  || 706  || fc || as compared to whole grid ||
+|| fraction of snow in the forest || fraction  || 194  || 105  || 707  || fc || as compared to whole grid ||
+
+=== Prognostic and diagnostic lake/sea variables ===
+
+|| fraction of ice || fraction || 091  || 102  || 0  || fcmd ||  ||
+|| [[Color(red, temperature of snow on lake ice)]]  || K  || 080  || 160 || 702  || fc || not used yet ||
+|| [[Color(red, temperature of lake ice)]]  || K  || 080  || 160 || 902  || fc ||  || 
+|| [[Color(red, snow depth on lake ice)]]  || m || 066 || 160 || 0  || fc ||  ||
+|| [[Color(red, lake ice thickness)]]  || m || 092  || 160 || 0  || fc ||  || 
+
+
+[[Center(begin)]]
+
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]
+
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

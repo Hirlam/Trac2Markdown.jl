@@ -1,0 +1,21 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Management Group visit at Met Éireann (MGM 12)''' =
+''Dublin, March 6, 2018''
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+[[Image(20180308_133718.jpg, 30%)]] [[Image(20180308_133556.jpg, 40%)]]
+== Presentations  ==
+
+ * Eoin Whelan: "Recent Work & Operational Plans" [raw-attachment:eoinWhelan_HMG201803.pdf pdf]
+ * Colm Clancy: "Cycle 40 at Met Éireann" [raw-attachment:CClancy_Cycle40.pdf pdf]
+ * Alan Hally: "The Irish Regional Ensemble Prediction System" [raw-attachment:EPS-Hirlam-Mgtment-Visit-Alan-Hally.pdf pdf]
+ * Emily Gleeson: "HARMONIE-AROME Physics & other updates" [raw-attachment:EGLEESON_March2018_Updates_20180305.pdf pdf]
+ * Rónán Darcy: "Observation processing upgrade: ADE to SAPP" [raw-attachment:ade-sapp.pdf pdf]
+
+ * Jeanett Onvlee: "HIRLAM-C plans/priorities" [raw-attachment:Visit_MetEireann_20180306.pdf pdf]
+ * Inger-Lise Frogner: "HarmonEPS status and development" [raw-attachment:HarmonEPS_MGM12_Dublin.pdf pdf]
+ * Patrick Samuelsson: "Overview of HIRLAM surface activities" [raw-attachment:HIRLAM_Surface_Patrick_180306.pdf pdf]

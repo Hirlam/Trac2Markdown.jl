@@ -1,0 +1,251 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''NWP Surface Working Week - SMHI - Norrköping- Feb 25th - March 1st, 2019''' =
+
+Last modified [[LastModified]]
+
+[[Image(20190227_101332.jpg, 40%)]]
+
+[[Center(end)]]
+
+== Background ==
+
+WW switched to SMHI at the end of February 2019.
+
+== Working items and comments ==
+
+'''Please add items'''
+
+ * Next meteorological release of cy43h2.1 can maybe be expected in autumn 2019. Here we plan to still keep Force-restore and D95 snow but look into some updates related to ([wiki:Surface_physis_assimilation/First_cy43h_setup see details here]):
+   * ECOCLIMAP-SG, Second Generation
+   * ECUME scheme for the water fraction of the sea tile
+   * Modified increments of soil moisture in the OI assimilation scheme
+   * Orography - turbulence (OROTUR)
+   * Modified values of minimum stomatal resistance Rsmin
+   * Assimilation of satellite product of snow extent
+   * New clay and sand database
+   * Remove surface assimilation in the TEB tile
+   * Implement satellite albedo climatologies for glaciers
+   * Consider to replace ECMWF SST analysis with OSISAF data
+
+ * Issues related to horizontal spacialization of the surface observations (CANARI)
+   * Harmonization of physiography between CANARI and SURFEX.
+   * Tiling in CANARI. How to proceed? The better theoretical basis is needed. Experience from span may be used.
+   * Elaboration of observation operators.
+   * Providing the consistency in diagnostic calculations between SURFEX and CANARI.
+   * Cleaning of CANARI? 
+
+ * Next big step will be to introduce new land-surface physics (diffusion soil, explicit snow, Multi-Energy Balance) in combination with SEKF assimilation. Maybe this can become operational in 2020... What to do:
+   * cy43h_alpha is now running in climate mode utilizing all [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h options in our new surface wish list] except MEB. Samuel and Emily are active here and now also Rossby Centre (SMHI) colleagues are involved in sea/ice handling. [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Viana_cy43h_climate_tests.pdf]
+   * Åsmund is running cy43h_alpha in NWP mode where he has activated diffusion soil + explicit snow in combination with SEKF. Here there are quite a few questions to consider related to e.g.
+     * Which control variables to include
+     * Estimation of model errors
+     * How to treat the forest patch (apply smaller increments from the surface analysis or give a larger observation error of T2m and Rh2m).
+     * Maybe we should run a soil analysis entirely offline (see also idea by Balázs)
+
+ * The longer term plan involves replacing SEKF with EnKF step wise in 1D, 2D, 3D
+   * Development and tests are ongoing by the SURFEX team and Tomas Landelius (SMHI). 
+
+ * Balázs Szintai wishes to discuss / work on
+   * test of FLake in cy40t1 (using Surfex 7.3) over Hungarian domain
+   * Surfex offline runs in connection with vegetation
+
+
+
+== Location of meeting, hotels and transport ==
+
+The meeting will take place at [https://goo.gl/maps/xpBa84oLPwz SMHI, Norrköping]. For hotels:
+ * There is a block bocking at [https://www.elite.se/en/hotels/norrkoping/grand-hotel Elite Grand Hotel Norrköping] downtown. Price is 986 SEK including breakfast. Book via email {{{reservation.grandhotel@elite.se}}} and provide booking reference GSMH240219. The block booking expires January 28th.
+ * The nearest hotel to SMHI is [http://www.borgshotell.se/ Borgs Villahotel B&B] which you can book by email to {{{info@borgshotell.se}}}. If you let them know that you are a SMHI visitor you should get special deal.
+ * Otherwise, as usual, downtown there are plenty of hotels which you will easily find via hotel booking sites.
+
+To reach Norrköping by plane/train: Norrköping airport has connection to Munich. Linköping airport (30 minutes away by taxi) has connections to Amsterdam and Copenhagen. Stockholm south/Skavsta airport is a Ryanair airport 45 min away by bus. Stockholm Arlanda airport is some 2-2.5 hours away by train. [https://www.sj.se/en/home.html#/ Book train tickets via sj.se].
+
+To reach SMHI: 
+ * By tram: From train station or hotels downtown take tram no. 3 towards Klockaretorpet. The tram stop is called SMHI and the buildings are easily visible from there. The journey takes around 15 minutes from downtown. Tickets can be purchased via a [https://www.ostgotatrafiken.se/biljetter/kopa-biljett/appen/ mobile phone App] or by credit card on the tram. Price is 25 SEK.
+ * By walking: It takes some 35-40 minutes to walk from downtown to SMHI. [https://goo.gl/maps/pzqcatYYRC12 See directions here].
+
+
+== Agenda ==
+
+The main meeting room is "Almagrundet" just behind the SMHI reception desk. This room is available all week long.
+We have yet one more room, "Nikkaluokta", for group meetings located at the end of the same corridor.
+
+=== Monday February 25 ===
+
+The intention is to utilize this day for travelling but some of us can hopefully start working together in the afternoon.
+Please feel welcome to join together at SMHI whenever you arrive.
+
+=== Tuesday February 26 ===
+
+[https://hangouts.google.com/call/pRx20UovYSZXOP-RDFTDAEEI Join via this link for Google Hangouts]. Please connect via the Chrome web browser and mute your microphone. 
+
+'''Start of the official meeting at 09:00'''
+
+ * Patrick: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/HIRLAM_Surface_Patrick_190226.pdf Welcome and introduction to meeting]
+   * [wiki:HarmonieSystemDocumentation/43h1.pre-alpha.1_validation Results from validation simulations of cy43h are available here].
+   * [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/CY43%20baseline%20tests%20concluded.pdf A summary of !MetCoOp results is availbale here].
+   * Main conclusion at last MG was that cy43h is now meteorological ready for further development.   
+ * Patrick: [wiki:Surface_physis_assimilation/First_cy43h_setup Wiki on suggested surface input to next meteorological release of cy43h2.1]. Who does what?
+ * Åsmund: Development of EKF in combination with diffusion soil scheme in cy43h.[https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Surface%20Analysis%20with%20EKF%20ISBA-DIF.pdf Presentation]
+ * Katya: Changes in CANARI [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Norrkoping_2019_kourzeneva.pdf here]
+ * Samuel/ Emily: Climate runs with cy43h over the [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Viana_cy43h_climate_tests.pdf Iberia domain (Samuel)] and the [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Harmonie_Surface_EGleeson_Feb2019.pdf  Irish domain (Emily)] using our [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h SURFEX wish list].
+ * John: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/ECOCLIMAP_v2.2-SG.pptx A First Evaluation of the Evolution towards ECOCLIMAP-SG]
+ * Katya/ Mariken/ Magnus: Assimilation of snow extent in HARMONIE-AROME (H-SAF), [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Task2.4_Surface_snow_Mariken_180507_v2.pdf CARRA (CryoClim)] and HARMONIE-AROME (Cryoland).
+ * Laura/ Samuel: Quick remarks on HARMONIE cy43 experiments with [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Rontu_oroturetal.pdf OROTUR et al. over the MetCoOp domain] and [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Orotur_tests_IBERIA.pdf over the Iberia domain], similar to and in the framework of [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/43h1.pre-alpha.1_validation MetCoOp cy40-cy43] comparisons 
+ * Laura/ Katya: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Rontu_lakesea.pdf Lakes and seas in HARMONIE-AROME]
+ * Kristian: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Nielsen_KP_Snow_and_ice_albedo_20190225.pdf Treatment of snow and glacier ice albedo. Experiences from CARRA]
+ * Jasmin: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/SurfaceModellingZAMG_JV.pdf Surface modelling at the ZAMG]
+ * Balazs: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Szintai_FLake_Surface-WW_2019.pdf FLake in cy40t1]
+ * Fuxing: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/SURFEX_WW.pdf SURFEX-related activities at Rossby Centre (SMHI)]
+
+'''Discussion points'''
+
+ * Now we can run with SOIL_TEXTURE_VERSION=SOILGRID. Over !MetCoOp domain SOILGRID gives minor impact so there it seems to be safe to activate ([https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Sand_Clay_report.pdf see very brief validation report here]). However, Samuel's experience with SOILGRID over the Iberia domain is less positive[https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/soilgrids_vs_fao_report_AEMET.pdf Report]. We look into this together...
+
+
+ * Dinner at 19:00 at [https://goo.gl/maps/wBhT7BPuraH2 New York Grill and Bar].
+
+=== Wednesday February 27 ===
+
+
+[https://hangouts.google.com/call/pRx20UovYSZXOP-RDFTDAEEI Join via this link for Google Hangouts]. Please connect via the Chrome web browser and mute your microphone. 
+
+'''Start of the official meeting at 09:00'''
+
+ * Paolo Mendeiros: How to use the [wiki:HarmonieSystemDocumentation/PostPP/Obsmon Obsmon, Observation monitoring, tool]. 
+ * Balazs: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Szintai_Surfex_vegetation_Surface-WW_2019.pdf Surfex offline runs in connection with vegetation]
+ * Tomas: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/landelius_suda_1902.pdf Towards a 4D EnKF for surface data assimilation of raw satellite radiances]
+ * Jelena: Development ideas for EnKF in HARMONIE-AROME 
+ * Åsmund(?): [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Surface%20DA%20II.pdf Surface data assimilation in HARMONIE-AROME by Trygve Aspelien]
+ * Patrick: How to work with git and cy43h. [wiki:HarmonieSystemDocumentation/SourceCodeRepository See Kai Sattler's wiki on "Harmonie Source Code Repository"]
+ * Mariken: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/surface_ww_SMHI_XRIMAX_190226.pdf Experiments with increasing current setting of XRIMAX=0 to higher values.]
+ * Mariken: [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/ISBA-DIF_ES_cy43_Mariken_190226.pdf cy43 NWP experiments with ISBA DIF and Explicit Snow scheme]
+
+
+'''Group meetings'''
+
+ * ECOCLIMAP Second Generation, LAI from LDAS system
+ * CANARI - plans and priorities, T2m analysis for the upper air assimilation
+
+=== Thursday February 28 ===
+
+ * 09:00 working group constellations.
+
+
+'''Group meetings'''
+
+ * 09:30: Surface data assimilation - short term (S)EKF - long term EnKF
+   * [https://drive.google.com/drive/folders/1PUeyi9axAuKME7Z-GXwO2iX9Jqk6dGoh?usp=sharing_eip&ts=5c77a041 Sensitivity tests by Åsmund]
+
+ * 11:00: Climate modelling group
+ * 11:00: Sea and lake treatment in HARMONIE-AROME
+ * 13:30: OROTUR: where to test and use?  XRIMAX, SOILGRID
+
+ * ~15:30 We summarize discussions and work and make up plans for continuation.
+
+=== Friday March 1 ===
+
+The intention is to utilize this day for traveling but some of us can hopefully use the day until lunch for continued work together.
+
+== Memory notes ==
+
+=== Short term plans  ===
+
+The short term plans are related to development for a meteorological release of cy43h2.1.
+The surface will be represented by Force-restore and D95 snow and details of...
+
+'''[wiki:Surface_physis_assimilation/First_cy43h_setup suggested surface components for cy43h2.1 are listed in this wiki]'''.
+
+'''The wiki now includes actions to be taken in the next few months and lists expected people to be involved.'''
+
+The list of components currently includes:
+
+ *   ECOCLIMAP-SG, Second Generation
+ *   CANARI issues
+ *   ECUME scheme for the water fraction of the sea tile
+ *   Modified increments of soil moisture in the OI assimilation scheme
+ *   Orography - turbulence (OROTUR)
+ *   Modified values of minimum stomatal resistance Rsmin
+ *   Assimilation of satellite product of snow extent
+ *   New clay and sand database
+ *   Remove surface assimilation in the TEB tile
+ *   Test of soil-ice bug reported by Météo-France
+ *   Test of modified XRIMAX
+ *   Implement satellite albedo climatologies for glaciers
+ *   Consider to replace ECMWF SST analysis with OSISAF data
+
+In addition a few earlier optional settings in cy40h1.1.1 will now be default:
+
+ * FLAKE
+ * SICE
+ * 2-patches
+ * RCT2SY=10. (setting in CANARI to allow larger observation deviation). But this setting may depend on final value of XRIMAX... 
+ * XZ0SN => '0.003', XZ0HSN => '0.0003'  (modified snow roughness)
+
+The final list that enters cy43h2.1 will depend on outcome of tests and when the cycle is planned to be released. 
+
+
+=== Medium term plans  ===
+
+The medium term plans include replacing of Force-restore + D95 with diffusion soil, explicit snow and Multi-Energy Balance in combination with (S)EKF surface assimilation. We run the system in climate mode using our [wiki:Surface_physis_assimilation/New_SURFEX_options_cy43h SURFEX wish list] to identify/reduce biases.
+After that stepwise inclusion of satellite products can start (soil moisture, sea-ice temperature, transpiation …). The medium term plans also include consideration of TITAN/gridPP as an alternative to CANARI. Other development include ES scheme as glacier model, sea wave-atmosphere coupling, SICE development, ORORAD, physiography validation/development, prognostic LAI.
+
+ * The SURFEX wish list is under testing in climate mode in cy43h by Samuel and Emily [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Viana_cy43h_climate_tests.pdf Samuel] and [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Harmonie_Surface_EGleeson_Feb2019.pdf Emily] (see their presentataions). A how-to-progress discussion, including issues, was held together with Rossby Centre representatives. Samuel has summarized the outcome of this discussion on the  [wiki:HarmonieClimate/HCLIM43?version=17#DraftplansfortestingHCLIM43discussedinsidemeetingwithRossbyCentrecolleaguesduringlastSFCworkingweekinNorrk%C3%B6ppingFebruary282019 HARMONIE Climate cy43 wiki page].
+
+ * The development and investigation of the performence of SEKF in the cy43h environment is currently lead by [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Surface%20Analysis%20with%20EKF%20ISBA-DIF.pdf Åsmund]. Here TITAN/gridPP is used for the surface analysis.
+   * Åsmund's experience is that we can identify suitable soil levels for control variables by studing the size of Jacobians as a function of level for e.g. dT2m/dTG, dRh2m/dWG. Selected levels will be different for each patch since root depth is different.
+   * One question is which analysis increment to apply over the forest patch since the (SYNOP) increment is truly only representataive for the open-land patch. Here we can lend upon analysis method of Tomas where he has quantified the correlataion between patches and soil levels. Alternatively, if we see a problem with drifting forest soil column we may apply nuding towards the open-land soil column.  
+   * In this development a very useful offline surface environment has been developed by Trygve and Åsmund within cy43h. For example, it includes the possibility to setup SURFEX offline with forcing prepared based upon an earlier 3D HARMONIE-AROME simulation.
+   * The foring preparation is based upon Python script which is not yeat part of the cy43h environment.
+
+
+=== Long term plans  ===
+
+The long term plans include:
+ * Replace 1D vertical EKF with 1D EnKF.
+ * Replace OI analysis & 1D DA with 3D EnKF and products with radiances.
+ * Coupled DA for atmosphere and surface based on 4D EnKF.
+
+The steps toward the long term plan are nicely visualized by Tomas in this slide.
+
+=== Lake and sea treatment ===
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/Rontu_lakesea.pdf Laura presented] how we currently deal with lake and sea settings. One interesting question is how we should treat big lakes. Should they be handled by FLake or is 3D circulation important enough which would motivate the use of a 3D ocean model for such lakes. We have the possibility to evaluate this using experiments done over the !MetCoOp domain. In the operational setting, for the two biggest lakes in Sweden, Vänern and Vättern, the LST (lake surface temperature) and LIC (lake-ice concentration) is provided by the NEMO model which is applied operationally by SMHI. And we also have test simulations where these lakes were handeled by FLake. Laura is leading an investigation to evaluate the performance.  
+
+
+== Participants ==
+ 
+You can still announce your interest to participate via the [https://doodle.com/poll/d59wm3ez97i2z68v doodle], but only for the correct week of course : - )
+
+When finally decided to come please confirm your participation by filling in this table or confirm to Patrick via email.
+
+||= Name                             =||= Institute    =||= ARR - DEP, Hotel                           =||
+||Emily Gleeson                       || Met Eireann    || Feb 25 to Feb 28th, Lamp hotel                      ||
+||Laura Rontu                         || FMI            || Feb 25 to March 1, Borgs Villahotell   ||
+||Kristian Pagh Nielsen               || DMI            || Feb 25 to March 1, Borgs Villahotell   ||
+||Patrick Samuelsson                  || SMHI           ||                                        ||
+||Jasmin Vural                        || ZAMG           || Feb 25 to Feb 28, Borgs Villahotell   ||
+||Åsmund Bakketun                     || Met Norway     || Feb 25 to March 1, Hotel President     ||
+||Mariken Homleid                     || Met Norway     || Feb 25 to March 1, Hotel President     ||
+||Samuel Viana                        || AEMET          || Feb 25 to March 1, BEST WESTERN Princess Hotel || 
+||Fuxing Wang                         || SMHI           ||                                        ||
+||Ekaterina Kurzeneva                 || FMI            || Feb 25 to  Feb 28,  Hotel President    ||
+||Balazs Szintai                      || OMSZ           || Feb 25 to March 1, Borgs Villahotell   ||
+||John de Vries                       || KNMI           ||    ||
+||Jelena Bojarova                     || SMHI           ||    ||   
+
+== Additional information ==
+
+ * [wiki:Meetings/Surface Please find memory notes from earlier surface meetings here.]
+ * [wiki:Surface_physis_assimilation Please find wiki pages dedicated to various surface development here.]
+
+
+== Useful publications and presentations ==
+
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/r20190218.pdf Rontu et al., 2019 ] Second, unpublished version of the discussion paper at https://www.geosci-model-dev-discuss.net/gmd-2018-270/ 
+ * [https://presentations.copernicus.org/EMS2018-69_presentation.pdf Toptunova et al., 2018] presentation in EMS 2018 about Global lake database development, including comments on lakes in ECOCLIMAP
+ * [https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/qj.1885 Atlaskin & Vihma, 2012] paper on wintertime nocturnal boundary layers 
+ * [https://www.ecmwf.int/sites/default/files/elibrary/2014/17349-improving-representation-stable-boundary-layers.pdf Sandu et al., 2013] ECWMF report on improving the representation of stable boundary layers
+ * [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201901/HIRLAM_NL54_Paper06_Sass.pdf Sass & Woetmann Nielsen, 2008] HIRLAM Newsletter paper on fixing the polar night temperature problem over Greenland
+ * [https://www.tandfonline.com/doi/abs/10.3402/tellusa.v66.21510 E. Kourzeneva] Paper on EKF for lakes 

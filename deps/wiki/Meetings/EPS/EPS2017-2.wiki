@@ -1,0 +1,224 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Working Week on HarmonEPS, calibration and HARP development for EPS''' =
+''Copenhagen. Monday 6 November - Friday 10 November 2017. ''
+
+[[Center(end)]]
+
+[[Image(20171107_151225.jpg, 30%)]]
+[[Image(20171107_151230.jpg, 30%)]]
+[[Image(20171108_200738.jpg, 30%)]]
+[[Image(20171108_200809.jpg, 30%)]]
+
+
+== Location ==
+DMI, Lyngbyvej 100, Copenhagen, Denmark
+
+== Participants ==
+|| Name                 || Arriving          || Leaving   || Working with            || Hotel                         ||
+|| Inger-Lise           || Sunday, at DMI 09 Monday            || Friday ~ 13            || HarmonEPS               || Wakeup Copenhagen, Borgergade ||
+|| John Bjørnar         || Sunday, at DMI 09 Monday            || Friday, flight 15:30   || Statistical calibration || Wakeup Copenhagen, Borgergade ||
+|| Henrik               || Monday            || Friday    || HarmonEPS               ||                               ||
+|| Ulf                  || Sunday            || Friday    || HarmonEPS               || Wakeup Copenhagen, Borgergade ||
+|| Karoliina            || Wednesday         || Friday    || Verification            || Scandic Webers                ||
+|| Jose A. Garcia-Moya  || Sunday, at DMI 09 Monday  || Friday ~ 15 || Verification-HARP     || Cabinn Scandinavia Hotel      ||
+|| Alfons Callado       || Monday, ~13       || Friday    || HarmonEPS-SPPT          ||                               ||
+|| Andrew               || Monday            || Friday    || HarmonEPS-surface / HARP|| Avenue Hotel                  ||
+|| Maurice              || Monday ~ 10       || Wednesday || Calibration             || Wakeup Copenhagen, Borgergade ||
+|| Pau Escriba          ||                   ||           || LETKF                   ||                               ||
+|| Alan Hally           || Sunday, at DMI 09 Monday  || Thursday    || HarmonEPS               || Hotel Ansgar                  ||
+|| Alberto Martin       || Sunday, at DMI 09 Monday  || Friday ~ 15 || HarmonEPS-surface / HARP || Cabinn Scandinavia Hotel   ||
+|| Jesus Rodriguez      || Sunday, at DMI 09 Monday  || Friday ~ 15 || Calibration           || Cabinn Scandinavia Hotel      ||
+|| Ole Vignes           || Monday lunch      || Friday    || HarmonEPS               || Wakeup Copenhagen, Borgergade ||
+|| Janne                || Monday  ~10       || Friday    || HarmonEPS               || Scandic Webers                ||
+|| Xiaohua Yang         || Monday            || Friday    || HarmonEPS               ||                               ||
+|| Pirkka               || Monday morning    || Tuesday   || EPPES                   ||                               ||
+|| Sibbo                || Monday ~13.30     || Friday lunch    || HarmonEPS-SPP/RPP       ||                               ||
+|| Åke                  || Monday            || Friday    || Verification - HARP     ||                               ||
+|| Thomas Nipen         || Thursday          || Friday    || Calibration             ||   Wakeup Copenhagen, Borgergade     ||
+
+
+ == Notes ==
+
+ * '''Surface perturbations:''' 
+
+ Encouraging to see in Henrik’s presentation that the surface perturbations could trigger convection.
+
+ Surface perturbations was tested with surface assimilation for all members or only for the control '''(Andrew, Björn, Janne, Inger-Lise and Ulf)''', and we see a clear benefit from surface assimilation for all members. However, the variation in the members biases gets larger. This was tested in MEPS-setup, and it is not necessarily the same conclusion for a COMEPS-setup. 
+
+ '''Further work:'''
+
+ '''AEMET''' will study the effect of perturbing the SST (in a different way) and the Roughness Length for case studies of severe weather over the Iberian Peninsula and compare those perturbations with a setup where all set of perturbations in the scheme is used. The main focus in 2018 will be SST perturbations and its influence on convection by varying the length scale and the standard deviation of the perturbations. Similarities and differences on the precipitation field at different lead times among all ensemble members will be analyzed. After testing on several case studies, a longer period could be run (under discussion). '''(Ongoing: Alberto)'''
+
+ '''DMI:''' Surface perturbations are now included in pre-operational COMEPS. Henrik presented some new ideas for surface perturbations (see his presentation for details). DMI will look into interesting cases from summer 2017. '''(Ongoing: Henrik)'''
+
+ '''MetCoOp:''' Focus on cases studies, and test different settings in the perturbations scheme. If Norway gets funding for an external project they have applied for, work on snow-, ice- and targeted SST-perturbations will start. 
+ We should aim at verifying 1h precipitation, the challenge is the observation availability. '''(Action: Andrew, Rafael and Janne)'''
+
+ * '''SPPT:'''
+
+ Implementation in HarmonEPS following Alfons’ suggestions '''(Done: Ulf, SPPT namelist switches introduced in [16450])'''.
+
+ Work on LAM-formulation of SPPT, which is not correct in the current implementation '''(Action: Alfons)'''
+ 
+ In parallel SPPT tests are ongoing in HarmonEPS '''(Janne and Inger-Lise)'''. Next year, when '''Alan''' has Hirlam-time, he will also work on SPPT with the aim to implement developments that other LAM consortia has done, and to test setups of SPPT that is suitable for HarmonEPS. Things to consider: amplitude of perturbations, spatial and temporal correlation scales, include multiple scales (like in IFS). 
+
+ A wiki-page will be constructed for the SPPT work '''(Action: Inger-Lise)'''. 
+
+
+ * '''SPP:''' 
+
+ A first implementation for coupling one parameter (VSIGQSAT) to the SPPT pattern to allow for spatial and temporal correlations was done before the working week and tested (Ulf and Inger-Lise). 
+
+ This implementation is also to be tested for parameter rlcrit and compared to earlier tests where rlcrit was varied stochastically between members and cycles, but kept constant in time and space '''(Action: Sibbo. Technical work done)'''. 
+
+ It was agreed to implement a IFS-like SPP framework in HarmonEPS '''(Action: Ulf)'''. A first trial with VSIGQSAT as example parameter is implemented and tested on cca. The code is available under {{{ecgb:~snh/hm_home/spp}}}. '''Ongoing'''
+
+ A normal distribution was used for the first attempt at perturbing VSIGQSAT, but it was agreed that in further testing we should use log-normal distribution like it is done in IFS.
+
+ A somewhat arbitrary value for the spatial and temporal correlations was used in the first trial, so in further tests different settings for this will be investigated. This will be tried for a few, selected parameters '''(Action: Inger-Lise)'''. Experiments to be run for two weeks, for one summer (26 May 2017 - 8 June 2017) and one winter (30 Dec 2015 - 12 Jan 2016) period. 
+
+ Need to review the list of parameters, and contact relevant experts again '''(Action: Inger-Lise)'''. 
+
+ Verification will be done in the normal way by using Harp, but also looking at the tendencies as a diagnostic tool '''(Action: Pirkka and Inger-Lise)'''. 
+
+ A wiki-page will be constructed for the SPP work '''(Action: Inger-Lise)'''. 
+
+ * '''Output of physics tendencies:'''
+ For use as diagnostic tool when developing SPP the total physical tendencies will be used. '''(Action Ole: get the physical tendencies as output from HarmonEPS)'''.
+
+ * '''EPPES:'''
+
+ Work on HarmonEPS framework to start this year '''(Action: Pirkka)'''
+
+ * '''SPG:'''
+
+ SPG was implemented by Mihály Szűcs in Arome cy38, implement in HarmonEPS-40h1.1 '''(Ongoing: Ole)'''
+
+ * '''SLAF vs ENS'''
+    * A new comparison between using SLAF or ENS (now with hourly output) is ongoing and preliminary results was shown by Ulf. SLAF is still better than using ENS. Could this be because SLAF is sampling analysis increments, and that is not too far from analysis error which is what we theoretically should sample (Ole)? One thing noticed is that ENS MSLP is always positive. This is strange, as we should see the +/- structure. Diagnosis to be repeated without the interpolation to the Harmonie grid '''(Action: Ulf)'''. '''Update: ENS vs. SLAF runs finished, and SLAF is better than ENS.'''
+    * '''Further work will include''' 
+      * Revisiting of the clustering: Earlier tests with clustering of ENS (the clustering was done for u,v,z,q for 850/700/500hPa and +24 and +36) for use as initial perturbations and lateral boundary conditions showed little impact on spread for variables other than MSLP, where the spread was increased so much that it became too big. It could be that the reason for this was that the clustering was done to high up in the atmosphere. When this study was done, we decided to wait with further tests until we had available the ENS data with hourly output, which we have now (Ulf). '''Ongoing Bjørn:''' test the clustering algorithm for the period when hourly ENS data is saved, try different settings for the clustering variable (like clustering lower down in the atmosphere).
+      * Include surface perturbations and rerun
+      * Run a summer period.
+
+ If SLAF continues to be better than using ENS, it is difficult to argue that we should replace it in an operational setting. However, there are limitations on the number of members that you can have in your ensemble with SLAF, as you run out of old high res forecasts. One possibility is to use the same perturbations for the longest forecasts, or as AEMET does, to use multi boundaries. 
+
+ Automatic scaling of K-values in SLAF to be included in HarmonEPS-40h1.1. '''(Ongoing: Henrik)'''
+
+ * '''EDA:'''
+
+ No news. We need to finish the study started a year ago … '''(Action: Roger and Inger-Lise)'''
+
+ * '''LETKF:'''
+
+ How to merge with 4Dvar and EPS branches? '''Pau''' merges with 4Dvar branch. 4Dvar will be part of cy40h1.2 so when cy40h1.2 is available (planned for late March 2018) we will have both EPS and LETKF availble in cy40h1.2. 
+
+ How to use is described in Pau’s presentation. More testers are welcome!
+
+ * '''Equally likely ensemble members:'''
+ Åke is waiting for 4DVar to work properly.
+
+ * '''Calibration'''
+    * A new 10-month dataset including about 12 variables from MEPS has been prepared. Further, spatial information has been created from the EU-DEM elevation data (30 m resolution) and the Corine Land Cover data (~100 m resolution). Observations are extracted from the MEPS BUFR files, but only a few variables (temperature and wind speed) are currently available. '''(JBB)''' 
+    * '''Thomas''' started looking at using solar radiation from MEPS as a predictor in the calibration of temperature in MEPS. It is theorized that this predictor combined with the high resolution land/ocean information from the land cover data can yield better downscaled temperatures in coastal areas.
+    * '''Jesus''' is testing Glameps calibration methods on gSREPS for T2m and S10m. In February, Jesus will begin to calibrate precipitation with QRF.
+
+
+ == Agenda == 
+ * Monday 6. November
+   * 09.00 Working session
+   * 12.15 Lunch
+   * 13.15 Presentations:
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/LETKF_in_HARMONIE_Nov2017.ppt Pau (remote): LETKF]
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/EPS-HarmonEPS-Working-Week-Alan-Hally.pdf Alan: The Irish Regional Ensemble (IRE) and  work on microphysical/turbulence uncertainties]
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/DMI2017_Ollinaho.pdf Pirkka: EPPES and SPP]
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/EDA%20along%20time.pptx Xiaohua: EPS for nowcasting]: EDA along time, ongoing test about nowcast cycling.
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/surface_perturbations_ww_DMI.pdf Henrik: Surface perturbation experiments at DMI]
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/ENS%20boundaries%20instead%20vs%20SLAF,%20again.pdf Ulf: SLAF vs. ENS]
+      * Andrew: visualisation of EPS outputs 
+   * Working session
+   
+
+* Tuesday 7. November
+  * 09:00 Start
+  * 09:00: HarmonEPS discussions:
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/HarmonEPS%20discussion%20points.pdf Inger-Lise: Discussion points]
+    * Surface perturbations
+      * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/SurfacePerturbationsSummer2017.html Andrew: surface perturbations and surface assimilation]
+    * Parameter perturbations and EPPES
+    * SPPT
+      * SPPT namelistswitches introduced in [16450].
+    * Pattern generation - SPG?
+    * LBC's
+    * EDA?
+    * ???
+  * 10:30 Coffee break
+  * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2017-2/WW201702_KNMI2.pdf Maurice: calibration of GLAMEPS wind in Europe and GLAMEPS precipitation in the Netherlands]
+  * 11:00 Calibration discussions
+  * 12:15 Lunch
+  * 13:15 Working session
+  * 15:30 Coffee break
+  * 16:00 Working session
+ 
+
+* Wednesday 8. November
+  * 09:00 Start
+  * 09:00 Working session
+  * 10:30 Coffee break
+  * 11:00 Working session
+  * 12:15 Lunch
+  * 13:15 Working session
+  * 15:30 Coffee break
+  * 16:00 Working session
+
+* Thursday 9. November
+  * 09:00 Start
+  * 09:00 Working session
+  * 10:30 Coffee break
+  * 11:00 Working session
+  * 12:15 Lunch
+  * 13:15 Working session
+  * 15:30 Coffee break
+  * 16:00 Working session
+
+* Friday 10. November
+ * 09:00 Start
+ * 09:00 Working session
+ * 10:30 Coffee break
+ * 11:00 Working session
+ * 11:30 Wrap-up of meeting 
+        * Status of tasks after this week
+	* Feedback from this meeting
+	* Time and place of next meeting: Suggestion: 12 - 16 March 2018, Dublin?
+ * 12:15 Lunch	
+
+== Preparations ==
+
+  Bring your own laptop.
+
+=== Accomodation ===
+
+* A far-from-exhaustive list of hotels:  
+ * '''Ibsens Hotel''', Vendersgade 23, Copenhagen, 1363 Danmark: -
+   0,3 km to Nørreport Station 1,0 km to Centre
+ * '''CABINN Scandinavia Hotel''', Vodroffsvej 55, Frederiksberg, 1900 Danmark: -
+   1,0 km to Nørreport Station 1,0 km to Centre
+ * '''Copenhagen Mercur Hotel''', Vester Farimagsgade 17, Copenhagen, 1606 Danmark: -
+   1,0 km to Nørreport Station 0,4 km to Centre
+ * '''First Hotel Twentyseven''', Løngangsstræde 27, Copenhagen, 1468 Danmark: -
+   0,9 km to Nørreport Station 0,3 km to Centre
+ * '''Hotel Østerport''', Oslo Plads 5, Copenhagen, 2100 Danmark: -
+   1,3 km to Nørreport Station 2,1 km to Centre
+ * '''Richmond Hotel''', Vester Farimagsgade 33, Copenhagen, 1606 Danmark: -
+   0,8 km to Nørreport Station 0,5 km to Centre
+ * '''Wakeup Copenhagen Borgergade''', - Borgergade 9, Copenhagen, 1300 Danmark:
+   0,8 km to Nørreport Station 1,2 km to Centre
+ * '''Wakeup Copenhagen Carsten Niebuhrs Gade''',- Carsten Niebuhrs Gade 11, Copenhagen, 1577 Danmark:
+   1,8 km to Nørreport Station 1,0 km to Centre
+
+=== Transport ===
+
+From the airport, take the Metro to central Copenhagen. You can buy tickets in the airport.
+
+DMI is located next to the S-train station '''Ryparken Station'''.  If you come from central Copenhagen, take the S-train towards '''Farum''' and get off at '''Ryparken'''.  Read more about public transportation in Copenhagen [https://dinoffentligetransport.dk/service/for-tourists/ here].  Alternatively, you may try one of the [https://bycyklen.dk/en/ electric city bicycles]. There is usually some available at Ryparken Station.

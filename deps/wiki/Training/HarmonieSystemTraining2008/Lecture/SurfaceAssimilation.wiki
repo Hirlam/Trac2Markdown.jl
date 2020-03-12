@@ -1,0 +1,74 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Harmonie System Training''' ===
+= '''HARMONIE Surface Data Assimilation''' =
+[[Center(end)]]
+== Overview: main characteristics ==
+== CANARI vs HIRLAM ==
+=== Source code structure ===
+ * leve0 preparation
+[[Center(begin)]]
+[[Image(canari_level0.png)]]
+[[Center(end)]]
+ * level1 preparation
+[[Center(begin)]]
+[[Image(canari_level1.png)]]
+[[Center(end)]]
+ * Canari analysis steps
+[[Center(begin)]]
+[[Image(canari_anal_steps.png)]]
+[[Center(end)]]
+ * Canari analysis - the predictors
+[[Center(begin)]]
+[[Image(canari_analysis.png)]]
+[[Center(end)]]
+=== Background Error ===
+=== Observation Handling ===
+[[Center(begin)]]
+[[Image(canari_obs_usage.jpg)]]
+[[Center(end)]]
+In HARMONIE DA CANARI is used for surface analysis. Therefore, theoretically, we only need [https://hirlam.org/trac/attachment/wiki/HarmonieSystemTraining2008/Lecture/ObsHandling/harmonie_obs_surface.png surface measurements] in the ODB database. But, in practice, since CANARI can handle observations outside the central and inner zones (C+I), we rerun bator, fed with conventional observations, with special setting for lamflag part. CANARI needs also information about Sea Surface temperature (SST). In local implementations (Czech or Norway tests) SST field is taken from global surface analysis (ARPEGE for Czech and ECMWF for Norway). 
+== CANARI Data flow ==
+=== CANARI analysis steps [https://hirlam.org/trac/wiki/HarmonieSystemTraining2008/Lecture/DAdataflow#SurfaceanalysisCANARI here] ===
+=== input/output data ===
+[[Center(begin)]]
+[[Image(Canari_input_output.png)]]
+[[Center(end)]]
+== CANARI Implementation and Development ==
+=== status, problems, todos ===
+So far CANARI runs with single processor. CANARI assumes that the first-guess is a 6-hour forecast (there is check on forecast length in the code) that causes problem when one try to use analysis file as first-guess. This case is mainly the start of any experiment. In HARMONIE system this problem is solved. Although positive impact was found in the Norway 11km domain, problem related to temperature increments near coastal lines were reported. The same problem was also reported from [https://hirlam.org/trac/wiki/HarmonieDAworkingweek200806#a1.HARMONIE3DVARadaptation Swedish test]. SST field was inserted into the first-guess field using blending technique. Ulf Andrae reported that possible reason of the problem is a deficiency in the interpolation technique used in GL for SST. Mariken succeeded to solve this problem avoiding the use of blending technique to insert the SST analysis into the guess filed. Instead, she read directly the SST-related fields in the model before the CANARI analysis with careful check of data using land/sea mask information. In her solution, she does not use the relaxation technique for 2m temperature analysis. See the improvement in the pictures below:
+[[Center(begin)]]
+[[Image(canarir_2008060406_FRL_inc.png)]]
+[[Center(end)]]
+Fration of land
+[[Center(begin)]]
+[[Image(canarir_2008060406_t0m_inc.png)]]
+[[Center(end)]]
+Temperature increments from surface analysis performed 4 June 2008 at 06 UTC, WITH missing values in some spots.
+[[Center(begin)]]
+[[Image(canaris_2008060406_t0m_inc.png)]]
+[[Center(end)]]
+Temperature increments from surface analysis performed 4 June 2008 at 06 UTC.
+[[Center(begin)]]
+[[Image(canaris_2008060500_t0m_inc_whole_domain.png)]]
+[[Center(end)]]
+Increments from surface analysis performed 5 June 2008 at 00 UTC (new ECMWF SST).
+[[Center(begin)]]
+[[Image(canaris_2008060500_t0m_whole_domain.png)]]
+[[Center(end)]]
+Result of surface analysis performed 5 June 2008 at 00 UTC (new ECMWF SST).
+=== How to run ===
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2008/Lecture/DAdataflow#SurfaceanalysisCANARI Here] one can see how to run CANARI.
+=== Questions ===
+
+=== References ===
+[http://www.cnrm.meteo.fr/gmapdoc/spip.php?article3 Météo France documentation about CANARI]
+
+[http://www.met.hu/pages/seminars/ALADIN2002/doc_canari.ps Cornel Soci, 2002; Code description - algorithms and data flow: CANARI]
+
+== [https://hirlam.org/trac/wiki/HarmonieSystemTraining2008/Lecture/DAdataflow#Handsonpracticetask Hands on practice task] ==
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2008  Back to the main page of the HARMONIE system training 2008 page]
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]

@@ -1,0 +1,187 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Working Week on HarmonEPS, calibration and HARP development for EPS''' =
+''Dublin. Monday 12 March - Friday 16 March 2018. ''
+
+[[Center(end)]]
+
+[[Image(20180313_162511.jpg, 20%)]]
+[[Image(20180313_162519.jpg, 20%)]]
+[[Image(20180312_154929.jpg, 20%)]]
+[[Image(20180314_221554.jpg, 20%)]]
+[[Image(20180314_221436.jpg, 20%)]]
+[[Image(rot_20180314_221517.jpg, 12%)]]
+
+== Location ==
+DCU Alpha Innovation Campus, Old Finglas Road, Glasnevin, Dublin 11, D11 KXN4, Ireland
+
+== Participants ==
+|| Name                 || Arriving (ww)     || Leaving (ww)|| Working with            || Hotel     ||
+|| Inger-Lise           || Monday ~9         || Friday ~15  || HarmonEPS               || Skylon          ||
+|| Alan                 ||                   ||             || HarmonEPS               ||           ||
+|| Ulf                  || Monday (morning)  || Friday (morning) || HarmonEPS               || Skylon          ||
+|| Geert                || Monday (evening)  || Friday (morning) || HarmonEPS           || Skylon    ||
+|| Alfons               || Sunday            || Friday    || HarmonEPS-SPPT          || Avondale_GuestHouse ||
+|| J A Garcia-Moya      || Monday            || Thursday  || HARP                    || Avondale_GuestHouse ||
+|| John Bjørnar         || Monday (morning)  || Friday (afternoon) || Calibration    || Skylon ||
+|| Andrew               || Sunday            || Friday (morning)    || HarmonEPS / HARPv3      || Skylon ||
+|| Ole                  || Monday ~15        || Friday (morning) || HarmonEPS               || Skylon ||
+|| Henrik               || Monday (lunch)    || Thursday (morning) || HarmonEPS / HARP        || Skylon ||
+|| Karoliina            || Sunday            || Friday    || Verification            || Skylon ||
+|| Janne                || Sunday            || Friday    || HarmonEPS SPPT          || Skylon ||
+|| Kiri                 || Monday (lunch)    || Friday (afternoon)    || Calibration             || Skylon ||
+|| Jennie                 || Monday (lunch)    || Wednesday (lunch)    || HarmonEPS            || Skylon ||
+|| Jelena                 || Sunday/ Monday morning           || Friday, early              || HarmonEPS            || Skylon ||
+|| Åke                  || Monday AM         || Friday (morning) || Equally Likely Members  || Skylon ||
+|| Jesus Rodriguez      || Monday            || Friday (morning) || Calibration || Glen_GuestHouse ||
+
+
+'''Summary of working week'''
+
+* Next EPS working week:
+  * At SMHI, Norrköping, Sweden
+  * Week 47: 19 - 23 November 2018
+
+* SPPT
+  * Little impact seen in earlier SPPT runs
+  * Alan: small impact of SPPT
+  * Janne: new period chosen because of convective events - a little more impact than seen before
+  * Janne: startet to test SPG instead of default pattern generator in SPPT, check that pattern and histogram are OK
+    when OK, run with the default settings for the same period as with default SPPT pattern
+  * Tweak settings and improve scores! 
+  * Alan to join this work later this spring
+  * Further work could include: iSPPT, pSPPT, ipSPPT (contact Clemens. Combine common and independent patterns?
+
+* SPP and EPPES:
+  * Further work to be based on 40h1.1.1 because the “interesting” parameters are put into namelists already
+  * Discussions with Pirkka when we meet in Toulouse at ASM
+  * Output of physical tendencies - not general but something we can use in exp. Ongoing (Ole)
+
+* LBC perturbations: status of all experiments and intercomaprison. (Ulf and Henrik)
+  * ENS, SLAF and RFP exp are finished, clustering exp ran for one week (Bjorn). 
+  * ENS now scores as well as SLAF after the SST fix. 
+  * Growth of ENS spread is better
+  * RFP is as good as SLAF
+  * Ulf is continuing the clustering exp
+  * Ulf started a 20 member exp
+
+* HarmonEPS paper: status and who to write what to finish it
+  * We aim for the deadline for a first draft as set in the video meeting in January: end of March
+  * Alan joins the writing, describing IREPS and possibly SPPT
+
+* Surface perturbations: start work to improve the snow perturbations
+  * Andrew introduced Jennie to surface perturbation code
+  * Jennie to discuss with surfex experts (Patrick) about how to do snow pert. ++
+
+* Equally likely ensemble members (Åke)
+  * exp set up with 4Dvar branch cy40h1.1 that gives files from inner and outer loops
+  * Will use LSMIX as a starting point.
+
+* B-rand (Jelena)
+  * upgraded to trunk level to make it easier to merge with EPS
+  * system works well
+  * 3 types of pert: added to the control first guess, pert added to first guess of each member, pert added to the analysis of each member
+  * structures of B matrix co-var.
+  * Preliminary results added to control first guess: spread too small, when added to first guess of each member spread is too large. 
+  * Need weighting function to be tuned
+  * uses flow dependent structures for the assimilation.
+  * Verification results to come
+
+* EDA (Inger-Lise)
+  * Good results for all parameters except clouds. 
+  * We get high level clouds when using EDA that are spurious.
+  * A report describing the problem is here: 
+  * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/EDA_report_March_2018.pdf Inger-Lise: Report describing the problem]
+  * To be investigated further.
+
+* Ensemble calibration (John Bjørnar and Kiri)
+  * cont. exploring ways to quantify terrain features, like ridges, valleys, hills, slopes
+  * methods: gradient boosting methods for quantiles - it is possible to use in operational setting
+  * using MEPS data before new domain
+  * will use new MEPS data
+  * technical improvements
+  * Comparing methods: quantile regression forest and quantile regression neural network - ongoing (T in MEPS for Denmark)
+
+* HARP  
+  * Andrew showed what is to come in v3
+  * Jose showed that the Opera accumulated precipitation product is currently not good enough to be used for verification
+  * Andrew worked on functionality for reading HarmonEPS files in grib and netcdf and for plotting fields
+
+== Agenda == 
+
+* Monday 12. March
+  * Morning: Working session
+  * 10:30: Coffee break
+  * 12:30: Lunch
+  * 13:30: Presentations:
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/working_week_dublin_HarmonEPS.pdf Jennie: Probabilistic forecasting of wind turbine icing]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/EPS-Working-Week-Alan-Hally-2018-01.pdf Alan: IREPS and SPPT]
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/HybridEnVarEPS.pdf Jelena: HybridEnVar in HARMONIE]
+  * 15:30: Coffee break
+  * 16:00: Presentations cont.
+    * [https://docs.google.com/presentation/d/1_7B0Uep9huHOxjwIcjonX6MPSG5Hg1qwMIf4lyU3xP0/edit?usp=sharing Andrew: Harp development] 
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/Opera_validation.pptx Jose: Using HARP to validate models using OPERA accumulated precipitation product]
+* Tuesday 13. March
+  * 09.00: Working session
+  * 10:30: Coffee break
+  * 11:00: Presentations:
+    * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/random_field_perturbations_ww_Dublin.pdf Henrik: Random field perturbations]
+  * 12:30: Lunch
+  * 13:30: Working session and discussions (see list of items below)
+  * 15:30: Coffee break
+  * 16:00: Working session and discussions
+* Wednesday 14. March
+  * 09:00: Working session
+  * 09:30: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/ENS%20boundaries%20vs%20SLAF,%20concluded.pdf Ulf: boundary perturbation experiments and new HarmonEPS branch]
+  * Boundary perturbation discussion
+  * 10:30: Coffee break
+  * 11:00: HarmonEPS paper discussion
+  * 12:30: Lunch
+  * 13:30: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/Stochastically%20Perturbed%20Physical%20Tendencies.pdf Janne: SPPT experiments]
+  * 15:30: Coffee break
+  * 16:00: Working session
+  * 20:00: Dinner
+* Thursday 15. March
+  * 09:00: Working session
+  * 10:30: Coffee break
+  * 12:30: Lunch
+  * 13:30: Working session
+  * 15:30: Coffee break
+  * 16:00: Wrap-up session
+* Friday 16. March
+  * 09:00: Working session
+  * 10:30: Coffee break
+  * 11:00: Working session
+  * 12:30: Lunch
+  * 13:30: Working session / END of ww
+
+== Accomodation ==
+
+* Some suitable hotels:
+ * '''Skylon Hotel''', 27 Upper Drumcondra Rd, Drumcondra, Dublin 9: -
+   1.6km or 20 minute walk to DCU Alpha. Very convenient in terms of getting to/from the airport as buses stop outside hotel
+ * '''The Gresham''', 23, Upper O'Connell Street, D1 Dublin: -
+   3.3km to DCU Alpha. About a 20 minute bus journey. Also very convenient for trips to/from the airport
+ * '''Academy Plaza Hotel''', 10-14 Findlater Place, Off O'Connell Street, D1 Dublin: -
+   3.3km to DCU Alpha. About a 20 minute bus journey. Also very convenient for trips to/from the airport
+ * '''Hotel Inn Express Dublin City Centre''', 28-32 O'Connell Street Upper, D01 T2X2 Dublin: -
+   3.2km to DCU Alpha. About a 20 minute bus journey. Easy access to/from the airport
+ * '''Jurys Inn Dublin Parnell Street''', Moore Street Plaza, Parnell Street, D1 Dublin: -
+   3.2km to DCU Alpha. About a 20 minute bus journey. Easy access to/from the airport
+ * '''Arlington Hotel O'Connell Bridge''', 23-25 Bachelors Walk, O'Connell Bridge, D1 Dublin: -
+   3.7km to DCU Alpha. About a 25 minute bus journey. Easy accesss to/from the airport
+ * '''Maldron Hotel Pearse Street''', 98-107 Pearse Street, D2 Dublin: -
+   5km to DCU Alpha. About a 35 minute bus journey. 
+ * '''Cassidys Hotel''', Cavendish Row, Upper O'Connell Street, D1 Dublin: -
+   3.1km to DCU Alpha. About a 25 minute bus journey. Easy access to/from the airport
+
+== Transport ==
+
+When you arrive at the airport, buy a Leap Card. These are integrated transport cards used on the majority of public transport around Dublin. More information about the cards and where they can bought can be found [http://www.irishtourist.com/travel-info/leap-card-integrated-ticketing-on-irelands-public-transport/ here].
+In order to get to DCU Alpha from the city centre, [https://www.dublinbus.ie/ Dublin Bus] is the easiest way. The stop nearest DCU Alpha is "Glasnevin Hill, Met Office", which is directly opposite our [https://en.wikipedia.org/wiki/Met_%C3%89ireann#/media/File:Met_ireann_(Irish_Meteorological_Service)_(1387399963).jpg HQ building]. It's a difficult building to miss!
+
+From the city centre, bus numbers 83 and 83a stop directly outside our HQ on the opposite side of the road. Bus numbers 9 and 4 stop nearby at the "Mobhi Road, St. Mobhi Drive" stop. It is then only a 5 minute walk to DCU Alpha.
+
+== Dining near DCU Alpha ==
+
+A suggested list of [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/Dining-near-DCU-Alpha.pdf lunch options:] which are within a few minutes walk of the DCU Alpha Campus

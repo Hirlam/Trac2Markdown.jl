@@ -1,0 +1,365 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''3D-VAR in Hirlam 7.1 (under editing)''' =
+
+=== '''Main topics''' ===
+[[Center(end)]]
+ * General review (status, method etc.)
+ * Data flow, i/o
+ * Relevent code and scripts in the reference system
+ * namelists, tunables
+ * Relevant monitoring objects
+ * Relevant issues about operational implementation
+ * Overhaul issues
+
+[[Center(begin)]]
+== '''Overview''' ==
+[[Center(end)]]
+=== '''Status''' ===
+ * 3D-VAR analysis has been the reference upper air analysis scheme since 6.3, in 2004. The scheme becomes operational in DMI in 2000, followed by met.no, SMHI and INM, all prior to the reference launch.
+ * In Hirlam 7.1, 3D-VAR analysis scheme is scheduled to be replaced by 4D-VAR, but the option will be actively maintained
+=== '''Main characteristics of 3D-VAR''' ===
+ * '''What it does'''. Hirlam 3D-VAR is an upper air analysis scheme which updates surface pressure ps, horizontal wind components u/v, temperature t and specific humidity q at each analysis cycle, taking into account the model background information and observation data including the statistical error charctaeristics of both
+ * '''Global data selection'''. Comparing to Optimal Interpolation, the observation data selection in VAR scheme is global, which means that the analysis algorithm has not dependence on pre-selected scale of influence (analysis box) etc. 
+ * '''3D-VAR is cheap'''. The 3D-VAR analysis does not involve forecast model integration directly and the minimization normally is fast (typically in minutes in most high performance platforms). This is especially so if minimization is done at coarse resolution, which speed up convergence
+ * '''Symmetric assimilation window'''. 3D-VAR normally uses a symmetric assimilation window, which means the analysis is valid for central point of assimilation window. Observation data collected within the assimilation window is normally assumed to be valid at the analysis point and the flow is assummed to be static within the assimilation interval
+ * '''First Guess at Appropriate Time'''. FGAT is used in HIRLAM 3D-VAR by which the innovation vector, the difference between interpolated background values and observation are calculated per (hourly) time slot. The thus obtained observation increment is then assumed to be valid at analysis time. This treatment allow use of observation data sampled at 'ASYNOPTIC' time with a better accuracy of observation increment. However, in HIRLAM 3D-VAR such scheme is not used for in-situ observation such as SYNOP, TEMP and PILOT data to avoid data redundancy associated with assumption abouot static observation increment
+
+=== '''Method''' ===
+ * HIRLAM 3D-VAR is based on variational approach. It minimizes a cost function which is comprised of terms representing difference between model state and background (forecast of previous cycle), Jb, observation, Jo, and a constraint/penalty term for differences between model state and (normal.mode initialization)-filtered one, Jc. Currently only Jb and Jo are used. Jc term is available but untested
+ * Incremental formulation is applied in 3D-VAR, which means the minimization is done with reference to analysis increment, not the full analysis quantities
+ * HIRLAM-3DVAR uses spectral model version of the HIRLAM as code framework. The algorithm requires construction of extension zone to avoid wave reflection along lateral boundary
+ * Two minimization options: M1QN3 or conjugate gradient are available. The former is default
+ * Observation data screening (background check etc.) and variational quality control is used
+ * Currently 3D-VAR analysis is done with single loop. It has been constructed, in association with the new moisture control variable, to introduce second loop in which the linearization is to be done around the improved first guess, which is the provisional analysis from first loop
+ 
+=== '''Implementation, data flow, i/o''' ===
+ * 3D-VAR "analyses"/updates following quantities
+{{{
+  ps, U, V, T, Q
+}}}
+ * '''input data''', see also [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Configure/DataAssimilation#Inputdata documentation wiki] 
+   * background, normally the output of surface analysis which is the merge of analysed surface quantities with rest of fields from short range forecasts from previous cycle, valid for the analysis time: fort.11
+   * first guess for analysis time, fort.10, which is the same as background fort.11 in case of single outerloop. In case of the second outerloop, it is the provisional analysis from previous loop
+   * nonlinear trajectory covering the whole assimilation window, one per hour, fort.16,fort.17..., in case of FGAT
+   * pre-processed observation data in CMA format (Comprehensive Memory Array), CMA01, covering the entire assimilation window, or simulated observation data in ASCII (simobs.dat) in case of SingleObservation experiment
+   * background error structure function including standard deviation and error correlation in spectral space, used in minimization. $strfun$nlev_stats.dat where strfun=statbal for structure function derived with statistical balance (default) and strfun=nonsep for that with analytical balance
+   * background error statistics used for gross data ascreening/first guess check, backgst.dat
+   * scaling factor for background error statistics, scalefactors.dat, which regulates the weight between assumed error of background and observation 
+   * climate data, normally it suffice to use background or first guess 
+   * blacklist or whitelist or greylist for excluding/including certain observation data
+   * constants and bias correction files for ATOVS data 
+     * bccf.index 
+     * dbt.index 
+     * rtcoef_noaa_15_amsua.dat 
+     * rtcoef_noaa_15_amsub.dat 
+     * rtcoef_noaa_16_amsua.dat 
+     * rtcoef_noaa_16_amsub.dat 
+     * rtcoef_noaa_17_amsua.dat 
+     * rtcoef_noaa_17_amsub.dat 
+   * configuration namelists:
+     * problemsize.dat 
+     * namrun.dat 
+     * naminterp.dat 
+     * nllowres.dat 
+     * observation handling switches to handle different types of observation types in minimization, quality control, etc. 
+       * prepobstypes.dat 
+       * minobstypes.dat 
+       * screen.dat 
+       * scrobstypes.dat 
+ * '''output data''', see also [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Configure/DataAssimilation#Onputdata documentation wiki] 
+   * analysis (fort.60)
+   * analysis statistics (ACMA01 file)
+ * '''Data flow with 7.0 baseline configuration'''
+   1. Preparation. Perform pre-processing of observation data using OBSRPOC software. The input data are mostly in bufrformat, but ASCII-format for some of the new data types such as radar VAD, ground-based GPS etc). The output data is in CMA (Comprehensive Memory Array) format
+   1. Minimization
+     1. prepare/read input, calculate innovation vector
+     1. perform minimization
+        1. Calculate innovation vector
+        1. project model states from original resolution to coarse resolution in case of using low resolution analysis increment
+        1. calculate cost function gradient
+        1. perform variational quality control if applied
+        1. check cost function gradient to see if it fulfil minimization requirement and if not, repeat the above steps
+    1. Final analysis 
+      1. project analysis increment from coarse resolution to high resolution
+      1. write out analysis record to ACMA files with information about analysis increment, analysis-observation departure, quality control flags etc.
+      1. overwrite input background with analysis increment added for analysis quantites while keeping the other untouched. These become then analysis
+
+[[Center(begin)]]
+== '''Relevant code and scripts''' ==
+[[Center(end)]]
+ * 3D-VAR related source code are contained in following source code libraries
+{{{
+ cmastat
+ cmatoobs
+ common
+ gcod
+ hlbufr
+ hlcma
+ hlcmaio
+ hlhelp
+ hlmemory
+ hlvar
+ ifs
+ ifsaux
+ include
+ librt7
+ mainsrc
+ modules
+ obop
+ obsalloc
+ obscompress
+ obsort
+ obsproc
+ obssupport
+ prepobs
+ qdp
+ recalcobs
+ rtmmisc
+ simobs
+ spdy
+ stat
+ strfun
+ strgen4
+}}}
+ * Scripts that have relevance to 3-VAR in the reference system 7.x are
+{{{
+ 3DVARan
+ Env_expdesc
+ Checkoptions
+ CheckOptions.pl
+ CMAstat
+ Extend.pl
+ FCinput
+ Fg
+ hirlam.tdf
+ MakeCMA
+ submission.db
+ submission.ecgate_hpce
+ submission.hpce
+ VARan
+ VARinput
+}}}
+
+[[Center(begin)]]
+== '''What's new in 7.1''' ==
+[[Center(end)]]
+
+ * Default reference scheme is now 4D-VAR
+ * Default background error structure function is now based on statistical balance approach
+ * Minimization is now done at full resolution
+ * Developers are recommended to base their experiments on source code versions with 7.0 or newer
+
+[[Center(begin)]]
+== '''Relevant namelists, tunables''' ==
+[[Center(end)]]
+ * Main 3D-VAR namelists, see also [https://hirlam.org/UG/HL_Documentation/HIRVDA/HIRVDAnamelist.html earlier listing of namelists]. WARNING: The information below is incomplete and may have been outdated
+   * '''namrun.dat''':namelist defining unit of I/O, parameters for VAR  scheme, spectral model forecast etc. 
+     * '''UNIT FOR I/O FILES'''
+||PARAMETERS ||DEFAULT VALUES|| DESCRIPTION ||
+||lunna|| 10 ||Input for analysis (normally FGS ) or forecast (normally ANA) ||
+||lundir|| 25 ||  ||
+||lunsbd ||12, 13,14,15...|| lateral boundary files for forecast, not necessary for 3DVAR ||
+||lunppp ||26...|| forecast output at pressure level ||
+||lunsppm|| 61... ||forecast output at model level ||
+||lunfis ||-1 ||orography file. "-1" means the orography is taken from file lunna ||
+||lunfgo ||-1 ||original FGS, used only in Poormans' 4DVAR ||
+||lunver ||57 ||verifying analysis, only used in sensitivity setup ||
+||lun_inhist_hr ||31 ||initialization trajectory(output), only useful at lhist_io and 4DVAR ||
+||lun_inhist_lr ||32 ||low resolution initialization trajectory(output),only useful at lhist_io and 4DVAR ||
+||lun_nlhist_hr ||33|| nonlinear trajectory (output), only useful at 4DVAR ||
+||lun_nlhist_lr ||34 ||low resolution nonlinear trajectory(output), only useful at 4DVAR ||
+||lun_tlhist ||35 ||trajectory from tangent linear integration (output),only useful at 4DVAR ||
+||lun_adforc ||36 ||trajectory for adjoint forcing (output), only useful at 4DVAR ||
+||lunprn ||6|| standard output unit ||
+     * '''VAR PARAMETERS''' 
+||ldatass ||.true. ||perform minimization. should be .f. in case of pure forecast using spectral model ||
+||ljb ||.false. ||use background constraint Jb. should normally be true ||
+||lcmaobs ||.true. ||use observation data, should normally only be .f. in sensitivity experiment ||
+||lsimobs|| .false.|| use "simulated" observations  ||
+||lscreen ||.false. ||observation data subject to screening, should normally be .true. ||
+||niterqcstart ||10|| first iteration cycle at which variational quality control is set on ||
+||niterqcend ||10000 ||last iteration cycle at which variational quality control is used. ||
+||lgrprcma || || writing FGS to observation space in case of both ldatass and  lscreen being .false. (seldom used) ||
+||lowresincr|| .false. ||3D-VAR minimization performed at lower resolution than the model resolution ||
+||lfgat ||.false. ||.true. to use First Guess at Appropriate Time (FGAT) ||
+||lcgrid ||.false.|| .true. so that i/o are on C grid instead of A grid, when using grid point forecast model ||
+||len_obswin ||600 ||length of observation data window (6 hr 00mm), only in 4D-VAR ||
+||len_asswin ||600 ||length of data assimilation window (6hr), only in 4D-VAR ||
+||lwriteall|| .false. ||copy all the un-analysed input field to 3D-VAR analysis output. Should normally be .true.  ||
+||nfgatstart||-3||starting time (relative to the analysis time) at which the first FGS is valid, for FGAT||
+||nfgatend ||3 ||time point (relative to the analysis time) for the last FGS file, for FGAT ||
+||lhist_mem ||.false. ||save model trajectory in the memory, for 4D-VAR , also 3DVAR with NMI as constraint||
+||lhist_io ||.false. ||save model trajectory in a disc file, (4D-VAR only) ||
+||lfcst|| .false. ||forecast using spectral HIRLAM (under development) ||
+||ncyc ||1 ||number of iteration at steepest descent minimization (non-default option) ||
+||lisba|| .false.|| whether the forecast model contain ISBA parameters ||
+||niter ||2 ||iteration steps for NMI in spectral HIRLAM, which is also an option in 3D-VAR as a constraint ||
+||l_gpsbcorr|| .false.|| bias correction used in assimilating ground-based GPS data ||
+||lgborig ||.false. ||output with original resolution (used only in forecast model) ||
+||lincpm ||.false. ||output for incremental sensitivity field, used in Poorman's 4DVAR ||
+||lgrc2a ||.false. ||grib transfer between C and A grids (for sensitivity tests only) ||
+||naddlnps ||1  ||inclusion of LNPS as control variable in VAR scheme ||
+||nadduv ||1 || inclusion of U,V as control variables in VAR scheme ||
+||naddt ||1 || inclusion of T as control variable in VAR scheme ||
+||naddq ||1 || inclusion of Q as control variable in VAR scheme ||
+||sqc_coef ||10000 ||criteria used in Poorman's screen (non-standard) ||
+||pmscrdt|| 3.001 ||maximum time difference in hour at Poorman's screen (non-standard) ||
+||bytes_word ||8 ||bytes in a word (choose values to fit  for individual platform) ||
+||alpha_ini|| 0.03 ||minimization coefficient with steepest descent scheme (non-default option) ||
+     * '''Minimization parameter (choose n_qn=5 for M1QN3 minimization package, the default option)'''
+||dxmin_qn ||1.e-5 ||precision criteria in line search ||
+||df1_qn|| 1.e4 ||expected decrease of cost function ||
+||epsg_qn ||0.05|| relative precision of gradient ||
+||n_qn ||5 ||minimization with M1QN3; n_qn=2 for conjugate gradient minimization; n_qn=4 for gradient test ||
+||nsim_qn ||20 ||maximum number of minimization iteration including evaluation steps ||
+||niter_qn ||10 ||maximum of iteration in minimization (choose more conservative number such as 200) ||
+     * '''Properties of spectral domain (only useful for forecast using spectral model)'''
+||kmaxmf ||kmax_global ||for mapfactor ? ||
+||lmaxmf|| lmax_global|| for mapfactor? ||
+||nbzone ||8 ||number of points in boundary extension zone ||
+||nbzodt|| 6 ||  ||
+||npbpts ||0 ||number of passive boundary points at relaxation zone ||
+     * '''Spectral HIRLAM, not useful in 3D-VAR analysis'''
+||nstep_fc ||10|| number of time steps for forecast, should be zero when forecast is to be done with grid-point model|| 
+||dtdyn|| 240|| time steps for dynamic calculation ||
+||dtvdif ||240|| time steps for vertical diffusion ||
+||dtphys|| 240 ||time steps for physical parameterization ||
+||timeppm || || output time (s) at model level ||
+||timesu|| 3599   ||||
+||lsstana ||.false.|| read SST and ice fields in case of abasence of surface field update, used in spectral HIRLAM ||
+||lbndbal || .true. || used in bndnew ||
+||ltprof|| .false. ||used in nonlinear normal mode initialization ||
+||lphys || .true.  ||use physics parameterization ||
+||ldry || .false.  ||include humidity and moist process in parameterization ||
+||lradia ||.true. || use HIRLAM radiation parameterization ||
+||lvdiff || .true. || use Holtslag vertical diffusion ||
+||llouis|| .false. || use Louis vertical diffusion ||
+||lcond ||.true. || use STRACO condensation ||
+||lconv ||.false.||  use old HIRLAM cond+kuo ||
+||lsund  ||.false. || use Sundqvist 2.4 condensation ||
+||lsurf  ||.true. || use HIRLAM surface tendency calculation subroutine ||
+||lmfdif || .false.||  use Meteo-France simplified vertical diffusion ||
+||ldynvd || .false.  ||use dynamics-adjusted model state in vertical diffusion calculation ||
+||lstat || .true. || calculate statistics of physical quantities such as rain rate, etc. ||
+||lhdiff|| .true. ||use 4th order implicit horizontal diffusion ||
+||cdifu,cdifv|| 1.e14 ||implicit horizontal diffusion coefficient for U/V components ||
+||cdift ||1.e14 ||implicit horizontal diffusion coefficient for T component ||
+||cdifq ||1.e14||implicit horizontal diffusion coefficient for Q component ||
+||ck4|| 1.e14 ||diffusion coefficint for 2nd order explicit horizontal diffusion, no longer used ||
+||ctimef ||0.05 ||time filter coefficient ||
+     * '''Semi-Lagrangian scheme parameter '''
+||lsl3t|| .false. ||three-time level semi-lagrangian scheme ||
+||lsl2t ||.false. ||two time level semi-lagrangian scheme ||
+||nslpqi|| 3 ||number of iterations for calculation of displacement ||
+||nslint || ||interpolation types for each iteration ||
+||nslind|| 3 ||type of interpolation at departure point ||
+||sibeta ||1   ||||
+||epsgwd|| 0.05 ||coefficient for gravity wave damper ||
+||phsplit|| .true.   ||||
+||cmlev ||1 ||  ||
+||cmdiv|| 1 ||  ||
+||brfin|| .true.   ||||   
+||nmodin|| 3 ||used in boundary balance calculation at the extension zone ||
+||semimp ||.true. || semi implicit scheme ||
+||lprint|| .false.|| some extra output message ||
+||iprint ||  ||specified index in x-direction for print-out ||
+||jprint  || ||specified index in y-direction for print-out ||
+     * '''4DVAR option, most of them not used for 3D-VAR  '''
+||linc4dvar|| .true. ||use incremental formulation for 4DVAR ||
+||nstep_da ||10 ||number of time steps for 4DVAR integration, should be put to zero in 3DVAR ||
+||nlhist_fr|| 1|| trajectory saved every 'nlhist_fr' step ||
+||lphys_ad ||.false.|| use physics adjoints ||
+||lvdiff_ad  ||.false. || use adjoint of Holtslag vertical diffusion ||
+||lradia_ad|| .false. || use adjoint of HIRLAM radiation ||
+||lconv_ad ||.false.  ||use adjoints of COND and KUO ||
+||lcond_ad || .false. || use adjoint of STRACO ||
+||lsurf_ad ||.false. || use adjoint of SURF ||
+||lmfdif_ad ||.false.||  use adjoint of Meteo-France simplified vertical diffusion ||
+||lmfsp ||.false.  ||use Meteo-France simplified nonlinear physics ||
+||lmfsp_ad|| .false. ||use Meteo-France simplified physics adjoint ||
+||lbuizza ||.false. ||use ECMWF simplified surface friction and vertical diffusion scheme ||
+||lbuizza_ad ||.false. ||use the adjoint of ECMWF simplified scheme for vertical diffusion and surface friction ||
+||lspecobs || .false. ||sensitivity setup under 4DVAR, using analysis as OBS ||
+||lbndcost ||.false. ||using verifying analysis to calculate forecast error under 4DVAR sensitivity setup ||
+||lppm_iter|| .false.|| save analyses during iterations, Poorman's VAR ||
+||lrestrict|| .false. ||limit calculation of cost function to a subdomain ||
+||latmin_restrict|| 60 ||south corner of the subdomain at lrestrict ||
+||latmax_restrict ||59 ||nouth corner of the subdomain at lrestrict ||
+||lonmin_restrict ||10 ||west corner of the subdomain at lrestrict ||
+||lonmax_restrict ||09 ||east corner of the subdomain at lrestrict ||
+||ldf ||.false.|| Digital Filter as constraint ||
+||gammadf|| 100 ||DFI, weighting factor for Jc ||
+||taucdf ||6 ||DFI, cut-off period in hour ||
+||sigudf ||3|| scaling factor in Jc calculation for U  ||
+||sigvdf ||3|| scaling factor in Jc calculation for V ||
+||sigtdf ||1 ||scaling factor in Jc calculation for  T ||
+||sigqdf ||0.001 ||scaling factor in Jc calculation for  Q ||
+||siglnpsdf|| 0.01 ||scaling factor in Jc calculation for  LNPS ||
+   * '''problemsize.dat''': define model geometry and other control parameters.
+|| PARAMETERS||DESCRIPTION ||
+||nxl_global ||number of grid points in X-direction including those at extension zone ||
+||nyl_global|| number of grid points in Y-direction including those at extension zone ||
+||nx_global ||number of grid points in X-direction ||
+||ny_global ||number of grid points in Y-direction ||
+||kmax_global ||maximum wave number in X-direction ||
+||lmax_global|| maximum wave number in Y-direction ||
+||nlev ||number of vertical level ||
+||nproc ||number of processors ||
+||len_loops ||sub-division of grid points for multi-tasking in e.g. physics calculation. Adjust the number according to platform. ||
+||plen|| length of global CMA in one processor. (Approximately, plen ~= estimated maximum size of CMA file / 8 / number of processors ) ||
+||nobsh_sub|| dimension for observation data array in subdomain (adjust it according to platform) ||
+||nobsv ||dimension for vertical levels in observation (TEMP) data array  ||
+||nobsh_local ||dimension for observation data array in sub-processor ( ~= maximum number of observation / number of processors) ||
+||nobsh_hi ||maximum observation within subarea of one processor (~= nobsh_local * 4) ||
+||nompthreads|| number of threads at openmp option ||
+||maxch ||dimension indicating maximum number of assimulated RTTOV channels ||
+||nobstyp_max ||maximum number of observation data types ||
+||nx_grib_max ||maximum nx for grib file, only for non-shmem option|| 
+||ny_grib_max ||maximum ny for grib file, for non-shmem option ||
+||max_obsbuf ||maximum MPI buffer, for non-shmem option ||
+||kstar_max ||maximum kstar value, for non-shmem option ||
+   * '''naminterp.dat''': defining interpolation properties of the initial and boundary files
+   * '''nllowres.dat''': define low resolution dimension in VAR analysis in case of lowresincr = .t.
+   * '''simobs.dat''': define simulated observation' to be used in simulated (single) observation experiment
+   * '''prepobstypes.dat''': selection of observation from CMA file for assimilation
+   * '''scrobstypes.dat''': selection of observations subject to screen check 
+   * '''screen.dat''': Selection of check types, thinning scales etc. for screen procedure
+   * '''minobstypes.dat''': selection of observations subject to minimization 
+
+ * Basic Tuning, see also [https://hirlam.org/trac/wiki/Hirlam_7.1#PerformingexperimentswithHIRLAM7.1 information about 7.1]
+   * In scripts/Env_expdesc:
+{{{
+     CONJUGATEG=no          # yes with Conjugate Gradient minimization (under development), else M1QN3 (default)
+     FCINT=03               # 3h cycling
+     FGAT=yes               # FGAT
+     STRFUN=statbal         # statbal and nonsep for background error structure function based on statistical and analytical balance approaches, respectively
+     LOWRESINCR=no          # put to yes if the structure function data is derived from coarser resolution data than your own model
+}}}
+
+[[Center(begin)]]
+== '''Monitoring subjects, tools''' ==
+[[Center(end)]]
+ * analysis increment; do they look noisy? 
+ * information about analysis-background departure: how does the long term average varies over time
+ * information about analysis-observation departure
+ * minimization behaviour:  evolution of total cost function, Jb, Jo; convergence
+ * ratio between non-satellite Jo and number of observation: a value of around 0.5 is optimal, being too small means that analysis draw too much from analysis; being too large may indicate convergence problem or too little weight to observation
+ * Profiling for main subroutines during 3D-VAR analysis
+
+[[Center(begin)]]
+== '''Common error messages''' ==
+[[Center(end)]]
+ * Segmentation fault after reading of observation (usually PLEN too large)
+[[Center(begin)]]
+== '''Relevant issues for operational implementation''' ==
+[[Center(end)]]
+ * Meteorological performance; data assimilation is not about find best fit for observation at analysis time. It is about improveing forecast
+ * Periodical update of background and observation error statistics and their scaling: very important
+ * impact study with various kind of data
+ * Active monitoring
+   
+[[Center(begin)]]
+== '''Overhaul issues, questions''' ==
+[[Center(end)]]
+ * 3D-VAR library structure may need streamlining

@@ -1,0 +1,171 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Clouds and convection, HARMONIE-AROME Working group''' =
+[[Center(end)]]
+
+Last modified [[LastModified]]
+
+= Meeting in Norrköping, October 2012 =
+='''Participants'''=[[BR]]
+Lisa Bengtsson, Wim de Rooy, Javier Calvo, Kristian Pagh Nielsen, Sami Niemelä, Gema Morales, Karl-Ivar Ivarsson
+
+='''Program'''=[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/program_cloud_meeting.pdf Program]
+
+='''Notes from meeting'''=[[BR]]
+The outcome of the meeting can be found in these
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/cloud_meeting_norrkoping.pdf notes][[BR]]
+[[BR]]
+
+='''Slides/images and other material from the meeting'''=[[BR]]
+• Deep convection[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/harmonie_cloud_lisa.odp Lisa][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/deepconvection_Norrkoping2012.ppt Wim][[BR]]
+• Shallow convection[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/shallowconvection_Norrkoping2012.ppt Wim][[BR]]
+• Cloud “geometry” - statistical cloud scheme.[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/statistical_cloud_Norrkoping2012.ppt Wim][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/statistical_cloud_Norrkoping2012.2.ppt Wim][[BR]]
+• Low level clouds, stratocumulus, connection the boundary layer param.[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/stratocumulus_lowclouds_Norrkoping2012.ppt Wim][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/KII_ccdiv.pdf Karl-Ivar][[BR]]
+• Fog[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Cloud_study_case.ppt Sami][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_Norrkoping2012.ppt Wim][[BR]]
+• Microphysics and radiation[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/NMM_2012_Cloud_physical_properties.pdf Kristian][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Ulrik-26102012.ppt Ulrik][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Microphysics_Norrkoping2012.ppt Wim][[BR]]
+• MUSC, LES [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/SCUM_37h1.1_Norrkoping2012.ppt Wim][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/LES_Norrkoping2012.ppt Wim][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/LES_Norrkoping2012.2.ppt Wim][[BR]]
+• Overlap assumptions [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Overlap_assumptions_Norrkoping2012.ppt Wim][[BR]] 
+• Validation, evaluation, verification [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/KII_fbss.pdf Karl-Ivar][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/fog_ver.ppt Gema][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/HarmonieClouds_jc.ppt Javier][[BR]]
+
+= Relevant articles... to be extended =
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Painemal_et_Zuidema_2011_Assessment_of_MODIS_cloud_properties.pdf Assessment of MODIS cloud effective radius and optical thickness retrievals over the Southeast Pacific with VOCALS-Rex in-situ measurements, David Painemal and Paquita Zuidema,  2011][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/cloud_validation_synops.pdf A critical assessment of surface cloud observations and their use for verifying cloud forecasts, Marion Mittermaier, 2012][[BR]]
+
+= Fog over sea, selected cases used for 1D MUSC simulations and 3D HARMONIE/AROME runs =
+=Fog cases over Spain and Mediterranean Sea near the Strait of Gibraltar=[[BR]]
+=20121008=[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/sea_fog_20121008.gif Fog over sea-Satellite][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/harmonie_sea_fog_20121008.gif Fog over sea-Harmonie][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_case_201210080900_synop_data.jpg Selected synoptic parameters at 9 UTC][[BR]]
+=20120108-20120109=[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/land_fog_20120108-09.gif Fog over land-Satellite][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/harmonie_land_fog_20120108-09.gif Fog over land-Harmonie][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_case_201201081200_synop_data.jpg Selected synoptic parameters on the 8th at 12 UTC][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_case_201201081200_synop_data.jpg Selected synoptic parameters on the 9th at 12 UTC][[BR]]
+=Fog case over the north Sea=[[BR]]
+=20120326=[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/FogNZ_2_satcomp_2012032613.png Fog over sea - Satellite and Harmonie run][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_case_201203261300_synop_data.jpg Selected synoptic parameters at 13 UTC][[BR]]
+  Low level clouds plotted from cycle 37h1.1 for the period 23-27 of March: [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/LOW.tar.gz][[BR]]
+  Total clouds plotted from cycle 37h1.1 for the period 23-27 of March: [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/TOT.tar.gz][[BR]]
+
+=Fog case over the Baltic Sea=[[BR]]
+=20120607=[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Sami.png Fog over sea - Satellite and Harmonie run][[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_case_201206071200_synop_data.jpg Selected synoptic parameters at 12 UTC][[BR]]
+
+= Preliminary results North Sea fog case=
+Some results from 3D experiments for the North Sea fog case related to the cloud, convection and turbulence scheme. Wim de Rooy[[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/North_Sea_Fog_2.ppt][[BR]]
+[[BR]]
+New results showing diagnostics of the North sea fog case reference run as well as experiments with modifications in the turbulence scheme.
+The development and persistence of fog turns out to be very sensitive to the turbulent length scale. Arguments are given to experiment with an[[BR]]
+alternative length scale (according to Lenderink & Holtslag 2004) as applied in Hirlam and RACMO (a regional climate model).[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/North_Sea_Fog_3.ppt
+[[BR]]
+Sensitivity to Semi-Lagrangian Horizontal Diffusion. The fog field show little or no sensitivity to quite radical changes in horizontal diffusion settings, Lisa Bengtsson.[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/FOG_north_sea.odp
+[[BR]]
+Experiment with SST + 1 Celsius as well as difference between warm and cold start. Wim de Rooy[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/North_sea_fog_Tsea_experiments.ppt [[BR]]
+Results by and discussion with Yann Seity[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Yann_discu.pdf [[BR]]
+Video by Eric Bazile: [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/EB_txt.txt Notes] [[BR]]
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/video_ARP_ARO_20120322H12.gif Animated gif] [[BR]]
+Results by Yann Seity [[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/north_sea_fog_case_YS.pdf  [[BR]]
+[[BR]]
+New results of Harmonie with the racmo turbulence scheme. Wim de Rooy[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/first%20results%20Harmonie%20with%20RACMO%20turbulence.ppt
+
+= Preliminary results Alboran Sea fog case=
+Some results from HARMONIE experiments for a fog case in the Alboran Sea in 20121008. Daniel Martin [[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_Alboran_20121008_1.1.ppt
+[[BR]]
+
+Using warm start[[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/Fog_Alboran_20121008_2.1.ppt
+
+= Test by Karl-Ivar =
+"Did a test with a small modification of the vertical diffusion scheme in AROME as discussed during the meeting last autumn. The aim is to test if a modification similar to thatin Hirlam's vertical diffusion scheme CBR, works also for the scheme in AROME. It is is just to increase mixing at a top of a cloud, where the unmodified parameterization assumes that it is conciderable more static  stable than if the cloud where absent.  The effect of the change is not large, but a small  improvement for clouds and precipitation in summer is seen. No improvement in winter." [[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/mod_vdiff.pdf [[BR]]
+
+Impact of the above described modification on the North Sea case of 20120322, Lisa Bengtsson [[BR]]
+https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/northsea_vertdiff.pdf[[BR]]
+
+Report on ice experiments 2013-2014 by Karl-Ivar [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/KII_modice3A_201403.pdf slides pdf]
+
+[[BR]]
+= Sami's 3D experiments on microphysics by Karl-Ivar, LOSIGMAS over the FMI Scandinavian domain with 38h1.1 =
+
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/SamiNiemela_August2014.pdf slides pdf]
+
+Karl-Ivar's document, spring 2014 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/02-2014-METCOOP-MEMO.PDF 02-2014-METCOOP-MEMO.PDF]
+Current documentation of the OCND2 option [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/ocnd2_lb2.pdf]
+
+[[BR]]
+
+= MUSC CASES =
+
+ASTEX (1992/06/13) 
+[[BR]]
+
+AEMET Namelist for version 38h11 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/namelist.ASTEX.38.AEMET.tar namelist.ASTEX.38.AEMET.tar] and results [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/ASTEX.38.AEMET.odp ASTEX.38.AEMET.odp]
+
+
+
+= '''Updates''' =
+
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Clouds201210/shallow_precip_lisa.pdf Precipitation from shallow convection] Presentation by Lisa, autumn 2014.
+
+= '''Plans and Suggestions''' =
+
+ASW 2014 working group report [http://www.cnrm.meteo.fr/aladin/IMG/pdf/physics_meeting_asm2014.pdf link to ASW site][[BR]]
+
+''SMHI (Karl-Ivar)''[[BR]]
+-Continue work on arome cloudphysics  (changes similar to Hirlam 7.4)[[BR]]
+-Strange behaviour in ice fogs seems related to mixing length. Continue work on alternative length scales is encouraged[[BR]]
+[[BR]]
+''KNMI concerning cloud/fog (turbulence) (Wim de Rooy)''
+[[BR]]
+-Thorough check of the implementation of RACMO TKE and lengthscales in Harmonie.[[BR]]
+-Phasing new code in version 37h1.2 (ASTEX still runs with version 35)[[BR]]
+-3D test to show that this implementation also improves the overpredicition of sea fog and does not deteriorate other model results. Apart from these 3D tests, the 1 year reforcasting of Harmonie must be used, running a version with this new implementation (providing long term in detail verification against Cabauw obseravtions and LES within the Testbed).
+[[BR]]-Partly outside KNMI?:
+The current implementation of the TKE length scale is far from "clean coded". If tests show the potential of this update, a cleaner code (with most likely a faster code)should be produced (possibly with help from other member(s) during working visit).[[BR]]
+[[BR]]
+''Meteo France (Yann Seity)''[[BR]]
+-Concerning fog, in 2014, we plan to test the implementation in ICE3
+microphysics of a 3D daily updated Nc (Number of cloud droplets) using
+aerosols models outputs (MACC or MOCAGE)  instead of the current land/sea
+fixed values.  It will be evaluated on sea fog cases.[[BR]]
+-Increasing vertical resolution in physical parameterizations for
+simulating fog (PHD work)[[BR]]
+-In parallel, work for developing a 2 moments microphysics scheme for AROME
+ill continue in Méso-NH, and the ICE4 scheme (hail) will be tested with
+some modifications.[[BR]]
+-Comparison EDMF/EDKF and their associated cloud schemes.[[BR]]
+-Test cases, validation of the 1.3km L90 AROME-France version.[[BR]]

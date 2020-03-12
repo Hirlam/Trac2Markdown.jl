@@ -1,0 +1,132 @@
+== '''Radiation Working Group''' ==
+
+
+=== Status and reports ===
+
+'''Publications:'''
+
+Nielsen, K. P., Gleeson, E., and Rontu, L.: Radiation sensitivity tests of the HARMONIE 37h1 NWP model, Geosci. Model Dev., 7, 1433-1449, doi:10.5194/gmd-7-1433-2014, 2014. (http://www.geosci-model-dev.net/7/1433/2014/)
+
+Gleeson, E., Toll, V., Nielsen, K. P., Rontu, L., and Mašek, J.: Effects of aerosols on clear-sky solar radiation in the ALADIN-HIRLAM NWP system, Atmos. Chem. Phys., 16, 5933-5948, doi:10.5194/acp-16-5933-2016, 2016. (http://www.atmos-chem-phys.net/16/5933/2016/acp-16-5933-2016.html)
+
+Toll, V., Gleeson, E., Nielsen, K.P., Männik, A., Mašek, J., Rontu, L., Post, P. Importance of the direct radiative effect of aerosols in numerical weather prediction for the European region, Atmospheric Research, Volumes 172-173, 15 May–1 June 2016, Pages 163–173
+
+Toll, V., Gleeson, E., Influence of the direct radiative effect of aerosols on atmospheric dynamics over Europe , Proceedings of Challenges for Earth system science in the Baltic Sea region: From measurements to models, University of Tartu and Vilsandi Island, Estonia, 10-14 August 2015. International Baltic Earth Secretariat Publication No. 5, pp 54-55
+
+Kangas, M., Rontu, L., Fortelius, C., Aurela, M., and Poikonen, A.: Weather model verification using Sodankylä mast measurements, Geosci. Instrum. Method. Data Syst., 5, 75-84, http://dx.doi.org/10.5194/gi-5-75-2016 , 2016.
+
+Rontu Laura, Wastl Clemens, Niemela Sami, 2016: Influence of the details of topography on weather forecast – evaluation of HARMONIE experiments in the Sochi Olympics domain over the Caucasian mountains, Frontiers in Earth Science,4,(13). doi: http://dx.doi.org/10.3389/feart.2016.00013      
+
+ECMWF new radiation: http://www.ecmwf.int/sites/default/files/elibrary/2016/16901-ecrad-new-radiation-scheme-ifs.pdf
+
+'''Presentations (oral & poster):'''
+
+E. Gleeson, EMS-2016 Talk: [https://hirlam.org/trac/attachment/wiki/Radiationgroupplan/EMS.Radiation.EGLEESON_Sept12.pdf PDF]
+
+E. Gleeson, L.Rontu,V.Toll, K.P.Nielsen, J.Mašek, M.Kangas, ALADIN-HIRLAM ASM Lisbon: https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201604/EGLEESONetal.ASM.Radiation.2016_FINAL.pdf
+
+
+'''Newsletter Articles:'''
+
+Gleeson, E., Nielsen, K.P., Toll, V., Rontu, L., Shortwave Radiation Experiments in HARMONIE. Tests of the cloud inhomogeneity factor and a new cloud liquid optical property scheme compared to observations. ALADIN-HIRLAM Newsletter 5: 92-106, 2015. 
+
+Nielsen, K.P., Gleeson, E., Comment on: “Impact of changes in the formulation of cloud-related processes on model biases and climate feedbacks” by Carlo Lacagnina, Frank Selten and A. Pier Siebesma (2014; 6(4): 1224-1243). ALADIN-HIRLAM Newsletter 5: 165-167, 2015. 
+
+Rontu, L., Gleeson, E.,  Nielsen, K.P., Toll, V., Mašek, J. HARMONIE-AROME radiation studies 2011-2016. ALADIN-HIRLAM Newsletter 7: 73-80, 2016. 
+
+
+=== To do list  based on the last RWW https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201604  ===
+
+'''Items as a result of the 2014 GMD paper:'''
+
+* The current choice of six spectral bands in HARMONIE/IFS should be re-assessed, as the first spectral band is irrelevant for NWP modelling. Not done - perhaps of minor importance and technically not trivial.
+* The effect of changing the SW cloud inhomogeneity factor from 0.7 (0.8) to 1.0 in all schemes should be tested against observations of global radiation in the framework of 3-D HARMONIE experiments. Done - updates suggested to operational HARMONIE. Later, perhaps a parametrization is needed instead of a fixed value to allow realistic inhomogeneity for different cloud types.
+
+'''Validation of HARMONIE by using the surface radiation fluxes'''
+
+* The main question for operational validation: what radiation measurements to use, how? What is available in real-time via GTS, BSRN etc?
+* Do we need more output variables from the model for CSI - clear sky index comparison?
+  - Cumulative clear sky radiation at the surface: introduce two new variables PFRSOCS(khor) and PFRTHCS(khor) for all three radiation schemes- Output from IFS exists, could be made available from hlradia, most probably also from acraneb2. 
+  - Cumulative solar zenith angle: perhaps not needed as PFRSOPT is available, containing accumulated coszen*S_o 
+* At FMI, Sodankylä ana Jokioinen surface radiation observations (LWDN, LWUP, SWDN, SWUP) and HIRLAM short forecasts have been prepared for a nearly ten year comparison 2006-2015, some related project work is also ongoing.
+* Inventory of global radiation measurements at meteorological stations? Network collecting such observations, outside WMO GTS? Should they be made available via GTS, how to achieve this? http://wrdc.mgo.rssi.ru/ World radiation data center 
+
+
+'''Cloud-radiation interactions'''
+* We suggest to go through the status of the sensitivity tests agreed at the radiation-cloud teleconference in November (between the Tallinn - Norrköping working weeks).  
+* Equivalent size of precipitating snow particles - tasks outlined in the Tallinn RWD8 still valid, not stated yet. Discussed now during the remote session with Petri. 
+
+
+'''Aerosol direct effects, introduction of the real-time aerosol information to HARMONIE'''
+
+Aerosol work notes can be found at https://hirlam.org/trac/wiki/Aerosol . The work includes two different aspects:
+
+* Introduction of updated aerosol information to the ALADIN-HIRLAM forecast system: a) climatological and b) near-real-time
+* Adaptation of the radiation and cloud-precipitation microphysics parametrizations to use the updated aerosol data
+
+From the radiation point of view, usage of updated climatology data requires update of the spectral properties in 
+* SW: in https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_radi/suaersn.F90 
+* LW: in https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_radi/suaerl.F90
+This update can be done based on work by Alessio Bozzo at ECMWF, who has already updated the tables for 14 SW and 16 LW bands. Weight-averaging to our 6 bands and broadband should be sufficient.
+
+Usage of near-real-time aerosol data requires
+* Definition of the variables to import: AOD/(aerosol load and mass extinction coefficient), SSA, g at selected levels at selected wavelengths ?
+* Apply the interpolated variables as input fields by the IFS (default), ACRANEB and hlradia radiation schemes: interfaces, streamlining, updated variables, removal of aerosol preparations from inside the schemes. The latter could be started from hlradia (ACRANEB), for the default IFS scheme following the steps to be taken in ECMWF
+
+'''Orographic effects on radiation'''
+
+* https://hirlam.org/trac/wiki/ororad 
+
+* https://hirlam.org/trac/wiki/Surface_physis_assimilation/ORO_development
+
+=== '''Radiation for the HARMONIE Rolling Work Plan''' ===
+
+* Introduce HIRLAM radiation scheme (hlradia) into HARMONIE-AROME into cy43h1. Ensure that hlradia and ACRANEB2 work correctly in this framework. Document the revisited hlradia scheme in a journal paper. Perform 1D and 3D comparisons and validation of the three radiation schemes in HARMONIE-AROME in order to prepare them for operational usage as multi-physics option in HarmonEPS and possible usage of ACRANEB as alternative radiation scheme in the deterministic HARMONIE.
+
+* Build a unified interface and define the needed variables for the use of external near-real-time aerosol IOPs by the three radiation schemes within the framework of CY43. Test the usage of three radiation schemes for the use of updated aerosol climatological and near-real-time aerosol information from Copernicus/SILAM for calculating the direct radiative effect of aerosol. 
+
+* Continue the detailed comparison study of the IFS, hlradia and Acraneb-2 long-wave radiation schemes, including clear sky, cloud liquid and cloud ice tests and the LW direct radiative effect of aerosols, report on the outcome.
+
+* Cloud-radiation interactions: Test and improve the description of cloud ice crystals and precipitating snow, graupel IOPs for radiation. Prepare usage of the effective/equivalent radius of the cloud particles available via the evolving LIMA parametrization scheme.
+
+* Surface-radiation interactions: Develop the orographic radiation parametrizations, study their impact to the atmospheric radiation parametrizations. In the context of cy43 and SURFEX v.8, review/revise the calculation and usage of surface albedo in the atmospheric radiation parametrizations and inside the SURFEX schemes.
+
+* Continue close cooperation with HCLIM developers in the area of aerosol indirect effects and radiation impact of the gaseous species.
+
+* Contribute to the usage of (ground-based SW) radiation measurements for validation of the HARMONIE forecasts.
+
+* Contribute to the development and usage of MUSC_cy43h1 for the radiation studies
+
+* Long term: Continue collaboration with ECMWF with a target of building a unified radiation scheme in the future, applicable for different model resolutions and time scales.
+
+
+
+'''HIRLAM staff for radiation:''' Laura Rontu, FMI; Emily Gleeson, Met-Èireann; Kristian Pagh Nielsen, DMI ; Velle Toll, Reading university (consulting only in aerosol);  Joni-Pekka Pietikäinen, FMI (depending on external funding, aerosol); Jason Williams, KNMI (HCLIM point of view)
+
+
+=== '''Work plans discussed through emails''' ===
+
+* Sort out the CIRC results from MUSC which differ from the SA results
+* Complete EMS paper on HLRADIA (due by Jan 15th)
+* testing of old and new HLRADIA (MUSC or 3D - see emails from Velle and Laura):
+The experiment for April 2011 was run by Emily on ECMWF computer (as I do not have computing access for ECMWF computers).
+It was ALARO+SURFEX (but choosing IFS radiation through namelist).
+Sure it could be rerun using cy40h1.1 (with different radiation schemes), Emily do you still have the old experiment and would you have time to do it? I unfortunately do not have much time.
+I think using the same externally interpolated input data in the same domain would be easiest (AROME physics could be used in principle but then smaller domain with better horizontal resolution would be  appropriate). Feel free to use this experiment as you like, I could help with some technical questions if I can.
+On ecgate experiment directories (in /home/ms/ee/eevt/hm_home) 38h12_TEGEN_aerEURO_extrap and 38h12_MACC_aerEURO2 should be readable for you.
+
+Concerning the general question: repeating 1D in Toravere would add confidence that 40h1 and 38h1 behave not too differently with MUSC but perhaps not much more? I mean, here we tried three radiation schemes already and reported the results. Trying different climatologies instead of Toravere observation-based sets would most probably show not so much differences and is not the topic of this paper. Of course, that would be relatively easy to do if we want.
+
+With 3D experiments we might see how the usage of hlradia with old/Kristian's aerosol treatment (or acraneb) instead of the default IFS radiation would influence the meteorological results in the case of high aerosol loads, which are available in your experiment setup in August 6-10 2010?
+
+I have a general question that what would you like to test or find out using this 3D experiment?
+Single column experiments would be cleaner comparison (if interested in aerosols then e.g. Tõravere case from Gleeson et al. ACP paper) and easier to run, perhaps this could be repeated for testing instead of 3D?
+
+* Work with LibRadTran
+Another thing, there was a two-day LibRadTran course led by Arve Kylling here in FMI. While it is possible to find the code and documentation at libradtran.org, his lecture material may be of interest (illustrated user guide, kind of). I copied his first and second day files to hirlam.fmi.fi/tmp/day1.pdf.gz and ../day2.pdf.gz , please have a look if interested. Velle got a good start in aerosol experiments with libradtran, but there might be possibilities to do something also related to CIRC, or LW comparisons. Arve's information was that in LW everything should work but no detailed comparisons with observations have been done in these wavelenghts. 
+
+* ACRANEB2 in cycle 40:
+Patrick is just reporting about the recent HIRLAM-C MG meeting, which has made plans for the update of HARMONIE cycle 40h1. Do you think we should test and make sure ACRANEB2 will work as called from apl_arome in this cycle or should we postpone this to the framework of cycle43? Here are questions about the flex interface and others, which may be easier to solve later when also the latest ACRANEB2 is available by default. On the other hand, 40h1 will be used for EPS, where it has been suggested that among physics perturbations different radiation schemes could be tried.
+
+
+

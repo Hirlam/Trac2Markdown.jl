@@ -1,0 +1,208 @@
+[[PageOutline]]
+HARMONIE produces output in the FA format. The tools gl and xtool can be used to get information on the contents of the FA files and do all sorts of operations on them, including conversion to GRIB and NetCDF. Manuals on the general usage are available on the wiki for [[wiki:HarmonieSystemDocumentation/PostPP/gl|gl]] and [[wiki:HarmonieSystemDocumentation/PostPP/xtool|xtool]]. This page focusses on conversion from FA to NetCDF with a gl version modified for HCLIM.
+
+
+== Command line arguments ==
+No command line arguments have been added. However, in the standard version the -nc implies also -p (convert without extension zone). This has been removed to enable specifying a subdomain in the namelist (istart, jstart, istop, jstop). Useful command for conversion to netcdf:
+{{{
+#!sh
+gl -nc [-p] infile [-n namelist_file] [-o output_file] [-igd] [-ufn]
+
+ -nc             : convert a FA file to NetCDF (-f implicit )
+ -p              : convert without extension zone
+ -n namelist_file: interpolates file according to namelist_file
+ -o output_file  : output file name, can be used to write all variables to 1 file
+                   by default file name is derived from variable name
+ -igd            : set lignore_duplicates=T                               
+ -ufn            : use full_name as output name
+}}}
+
+
+== naminterp namelist options ==
+There are many useful namelist options to influence the conversion. Below is an overview of useful options for the conversion to netcdf, many of which are not in the standard namelist.
+
+||= variable =||= description =||= default =||= new =||
+||readkey%name ||Comma-separated list with FA names, only the fields in this list are read, saves time. Quote names. By default empty, all fields are read || || ||
+||lacc2flux ||T: Convert accumulated fields (tri=4) to fluxes by dividing by the length of the interval FF-F0. Names, units and tri are adapted. ||.FALSE. || * ||
+||lmergelevs ||T: write all levels of a variable to the same file; F: each level in a separate file ||.FALSE. || * ||
+||lclimate_fields ||T: don't add a time dimension and variable, useful for climate fields like land mask ||.FALSE. || * ||
+||lvertices ||T: add vertices (corner points) to netcdf file, only possible for newly created files ||.FALSE. || * ||
+||lhistory ||T: add history global attribute to netcdf file ||.FALSE. || * ||
+||ikindnc ||NetCDF version (3|4), 3: larger files, but faster; 4: compressed, but slow ||3 || * ||
+||ref_date ||Reference date, used to generate relative time axis ||19500101 || * ||
+||ref_hour ||Reference hour, used to generate relative time axis ||0 || * ||
+||time_unit ||Time unit according to GRIB1 table 4 ||1 (hours) || ||
+||fstart($par) || Start forecast length for max/min values (more info below) ||-1 (ignored) || ||
+||outkey%yy[[BR]]outkey%mm[[BR]]outkey%dd[[BR]]outkey%hh[[BR]]outkey%mn[[BR]]outkey%ff[[BR]]outkey%f0 || Modify output time, useful to deaccumulate with xtool. Note that in code it is checked if outkey%yy has been set (/= -1), if so, all other fields are read as well, i.e. either none or all of the outkey elements must be set. || || ||
+||pppkey%ppp[[BR]]pppkey%ttt[[BR]]pppkey%lll[[BR]]etc. ||Select post-processed fields such as variables on pressure levels, geopotential height and dew point temperature. Look at postprocess.f90 for details || || ||
+||ctimeis ||time refers to "start", "middle", or "end" of interval for non-instantaneous fields. If writing several variables to 1 file, that don't have the same timing (e.g. accumulated vs. instantaneous), then "end" is probably the only safe option! ||end || * ||
+||csep ||separator in derived netcdf file name ||_ || * ||
+||cdatefname ||format for date in derived netcdf file name ||YYYYMMDDHH || * ||
+||cfiden ||used in derived netcdf file name to indicate origin (e.g. his, sfx, fp) || || * ||
+||cfreq ||used in derived netcdf file name and as "frequency" global attribute (e.g. 1hr, 3hr, day, mon) || || * ||
+||chm_rev ||HARMONIE version, used as "model_id" global attribute || || * ||
+||cdomain ||domain name, used in derived netcdf file name and as "domain" global attribute || || * ||
+||cexperiment ||experiment id, used in derived netcdf file name and as "experiment_id" global attribute || || * ||
+||cinstitute || used as "institute_id" global attribute || || * ||
+||chostmod || used as "driving_model_id" global attribute || || * ||
+||plevlist ||Comma separated list with pressure levels (in Pa). Used to expand PNNNNN* fields and as plev coordinate variable for those fields (see below for more info). || || * ||
+||hlevlist ||Comma separated list with heights. Used to expand HNNNNN* fields and as height coordinate variable for those fields (see below for more info). || || * ||
+||istart[[BR]]jstart[[BR]]istop[[BR]]jstop ||indices of start and stop grid points in x and y direction to convert only a subdomain || || ||
+
+
+== Time axis ==
+A relative time axis (days since …) is created using the refdate and refhour as reference. In existing files the current time step is looked up, and if it already exists it is overwritten. If it doesn’t exist yet, it is appended to the end of the file. Note that if time steps are not converted in order the time axis will not be consecutive.[[BR]]
+For non-instantaneous fields a time bounds variable is added. The start of the interval is taken from fstart (from tri=2) or outkey%F0, or just from the input file (usually 0). The end of the interval is the current time step. Whether the time variables refers to the beginning, middle or end of the interval can be controlled with the ctimeis namelist variable. If instantaneous and non-instantaneous files are written to the same file, it is best to use ctimeis=end. Start may also work, but this should be tested first.[[BR]]
+With the namelist variable cdatefname you can write output from multiple cycles to the same file. For example by setting it to “YYYYMM” the derived file name will contain year and month info, but not day and hour, so all cycles from a month are written to the same file. Be carefull with the first time step of a cycle when using cdatefname as gl will overwrite the last time step of the previous cycle with those of the first step of the new cycle. You can decide to skip the first time step, or multiple steps, if cycles overlap more than 1 step.
+
+
+== Derived file name ==
+If no output file name is supplied (-o flag) an output file name is derived from available info:
+{{{
+nc_fld_name[_levinfo][_cfiden][_cdomain][_cexperiment][_timeinfo].nc
+}}}
+with:
+||nc_fld_name ||name of netcdf variable as defined in nc_tab.h ||
+||levinfo     ||indication of level info, with *lev if all levels are written to the same file (lsplitlev), or a level number/height otherwise. ||
+||cfiden      ||identifier of input file (e.g. his, sfx), set via namelist ||
+||cdomain     ||domain name, set via namelist ||
+||cexperiment ||experiment name, set via namelist ||
+||timeinfo    ||indicator of file date/time, format controlled via cdatefname namelist variable, not used if lclimate_fields. ||
+||cfreq       ||frequency, set via namelist ||
+
+If elements are not set, either via the namelist or by a default value, they are excluded from the name. The separator is a _ by default but can be changed via the csep namelist variable. 
+
+
+== Setting fstart for min-max fields ==
+Min and max fields, with tri=2 (time range indicator) are valid for a certain period. By default the period is 3h, but this can be changed via variable FREQ_RESET in sms/config_exp.h, for example to 1 to store min/max temperature over an hour. By default gl doesn’t have info on this frequency and it is assumed they are valid since the start of the run. Use the namelist option fstart to assign the appropriate starting value, e.g.:
+{{{
+fstart(15) = 3
+}}}
+for max t2m (parameter code 15). The fstart value is then used in the time_bnds. This value needs to be updated with FREQ_RESET. In Makegrib_gribex and the TKI convertFA there are examples of how to do this. Note that this works in the same way for NetCDF and GRIB. 
+
+
+== Multilevel fields and fields on heights or pressure levels ==
+All levels of multilevel fields can be written to one file (lmergelevs=.TRUE.) or to separate files (default). This is possible for model levels, pressure levels and height levels.
+
+=== All levels in one file ===
+If all levels are written to the same file and additional dimension is needed: lev for model levels, height for height levels. For model level fields, named SNNN*, the number of levels is derived from the input file (glistnlev). For height level fields, HNNNNN*, currently the heights must be set via the hlevlist namelist variable. The heights in this list are used to expand the HNNNNN (to H00010, H00250 etc) and are also used as coordinate variable. For pressure levels PNNNNN is used in the same way.
+
+=== Single level fields on height ===
+For single level fields on a specific height such as 2m temperature and 10m wind a height variable is added with that height. This is done if level type = 105 and level ≠ 0. This may not be appropriate in all cases. Note that for some fields level is abused (e.g. level 760 for the sea tile), which gives useless height.
+The same approach is used when outputting multilevel fields with lsplitlev=.TRUE. (default).
+
+=== Don’t mix fields ===
+There is a check that all fields on height levels in one file have the same height specification, because only 1 height variable can be specified at the moment. So t2m and w10m cannot be in the same file. Not sure if the check is foolproof. It may be possible to define multiple heights in the code, e.g. height, height2 etc., but this has not been implemented yet.
+
+
+== NetCDF 3 or NetCDF 4 ==
+With the ikindnc namelist options the netcdf format can be set. NetCDF 4 files are compressed in gl, however, this makes the conversion much slower. At the moment it seems better to let gl use the NetCDF 3 format and then convert them to NetCDF 4 after creation of the file has finished. This can be done with the following command:
+{{{
+#!sh
+nccopy -k 4 -d 1 -s $nc3_file $nc4_file
+}}}
+
+-d: deflate level , -s: shuffling (can improve compression, speed and size) 
+
+
+== Deaccumulate with xtool, setting outkey%f0 ==
+Accumulated fields, with tri=4, such as precipitation and radiation fields, are accumulated from the start of a cycle. Often it is more interesting to know for example the hourly amount. This can be done with xtool, using the steps below, assuming regular 1h output intervals:
+1. The first output file (+0h) does not contain accumulated fields, so skip that one
+1. The second file contains the amount between 0 and 1, so no need to subtract, simple convert with gl
+1. For all consecutive steps use xtool: 
+{{{
+#!sh
+xtool -f -f1 $infile -f2 $infile_prev -op DIFF -of NETCDF -n $def_nam -igd
+}}}
+
+This subtracts the fields in $infile_prev from those in $infile. The namelist file should contain at least the names of the accumulated fields to use and the outkey parameters:
+{{{
+#!fortran
+&nameinterp
+readkey%name = "YOUR_ACCUM_FIELD",
+outkey%yy = $YY
+outkey%mm = $MM
+outkey%dd = $DD
+outkey%hh = $HH
+outkey%mn = $MN
+outkey%ff = $FF
+outkey%f0 = $FF_prev
+/
+}}}
+
+where YY, MM, DD, HH, MN are the start of your cycle, $FF is the step of $infile and $FF_prev of the previous file. For example to calculate the amount of rain between hour 7 and 8 of a forecast started at 2017030300 use:
+{{{
+#!sh
+xtool -f -f1 ICMSHHARM+0008 -f2 ICMSHHARM+0007 -op DIFF -of NETCDF -n $def_nam -igd
+}}}
+def_nam contains:
+{{{
+#!fortran
+&nameinterp
+readkey%name = "SURFACCPLUIE",
+outkey%yy = 2017
+outkey%mm = 03
+outkey%dd = 03
+outkey%hh = 00
+outkey%mn = 00
+outkey%ff = 8
+outkey%f0 = 7
+/
+}}}
+
+
+== Direction of fluxes ==
+A new element 'positive' was added to the nctrans derived type in module_typez, and in nc_tab.h positive, can be empty, 'd' or 'u'. If it is not empty a 'positive' attribute is added to the variable in the NetCDF file. If it has value 'u', the values of the variable are multiplied by −1 to change the direction from towards the surface to away from the surface.
+
+
+== Fill value ==
+By default no missing value is added for atmospheric fields. For SURFEX fields either 999 (version ≤ 4) or 1+e20 (version ≥ 5) is used. It is possible to add a missing value via the namelist. To do so, in the namelist set variable lcheck_misval to .TRUE. and set rmisval to the correct value.
+
+
+== Adding new netcdf variables ==
+If you get messages like:
+{{{
+No NETCDF conversion for ....
+}}}
+then you need to add the field to util/gl/inc/nc_tab.h, which contains the translation from FA to netcdf names. The file util/gl/inc/trans_tab.h contains the conversion to FA names to GRIB codes. If the field you would like to is absent there, it is probably best to add it in that file as well, as for example GRIB level types are used for functionality in the netcdf conversion as well.
+Remember to recompile.
+
+== Dealing with rotated winds ==
+HARMONIE produces u and v wind components relative to the model grid. gl always outputs u and v relative to the output grid. So if no regridding is done and the output is still on the LCC grid, u and v will also still be relative to the LCC grid. But if the output is regridded to a regular lat-lon grid, then u and v will be rotated and will be relative to the regular lat-lon grid. Wind (from) direction (parameter 31), however, is always relative to a regular lat-lon grid. All rotations are handled by module_rotations see [wiki:HarmonieSystemDocumentation/PostPP/gl/Interpolation]. [[BR]]
+To deal with the rotated winds some options are available:
+=== Regrid to regular lat-lon with gl ===
+To regrid your output, add outgeo parameters to the naminterp namelist, e.g.:
+{{{
+ OUTGEO%NLON    =         340,  ! Number of gridpoints in x direction
+ OUTGEO%NLAT    =         340,  ! Number of gridpoints in y direction
+ OUTGEO%NLEV    =          -1,  ! Number of vertical levels, -1 means copy from inputfile
+ OUTGEO%PROJECTION      =  10,  ! Projection 00: Lat/Lon, 03: Lambert conform, 10: Rotated latlon , 5 polar stereographic projection
+ OUTGEO%CENTER  =          99,  ! Generating center
+ OUTGEO%SUBCENTER  =        0,  ! Generating center
+ OUTGEO%PROCESS =         201,  ! Generating process
+ OUTGEO%WEST    =    -5.50000,  ! Longitude of lower west corner
+ OUTGEO%SOUTH   =    -8.50000,  ! Latitude of lower west corner
+ OUTGEO%DLON    =  0.05000,     ! Gridsize in meters (projection 03)  or degrees (projection 00,10)
+ OUTGEO%DLAT    =  0.05000,     ! Gridsize in meters (projection 03)  or degrees (projection 00,10)
+ OUTGEO%POLON   =     0.00000,  ! Longitude of south pole
+ OUTGEO%POLAT   =   -38.00000,  ! Latitude of south pole
+}}}
+
+=== Output u and v on model grid, relative to regular lat-lon grid ===
+As of r17191 of HCLIM38h1 it is possible to rotate u and v to regular lat-lon, while retaining the data on the LCC grid. This is done by selecting parameters 333 and 334 for u and v, respectively. Alternatively a 'G' can be added to the FA name, e.g.: PNNNNNWIND.U.PHY -> PNNNNNWIND.U'''G'''.PHY.
+
+=== Rotate u and v afterwards ===
+In r17228, nc_rotuv was added to the gl utilities. This program can be used to calculate wind speed and direction relative to regular lat-lon, from netcdf files with u and v relative to the LCC grid. Basic usage is:
+{{{
+nc_rotuv -ui uvar u_infile -vi vvar v_infile [-n namelist] [-o outfile]
+}}}
+uvar [vvar] and u_infile [v_infile] are the name of the u [v] variable and the file with the u [v] variable. The output file name is optional. If it isn't supplied the file name is derived in the same way as for gl. The namelist is in principle the same as for other gl programs, but certainly not everything will work. 
+
+== Known issues ==
+=== floating divide by zero ===
+In some cases gl gives a "floating divide by zero" when converting FA files to NetCDF 4. This error is probably related to a bug in defining the unlimited dimension for NetCDF4 files in the NetCDF library. It occurs when gl has been compiled with the Intel ifort compiler and the -fpe0 flag is used in the compilation. The error can also be reproduced with a very simple test program that only creates a new NetCDF4 classic format file with an unlimited dimension (see attached example program).[[BR]]
+Possible solutions are:
+* Compile without the -fpe0 flag
+* Convert to NetCDF 3 and convert the files to NetCDF 4 afterwards with nccopy (see [#NetCDF3orNetCDF4]).
+Of course, a floating divide by zero could also be issued by another bug.
+

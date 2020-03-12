@@ -1,0 +1,49 @@
+= Shiny proxy =
+
+A virtual server '''shiny.hirlam.org''' has been set up to ease access to the Rstudio shiny
+server listening on port 3838. Since the apache web server is already set up with proper
+access control and since the ports 80 (http) and 443 (https) are already open in the DMI
+firewall it is easier to route access to Shiny through apache than setting up similar
+access rights for port 3838.
+
+Take a look at /etc/apache2/sites-available/shiny if you want to know more about how it is done.
+The interesting part is this:
+{{{
+  ProxyPass        / http://localhost:3838/
+  ProxyPassReverse / http://localhost:3838/
+}}}
+That is, access to/from the root directory of {{{http(s)://shiny.hirlam.org/}}} is redirected to port
+3838 on the server. Thus, the shiny configuration files are unchanged, the real server still
+listens and works through port 3838. What could be done is to change the access rights for
+the shiny server to only accept access through localhost, to ''force'' all access through
+apache. As it is now, access via hirlam.org:3838 also works to where the port is open.
+
+Added the following to allow start/stop shiny-server on server restart:
+
+update-rc.d shiny-server enable
+
+update-rc.d: warning: shiny-server start runlevel arguments (none) do not match LSB Default-Start values (2 3 4 5)
+update-rc.d: warning: shiny-server stop runlevel arguments (none) do not match LSB Default-Stop values (0 1 6)
+
+ Enabling system startup links for /etc/init.d/shiny-server ...
+ Removing any system startup links for /etc/init.d/shiny-server ...
+   /etc/rc0.d/K88shiny-server
+   /etc/rc1.d/K88shiny-server
+   /etc/rc2.d/S88shiny-server
+   /etc/rc3.d/S88shiny-server
+   /etc/rc4.d/S88shiny-server
+   /etc/rc5.d/S88shiny-server
+   /etc/rc6.d/K88shiny-server
+
+ Adding system startup for /etc/init.d/shiny-server ...
+   /etc/rc0.d/K88shiny-server -> ../init.d/shiny-server
+   /etc/rc1.d/K88shiny-server -> ../init.d/shiny-server
+   /etc/rc6.d/K88shiny-server -> ../init.d/shiny-server
+   /etc/rc2.d/S88shiny-server -> ../init.d/shiny-server
+   /etc/rc3.d/S88shiny-server -> ../init.d/shiny-server
+   /etc/rc4.d/S88shiny-server -> ../init.d/shiny-server
+   /etc/rc5.d/S88shiny-server -> ../init.d/shiny-server
+
+If it doesn't starts in this way use:
+
+nohup shiny-server &

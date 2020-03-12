@@ -1,0 +1,14 @@
+== Tools and Utilities ==
+
+Share with the fellow HIRLAM colleagues the tools and utilties that you have developed. Remember to provide adequate instructions or documentations.
+
+ * Forecast monitoring 
+ * Observation monitoring
+ * Verification tools
+ * Graphic tools, scripts
+ * Text Editing, Presentation softwares
+    * [wiki:ToolsUtilities/TextEditing/HighlightTDF TDF-file syntax highlighting]
+ * ECMWF computer platform
+    * EcfsDirectoryTools
+    * [wiki:ToolsUtilities/ECMWF/SytemBillingUnits System Billing Units]
+ * diverse softwares

@@ -1,0 +1,214 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie Working Days on DA Algorithms''' =
+''Lanzarote, Spain ,  20-24 November 2017''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+[[Image(20171121_103831.jpg, 30%)]]
+[[Image(20171121_103837.jpg, 30%)]]
+[[Image(20171122_160217.jpg, 30%)]]
+[[Image(20171120_124420.jpg, 30%)]]
+[[Image(20171121_103730.jpg, 30%)]]
+
+
+The second HARMONIE Working Week on Data assimilation Algorithms 2017 will be held in Lanzarote, Spain.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =|| Hotel   ||
+||Roger Randriamampianina || MET Norway      ||  Sat - Sat     || HOTEL BEATRIZ COSTA SPA  ||
+||Roel Stappers           || MET Norway      ||  Sat - Sun     || HOTEL BEATRIZ COSTA SPA  ||    
+||Ole Vignes              || MET Norway      ||  Sat - Sun     || HOTEL BEATRIZ COSTA SPA  ||
+||Jelena Bojarova         || SMHI             ||  Sat - Sat     || HOTEL BEATRIZ COSTA SPA  ||
+||Magnus Lindskog         || SMHI             ||  Sat - Sat     || HOTEL BEATRIZ COSTA SPA  ||
+||Nils Gustafsson         || SMHI             ||  Sat - Sat     || HOTEL BEATRIZ COSTA SPA  ||
+||Xiaohua Yang            || DMI              ||  Sun 19 - Fri 24     || HOTEL BEATRIZ COSTA SPA  ||  
+||Mats Dahbom             || DMI              ||  Sun 19 - Fri 24     || HOTEL BEATRIZ COSTA SPA  ||  
+||Jan Barkmeijer          || KNMI             ||  Sat - Sat      || HOTEL BEATRIZ COSTA SPA  ||
+||Sigurdur Thorsteinsson  || IMO              ||  Sat - Sat?     || HOTEL BEATRIZ COSTA SPA  || 
+||Carlos Geijo            || AEMET           ||  Sun19 - Sat25   || HOTEL BEATRIZ COSTA SPA ||
+||Pierre Brousseau        || Meteo France    ||  Sat - Sat?      || HOTEL BEATRIZ COSTA SPA || (could not make it this time)
+||Yann Michel             || Meteo France    ||  Sat - Fri      || ??             ||
+
+
+== Aim of the Working Days ==
+During this working week, apart of discussing the latest achievement and new issues related to data assimilation algorithms, expert groups will focus on very specific tasks. The tasks are defined in the HIRLAM rolling work plan and also were raised up and specified during previous video and working week meetings.  
+
+== Draft minutes of the meeting: ==
+The meeting stated with scientific report from the participants as follows:[[BR]]
+
+**Jan Barkmeijer** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/lanzerote_jb.pdf reported] about the necessary updates needed to make the 4DVar adjoint test working properly. [[BR]]
+He also reported about the necessary settings to make the radar data accepted by the 4DVar system. For example commenting 1) the DEACT_CLD_GFL in CVA1 (otherwise one can have failur in GOM_SET_INTEROLATED); and 2) some adaptation are needed for the prepradar, bator, and prepopera.py.[[BR]]
+  * They observed that using the grid point treatment in 4DVar shows relatively good behaviour when using radiosonde T only, also with Q only, but not acceptable behaviour when using radar-derived (reflectivity assimilation) humidity only. Similar problem was observed when testing the assimilation of the Seviri radiances.[[BR]]
+  * The use of Q in grid point space weakens the performance of the variational algorithm. When using the Q in spectral space both the gradient and the adjoint tests are satisfied. This is in well agreement with what **Jelena** has observed in hybrid scheme. Meaning that grid point to spectral conversion in the way how it is implemented in our scheme does not hold the proper adjoint test.
+**Jan** reported also about the development related to the tendency increment term added to the 4DVar. It was shown that the technique has the capability to reduce the Jo considerably, even more than the standard 4DVar. It still has to be seen what the impact is on the forecast quality.[[BR]]
+
+**Yann Michel** presented the recent results obtained in LAM DA at Météo-France.[[BR]]
+He started with information on **LSPRT key** discussion. A note has been written about the use of this key in the context in the global models, with discussions going on with ECMWF. The advice was to ** set this key to FALSE in minimization**.[[BR]]
+He reported about the investigation they have done to reduce the noise in the background error statistics (B matrix). Using large sample (longer period computation) have relatively good reduction of the noise in the statistics. Use of the new B in impact study showed promising results.[[BR]]
+He also reported about the new flexible solution with having the B in netCDF format, which will be available in CY45T1.[[BR]]
+In the next presentation he reported about the development of the AROME EDA. The EDA is currently at 3.8 km resolution and using hydrostatic dynamics, with 25-member ensemble. There are plans to test 3.25km and NH dynamics. In the EDA they apply SST perturbations. An online inflation factor is applied to the ensemble B. Rather than the full B, they plan first to use the sigma_b part for AROME 3DVar, with positive impact on precipitation up to 18 hours forecasts.[[BR]]
+
+**Yann** reported also about the use of Krylov block in EDA, which enables to speed up the minimization process (work by **F. Mercier**).[[BR]]
+Very detailed presentation was also shown about the EnVar scheme under OOPS (joint work by **T. Montmerle, Y. Michel, E. Arbogast and P. Brousseau**). The system uses the perturbations from the EDA. The system has the following features:[[BR]]
+
+    -- New minimization scheme, based on B-preconditionned conjugate gradient.[[BR]]
+    -- Computational gain is allowed by the fact that the same localization is applied to all variables and timeslots.[[BR]]
+    -- There are two versions of localization techniques: 1) spectral bi-Fourier decomposition, and 2) grid-point using recursive filter.[[BR]]
+
+**Yann** showed examples of comparison of the variational (3DVar) versus EnVar schemes in horizontal increment of a single observation, with differences in terms of spatial scales. EnVar also shows larger spinup for the moment. **Yann** showed very positive good performance of the EnVar with the Ensemble B at lower 3.8km resolution. Checking the "cost" of each component of the implemented EnVar, the localization is the most expensive part. The gridpoint localization developped by **Yann** performs better.
+In the high resolution 1.3km EnVar, the EDA perturbations are brought online from low resolution with an interpolation operator to the high-resolution one. The option of time advection of the localization was developed for test in 4DEnVar.[[BR]]
+When talking about the hybrid EnVar system, combining the 2 Bs (climatological and ens B) is giving good results at 1.3km resolution (but only mixed results at lower 3.8km resolution).
+
+**Thibaut Montmerle** compared in CY43 the OOPS and old MASTERODB executables. They produce very similar results.[[BR]]
+
+    * **Yann** talked about the importance of having an ESCAPE-like scalability project dealing with data assimilation and efficiency. This project could be the LAM part of one new ECMWF  Scalability project, or we may organize ourselves also within a European project. The idea is to deal with questions of efficiency of data assimilation on future computers, with many members in the ensemble and many more observations (for instance MTG/IRS and OPERA radars). **Yann** would like to have more manpower to look at those questions.[[BR]] 
+
+**Magnus Lindskog** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/magnus_4dvar_seviri_msg.pdf reported] about the use of the 4DVar scheme with one iteration and tested with the Seviri radiances. The Seviri data were read into the DA system 3 times (at the beginning, at middle, and at the end) in the observation window. The VarBC used only the off-set (constant) part. Although these simplifications were taken, Magnus could show that the system was doing what it expected to do from bias correction and evolution of the o-b and o-a in time series.
+**Magnus** reported also development related to the cloud initialisation implementation in the Harmonie-Arome system.[[BR]]
+
+In a [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/magnus_4dvar_odb.pdf separate presentation] he shows the functionality of the 4DVar scheme with two outer loops with single observation. [[BR]]
+ * Magnus found out that the Jo at the beginning of the outer loop is consistent with what was stored in the the updated high resolution run (in the 4DVtraj). so, updating ODB between outer loops seems to work, however there were initially noise coming from inconsistency handling of the control vector increments from different outer loops. In the minimisation, for the tangent linear model, setting the increments to zero at the beginning of the minimisation is needed.[[BR]]
+ * He also raised the necessity of having of a flexible setup for different numbers of iteration and also resolutions for different (loop) minimisations.[[BR]]
+
+**Xiaohua Yang** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/EDA_along_time_&Spin-up_issues.pptx reported] about the use of overlapping windows with 3DVar with 1-, 2-, and 3-hourly cycling. He showed how can one have (cheap) EDA system in time with the COMEPS setup (use different observations in different ensemble members). Comparing the three above setups showed that humidity-related parameters are more accurate in the systems with longer cycling interval (2- and 3-hourly), while the "dry" parameters (for ex. temperature) are more accurate with shorter (1-hourly) cycling strategy.
+
+**Carlos Geijo** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/CarlosWWLanzarote.pdf reported] about the development on the variational constraint scheme applied to the non-hydrostatic dynamics. He showed the first results of experiments with Doppler wind radar data at 1-hour cycling and field alignment. Better balance of dynamical SI fields (horizontal divergence, vertical divergence, surface pressure, temperature, and pressure departure) is achieved, although the impact on one hour forecast seems to be smaller than expected. The better balance in 1-hour forecasts can be seen, for instance, in the correlation between horizontal and vertical divergence evolved increments. Further investigation is required and ongoing, where specific spin-up diagnostic tools (ECHKEVO, etc) are going to be used. Also experimentation with other (pseudo)-observations: vertical velocity, Temperature and surface pressure is in progress.   
+
+**Roel Stappers** [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/SEnglish_OOPS_PB_151117_final.pptx reported] about the latest OOPS developments and future plans as presented by Steve English  on 6th OOPS Project Board held on 15 November 2017. He also summarized Claude Fischer's [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/MF+LAM_PandP_.pdf presentation] from the project board meeting. MF expects to spend 40 pm in 2018 on OOPS development.  
+
+**Jelena Bojarova** reported about a study with Harmonie-Arome 3Dvar scheme using conventional observations, where the minimisation was restricted to the largest scales only leaving the small scales untouched. Five different experiments were compared: the control run with the default 3DVar settings; and runs with restricted minimisation: up to 300, 100, 50, and 10 1D spectral wave numbers. This means that the assimilation influences (only) the large scale and the information on the small scales is coming from the high resolution first-guess. One and half month experiment and verification over the last four weeks in June-July 2016 was performed over Denmark. Restricting minimisation brings the results further away from the observation. Using small scales from high resolution first guess fields improves the forecast quality. The best results was observed in the run with restriction limited up to 100 wave number, which corresponds to 6 delta-x. The largest improvement was see on the verification scores for wind direction, specific humidity at 700-850 hPa levels. The wind speed verification scores were degraded by the restricted minimisation.
+
+She also [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/ALGO201711/LETKF_in_HARMONIE_WWDANov2017.ppt reported] about the latest development they have done together with Pau Escriba, on the LETKF scheme with the Harmonie-Arome data assimilation system. In the implemented LETKF, the localisation is done in both horizontal and vertical. [[BR]]
+
+**Few thoughts/open questions**:[[BR]]
+ * It was asked where to put the LETKF-related development? We have separate branches for EPS and 4DVar developments. LETKF is a common tool for these schemes. We need a consistent maintenance and well defined strategy for consistent EPS-DA development. DA experts need to provide clear requirements on sampling of uncertainty in EPS methods preserving physically meaningful structures. Collaboration is needed between the two communities. We are far away from being able to represent properly underlying probability distribution with the limited ensemble size.[[BR]]
+ * It's important to use the same set of active observations in each ensemble member of LETKF.[[BR]]
+ * **VarBC in LETKF**: is it enough to apply it in the control member only?[[BR]]
+The LETKF scheme needs to be optimised.[[BR]]
+A relatively short period comparison of the LETKF scheme with the 3DVar shows worse performance on the upper-air, but better performance of LETKF on humidity-related surface parameters.
+
+== Decision on the 4DVar development based on the above reported findings: ==
+ * The group decided to implement a spectral moisture treatment in the minimisation process. Since similar convergence issue is also observed in the 3DVar scheme, similar solution will be also tested and implemented.[[BR]]
+ * The 4DVar analysis system is composed by the following components:[[BR]]
+  - The (4D) screening is done in full resolution and with the Harmonie-Arome model;[[BR]]
+  - The minimisation in the inner loops will be done with the (specific) humidity field treated in spectral space. In such a system the ISBA scheme will be used at the surface as first step. In longer term, the use of the SURFEX will be investigated.[[BR]]
+  - In each outer loop iteration, the full resolution trajectory will be again done with the Harmonie-Arome model.[[BR]]
+  - Further, the group decided that an "operationable" (having the conventional, radiances, Mode-S, scatterometer, radar, and GNSS observations in) version of the 4DVar will be developed in CY40.  (note that next operational system at Meteo France will be based on the CY42_op2 starting at the beginning of December. Next E-suite will be based on the CY43. Also, in the current 4DVar branch the 4DVar "ingredients" are more advanced than that delivered to the CY43 during the porting time).[[BR]]
+  - At next working week in Norrkoping, the (DA) group will give higher priority to the implementation of all operational observations in the DA system in CY40.[[BR]]
+  - Recognising that CY43 will be next operational system in Hirlam centres, given the long delay of this cycle, the group suggests the new developments will be ported to CY45 or CY46.[[BR]] 
+
+== Medium to long term plan for DA ==
+
+** Development of the EnVar ** [[BR]]
+ - Extension of the control vector is implemented in CY40 and it's compatible with the trunk. Because it is functioning in the Fortran code in CY40, it is compatible with the present OOPS layers as soon as the square-root B preconditioning is available; [[BR]]
+ - We need a rich ensemble system, including all likely forecast error structures. For example instabilities and phase errors; [[BR]]
+ - Compare the implemented scheme with the Meteo France EnVar system;[[BR]]
+ - Apply the EnVar system in nowcasting. Implementation through the extended control vector allows direct access to the local ensemble weights in the linear combination that can be explored for nowcasting application. This is step to introduce particle filter idea in variational assimilation.[[BR]]
+
+**  Development of variational schemes **
+ - Strategy on the trajectory handling: Look at the possibility based on optimal choices for 4DVar trajectory;
+ - Develop the system taking into account non-additive errors and model error;
+ - Apply the analysis incremental update in variational scheme;
+ - Develop and apply initialisation techniques suitable for mesoscales;
+ - Aim to keep the system compatible with the OOPS system.
+
+== Tasks of the week ==
+
+** 1-Use of spectral moisture in minimisation **
+  - Ole adapted an existing tool to convert the humidity field from grid point to spectral. 
+  - Jan started to test the converted field in the 4DVar scheme. He succeed to have the minimisation working. But the functionality of the system needs to be checked.
+
+** 2-Spectral change of resolution. Look at handling of the control vectors **
+  - Nils took from Roger an experiment with ATOVS radiances for this task. He found out that, although in the NODE of the minimisation the ATOVS radiances are in use, no radiance data is found among the control variables. 
+  - It turned out that the "LTOVSCV" key was set to "FALSE" in the minimisation. Switching this key to "TRUE" solved the problem -- the radiance data are also among the control vectors.
+
+** 3-Warm start of the minimisation **
+  - The realisation of this task needs that the task 1) is working well. Nils will work on it.
+
+** 4-Add more observations in the 4DVar scheme ***
+  - Roger added the ATOVS radiances;
+  - Magnus added the Seviri radiances;
+  - Sigurdur worked on ATOVS, IASI, and ATMS over the IGB domain;
+  - Jan and Mats discussed the needed updates for radar data processing in Bator and prepopera.py. Mats will discuss the changes further with Martin Ridal. The final change will be added in the trunk.
+
+** 5-HowTo on different diagnostic tools **
+  - Before the meeting Magnus received from Mate Mile the namelist needed to get the needed output to check the time evolution of the pressure tendency using the ECHKEVO routine. Yann helped him to make this test working. Carlos and Xiaohua tested also this tool during the week.
+  - Jan and Magnus checked that the CONGRAD provides same results as the M1QN3.
+  - Yann gave us two diagnostic tools:
+    1-Delta perturbation to background error B to diagnose its structure. This is not yet working.
+    2-The necessary code to use two background error statistics in the variational scheme. This task was suggested to be performed together with Pierre Brousseau.
+
+** 6-continue working with the variational constraint scheme **
+  - Carlos worked out how to extract vertical velocity at model levels;
+  - He will proceed with introducing his development in CY40, doing it in connection with the reformulation of the non-hydrostatic semi-implicite scheme using Green functions.
+    
+
+===============================
+
+
+**Preliminary agenda:**
+
+We will start with short report from participants in the first day. Otherwise, the normal daily agenda is described below.
+
+Suggested the following tasks:
+
+  *  Updating reference for setting tl to zero at beg of minim 
+  *  Convergence and handling of moisture  
+  *  Handling of VarBC coefficients when changing resolution
+  *  Introduction of all observations that are available in 3D-Var. 
+     -Magnus tested the assimilation of Seviri radiances, assimilate at the beginning and at the end of the observation window.[[BR]]
+     -Martin and Jan tested the assimilation of radar reflectivity.[[BR]] 
+  * Introducing possibility to have window from -1.5 to +1.5 not to loose observations as compared to 3D-VAR.
+  
+**IMPORTANT**: Install and run the Harmonie model before the meeting, so we can check things right at the beginning of the meeting. Please follow the instruction below to install the baseline system.
+
+
+Then comes more.
+
+  * in depth studies,
+  * optimization (physics settings, handling of multiple outer loops)
+  * handling of ps and other correlated observations (only use at centre of window)
+
+Discussion things with Pierre made us interested in the tool used at Meteo France for checking the spin-up in the model.
+
+Otherwise we have the list in [wiki:HarmonieWorkingWeek/ALGO201701 the previous meeting]
+
+
+ Normal daily agenda:[[BR]]
+09:00 - 10:00: Working in groups[[BR]]
+10:00 - 10:30: coffee break[[BR]]
+10:30 - 12:00: working in groups[[BR]]
+12:00 - 13:00: lunch break[[BR]]
+13:00 - 15:00: working in groups[[BR]]
+15:00 - 15:30: coffee break[[BR]]
+15:30 - 17:30: working in groups[[BR]]
+We checked twice the progress from different tasks during the meeting  [[BR]]
+
+== Practical local information ==
+
+== Practical 4DVAR branch information ==
+In order to test the 4DVAR branch, experiments should be set up in the following way on ecgate/cca:
+{{{
+cd $HOME/hm_home
+mkdir your_exp
+cd your_exp
+~hlam/Harmonie setup -r /home/ms/spsehlam/hlam/harmonie_release/branches/harmonie-40h1_4DVAR -c AROME_4DVAR [-d YOUR_DOMAIN] [-l YOUR_LEVELS]
+~hlam/Harmonie start DTG=2017090109 DTGEND=2017090112
+}}}
+
+'''Please note: The "-c" option is required!'''
+
+== Reference: previous HARMONIE working weeks ==
+
+* [wiki:HarmonieWorkingWeek/ALGO201701 201701], de Bilt, Working Week on Data assimilation Algorithms 2017
+* [wiki:HarmonieWorkingWeek/4DVAR201605 201606], Norrkoping, Extended 4Dvar working week 2016
+* [wiki:HarmonieWorkingWeek/UseObs201605 201605], Madrid, UO working week 2016
+* [wiki:HarmonieWorkingWeek/4DVAR201511 201512], ECMWF, 4D-Var Working Week 2016
+* [wiki:HarmonieWorkingWeek/UseObs201509 201509], Dublin, The Harmonie DA&UO Working Week 2015
+* [wiki:HarmonieWorkingWeek/4DVAR201503 201503], Norrkøping, The Harmonie 4DVAR Working Week 2015
+* [wiki:HarmonieWorkingWeek/UseObs201410 201410], Santander, The Harmonie DA&UO Working Week 2014
+* [wiki:OOPS/KNMI_201409 201409], KNMI, The HARMONIE OOPS/C++ Working Meeting
+
+

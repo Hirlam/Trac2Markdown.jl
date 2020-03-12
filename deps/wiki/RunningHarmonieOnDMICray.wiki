@@ -1,0 +1,164 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= '''Running Harmonie NWP version on DMI's Cray XC50''' =
+[[Center(end)]]
+
+== Basic procedure to setup and run HARMONIE NWP model at DMI ==
+
+The standard way of configuring an HARMONIE experiment and performing forecast cycling is as follows.
+  1. Select HARMONIE model basis ("repository") under which the HARMONIE experiment is to be based on. For DMI users the relevant repository basis on DMI platform are on
+    * HARMONIE NEA40H11 (Operational DMI HARMONIE 40h1.1 for NEA domain) 
+      * [https://hirlam.org/trac/browser/branches/DMI/nea40h11/neasrc nea40h11], local installation /devhome/aldtst/harmonie_src/nea40h11/neasrc
+    * HARMONIE IGB40H11 (Operational DMI-IMO HARMONIE 40h1.1 for IGA domain) 
+      * [https://hirlam.org/trac/browser/branches/IGA/igb40h11/igbsrc igb40h11], local installation /devhome/aldtst/harmonie_src/igb40h11/igbsrc
+    * HARMONIE TAS40H11 (Operational HARMONIE 40h1.1 for TAS domain)
+      * [https://hirlam.org/trac/browser/branches/DMI/IGA/tas40h11/tassrc tas40h11], local installation /devhome/aldtst/harmonie_src/igb40h11/tassrc
+    * Pre-operational HARMONIE nea40h111 (HARMONIE 40h1.1.1 for NEA domain)
+      * [https://hirlam.org/trac/browser/branches/DMI/nea40h111/neasrc nea40h111], local installation /devhome/aldtst/harmonie_src/nea40h111/neasrc
+    * Pre-operational HARMONIE igb40h111 (HARMONIE 40h1.1.1 for IGB domain)
+      * [https://hirlam.org/trac/browser/branches/DMI/igb40h111/igbsrc igb40h111], local installation /devhome/aldtst/harmonie_src/igb40h111/igbsrc
+  1. Configure experiment for own use ("set up"), in which basic configuration (such as selection of model domain, code/script modifications, compiler, data source etc.) are selected. Elements specified in this procedure will overrule (and hence determine specifics of the experiment setup) over those of the default ("reference") setup in the repository.
+  1. launch experiment, including build, preparation of input data, carrying through climate data generation, preparation of input data, forecast, post-processing and repetition of the above (cycling). 
+  1. the above process is executed with help of a mini-SMS (Scheduler and Monitoring Script) system with/without graphic user interface.  
+   
+== HARMONIE Source and Operational Installation At DMI ==
+
+The system source for the adapted HARMONIE versions for DMI's supercomputer platform, XC30, have been installed locally. e.g., the sandbox of the repository behind the operational HARMONIE systems at DMI are available under
+{{{
+   /oprhome/aldopr/opr_src/nea40h11          # NEA40H11
+   /oprhome/aldopr/opr_src/igb40h11          # IGG40H11
+   /devhome/epstst/opr_src/COMEPS/edka40h11         # EDKA40H11
+   /devhome/aldtst/harmonie_src/nea40h111          # NEA40H111
+   /devhome/aldtst/harmonie_src/igb40h111          # IGB40H111
+}}}
+Users may check from the above directories HARMONIE source codes and scripts for different versions.
+
+It is possible to compile different HARMONIE versions on DMI platforms using specific compiler/platform configuration (DMI.xc50-gnu, DMI.xc50-cce... ). Note that unadapted HARMONIE versions normally need to go through local adaptation first to take into account platform-specific structures (path, conventions etc.). 
+
+== Set up and Perform Harmonie experiment on DMI Cray XC50 ==
+
+ 1. create an experiment directory $exp under $HOME/hm_home, where $exp is a name of your free choice. Example given below use setup for igb40h111 and to be run as $USER.
+{{{
+   mkdir -p $HOME/hm_home/$exp; cd $HOME/hm_home/$exp  
+}}}
+ 1. link utility script Harmonie
+{{{
+   alias Harmonie  ~aldtst/Harmonie 
+}}}
+ 1. set up basic working environment for launching Harmonie experiment
+{{{
+
+   Harmonie setup -r /devhome/aldtst/harmonie_src/igb40h111/igbsrc -h DMI.xc50-gnu       
+}}}
+ 1. The above 'setup' option will install minimum settings for running Harmonie experiment using igb40h1.1.1 settings on XT50 with GNU compiler
+{{{
+   config-sh/hm_vn                                  # A directory name of the reference source, in this case: /devhome/aldtst/harmonie_src/nea40h11/neasrc
+   config-sh/Main                                   # Harmonie start script
+   scr/include.ass                                   # assimilation settings
+   msms/harmonie.pm                                   # some of the configuration settings
+   sms/config_exp.h                                   # Harmonie experiment configuration settings
+   Env_system => config-sh/config.DMI.xc50-gnu           # platform definition file defining platform, compiler and main directory structures 
+   Env_submit => config-sh/submit.DMI.xc50-gnu           # job header creation tools for background and batch jobs
+}}}
+ 1. alternatively, if you intend to use an existing setup to start your first experiment, e.g., ~aldtst/hm_home/igb40h111, the above steps can be skipped by simply
+{{{
+   mkdir -p ~/hm_home
+   rsync -vaux ~aldtst/hm_home/igb40h111 .       
+}}}
+ 1. modify relevant paths/settings in the basic setup file, such as
+{{{
+   sms/config_exp.h                   
+}}}
+ 1. if applicable, 'check out' relevant source codes or scripts in order to do modification. See more details in next chapters.
+{{{
+   Harmonie co scr/Get_ifsbc                   # e.g, to modify something about forecast script
+   Harmonie co src/arp
+}}}
+ 1. launch a cold start experiment, e.g.,
+{{{
+   Harmonie start DTG=2019072400 DTGEND=2019072406 BUILD=yes # this runs forecast with start cycle 2019072400 and last cycle on 2019072406,
+             # with a forecast length of 48h. Note that due to limited storage space on XC50 only obs and boundary data for the past few 
+             # days are available. It is thus safer to pick up very recent dates for experiments
+             
+}}}
+ 1. If you want to run historical episodes  (within 1 year), you can
+{{{
+cd $HOME/hm_home/$exp
+Harmonie co Get_ifsbc
+
+edit so that
+
+ECSURF=/devdata/aldtst/gdbopr/ECMWF/GLM/FC/SF/RL/27500_-46500_-28000_1500_150_150
+ECUA=/devdata/aldtst/gdbopr/grib_edition_2/ECMWF/GLM/FC/ML/RL/27500_-46500_-28000_1500_150_150
+}}}
+ 1. The experiment results including log files are in /data/$USER/hm_home/$exp
+    * Log files are in form of HM_*html and stored in /data/$USER/hm_home/$exp/archive/log
+{{{
+      HM_Date*html: log files for main loop 
+      HM_MakeCycleInput*html: log files for cycle preparation
+      HM_Postprocessing*html: logfiles for post-processing
+}}}
+    * experiment data for several cycles earlier will be automatically deleted
+    * full set of experiment data are archived in /data/$USER/hm_home/$exp/archive/$yyyy/$mm/$dd/hh/$ll
+    * Surface parameters in Grib format for operational IGB40H11 are located in /lustre/development/gribdatabase/94/80/FC/SF/RL/1870_-1500_18418_19248_021_021/$yyyy$mm$dd$hh
+    * Pressure level parameters in Grib format for operational IGB40H11 are located in /lustre/development/gribdatabase/94/80/FC/PL/RL/1870_-1500_18418_19248_021_021/$yyyy$mm$dd$hh
+    * Model level parameters in Grib format for operational IGB40H11 are located in /lustre/development/gribdatabase/94/80/FC/ML/RL/1870_-1500_18418_19248_021_021/$yyyy$mm$dd$hh
+    * Offline postprocessing parameters in Grib format for operational IGB40H11 are located in /lustre/development/gribdatabase/94/80/FC/PP/RL/1870_-1500_18418_19248_021_021/$yyyy$mm$dd$hh
+    * HARMONIE grib parameter and output lists are available [http://varulven.dmi.dk/~aldopr/griblist.html in DMI-internal webpage]
+ 1. You can follow your model runs via links in the Graphic User Interface (GUI) pop-up window
+{{{
+   cd ~/hm_home/$exp; Harmonie mon
+}}}
+    * You can turn off the graphic user interface prior to launch of experiment by
+{{{
+   setenv mXCdp DISABLE; setenv mSMS_WEBPORT=0
+}}}
+    * You can exit from the graphic user interface using File-> Quit GUI on the GUI window while keeping the experiment running
+    * You can then recover the previously closed GUI by
+{{{
+   cd ~/hm_home/$exp
+   Harmonie mon                                                 
+}}}
+    * You can terminate the experiment completely by using File->Exit miniSMS button via the GUI
+    * To save time on compilation which could take many hours, in case you have not changed Fortran source under src and util, you may want to define in sms/config_exp.h to point BINDIR to other existing directories with HARMONIE executibles, such as BINDIR=/oprdata/aldopr/hm_home/nea40h11/bin
+    * Anytime you change your experiment domain (which means that you need to regenerate monthly climate data),  make sure you specify in sms/config_exp.h that CREATE_CLIMATE=${CREATE_CLIMATE-yes} and CLIMDIR=$HM_DATA/climate. The $CLIMDIR shall be completely empty for a new experiment.
+
+== Modification of source codes ==
+ * if you want to modify, add, delete source code from the reference setting, you may do so on the experiment set-up directory. Assuming again you have an experiment setting on $HOME/hm_home/$exp
+   1. First, 'check out' the relevant source codes for modification.
+{{{
+   Harmonie co apl_arome.F90                                  # or
+   Harmonie co src/arp/phys_dmn/apl_arome.F90                   
+}}}
+   1. modify the source codes
+   1. eventually, modify also the scripts in similar fashion, see examples below.
+   1. all done, launch the experiment:
+{{{
+   Harmonie start DTG=2019072400 
+}}}
+== Modification of scripts ==
+  * Selection of model domain and resolution
+     * edit sms/config_exp.h for selection of DOMAIN other than "IGB" 
+       * e.g., NEA,TAS, SGL 
+     * check out and edit scr/Harmonie_domain.pm for specification of domain definition.
+== Difficulties you may encounter ==
+  * You may encounter difficulties in following the above instruction as the surroundings about the above contents has been changed. Please do not hesitate to contact authors for help and for correction/update of informations.
+  * Errors in file path etc. It is possible that some of the scripts/settings in the DMI code branch assumed running by operational group. Thus permission issues. This needs to be corrected when detected.
+  * The native HARMONIE data is written on FA format. As it is now there is no automatic generation of GRIB data. Tools for doing so needs to be presented separately. Ask the core HARMONIE staffs for help.
+=== Additional Reference ===
+ * [wiki:HarmonieSystemDocumentation Harmonie System Documentation]
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

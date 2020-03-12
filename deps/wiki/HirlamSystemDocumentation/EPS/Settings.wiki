@@ -1,0 +1,68 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== Hirlam System Documentation ==
+= Hirlam Ensemble Prediction =
+[[Center(end)]]
+
+[[Center(begin)]]
+== Settings ==
+[[Center(end)]]
+
+In the following tables of possible settings for parameters directly related to Hirlam EPS, the setting in bold usually depicts the default.
+
+|| || || ||
+|| '''parameter''' || '''settings''' || '''Description''' ||
+|| || || ||
+|| ENSBND          || '''teps_eur''' || specification of ensemble boundary data, `teps_eur` identifies European TEPS. ||
+||                 || eps_ec         || ECMWF EPS ||
+||                 || det_ec         || ECMWF deterministic model boundary (for SLAF) ||
+||                 || teps_no        || Norwegian TEPS ||
+|| || || ||
+|| ENSCINT         || '''12'''       || ensemble forecast cycle interval, for ensemble members that do not run own DA, forecast length defined by `LL` ||
+|| || || ||
+|| ENSDA           || ''':000:'''    || list of ensemble members to run with DA (specified in ANALYSIS), they cycle with `FCINT` frequency. Note that if ENSSEL is specified, the members from ENSDA must also be listed in ENSSEL. ||
+||                 || :nnn:mmm:...   || colon separated list of members ||
+|| || || ||
+|| ENSDALL         || '''06'''       || forecast length for members listed in `ENSDA`, during intermediate `FCINT` cycles in between `ENSCINT` cycling ||
+|| || || ||
+|| ENSDAFAIL       || '''::'''       || list of tolerated failures for forecasts done in the ENSDA intermediate cycles; empty list "::": no failure tolerated ||
+|| ENSFAIL         || '''::'''       || list of tolerated failures for forecasts done in the ensemble cycles (ENSCINT); empty list "::": no failure tolerated ||
+||                 || :06-0:24-1:48-2:... || colon separated list of forecast lengths and the number of failures tolerated up to that length ||
+|| ENSFAIL_REGEX   || '''unset'''    || alternative regular expression to use in ENSFAIL check for detecting forecast length information in `fc_signals` ||
+|| || || ||
+|| ENSFIRST        || '''-1'''       || specification of first ensemble member, `-1` means ``no ensemble mode`` ||
+||                 ||      000       || the control run is the first member ||
+||                 ||      nnn       || member `<nnn>` is the first member ||
+|| || || ||
+|| ENSINIPERT      || '''bnd'''      || ensemble initial perturbation method. `bnd` specifies to create perturbations on basis of Hirlam control analysis and perturbed boundary data ||
+||                 ||     hlsv       || Hirlam singular vector increments (NOTE: this is not the calculation of SVs! Currently, this calculation has to be done externally) ||
+||                 ||     slaf       || Scaled Lagged Average Forecasting (SLAF) ||
+|| || || ||
+|| ENSSEL          || '''::'''       || selection of ensemble members from within the range ENSSTART and ENSSIZE, an empty list means to run all members from the range between ENSSTART and ENSSIZE ||
+||                 || :nnn:mmm:...   || colon separated list of members ||
+|| || || ||
+|| ENSSIZE         || '''-1'''       || specification of ensemble size excl. control run, `-1` means ``no ensemble mode`` ||
+||                 ||      000       || no perturbed members ||
+||                 ||      nnn       || `<nnn>` perturbed members ||
+|| || || ||
+|| RND_EVENTTYPES  || '''::'''       || switch for ensemble random event types ||
+||                 || :con:          || `con` switches random choice of convection scheme on ||
+|| || || ||
+|| SLAF_KMAX       || '''2.5'''      || maximum perturbation weighting factor for SLAF ||
+|| STOCPHYS        || '''NONE'''     || choice of stochastic physics scheme ||
+||                 ||      ALL       || stochastic perturbation of all tendencies due to the physics ||
+||                 ||      CON       || stochastic perturbation for the tendencies due to convection ||
+||                 ||     WIND       || stochastic perturbation for the tendencies of the wind components ||
+|| || || ||
+|| MARS_TMPDIR     || ,,^'''ec[tmp]:/hirlam/bnd/$ENSBND'''^,, || path to the Hirlam boundary data pool (specified in `Env_ecmwf`). Default setting depends on ENSBND ||
+|| || || ||
+
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

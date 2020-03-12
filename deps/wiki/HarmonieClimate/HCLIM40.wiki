@@ -1,0 +1,42 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Climate cy40''' =
+[[LastModified]]
+[[Center(end)]]
+
+'''This page is intended for communication of status, development and documentation of HARMONIE Climate (HCLIM) based on cy40.'''
+
+== Status of climate aspects in harmonie-40h1 ==
+
+This list currently refers to the status of harmonie-40h1.1.beta.3 as was used for the [wiki:HarmonieSystemTraining2015/Exercises exercises during the HCLIM training in September 2015]. 
+
+=== Implemented/misc ===
+
+ * SST/SIC update from boundary (ECMWF) fields is working. No handling in the case of nesting from ALARO/AROME which is the case also in 38h1.1
+ * SURFEX_LSELECT and restart functionality implemented. It also works with the I/O-server which is not the case for 38h1.1
+ * Multi output streams working although not tailored for climate aspects.
+ * ALARO0/ALARO1 namelist settings are tailored for HarmonEPS resolution (2.5km)
+ * NetCDF conversion implemented.
+ * 40h1 is based on SURFEX 7.3 with its known deficiencies in e.g. the DIF scheme.
+ * SURFEX_PREP already default in 40h1.
+
+=== Missing ===
+
+ * Flake not tested.
+ * Functionality to read RCP greenhouse gas data
+ * All above mentioned SURFEX changes but LSELECT.
+ * ECODIR/RCPDIR directory convention
+ * ALARO to ALARO nesting unknown
+ * SST_ONLY flag in gl_grib_api
+ * Make some surface fields optional in gl interpolation ( technical change ) (Patrick Samuelsson)
+
+=== Planned development ===
+
+ * Ice model (Yurii Batrak)
+ * RACMO turbulence formulation (Wim De Roy)
+ * Microphysics updates (Karl-Ivar Ivarsson, Lisa Bengtsson)
+ * Upgrade to ECOCLIMAP v2.3 (Ulf Andrae)
+ * ALARO1 surfex interface (Patrick Samuelsson, Anna Fitch )
+ * Better handling of minute output (name convention, FA file header) (Lars Berggren)
+
+ See [wiki:Harmonie_40h1#Tentativechanges 40h1] information for more details.

@@ -1,0 +1,28 @@
+[[PageOutline]]
+
+= '''Instructions about HIRLAM Helpdesk''' =
+
+In order to make routine support tasks visible to a wider community so as to benefit more people and attract contribution by more, HIRLAM recently opened a [http://hirlam.org/index.php?option=com_kunena&Itemid=160&func=listcat&catid=1 forum] for typical helpdesk questions. The idea is, staffs "on-duty" shall act as primary contact person to see through questions and issues to either get solved, or being channeled into right hands. The hope is improve the support to the HIRLAM community and that less questions and problems get "lost" at few hands.
+
+When on duty, make sure that
+
+ 1. Answer simple support questions yourself, if you can. At mimimum, provide a response
+ 1. Guide people to search in the forum for similar already reported problems
+ 1. Notify the right experts to help with the problem if you feel you can't help yourself
+ 1. Make sure the questions are followed up appropriately
+ 1. Create a [https://hirlam.org/trac/report ticket] on bugs reported.
+
+When in doubt, always write to some one, e.g., system-core@hirlam.org or others, for advice
+
+In order to get a good working practice on this you should always ask people to post their questions on the HIRLAM forum instead of sending emails. '''NOTE''' You are not expected to give a 24h service and spend all your time to solve other peoples problems. The important thing is to make problems visible, so that unsettled question and reported bugs do not get lost.
+
+You will be notified well in advance about when you are on duty. The current on duty list is available 
+[wiki:OnDuty here].
+
+If you have any questions, don not hesitate to ask the project leader for system.
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

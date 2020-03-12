@@ -1,0 +1,175 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Working Week on DA & EPS 2013.''' =
+''MET Norway, Oslo. Monday 4 November - Friday 8 November. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+The purpose of the HIRLAM/ALADIN joint working week on DA and EPS is to initiate closer collaboration between DA and EPS communities  in HIRLAM consortia and to achieve better understanding of challenges, problems and achievements in these two direction of reserach. The  emphasis is on the novel developments in both areas and on the priorities for the longer term algorithmic investments. The specific problems will be addressed as well in parallel sessions. The ultimate goal is the design of the consistent EPS-DA system for convection permitting scales.
+ 
+Following are the main headlines:
+
+ 1. Long-term algorithmic investments in HIRLAM consortia
+   a. flow-dependent DA framework (2DEnsVAR, 4DEnsVAR versus 4DVAR Hybrid, HARMONIE AROME/ALARO 4DVAR, Gaussian Quadrature 4DVAR, low regularization norm)
+   b. LAM specific issues (extension zone, Jk constraint, control of LBC)
+   c. Phase (non-additive)-error correction (image warping, "super-hybrid" /synthesis of image warping and hybrid VAR ,  hybrid "FA + 3DVAR" for radar data )  
+ 1. Development of consistent EPS-DA system
+ 1. Operational GLAMEPS.
+ 1. Hindcast-experiments for future GLAMEPS_v2
+ 1. HarmonEPS experiments.
+ 1. Post-processing and Ensemble calibration.
+ 1. Verification issues
+
+
+== Participants as of 14. October==
+ 
+
+ || Maurice Schmeits || KNMI || Monday Noon - Friday Noon || Improving GLAMEPS Wind Speed Forecasts by Statistical Postprocessing ||
+ || Andrew Singleton || MET Norway || || ||
+ || Sibbo van der Veen || KNMI || || ||
+ || Bjørn Stensen || SMHI || Monday Noon - Friday Noon || || 
+ || Juha Kilpinen || FMI || Monday Morning - Thursday Afternoon || || 
+ || Thomas Nipen || MET Norway || Tuesday Morning - Friday Noon || ||)
+ || Xiaohua Yang || DMI || Monday morning - Friday Afternoon  || Quality & monitoring  of the operational GLAMEPS. ||
+ || Alex Deckmyn ||  METEO BE || Tuesday - Friday Noon || HARP ||
+ || Jelena Bojarova || MET Norway || Monday Morning - Friday Noon || Low norm regularization for sharp transitions ||
+ || Inger-Lise Frogner || MET Norway || Monday Morning - Friday Noon || ||
+ || Jose Antonio Garcia-Moya || AEMET || Monday Noon - Friday Noon || Model error in HarmonEPS: multiphysics versus SPPT ||
+ || Harald Schyberg || MET Norway || || || 
+ || Nils Gustafsson || SMHI || Monday Noon - Friday Noon || 4DEnsVAR versus Hybrid 4DVAR in HIRLAM forecasting system; position error, "super-hybrid" and the best member selection ||
+ || Jeanette Onvlee || KNMI || Monday Noon - Friday Noon || ||
+ || Åke Johansson || SMHI || || Another look on spread and skill ||
+ || Ole Vignes || MET Norway || Monday, Tuesday, Friday || ||
+ || Kai Sattler || DMI ||Monday Noon-  Friday Noon ||  Operational GLAMEPS production || 
+ || Jan Barkmeijer || KNMI || Monday Noon - Thursday || Gaussian Quadrature 4DVAR; 4DVAR AROME - status, problems and further steps ||
+ || Roger Randriamampianina || MET Norway || || ||
+ || Mate Mille || OMHZ || Monday - Friday || ||
+ || Tomas Landelius || SMHI || Monday Noon- Tuesday Noon || Strategy for surface data assimilation : towards the coupled DA system || 
+ || John Bjørnar Bremnes || MET Norway || || ||
+ || Malte Müller || MET Norway || || ||
+ || Teresa Valkonen || MET Norway || Monday, Tuesday || || 
+ || Thomas Schwitalla || Hohenheim University || Monday Morning - Wednesday ||  ||
+
+== Agenda ==
+
+     * Monday morning (08.00 - 13.00)
+       ''* Working session for those that arrive early (meeting room Castellanus and Cirrus)
+
+     * Monday afternoon (13.30 - 1700)
+        * Welcome (meeting room Castellanus)
+        * Status and overview, EPS and DA. Presentations (meeting room Castellanus)
+           * Kai Sattler " Operational GLAMEPS production"  
+           * Xiaohua Yang "Quality & monitoring of the operational GLAMEPS"  (moved to working session)
+           * Maurice Schmeits "Improving GLAMEPS Wind Speed Forecasts by Statistical Postprocessing" 
+           * Jose-Antonio Garcia-Moya "Model error in HarmonEPS: multiphysics versus SPPT"
+           * Åke Johansson "Another look on spread and skill "  
+           * Jan Barkmeijer "4DVAR AROME - status, problems and further steps"
+           * Jan Barkmeijer "Guassian Quadrature 4DVAR"
+           * Nils Gustafsson "4D-Ens-VAR versus 4DVAR Hybrid in HIRLAM forecasting system"
+           * Nils Gustafsson "Position error, super-hybrid and the best member selection"
+           * Tomas Landelius "Strategy for surface data assimilation - towards the coupled DA system"
+           * Jelena Bojarova "Implementation of Large scale errors constraint in HIRLAM and HARMONIE " 
+           * Jelena Bojarova "Low regularization norm for sparp transitions"     
+        * Working session possible in parallel  (meeting room Cirrus)
+        
+     * Tuesday morning(09.30 - 12.00) Two parallel sessions. Discussions
+        * DA: The optimal design of the data assimilation system on convective scales (meeting room Castellanus). Topics: 
+          * Constraining large scale information in HARMONIE ([wiki:HarmonieSystemDocumentation/LSMIXandJk large scale error constraint], coupling with the host model, biases and the domain size)
+          * Meaningful scales for analysis in  the convection permitting models, digital filter initialisation and balances
+        * EPS: GLAMEPS discussions. Operations and possible updates for a version 2 (meeting room Cirrus). Topics:
+          * wp 2014 
+          * status of preparation for v2 and parallel suite
+            * '''ecgate migration'''
+            * '''alaro with isba and surfex; domain/resolution change''' (technical aspects, cpu resource allocation, quality evaluation); control vs perturbed members
+            * '''HIRLAM with 7.4 and domain/resolution change''', 3DVAR with AMSU data; 
+            * '''output parameters''' (snow, dew point, global radiation, cloud cover, gust wind, + orography, land-sea mask). 
+            * estimation of '''storage and cleaning/archiving''' strategy
+            * '''backup''' arrangement 
+          * GLAMEPS web page and monitoring
+            * '''monitoring graphics''' with latest forecast with controls and ensemble mean for main parameters, sst/ice analysis
+            * basic '''verification scores''' and regular update
+            * '''documentation/instruction''' on the web (legend, reference, EPS vocabulary dictionary...)
+          * GLAMEPS performance issues
+            * scores: SST problem/T2m; performance with precipitation for Sochi;  Dutch heavy rain in October; Oct 28 storm
+          * Delivery of xml-files.
+        * Working session possible in parallel  (room !MetCoOp)
+ 
+     * Tuesday afternoon (13.00 - 17.00). Two parallel sessions. Discussions.
+        * DA: Longer term algorithmic investments in the HIRLAM consortia
+            * priorities for core data assimilation developments in HARMONIE and the challenges 
+               * 4DVAR AROME / 4DVAR ALARO  and potential problems (scalability, computational cost, non-linear processes)
+               * GQ 4DVAR : improvement of computational effieciency (convergence)
+               * 4D-Ens-VAR : improvement of computational efficiency and performance (consistent ensemble prediction system)
+               * correction of position errors  in LAM  (preservation of flow-dependent balances )  
+            * Research topics 
+               * towards coupled UA-Surface DA system
+               * framework for the collaboration with Hohenheim University      
+        * EPS: Verification and Post-processing. 
+            * Discussion: HARP and verification of GLAMEPS and HarmonEPS (meeting room Cirrus). Topics:
+               * wp 2014 
+               * HARP and observation monitoring
+               * graphics and web presentation: pre-generation or on the fly.
+            * Discussion: post-processing and calibration of GLAMEPS and HarmonEPS (meeting room Cirrus). topics:
+               * wp 2014 
+               * Is it realistic to calibrate for the whole of GLAMEPS area? 
+               * Include calibration in GLAMEPSv2?
+        * Working session possible in parallel  (meeting room Castellanus)
+       
+     * Wednesday morning (09.00 - 12.00)
+        * 09-12: HarmonEPS discussions (starting with physics) (meeting room Castellanus)
+        * 10-12: Video-conference  with MF (Fjørtoft video-conf. room )
+           * exchange of experience and the framework for collaboration
+        * Working session if you are not taking part in the above discussion (meeting room Cirrus, Castellanus)
+ 
+     * Wednesday afternoon (13.00 - 17.00)
+        * EPS-DA discussion (meeting room Castellanus). Joint session: Possible topics for discussion:
+             * What is seen as the candidate !EnDa systems?
+             * What are the pros and cons of the different approaches?
+             * What to choose? All efforts on one algorithm? Or parallel developments of several?
+             * What does DA require from EPS system?
+             * How to bring the DA/EPS cooperation forward? Agreeing on designing common experiments?
+             * time-frame
+        * Late afternoon, Parallel sessions:
+           * DA: wp 2014  
+           * EPS: Discussion: HarmonEPS continued (meeting room Castellanus). Topics:
+             * wp 2014
+             * Designing HarmonEPS - what do we see as the best approach for perturbing ini, bnd, phys ?
+             * Size of area, number of members, forecast length (what can we afford, what is most important?)  
+             * Sochi approaching. Set-up of HarmonEPS for Sochi (cy38?, str functions?, extra obs? Alaro + Surfex?) 
+        * Working session if you are not taking part in the above discussion (meeting room Cirrus)
+
+     * Thursday
+        * Working session (meeting room Cirrus and Castellanus)
+
+      * Friday
+        * Working session (meeting room Castellanus and Cirrus) 
+        * Wrap-up of ww
+
+== Preparations ==
+
+* Wired network access will be available. Preferably, people should bring their own laptop. Please let us know in advance if this is not possible.
+ 
+== How to get here ==
+
+* From airport to hotel:
+From airport to down-town Oslo: Either take the Airport Express train or a regional train (NSB) from the airport to down-town Oslo and get off at Oslo S (Oslo central station). The regional trains are a bit cheaper and only take a few more minutes, but they are not as frequent as the Airport Express trains. For information about regional train times visit https://www.nsb.no/?lang=en_US with "Oslo Lufthavn" as departure place and "Oslo S" as arriving place. Please note that you have to decide on what train company to use (NSB or Express train) as the tickets can not be used on both companies. NSB machines have red details and Airport Express train have orange details, they are also labelled of course. Then either walk from Oslo S to the hotel, see map under "Attachments", or take the Metro one station to Stortinget and walk from there. 
+
+* From airport to MET Norway:
+From airport to down-town Oslo: Either take the Airport Express train or a regional train (NSB) from the airport to down-town Oslo and get off at Oslo S (Oslo central station). The regional trains are a bit cheaper and only take a few more minutes, but they are not as frequent as the Airport Express trains. For information about regional train times visit https://www.nsb.no/?lang=en_US with "Oslo Lufthavn" as departure place and "Oslo S" as arriving place. Please note that you have to decide on what train company to use (NSB or Express train) as the tickets can not be used on both companies. NSB machines have red details and Airport Express train have orange details, they are also labelled of course. Then to come to MET Norway you continue with Metro line 3, 4 or 6 (direction west). Get off at "Forskningsparken" station. Follow the signposted footpath to Forskningsparken main entrance. When entering the building follow the corridor slightly to the right of the entrance along the building to the end, there you will find the entrance to MET Norway Research department.
+
+* From hotel to MET Norway:
+From Metro station Stortinget take Metro line 3, 4 or 6 (direction west). Get off at "Forskningsparken" station. Follow the signposted footpath to Forskningsparken main entrance. When entering the building follow the corridor slightly to the right of the entrance along the building to the end, there you will find the entrance to MET Norway Research department.
+
+
+== Train tickets ==
+You buy them in ticket machines at the airport. Note that there are two different train companies that goes from the Airport to down-town Oslo, and make sure you but the right ticket, see above on how to get here for details.
+
+== Metro tickets ==
+You need to buy tickets before you enter the Metro. Machines are available. For details on prices and types of tickets visit:  https://ruter.no/en/tickets/
+
+== Hotel ==
+
+A block booking at THON HOTEL MUNCH at a rate of NOK 845 per night including breakfast has been arranged. Block reference !#4915473. Everyone sends an email to the hotel themselves (munch.bookingsjef<at>thonhotels.no) with subject: «Meteorolgisk Insitutt». Please specify the dates of your stay. The block booking is valid until 21. October 2013.
+

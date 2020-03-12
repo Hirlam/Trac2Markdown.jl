@@ -1,0 +1,97 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Use of Observation''' ==
+[[Center(end)]]
+
+== Information about the observation data format (ODB) used in HARMONIE
+
+   * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/UseofObservation/ODBusage2.pdf ODBusage2.pdf ] Anne Fouilloux's (ECMWF) review presentation about ODB
+   * [http://data-portal.ecmwf.int/odbgov/ObsType/ http://data-portal.ecmwf.int/odbgov/ObsType/] ECMWF's ODB governance pages - useful for looking up ODB definintions
+   * [http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf] The ODB bible - Sami Saarinen's ODB user guide (2004)
+
+== Assimilated observation types in HARMONIE 3DVAR ==
+The observation types used by Harmonie (upper-air) data assimilation are defined in [source:tags/harmonie-40h1.1/scr/include.ass scr/include.ass].
+=== SYNOP ===
+By default all SYNOP observation types (including SHIP) are used. 
+{{{
+export SYNOP_OBS=1             # All synop
+}}}
+To blacklist SYNOP observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [source:tags/harmonie-40h1.1/nam/LISTE_NOIRE_DIAP nam/LISTE_NOIRE_DIAP]. For example to blacklist 10m winds from Valentia Automatic SYNOP (03953) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
+{{{
+ 1 SYNOP       14  41 03953    10112012
+}}}
+(Note: please don't add Valentia to your blacklist - the observations from there are pretty good!)
+
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://data-portal.ecmwf.int/odbgov/ObsType/ http://data-portal.ecmwf.int/odbgov/ObsType/]
+=== SHIP ===
+See information provided above on SYNOP observations.
+=== BUOY ===
+By default all BUOY observation types are used. 
+{{{
+export BUOY_OBS=1              # Buoy
+}}}
+To blacklist BUOY observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [source:tags/harmonie-40h1.1/nam/LISTE_NOIRE_DIAP nam/LISTE_NOIRE_DIAP]. For example to blacklist surface temperatures from BUOY M5 (62094) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
+{{{
+ 4 BUOY        165  11 62094    10112012
+}}}
+(Note: please don't add M4 to your blacklist - the observations from there are pretty good too!)
+
+For further information on ODB observation types, code types, variable numbers etc see the ECMWF ODB governance page here: [http://data-portal.ecmwf.int/odbgov/ObsType/ http://data-portal.ecmwf.int/odbgov/ObsType/]
+=== AIRCRAFT ===
+By default all AIRCRAFT observation types (including AMDAR, AIREP, ACARS) are used. 
+{{{
+export AIRCRAFT_OBS=1          # AMDAR, AIREP, ACARS
+}}}
+Below are lines added by Xiaohua to the  DMI dka37 LISTE_NOIRE_DIAP file to exclude problematic aircraft observations:
+{{{
+2 AMDAR 144 2 EU0028 08292013
+2 AMDAR 144 2 EU0092 01042013
+2 AMDAR 144 2 EU0079 01052013
+2 AMDAR 144 2 EU0097 01052013
+2 AMDAR 144 2 EU0107 01052013
+2 AMDAR 144 2 EU0033 01062013
+2 AMDAR 144 2 EU0118 01062013
+2 AMDAR 144 2 EU0112 07052013
+2 AMDAR 144 2 EU1110 08122013
+2 AMDAR 144 2 EU0074 08122013
+}}}
+=== TEMP ===
+By default all TEMP observation types are used. 
+{{{
+export TEMP_OBS=1              # TEMP, TEMPSHIP
+}}}
+=== PILOT ===
+By default all PILOT observation types are used. 
+{{{
+export PILOT_OBS=1             # Pilot, Europrofiler
+}}}
+
+=== AMSUA ===
+By default all AMSUA observation types are not used. 
+{{{
+export AMSUA_OBS=0             # AMSU-A
+}}}
+To use locally received AMSUA data provided by EUMETCast set ATOVS_SOURCE to local in [source:tags/harmonie-40h1.1/scr/include.ass scr/include.ass]:
+{{{
+export ATOVS_SOURCE=mars       # local: EUMETCast; 
+                               # mars: data from MARS
+                               # hirlam: hirlam radiance template 
+}}}
+
+=== Other observation types ... ===
+More documentation to follow ...
+{{{
+export AMSUB_OBS=0             # AMSU-B, MHS
+export IASI_OBS=0              # IASI  
+export PAOB_OBS=0              # PAOB not defined everywhere
+export SCATT_OBS=0             # Scatterometer data not defined everywhere
+export LIMB_OBS=0              # LIMB observations, GPS Radio Occultations
+export RADAR_OBS=0             # Radar 
+}}}
+
+
+
+== Documentation of ALADIN use of observation ==
+  [http://rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf Sandor's document about observation dataflow in ALADIN ]
+
+

@@ -1,0 +1,23 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on Radiance Data Assimilation''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+== First meeting: 30 March 2016, 10:00 CET ==
+
+== Participants ==
+
+ * Angeles Hernandez 
+ * Maria Diez 
+ * Roohollah Azad 
+ * Joan Campins 
+ * Magnus Lindskog 
+ * Patrik Benacek 
+ * Jana Sanchez Arriola
+ * Tuuli Perttula 
+ * Vincent Guidard
+ * Roger Randriamamoianina
+	

@@ -1,0 +1,167 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+= '''Migration of HIRLAM and HARMONIE from c2a to cca''' =
+[[Center(end)]]
+
+== General information ==
+
+ECMWF is in the process of replacing the current IBM based HPC with a Cray based system. The first part, cca is already in place and ECMWF’s HPC service will be solely provided by the Cray system, from 1 October 2014. For detailed information about the migration look at the ECMWF [https://software.ecmwf.int/wiki/display/HPCM/HPC+Migration+Home pages]. In this page the status of the HIRLAM/HARMONIE migration is described.
+
+== Prepare yourself for cca ==
+
+Read the ECMWF [https://software.ecmwf.int/wiki/download/attachments/31064952/Cray_EC.pdf?version=1&modificationDate=1392976969065&api=v2 presentation]
+
+== General problems ==
+
+ECMWF maintain a list of known problems encountered on cca on their wiki page: [https://software.ecmwf.int/wiki/display/HPCM/Known+Issues https://software.ecmwf.int/wiki/display/HPCM/Known+Issues]
+
+=== '''SHELL problem -- IMPORTANT''' ===
+It has been noticed that ksh and csh at ecgb doesn’t pass the environment properly to cray. '''It seems that only bash behaves correctly, but just opening a bash session doesn’t solve the problem'''. See forum post from Elena at FMI: [http://www.hirlam.org/index.php/forum/19-general-topics/1142-ssh-feature-in-ecmwf-cca-solved http://www.hirlam.org/index.php/forum/19-general-topics/1142-ssh-feature-in-ecmwf-cca-solved]
+
+To change the default shell on ecgb type:
+{{{
+changesh
+}}}
+
+and follow the instructions.
+
+== HARMONIE ==
+
+Note that this is work in progress and instructions and configurations may be subject to changes.
+
+=== Start an experiment on cca ===
+
+To start an experiment on cca you should setup your experiment on ecgb as usual with e.g.
+
+ {{{
+    ~hlam/harmonie_release/tags/harmonie-38h1.1/config-sh/Harmonie setup -h ecgb-cca -r ~hlam/harmonie_release/tags/harmonie-38h1.1
+ }}}
+
+=== Move an experiment to cca ===
+
+To move an existing experiment from c2a to cca do
+
+ {{{
+   Harmonie co config-sh/submit.ecgb-cca
+   ln -sf config-sh/submit.ecgb-cca Env_submit
+   Harmonie co config-sh/config.ecgb-cca
+   ln -sf config-sh/config.ecgb-cca Env_system
+ }}}
+
+Note that files for verification (vfld,vobs) that are not yet stored in ECFS have to be moved manually from the perm disks visible from c2a to the perm disks visible from cca. An rsync command would do the trick for you. Standing on ecgb you run:
+
+ {{{
+    rsync -vaux /c2a/perm/ms/$GROUP/$USER/HARMONIE/archive/EXPNAME /hpc/perm/ms/se/snh/HARMONIE/archive/
+ }}}
+
+Where EXPNAME is the name of your experiment. Note that for rsync the last "/" matters. EXPNAME should be without it and archive/ with it.
+
+=== Available compilers on cca ===
+
+On cca we have three compilers available, gfortran, Intel and Cray(cce). The compiling environment is chosen by the variable HM_CS in config-sh/config.ecgb-cca where HM_CS can be gnu, intel or cce. HARMONIE is so far only compiled with makeup and not yet with gmkpack.
+
+=== Migrated HARMONIE versions ===
+
+The following versions have been tested and are working on ecgb
+
+ {{{
+     ~hlam/harmonie_release/trunk                     ,HM_CS=gnu
+     ~hlam/harmonie_release/trunk                     ,HM_CS=cce, only tested with OMP_NUM_THREADS=1
+     ~hlam/harmonie_release/tags/harmonie-38h1.1      ,HM_CS=gnu
+     ~hlam/harmonie_release/branches/harmonie-37h1    ,HM_CS=gnu, compiled without OpenMP support
+     ~hlam/harmonie_release/branches/harmonie-37h1.2.bugfix    ,HM_CS=gnu, compiled without OpenMP support
+     ~hlam/harmonie_release/branches/harmonEPS-38h1.1 ,HM_CS=gnu, only tested with OMP_NUM_THREADS=1
+ }}}
+
+ Changes required to run harmonie-38h1.1 can be found [https://hirlam.org/trac/attachment/wiki/Migration2cca/fixes4cca_38h11.tar.gz in this tarfile]. Note that the tarfile may be subject to change when new problems are found and solved.
+
+=== Running jobs on the right node ===
+
+ ECMWF has reported that we run some jobs on the MOM node when they should be run on the compute nodes. This applies especially for jobs where gl is included. To make sure you run correctly you have to do three things.
+
+ 1. Set the correct prefix (MPPGL) for gl in Env_submit
+
+ {{{
+
+ %serial_cca_job = (
+ ...
+
+  'ZMPPGL'           => 'export MPPGL="aprun -q -n 1"' ,
+ ...
+ );
+
+ and 
+
+ $par_job{'ZMPPGL'}        = 'export MPPGL="aprun -q -n 1"' ;
+
+ }}}
+
+ 2. Make sure that the tasks using this runs in the {{{@serial_cca_aprun_list}}}. If you don't do this you job will fail with an error message
+
+ {{{
+ aprun: This node is configured to run without ALPS services
+ }}}
+ 
+
+ 3. Make sure the task Makeup_configure runs in the {{{@serial_cca_aprun_list}}}.
+
+=== Known problems ===
+
+ * The synchronization from ecgb to cca is '''very''' slow. Under investigation. One way to make it faster is to define in config.ecgb-cca
+ {{{
+   HM_LIB=$PERM/build_harmonie/$EXP/lib
+ }}}
+ for cca.
+ * Occasionally the listener fails, reported in #122, hopefully fixed in trunk by changeset [13288].
+ * There are still problems with the intel compiler as reported in #123.
+
+'''Please report back as soon as possible if you need access to other versions or if you have problems with the migration.'''
+
+=== Meteorological impact ===
+
+An example of the difference between c2a and cca.gnu for ALARO/AROME for the default trunk settings can be seen [https://hirlam.org/portal/smhi/HARMONIE_MONITOR/Trunk_test/ here].
+
+== HIRLAM ==
+
+'''NOTE: Before changeset [13383], that implements the running of HIRLAM on cca, script Env_ecmwf was in error, in that it did not request 137 levels of ECMWF model information as of DTG=2013062506 and later.'''
+
+Note that this is work in progress and instructions and configurations may be subject to changes.
+
+=== Start an experiment on cca ===
+
+To start an experiment on cca you should setup your experiment on ecgb as usual with e.g.
+
+ {{{
+    ~hlam/hirlam_release/trunk/config-sh/Hirlam setup
+ }}}
+
+=== Move an experiment to cca ===
+
+To move an existing experiment from c2a to cca do
+
+ {{{
+   ~hlam/hirlam_release/trunk/config-sh/Hirlam co config-sh/config.ecgate-cca
+   ln -sf config-sh/config.ecgate-cca Env_system
+ }}}
+
+=== Available compilers on cca ===
+
+On cca we have three compilers available, gfortran, Intel and Cray(cce).
+However, the HIRLAM system will only use the GNU compiler (gfortran).
+
+=== Migrated HIRLAM versions ===
+
+The only version that has been tested and is working on ecgb:
+
+ {{{
+     ~hlam/hirlam_release/trunk
+ }}}
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

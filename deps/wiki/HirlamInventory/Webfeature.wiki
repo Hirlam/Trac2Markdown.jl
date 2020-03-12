@@ -1,0 +1,41 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''HIRLAM NWP product web-links''' =
+[[Center(end)]]
+
+== Open Internet products ==
+
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| Public information [[br]] about local HIRLAM ||[http://www.dmi.dk/eng/index/research_and_development/dmi-hirlam-2.htm DMI-HIRLAM]||  ||[http://fminwp.fmi.fi/docs/VisuHir_info.html FMI-RCR]||[http://www.inm.es/web/infmet/modnum/hirlam.html INM-HIRLAM][[FootNote(See "Interpretacion")]]||||||||
+|| Hirlam weather chart ||[http://www.dmi.dk/dmi/index/danmark/vejrkort/hirlam-animation.htm Denmark] [[br]] [http://www.dmi.dk/dmi/index/gronland/vind_nuuk.htm Greenland]||  || ||[http://www.inm.es/web/infmet/modnum/hirlam.html Europe & Atlantic]|| [http://www.knmi.nl/waarschuwingen_en_verwachtingen/weerkaarten.php Europe and Atlantic] ||  ||   || ||
+|| meteogram ||[http://www.dmi.dk/dmi/index/danmark/byvejr_danmark.htm Denmark] [[br]]||  || ||   ||  ||  ||   || ||
+|| real time, synop observation ||[http://www.dmi.dk/dmi/index/danmark/vejrobservationer.htm Denmark] ||  ||  ||   || [http://www.knmi.nl/actueel Netherlands] ||  ||   || ||
+|| Radar image || [http://www.dmi.dk/dmi/index/danmark/radar.htm Denmark ]||  ||  ||[http://www.inm.es/web/infmet/radar/radar.html Spain] || [http://www.buienradar.nl The Netherlands ] ||  ||   || ||
+|| Satellite Image || [http://www.dmi.dk/dmi/index/danmark/satellit.htm Europe ]||  ||  ||[http://www.inm.es/web/infmet/satel/meteose.html Satellite Report]|| [http://www.knmi.nl/satrep/latest.htm Satellite Report] ||  ||   || ||
+|| SST ||[http://www.dmi.dk/dmi/index/danmark/havobservationer.htm Denmark ] ||  ||  ||[http://www.inm.es/web/infmet/satel/sprodi.html Spain & Atlantic]|| [http://www.knmi.nl/actueel/zeewatertemperatuur.html Europe and North Sea] ||  ||   || ||
+|| Ice-cover || [http://www.dmi.dk/dmi/chart00_01.pdf Greenland Ice]||  ||  ||   ||  ||  ||   || ||
+|| Lightning || [http://www.dmi.dk/dmi/index/danmark/lyn.htm Denmark]||  ||  ||[http://www.inm.es/web/infmet/rayos/rayos.html Spain]||  ||  ||   || ||
+[[FootNote]]
+== Internal web products  ==
+|| Institute || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| Synoptic chart || [http://kystpilen.dmi.dk/~hirlam/kystpilen/metgrafopr.html metgraf] ||  || [http://fminwp.fmi.fi/animations/ Europe and Scandinavia] ||00 UTC||  ||  ||   || ||
+|| Meteogram || [http://intranet.dmi.dk/~hlveropr/verdoc/meteogr6188.html Danish/Greenland Stations] ||  || [http://fminwp.fmi.fi/meteogramm/06/MG_idx.html Finland and Europe ]  ||   ||  ||  ||   || ||
+
+|| Observation usage monitoring || [http://intranet.dmi.dk/~hirlam/acmaplot/acmaT15_00.html per cycle], [http://intranet.dmi.dk/~hirlam/verdoc/ObsUs.html per month] ||  || [http://fminwp.fmi.fi/monitor/00/MonIdx_All.html per cycle] ||per cycle||  ||  ||   || ||
+|| Observation verification || [http://intranet.dmi.dk/~hirlam/verdoc/ver_0604.html day, month], [http://intranet.dmi.dk/~hirlam/verdoc/ver_06_1.html quarter] ||  ||[http://fminwp.fmi.fi/report/HirReport.html monthly]  ||weekly, monthly ||  ||  ||   || ||
+|| Field verification ||  [http://intranet.dmi.dk/~hirlam/verdoc/ver04.1/ver04_1FLD.pdf monthly, quarterly] ||  || [http://fminwp.fmi.fi/report/HirReport.html monthly ] ||   ||  ||  ||   || ||
+|| Mast verification ||  - ||  || [http://fminwp.fmi.fi/mastverif/mastverif.html kabauw, sodankulay] ||[http://www.latuv.uva.es/ciba/ciba.html CIBA]||  ||  ||   || ||
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,242 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= HIRLAM Data Format =
+[[Center(end)]]
+
+== HIRLAM Field Data Format: ASIMOF ==
+
+ASIMOF is the current HIRLAM data base format. 
+In the following, all (record)lengths, (word) pointers and 'words' are in units of NBPWIO (currently 32 bits)
+  * This applies to versions 1.01 and later. In an earlier definition, the units were computer words, and hence the format depended on the computer word length. The ASIMOF routines to read a file are upward compatible with earlier formats, but files can only be written in the new format. The write routines allow addition to an existing file, but only if the existing file is also in the new format.
+
+=== What is an ASIMOF file? === 
+An ASIMOF file is a data base structure, originating from KNMI. It is defined in a computer independent format. It consists of administration blocks which contain positive integers (last bit least significant), and user data. The file does not contain any record structure. In the following, the term `logical record' will be used to denote the data that the user wants to read or write by a single data base action. Logical records are identified by a `data base key', which consists of 27 words.
+=== Versions ===
+Proper version management started with version 1.01. This version defines a file format that is independent of computer architecture. Towards the end of 1998 version 1.02 was introduced.
+=== Access from Fortran ===
+On most computers, the file is easily accessed as a fortran random-access file, with record lengths of JPLREC (currently 3000) units. On big-endian machines, it is advised to swap bytes before (when reading) or after (when writing) access to the file. In the following, the word `record' refers to a group of JPLREC units. Note that the file itself does not have an embedded record structure, the word `record' is merely a way to refer to such a group. Where this concept needs explicit distinction from a `logical record', the term `physical record' will be used.
+Usually, a `logical record' will look to the Fortran program calling the ASIMOF routines as a Fortran array.
+=== The administration record(s) ===
+Each administrastion block fills up exactly one physical record. The first physical record in the file is an administration block. More administration blocks may be present in the file. An administration block consists of 30 words general administration (array `ADMIN') and 99 repetitions of 30 words, each relevant to one logical record. If there are more than 99 logical records, there will be more than 1 administration block. If the number of logical records is not a multiple of 99, there will be an unused part of the administration block, but even though unused, it will anyhow be present. One group of 30 words is refered to as array `BLOCKS'. 
+ * Contents of array ADMIN
+The following words of ADMIN have been defined. Those not mentioned are zero.
+|| word number ||  description ||
+|| 1 || number of logical records administrated in this block (0..99)||
+||  3 || last record referenced by this block||
+||  4  ||last word used in last record in this block||
+|| 5  ||JPLREC of producing process (see note 1)||
+|| 12 || File version nr. Currently 1.1 (=257) (see note 1)||
+|| 13 and 14 || experiment code (format 2A4) (see notes 1 and 3)||
+|| 15 || 1 if this block was changed, else 0 (used internallly by ASIMOF write routines)||
+|| 16 || creation date (yyyymmdd) (see notes 1 and 2)||
+|| 17 || creation time (hhmmss) (see notes 1 and 2)||
+|| 30 || physical record number of next administration block (0=none)||
+   * Notes:
+     1. words 5, 12, 13 and 14 to 17 are only set in the first administration record, in subsequent administration records (if present) they are zero.
+     1. creation date and time (words 16 and 17) are set from version 1.02 onwards. Before that, both words were 0. If the producing process does not have a proper current date/time implementation the date should be set to 19980101 and the time to 120000. Because 1.02 was introduced towards the end of 1998, dates before 19980102, including 0, should be interpreted as `missing'.
+     1. experiment code (words 13 and 14) is missing ('n-a ' and ' ', resp.) unless the creating process assigns it explicitly.
+ * Contents of array BLOCKS
+|| word number || description ||
+||  1 to 27   ||data base key of the logical records (see note) ||
+|| 28   ||number of the physical record containing the first word of the logical record ||
+|| 29  || address (word number) of the first word of the logical record in the physical record ||
+||  30   ||length (in words) of the logical record ||
+   * Note: Word 1 and 2 cannot be chosen freely by the user, because they have a special interpretation:
+     1. Word 1: number of words of the key actually used
+     1. Word 2: type of logical record:
+       * 0: GRIB (WMO)
+The data base key actually consists of the words BLOCKS(2)....BLOCKS(BLOCKS(1)) and hence these words must define the logical record uniquely.
+For logical records consisting of a WMO GRIB message, data base key elements 4 to 24 are by convention equal to the corresponding octets in the p[roduct definition block (section 1) of the GRIB message. An exception is word 13 (year of century), see the notes on version 1.02 below.
+=== User data === 
+The data are stored in logical records, that may extend over several physical records.
+=== Version notes === 
+Changes between version 1.01 and 1.02
+In version 1.01 the 13th data base key element for GRIB messages was equal to the year of century, or -later- to the year in 4 digits. If this element was less than 100 for all messages in the file, it was interpreted as if it had to be incremented by 1900. In version 1.02 there is no such anomalous treatment of the thirteenth element: it is assumed that if the key represents a year, it is written with 4 digits; a value less than 100 is treated as is (and hence not interpreted to mean a recent year).
+In version 1.02 two words were reserved in the first administration block, to hold creation date and time. In version 1.01 these two words were not used (set to 0).
+In version 1.02 a missing experiment identifier is indicated by the string 'n-a' (in 2a4 format) in words 13 and 14 of that administration block. In 1.01, those two words hold the binary 0 pattern, if not filled in by the creating process.
+In version 1.01 an unused part of a physical record could contain a left-over of a message that was written before. If this contained the 4 character string `GRIB' a binary GRIB reader could fail on not finding the end of the (incorrectly seen) GRIB message. In version 1.02 the unused part of the buffer is cleared (set to 0).
+
+== HIRLAM Time Series Output: TSF ==
+=== Description ===
+The following applies to TSF with format identifier 1102 (which is the current format).
+A TSF (Time Series File) is a set of records, sitting on an ASIMOF file. The format of an ASIMOF file is defined in the ASIMOF package (e.g. asimho(3)). Here it suffices to say that it is a computer independent file, consisting of a number of administrative data and 'records' containing the actual data. 
+A TSF consists of an administrative record (the so-called data descriptor record, DDR), the format of which is described below, and a number of data records (format: below). 
+A data record stores the time series of all data points for a single parameter at a single level. There is one data record for each single level parameter, and there is one data record for each multi-level parameter for each level. 
+The data records (and hence the parameters) are identified by descriptors, that follow Table B of BUFR (WMO, FM94-IX) with extensions (as listed below). The descriptors of the parameters present in the TSF are listed in the DDR and they are encoded in the data records.
+An ASIMOF file may contain several TSFs and/or data records not belonging to a TSF. This makes it necessary to define the mechanism to identify which records belong to a particular TSF on the ASIMOF file. This mechanism is, in principle, available through the administration kept by the ASIMOF package. Moreover, the necessary information is also kept within the data records themselves. The records of a particular TSF are distinguished by a number in the range 1 to 255. In the sequel, this number is refered to as the 'Id assigned by the creating program'. 
+The keys with which the data records of a particular TSF are stored in the ASIMOF data base structure correspond to octets 1 to 24 of section 1 of the data records, but elements 1, 2, and 3 of the keys are 24, 64 and 1102, resp., and element 11 has the value of octet 12, element 12 is 0. The DDR has the same keys, but elements 9 and 10 are 0, and element 2 is 2.
+Below is a concise overview of Fortran callable subroutines to access TSFs followed by a list of changes that programs, developed before April 1996, might need in order to be able to use the routines listed there, or to link to the current TSF libraries, or to access TSFs in the format described here (format code=1102). 
+=== The Data Descriptor Record (DDR) ===
+The DDR consists of four octets, with the ascii string 'BFTS', and a number of positive big-endian 32 bits integers. The DDR is divided into sections, as follows: (NB 'reserved' means not used, required to be zero). 
+ * Section 0 (DDR identification)                      
+|| 32bits word number || ||
+||0 ||BFTS ||
+ * Section 1 (file sizes, identifiers)
+|| 1     ||           Version nr*256*256*256+length of DDR in octets current version number is 0|| 
+|| 2        ||            Length of this section in words (currently 32)|| 
+|| 3        ||            Code identifier (currently 1102)|| 
+|| 4          ||          Type of file (1=TSF, 2=Trajectory)|| 
+|| 5           ||         reserved|| 
+|| 6          ||       Number of time levels|| 
+|| 7          ||       Number of data points|| 
+|| 8           ||      Number of single level descriptors|| 
+|| 9            ||     Number of multi level descriptors|| 
+|| 10           ||      Number of multi levels|| 
+|| 11           ||      Time range unit (as table 4 GRIB)|| 
+|| 12            ||     Period of time (as octet 19/20)|| 
+|| 13              ||   Id as assigned by the creating program|| 
+|| 14 to word 2  ||     reserved
+ * Section 2 (BUFR identification) (offset o is given by word 2 of section 1)
+|| o+ 1          ||       Length of section (octets), ignored|| 
+|| o+ 2         ||        BUFR edition number, ignored|| 
+|| o+ 3         ||        Originating centre, ignored|| 
+||  o+ 4        ||         Update sequence number, ignored|| 
+|| o+ 5         ||        Integer value of flag bits, ignored|| 
+|| o+ 6         ||        BUFR message type, ignored|| 
+|| o+ 7         ||        BUFR message sub type 1=normal, 2=trajectory TSF|| 
+|| o+ 8           ||      Local table version number 0=WMO, 1=HIRLAM BUFR tables|| 
+|| o+ 9      ||           Year most typical for message content (yyyy) (older files may contain yy)|| 
+|| o+10      ||           Month|| 
+|| o+11       ||          Day|| 
+|| o+12       ||          Hour|| 
+|| o+13       ||          Minute|| 
+|| o+14       ||          Model identification (local)|| 
+|| o+15       ||          Product definition number (local)|| 
+ * Section 3 (TSF identification) (offset o is given by word 2 of section 1 + 15) 
+|| o+ 1     ||            Year initial state (format yyyy) (older files may contain yy)|| 
+|| o+ 2      ||           Month|| 
+|| o+ 3       ||          Day|| 
+|| o+ 4         ||        Hour|| 
+|| o+ 5        ||         Minute|| 
+|| o+ 6        ||         Second|| 
+||  o+ 7        ||         Time increment (in units as per next word)|| 
+|| o+ 8          ||       Units of time increment: 11 = years, 12 = month, 13 = days, 14 = hours, 15 = minutes, 16 = seconds ||
+|| o+ 9       ||          reserved|| 
+|| o+10       ||          reserved|| 
+|| o+11       ||          reserved|| 
+|| o+12       ||          set to 1|| 
+|| o+13       ||          reserved|| 
+|| o+14      ||           reserved|| 
+ * Section 4 (Single level descriptors) (offset o is given by word 2 of section 1 + 15+14) 
+||  o+1 to o+word 8 of section 1 ||  Single element descriptors ||
+ * Section 5 (Multi-level descriptors) (offset o is given by word 2 of section 1 + 15+14 + word 8) 
+|| o+1 to o+word 9 of section 1 || Multi-element descriptors ||
+ * Section 6 (Coordinates) (offset o is given by word 2 of section 1 + 15+14 + word 8 + word 9) 
+|| o+1 to o+word 7 of section 1 || Latitudes (in 1.e-5 degrees), incremented by 2**30, of the data points ||
+|| o+1+word 7 to o + twice word 7 of section 1 ||  Longitudes (in 1.e-5 degrees), incremented by 2**30, of the data points||
+ * Section 7 (Time levels) (offset o is given by word 2 of section 1 + 15+14 + word 8 + word 9 + twice word 7) 
+|| o+1 to o + word 6 of section 1|| Time levels, in time increments as given by words o+7 and o+8 of section 3, incremented by 2**30 ||
+=== Description of the data records ===
+The format of the data records in a TSF conforms almost to the WMO standard 'GRIB'. The exceptions are: 
+  * Section 1
+|| Octet   4  || (GRIB tables version number) is 137 || 
+||    Octet  9  || (Indicator of parameter) is X of WMO BUFR tables (NB only BUFR table B is used, so F is zero) || 
+||  Octet   10  || (Indicator of type of level) is Y of WMO BUFR table B. || 
+||  Octet  11  || reserved (set to zero) || 
+|| Octet   12  || (level-2) is level counter (0 for single level fields) || 
+|| Octet  19  || (Period of time) is P1:period of time covered by the TSF in units as given by octet 18; see also octet 21 || 
+|| Octet  20  || See octet 21 || 
+|| Octet 21 ||  (Time range indicator) is 0 (P1 occupies octet 19)or 10 (P1 ocupies octet 19 and 20) || 
+|| Octet  24  || (Number missing) is the Id as assigned by the creating program (equal to word 13 of section 1 of the DDR) || 
+The values in octets 13 to 17 (year, month, day, hour, minute) are equal to those in words o+ 1 to o+ 5 of section 3 of the DDR. Those in octets 18 and 19 (time range indicator and P1, resp.) are equal to the values of words 11 and 12, resp., of section 1 of the DDR. 
+  * Section 2:
+This section is coded as if the data are on a regular latitude/longitude grid, stored in the order as given by the value 64 for octet 28. The x direction (constant latitudes), however, runs over the time levels, and the y direction over the data points. There is a one to one relation between the x grid points and the time levels as coded in the DDR (Section 7) and between the y grid points and the data point coordinates (Section 6 of the DDR). In particular: 
+   * Octet 7- 8: Number of time levels
+   * Octet 9-10: Number of data points
+=== Extensions to BUFR table B ===
+(The format of this table is: I6,X,A32,X,A13,X,I5,X,I8,X,I3)
+|| 055020 potential temperature, theta    ||  K        ||      1   ||   0     ||    12|| 
+|| 055021 pot. wet bulb temp., theta-w   ||   K         ||     1  ||    0   ||      12|| 
+|| 055022 equivalent pot. temp., theta-e  ||  K         ||     1  ||    0   ||      12|| 
+|| 055023 saturated pot. temp., theta-s   ||  K         ||     1  ||    0    ||     12|| 
+|| 055030 cloud amount on model level     ||  fraction  ||     2   ||   2    ||     7|| 
+|| 055031 high level cloud amount        ||   fraction   ||    2  ||    2   ||      7|| 
+|| 055032 medium level cloud amount      ||   fraction   ||    2  ||    2    ||     7|| 
+|| 055033 low level cloud amount         ||   fraction   ||    2  ||    2     ||    7|| 
+|| 055034 medium plus high cloud amount   ||  fraction    ||   2  ||    2     ||    7|| 
+|| 055039 total cloud amount             ||   fraction   ||    2  ||    2     ||    7|| 
+|| 055041 long wave radiation            ||   W/m**2     ||    1   ||  -1500  ||  11|| 
+|| 055042 short wave radiation           ||   W/m**2     ||    1   ||  -1500   || 11|| 
+|| 055100 surface pressure                ||  Pa        ||     -1   ||  0   ||      14|| 
+|| 055110 roughness length               ||   m           ||   4  ||    0     ||    17|| 
+|| 055120 surface temperature            ||   K           ||   1   ||   0   ||      12|| 
+|| 055130 surface relative humidity      ||  %          ||    0   ||   0     ||    7|| 
+|| 055132 convective precipitation        ||  kg/m**2    ||    2  ||    0      ||   12|| 
+|| 055141 surface radiation               ||  W/m**2     ||    1  ||    -1500   ||  11|| 
+|| 055142 surface albedo                  ||  fraction   ||    2  ||    0     ||    7|| 
+|| 055150 surf. sensible heat flux        ||  W/m**2      ||   1  ||    -1500  ||   11|| 
+|| 055151 surf. latent heat flux (evap.)  ||  W/m**2      ||   1  ||    -1500  ||   11|| 
+|| 055152 surf. latent heat flux (smelt)  ||  W/m**2   ||      1    ||  -1500  ||   11|| 
+|| 055153 surf. ground heat flux          ||  W/m**2   ||      1   ||   -1500  ||   11|| 
+|| 055154 surf. long wave radiat. flux    ||  W/m**2     ||    1    ||  -1500 ||    11|| 
+|| 055155 surf. short wave radiat. flux ||    W/m**2    ||     1  ||    -1500  ||   11|| 
+|| 055160 surf. rain flux                ||   kg/s/m**2   ||   4  ||    -500  ||    10|| 
+|| 055161 surf. snow flux                ||   kg/s/m**2 ||     4    ||  -500  ||    10|| 
+|| 055162 surf. ground water flux      ||     kg/s/m**2   ||   4   ||   -500   ||   10|| 
+|| 055163 surf. snow smelt                 || kg/s/m**2 ||     4 ||     -500  ||    10|| 
+|| 055164 surf. run off                   ||  kg/s/m**2  ||    4  ||    -500  ||    10|| 
+|| 055165 surf. evaporation               ||  kg/s/m**2  ||    4   ||   -500  ||    10|| 
+|| 055170 obukhov length                 ||   m|| || || || 
+|| 055171 pasquill class                 ||   pure number|| || || || 
+|| 055201 depth 1st ground layer          ||  m      ||        3   ||   0    ||     12|| 
+|| 055202 depth 2nd ground layer          ||  m       ||       3   ||   0    ||     12|| 
+|| 055209 depth climatol. ground layer   ||   m      ||        3   ||   0     ||    12|| 
+|| 055221 temp. 1st ground layer         ||   K    ||          1  ||    0   ||     12|| 
+|| 055222 temp. 2nd ground layer        ||    K   ||           1   ||   0    ||     12|| 
+|| 055229 temp. climatol. ground layer   ||   K   ||           1  ||    0  ||       12|| 
+|| 055231 1st ground layer wetness      ||    m     ||         4   ||   0   ||      12|| 
+|| 055232 2nd ground layer wetness      ||    m     ||         4  ||    0  ||       12|| 
+|| 055233 climatol. ground layer wetness ||   m    ||          4  ||    0   ||      12|| 
+|| 055240 solar angle                   ||    degrees   ||     0   ||   -90   ||    8|| 
+=== Fortran access to TSF ===
+Calling sequences:
+Below are the possible calling sequences of the available subroutines. Those in column 'read' are for TSFs to be read, those in column 'write' for TSFs to be written, those in between the two columns can be used for either. Notation: opt: optional few: zero or more calls note: see notes below All routines mentioned have their own manpage (in section 3). 
+ || || read   ||     write ||
+|| opt ||         astsfx      ||  give maximum dimensions within TSF library|| 
+|| opt ||     astsff      ||        give format of existing file|| 
+|| opt  || asimho/open   asimho  || open ASIMOF file|| 
+|| opt   ||   astsfe         ||     give TSFs available on an ASIMOF file|| 
+|| opt  || || < start loop over all TSFs on a single ASIMOF file >|| 
+|| opt   ||        astsfo    ||     open TSF|| 
+|| note  ||   ginfsf     initrf ||  initiate TSF|| 
+|| opt     ||      astsfm      ||   set missing data indicator|| 
+|| opt     ||      astsfp     ||    get/set coordinates of data points|| 
+|| opt      ||     astsft     ||    get/set time levels|| 
+|| few      ||           cpdtrf ||  write data to buffer (see also astsfw(3))|| 
+|| few    ||  astsfr         ||     read data (see also rdmesf(3))|| 
+|| note    ||            writrf  || write TSF|| 
+|| note     ||     astsfc   ||      close TSF|| 
+|| opt || ||  < close loop over all TSFs on a single ASIMOF file >|| 
+Notes
+ * ginfsf/initrf
+ To open a TSF for writing, initrf is obligatory, to set quantities not settable through the routines astsfm, astsfp, or astsft. For read-access files, ginfsf will be required to get the quantities not gettable through those routines. If you do not use astsfo, ginfsf is always required. However, routine rdmesf calls ginfsf implicitly, so the user does not have to call ginfsf explicitly before rdmesf (and similarly, before rdsesf, rdmetf, rametf).
+ * writrf/asimhc
+ Routine writrf will open and close the ASIMOF file, unless the user opened the ASIMOF file himself by an earlier asimho. In the latter case, the user must also close the file explicitly with asimhc. (NB there is another note on writrf).
+ * astsfc/writrf 
+ The routine astsfc is normally not needed, unless the user wants to reuse the TSF unit number for a subsequent TSF. However, if the user did not write the TSF by writrf, but constructed the TSF explicitly by a number of calls to astsfw, then astsfc is always required. 
+ * Older access methods
+ Programs written before April 1996 will probably access TSFs for reading using the routines rdsesf, rdmetf, or rametf. These routines, although possibly very inefficient, are still available for upward compatibility. However, they are not longer actively supported (hence, no manpages have been written for them). For writing TSFs, on the other hand, the old sequence (based on cpdtrf) was as efficient as anything, so the old sequences have been kept in the list above. 
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

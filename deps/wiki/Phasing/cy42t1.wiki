@@ -1,0 +1,16 @@
+Cycle Manager: Niko Sokka, FMI
+
+Mitraillette (in the git repository):
+
+Deadline on contributions to new mitraillette (capable for CY42): February 15th, 2015.
+
+Creation of new mitraillette: March 15th, 2015.
+
+Model:
+
+Testing of LUNBC contribution: As soon as 41t1 is released.
+
+Coordination on contributions with Meteo France: Spring 2015.
+
+Deadline contributions: September 15th, 2015.
+

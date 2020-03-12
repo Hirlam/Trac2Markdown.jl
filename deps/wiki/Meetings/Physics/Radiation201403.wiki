@@ -1,0 +1,227 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Radiation Working Week''' =
+''CHMI, 10^th^ of March - 12^th^ of March 2014''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Practical =
+
+ * Participants:
+  * Met Éireann:                          Emily Gleeson
+  * Danish Meteorological Institute:      Kristian Pagh Nielsen
+  * Czech  Hydrometeorological Institute: Jan Masek
+  * Finnish Meteorological Institute:     Laura Rontu
+  
+= Objectives =
+
+The ultimate goal of this work is to make comparisons and improvements of the radiation schemes available in HARMONIE, i.e. the IFS, ACRANEB and HLRADIA. AROME physics has been chosen for the platform where all radiation routines can be compared in a clean way. Thus, calls of all three radiation routines are being implemented in apl_arome.F90, with common interfaces between radiation and clouds, aerosol and surface. In this framework, a clean comparison of any further developments inside the three radition schemes is also possible. It is important to allow the radiation routines to concentrate on radiation and prepare the common input concerning cloud, aerosol and surface state before entering the radiation calculations.  
+
+
+== Previous radiation working weeks ==
+
+4. Helsinki October 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201310
+
+3. Copenhagen February 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201302
+
+2. Dublin October 2012 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201210
+
+1. There are no notes of the first meeting (in Helsinki mid-April 2012?)
+
+----
+
+= Agenda =
+
+== Monday 9.30 - 17.30 ==
+
+
+Basic radiation work by Emily, Kristian, Jan, Laura. 
+
+== Startup reporting and discussion about ongoing work: ==
+
+- Status of the GMDD manuscript. Deadline postponed, new material about hlradia testing and comparison of DISORT v.s. IFS pure radiation transfer with given cloud optical properties.
+
+- hlradia clear sky SW tuning in equation [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/Savijarvi1990_Eq16.png png]. New results of tuning water vapour scaled path and absorption and Rayleigh backscattering in the clear sky formula can be seen here: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/hlradia_clear_sky_tuning.jpg]. The three rows corresponds to the DISORT reference experiments 1, 2 and 4 described here: https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201210
+
+- ACRANEB SW testing in MUSC . First steps taken, solving/checking technical issues. Implementation of MUSC into a workstation at CHMI.
+
+- IFS radiation scheme (based on the original from IFS cycle 27)
+
+Short 3D experiments to be run in cy38h1.1. inDMI:
+
+  1. set inhomogeneity factor to 1 everywhere for SW and LW, check in 3D. Plan experiments and run for this process only, real time experiment in small domain, think about diagnostics. 
+  2. effective radius v.s. observation, how to get reff output from IFS radia, to be done
+  3. new liquid cloud optical properties by Kristian, test, check in 3D. Check the new namelist options before runnning any experiments.
+
+  - IFS 6 SW spectral bands to be reduced to 4: how? How much work to recode, is it worth while even the present 6 are not optimal? Perhaps important for clouds and aerosol. Outside clouds (around aerosol) there seem to be a lot of hardcoded 6 bands. Test setting NSW=4 within cy38t1 ALARO. There is a difference in resulting temperature profiles when ALARO experiment is run with IFS scheme 6 v.s. 4 bands. Difference in the computational load is insignificant, thus this study can be closed as of low priority.
+  - Direct/diffuse split with proper input to SURFEX: output of global and direct SWDN done, interface to SURFEX is correct but the usage of those in SURFEX remains; validation and the problem of definition/measurement?
+  - Direct and diffuse albedo needed for radiation parametrizations, possibly for output, should be O.K from the point of view of interfaces 
+  - Find out how is the attempt to update towards new IFS radiation going in Meteo France. 
+  
+
+- Status of orographic radiation work in HARMONIE: https://hirlam.org/trac/wiki/ororad 
+
+
+----
+
+== Tuesday, 9.30 - 17.30 ==
+
+== Common poster for ASW14 Bucarest ==
+
+Elements:
+* Jan's broadband albedo experiments and results
+* Comparison between three schemes in global SWDN and LWDN at surface as a function of cloud liquid/ice load, with best possible configuration for each model, which implies differences e.g. in effective/equivalent radius parametrization
+* hlradia tuning and other new features (as compared to the poster 2013)
+* shortly about the system, branches, plans towards radiation in the new phys-dyn interface
+== Suggestions for SW improvements in Harmonie radiation schemes ==
+
+ *  The current choice of 6 spectral bands in HARMONIE/IFS should be re-assessed, as the first spectral band is irrelevant for NWP modelling.
+ *  The SW cloud inhomogeneity factor should be changed from 0.7 (0.8) to 1.0 in all schemes applied in HARMONIE.
+ *  The effects on the general 3D NWP results of using the Nielsen cloud liquid optical property parametrization within the IFS scheme should be tested.
+ *  In order to improve the delta-Eddington radiative transfer calculations, the possibility of using a variable Hopf q-function should be investigated.
+ *  The hlradia gaseous transmission coefficients should be tuned to the DISORT clear sky results presented here.
+
+
+=== Comparisons, observations, data etc ===
+
+ * Tuning of direct albedo in ACRANEB2 - presentation by Jan [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/presentation_albedo.pdf pdf]
+
+ * Atmospheric radiation v.s. SURFEX
+
+
+== Code development ==
+
+=== harmonie-38h1.radiation branch ===
+
+https://hirlam.org/trac/browser/branches/harmonie-38h1.radiation has been updated to the level harmonie-38h1.1
+
+https://hirlam.org/trac/browser/branches/harmonie_MUSC_cy38h1 has been updated to the level harmonie-38h1.1
+
+Starting point for combination of these two are the code and scripts at
+
+https://hirlam.org/trac/browser/branches/harmonie_MUSC_cy38h1/test/aradtest
+
+https://hirlam.org/trac/browser/branches/harmonie_MUSC contains code for cycle37, used for the SW comparisons
+
+ 
+=== radiation cleaning withing AROME physics ===
+
+From HIRLAM-ALADIN rolling plan draft, a subtask of physics-dynamics interface work: 
+
+Perform an exercise of radiation cleaning within AROME physics, with the aim of replacing the preparation of cloud and aerosol input from inside of the three available radiation schemes (IFS, hlradia, acraneb) with the usage of variables consistent with the micro-physical parametrizations.
+
+Slides prepared by Laura, Jan, Kristian for an interface web meeting 6 Nov 2013: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/cleanrad_20131106.pdf pdf]
+
+=== radiation in the new physics-dynamics interface of cycle > cy40 ===
+
+Report by Piet about recent working days in Toulouse: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/Report_Toulouse_Jan2014.pdf pdf]
+
+Intflex suggestion by Daan [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/intflex_v2_proposal.pdf pdf]
+
+Presentation by Daan in ASW14 [http://www.cnrm.meteo.fr/aladin/IMG/pdf/daand_bucharest.pdf pdf]
+
+Radiation codes for new aplpar [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/aplpar.png png] [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/intflexarp.tgz tarball]
+
+----
+
+=== Roadmap towards having three radiation schemes in a common framework? ===
+
+- Implement hlradia into aplpar in cycle 38: harmonie-38h1.radiation, parallelly into CHMI local repository based on 38t1
+
+- Create harmonie-40h1.radiation as soon as a version harmonie-40h1.x will be available, till that use code from https://hirlam.org/trac/browser/branches/phasing/cy40 or directly from Toulouse/CHMI local 40t1; import three radiation schemes both to apl_arome and aplpar within the new physics-dynamics interface, available in cy40
+
+- Aim at phasing of all radiation updates into cy41t or later
+
+
+== Wednesday 9.30 - 16 ==
+
+
+== Aerosols ==
+
+=== Status of the 3D HARMONIE - SILAM experiments ===
+
+Results of Estonian experiments by Velle Toll and Aarne Männik: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/aerosol_presentation_VT.pdf presentation (pdf)] and [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/poster_VT.pdf poster (pdf)]
+
+'''Notes by Velle Toll about the technical tasks in HARMONIE
+'''
+
+Tasks for using SILAM aerosol data. 
+
+1) In NAMGFL aerosol fields have to be introduced to structure GFL%EZDIAG 
+GFL types are here: src/arp/module/type_gfls.F90
+(there we find what attributes have to set to GFL%EZDIAG corresponding to aerosol 
+
+2) There should be namelist switch (if SILAM fields are read or not)
+
+3) Add treatment of SILAM to gl_bd script
+
+4) modify the namelist for HARMONIE LBC coupling 
+/util/gl_grib_api/ala/setup_harm_intp.f90
+
+aerosol fields have to be added
+to readkey list with appropriate attributes
+
+5) /util/gl_grib_api/ala/any2harm.f90
+Main subroutine for preparation of LBC for HARMONIE
+
+from here we call separate subroutine for aerosol 
+
+! after done vertical interpolation, aerosols are treated
+! WRITE(6,*)'Done the vertical interpolation'
+
+call prep_aer.f90(readkey, allfld, inafull, inbfull, surface pressure, ...)  
+
+from prep_aer read SILAM data, do horizontal interpolation, do vertical interpolation
+
+then allfld is written to boundaries (LBC)
+
+6) in mf_phys
+we can use defined GFL for aerosol
+YEZDIAG(number)
+
+[[BR]]
+
+=== Status of hlradia with aerosol in HARMONIE/Enviro-HIRLAM ===
+
+=== EUMETCHEM and Aveiro summer school ===
+
+http://aveirosummerschool2014.web.ua.pt/
+
+http://eumetchem.info/
+
+Our main task at the school: bring MUSC to be used as an exercise on aerosol - radiation experiments . We can use the experience of Helsinki university [http://www.helsinki.fi/~jaraisan/numlab2013/NumLab13.html Numlab 2013]
+
+----
+
+
+== Work space: notes, plans, comments ==
+
+Jan's notes on ACRANEB2 in cycle40 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/Jan_acraneb2.2.txt (text)]
+
+List of routines which are different or new in harmonie-38h1.radiation as compared to 38h1.1 [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/difdoc.pdf pdf]
+
+Notes by Serge on (climatological) aerosol in HARMONIE code [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201403/serge.tar tarball]
+
+Poster by Emily et al. in HIRLAM-ALADIN all staff workshop 2014 [http://www.cnrm.meteo.fr/aladin/IMG/pdf/gleesonetal_radiationposter.pdf link to pdf]
+
+Poster by Jan about ACRANEB2 in ASW14 [http://www.cnrm.meteo.fr/aladin/IMG/pdf/poster_masek.pdf link to pdf]
+
+Poster by Velle and Aarne about modelling the direct radiative effect of wildfire smoke on a severe thunderstorm event with the HARMONIE model om ASW14 [http://www.cnrm.meteo.fr/aladin/IMG/pdf/asm_2014_toll_mannik.pdf link to pdf]
+
+----
+
+Radiation presentations in ALARO-I Working days 12-14.5.2014 in Vienna (links to LACE site)
+
+ Jan Masek, Jean-François Geleyn: [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_JMJFG_radintro_may14.pdf Radiative transfer problem in NWP context] 
+
+ Jan Masek: [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_JM_raddevel_may14.pdf Progress in radiation since the last ALARO-1 Working Days]
+
+ Jan Masek: [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_JM_radbaseline_may14.pdf Overview of ACRANEB2 baseline version]
+
+ Laura Rontu: [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_LR_rad_may14.pdf Radiation and aerosols in HFS]
+
+ Clemens Wastl: [http://www.rclace.eu/File/ALARO/alaro1_wd14vi/alaro1wd_CW_radorog_may14.pdf Orographic radiation parameterization]
+
+----
+

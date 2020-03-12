@@ -1,0 +1,91 @@
+[[PageOutline]]
+
+= '''HIRLAM On-Duty Task Team''' =
+
+On-Duty Team is a HIRLAM-B instrument to carry through regular support, maintenance and monitoring duties on a rotating basis. Staff on duty typically dedicate one week of his/her time once or twice per year to perform duties on the following three categories:
+
+ * [wiki:OnDuty/Helpdesk HIRLAM Helpdesk]: General support mainly related to inquiries on general issues.
+ * [wiki:OnDuty/Monitoring Monitoring the HIRLAM data portal]:  Instructions on monitoring of the joint HIRLAM/HARMONIE model intercomparison data portal.
+ * [wiki:OnDuty/MonitoringGLAMEPS Monitoring GLAMEPS]: Instructions on the daily monitoring about delivery and performance with the HIRLAM/ALADIN probablistic forecast GLAMEPS at production phase. 
+
+Staff with different expertise are encouraged to sign up for this task, and contribute each on his/her way the mission with special focus in view of their own expertise. It is estimated that going through daily on-duty tasks as proposed in those instructions will typically not take more than one or two hours, and it is further stressed here that, while on-duty staff are expected to handle various support issues (as some sort of HIRLAM-calldesk) and to do daily monitoring according to specifications,  he or she in most cases is not supposed to trouble-shoot reported or detected problems. The essential point here is to offer a point of contact on questions, and a watchful eye on monitoring products.
+
+= '''Who are in the team''' =
+
+All HIRLAM research staffs are welcome and encounraged to participate. The team will benefit from different expertise/knowledge about various components of the HIRLAM/HARMONIE system, including those about system aspects, data assimilation and observation data handling, forecast model, post-processing, evaluation and diagnosis about both deterministic and probablistic forecasts, etc. 
+
+The On-duty team is coordinated by HIRLAM project leader on system aspects, Ulf Andrae (ulf.andrae@smhi.se) and project leader on quality assurance and operational cooperation, Xiaohua Yang (xiaohua@dmi.dk). Daily activities can normally be followed in the HIRLAM fora, such as
+ * [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=listcat&catid=1 Helpdesk]
+ * [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=showcat&catid=15 Operational GLAMEPS]
+ * [http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=showcat&catid=6 General monitoring matters] 
+
+Interested to contribute? Fill your own name on the blank spot and drop an email to the coordinators! Your activity on the on-duty team are counted as your services contribution to the HIRLAM-B programme.
+
+= '''Who is on duty?''' =
+ö
+
+== '''2014''' ==
+
+ || Week nr || Name or Service        || Contact Email                   || Date & Comment       || 
+ || 51 || EMHI || andres.luhamaa@emhi.ee ||  15-19/12 || 
+ || 50 || Heiner Kornich, SMHI || heiner.kornich@smhi.se  || 8-12/12  ||
+ || 49 || FMI ||  || 1-5/12 ||
+ || 48 || KNMI ||  || 24-28/11 ||
+ || 47 || AEMET || jsancheza@aemet.es || 17-21/11 ||
+ || 46 || Niels Wothman Nielsen, DMI || nwn@dmi.dk || 10-14/11 ||
+ || 45 || LHMS ||  || 3-7/11 ||
+ || 44 || met.no ||  || 27-31/10 ||
+ || 43 || Åke Johansson, SMHI || ake.johansson@smhi.se || 20-24 oct ||
+ || 42 || FMI ||  ||  13-17/10 ||
+ || 41 || KNMI ||  || 6-10/10 ||
+ || 40 || Estonian Environment Agency || andres.luhamaa@envir.ee || 29.09 - 03.10 ||
+ || 39 || Kristian P. Nielsen, DMI || kpn@dmi.dk   || 22-27/9 ||
+ || 38 || IMO ||  || 15-19/9 ||
+ || 37 || met.no ||  || 8-12/9 ||
+ || 36 || Per Dahlgren, SMHI || per.dahlgren@smhi.se || 1-5/9  ||
+ || 35 || FMI ||  || 25-29/8 ||
+ || 34 || KNMI ||  || 18-22/8 ||
+ || 33 || AEMET ||  || 11-15/8  ||
+ || 32 || Bjarne Amstrup, DMI || bja@dmi.dk || 4-8/8 ||
+ || 31 || Met Eireann || eoin.whelan@met.ie || 28/7-1/8 ||
+ || 30 || met.no ||  ||  21-25/7 ||
+ || 29 || SMHI ||  || 14-18/7 ||
+ || 28 || FMI ||  || 7-11/7 ||
+ || 27 || KNMI ||  || 30/6-4/7 ||
+ || 26 || AEMET ||  || 23-27/6 ||
+ || 25 || Bjarne Amstrup, DMI || bja@dmi.dk || 16-20/6 ||
+ || 24 || Martynas Kazlauskas LHMS || martynas@meteo.lt || 9-13/6 ||
+ || 23 || Jelena Bojarova, met.no ||  jelena.bojarova@met.no ||  2-6/6 ||
+ || 22 || Martin Ridal, SMHI || martin.ridal@smhi.se || 26-30/5 ||
+ || 21 || FMI || sami.niemela@fmi.fi || 19-23/5 ||
+ || 20 || Sander Tijm, KNMI || sander.tijm@knmi.nl || 12-16/5  ||
+ || 19 || AEMET || jsancheza@aemet.es || 5-9/5 ||
+ || 18 || Shiyu Zhuang, DMI || shu@dmi.dk || 28/4 -2/5  ||
+ || 17 || met.ie || emily.gleeson@met.ie || 21/4-25/4 ||
+ || 16 || Omet.no || ole.vignes@met.no || 14-18/4 ||
+ || 15 || Björn Stensen, SMHI || Bjorn.Stensen@smhi.se || || 7/4-11/4 ||
+ || 14 || FMI || sami.niemela@fmi.fi || 31/03-04/04  ||
+ || 13 || Toon Moene, KNMI ||  toon.moene@knmi.nl ||  24-28/3 ||
+ || 12 || AEMET || jsancheza@aemet.es    || 17-21/3 ||
+ || 11 || Niels Wothman Nielsen, DMI || nwn@dmi.dk ||  10-14/3  ||
+ || 10 || Bolli palmasson, IMO ||  bolli@vedur.is || 3-7/3 ||
+ || 9 || EMHI || andres.luhamaa@emhi.ee || 24-28/2 ||
+ || 8 || Martynas Kazlauskas LHMS || martynas@meteo.lt || 17 -21/2 ||
+ || 7 || met.ie || eoin.whelan@met.ie || 10-14/2 ||
+ || 6 || met.no || rygve.aspelien@met.no || 3-7/2 ||
+ || 5 || SMHI || Magnus.Lindskog@smhi.se || 27/1- 31/1 ||
+ || 4 || FMI || kalle.eerola@fmi.fi || 20-24/1 ||
+ || 3 || KNMI ||  toon.moene@knmi.nl || 13-17/1 ||
+ || 2 || AEMET || jsancheza@aemet.es  || 6-10/1 ||
+ || 1 || Xiaohua Yang, DMI || xiaohua@dmi.dk  || 2-3/1 ||
+
+
+Comments or suggestions? Contact us!
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

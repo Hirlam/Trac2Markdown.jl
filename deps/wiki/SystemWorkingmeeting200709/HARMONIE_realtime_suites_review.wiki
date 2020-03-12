@@ -1,0 +1,46 @@
+== Real-time HARMONIE suites: experiences and problems ==
+
+'''Realtime HARMONIE suites (Sep 2007)'''
+
+||computer platform||tested ALADIN/IFS version|| model domain || dynamic core || physics || purpose of || nr of nodes || task per node || time stepping || forecast /day || forecast length || forecast elapse time || reporter ||
+|| DMI NEC-SX6 || cycle 31t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||  real-time run [[FootNote(since Jan 2006)]] || 2 || 8 || 300s || 1 [[FootNote(at 00 UTC)]] || 24 h || 536s ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||  real-time run [[FootNote(since Nov 2006)]] || 2 || 8 || 300s || 1 [[FootNote(at 00 UTC)]] || 24 h || 599s ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || DMI-2.5km[[FootNote(373x389x40)]]|| Non-Hydrostatic || HIRLAM  ||  real-time run [[FootNote(since Nov 2006)]] ||  2 || 8 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~1:15h ||Bjarne Stig Andersen ||
+|| DMI NEC-SX6 || cycle 31t1 || DMI-2.5km[[FootNote(373x389x40)]]|| Non-Hydrostatic || AROME  ||  real-time run [[FootNote(since Nov 2006)]] || 2 || 8 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~2h ||Bjarne Stig Andersen ||
+|| FMI SGI ALTIX || cycle 30t1 || SMHI-11km[[FootNote(245x277x40)]]|| Hydrostatic || ALADIN ||   real-time run [[FootNote(since 19 May 2006)]] || 1 || 64 || 300s || 2 [[FootNote(at 00 12 UTC)]] || 24 h || ~10 min ||Sami Niemela||
+|| FMI SGI ALTIX || cycle 30t1 || FMI-2.5 km [[FootNote(300x300x40)]]|| Non-Hydrostatic || AROME   ||   real-time run [[FootNote(since 19 May 2006)]] || 1 || 64 || 60s || 2 [[FootNote(at 00 12 UTC)]] || 24 h || ~2:20 h ||Sami Niemela ||
+|| KNMI SGI ALTIX || cycle 31t1 || KNMI-2.5 km [[FootNote(300x300x40)]]|| Non-Hydrostatic || AROME   ||   real-time run [[FootNote(since 7 July 2007)]] || 1 || 64 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~1:45 h || Toon Moene ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-11km[[FootNote(245x277x60)]]|| Hydrostatic || ALADIN  ||  real-time run [[FootNote(since 04 Jul 2006)]] || 16 || 2 || 300s || 2 [[FootNote(at 00 12 UTC)]] || 48 h || 2700s ||Ulf Andrae ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-2.5 km north [[FootNote(277x259x60)]]|| Non-Hydrostatic || AROME  ||   real-time run [[FootNote(since 16 Aug 2006)]] || 16 || 2 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~5h ||Ulf Andrae ||
+|| SMHI Linux Cluster|| cycle 31t0 || SMHI-2.5 km south [[FootNote(259x277x60)]]|| Non-Hydrostatic || AROME  ||   real-time run [[FootNote(since 16 Aug 2006)]] || 16 || 2 || 60s || 1 [[FootNote(at 00 UTC)]] || 24 h || ~5h ||Ulf Andrae ||
+
+ [[FootNote]]
+
+'''Meteorological experience from high-resolution runs'''
+
+ - Meteorological performance nearly as good as in other models.
+ - Precipitation structures look realistic.
+ - However, convective precipitation seem to be overestimated. Consequently, downdrafts are too intense (divergence at low levels).
+
+ - Recent reports  
+     - [https://hirlam.org/open/publications/NewsLetters/52/Paper6_Ulf_Andrae_SMHI-ALADIN_implementation.pdf Daily runs with ALADIN and AROME at SMHI] 
+     - [https://hirlam.org/open/publications/NewsLetters/52/Paper7_Niemela_AROMEconvection_2.pdf Convective precipitation in AROME] 
+     - [http://hirlam.org/open/meetings/ASM2007/s3_andersen.pdf Semi-operational ALADIN forecasts at DMI using AROME and HIRLAM physics]
+
+   
+
+'''Technical experiences/problems'''
+
+ - Real-time suites has been running more or less stable. 
+    - Summer 2006: night-time temperature was too cold due to a bug in HIRLAM's soil ice --> Corrected to HIRLAM 7.1
+    - Soil ice (from HIRLAM) close to zero, caused a crash in AROME --> Corrected in cy32t2.
+    - 60 s time step is sometimes too large during wintertime (FMI). --> Noisy fields (e.g. MSLP, winds). Still the model has not crashed. 
+ 
+ - Since gmkpack.6.2.2, compilation has been much easier than before. Still, building of the full code is '''extremely slow'''.
+
+ - The problems related to new test suites (cy32t1 and cy32t2)
+    - Typical platform dependent problems (e.g. compiler related problems, annoying FPE-signals etc.).
+    - SURFEX is coded very badly, the first timesteps take a lot of time. MF has found that reading of surface fields is done 19 times per processor.
+    - Non-initialized variables may cause a crash in some platforms (e.g. in AROME's turbulence scheme in 32t2).
+
+ - Too many and constantly changing namelists, too many switches.  Hard to keep track what are the ''default'' values.

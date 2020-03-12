@@ -1,0 +1,72 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''ECMWF/Hirlam-B/ALADIN Training Week on C++ and OOPS''' =
+''ECMWF, 11 - 15 November 2013''
+
+[[LastModified]]
+[[Center(end)]]
+
+
+== Purpose ==
+
+Learn more about C++ and OOPs
+
+== Agenda ==
+
+[https://hirlam.org/trac/attachment/wiki/OOPS/Training201310/OOPS_TC_2013.pdf Agenda]
+
+== OOPS-QG-LAM and general LAM aspects ==
+
+ Thursday morning: 
+ LAM design in OOPS (Topics to address)
+ 
+  * go through example what already is done :
+  from QG-4DVAR => LAM-QG-4DVAR (mainly work on Fortran level within the existing OOPS framework)
+  *  discuss what should be done more regarding the LAM specific aspects:
+   (control of LBC in LAM 4DVAR ; on-line change of geometry for LBC; extension zone; large scale coupling cost-function)
+  * Identify what acpects can be treated efficiently within the current OOPS design; what functionalities of OOPS should be done more flexible and where new development in the OOPS level are needed
+  * a serious philosophical questions : "to see or not to see"
+  * installation + practical exercises  
+
+ Thursday after lunch (New DA developments in LAM community (decide which of this questions to address now))
+
+   * 3DVAR FGAT => 3DVAR hybrid => 4D-En-VAR + LAM perturbations (LAM ETKF rescaling / LAM EDA perturbations) OOPS is a flexible design system per definition; what features already exist in OOPS, what should be done more flexible and where new developments are needed)
+   * advanced features in DA: phase-error correction, gaussian quadrature 4DVAR, additional regularization (low order norm ) constraints
+   * new systems: consistent DA-EPS design; nowcasting/very short range forecasting
+
+ Thursday afternoon: 
+
+   * Coordination and wrap-up   
+  
+== Preparations ==
+
+ * Download the code from the link below and install it on your laptop.
+ * For the SMHI laptop you need to manually install:
+  * [http://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&ved=0CDEQFjAA&url=http%3A%2F%2Fwww.cmake.org%2Fcmake%2Fresources%2Fsoftware.html&ei=4sBuUum7DYqN4AT9zoCIAQ&usg=AFQjCNHfGeYZV565iQnuU9RyjNfQJ6FIbA&sig2=7KMjrYbmiXtd4H4lG0bOYg&bvm=bv.55123115,d.bGE cmake v2.8 or higher]
+  * [http://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&ved=0CC8QFjAA&url=http%3A%2F%2Fwww.boost.org%2Fusers%2Fdownload%2F&ei=LsFuUvfXFcaZ4wSPtYGIDA&usg=AFQjCNGTLfhdiz1uu4JtUK7wmDdEE4_zoA&sig2=a8TFc5jQVfHozmHsDOzFFw&bvm=bv.55123115,d.bGE boost libraries 1.41 or higher]
+ 
+== OOPS links ==
+
+* [wiki:OOPS/C++OOPSTraining201210 2012 Training]
+* [https://hirlam.org/trac/attachment/wiki/OOPS/Training201310/OOPS-CY40R1.tgz Latest OOPS code]
+* [https://hirlam.org/trac/attachment/wiki/OOPS/Training201310/lam_qg_oops_Nov2013.tar.gz lam changes for OOPS-CY40R1.tgz]
+* [https://software.ecmwf.int/wiki/display/OOPS ECMWF OOPS wiki]
+
+* [https://software.ecmwf.int/wiki/display/OOPS/Training+Course+Slides Traing course material]
+
+== HIRLAM/ALADIN participants ==
+
+ 1. Jose-Antonio Garcia Moya, AEMET
+ 2. Per Dahlgren, SMHI
+ 3. Toon Moene, KNMI, Arrives Wednesday
+ 4. Roger Randriamampianina, MET Norway, Arrives Wednesday
+ 5. Tayfun Dalkilic, MGM
+ 6. Mats Dahlbom, DMI
+ 7. Ole Vignes, MET Norway
+ 8. Jesus Montero, AEMET
+ 9. Annelies Duerinckx, RMI
+10. Jelena Bojarova, met.no
+11. Nils Gustafsson, SMHI
+12. Ulf Andrae, SMHI
+13. Eoin Whelan, METIE, Wednesday & Thursday only
+

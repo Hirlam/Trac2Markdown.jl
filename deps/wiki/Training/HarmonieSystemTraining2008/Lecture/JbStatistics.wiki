@@ -1,0 +1,16 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Harmonie System Training''' ===
+= '''Derivation of Background Error Statistics''' =
+[[Center(end)]]
+
+=== Method and Instruction ===
+see attached power-point presentation in this page.
+ * see also description of method and instructions on [wiki:HarmonieSystemDocumentation/DataAssimilation3DVAR HARMONIE documentation page ]
+
+=== [wiki:HarmonieSystemTraining2008/Training/DataAssimilation  Hands on practice task] ===
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HarmonieSystemTraining2008  Back to the main page of the HARMONIE system training 2008 page]
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation Back to the main page of the HARMONIE-System Documentation]

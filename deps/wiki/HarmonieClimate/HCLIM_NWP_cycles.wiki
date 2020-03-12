@@ -1,0 +1,44 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE cycles in relation to NWP and climate applications''' =
+[[LastModified]]
+[[Center(end)]]
+
+'''Here we present an idea of HARMONIE development work flow that was brought up at the SMHI research department a while ago. Focus was then how this works at SMHI but the idea may be applied also in the wider context of HIRLAM/ALADIN...'''
+
+A new HARMONIE development cycle starts from a Toulouse (t) version of a cycle (e.g. cy41t). The Toulouse version is prepared for the forecast (forward) problem (excluding data assimilation, which deals with the adjoint problem) and HARMONIE (h) members then develop a full operational version including script system and data assimilation (e.g. cy41h). Currently, when the h-version technically exists, performance tests start with respect to both physical behaviour and data assimilation behaviour in parallel. When a satisfactory version exists this is tagged and is ready to be used operationally for NWP applications. The time spent to develop the tagged h-version from the t-version is roughly 9-12 months. Until now Rossby Centre has started the climate development of HARMONIE from such a tagged version. The climate development process includes long transient integrations with the purpose to identify and correct for biases and errors that were not necessarily identified during the NWP process and does not include data assimilation.
+
+A more efficient development flow that would benefit both climate and NWP applications would be as follows. As a climate application of HARMONIE is independent of data assimilation the t-version, with HARMONIE script system added, can be used directly for the forward problem. This version is tested, biases and errors are identified and corrected for. When a satisfactory version exists this is tagged and is ready to be used operationally for climate applications. The climate-tagged version is further developed by adding the data assimilation features to finally reach a version ready for NWP applications. In this last development step the resources needed for identifying remaining physical errors and biases are very much reduced compared to today’s situation, since it would already have been tested for long-time time-integrations in a climate sense.
+
+This new RCM/LAM development flow would probably be more attractive for other institutes in Europe where NWP and climate applications are less separated compared to the current SMHI NWP and climate division. It would also allow us to be more active in the cooperation with Meteo France and ECMWF since the lag between the cycle we are working with and the latest available cycle will be smaller.
+
+Patrick Samuelsson, Ulf Andrae and Marco Kupiainen (SMHI)
+
+------------------------------------------
+
+'''Comments by Xiaohua Yang'''
+
+Very interesting analysis and proposal, I really appreciate it. 
+
+I understand one of the main points here is to place climate group in the first phase of the T to H adaptation to check the quality/physical parameterisation. This would offer a quite elegant way to, from organisation point of view, to force a systematic integration  of the expertise in the climate group  to that of the NWP community. 
+
+Just a few quick reaction at first reading. I guess there are a few aspects/assumptions in the above reasoning,
+
+1. There is an assumption that both communities really share physics, in the current case more AROME than ALARO for upper air physics, although the latter is also now becoming quite a defaul hanks to EPS. This is quite a contrast to the practice so far in the RACMO/HIRHAM and probably also RCA (although to a lesser degree, perhaps)  in which it had been a view that physical packages from other model groups MAY BE more suitable for climate modelling purpose than the one used in NWP. Should this again become the fact the incentive for the climate researchers to be in the process would have been much reduced, right? So let's hope not to be the case. 
+
+2. The fact of the NWP groups outside of SMHI does not seem to have been covered explicitly: external partners in the HIRLAM and ALADIN consortia. At the current stage the go and no-go in terms of HARMONIE QC do depends on diverse assessment from the non-SMHI partners especially those running HARMONIE RCR, e.g., the current reference 38h1.x features such a dependence in terms of SSO setting (which is turned off due to an overall negative wind bias over orography for the RCR domains defined by DMI/MetCoOp). Secondly the time table in the HARMONIE adaptation may imply that the adaptation/validation by 'climate people' as suggested in the paper may have to, at best, be conducted in parallel to the efforts by OTHER NWP people on system/data assimilation aspects., so that one do not necessarily really wait for the other to finish their part?? But ok, this is probably just an non-decisive detail which does not change the fundamental fact in your proposal to engage climate researchers in the T-H steps.
+
+3. The above suggested involvment by climate researchers would, indeed, require a different validation procedure and criterion than the one used by NWP (the latter depends heavily on data assimilation). But we do agree that such a validation procedure would be needed for climate community anyway. So not really contradictory.
+
+So much for now just as quick reaction. I want to make it clear that I support fully the idea to involve the climate researchers to the cycle adaptation process, and I think this is a right way to make sure the systematic involvement of the climate researchers in the HARMONIE work currently lead by NWP people. It certainly takes many iteration to find and build infrastructure to enable such.
+
+-------------------------------------------
+
+'''Comments by Patrick Samuelsson'''
+
+I think that we can not expect NWP and climate versions of HARMONIE to use exactly the same physics options. E.g. running proper climate future scenario simulations with force-restore soil scheme or D95 snow is not an option according to us. Our idea was that a SMHI NWP/climate model development group would have the responsibility to provide suitable model setups (different options) for both NWP and climate applications. Thus, the really new contribution, as compared to today, would be that a preferred NWP setup would be tested in climate mode (multi-year simulation without data assimilation). Reducing biases in such an exercise would probably reduce the increments seen later in a NWP/assimilation setup.
+
+Yes you are right, any NWP-climate exercise would probably run in parallel with system/data assimilation development. How this may be organized in a greater HIRLAM/ALADIN context we never involved in our SMHI idea but we think of course that the workflow idea is worth considering also in this greater context. Hopefully it can inspire NWP groups to be interested in HCLIM applications because it would contribute to better performance of NWP systems. 
+ 
+----------------------------------------------
+

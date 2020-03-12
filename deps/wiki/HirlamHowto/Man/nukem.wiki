@@ -1,0 +1,547 @@
+=== Used by: ===
+ * [wiki:HirlamHowto/Man/rtmsys rtmsys.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * [wiki:HirlamHowto/Man/mkbccf mkbccf.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * [wiki:HirlamHowto/Man/putbias putbias.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * [wiki:HirlamHowto/Man/hitmerge7 hitmerge7.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * [wiki:HirlamHowto/Man/landx landx.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * [wiki:HirlamHowto/Man/ascii2bufr ascii2bufr.x], used in the [wiki:HirlamHowto/Analysis/ATOVS ATOVS] processing.
+ * Used in the [wiki:HirlamHowto/Analysis/QuikScat QuikScat] HIRLAM analysis.
+
+=== Manual: ===
+{{{
+NUKEM(1)                             NUKEM                            NUKEM(1)
+
+NAME
+       NUKEM - standard FORTRAN interface to input files
+
+USER DESCRIPTION
+       NUKEM  is  a  tool for interfacing with input files from a FORTRAN pro-
+       gram.  It offers an interpreter capable of checking  and  preprocessing
+       the input data.
+
+       Basic input file syntax
+       The input file consists of comments, headers, data bodies and commands.
+       A typical input file may look like this
+
+       #
+       # this is a comment
+       # header:
+         LIST OF STATIONS:
+       # data body:
+          112
+          113
+       #
+       # command:
+         include (~AAPP/data/stations.default)
+       #
+
+              Comments
+              Any line that starts with an '#' is treated as a comment.
+
+       Headers
+       Headers are used to identify the data bodies.
+
+       Data body
+       The data body contains the information with the actual input  that  the
+       program will use.
+
+       Commands
+       The  subroutine  supports  11  commands  presently.   All commands must
+       appear first on their respective lines.
+
+       Appending lines
+       Several lines may be appended using a '&' sign at the end of each line.
+
+COMMANDS:
+       The following commands are implemented:
+
+       ?       The '?' command lists all available headers and commands.  This
+               command is useful when creating an  input  file  from  scratch.
+               Example:
+               #
+                ?
+               #
+               NOTE THAT ON SOME SYSTEMS THIS COMMAND IS REPLACED BY 'x'.
+
+       if      The  'if' command has one argument. If the argument is true (T)
+               then the following lines  will  be  processed  until  the  next
+               elseif,  else  or  endif (at current level). If the argument is
+               not true (false or not determinable), then the following  lines
+               will not be processed.  Example:
+               #
+                if ($(var)==1)
+               #
+
+       elseif  The  'elseif' command has one argument. If the argument is true
+               (T) then the following lines will be processed until  the  next
+               elseif,  else  or  endif (at current level). If the argument is
+               not true (false or not determinable), then the following  lines
+               will  not  be processed.  The 'elseif' statement must follow an
+               'if' or 'elseif' statement (at the same level). Example:
+               #
+                elseif (%inquire($(file))==1)
+               #
+
+       else    The 'else' command must follow a 'if'  or  'elseif'  statement.
+               The  lines  following the 'else' statement will be processed if
+               all previous  tests (if,  elseif)  have  failed  (at  the  same
+               level). Example:
+               #
+                else
+               #
+
+       endif   The  'endif'  command  closes  the if test. The 'endif' command
+               must follow a 'else', 'elseif' or 'if' statement. Example
+               #
+                endif
+               #
+
+       !       The '!' command executes a UNIX command. Example:
+               #
+                ! <UNIX command>
+               #
+
+       include The 'include' command includes another  file.  A  total  of  10
+               files may be nested simultaneously. Example:
+               #
+                include (<file>)
+               #
+
+       stop    The  'stop' command halts the current reading of the input file
+               (DAT250(II)=0, IRC=0).  The NUKEM  subroutine  may  however  be
+               called  again, in which case the subroutine will continue read-
+               ing the input file from after the stop statement. Example:
+               #
+                stop
+               #
+
+       exit    The 'exit' command terminates the program immediately (with the
+               system exit code, if it is specified). Example:
+               #
+                exit 1
+               #
+
+       echo    The 'echo' command prints the remaining part of the line to the
+               standard output. Example:
+               #
+                echo Got ... to get ... to ... my arm.
+               #
+
+       set     The 'set' command assigns a value to a variable. Example:
+               #
+                set solar flux file = /data/solar_flux.dat
+               #
+               The variable value may be recalled using  a  '$'  and  brackets
+               around  the variable name. Example (for writing out the name of
+               the solar flux file):
+               #
+                echo Using the file: $(solar flux file).
+               #
+               A total of 50 variables may be stored simultaneously.  A  vari-
+               able  may  be  removed from the internal register by setting it
+               equal to '.' or '' (blank). Example:
+               #
+                set $(solar flux file) =
+               #
+               The variable '$(?)' will list all variables  and  their  values
+               (and return the number of variables). Example:
+               #
+                echo The number of variables is:$(?)
+               #
+
+       import  The  'import' command imports the value of an environment vari-
+               able and assigns it to a variable with the  same  name  as  the
+               environment  variable.  The value is not processed. If no envi-
+               ronment variable with the specified name exists, and a  default
+               has not been provided by set, nukem will abort. Example:
+               #
+                set $(erp_file) = erp.dat
+                import solar_flux_file erp_file test_file
+               #
+
+SPECIAL FUNCTIONS:
+       The following functions are available:
+
+       sin     Syntax: '%sin(<number>)' (<number> in radians).
+
+       cos     Syntax: '%cos(<number>)' (<number> in radians).
+
+       tan     Syntax: '%tan(<number>)' (<number> in radians).
+
+       arcsin  Syntax: '%arcsin(<number>)'.
+
+       arccos  Syntax: '%arccos(<number>)'.
+
+       arctan  The '%arctan()' function has one or two arguments. If the func-
+               tion is  called  with  two  arguments  then  '%arctan(y  x)'  =
+               DATAN2(Y,X).
+
+       log     Syntax: '%log(<number>)'.
+
+       exp     Syntax: '%exp(<number>)'.
+
+       inquire Syntax:  '%inquire(<file  name>)'. The argument is a file name.
+               If the file exists this function returns a '1'.
+
+       pi      Syntax: '%pi', returns 3.141592653589793.
+
+       e       Syntax: '%e', returns 2.718281828459045.
+
+       mu      Syntax: '%mu', returns 398600.440.
+
+       re      Syntax: '%re', returns 6378.136.
+
+       rad     Syntax: '%rad', returns 0.0174532925199433 (=%pi/180).
+
+       deg     Syntax: '%deg', returns 57.29577951308232 (=180/%pi).
+
+       dj2000  Syntax: '%dj2000', converts MJD2000 to a date (YYYY MM DD HH MM
+               SS).
+
+       dj2000  Syntax:  '%jd2000',  converts  a  date (YYYY MM DD HH MM SS) to
+               MJD2000. The date may include '/' and ':'.
+
+       date    Syntax: '%date', returns the current date on the form: Mon  Dec
+               4 13:14:07 1995
+
+       ?       Syntax: '%?', lists all available functions.
+
+       Note:
+       The  functions  that do not have an argument, must be terminated with a
+       delimiter character if NUKEM should be  able  to  identify  them.   For
+       instance,  the  full stop '.' is not treated internally as a delimiter,
+       and NUKEM is therefore not able to interpret the  expression  '%date.'.
+       This  expression will not be processed by NUKEM. To avoid this problem,
+       it might be a good idea to enclose the functions that do not have argu-
+       ments,  in the brackets '{}', i.e. '{%date}.' (the brackets are removed
+       by NUKEM).
+
+ARITHMETIC AND LOGICAL OPERATIONS:
+       The following operations are available:
+
+       *       Multiplication symbol.
+
+       /       Division symbol.
+
+       ^       Exponent symbol.
+
+       +       Plus sign.
+
+       -       Minus sign.
+
+       ==      Equal symbol (works on numbers and strings).
+
+       <>      Not equal symbol (works only on numbers)
+
+       >       Greater than symbol.
+
+       <       Less than symbol.
+
+       >=      Greater than or equal symbol (works on strings if equal).
+
+       <=      Less than or equal symbol (works on strings if equal).
+
+       !       Not symbol.
+
+       &&      And symbol.
+
+       ||      Or symbol.
+
+PROGRAMMER DESCRIPTION
+       Details on implementation are also available in  the  comments  in  the
+       start of the nukem.F FORTRAN file.
+       DECLARATION
+              SUBROUTINE NUKEM(KODE, UNITI,
+             &      HDR250,INTOUT,DAT250,ENDOFF,IRC)
+       C
+       C      Maximum number of headers
+              INTEGER*4 NRHDR
+              PARAMETER (NRHDR=100)
+       C
+       C      KODE= -1, initialise,
+       C      +   =  0, read next data line,
+       C      +   =  1, terminate
+              INTEGER*4 KODE
+       C
+       C      Input file unit number
+              INTEGER*4 UNITI
+       C
+       C      List of possible headers
+              CHARACTER*250 HDR250(NRHDR)
+       C
+       C      Index of current header (output)
+              INTEGER*4 INTOUT
+       C
+       C      Next data line under current header (output)
+              CHARACTER*250 DAT250
+       C
+       C      Has end of file been reached? (output)
+              LOGICAL*4 ENDOFF
+       C
+       C      error return code (0=OK) (output)
+              INTEGER*4 IRC
+       AVAILABILITY  The  subroutine source is in libnukem and a compiled ver-
+       sion is in libnukem.a .
+
+       In order to understand how to use NUKEM, it may be instructive to study
+       the input file below in more detail.
+
+       #
+       # this is a comment
+       # header:
+         LIST OF STATIONS:
+       # data body:
+          112
+          113
+       #
+       # command:
+         include (~AAPP/data/stations.default)
+       #
+
+       Headers
+       Headers  are  used to identify the data bodies. In the call to the rou-
+       tine the user has to specify which headers to search for in  the  input
+       file  (CHARACTER*250 HDR250(100)). The line pattern of the data body is
+       specified in the header. The header syntax is:
+
+            HDR250(2)='LIST OF STATIONS: [*]VFMLR &'
+
+       The string 'LIST OF STATIONS:' is used in the search in the input file.
+
+       The  term  '[*]VFMLR  &'  specifies how many lines the data body should
+       contain ('[*]'), how NUKEM should pre-process each line ('VFMLR'),  and
+       which group the header belongs to ('&').
+
+       Data body
+       The  data body of a header is passed to the calling program through the
+       variables INTOUT and DAT250.  INTOUT specifies under which  header  the
+       data  body  was found, i.e.  INTOUT=2 means that DAT250 was found under
+       the header HDR250(2).  In our example, the first  call  to  nukem  will
+       return  DAT250='112'.   The  next  call  will  return DAT250='113'.  Of
+       course, finally the input file will end, and in this case  INTOUT  will
+       be set to 0 and ENDOFF will return true.  The NUKEM routine may in this
+       way be used to read an input file sequentially.
+
+       Header syntax:
+       The header syntax is:
+
+          HDR250(2)='LIST OF STATIONS: [<N>]VFMLR<group>'
+
+       The string 'LIST OF STATIONS:' is used in the search in the input file.
+
+       The term '[<N>]' specifies the line pattern of the data body.
+
+       <N>=Integer  The  integer specifies how many lines the data body should
+                    consist of.  Other headers  (or  end  of  file)  must  not
+                    interrupt the data body
+
+       <N>=*        If  the  user  specified a '*', the number of lines in the
+                    data body is not fixed. The NUKEM  routine  will  continue
+                    reading until another header is found, or end of file.
+
+       The term 'VFMLR' specifies how NUKEM should pre-process each data line.
+
+       V            The  'V'  after the brackets is included if the user wants
+                    NUKEM to perform variable substitution on the data body of
+                    this header (e.g. $(file)).
+
+       F            The  'F'  after the brackets is included if the user wants
+                    NUKEM to search for and execute  special  functions  (e.g.
+                    %date %arctan(1.0D0 1.0D0)).
+
+       M            The  'M'  after the brackets is included if the user wants
+                    NUKEM to search for  and  execute  arithmetic  expressions
+                    found in the data body (e.g. 1+2+3 1995/10/10).
+
+       L            The  'L'  after the brackets is included if the user wants
+                    NUKEM to search for and execute logical expressions  found
+                    in the data body (e.g. T&&(1==2)).
+
+       R            The  'R'  after the brackets is included if the user wants
+                    NUKEM to perform repetitive processing (e.g. $(var  $(nr))
+                    %sin(45*%rad)).
+
+       Note:
+       The  NUKEM  subroutine  removes  surplus  blanks  even if no processing
+       options are specified. The output (CHARACTER*250  DAT250(NRDATA))  must
+       therefore  be  read  using  floating  format  (i.e. READ(DAT250,*) STA-
+       TION(JJ)).
+
+       The user should also note that the processing of the command  arguments
+       (i.e. if (<arguments>)), is done using the options for the first header
+       (HDR250(1)). It is therefore recommended that the first header does not
+       have  a data body. By convention it should only contain the name of the
+       program and the version number (i.e. HDR250(1)='OBSRES V1.0 [0]VFMLR').
+
+       The order of processing is always: V -> F -> M -> L.
+
+       The preprocessor was designed to be able to handle both undefined vari-
+       ables and numbers. It only processes the input if it in the input iden-
+       tifies  an operation which may be executed. This preprocessor must how-
+       ever be used with care. An expression like
+
+           1995/10/19 18:00 0.000
+
+       would result in the output:
+
+           10.5 18:00 0.
+
+       if the mathematics flag was set, which may not be quite what  the  user
+       had in mind.  The two expressions
+
+           ($(a)+3)/3==3 (($(a)+3)/3)==3
+
+       would result in the output:
+
+           ($(a)+3)/T (($(a)+3)/3)==3
+
+       if the variable '$(a)' was not defined.
+
+       Grouping  forces  the user to use the correct combination of headers in
+       the input file.  The basic grouping options are
+
+       &<integer>   This header (subgroup) is mandatory at  this  level.   The
+                    integer  specifies  which  group the header belongs to (at
+                    this level).
+
+       %<integer>   This group can only have 0 or  1  headers  (subgroups)  at
+                    this  level.   If  two  headers belong to this group, then
+                    only one (or no) header can be used  in  the  input  file.
+                    This  is  the  default option if nothing else is specified
+                    (NUKEM assignes in this case the header to a group with no
+                    other members).
+
+       &<integer1>$<integer2>
+                    This  combination  allows 0 or any other number of headers
+                    (subgroups) at this level.  The main group ('&<integer1>')
+                    does not complain if this header is missing from the input
+                    file.
+
+       The headers can be organised into subgroups,
+       with a maximum depth of 25 levels.  The header group is specified as  a
+       path  containing  a list of the groups from the top level to the bottom
+       level.  For instance, the two headers:
+
+            HDR250(2)='LIST OF STATIONS: [*]VFMLR %2&2'
+            HDR250(3)='STATION FILE: [1]VFMLR %2&2'
+
+       are both members of the group '%2' and its subgroup '&2'.
+
+       Group compliance is always evaluated from bottom and up.  The sub group
+       '&2'  is  only fulfilled if both headers are present in the input file.
+       Giving only one of these headers will result in an error  message.   At
+       the highest level we have the group '%2'. This group allows only 1 or 0
+       subgroups to be present.  We may therefore  have  either  both  headers
+       present, or none.
+
+       It may be instructive to study another example:
+
+            HDR250(2)='DO NOT TRANSFORM [0]   &1%1'
+            HDR250(3)='USE CONTINUOUS TR. [1] &1%1&5%1'
+            HDR250(4)='TR. START [1]          &1%1&5$'
+            HDR250(5)='TR. END [1]            &1%1&5%1'
+
+       In  our  example, header 2 can not occur together with any of the other
+       headers (in '&1%1').  Header 3 can occur together with 4, but not 5 and
+       vica versa.  Header 4 can occur with 3 or 5 (but not header 2).
+
+       The Kode parameter
+       If  the  KODE  variable  is equal to -1, the routine will re-initialize
+       (this is useful if you want to use the routine to read several  differ-
+       ent  input  files  in  one program).  When KODE equals 0, the next data
+       body is returned. End of file is indicated by  the  ENDOFF  flag.   The
+       group rule compliance is verified at calls where KODE is equal to 1.
+
+       Limitations
+       Although  the NUKEM subroutine interface is done using strings with 250
+       characters, the subroutine internally works with a buffer of 1000 char-
+       acters.  If  the  user  appends  lines in the input file, the resultant
+       string may be longer than 1000 characters. The  subroutine  will  loose
+       information in this case (giving a faint warning). If the buffer string
+       exceeds 1000 characters whilst being preprocessed, information will  be
+       lost without warning.
+
+Help .... Heeeeeeeeeelp ... HEEEEEEEEEEEEEEELP!!!
+       If  the  first  non-blank character in a line is a '?' (command), NUKEM
+       will print a list of all possible headers and commands:
+       #
+        ?
+       #
+       The function '%(?)' will print a list of all possible functions:
+       #
+        echo %(?)
+       #
+       The variable '$(?)' will list  all  variables  and  their  values  (and
+       return the number of variables):
+       #
+        echo The number of variables is: $(?)
+       #
+
+EXAMPLES:
+       Example 1:
+       #
+        TESTPROG V1.0
+       #
+        OBSERVATION FILE:
+         ~AAPP/data/obs.dat
+       #
+        ORBIT FILE:
+         ~AAPP/data/orb.dat
+       #
+
+       Example 2:
+       #
+        TESTPROG V2.0
+       #
+        echo Reading input file at {%date}.
+       #
+        import file
+        if (%inquire($(file))==1)
+        else
+           set file = test.dat
+        endif
+       #
+        if (%inquire($(file))==1)
+         echo The file "$(file)" exists.
+        else
+         echo The file "$(file)" does not exist!
+         echo Better stop before someone gets hurt.
+         exit 2
+        endif
+       #
+       #
+        PROGRAM INPUT FILE
+          $(file)
+       #
+
+FAQ's
+       Is this NUKEM routine really necessary?
+       The  NUKEM  subroutine  was  developed  in  order to encourage software
+       engineers to standardize their program input file  syntax.   The  NUKEM
+       subroutine consists of over 4000 fortran lines, and provides a powerful
+       preprocessor for the fortran input files.
+
+       The disadvantage of using this routine is, of course, that all programs
+       using  it  will crash if the routine stops working one day (if the com-
+       piler is changed etc.). The routine is  also  rather  complex,  leaving
+       room for numerous 'special-case' bugs (which may be hard to detect...).
+
+       On the other hand, the advantages of having one input file  syntax,  is
+       that  the  operators  of the different programs will have less problems
+       learning how to run new software. Of course, this alone is  not  enough
+       to convince a software engineer to 'learn something new' (we are rather
+       stubborn by nature). The advantage for the software  engineer  is  that
+       the  NUKEM  subroutine  is  capable of performing mathematics. This may
+       make testing of new software easier. The input may be given  as  mathe-
+       matical  expressions  rather  than  just numbers (which otherwise might
+       have had to be calculated by hand).
+
+SEE ALSO
+       tbusing, satpost
+
+Author
+       Happy hacking !
+       Frank Tveter (f.t.tveter@dnmi.no)
+
+DNMI                             15 July 1998                         NUKEM(1)
+}}}

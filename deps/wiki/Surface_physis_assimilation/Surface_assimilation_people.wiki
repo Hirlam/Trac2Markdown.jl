@@ -1,0 +1,41 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM/ALADIN/LACE/SURFEX people involved in surface data assimilation and process development''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+This list is under construction and was initiated at a HIRLAM meeting in Oslo, April 2016. Please edit/add!
+
+||= Name =||= Affiliation =||= Email  =||= Interests =||
+|| Clément Albergel          || SURFEX team Météo-France || clement.albergel at meteo.fr         || Official SODA contact person in the SURFEX team. Working with offline SURFEXv8 on EKF/DIF and soil moisture                       ||
+|| Trygve Aspelien           || METNorway   || Trygve.Aspelien at met.no             || 2 patches in cy40h/SURFEX, SODA ||
+|| Åsmund Bakketun           || METNorway   || asmundb at met.no                     || Master student with focus on SURFEXv8, EKF, diffusion soil ||
+|| Jostein Blyverket         || NILU        || Jostein.Blyverket at nilu.no          || EnKF methods with satellite soil moisture in SURFEXv8 ||
+|| Annelies Duerinckx        || RMI         || Annelies.Duerinckx at meteo.be        || EKF methods for SYNOP in ALARO/SURFEX with Force-restore ||
+|| Rafiq Hamdi               || RMI         || rafiq.hamdi at meteo.be               || EKF methods for SYNOP in ALARO/SURFEX with Force-restore ||
+|| Mariken Homleid           || METNorway   || Mariken.Homleid at met.no             || Snow assimilation (T2m, rh2m) in operational HARMONIE. SST and SIC from NEMO in addition to OSTIA, 2 patches in cy40h/SURFEX ||
+|| Tomas Landelius           || SMHI        || tomas.landelius at smhi.se            || Development of EnKF methods for satellite products                       ||
+|| Magnus Lindskog           || SMHI        || magnus.lindskog at smhi.se            || Development of EKF methods in cy40h/SODA/Force restore                   ||
+|| Nikolai Nawri             || IMO         || nikolai at vedur.is                   || Tuning surface related parameters to reduce 10-m wind speed and 2-m air temperature biases ||
+|| Patrick Samuelsson        || SMHI        || patrick.samuelsson at smhi.se         || SURFEX physics options and development of MEB (PGD/PREP/OFFLINE)         ||
+|| Stefan Schneider          || ZAMG        || stefan.schneider at zamg.ac.at        || Surface data assimilation in AROME/SURFEX ||
+|| Viktor Tarjanyi           || SHMU        || Viktor.Tarjanyi at shmu.sk            || Surface assimilation using Extended Kalman-Filter ||
+|| Michal Nestiak            || SHMU        || Michal Nestiak at shmu.sk             || Surface assimilation
+|| Helga Toth                || OMSZ        || toth.h at met.hu                      || Offline SURFEX7.3, force-restore, 12 patches A-gs, EKF assimilation of LAI and ASCAT soil moisture ||
+|| Ekaterina Kurzeneva       || FMI         || ekaterina.kurzeneva at fmi.fi         || Lakes in all aspects: FLake, lake database, EKF for lakes, OI in horizontal for LWST ||
+|| Bin Cheng                 || FMI         || bin.cheng at fmi.fi                   || Sea ice modelling, HIGHTSI ||
+|| Yurii Batrak              || METNorway   || yuriib at met.no                      || Sea ice modelling, SICE ||
+|| Roberta Pirazzini         || FMI         || Roberta Pirazzini at fmi.fi           || Snow albedo and grain size  ||
+|| Margarita Choulga         ||             || botan4ik at hotmail.com               || Global lake database, OI in horizontal for LWST   ||
+|| Sigurdur Thorsteinsson    || IMO         || siggi at vedur.is                     || Surface data assimilation of snow and soil        ||
+|| Bolli Palmason            || IMO         || bolli at vedur.is                     || PGD stuff, snow and glaciers        ||
+|| David Gustafsson          || SMHI        || david.gustafsson at smhi.se           || Hydrological modelling and data assimilation, snow ||
+|| Emily Gleeson             || Met Éireann || emily.gleeson at met.ie               || Glacier modelling ||
+|| Ruth Mottram              || DMI         || rum at dmi.dk                         || Glacier modelling ||
+|| Patrick Le Moigne         || SURFEX team Météo-France || patrick.lemoigne at meteo.fr || SURFEX team leader, head of SURFEX steering committee ||
+|| Aaron Boone               || SURFEX team Météo-France || aaron.a.boone at gmail.com || soil/vegetation/snow processes ||
+|| Stéphanie Faroux          || SURFEX team Météo-France || stephanie.faroux at meteo.fr || physiography ||
+|| Francoise Taillefer       ||
+|| Samuel Morin              ||
+

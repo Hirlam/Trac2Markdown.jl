@@ -1,0 +1,79 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''NorCP: Nordic Convection Permitting Climate Projections''' =
+[[LastModified]]
+[[Center(end)]]
+
+'''This page is intended for communication of the status of NorCP simulations.'''
+
+
+== Background and project description ==
+
+NorCP is a collaborative project by four institutes: DMI, FMI, MET Norway, and SMHI.
+
+
+== Simulation protocol ==
+
+The simulation protocol is attached [attachment:NorCP_simulations_protocol.pdf here].
+The list of output variables is located in [https://docs.google.com/spreadsheets/d/1fIG-njRxTGicBmXr2pItr_7ud0pvK0YdJjUUlq4kz8A/edit?usp=sharing this google document][[BR]]
+The AROME (3km) and ALADIN (12km) domains can be seen [attachment:NorCP_domains.png here].
+
+
+
+== Status of AROME simulations (convection permitting runs) ==
+
+|| '''LBCs''' || '''Simulation period[[FootNote(Includes first year for spin-up)]]''' || '''Responsible Institute''' || '''Start Date[[FootNote(Planned or actual)]]''' || '''End Date[[FootNote(Planned or actual)]]''' || '''HPC''' ||'''Comments''' ||
+|| ERA-Interim || 1997 - 2017 || SMHI || 22 October 2018 || 5 March 2019 || ECMWF || Finished ||
+|| EC-Earth || 1985 - 2005 || FMI || 13 November 2018 || 10 April 2019 || ECMWF || Finished ||
+|| EC-Earth || 2040 - 2060 || METNo || 20 November 2018 || 11 June 2019 || ECMWF || Finished ||
+|| EC-Earth || 2080 - 2100 || DMI || 19 December 2018 || 16 May 2019 || ECMWF || Finished ||
+|| GFDL || 1985 - 2005 || SMHI || 19 December 2019 || June 2020 || ECMWF || Running 1998/06 ||
+|| GFDL || 2040 - 2060 || FMI || 20 December 2019 || June 2020 || ECMWF || Running 2051/09 ||
+|| GFDL || 2080 - 2100 || METNo || 19 December 2019 || June 2020 || ECMWF || Running 2090/10 ||
+
+
+Run time estimates
+* DMI @ ECMWF: 1 model month averages 12.1 hours (real time). Estimated time full run: 120.9 days. Estimated end: (early) May 
+
+SBUs estimates (based on EC-EARTH simulation, see $SCRATCH/experiment/SBU.log on ecgate)
+* METno @ ECMWF: 1 model month ca. 175'300 SBUs. 1 model year ca. 2'000'000 SBUs. 1 time-slice (21 models year) ca. 44'000'000 SBUs
+
+== Status of ALADIN simulations (intermediate resolution runs) ==
+
+|| '''LBCs''' || '''Simulation period[[FootNote(Includes first year for spin-up)]]''' || '''Responsible Institute''' || '''HPC''' ||'''Comments''' ||
+|| ERA-Interim || 1997 - 2017 || SMHI || bi || Finished ||
+|| EC-Earth || 1985 - 2005 || SMHI || bi || Finished ||
+|| EC-Earth || 2040 - 2060 || SMHI || ECMWF || Finished ||
+|| EC-Earth || 2080 - 2100 || SMHI || bi || Finished ||
+|| GFDL || 1985 - 2005 || SMHI || bi || Finished ||
+|| GFDL || 2040 - 2060 || SMHI || bi || Finished ||
+|| GFDL || 2080 - 2100 || SMHI || bi || Finished ||
+
+== Set up simulation on ECMWF ==
+We have created a new branch for this project, so if there are any changes we see are needed we can commit to this branch
+which will make it easier for everyone to be sure that we are using the same code.[[BR]]
+
+**Check out code**
+* svn co https://svn.hirlam.org/branches/climate/projects/NORCP/HCLIM38h1
+
+**Set up experiment**
+* <PATH TO SVN SOURCE>/config-sh/Harmonie setup -r <PATH TO SVN SOURCE> -h ecgb-cca
+
+''config_exp.h''
+As this is the main configuration file we are using, we have prepared it so it's as few settings as possible we need to change for our simulations.
+The default file is used for our non-hydrostatic HCLIM-AROME simulations.[[BR]]
+''config_exp.h.NORCP.AROME'' Template for AROME simulations, same as the default one. [[BR]]
+''config_exp.h.NORCP.ALADIN'' Template for ALADIN simulations forced by ERA-Interim. [[BR]]
+'''N.B.''' Don't forget to set your preferences for archiving data. Default is archiving everything at ecfs. Everything means your history, log files etc. for AROME runs and
+also surfex (FA) files for the ALADIN simulations. This is dependent on SAVE_FAOUTPUT which we have preset. Also set the INSTITUTE variable to your institute as this information is used as metadata in the netcdf files.[[BR]]
+BDLIB is the path to forcing data. It is set to a common shared space on SCRATCH for everyone to use; /lus/snx11062/HCLIM_NORCP_LBC/<boundary forcing experiment>. Change [[BR]]
+''boundary forcing experiment'' to the experiment folder that will provide boundary conditions. [[BR]]
+When running with ALADIN we also need to change the selected output for surfex and there is a specific namelist for that (nam/surfex_selected_output_ALADIN.pm).
+
+
+[[FootNote]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

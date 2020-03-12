@@ -1,0 +1,97 @@
+= Changes in the climate generation for HIRLAM-7.1 =
+
+[[Center(begin)]]
+'''[[Color(red, NOTE: This change is not released yet!)]]'''
+[[Center(end)]]
+
+[[PageOutline(2-3, Contents, inline)]]
+
+== Update of the DEM HDF-files in the HDFSETs "9000" and "regular" ==
+
+This update of the data from the Digital Elevation Model (DEM) fixes a minor bug in the height field, where the fill value has been corrected. The meteorological impact is estimated to be minimal.
+
+The new HDF files for the DEM data include additional fields used to
+aggregate parameters for the SSO parameterization. These are
+
+{{{
+  `sumheight_ss`
+  `sumsqheight_ss`
+  `maxslope_ss`
+}}}
+
+
+== New features included into the climate generation code ==
+
+Features from the DMI version of the climate generation have been added to
+the reference code, including aggregation of meso-scale sub-grid orography (MSO)
+parameters for the Météo-France MSO parameterization scheme, as well as
+small-scale sub-grid orography parameters (SSO) used for parameterization
+of orographic turbulence in accordance with the MSO scheme.
+The following list provides an overview over the major changes:
+
+  * option to change the size of the aggregation grid, enabling to aggregate
+    data on basis of a differnt grid scale. See the [wiki:CtopoUserGuide#goption ctopo user guide] for more information.
+  * function to change the sample region from grid centre to a directional dependend
+    sector: specific ctopo action "sample" (Caution: This feature is still in beta state)
+    See the [wiki:CtopoUserGuide#sampleaction ctopo user guide] for more information.
+  * processing of `z0_veg`
+  * aggregation using a band-pass (Gaussian type)
+  * MF-MSO parameters aggregation
+  * SSO parameters aggregation
+
+Additionally, some bug fixes have been applied, too:
+
+  * proper determination of the domian edges when refining under a rotated grid
+  * more stable mask addressing when identifying the aggregation mask grid
+  * robust handling of round-off uncertainties during variance determination
+
+The ctopo routine includes the following new actions, which are used in the MSO
+processing:
+
+  * dxdx, dydy
+  * dxdy
+  * bpfilter
+
+Further details about using the updated ctopo routine can be found in the CtopoUserGuide.
+The ctopo calls for processing both the MSO and the SSO parameters have been
+included into the Climate script, and new configuration variables concrening
+MSO parameter aggregation have been added into `Env_expdesc`:
+
+||`MSO_BPF_HIGH` || MSO Band-Pass filter upper (small scale) limit in degrees||
+||`MSO_BPF_LOW`  || MSO Band-Pass filter lower (large scale) limit in grid units||
+||`MSO_PAR`      || switch on MSO parameterization in HIRLAM (MSO parameters are allways aggregated in the climate generation regardless of MSO_PAR)||
+
+Note that MSO and SSO processing does not work for `HDFSET="old"`, because these HDF files do not contain the necessary data fields.
+
+
+
+== Important Notes ==
+
+The band-pass filtered height field, which is created when processing the MSO
+parameters, is stored into a specifc HDF file called `hl_bpf_<HDFSET>_<HIRES>_<ext>_<slim>_<llim>_<ext>.hdf`,
+
+  where
+    `<HDFSET>`:: is the name of the underlying HDFSET
+    `<HIRES>`::  is the resolution specification for HDFSET
+    `<ext>`::    denotes the extension factor (filter approximation)
+    `<slim>`::   is the small scale limit of the band-pass filter `MSO_BPF_HIGH` (in degrees)
+    `<llim>`::   is the large scale limit of the band-pass filter `MSO_BPF_LOW` (in multiples of target grid mesh size)
+
+----
+The creation of the band-pass filtered height field is computationally expensive.
+For example, processing for the RCR domain takes about 37 Minutes on the current
+computer system at ECMWF.
+In order to avoid excessive use of computer resources, the HDF file with the
+band-pass filtered height is stored under `$HL_DATA/$EXP` and in the archive under `$HL_ARC/$EXP/ModelClimate`.
+From there it will be restored when the experiment is rerun. However, as soon
+the HDFSET or the filter characteristics (`MSO_BPF_HIGH`, `MSO_BPF_LOW`, filter approximation) are changed by the user, the band-pass filter has to create a new filtered field.
+
+----
+When using the `9000-0.0125` HDFSET and aggregating an area larger than what
+is covered by the 0.0125° files, the data from `9000-0.025` are used. This
+necessitates a gridrefinement procedure within ctopo, which may take
+significant computer resources.
+
+
+== Acknowledgements ==
+Laura Rontu has performed test runs and fields for comparison, which helped to fix some bugs and identify important issues.

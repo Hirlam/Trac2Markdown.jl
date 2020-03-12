@@ -1,0 +1,25 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Towards a mesoscale model with high quality''' =
+[[LastModified]]
+[[Center(end)]]
+
+One of the most important features for which we want to use the high resolution mesoscale models is to be able to forecast severe convection and the associated phenomena correctly. The convection in the mesoscale model therefore has to be checked for a number of cases (as large as possible) to see if the model is capable of producing the correct amounts of precipitation, and the correct winds that are accompanying thunderstorms and squall lines often. From the literature it is known that e.g. the winds in mesoscale models can be too strong, when the convective cells are too large. This is the case for the mesoscale models in the near future, because the grid cells of around 2 km are much larger than the updrafts themselves. A solution to this problem (if it does appear in AROME) is to let a part of the convection be resolved by a deep convection parameterisation (see Deng and Stauffer, JAM 45, 361-381, March 2006). A very careful check of the winds, precipitation and maybe also satellite imagery may reveal if this problem is also visible in AROME or not.
+
+A second test that has to be performed is the reaction of the mesoscale model to a specific forcing in the form of differential heating. How strong do mesoscale circulations become as a function of the magnitude of the differential heating of the air e.g. over land and over sea and is this in accordance with theory and observations? How well are the mesoscale models capable of reproducing all the fine scale structures in the flow due to lakes, coast lines, large changes in soil or vegetation characteristics etc.
+
+The third thing that has to be tested, which is also important for the onset of deep convection, is the growth of the boundary layer as a function of the distance to the coast in the case of onshore flow and a warm land surface, or opposite in winter when there can be cold outflow over the sea. Are clouds, cloud streets and showers represented correctly and are clouds and showers developing at the right place? I can remember a very nice case over the Netherlands where we had onshore flow and showers developed around 30-40 km inland, and these showers kept developing there causing some places to be hit by severe thunderstorms more than once during this day.
+
+For the mesoscale model it is not only important that convection is represented correctly, but the larger scale dynamic and severe weather must be represented correctly also. Therefore we also have to check if the structure of low pressure systems, and especially the small scale lows are correctly represented by the mesoscale model. What is the impact of the boundaries on these systems and what time resolution boundaries are necessary to correctly transfer small scale systems from the larger scale model to the mesoscale model. Are the areas with relatively strong winds (that can be quite small scale) correctly represented by the mesoscale model (sting in the tail, dark stripe wind speed enhancement)?
+
+Something that also is a lateral boundaries problem is the impact of the prescription of cloud water at the boundaries. Is it necessary and is the impact on the condensation, clouds, convection and precipitation positive?
+
+All the points above can be considered important for relatively flat countries such as the Netherlands, Denmark and to a certain extent Finland and Sweden, but for mountainous areas there are a few additional things that you want to have checked before you start using the mesoscale model in an operational setting.
+
+First you want to know if the model is capable of producing the correct winds in the vicinity of orography. Is the effect of the mountains represented correctly and how is the climatology of the wind for positions close to mountains, in fjords or in (steep) valleys? From the management group visit to Norway it was clear that a 4 km resolution model is not doing too well and that the model climatology in a 200 (!) m resolution model resembles the observed climatology quite closely. So what happens in between these resolutions?
+
+The second thing that is related to orography is the precipitation in the vicinity of orography. Is it generated at the correct position and is it transported to the correct place. Is convection triggered at the right position?
+
+These are all questions that have to be answered before we can start using the mesoscale models with confidence. Many of the questions posed above are coming on top of a normal day to day verification that is produced at this moment already for Hirlam, Aladin, Hirald and AROME. I therefore have the feeling that we have to do much more validation and verification studies than that we have done so far, to enable us to say with a certain degree of confidence that the mesoscale model produces reliable results. 
+
+Sander Tijm, KNMI

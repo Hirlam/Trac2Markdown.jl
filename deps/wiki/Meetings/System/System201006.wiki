@@ -1,0 +1,122 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''SMHI, 21-24 June 2010''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Participation, period and location ==
+
+The working week starts at 900 on Monday morning, June 21, at SMHI ([http://maps.google.se/maps/place?cid=14776653779542354781&q=SMHI&hl=sv&cd=1&cad=src:pplink&ei=bTkXTJ6ZBZTFsgaRqdGtBg Folkborgsvägen 1, 601 76 Norrköping]), finishes at 1500 on Thursday afternoon, 24 June 2010. 
+
+Participates are,
+ * AEMET:   Mariano Hortal (21 - 24/6)
+ * DMI:     Mats Dahlbom (21/6 - 24/6 ) and  Xiaohua Yang (21-22/6)
+ * FMI/CSC: Sami Saarinen (21/6 - 23/6)
+ * KNMI:    Toon Moene (21 - 24/6) 
+ * met.no:  Ole Vignes (21 - 24/6)
+ * SHMU:    Oldrich Spaniel (21 - 24/6)
+ * SMHI:    Ulf Andrae (21/6 - 24/6), Magnus Lindskog (21/6 - 24/6)
+
+== Objectives ==
+
+The main goal of this working week is to consolidate on trunk (with the source code based on CY36T1), with the aim to work out a technical tagging of 36h1.1 within short, which in turn will become the main system platform for HIRLAM-A community to, in the remaining time of HIRLAM-A programme, work toward the principal target for delivering a meso-scale HARMONIE forecast system suitable for operational usage.
+
+The main items to work are technical improvement for various unresolved aspects of featured options, especially those with ALADIN and AROME settings, for components such as interpolation, upper air (3DVAR), surface (CANARI and OI-MAIN), forecast, and post-processing, especially those involving,
+ * Build and inter-comparison with makeup and with gmkpack, both under miniSMS
+ * ECPHY option in which ECMWF physics is used for intermediate resolution between ECMWF and AROME grid scales
+ * Incremental DFI using ECMWF and/or ARPEGE data; Other initialisation aspects with 3DVAR and downscaling
+ * Assimilation with AROME: examination of analysis increment; structure function; observation data pre-processing
+ * Aspects involving 2D decomposition in AROME forecast; post-processing with FULLPOS 
+ * Surfex soil wetness scaling issue
+
+== Progress and Status ==
+
+Currently, the trunk version, which has implemented the source code from CY36T1 up to bf6, is seen to have following remaining deficiencies, 
+ * 2D domain decomposition with AROME model
+   * Ryad is said to have a solution.
+   * Will come in 36t1_bf.07 during next week. Trgve and Ole has got access to the preliminary version
+ * failure of post-processing using FULLPOS
+   * Solved by increasing MBX_SIZE for forecast part to 640 mb for the reference namelist at C1A.
+     * This to Sami is an ad hoc solution and shall be chekced for different platforms. Sami cautions that MBX_SIZE shall not be too large (or "constant" for all jobs), since that eats otherwise lot of memory. If the mailbox size has to be very large this is a symptom of message passing flooding i.e. coding problem
+   * Work has started to allow control of MBX_SIZE, NCOMBFLEN etc from Env_submit (Ulf)
+ * Correct coefficients for VARBC. This currently prohibits correct use of ATOVS data
+   * Roger is working on a solution and will deliver it by end of June.
+ * OI_MAIN linked with makeup doesn't work
+   * At SMHI platform, this problem is now thing of the past. The reason is still unknown but could have been linked to the libgribex problems
+   * To be checked at C1A
+ * Several unknown and duplicated FA/lfi -> grib conversions.
+ * Bator fails to distribute observations across all NPOOLS  (i.e., NPOOLS -1)
+   * Error in {{{odb/pandor/module/bator_init_mod.F90}}} has been fixed now
+ * Surface temperature is not updated in the FA file during the forecast for ALADIN/ALARO with SURFEX
+   * Corrected. Will also come in 36t1_bf.07 during next week.
+
+In addition, following new features have been worked at
+ * gmake-based build with makeup as integrated into the system via mSMS
+   * Preliminary porting committed. At ECMWF, the makeup configure ran into symptom with 
+{{{
+   /opt/freeware/bin/xargs: environment is too large for exec
+}}}
+      * This is believed to be associated with an outdated xargs installed at C1A. ECMWF has been contacted.
+   * Dominique Lucas from ECMWF will install new xargs at some point (GNU 4.2 or later)
+      * meanwhile the makeup configure has been changed to accommodate only 10 args for xargs (for all platforms)
+      * we have received this tool and it is now in use for ECMWF IBMs ecgate and c1a at /ms_perm/hirlam/sys/xargs
+   * MAKEUP-option has now been updated, also with testbed option etc. The option now works
+      * Ulf reports successful MAKEUP build+run test on SMHI platform with/without precompiled libraries under mSMS. Successfully tested configurations on gimle are 
+{{{
+   ALADIN_3DVAR ALADIN_OI_MAIN ALARO_3DVAR ALARO_OI_MAIN AROME_3DVAR
+}}}  
+      * Similar tests need to be done at C1A also.
+      * validation test needs to be done for various platform to examine reproducibility of meteorological quality.
+ * possible setting adaptations in namelists/scripts etc for utilising some of the features related to SAMIO, DR HOOK profiling and MPI/OpenMP optimisation
+ * Discuss also about creating a Perl-tool for checking correct calling args in {{{CALL DR_HOOK}}} (often some 0 and/or 1 args are wrong in a new cycle)
+   * An error of this nature was just fixed in {{{src/arp/obs_preproc/screen.F90}}}
+   * Sami worked out a checker tool util/makeup/check_drhook.pl
+     * The first version of this tool is now available and has already spotted over 10 bad callages of DrHook -- potentials for failed runs
+ * ECPHY option using ECMWF physics: porting to trunk; post-processing; check on conflicts with other physics;
+   * Xiaohua worked on porting from 35h1.3 to the 35h1branch
+     * non ECPHY option works, thus ready to be committed;
+     * some minor problems in Postpp for ECPHY option, indicating some inconsistency in implementation of ECPHY. This needs to be debugged
+     * afterwards the changeset will be ported to trunk
+
+=== Recommended way to build with {{{makeup}}} for ECMWF c1a ===
+
+On c1a, the recommended way to build with {{{makeup}}} is as follows:
+
+{{{
+# Choose working xlf compiler (enter before configure)
+module swap fortran/xlf fortran/xlf/12.1.0.3
+# Configure
+cd trunk/harmonie/src
+../util/makeup/configure -c -d config.ECMWF.ibm_pwr6_aix.xlf.mpi+openmp -P
+# Build
+cd ../makeup.ECMWF.ibm_pwr6_aix.xlf.mpi+openmp/src
+gmake NPES=16
+}}}
+
+  * The makeup config-file is taken from {{{trunk/harmonie/util/makeup}}}-directory and compilations are done under {{{trunk/harmonie/makeup.ECMWF.ibm_pwr6_aix.xlf.mpi+openmp/src}}} rather than {{{trunk/harmonie/src}}}. The make is now implemented so that it also takes care of rsynchronization automagically between these directories. This not only applies to source codes, but also makeup scripts.
+  * Once build has been finished, you have an option to copy executables and/or libraries to the directories $BINDIR and/or $LIBDIR, respectively, which are created if not available:
+
+{{{
+# Copy all executables
+cd trunk/harmonie/makeup.ECMWF.ibm_pwr6_aix.xlf.mpi+openmp/src
+gmake bindir BINDIR=$BINDIR
+# Copy all libraries
+cd trunk/harmonie/makeup.ECMWF.ibm_pwr6_aix.xlf.mpi+openmp/src
+gmake libdir LIBDIR=$LIBDIR
+}}}
+
+== Lose ends ==
+
+Things that are not working yet:
+
+ * {{{makeup}}} configure has a number of subshell creations, which have occasionally failed on Ole's !MetNo builds. Needs attention.
+   * Not solved, but "workaround" now works.
+   * This has been solved now in the changeset [8302]. Add {{{-S}}} into your configure command, if subshells cause headache.
+ * Several unknown and duplicated FA/lfi -> grib conversions.
+ * VARBC updates
+ * 4DVAR crashes in boundary preparation
+ * The relation between Addsurf  and HOST_MODEL/PHYSICS has to be sorted out. At the moment it's wrong for e.g. HOST_MODEL=ald PHYSICS=alaro
+ * Number of objects reported by {{{makeup}}} was incorrect and different, depending whether some objects already existed. This bug has now been fixed in the changeset [8303] and the grand total number of objects in trunk seems to be 8728 as of 7/7/2010.
+

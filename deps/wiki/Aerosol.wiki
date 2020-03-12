@@ -1,0 +1,426 @@
+== '''Aerosol in HARMONIE-AROME and HCLIM''' ==
+
+=== Publications ===
+
+Gleeson, E., Toll, V., Nielsen, K. P., Rontu, L., and Mašek, J.: Effects of aerosols on clear-sky solar radiation in the ALADIN-HIRLAM NWP system, Atmos. Chem. Phys., 16, 5933-5948, doi:10.5194/acp-16-5933-2016, 2016. (http://www.atmos-chem-phys.net/16/5933/2016/acp-16-5933-2016.html)
+
+Rontu, L., Pietikäinen, J.-P. and Martin Perez, D.: Renewal of aerosol data for ALADIN-HIRLAM radiation
+parametrizations, Adv. Sci. Res., 16, 129–136, 2019,https://doi.org/10.5194/asr-16-129-2019
+
+Laura Rontu, Emily Gleeson , Daniel Martin Perez , Kristian Pagh Nielsen , Velle Toll: Sensitivity of radiative fluxes to aerosols in the ALADIN-HIRLAM numerical weather prediction system. Submitted to MDPI Atmosphere, 2020.
+https://hirlam.org/trac/attachment/wiki/Aerosol/r20200115.pdf
+
+Toll, V., Gleeson, E., Nielsen, K.P., Männik, A., Mašek, J., Rontu, L., Post, P. Importance of the direct radiative effect of aerosols in numerical weather prediction for the European region, Atmospheric Research, Volumes 172-173, 15 May–1 June 2016, Pages 163–173
+https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_etal_averageAODcase.pdf
+
+Toll, V., Reis, K., Ots, R., Kaasik, M., Männik, A., Prank, M., Sofiev, M.,2015. SILAM and MACC reanalysis aerosol data used for simulating the aerosol direct radiative effect with the NWP model HARMONIE for summer 2010 wildfire case in Russia. Atmospheric Environment 121, 75–85.
+https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_etal_wildfires_in_Russia.pdf
+
+Toll, V., Männik, A., 2015. The direct radiative effect of wildfire smoke on a severe thunderstorm event in the Baltic Sea region. Atmospheric Research 155, 87–101.
+https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_Mannik_Aerosol_impact_on_convective_storm.pdf
+
+Direct radiative impacts of atmospheric aerosols on meteorological conditions over Europe (V. Toll PhD thesis)
+https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_PhDthesis.pdf
+
+Main findings relevant for limited area NWP over Europe
+1) For situation with high AOD meteorological forecast can be considerably improved (SW flux and surface energy fluxes in general, near surface temperature, vertical profile of temperature etc.) by using realistic AOD distributions for radiative transfer instead of assuming average climatological effect of aerosols.
+2) For situation with AOD close to the long-term average weak sensitivity to aerosol distribution used was found in meteorological forecasts (forecast of SW radiation could still be improved), it is fine to assume climatological aerosol effect during such conditions (and aerosol climatology following Tegen et al. 1997 is O.K. to use over Europe).
+
+
+Arola, A. etal, ACP 2007, Jokioinen aerosol episode https://hirlam.org/trac/attachment/wiki/Aerosol/arola_biomassaerosol_acp_2007.pdf
+
+Rontu, L., Gleeson, E.,  Nielsen, K.P., Toll, V., Mašek, J. HARMONIE-AROME radiation studies 2011-2016. ALADIN-HIRLAM Newsletter 7: 73-80, 2016. 
+
+Vie et al., 2016. [http://www.geosci-model-dev.net/9/567/2016/gmd-9-567-2016.pdf LIMA] description in Geos. Model Dev.
+
+[http://www.the-cryosphere.net/11/47/2017/tc-11-47-2017.pdf Baklanov et al] in GMDD 2017
+
+[http://www.geosci-model-dev.net/3/553/2010/gmd-3-553-2010.pdf Aouizerats et al] GMD 2010
+
+[http://www.atmos-chem-phys.net/17/1945/2017/acp-17-1945-2017.html Flemming et al] ACP 2017
+
+Recent evidence suggests that cloud water responses to aerosols are weak on average, both LWP increases and decreases can occur depending on the meteorological conditions.
+In this light, parameterizing LWP response to aerosols in NWP model based on real-time aerosol concentrations (i.e. via modification of autoconversion) is highly questionable.
+
+[https://www.nature.com/articles/nature22974] Nature 2017, Malavelle et al.
+"Strong constraints on aerosol–cloud interactions from volcanic eruptions"
+
+[https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2017GL075280] GRL 2017, Toll et al.
+"Volcano and Ship Tracks Indicate Excessive Aerosol‐Induced Cloud Water Increases in a Climate Model"
+
+
+
+'''Presentations, reports'''
+
+
+FMI Seminar 20 Oct 2016
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_HARMONIEaerosol.pdf Toll et al.:] Direct radiative impacts of aerosols in HARMONIE short range forecasts – experiences and future perspectives
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Sofiev_SILAM.pdf Sofiev:]  SILAM update 
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Rontu_Haraero.pdf Rontu et al.]: Aerosol status and plans in HARMONIE-AROME NWP system - items for discussion
+
+
+Web meeting 7 Dec 2016
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Rontu_Haraero_v2.pdf Rontu_et al.:] Slides for discussion
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Nielsen_20161207_Aerosol_web_meeting_presentation.odp Nielsen et al.: (odp)] HARMONIE experiments with indirect effects in China 
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Nielsen_20161207_Aerosol_web_meeting_presentation.pdf Nielsen et al.: (pdf)] HARMONIE experiments with indirect effects in China 
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Seity_Limaero.pdf Seity_et al.:] Aerosols in LIMA
+
+* [https://hirlam.org/trac/attachment/wiki/Aerosol/Aerosol_web_meeting_minutes.pdf Lisa Bengtsson:] Outcome of the meeting
+
+
+From [http://www.umr-cnrm.fr/aladin/spip.php?article311&lang=en Toulose cloud workshop] 16-18 Jan 2017
+
+* [http://www.umr-cnrm.fr/aladin/IMG/pdf/2017-01-16-cloud-workshop-bvie.pdf Benoit Vie] LIMA scheme
+
+* [http://www.umr-cnrm.fr/aladin/IMG/pdf/homonnaiv_cloudww2017.pdf Victoria Hommonay] Initialization of aerosols
+
+
+From Metcoop working days
+
+*  Helsinki 7-9.3.2017 [https://hirlam.org/trac/attachment/wiki/Aerosol/Rontu_Haraero_upd.pdf Laura Rontu:] Harmonie aerosol update
+
+*  Helsinki 27-29.11.2017 [https://hirlam.org/trac/attachment/wiki/Aerosol/PietikainenRontu_Haraero_update4_LR.pdf Joni-Pekka Pietikäinen, Laura Rontu:] Harmonie aerosol update ''p.8 corrected 10.4.2018''!
+
+*  Tallinn 27-29.5.2019 [https://hirlam.org/trac/attachment/wiki/Aerosol/Rontu_aeroupd.pdf Laura Rontu, Velle Toll:] Harmonie aerosol update (working material)
+
+ALADIN-HIRLAM All-Staff Workshops
+
+
+* https://hirlam.org/trac/wiki/HarmonieWorkingWeek/CAR2017 Cloud-Aerosol-Radiation side meeting 2017
+
+* http://www.umr-cnrm.fr/aladin/IMG/pdf/martin-perez_asm2018_toulouse.pdf Presentation by Daniel Martin Perez in ASW 2018
+
+* http://www.umr-cnrm.fr/aladin/IMG/pdf/rontu_asw19.pdf Presentation by Laura Rontu in ASW 2019
+
+* http://www.umr-cnrm.fr/aladin/IMG/pdf/martin_daniel_aemet_asm2019_madrid_3.pdf Presentation by Daniel Martin Perez in ASW 2019
+
+
+European Meteorological Society
+
+* Budapest 4-8.9.2018 [https://hirlam.org/trac/attachment/wiki/Aerosol/Rontu_EMS18_har+.pdf Laura Rontu et al.:] Renewal of aerosol climatology for HARMONIE-AROME radiation parametrizations (attached version contains a couple of extra slides about HARMONIE technical aspects)
+
+* Kongens Lyngby 9-13.9.2019 [http://presentations.copernicus.org/EMS2019-905_presentation.pdf Laura Rontu et al.:] Cloud and aerosol properties in NWP models from the radiation point of view
+
+
+EUMETCHEM and other sources
+
+[http://eumetchem.info/index824e.html?option=com_content&view=article&id=91%3Asymposium-on-coupled-chemistry-meteorology-climate-modelling&catid=18%3Ameetings&Itemid=38&lang=en EUMETCHEM Symposium] in Geneva 2015, page of all presentations 
+
+[https://hirlam.org/trac/attachment/wiki/Aerosol/Sass_EUMETCHEM15.pdf Sass et al.] Presentation in EUMETCHEM symposium 2015. 
+
+[https://hirlam.org/trac/attachment/wiki/Aerosol/Nuterman_2012.pdf Roman Nuterman]: Presentation about ENVIRO-HIRLAM aerosol in an internal HIRLAM meeting in DMI, 2012. 
+
+[http://hirlam.org/index.php/component/docman/doc_download/148-hirlam-newsletter-no-54-paper-23-korsholm?Itemid=70 About Enviro-HIRLAM] Enviro-HIRLAM, Korsholm et al., HIRLAM Newsletter 54
+
+[http://aip.scitation.org/doi/pdf/10.1063/1.4975561 Poliukhov et al. 2017]  - COSMO experiences in American Institute of Physics (AIP) publications
+
+
+HARMONIE testing documents and tools
+
+[https://hirlam.org/trac/raw-attachment/wiki/Upper_air_physics/CAMS_aerosols_HARMONIE_Report_201902.pdf Testing report 2019]
+----
+
+=== Current representation of the direct radiative effect of aerosols in HARMONIE ===
+
+* Aerosol climatology following Tegen et al. (1997) used by default
+The usage of Tegen aerosol climatology follows the usage in ECMWF IFS model documented in
+http://www.ecmwf.int/sites/default/files/elibrary/2016/16648-part-iv-physical-processes.pdf
+
+AOD550 of different aerosol species serves as input fields.
+Aerosols are distributed vertically according to climatological vertical profiles following Tanre et al. (1984).
+SW spectral single scattering albedos, asymmetry parameters and wavelength dependence of AOD is parameterized following Hess et al. (1998) GADS/OPAC.
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_radi/suaersn.F90
+LW properties are defined in 
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_radi/suaerl.F90
+
+Climatology is written to monthly climate files in (AOD550 is read from ascii)
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/aladin/c9xx/eincli9.F90
+
+
+'''Open questions'''
+
+1) To the Tegen climatology constant AOD550 value of 0.03 is added as tropospheric background
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_ec/suaerv.F90
+
+2) For stratospheric AOD550 value of 0.045 is used as background
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_ec/suaerv.F90
+It should be tested what is the influence of using such high value (representative for major volcanic eruptions).
+
+3) When using another aerosol climatology or near-realtime data these background values (tropospheric+stratospheric) might not be appropriate to be used.
+
+
+'''Current workflow in model for aerosol direct radiative effect'''
+
+* 1) Tegen AOD550 selection based on current month 
+
+In scr/Climate appropriate Tegen monthly AOD file is linked to aero_GL
+
+ln -sf $HM_CLDATA"/aero_tegen"/aero.tegen.m${MM}_GL aero_GL
+
+* 2) Reading AOD550 and writing to fa-format climate file
+
+Climatological vertically integrated AOD550 fields of SEA (sea salt), LAND (organic carbon), SOOT (black carbon?), DESERT (dust) aerosols are read from ASCII aero.tegen_GL files and written to monthly climate files by https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/aladin/c9xx/eincli9.F90 . There is no separate SULPHATE in the present aero.tegen files although such is obtainable in http://gacp.giss.nasa.gov/data_sets/transport/ .
+
+Climatological AOD550 is read into ZFLD array.
+
+Horizontal interpolation to model domain
+CALL EINTER2(ZFLD,IDATY,IDATX,IFLD,ZRES,IYFING,IXFING,ITFING,&
+& EDELX,EDELY,NPINT,ICO,NULOUT)
+
+ZRES contains interpolated data copied to ZS
+
+Biperiodization of AOD550 fields and writing to fa-format climate file is done
+CALL EBICLI(IFLD,INIVL,CLPRE,CLSUF,INUM,ZS,LLBIP,LLWRI,LLPAC) 
+
+* 3) Initialization of AOD550 arrays
+
+AOD550 (SEA, LAND, SOOT, DESERT) fields are initialized from climate FA file (VCLIA)
+in /src/arpifs/setup/sugrida.F90 
+
+Group VCLIA for AOD550 of different aerosol types defined in
+src/arp/module/surface_fields_mix.F90
+
+From mf_phys.F90 AOD550 is passed to apl_arome.F90/aplpar.F90 as
+PSD_VA(1,YSD_VA%YSEA%MP  ) , PSD_VA(1,YSD_VA%YLAN%MP ) , PSD_VA(1,YSD_VA%YSOO%MP ) , PSD_VA(1,YSD_VA%YDES%MP ) , PSD_VA(1,YSD_VA%YSUL%MP ) , PSD_VA(1,YSD_VA%YVOL%MP )
+
+* 4) Vertical distribution of AOD550 and adding backgroud AOD values 
+
+/src/phys_radi/suecrad.F90 calls src/arpifs/phys_ec/suaerv.F90 at the initial time. suaerv defines vertical profiles (see Tanre et al. 1984, IFS phys doc) for the four climatological vertically integrated Tegen AOD550 fields and defines constant values to the tropospheric background and stratospheric ash and sulphate background variables. In /src/arpifs/phys_dmn/radaer.F90 AOD550 each type of aerosols is distributed vertically to get AOD550 of different aerosol types for model layers.
+
+From apl_arome.F90/aplpar.F90 radaer.F90 is called. It returns ZAER with AOD550 of different aerosol types on model layers.
+
+      CALL RADAER ( KIDIA , KFDIA , KLON  , KLEV,&
+       & PAPRS , PAPRSF, PT    , PTS,&
+       & ZAESEA, ZAELAN, ZAESOO, ZAEDES, ZAESUL, ZAEVOL, &
+       & ZAER,  ZAERINDS                                 )
+
+Note that by default (stratospheric) options LAEROSUL and LAEROVOL are set to false, thus in apl_arome.F90 AODs of the corresponding species are set to zero before giving them as input to radaer.F90. The three-dimensional output array ZAER(JL,JK,:) now contains:
+
+|| ZAER(JL,JK,1) || LAND   || aero.tegen land + tropospheric background (total 0.03) ||
+|| ZAER(JL,JK,2) || SEA    || aero.tegen sea                                         ||
+|| ZAER(JL,JK,3) || DESERT || aero.tegen desert                                      ||
+|| ZAER(JL,JK,4) || URBAN  || aero.tegen soot                                        ||
+|| ZAER(JL,JK,5) ||        || stratospheric sulphate (total 0.007)                   ||
+|| ZAER(JL,JK,6) ||        || stratospheric background (total 0.045)                 ||
+
+
+* 5) AOD550 to (SW) radiation
+
+From apl_arome.F90 for the default  ifs radiation (LRAYFM is true) AOD550 is input through acradin.F90 → recmwf.F90→ radlsw.F90→ radlsw.F90→sw.F90 (and for lw.F90) → sw1s.F90/swni.F90→swclr.F90 (clear sky fraction of layer)
+
+* 6) AOD550 to SW spectral intervals; aerosol SW single scattering albedos and SW asymmetry parameters
+
+In  swclr.F90
+USE YOESW    , ONLY : RTAUA    ,RPIZA    ,RCGA
+(RTAUA    ,RPIZA    ,RCGA values are set in /src/arpifs/phys_radi/suaersn.F90 following Hess et al. (1998); GADS/OPAC)
+In suaersn, 
+
+
+{{{
+!-- The six aerosol types are respectively:
+
+!  1/ continental average                 2/ maritime
+!  3/ desert                              4/ urban
+!  5/ volcanic active                     6/ stratospheric background
+
+
+}}}
+
+AOD550 for different aerosol types contained in PAER is used to calculate AOD in different spectral intervals using RTAUA (ratio between AOD550 and AOD in respective spectral interval).
+Effective (combining different aerosol types into one) aerosol single scattering albedos and asymmetry parameters are calculated assuming external mixture of aerosols.
+
+
+----
+
+=== Renewal of the climatological aerosol in HARMONIE ===
+
+* Climatological aerosol is used only by the radiation parametrizations (aerosol direct effect) as explained above. MACC reanalysis/CAMS (Inness et al., 2013) aerosol climatology is an option to use instead of TEG97. 
+
+* CAMS aerosol species
+Sea Salt (3 bins)
+Dust (3 bins)
+Organic Matter (Hydrophilic,Hydrophobic)
+Black Carbon (Hydrophilic,Hydrophobic)
+Sulphate
+
+* The same vertical distributions currently used for the Tegen et al. (1997) climatology with an exponential decay with scale height could be used following Tanre et al. for CAMS data
+
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_ec/suaerv.F90
+
+https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/arpifs/phys_dmn/radaer.F90
+
+
+----
+
+'''Phase 0: Converting CAMS 11 species to 4 Tegen classes'''
+
+Tools and input data that allow to produce aero_cams ASCII files for reading into the HARMONIE present climate generation. Minimum comments are inside the script Run_MACC2Tegen.sh 
+
+https://hirlam.org/trac/attachment/wiki/Aerosol/MACC2Tegen.tgz
+
+Update of the preparation data and tools of 30.3.2019 (by Laura Rontu) includes also handling of aerosol inherent optical properties: https://hirlam.org/trac/attachment/wiki/Aerosol/camsaero2har.tgz 
+
+Usage of these data requires modification of HARMONIE scr/Climate sms/Climate.sms sms/config_exp.h , https://svn.hirlam.org/tags/harmonie-40h1.1.rc.1/src/aladin/c9xx/eincli9.F90 and some others. An update is being prepared for harmonie-43, available already in git repository .../users/rontu/... dev_rontu_upd branch.
+
+
+
+'''Phase 1: Usage of CAMS 11 mass mixing ratios together with the optical properties for 11 classes'''
+   (notes by LR and J-PP 22 November 2017, edited by LR 24 May 2019)
+
+1. Climate generation (each month):
+ 
+   Introduce the 11 MMR fields to the monthly m-climate files in the similar way as now the 4 Tegen AOD550 fields
+
+2. Initialization of forecast model (setup of each cycle)
+
+   * Obtain the optical properties extinction coefficient, asymmetry factor and single-scattering albedo from CAMS/ECMWF
+
+     all are functions of wavelength, hydrophilic also on humidity, desert dust and sea aerosol on size 
+
+   * Read the input optical properties during initialization of each forecast cycle (from ascii file const/rrtm_const/RADAIOP)
+
+   * Retain the old definitions of exponential functions for vertical distribution 
+
+3. Calculations during runtime (each time step) 
+
+   Distribute the 2D aerosol MMR vertically, possibly retain stratospheric background values (renewed radaer.F90) 
+
+   A new subroutine (aeropt) to calculate the 3D real-time optical properties
+
+   * input: 2D MMRs (2D aerosol species) and optical property arrays, model state including needed humidity, temperature etc information
+
+   * output:  AOD, g, SSA at each level and location for needed SW and LW spectral intervals - but aerosol types combined!
+
+   * pass these ready-made columns to any radiation scheme, which can then continue with simplified calculation of aerosol radiative transfer specific to each scheme
+
+   Advantages of this approach:
+
+ * The same aerosol input for any radiation scheme
+
+ * No need to know the optical properties for different aerosol species inside the radiation schemes
+
+ * Aerosol MMRs might be used by the cloud-precipitation microphysics
+
+ * The same approach is applicable for the use of real-time and climatological aerosol   
+
+----
+
+
+=== Importing near-real-time aerosol data ===
+
+Near real time aerosol could be introduced in the initial state of each analysis-forecast cycle, kept constant during the forecast and transferred for the radiation and cloud parametrizations.
+
+CAMS near real time aerosol http://atmosphere.copernicus.eu/documentation-global-systems#Aerosols 
+
+Alternative to CAMS: Open access System for Integrated modeLling of Atmospheric coMposition, SILAM http://silam.fmi.fi
+
+
+----
+
+
+=== Consistent usage of aerosol information by the cloud and radiation microphysics parametrizations ===
+
+'''Aerosols in radiation parametrizations'''
+
+Information on aerosol effects in IFS model can be found in ECMWF technical memorandum 660 Aerosol-Cloud-Radiation Interactions and their Impact on ECMWF/MACC Forecasts
+https://www.ecmwf.int/sites/default/files/elibrary/2011/11283-aerosol-cloud-radiation-interactions-and-their-impact-ecmwfmacc-forecasts.pdf
+
+Bozzo et al., April 2017: https://www.ecmwf.int/sites/default/files/elibrary/2017/17219-implementation-cams-based-aerosol-climatology-ifs.pdf
+
+
+----
+
+=== Early comments ===
+
+
+'''Comparison between aerosol climatologies'''
+
+* AOD550 in Europe and globally, based on SILAM reanalysis 2000 - 2015, is compared in https://hirlam.org/trac/attachment/wiki/Aerosol/Toll_extra.pdf to Tegen and MACv1. 
+
+Mikhail comments the differences from SILAM point of view:
+
+Globally, the biggest difference is over Saharan area and downwind, which should be just corrected: SILAM is wrong there and we know, why. The run with EC-OPERational data produces something like the attached pictures (2015 EC-operational meteorology, secondary organics was only from biogenic isoprene, rest included).
+
+Less trivial is south Africa, where we show powerful fire smoke, MACC goes pretty low and Tegen shows nothing. Among these, I would rather believe SILAM or go a bit below: the MACC fire source is known to under-estimate aerosols and I can only guess how much can be rectified by the assimilation (did well in 2010 in Russia though). There is a good chance that the next version of our IS4FIRES will be more conservative but already current one is not too bad – see attached paper.
+
+Peaks of AOD in Central Europe are indeed visible from time to time but I would be more conservative than MACC: mean level of 0.3 is really a lot. We can be somewhat low. China and India are and will be a problem for everyone but I am kind-of fine with our PM there, except for deserts in the north, of course – they are better in the attached AODs for 2015.
+
+Marine is fine in MACC and SILAM – differences are quite small and I would hesitate to declare a winner: depends on the region. Interestingly, the 60S belt is or is not visible depending on the instrument you take. MODIS shows it quite clearly – and MACC picks it from there (sea salt source in IFS is not too good). But, e.g. MISR flying on the same Terra shows much less. Our source term is pretty good and it shows peaks less pronounced and closer to the equator. The tropical high-AOD regions are over-stated in SILAM, if believing to MODIS. The reason is temperature-dependent sea salt production, with the sensitivity being pretty high. However, I see little possibilities to change this in the model: we are based on very decent lab tests, which unequivocally show the relation.
+
+One last thing. MODIS is a nice tool but has a funny feature related to AOD: cloud contamination. At the edge of cloud, they tend to show high AOD instead of screening out the pixel. When you average, these pixels push up your mean value. A way to verify the effect is to require that, for instance, 1x1 degree grid cell must have 50 valid MODIS retrievals (pixels are ~ 10x10km) to be valid, for each hour. The effect is strong: see attached. I do not know how MACC treats such cases but unless they make draconian screening, high bias in semi-cloudy regions is quite probable.
+
+Links related to the above comments:
+
+http://dx.doi.org/10.1016/j.atmosenv.2015.01.068 Soares et al., 2015
+
+https://hirlam.org/trac/attachment/wiki/Aerosol/an_bau_AOD_PM2_5__w550_2020_annual.png
+
+https://hirlam.org/trac/attachment/wiki/Aerosol/an_bau_AOD_PM10__w550_2020_annual.png
+
+https://hirlam.org/trac/attachment/wiki/Aerosol/MODIS_201204_50_pixels.png
+
+https://hirlam.org/trac/attachment/wiki/Aerosol/MODIS_201204.png
+
+
+'''Comment by Kristian, 24 Oct 2016'''
+
+The aerosol properties that are important for the direct effects in the radiation scheme are:
+
+* The optical depth (AOD, unit -), which is the mass extinction coefficient [m²/g] X the aerosol load [g/m²]
+* The single scattering albedo (SSA, unit -)
+* The asymmetry factor (g unit -)
+
+... for each layer and spectral band in the SW and the optical depths for each layer and spectral band in the LW. Except for the aerosol load these are the inherent optical properties (IOPs).
+
+For indirect effects the following variables are the most important:
+
+* The cloud droplet number concentration (unit 1/m³)
+* The fraction of ice cloud to total cloud water (unit -)
+
+If all of these are known, the radiation scheme does not need the aerosol types as input! Ideally, both of the two latter variables should be used before the radiation calculations to calculate the cloud physical properties:
+
+* Liquid cloud water load (unit g/m²)
+* Ice cloud load (unit g/m²)
+* Cloud droplet effective radius (unit µm)
+* Ice cloud equivalent radius (unit µm)
+
+
+'''Comment by Lisa, 28 Oct 2016'''
+
+From the authors of the LIMA scheme I understand that LIMA accounts for aerosol-cloud interactions (nucleation, scavenging) in the following way:
+
+- Transport of aerosol is done by the resolved flow and turbulence
+- CCN activation (Cohard and Pinty, 2000) →cloud droplets
+- IFN nucleation (Phillips et al. 2008, 2013) → ice crystals
+- Below-cloud aerosol washing-out by rain (Berthet et al.2010)
+
+And in the initial inclusion of the scheme there is a homogeneous intial aerosol concentration. In a presentation by B. Vié during the strategy meeting in Toulouse in May he wrote:
+
+What precision in the representation of aerosols do we need ?
+- Homogeneous initial population ? (currently assumed)
+- Realistic aerosol population ?
+   - MACC analyses can be used to provide realistic 3D initial and lateral boundary conditions for aerosols (under development)
+   - Including data assimilation / nudging ?
+- Complete aerosol scheme, including sources, ageing... ?
+   - Emission schemes for dust and sea-salt
+   - Complete chemistry-aerosol module ORILAM (Tulet et al. 2005, Meso-NH)
+
+----
+
+=== Sources ===
+
+SILAM data server http://silam.fmi.fi/thredds/catalog.html
+
+SILAM definitions: https://hirlam.org/trac/attachment/wiki/Aerosol/optical_properties.zip and https://hirlam.org/trac/attachment/wiki/Aerosol/silam_chemicals.dat
+
+Copernicus CAMS catalogue https://atmosphere.copernicus.eu/catalogue#/
+
+Experience on interpolation of surface physiographies: https://hirlam.org/trac/attachment/wiki/Aerosol/Kurzeneva_sfxinterpol.pdf
+

@@ -1,0 +1,338 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM-A Directory''' =
+[[Center(end)]]
+
+[[Center(begin)]]
+== '''Hirlam-A Council''' ==
+[[Center(end)]]
+
+ * Aakjaer, Peter, DMI
+ * Agren, Maria, SMHI
+ * Alestalo, Mikko, FMI (HAC Chairman)
+ * Brouwer, Frits, KNMI, Chairman
+ * Cadarso Gonzalez, Francisco, INM
+ * Eliassen, Anton, met.no
+ * Jeanette Onvlee, KNMI, (Project manager)
+ * Malcorps, Henri, Belgium (Observer)
+ * Jonsson, Magnus, Vedurstofa Icelands
+ * Murphy, Declan, met.ie
+ * Pailleux, Jean, Meteo France
+ * Taalas, Petteri, FMI
+
+[[Center(begin)]]
+== '''Hirlam-A Advisor Committee''' ==
+[[Center(end)]]
+
+ * Alestalo, Mikko, FMI, Chairman
+ * Blaauboer, Dick, KNMI
+ * Davies, Terry, UKMO (Observer)
+ * Horanyi, Andras, met.hu (ALADIN Observer)
+ * Hov, Oystein, met.no
+ * Laursen, Leif, DMI
+ * Lynch, Peter, Ireland
+ * Martinsen, Eivind, met.no
+ * Mascart, Patrick, MF
+ * Nilsson, Stefan, SMHI
+ * Orfila, Bartolome, INM
+ * Thorsteinsson, Sigurdur, VI
+
+[[Center(begin)]]
+== '''Hirlam-A Management Group''' ==
+[[Center(end)]]
+
+ * Gustafsson, Nils, SMHI, Project leader on data assimilation and use of observations
+ * Hortal, Mariano, INM, Project leader on model dynamics
+ * Iversen, Trond, met.no, Project leader on predictability
+ * Noordhoek, Rene, KNMI, Science secretary
+ * Onvlee, Jeanette, KNMI, Programme Manager
+ * Tijm, Sander, KNMI, Project leader on model physics
+ * Yang, Xiaohua, DMI, Project leader on system and applications 
+
+
+[[Center(begin)]]
+== '''Hirlam-A Core-Group Members 2007''' ==
+[[Center(end)]]
+
+ * Eerola, Kalle, met.ie
+ * Geijo, Carlos, INM
+ * Moene, Toon, KNMI
+ * Rontu, Laura, FMI
+ * Sanchez, Jana, INM
+ * Sattler, Kai, DMI
+ * Frogner, Inger-Lise, met.no
+ * Wilhelmsson,Tomas, SMHI
+
+[[Center(begin)]]
+== '''Hirlam-A Research and Associated Staffs''' ==
+[[Center(end)]]
+
+=== '''DMI''' ===
+
+ * Amstrup, Bjarne
+ * Andersen, Bjarne Stig
+ * Baklanov, Alexander
+ * Dahlbom, Mats
+ * Feddersen, Henrik
+ * Hansen Sass, Bent
+ * Kmit, Maryanne
+ * Mahura, Alexander
+ * Nielsen, Niels Woetman
+ * Petersen, Claus
+ * Poulsen, Jacob Weismann
+ * Sattler, Kai
+ * Vedel, Henrik
+ * Yang, Xiaohua
+
+=== '''FMI''' ===
+
+ * Eresmaa, Reima
+ * Fortelius, Carl
+ * Jarvenoja, Simo
+ * Jarvinen, Heikki
+ * Joffre, Sylvain
+ * Kangas, Markku
+ * Niemela, Sami
+ * Rontu, Laura
+ * Salonen, Kirsti
+ * Siljamo, Pilvi
+ * Sokka, Niko
+ * Tisler, Priit
+ * Vihma, Timo
+ * Zingerle, Christoph
+
+=== '''MF''' ===
+
+ * Bazile, Eric
+ * Berre, Loik
+ * Bouyssel, Francois
+ * Fischer, Claude
+ * Geleyn,Jean-Francois
+ * Hello, Gwenaelle
+ * Piriou, Jean-Marcel
+
+=== '''VI''' ===
+
+ * Johanneson, Tomas
+ * Thorsteinsson, Sigurdur
+
+=== '''met.ie''' ===
+
+ * Eerola, Kalle
+ * Hamilton, Jim
+ * Lynch, Peter (University)
+ * !McDonald, Aidan
+ * !McGrath, Ray
+ * !MvKinstry Alastair (ICHEC)
+ * Sherlock, Eoin
+ * Tapamo, Honore (ICHEC)
+ * Whelan, Eoin
+
+=== '''KNMI''' ===
+
+ * Alkemade, Frans
+ * Barkmeijer, Jan
+ * Cats, Gerard
+ * de Rooy, Wim
+ * de Bruijn, Cisco
+ * de Haan, Siebren
+ * de Vries, John
+ * Lenderink, Geert
+ * Lie, Ivar
+ * Moene, Toon
+ * Noordhoek, Rene
+ * Onvlee, Jeanette
+ * Siebesma, Pier
+ * Stoffelen, Ad
+ * The, Han
+ * Tijm, Sander
+ * vd Veen, Sibbo
+ * Wichers Schreur, Ben
+
+=== '''met.no''' ===
+
+ * Bjorge, Dag
+ * Breivik, Lars Anders
+ * Frogner, Inger-Lise
+ * Haakenstad, Hilde
+ * Homleid, Mariken
+ * Iversen, Trond
+ * Jensen, Marit Helene
+ * Nordeng, Thor Erik
+ * Odegaard, Viel
+ * Schyberg, Harald
+ * Sidselrud, Laila
+ * Storto, Andrea
+ * Thyness, Vibeke Wauters
+ * Tveter, Frank Thomas
+ * Vignes, Ole
+
+=== '''INM''' ===
+
+ * Calvo, Javier
+ * Cansado, Alberto
+ * Diez, Maria Victoria
+ * Garcia-Moya, Jose Antonio
+ * Garcia, Teresa
+ * Geijo, Carlos
+ * Hortal, Mariano
+ * Martinez, Isabel
+ * Navascues, Beatriz
+ * Rodriguez, Ernesto
+ * Marco, Estrella Gutierrez
+ * Morales, Gema
+ * Morata, Ana
+ * Sanchez, Jana
+ * Santos, Carlos
+ * Santos, Daniel
+
+=== '''SMHI''' ===
+
+ * Andrae, Ulf
+ * Bengtsson, Lisa
+ * Dahlgren, Per
+ * Gollvik, Stefan
+ * Gustafsson, Nils
+ * Haase, Gunther
+ * Ivarsson, Karl-Ivar
+ * Kallberg,Per
+ * Lindskog, Magnus
+ * Landelius, Tomas
+ * Meuller, Lars
+ * Perov, Veniamin
+ * Ridal, Martin
+ * Unden, Per
+ * Wilhelmsson, Tomas
+ * Willen, Ulrika
+ * Samuelsson, Patrick
+
+=== '''EHMS (Estonia)''' ===
+
+ * Luhamaa, Andres
+ * Mannik, Aarne
+ * Room, Rein
+
+=== '''LEGMA (Latvia)''' ===
+
+ * Javaitis Ivars
+ * Karklina Laura
+
+=== '''LHMS (Lithuania)''' ===
+
+ * Jalinskas, Pauliu
+ * Kazlauskas, Martynas
+ * Mockeviciute, Kristina
+ * Raliene, V.
+ * Marcinoniene, I.
+
+=== '''Russia''' ===
+
+ * Atlaskin, Evgeni
+ * Kourzeneva, Katerina
+ * Senkova, Anastasia
+
+[[Center(begin)]]
+== '''HIRLAM-service Head of Research or NWP Section''' ==
+[[Center(end)]]
+
+ * Laursen, Leif, DMI
+ * Fortelius, Carl, FMI
+ * Bouttier, Francois, MF
+ * Thorsteinsson, Sigurdur, VI
+ * Ray !McGrath, met.ie
+ * Blaauboer, Dick, KNMI
+ * Hov, Oystein, met.no
+ * Martinsen, Eivind, met.no
+ * Orfila, Bartolome, INM
+ * Unden, Per, SMHI
+
+[[Center(begin)]]
+== '''ALADIN/AROME Project Teams''' ==
+[[Center(end)]]
+
+ * Geleyn, Jean-Francois
+ * Bouttier, Francois
+ * Brun, Eric
+ * Hello, Gwenaelle
+ * Malardel, Sylvie
+ * Fischer, Claude
+ * Benard, Pierre
+ * Voitus, Fabrice
+ * Piriou, Jean-Marcel
+ * Bouyssel, Francois
+ * Berre, Loik
+ * Lac, Christine
+ * Martin, Eric
+ * Bazile, Eric
+ * Bouteloup, Yves
+ * Marquet, Pascal
+ * Seity, Yann
+ * Noilhan, Joel
+ * El-Khatib, Ryad
+ * Sevault, Eric
+
+ * Termonia, Piet
+ * Catry, Bart
+ * Gerard, Luc
+
+ * Dijana Klaric
+ * Horanyi, Andras
+ * Boloni, Gergely
+ * Derkova, Maria
+ * Masek, Jan
+ * Spaniel, Oldrich
+ * Cedilnik, Jure
+ * Zagar, Mark
+ * Pristov, Neva
+ * Tudor, Martina
+ * Banciu, Doina
+ * Kovacic, Tomislav
+ * Yong, Wang
+ * Trojakova, Alena
+ * Brozkova, Radmila
+ * Vana, Filip
+ * Vivoda, Jozef
+ * Jidane, Mohamed
+ * Kraljevic, Luksa
+ * Jurasek, Marian
+
+ * Malcorps, Henri
+ * Kirouane, A.
+ * Neuwirth, Fritz
+
+ * Cacic, Ivan
+ * Bisch, Pierre-etienne
+ * Dunkel, Zoltan
+ * Geanah,
+ * Zielinski, Jan
+ * Serrao, A.
+ * Obrusnik,Ivan
+
+ * Soci, Cornel
+ * Roncak, Peter
+ * Roskar, Joze
+ * Rajhi, Moncef
+ * Ratier, Alain
+ * Blondin, Christian
+ * Legrand, Emmanuel
+[[Center(begin)]]
+== '''Other Contact''' ==
+[[Center(end)]]
+
+ * Modigliani, Umberto, ECMWF
+ * Lucas, Dominique
+ * Simmonds, Adrian
+ * Marbouty, Dominique
+ * Bougeault, Philippe
+ * Hollingsworth, Tony
+ * Uppala, Sakari
+
+ * Clark, Peter, !MetOffice
+ * Eyre, John
+ * Conway, Bryan
+ * Dickinson, Alan
+ * Davies, Terry
+ * Muller, Carl
+
+ * Quiby, Jean, SRNWP
+ * Chalon, Pierre, EUMENET

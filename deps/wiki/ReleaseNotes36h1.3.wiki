@@ -1,0 +1,70 @@
+
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of Harmonie-36h1.3''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Harmonie-36h1.3 ==
+
+HARMONIE-36h1.3 is released on 23 December 2010. 36h1.3 is the first official version of the meso-scale HARMONIE[[FootNote(HARMONIE is the acronym for Hirlam's meso-scale forecast system (Hirlam Aladin Regional/Meso-scale Operational NWP In Europe). The HARMONIE model is developed jointly by the European consortia HIRLAM and ALADIN through the HARMONIE project: Hirlam-Aladin Research towards Meso-scale Operational NWP in Europe.)]] forecast system released by HIRLAM.
+
+Harmonie-36h1 code-series as maintained in HIRLAM's system repository is an adaptation to the IFS/ALADIN Cycle 36T1 and the subsequent 9 bugfix versions, with the aim to serve the needs for both operational as well as research applications in the HIRLAM community. At its default, the official release 36h1.3 features a meso-scale forecast system with convection-permitting AROME physics, 3D-VAR upper air assimilation, and an optimal interpolation-based surface analysis, on a model grid with 2.5 km grid-spacing in horizontal and 65 vertical levels. Harmonie-36h1.3 also includes a comprehensive set of scripts and utilities supporting various optional components and applications.
+
+The decision to declare [source:tags/harmonie-36h1.3 harmonie-36h1.3] as an official release has been made with following reasoning
+ * that [wiki:Harmonie_36h1/ValidationTests extensive validation efforts ] have been made to test and evaluate the main components and options from both technical and meteorological aspects. Among these, numerous inter-comparisons have been made to examine performances of HARMONIE forecasts in different weather situations, and results so far indicate that, qualitatively, HARMONIE-36h1.3 provides competitive forecast skills to those of comparable operational HIRLAM systems
+ * that the chosen default settings for HARMONIE-36h1.3, appear to behave adequately in comparison to other featured alternative options in physics, data assimilation, build and boundary preparation schemes
+ * HARMONIE-36h1.3 as a quality-assessed meso-scale forecast system contains main components targeted by the 5-year HIRLAM-A programme which now ends. Through the official tagging, HARMONIE-36h1.3 now serves as a technical and quality benchmark for future HARMONIE system series.
+
+Harmonie 36h1.3 bases its source code on cycle 36T1 and the subsequent bug fixes (up to bf9). In addition, it includes 
+ * Hirlam's local source code updates including those options for an improved physical parameterisation, code optimisations
+ * a comprehensive set of system scripts to help users to adapt for various platforms/applications, such as those for build, running testbed, experimentation with domains, assimilation options (3D-VAR, 4D-VAR, CANARI, CANARI-OI-MAIN), forecasts with ALARO/AROME/ALADIN physics, different coupling methods, and post-processing and diagnosis such as for monitoring and verification
+ * a comprehensive set of utilities, among them, the build tool based on gnumake (MAKEUP)
+
+== Harmonie-36h1.3 source code downloads ==
+
+ * On ECMWF, the check-out version of harmonie-36h1.3 is available as,
+{{{
+   ecgate:/home/ms/spsehlam/hlam/harmonie_release/36h1.3
+}}}
+ * harmonie-36h1.3 can also be obtained via Subversion command, e.g., from ecgate and c1a:
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-36h1.3
+}}}
+ * The export tarball of the harmonie-36h1.3 is available on ECMWF:ecgate as /scratch/ms/spsehlam/hlam/harmonie-36h1.3.tar.gz and ECFS on ec:/hirlam/src/tar/harmonie-36h1.3.tar.gz
+
+== Bugfix versions for Harmonie-36h1.3 ==
+
+ * [log:tags/harmonie-36h1.3.bf1 harmonie-36h1.3.bf1] contains the following changes
+  * Ecgate submission rules [8852]
+  * mSMS/mXCdp updates [8857], [8898],[8900]
+  * Compilation problems [8807],[8976]
+  * harmonie.tdf bugs, [8704],[8886],[9319]
+
+ The changes has no meteorological impact.
+
+ The code can be downloaded from: 
+
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-36h1.3.bf1
+}}}
+ and is available on ecgate under:
+{{{
+  ecgate:/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-36h1.3.bf1
+}}}
+
+== More about Harmonie-36h1.3 ==
+
+See more detailed information about 36h1.3 and 36h1-code series in the [wiki:Harmonie_36h1 system wiki about Harmonie-36h1], e.g,
+ * [wiki:Harmonie_36h1#SourcecodeandscriptupdatesinHarmonie-36h1 Recent source code and scripts updates in 36h1]
+ * [wiki:Harmonie_36h1#ModelInstallationandExperimentConfiguration Installation guide and configuration options]
+ * [wiki:Harmonie_36h1/ValidationTests Meteorological validation and preliminary observations ]
+ * [wiki:Harmonie_36h1#TechnicalaspectswithHarmonie-36h1 Technical aspects about 36h1.3 ]
+ * [wiki:Harmonie_36h1#Acknowledgements Acknowledgements]
+
+ [[FootNote]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

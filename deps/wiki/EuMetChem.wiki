@@ -1,0 +1,31 @@
+COST Action ES1004: European framework for online integrated air quality and meteorology modelling
+
+The COST Action - European framework for online integrated air quality and meteorology modelling (EuMetChem) - is focusing on a new generation of online integrated Atmospheric Chemical Transport (ACT) and Meteorology (Numerical Weather Prediction and Climate) modelling with two-way interactions between different atmospheric processes including chemistry (both gases and aerosols), clouds, radiation, boundary layer, emissions, meteorology and climate. 
+At least, two application areas of the integrated modelling are planned to be considered: 
+(i) improved numerical weather prediction (NWP) and chemical weather forecasting (CWF) with short-term feedbacks of aerosols and chemistry on meteorological variables, and 
+(ii) two-way interactions between atmospheric pollution/ composition and climate variability/change. 
+The framework consists of four working groups namely: 
+1) Strategy and framework for online integrated modelling; 
+2) Interactions, parameterisations and feedback mechanisms; 
+3) Chemical data assimilation in integrated models; and finally 
+4) Evaluation, validation, and applications. 
+Establishment of such a European framework (involving also key American experts) will enable the EU to develop world class capabilities in integrated ACT/NWP-Climate modelling systems, including research, education and forecasting.
+
+Domain : Earth System Science and Environmental Management
+ 
+
+More Information can be obtained by contacting: 
+
+Chair of the Action :
+Prof. Alexander BAKLANOV
+
+Vice-Chair of the Action :
+Prof. Sylvain JOFFRE
+
+Grant Holder:
+Prof. Nicolas MOUSSIOPOULOS
+
+EuMetChem Web-site: http://eumetchem.info/
+
+More useful info are on:
+http://www.cost.esf.org/domains_actions/essem/Actions/es1004

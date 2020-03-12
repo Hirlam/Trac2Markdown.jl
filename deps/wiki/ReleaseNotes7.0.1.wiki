@@ -1,0 +1,50 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.0.1''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of 7.0.1 ==
+
+Hirlam 7.0.1 is an update version of the official release, [wiki:Hirlam_7.0]. The update switches the reference computational platform from the ECMWF HPCD to HPCE. Hirlam 7.0.1 features also numerous bug corrections and technical improvement over that of the [wiki:Hirlam_7.0]. On meteorological aspect, the version is equivalent to Hirlam 7.0.
+
+Hirlam 7.0.1 is released on Nov 8, 2006. The complete source code of Hirlam 7.0.1 can be obtained by following means
+
+ * Use Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.0.1
+}}}
+ * Download tarball from ECMWF ecgate:/scratch/ms/dk/nhz/hirlam-7.0.1.tar.gz or ecfs:/hirlam/src/tar/hirlam-7.0.1.tar.gz which contains the sandbox (check-out version) of the Hirlam 7.0.1
+
+== Description of the changes ==
+
+HIRLAM 7.0.1 contains various technical updates on top of the release Hirlam-7.0. A detailed listing of the code and script changes can be found in [https://hirlam.org/trac/log/branches/hirlam-7.0/hirlam?action=stop_on_copy&rev=4725&stop_rev=4571&mode=stop_on_copy&verbose=on the summary page on trac wiki]. The main features are listed as following:
+
+ * Switch default ECMWF computation platform from HPCD to HPCE ([4717])
+ * A series of bug fixes on climate generation to avoid data holes, and round-off effects ([4705])
+ * Bug corrections to avoid uninitialized variables ([4699])
+ * Correction to enable recovery of graphic user interface (GUI) for mini-SMS after exit ([4696]). The GUI can be relaunched using command
+{{{
+   Hirlam mXCdp
+}}}
+ * Correct error in 4D-VAR tangent linear propagate control of humidity fields ([4591])
+ * Enable RCR_parallel for LSMIX option ([4593])
+ * Bug correction to enable simultaneous lateral boundary data interpolation on multi-processors ([4613])
+ * Updates to handle changed MARS observation data format after 7 June 2006 ([4616])
+ * Set explicit memory request for climate generation and lateral boundary data interpolation jobs on ECMWF platform ([4597] etc.)
+ * Revive non-standard initialization scheme for LSMIX scenario ([4621])
+ * Enhanced support for configuration on several platforms
+ * Other minor bug fixes and corrections
+
+== How to run Hirlam 7.0.1 ==
+
+See instructions on wiki page for [https://hirlam.org/trac/wiki/Hirlam_7.0#Installandrun7.0.1onECMWFplatforms Hirlam 7.1]
+
+== Acknowledgement ==
+
+'''Code modification'''
+ * Ole Vignes, Xiaohua Yang, Tomas Wilhelmsson, Kai Sattler, Jacob Weismann Poulsen, Magnus Lindskog, Kalle Eerola, Ray !McGrath and Bjarne Amstrup provided code updates featured in this release.
+
+'''Source code management'''
+ * Tomas Wilhelmsson, Ole Vignes and Xiaohua Yang committed the changes to the Subversion repository.
+

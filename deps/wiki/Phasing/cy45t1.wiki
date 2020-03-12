@@ -1,0 +1,887 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Phasing information for Cycle 45T1''' =
+[[Center(end)]]
+
+
+= Cycle Master =
+
+Cycle Master: Toon Moene
+
+= Potential contributions=
+
+Summary of all differences between 40h1 ( trunk@14582 ) and cy45t1_main
+
+
+Last updated:2017-09-13
+
+MF suggested that consider to split the Hirlam contributions into for instance 5 packages (5 branches):
+
+== A. Oulan, Bator and OBS pre-treatment ==
+
+=== Oulan===
+Authors: Siebren de Haan
+
+Description: Adding Mode-S EHS to the observation data set with correct observation error for temperature 
+
+ 
+
+svn changesets:15776 
+
+Changed:
+{{{
+oulan/ShuffleBufr.F90 
+oulan/ext_airep_bufr.F90 
+oulan/ext_lam_airep.F90 
+oulan/oulan_carobs.F90 
+oulan/oulan_init.F90 
+oulan/oulan_lam_extract.F90 
+oulan/oulan_nadirs.h 
+oulan/oulan_nanbob.h 
+oulan/oulan_yomdirs.h 
+oulan/oulan_yomnbob.h 
+oulan/oulan_yomtomv.h 
+}}}
+
+=== Bator updates ===
+
+Authors: Ulf Andrae, Eoin Whelan, Trygve Aspelinen, Siebren de Haan, Angeles Hernandez (Per Unden removed as his change has been superseded in CY45)
+
+Description:BATOR decoding updates and corrections
+
+    Add synop_8 (307005), amdarv01 (311001), amdarv10 (311010), temptac (309007), tempstac (309196), pilottac (301001) and buoytac (308003) subroutines to read older WMO/ECMWF conventional BUFR templates[[BR]]
+    Add various ECMWF defined BUFR subtype, codetype and reportype definitions as per [http://apps.ecmwf.int/odbgov http://apps.ecmwf.int/odbgov] [[BR]]
+    Add option to prevent reading of (non-existent) SECOND information from AMDAR, TEMP and PILOT BUFR[[BR]]
+    Adding Mode-S EHS to the observation data set with correct observation error for temperature (depends on '''Package D''')[[BR]]
+    Fix to decode MARS bufr AMVs with Bator[[BR]]
+    Update Bator logging of observation counts
+
+svn changesets:14676,14846,14956,15550,15602,15674,15693,15694,15776,15795,15820,15829,15856 
+
+Changed:
+{{{
+odb/pandor/module/bator_decodbufr_mod.F90
+odb/pandor/module/bator_ecritures_mod.F90 
+odb/pandor/module/bator_impr_mod.F90  
+odb/pandor/module/bator_init_mod.F90
+odb/pandor/module/bator_saisies_mod.F90
+odb/pandor/module/bator_util_mod.F90
+odb/tools/Bator.F90
+}}}
+=== OBS pre-treatment===
+
+Authors: Ulf Andrae
+
+Description: Changed the lower limit of simulated refllectivity and blacklisting
+
+svn changesets:14776 
+
+Changed:
+{{{
+arpifs/op_obs/inv_refl1dstat.F90 
+blacklist/mf_blacklist.b
+}}}
+
+Authors: Magnus Lindskog
+
+Description: Set observation errors to the same level as in 38h1.2
+
+svn changesets:15476 
+
+Changed:
+{{{
+arpifs/obs_preproc/defrun.F90  
+}}}
+
+
+Authors: Magnus Lindskog
+
+Description: Check close stations with same ID
+
+svn changesets:15479 
+
+Changed:
+{{{
+arpifs/obs_preproc/redrp_no_sq.F90  
+}}}
+
+=== Branch moene_CY45_hirlam_A
+{{{
+List of commands deleted because overruled:
+}}}
+=== Branch moene_CY45_hirlam_A1 made by Toon Moene on October 26th [Supersedes moene_CY45_hirlam_A] ===
+{{{
+#
+# On merou, create a directory cy45t1contr_A1 to contain changeset diffs; then go over there and:
+#
+for c in 14676 14846 14956 15476 15479 15550 15602 15674 15693 15694 15776 15795 15820 15829 15856; do svn diff -c $c https://svn.hirlam.org/trunk/harmonie > $c.diff; done
+#
+# Subsequently, edit out every patch that '''does not''' relate to a source code change in directory src
+#
+[ Edits ]
+#
+# Prepare for git
+#
+cd git-dev/arpifs/
+git fetch
+#
+# Create new branch
+#
+git_branch -r 45 -v 01 -u hirlam_A1
+#
+# Check Eoin Whelan's latest set of changed files and apply them
+#
+ls -lR ~/cy45t1contr_A/EoinWhelanMods/packageA
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/arpifs/module/yomcoctp.F90 arpifs/module/yomcoctp.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA//arpifs/setup/cmoctmap.F90 arpifs/setup/cmoctmap.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA//arpifs/setup/cmoctmap_inv.F90 arpifs/setup/cmoctmap_inv.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/cma2odb/subuoctp.F90 odb/cma2odb/subuoctp.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/module/yomboctp.F90 odb/module/yomboctp.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_decodbufr_mod.F90 odb/pandor/module/bator_decodbufr_mod.F90
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_ecritures_mod.F90 odb/pandor/module/bator_ecritures_mod.F90 
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_impr_mod.F90 odb/pandor/module/bator_impr_mod.F90 
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_init_mod.F90 odb/pandor/module/bator_init_mod.F90 
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_saisies_mod.F90 odb/pandor/module/bator_saisies_mod.F90 
+cp /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/odb/pandor/module/bator_util_mod.F90 odb/pandor/module/bator_util_mod.F90 
+git status
+#
+# Check other changes
+#
+ls ~/cy45t1contr_A/
+grep ^Index ~/cy45t1contr_A/14676.diff 
+less ~/cy45t1contr_A/14676.diff
+vi arpifs/op_obs/inv_refl1dstat.F90           # Applied by hand; change too different
+less ~/cy45t1contr_A/14846.diff 
+less odb/pandor/namelist/bator_namelist.nam.h # Rejected, CY45 is newer
+less ~/cy45t1contr_A/15476.diff 
+vi arpifs/obs_preproc/defrun.F90              # Applied by hand
+cat ~/cy45t1contr_A/15479.diff 
+vi arpifs/obs_preproc/redrp_no_sq.F90         # Applied by hand
+grep ^Index ~/cy45t1contr_A/*.diff
+cat /home/mrpe737/cy45t1contr_A/15856.diff    # No other relevant changes (superseded by Eoin Whelan's latest tar file
+#
+# Add the modified files
+#
+git status
+git add arpifs/module/yomcoctp.F90 arpifs/obs_preproc/defrun.F90 arpifs/obs_preproc/redrp_no_sq.F90 arpifs/op_obs/inv_refl1dstat.F90 arpifs/setup/cmoctmap.F90 arpifs/setup/cmoctmap_inv.F90
+git add odb/cma2odb/subuoctp.F90 odb/module/yomboctp.F90 odb/pandor/module/bator_decodbufr_mod.F90 odb/pandor/module/bator_ecritures_mod.F90 odb/pandor/module/bator_impr_mod.F90 odb/pandor/module/bator_init_mod.F90 odb/pandor/module/bator_saisies_mod.F90 odb/pandor/module/bator_util_mod.F90
+#
+# Check status
+#
+git status
+#
+# OK, commit dry run - then the real one
+#
+git commit --dry-run
+git commit -m "Initial commit of HIRLAM contributions to Cycle 45 (list A.) [Supersedes moene_CY45_hirlam_A]"
+#
+# Broadcast the changes.
+#
+git_post
+}}}
+
+=== Compile branch moene_CY45_hirlam_A1 on beaufix (HPC) ===
+
+This succeeded:
+
+{{{
+#
+# On merou
+#
+cd git-dev/arpifs                     # Prepare for git
+git fetch                             # Be sure to be current 
+git checkout moene_CY45_hirlam_A1     # Get the branch
+git branch                            # Check if the right one is active
+tar zcvf ~/moene_CY45_hirlam_A1.tgz . # Tar the branch ...
+cd                                    # ... and ...
+#
+# ... transfer to beaufix (HPC)
+#
+ftp beaufix
+Connected to beaufix.meteo.fr.
+220 (vsFTPd 2.2.2)
+530 Please login with USER and PASS.
+530 Please login with USER and PASS.
+KERBEROS_V4 rejected as an authentication type
+Name (beaufix:mrpe737): moene
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> put moene_CY45_hirlam_A1.tgz
+local: moene_CY45_hirlam_A1.tgz remote: moene_CY45_hirlam_A1.tgz
+227 Entering Passive Mode (137,129,240,110,38,188).
+150 Ok to send data.
+226 Transfer complete.
+267026164 bytes sent in 2.4 seconds (1.1e+05 Kbytes/s)
+ftp> quit
+#
+# Change to beaufix (HPC)
+#
+telnet beaufix
+<login>
+#
+# Create the structure for compiling this branch (gmkpack version and -l option by Ryad El Khatib)
+#
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.5/util; gmkpack -r 45 -v 01 -a -l IMPI512IFC1601 -o 2x -p masterodb)
+#
+# Unpack the branch as local changes
+#
+cd pack/45_main.01.IMPI512IFC1601.2x/src/local
+tar zxvf ~/moene_CY45_hirlam_A1.tgz
+#
+# Remove the directories (projects) we do not use
+# 
+rm -rf cope obstat oops scat scripts oopsifs
+#
+# Back up and start the compilation process
+#
+cd ../..
+(export PATH=$PATH:/home/gmap/mrpm/khatib/public/bin/gmkpack.6.6.5/util; ./ics_masterodb) >& log &
+}}}
+
+=== Disposition of the changesets ===
+
+changeset:14676
+{{{
+arpifs/op_obs/inv_refl1dstat.F90:          OK - included
+odb/pandor/module/bator_decodhdf5_mod.F90: Changed too much in CY45 to be useful - skipped
+blacklist/mf_blacklist.b:                  Changed too much in CY45 to be useful - skipped
+}}}
+
+changeset:14846
+{{{
+odb/pandor/namelist/bator_namelist.nam.h:  CY45 version is newer - skipped
+}}}
+
+changeset:15476
+{{{
+arpifs/obs_preproc/defrun.F90:             OK - included
+}}}
+
+changeset:15479
+{{{
+arpifs/obs_preproc/redrp_no_seq.F90:       OK - included
+}}}
+
+changeset:14956
+changeset:15550
+changeset:15602
+changeset:15674
+changeset:15693
+changeset:15694
+changeset:15776
+changeset:15795
+changeset:15820
+changeset:15829
+changeset:15856
+{{{
+These changesets were all overridden by Eoin Whelan's updates of Bator dated September 28th
+}}}
+== B. Harmonie-Arome and Arome physics (upper-air)and dynamics==
+
+=== Microphysics ===
+
+Authors:Karl-Ivar Ivarsson, Bjarne Stig Andersen 
+
+Description: Fixes 
+
+             Snow to graupel conversion + autoconversion fix[[BR]]
+
+             Reduces the amount of ice nucleus avoiding too dry atmosphere for temperatures below freezing [[BR]]
+
+             Stratospheric bugfixes and rain_ice.F90 correction [[BR]]
+              
+svn changesets: 14664,14739,14894,15821 
+
+Changed:
+{{{
+arpifs/module/yomparar.F90
+arpifs/namelist/namparar.nam.h
+arpifs/phys_dmn/suparar.F90
+mpa/micro/internals/condensation.F90
+mpa/micro/internals/icecloud.F90
+mpa/micro/internals/rain_ice.F90
+mpa/micro/internals/tiwmx_tab.F90 
+}}}
+
+Authors:Karl-Ivar Ivarsson
+
+Description:
+
+Freezing rain updates in IC3 Modifications in rain_ice.F90 in order to improve the forecast of freezing rain
+(not only for OCND2). [[BR]]
+Modifications of cloud microphysics in passive form, which means that without changing the default values in namelist, the meteorological resultis not changed
+
+svn changesets: 15588,15781
+
+Changed:
+{{{
+arpifs/module/yomparar.F90
+arpifs/namelist/namparar.nam.h
+arpifs/phys_dmn/apl_arome.F90
+arpifs/phys_dmn/suparar.F90
+arpifs/phys_dmn/suphmpa.F90
+mpa/micro/externals/aro_rain_ice.F90
+mpa/micro/externals/aroini_micro.F90
+mpa/micro/interface/aro_rain_ice.h
+mpa/micro/interface/aroini_micro.h
+mpa/micro/internals/ini_rain_ice.F90
+mpa/micro/internals/rain_ice.F90
+mpa/micro/module/modd_rain_ice_param.F90
+mpa/micro/module/modi_rain_ice.F90
+}}}
+=== Shallow convection ===
+
+Authors:Lisa Bengtsson
+
+Description:
+            Modifications to shallow convection scheme in orde to improve precipitation falling from shallow convective clouds. LTROPEC=TRUE (default=FALSE) precipitation tendencies in SC scheme are added to the source terms of precipitation entering in the cloud microphysics, such that ther are advected before next time step
+ 
+svn changesets: 15765
+
+Changed:
+{{{
+arpifs/module/yomparar.F90 
+arpifs/namelist/namparar.nam.h
+arpifs/phys_dmn/apl_arome.F90 
+arpifs/phys_dmn/suparar.F90 
+arpifs/phys_dmn/vdfhghthl.F90 
+arpifs/phys_dmn/vdfhghtnhl.F90
+}}}
+
+=== Radiation ===
+Authors:Laura Rontu
+
+Description: Radiation updates to introduce LHLRADUPD switch and new namelist setings
+
+svn changesets: 14792
+
+Changed:
+{{{
+arpifs/module/yoesw.F90
+arpifs/module/yomphy.F90
+arpifs/namelist/namphy.nam.h
+arpifs/phys_dmn/apl_arome.F90
+arpifs/phys_ec/radheat.F90 
+arpifs/phys_radi/suecrad.F90 
+arpifs/phys_radi/suswn.F90 
+arpifs/setup/su0phy.F90 
+}}}
+
+=== Dynamics ===
+Authors:Xiaohua
+
+Description: change suggested by Mariano Hortal in Nov 2015 in connection with use of grid-type other than linear
+ 
+svn changesets: 14897
+
+Changed:
+{{{
+arpifs/adiab/gnhd3.F90
+}}}
+=== Branch moene_CY45_hirlam_B
+{{{
+List of commands deleted because overruled:
+}}}
+=== Branch moene_CY45_hirlam_B1 made by Toon Moene on October 26th [Supersedes moene_CY45_hirlam_B] ===
+{{{
+#
+# On merou, create a directory cy45t1contr_B1 to contain changeset diffs; then go over there and:
+#
+for c in 14894; do svn diff -c $c https://svn.hirlam.org/trunk/harmonie > $c.diff; done
+#
+# Subsequently, edit out every patch that '''does not''' relate to a source code change in directory src
+#
+[ Edits ]
+#
+# Prepare for git
+#
+cd git-dev/arpifs/
+git fetch
+#
+# Create new branch
+#
+git_branch -r 45 -v 01 -u hirlam_B1
+#
+ls ~/cy45t1contr_B/
+grep ^Index ~/cy45t1contr_B/14894.diff 
+less ~/cy45t1contr_B/14894.diff
+#
+# Apply by hand:
+#
+vi mpa/micro/internals/rain_ice.F90
+#
+# Add the modified files
+#
+git status
+git add mpa/micro/internals/rain_ice.F90
+#
+# Check status
+#
+git status
+#
+# OK, commit dry run - then the real one
+#
+git commit --dry-run
+git commit -m "Initial commit of HIRLAM contributions to Cycle 45 (list B.) [Supersedes moene_CY45_hirlam_B]"
+#
+# Broadcast the changes.
+#
+git_post
+}}}
+
+=== Disposition of the changesets ===
+
+changeset:14894
+{{{
+mpa/micro/internals/rain_ice.F90:          OK - included
+}}}
+
+All other changesets were to different from the cy45 code to be included.
+
+== C. Surfex code changes (and their related changes in the calling routines from IFS/AAAH) ==
+'''[This branch is now considered obsolete and will not be processed for inclusion by Meteo France]'''
+
+=== Fluxes and ecoclimap treatment fixes ===
+
+Authors:Ole Vignes 
+
+Description: OpenMP bugfix ported from MetCoOp? branch (ecoclimap decadal update)
+ 
+svn changesets: 14652
+
+Changed:
+{{{
+surfex/SURFEX/update_data_cover.F90
+surfex/SURFEX/vegetation_update.F90
+}}}
+Authors:Yurii Batrack 
+
+Description: Fix on SURFEX heat flux units
+ 
+svn changesets: 15235
+
+Changed:
+{{{
+surfex/SURFEX/simple_ice.F90
+surfex/SURFEX/soil_heatdif.F90 
+surfex/SURFEX/theoretic_snow.F90 
+}}}
+
+
+Authors:Yurii Batrack 
+
+Description: Consistency checks between input ICE and SST
+ 
+svn changesets: 15483
+
+Changed:
+{{{
+surfex/SURFEX/read_seafluxn.F90
+}}}
+
+=== Interpolation/extrapolation fixes ===
+Authors:Yurii Batrack, Ekaterina Kurzeneva, Ulf Andrae  
+
+Description:
+             Add missing DR_HOOK call at end of subroutine[[BR]]
+             Fixing physiography treatment in SURFEX when the  resolution of the atmospheric grid is finer o similar to the resolution of the original physiography[[BR]]
+             Correct PREP treatment of ECMWF rotated latlon input[[BR]]
+
+svn changesets: 14689, 15561, 15575
+
+Changed:
+{{{
+surfex/SURFEX/hor_interpol_rotlatlon.F90
+surfex/SURFEX/interpol_npts.F90
+surfex/SURFEX/nn_extrapolate.F90
+surfex/SURFEX/prep_grib_grid.F90
+}}}
+
+
+=== SST and SIC initialization updates ===
+
+Authors:Yurii Batrack, Ekaterina Kurzeneva, Ulf Andrae  
+
+Description:
+             Enable the possibility to use multiple SST sources in a more generalized way. This is controlled by the variable SST_SOURCES where IFS is the default. Ohter available sources are HIROMB/NEMO/ROMS. The environment variable SST has bee depricated. [[BR]]
+             SIC initialization has been updated in a more SURFEX consistent way.
+
+
+svn changesets: 15587
+
+Changed:
+{{{
+arpifs/canari/caclsst.F90 
+arpifs/setup/su_surf_flds.F90 
+mse/externals/canari_sx_ics.F90 
+mse/module/sfxflddesc_mod.F90 
+surfex/ASSIM/aro_propagate_ice.F90
+surfex/ASSIM/assim_sean.F90 
+surfex/SURFEX/abstract_ice.F90 
+surfex/SURFEX/default_ice.F90 
+surfex/SURFEX/nn_extrapolate.F90 
+surfex/SURFEX/read_seafluxn.F90 
+surfex/SURFEX/simple_ice.F90
+}}}
+=== Two patches and OI assimilation ===
+Authors:Patrick Samuelsson, Yurii Batrack  
+
+Description: 
+             Modifications to combine 2 patches and OI assimilation.[[BR]]
+             The SURFEX assimilation code is prepared to utilize open land (PATCH=1) as first guess when Canari is modified for this in the future. However,for now, the grid-averaged values of T2M and rh2m are used[[BR]]
+             Added min/max of T2m per patch to SURFEX output[[BR]]
+             sfxflddesc_mod.F90 has been rearranged and complemented with new variables. Useful changes to list missing variables in sfsflddesc_mod.F90 and exit.[[BR]]
+             Fixes to run all testbed cases with SICE configuration using non-ifs host models.[[BR]]
+             Correct surfex lfi/fa translations for SSO_CAN_XNN variables[[BR]]
+             Added funcionality in mode_read_grib.F90 to read lsm usingalso SHORTNAME='lsm' if needed
+
+
+svn changesets: 15742, 15747, 15750, 15824, 16040, 15749
+
+Changes:
+{{{
+mse/externals/aroini_surfc.F90 
+src/mse/module/sfxflddesc_mod.F90 
+src/mse/new/sfxfa2lfi.F90
+src/mse/new/sfxlfi2fa.F90
+surfex/ASSIM/assim_inland_watern.F90 
+surfex/ASSIM/assim_isba_update_snow.F90 
+surfex/ASSIM/assim_isban.F90 
+surfex/ASSIM/assim_nature_isba_ekf.F90 
+surfex/ASSIM/assim_nature_isba_oi.F90 
+surfex/ASSIM/oi_cavegi.F90  
+surfex/SURFEX/average_diag_isban.F90 
+surfex/SURFEX/diag_isba_initn.F90 
+surfex/SURFEX/modd_diag_isban.F90 
+surfex/SURFEX/mode_read_grib.F90
+surfex/SURFEX/read_isban.F90
+surfex/SURFEX/write_diag_seb_isban.F90
+}}}
+
+
+=== Technical changes ===
+Authors:Yurii Batrack
+
+Description: 
+aro_propagate_ice.F90 moved from src/surfex/ASSIM to
+src/mse/externals due to the heavily use of MPL library that it is not part of
+SURFEX[[BR]]
+
+svn changesets: 15731
+
+Moved:
+{{{
+mse/externals/aro_propagate_ice.F90 from  surfex/ASSIM/aro_propagate_ice.F90
+}}}
+
+=== Branch moene_CY45_hirlam_C made by Toon Moene on September 27th ===
+{{{
+#
+# Create the list of files to update
+#
+cd cy45t1contr_C
+vi filelist
+#
+# Activate git
+#
+cd ~/git-dev/arpifs/
+#
+# Create the third branch
+#
+git_branch -r 45 -v 01 -u hirlam_C
+for f in `cat ~/cy45t1contr_C/filelist`
+do
+ls -l $f
+cp -v ~/cy45_hirlam_contrib/trunk/harmonie/src/$f $f
+done
+#
+# Perform the git add command to be able to commit the changes
+#
+git add `cat ~/cy45t1contr_C/filelist`
+#
+# See if the result makes sense
+#
+git status
+#
+# Perform a dry run of the commit
+#
+git commit --dry-run
+#
+# Looks good - do the commit
+#
+git commit -m "Initial commit of HIRLAM contributions to Cycle 45 (list C.)"
+#
+# Broadcast that this branch has been made
+#
+git_post
+}}}
+
+== D. Data assimilation ==
+
+Authors:Magnus Lindskog
+Description:Correction on B-statistics generation festat 
+svn changesets: 15559
+
+Changed:
+{{{
+utilities/bcov_lam/others/nmcstat.F90
+}}}
+
+
+Authors:Siebren de Haan
+Description:Adding Mode-S EHS to the observation data set with correct observation error for temperature
+svn changesets: 15776
+
+Changed:
+{{{
+arpifs/module/yomcoctp.F90 
+arpifs/setup/cmoctmap.F90 
+arpifs/setup/cmoctmap_inv.F90 
+odb/cma2odb/subuoctp.F90 
+odb/module/yomboctp.F90 
+}}}
+
+Authors:Daniel Santos
+Description:Bugfix on Jk terms 
+svn changesets: 14666
+
+Changed:
+{{{
+aladin/var/evarjk.F90
+}}}
+
+=== Branch moene_CY45_hirlam_D made by Toon Moene on September 27th ===
+{{{
+#
+# Create the list of files to update
+#
+cd cy45t1contr_D
+vi filelist
+#
+# Activate git
+#
+cd ~/git-dev/arpifs/
+#
+# Create the fourth branch
+#
+git_branch -r 45 -v 01 -u hirlam_D
+for f in `cat ~/cy45t1contr_D/filelist`
+do
+ls -l $f
+cp -v ~/cy45_hirlam_contrib/trunk/harmonie/src/$f $f
+done
+#
+# Perform the git add command to be able to commit the changes
+#
+git add `cat ~/cy45t1contr_D/filelist`
+#
+# See if the result makes sense
+#
+git status
+#
+# Perform a dry run of the commit
+#
+git commit --dry-run
+#
+# Looks good - do the commit
+#
+git commit -m "Initial commit of HIRLAM contributions to Cycle 45 (list D.)"
+#
+# Broadcast that this branch has been made
+#
+git_post
+}}}
+
+=== Branch moene_CY45_hirlam_D updated by Toon Moene on September 28th ===
+{{{
+#
+# Get the moene_CY45_hirlam_D branch
+#
+cd ~/git-dev/arpifs/
+git checkout moene_CY45_hirlam_D
+git branch
+#
+# Check the files for the D branch
+#
+ls -lR ~/cy45t1contr_A/EoinWhelanMods/packageA
+#
+# Copy those files to the repository
+#
+ls -l arpifs/module/yomcoctp.F90
+cp -v /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/arpifs/module/yomcoctp.F90 arpifs/module/yomcoctp.F90
+ls -l arpifs/setup/cmoctmap.F90 
+cp -v /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/arpifs/setup/cmoctmap.F90 arpifs/setup/cmoctmap.F90
+ls -l arpifs/setup/cmoctmap_inv.F90 
+cp -v /home/mrpe737/cy45t1contr_A/EoinWhelanMods/packageA/arpifs/setup/cmoctmap_inv.F90 arpifs/setup/cmoctmap_inv.F90
+#
+# Check if OK and add the changes for the commit
+#
+git status
+git add arpifs/module/yomcoctp.F90 arpifs/setup/cmoctmap.F90 arpifs/setup/cmoctmap_inv.F90
+git status
+#
+# Commit ...
+git commit --dry-run
+git commit -m "Additional fixes to routines by Eoin Whelan (list D.)"
+#
+# ... and broadcast the commit
+#
+git_post
+}}}
+
+== E. Technical  ==
+=== Cleaning and fixing ===
+
+Authors:Ulf Andrae
+
+Description:Remove unused variables
+
+svn changesets: 14606
+
+Changed:
+{{{
+arpifs/adiab/cpg_gp.F90 
+}}}
+
+
+
+Authors:Eoin
+
+Description: Addition of FORTRAN program (using BUFRDC) to read BUFR record. Input: BUFR file. Output: 'first-guess' at a param.cfg entry readable by Bator
+
+svn changesets: 14850
+
+Changed:
+{{{
+odb/tools/Guessparamcfg.F90
+}}}
+
+
+
+Authors:Ole Vignes 
+
+Description:Correct printout
+
+svn changesets: 14921
+
+Changed:
+{{{
+arpifs/phys_dmn/suparar.F90
+}}}
+
+
+Authors:Ulf Andrae 
+
+Description:Bring [15317] to trunk
+
+svn changesets: 15328
+
+Changed:
+{{{
+mse/externals/aro_surf_diag.F90
+}}}
+
+
+Authors:Kristian Pagh Nielsen
+
+Description: Add missing ifdef
+
+svn changesets: 15560
+
+Changed:
+{{{
+mse/programs/soda.F90 
+}}}
+
+Authors:Alvaro Subias
+
+Description: bug fix ECTO, check for empty tags
+
+svn changesets: 15782
+
+Changed:
+{{{
+utilities/pinuts/module/fa_cadre_mod.F90
+}}}
+
+Authors:Ulf Andrae 
+
+Description:Correct uninitialized values
+
+svn changesets: 15904
+
+Changed:
+{{{
+arpifs/phys_dmn/suphy0.F90
+arpifs/setup/surlx.F90
+}}}
+
+
+=== Bugfix ACRANEB2 ===
+
+Authors:Emily Gleeson
+Description:Minor ACRANEB2 related bug in apl_arome.F90 probably fixed yet in cy45T1_main
+svn changesets: 14632
+Changed:
+{{{
+arpifs/phys_dmn/apl_arome.F90 
+}}}
+
+=== assure NPROMA reproducibility ===
+Authors:Ulf Andrae et al.
+Description:
+            Changes to assure NPROMA reproducibility [[BR]]
+            Fix out of range copy in apl_arome.F90
+            Make sure extra calculations are not done if not required 
+svn changesets: 15443
+
+Changed:
+{{{
+arpifs/phys_dmn/apl_arome.F90
+arpifs/phys_dmn/vdfparcelhl.F90
+}}}
+
+=== Branch moene_CY45_hirlam_E made by Toon Moene on September 27th ===
+{{{
+#
+# Create the list of files to update
+#
+cd cy45t1contr_E
+vi filelist
+#
+# Activate git
+#
+cd ~/git-dev/arpifs/
+#
+# Create the fifth branch
+#
+git_branch -r 45 -v 01 -u hirlam_E
+for f in `cat ~/cy45t1contr_E/filelist`
+do
+ls -l $f
+cp -v ~/cy45_hirlam_contrib/trunk/harmonie/src/$f $f
+done
+#
+# Perform the git add command to be able to commit the changes
+#
+git add `cat ~/cy45t1contr_E/filelist`
+#
+# See if the result makes sense
+#
+git status
+#
+# Perform a dry run of the commit
+#
+git commit --dry-run
+#
+# Looks good - do the commit
+#
+git commit -m "Initial commit of HIRLAM contributions to Cycle 45 (list E.)"
+#
+# Broadcast that this branch has been made
+#
+git_post
+}}}

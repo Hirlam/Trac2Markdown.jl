@@ -1,0 +1,152 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on Radar data processing''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== 6th meeting: 7 April 2019, 14:00 CET ==
+
+== Participants ==
+- Jana Sanchez
+- Zheng Qi Wang
+- Wim Verkleij 
+- Günther Haase
+- Maria Monteiro
+- Mats Dahlbom
+- Martina Tudor
+- Carlos Geijo
+- Christoffer Elo
+- Benedikt Strajnar
+- Maud Martet
+- Mihal Nestiak
+- Roger Randriamampianina
+
+== Review of Actions from the 2nd/3rd meetings:==
+**Action-1:** [[BR]]
+   ===> **done**
+
+**Action 2** on **Wim and Jana** to implement and test the use of spectral Q in 3DVar scheme. **Wim** couldn't join and **Jana** couldn't start to work with with this issue.[[BR]]
+   ===> **Kept**[[BR]]
+
+**Action 6** [[BR]]
+   ===> **Kept**. Kept but treated during this meeting (See below).[[BR]]
+
+**Action:1** from 5th meeting: on Roger to ask Eric Wattrelot about the "tools" he is using from the Odyssey software to treat the OPERA data.[[BR]]
+ -- **Maud** was asked about this Action and she mentioned that they use the IOFS OPERA (in HDF5) data. Both the raw (non-corrected) and quality flagged reflectivity data. Doppler velocity data are used when the metadata is present in the file. French radars are used in MFBUFR format.
+
+
+== Radar related meetings: ==
+ -- **Nothing special this time**
+
+== European radar network: ==
+ -- **Maud** asked about what kind of radar data is used by different centres?[[BR]]
+    -- !MetCoOp (Norway, Sweden and Finland): Norwegian radar are processed at MET Norway using the Prorad tool box, Swedish and Finish radar data are from Baltrad;[[BR]]
+    -- -- AEMET, KNMI are testing data from Baltrad; Portugal started by testing Baltrad data but is now using OIFS data;[[BR]]
+    -- LACE is testing data from OPERA; Benedikt mentioned that they would like to know why data from OPERA are changed compared to what is sent by each centre. A documentation about the further processing within OPERA is requested. 
+  ===> **Action1** on **Roger** to communicate this with Elena Saltikoff. **Maud** mentioned that Elena is working on this issue and the document will be available soon.[[BR]]
+   > Roger received [https://hirlam.org/trac/attachment/wiki/Meetings/Data_assimilation/Video_Meetings/2019/Meeting_on_radar_data_processing/OPERA_the_Radar_Project_as_submitted.pdf the submitted paper] from Elena. [[BR]]
+== Reflectivity: ==
+ - OPERA is delivering two kinds of data:[[BR]]
+   -- Raw, uncorrected (TH??) and processed and quality flagged data. [[BR]]
+ -**Maud** mentioned the importance of stability and continuity of the quality of the data from OPERA.[[BR]]
+ -**Benedikt** asked about how to use the different quality flags present in the OPERA data. **Maud** said that at Meteo France they use specific threshold, which was set up after a thorough study of the flags in the files compared to the quality of the pictures.[[BR]]
+  ===> **Action 2** on **Maud** to explain to the group the adopted quality control (QC) at Meteo France. The group will check the efficiency of this QC in their system and report during next video meeting.[[BR]]
+  > Maud shared [https://hirlam.org/trac/attachment/wiki/Meetings/Data_assimilation/Video_Meetings/2019/Meeting_on_radar_data_processing/201906_AROME-France_OPERA.pdf the report] to the group.
+  >
+ -**Mihal** reminded that the OIFS data comprise group of timely sensed data;[[BR]]
+ -**Benedikt** was asked about the HOOF processing tool. He mentioned that HOOF was created to 1) create the missing metadata in the OPERA data; 2) to separate (if needed) the data to specific observation times; and 3) make the radar data more homogeneous in terms of data structure and organization. He also mentioned that the CY43 Bator is able to select the appropriate measurement for any given assimilation time. HOOF is only writing out (to hdf file) what we ask for, for ex. only refl., only at a given time and as many metadata as needed. It has possibility to add metadata items globally or for a selected radar site externally by namelist[[BR]]
+ -According to our discussion, today reflectivity data can be prepared for assimilation the following ways:[[BR]]
+  -- HOOF + !PrepOpera + Bator;[[BR]]
+  -- HOOF + Bator;[[BR]]
+ where HOOF function is described above, !PrepOper apart of adjusting some metadata produce the superobbing.[[BR]]
+  ===> **Action 3** on **Mats** to send the paper on superobbing approach to the group.[[BR]]
+  > Roger uploaded [https://hirlam.org/trac/attachment/wiki/Meetings/Data_assimilation/Video_Meetings/2019/Meeting_on_radar_data_processing/OPERA_the_Radar_Project_as_submitted.pdf the paper] [[BR]]
+ - Meteo France is not applying any superobbing to the radar data. Systematic (pixel picking) thinning is done not accounting for the data quality and flagging information.[[BR]]
+  ===> **Action 4** to the group to work out single Bator, where the above two thinning strategies can be chosen. So, if the !PrepOpera is applied, no thinning is needed during Bator. Otherwise, through namelist, the "pixel picking" thinning technique can be activated.[[BR]]
+ - The group agreed that in long term, the role of HOOF and !PrepOpera should be incorporated in the pre-processing system.[[BR]]
+ - **Wim** presented a detailed impact study, where different composition of radar data were tested together:[[BR]]
+   -- French + Dutch radars showed clear significant positive impact;[[BR]]
+   -- But, adding Irish and Belgian radars gave negative impact. [[BR]]
+   -- He pointed to the importance of homogenous radar data.[[BR]]
+ - **Maud** mentioned that in Bator the quality control of radar data is done by accounting for the non-corrected and quality flagged data.
+
+== Radar radial winds: ==
+
+ - **Benedikt** mentioned the complexity of Doppler wind data due to the need for dealiassing for some of the European radars. [[BR]]
+ - **Gunther** mentioned that to be implemented in OPERA-5, two approaches are now under test: KNMI and SMHI.[[BR]]
+ - **Benedikt** asked if a kind of quality flag will be also applied to wind data. **Gunther** said that this will be discussed in OPERA soon.[[BR]]
+ - **Benedikt** mentioned that if satisfied with a dealiassing approach, they can consider to have it implemented in HOOF.[[BR]]
+ - **Roger** and **Maud** mentioned that there is no need for dealiassing to radar wind data from France and Norway.[[BR]]
+
+== Radar quality control: ==
+ - See the discussion above.[[BR]]
+ - **Benedikt** said that they are still validating the observation operator for the ALARO system. **Roger** and **Maud** mentioned that experts from Meteo France (for example Olivier Caumont) can be contacted if needed.[[BR]]
+
+== Radar data & COPE: ==
+ -- Not discussed
+
+
+== Annex 1: Informative mail from Florian Meier ==
+ --unfortunately I could not join the video meeting yesterday due to another meeting outside ZAMG, but I read that Wim and Jana plan to test 3D-Var with spectral Q. As far as I remember Endi Keresturi endi.keresturi-at-cirus.dhz.hr from Croatia already used spectral Q in AROME minimization to do his Jk experiments (cy40t1). So Roger, could you inform Wim and Jana that it might be worth to contact him on this subject? I struggle to get their e-mail addresses.
+
+ --Regarding our radar usage: We don’t run RADAR-DA operational so far, but for AROME-Nowcasting in real time test mode, we use currently reflectivity and Doppler (all ODIM HDF5) from Southern Germany (not OPERA, but open data converted to HDF5), Switzerland (OIFS), Slovenia (bilateral exchange hdf5), Austria (national agreement), Czech Republic (OIFS), Croatia and Slovakia (only 2 stations), France (1 station 07291) (all OIFS). For SK and HR I blacklist Doppler wind via LISTE_NOIR_DIAP. The timeliness is quite satisfying for us. Doppler from Germany has also quite high unambiguous speed as France 60m/s, but is noisy. Therefore, the DOW filters in BATOR are needed (as for France), while de-aliasing is normally not necessary. For the other data, I apply He et al. scheme and we use VARQC to reduce bad impact from badly de-aliased data. On long run, it might be beneficial to use DOW-simulator from Idir Dehmous to get first guess for de-aliasing, if there is no other solution. Maybe, I can do some small effort in this direction in summer, but that is not sure.
+
+==============================================================================
+
+== 5th meeting: 26 March 2018, 14:00 CET ==
+
+== Participants ==
+- Jana Sanchez
+- Eoin Whelan
+- Wim Verkleij (couldn't make it due to connection problem)
+- Martin Ridal
+- Günther Haase
+- Maria Monteiro
+- Mats Dahlbom
+- Alena Trojakova
+- Roohollah Azad
+- Claude Fischer
+- Roger Randriamampianina
+
+**Review of Actions from the 2nd/3rd meeting:**[[BR]]
+**Action-1:** **Eoin** provided documents on the changes corresponding to CY43 in the Annex of the previous meeting's minutes.Among others, new HDF5 data reader is implemented. For the Harmonie system, Martin successfully activated the Hirlam HDF5 reader in the 43h2_t2 system. **Roger** thinks that there is a need of a good inventory of the implementation of the two HDF5 readers. This topic will be also discussed during the side meeting in Toulouse about Bator.[[BR]]
+
+**Action 2** on **Wim and Jana** to implement and test the use of spectral Q in 3DVar scheme. **Wim** couldn't join and **Jana** couldn't start to work with with this issue.[[BR]]
+   ===> **Kept**[[BR]]
+
+**Action 3**[[BR]]
+   ===> **done**[[BR]]
+
+**Action 4** and **Action 5** on Roger (see below)[[BR]]
+   ===> **done** unless one needs more information.[[BR]]
+
+**Action 6** [[BR]]
+   ===> **Kept**. Roger will proceed ASAP, probably with more information.[[BR]]
+
+
+
+**Radar related meetings:** [[BR]]
+ -- **OPERA meeting**: Günther reported that there was presentation mentioning the effort done in LACE, Meteo France and Hirlam about the use of OPERA radar data. There is a plan in the next phase of OPERA to make the data more usable for data assimilation and NWP purposes. This new phase plan needs to be decided soon by the EUMETNET council.
+
+**European radar network:**[[BR]]
+**Reflectivity:**[[BR]]
+ -- **Alena**, on behalf of LACE, mentioned that they provided the metadata to OPERA. In LACE development work, the !PrepOpera is used, while further analysis of the metadata is underway to guarantee that all needed data are in place with the radar network for data assimilation.[[BR]]
+ -- **Jana** mentioned that she has memory problem issue when assimilating reflectivity data. Increasing the processors and reducing the number of observations help. She is working with the IT expert to find good solution.[[BR]]
+ -- **Claude** mentioned that Meteo France has an open issue on adding or not OPERA data from some sites in their next parallel suite. They are able to monitor data from about 50 radars from their neighbouring countries. In their OPERA data implementation, "Odyssey tool" is used to treat the HDF5 data. [[BR]]
+
+**Radar radial winds:**[[BR]]
+
+ --**Roger** mentioned that at MET Norway someone is starting to work with radial wind assimilation.[[BR]]
+ --**Mats** mentioned that he helped **Wim** to produce a single radial wind in HDF5 for assimilation study.[[BR]]
+
+**Radar quality control:**[[BR]]
+ **Action:1** on Roger to ask Eric Wattrelot about the "tools" he is using from the Odyssey software to treat the OPERA data.[[BR]]
+
+**Radar data & COPE:**[[BR]]
+ -- The development work will follow. !PreOpera is good tool to be taken into consideration for the new radar filter...
+
+
+**Annex:** (None)
+
+==============================================================================

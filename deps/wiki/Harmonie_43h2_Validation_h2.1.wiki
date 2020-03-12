@@ -1,0 +1,79 @@
+== Experimental framework for testing CY43h2 ==
+
+The tests of CY43 are communicated through '' hirlam.org ''  in similar ways as was done for cycle 40.  
+This page is created with the purpose of documenting systematic tests and validation of Harmonie_43h2 .
+The goal is to carry out tests in a coordinated way. In order to work towards this goal 
+the following document has been created:     
+[https://hirlam.org/trac/attachment/wiki/Harmonie_43h2_Validation_h2.1/common-verification-and-validation-of-Harmonie-CY43.pdf common-verification-and-validation-of-Harmonie-CY43 ] .
+It is recommended to read the document before starting experiments.   
+
+The Tables below will contain relevant information defining the individual experiments and their results  for Target 1 , Target 2 and comparisons to CY40h1.1.1 or similar :
+
+
+=== 1. Long runs with forecast model ===
+
+||= Experiment name =||= Area specification =||= start to end time specification =||= Tester(s) =||=Additional , e.g. name list related =||= Verification link =|| 
+|| DKA-SEP18   ||      DKA     ||18081400-18093000 || Kai Sattler || spinup included ||       -       ||  
+|| DKA-DEC18   ||      DKA     ||18111400-18123100 || Kai Sattler || spinup included ||       -       || 
+|| DKA-MAR19   ||      DKA     ||19021400-19033100 || Kai Sattler || spinup included ||       -       ||  
+|| DKA-JUN19   ||      DKA     ||19051400-19063000 || Kai Sattler || spinup included ||       -       || 
+|| KNMI-D18J19 || Netherlands  ||18112000-19020100 || Wim/Sander/??? || spinup included ||       -       ||  
+|| KNMI-JA16   || Netherlands  ||16062000-16090100 || Wim/Sander/??? || spinup included ||       -       || 
+||[[BR]]  AIBxl_43tg1 [[BR]] AIBxl_43tg2 ||  [[BR]]   Iberia [[BR]] ||20180801-20180831[[BR]]20181005-20181110[[BR]]20181223-20190228 [[BR]]20190315-20190430||Samuel[[BR]]Daniel Martin[[BR]]Gema[[BR]]Javier || [[BR]]Spin up 15 days (not included) ||       -       ||  
+|| x9          ||      -       ||       -          ||       -    ||       -         ||       -       ||  
+|| x10         ||      -       ||       -          ||         -            ||       -         ||       -       || 
+
+
+ === 2. Case studies  ===
+
+||= Experiment name =||= Area specification =||= start to end time specification =||= Tester(s) =||=Additional , e.g. name list related =||= Verification link =||= Links to documentation of case (e.g. text) =||  
+|| Deep-conv-2011-09-10        || Netherlands  || 2011091006 +24h || Sander Tijm ||       -       ||       -       || [ https://hirlam.org/trac/raw-attachment/wiki/Harmonie_43h2_Validation_h2.1/Case_20110910.pptx ] ||
+|| Open-cell-conv-2017-10-29   || Netherlands  || 2017102900 +48h || Sander Tijm ||       -       ||       -       || [ https://hirlam.org/trac/raw-attachment/wiki/Harmonie_43h2_Validation_h2.1/Case_20171029.pptx ] ||
+|| Supercooled-rain-2019-02-22 ||      -       ||      -      ||      -      ||       -       ||       -       ||        -       ||
+|| Fog-2019-04-14              ||      -       ||      -      ||      -      ||       -       ||       -       ||        -       ||
+|| Fog-2019-03-28/29           || Netherlands  || 2019032812 +48h || Sander Tijm ||       -       ||       -       || [ https://hirlam.org/trac/raw-attachment/wiki/Harmonie_43h2_Validation_h2.1/Case_20190329.pptx ] ||
+|| Fog-2018-12-15              ||      -       ||     -      ||      -      ||    -  ||       -       ||        -       ||
+||                             ||    Iberia    ||20180806      -      ||      -      ||Summer conv and gust issues ||       -       ||        -       ||
+||                             ||    Iberia    ||20181014      -      ||      -      ||Leslie Cyclone     ||       -       ||        -       ||
+||                             ||    Iberia    ||20181205      -      ||      -      ||Shallow Convection ||        -       ||
+||                             ||   Iberian North Plateau||201901,13-15 ||    Gema   ||Land Fog      ||       -       ||        -       ||
+||                             ||  Biscay Gulf ||201902,24-26||              Gema    ||Cantabric Sea Fog  ||        -       ||
+
+
+
+
+=== 3. Tests with Ensemble setups  ===
+
+||= Experiment name =||= Area specification =||= start to end time specification =||= Tester(s) =||=Additional , e.g. name list related =||= Verification link =|| 
+|| z1         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| z2         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| z3         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| z4         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| z5         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| z6         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| z7         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| z8         ||      -       ||      -      ||      -      ||       -       ||       -       ||
+|| z9         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| z10        ||      -       ||      -      ||      -      ||       -       ||       -       ||
+
+ === 4. Data-assimilation tests ===
+
+||= Experiment name =||= Area specification =||= start to end time specification =||= Tester(s) =||=Additional , e.g. name list related =||= Verification link =|| 
+|| u1         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| u2         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| u3         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| u4         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| u5         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| u6         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| u7         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| u8         ||      -       ||      -      ||      -      ||       -       ||       -       || 
+|| u9         ||      -       ||      -      ||      -      ||       -       ||       -       ||  
+|| u10        ||      -       ||      -      ||      -      ||       -       ||       -       || 
+
+
+
+
+ 
+
+
+  

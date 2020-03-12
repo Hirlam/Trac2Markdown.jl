@@ -1,0 +1,79 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Radiation Working Day 24^th^ of May 2018''''' =
+''ECMWF, Reading, U.K.'' 
+
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Participants =
+
+  ||= Institutes                                        =||= Participants in Dublin    =||= Online participants =|| 
+  || Danish Meteorological Institute                     ||   Kristian Pagh Nielsen     ||                     ||
+  || Met Éireann                                         ||   Emily Gleeson             ||                     ||
+  || Finnish Meteorological Institute                    ||   Laura Rontu               ||                     || 
+  || Finnish Meteorological Institute                    ||   Petri Räisänen            ||                     || 
+ 
+
+
+= Objectives =
+
+The ultimate goal of this work is to make comparisons and improvements of the radiation schemes available in HARMONIE, i.e. the IFS, ACRANEB and HLRADIA. AROME physics has been chosen for the platform where all radiation routines can be compared in a clean way. Thus, calls of all three radiation routines are being implemented in apl_arome.F90 (or aplpar.F90?), with common interfaces between radiation and clouds, aerosol and surface. In this framework, a clean comparison of any further developments inside the three radiation schemes is also possible. It is important to allow the radiation routines to concentrate on radiation and prepare the common input concerning cloud, aerosol and surface state before entering the radiation calculations.  
+
+
+= Previous radiation working days =
+
+11. Dublin September 2017 https://hirlam.org/trac/wiki/Meetings/Physics/Radiation201709
+
+10. Helsinki April 2017 https://hirlam.org/trac/wiki/Meetings/Physics/CAR2017
+
+9. Lisboa April 2016 https://hirlam.org/trac/wiki/Meetings/Physics/Radiation201604
+
+8. Tallinn November 2015 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201511
+
+7. Copenhagen April 2015 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201504
+
+6. Copenhagen September 2014 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201409
+
+5. Prague March 2014 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201403
+
+4. Helsinki October 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201310
+
+3. Copenhagen February 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201302
+ 
+2. Dublin October 2012 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201210
+
+1. Helsinki April 2012
+
+----
+
+= Agenda =
+
+
+== 14 - 16 WEST  ==
+
+
+Status of radiation in HIRLAM Rolling Work Plan http://hirlam.org/index.php/rolling-plan- do we suggest modifications based on the ECMWF radiation workshop https://www.ecmwf.int/en/learning/workshops/workshop-radiation-next-generation-weather-forecast-models ? 
+
+Additional topics: 
+
+ * Problems of observed v.s. simulated direct radiation (Petri)
+
+The measurements of direct solar radiation by pyrheliometers typically cover
+a half-opening angle of 2-3 degrees around the Sun. Therefore, they can be
+"contaminated" by a substantial amount of near-forward scattered radiation,
+especially in the presence of ice clouds. Thus, direct solar radiation
+computed using the standard Beer's law underestimates the "apparent"
+(i.e. measured) direct radiation.
+Monte Carlo radiative transfer calculations show that, to a good
+approximation, the apparent direct solar radiation may still be computed
+using Beer's law, provided that the actual cloud or aerosol optical depth
+is replaced by a scaled optical depth (i.e., by excluding the
+part of the phase function at scattering angles smaller than the
+instrument half-opening angle).
+ * Radiation in harmonie-43xx cycles - status and tasks (Laura)
+
+ * Link to expts run by Emily: https://hirlam.org/trac/wiki/RadBranchAndCycles
+
+

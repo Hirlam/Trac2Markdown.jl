@@ -1,0 +1,65 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie 4DVAR Working Week 2015''' =
+''Norrkøping, SMHI, 30th of March - 1st of April 2015''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Participants =
+||SMHI || Magnus Lindskog || 30.03 - 01.04 ||
+||SMHI || Martin Ridal || 30.03 -01.04 ||
+||SMHI || Nils Gustafsson || 30.03 - 01.04 ||
+||SMHI || Gunther Haase || ||
+||SMHI || Tomas Landelius || ||
+||SMHI || Ulf Andrae || 30.03 - 31.03 ||
+||SMHI || Per Dahlgren || ||
+||DMI || Mats Dahlbom || 30.03 - 01.04 ||
+||KNMI || Jan Barkmeijer || 30.03 - 01.04 ||
+||KNMI || Wim Verklej || 30.03 -01.04 ||
+||MET Norway || Jelena Bojarova || 30.03 - 01.04 ||
+
+ 
+= The aim of the HARMONIE 4DVAR Working Week=
+
+The main aim of the HARMONIE 4DVAR Working week is to gather together the staff and to advance with the HARMONIE 4DVAR developments. The emphasis is on update of the HARMONIE 4DVAR developments to be consistent the latest cycle releases (first CY38 and then CY40) and on implementation of observations representing convective scales (radar data for the first instance). The goal is to keep HARMONIE scientific developments compatible to the RCR code releases or above it. In addition, a possible HIRLAM contribution to the IFS/Harmonie Fortran code refactoring of observation operator on tasks overlapping with the HIRLAM algorithmic developments to be discussed.
+
+  
+= The tasks to be addressed = 
+
+    - upgrade HARMONIE 4DVAR from CY37 to CY38 :
+      * surface fields and trajectory integration;
+      * change in ODB tables;
+
+    - radar data
+      * pre-processing of radar data (screening, thinning, superobbing)
+      * quality control
+
+    - performance of the HARMONIE 4DVAR
+      * tangent-linear and adjoint propagation of the increment (humidity variable in particular)
+      *  Jc-DFI 
+      *  change of resolution (simple spectral interpolation?)
+
+    - start implementation into CY40
+
+    - GNSS ZTD (optional, provided time allows)
+
+ * + Tuesday lunch discussion : how to contribute efficiently to the refactoring of observation operators at ECMWF. What expertise do we have in HIRLAM consortia, whom could do what, how can we profit from the OOPS driven restructuring and minimize the double work from the reimplementation...  
+
+ = OOPS driven IFS/Harmonie Fortran code restructuring = 
+
+ The main rational behind the OOPS project initiated almost 5 years ago was the IFS (and Arome) Fortran code refactoring and the redesign of the IFS system into a flexible, modular system, with interchangeable components. The drawback of the redesign is the uncertainty in code evolution which makes the Fortran codes unstable. The OOPS project is delayed.  This year the ECMWF is aiming for a steady progress towards the achievable, firmly defined goal: the IFS 4DVAR without physics for the adiabatic flow. The refactoring of the observation operators is a big investment. This is up the HIRLAM consortia to assure that the observations on convective scales are treated efficiently in the Harmonie framework. HMG has decided to contribute to the IFS efforts on the Fortran code refactoring in the areas overlapping with the algorithmic developments in HIRLAM consortia, the Harmonie 4DVAR in first instance. We hope that it will lead to a "win-win" situation. We hope this will lead to a "win-win" situation. HIRLAM scientists will get the possibility to implement their ideas in the latest code release, and avoid reimplementation of the development each time a new cycle is released. This would allow both to save resources and strengthen the motivation, at the same time when the ECMWF staff would get support in manpower contribution from the engaged colleagues... We also hope that our contribution to the code refactoring efforts at the ECMWF will help to reduce the "Harmonie delay" (The HARMONIE codes are almost two years behind the codes evolution at ECMWF). 
+
+= Accommodation =
+
+ * BOOKING:  The participants themselves should contact HOTEL KNEIPPEN (http://www.kneippen.se/en/). Write to  '' hotel.at.kneippen.se ''  and provide bookings code '''HIRLAM'''. ''Note:'' the hotel might be partially unmanned after ''~22:00'' and on Sundays. Please use '''code 2001''' to enter.  
+
+== Reference: previous HARMONIE DA/UO working weeks ==
+
+* [wiki:HarmonieWorkingWeek/UseObs201410 201410], Santander, The Harmonie DA&UO Working Week 2014
+* [wiki:OOPS/KNMI_201409 201409], KNMI, The HARMONIE OOPS/C++ Working Meeting
+
+== Additional Information ==
+
+* Status of the OOPS code strategy, refactoring and coordination (C. Fischer, 10/03/2015) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR201503/Dossier_OOPS_forLAMcontacts.pdf pdf]
+* Minutes from the video-meeting on OOPS Observation Operators (11/03/2015) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR201503/Minutes-2015-03-11_JFMRRCF.pdf pdf]

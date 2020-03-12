@@ -1,0 +1,60 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 38h1.2 updates''' ==
+
+This page is a working document summarizing the difference between harmonie-38h1.1 and harmonie-38h1.2. This list is not exhaustive so please check the full list of chagnes [https://hirlam.org/trac/log/trunk/harmonie?action=stop_on_copy&mode=stop_on_copy&rev=HEAD&stop_rev=12752&limit=500 here] 
+
+[[Center(end)]]
+
+
+Harmonie-38h1.2 scheduled for tagging after summer. Preliminary list of changes:
+* Data assimilation and observations
+ * Streamlined background error generation including back phasing of parallel festat from cy40t1 (Ulf,Magnus) '''DONE'''
+ * GNSS handling + VARBC namelist settings (Jana) '''DONE'''
+ * Radar treatment (to be checked) ''' NO UPDATES'''
+ * MSG humidity adjustment ( in preparation by Sibbo )'''DONE'''
+ * Updates for new TEMP format (Eoin) '''DONE'''
+ * Add recognition of ECMWF SHIP BUFR (Eoin) '''DONE'''
+ * New satellite coefficient files (Magnus) '''DONE'''
+ * For LSMIXBC, only use HOST (ECMWF) scales larges than ~100km (Ole) '''DONE'''
+* Physics
+ * Radiation output changes (Laura, Kristian) '''DONE'''
+ * Mixed phase clouds, LOCND2=T and saturation w.r. to water (Karl-Ivar) '''DONE'''
+ * Safety fix for CROUGH=Z01D ( used in UERRA ) (Ulf, Esbjörn) '''DONE'''
+ * Tuning of CA coupling (Lisa) '''DONE'''
+* EPS
+ * Perturbation of observations (Roger,Ulf) '''DONE'''
+ * All developments from harmonEPS-38h1.1 to be reintegrated (Ulf) '''DONE'''
+ * SLAF (Ulf) '''DONE'''
+* Numerics
+ * Updates to spectral BD handling (Mariano) '''DONE'''
+ * De-aliasing and upper BD conditions set default on (Mariano), from !MetCoOp branch '''DONE'''
+ * Switch off PC scheme for ALARO. '''DONE'''
+* Bugfixes ( main ones ) '''ALL DONE'''
+ * DFI settings for ALARO
+ * Missing NH settings for ALARO
+ * Reintroduce soil assimilation change ( influence of increments in deep layers )
+ * Ensure consistency between upper air and surface orography.
+ * ODB environment variable change fixes spurious crashes in Canari
+* Postprocessing
+ * Update of visibility diagnostics (Sami,Esbjörn) '''DONE'''
+ * Scripted support for several output streams (Sander) '''DONE'''
+ * New obsmonitor (Trygve, Per, Lars). '''DONE'''
+ * New vfld file version (4) '''DONE'''
+ * Fully replace gl by gl_grib_api in all components ( but keep the code ) (Ulf) '''DONE'''
+ * Optional ODB1 to ODB2 conversion, experimental (Eoin) '''DONE'''
+* MUSC
+ * Bugfix in MUSC forcing generation (Ulf) '''DONE'''
+ * MUSC ascii format to allow easier manipulation of profiles '''DONE'''
+* Technical
+ * cca default platform (Toon, Niko, Jose Antonio) '''DONE'''
+ * ecflow ( experimental ) (Daniel, Ulf)
+ * mSMS server – host communication through webports rather than files. (Ole) '''DONE'''
+ * Several smaller fixes '''DONE'''
+ * Possibility for parallel Makegrib listeners (Ole) '''DONE'''
+ * Possibility for parallel FLDEXTR tasks (Ole) '''DONE'''
+
+* Verification
+ * MAE introduced '''DONE'''
+ * Fix for !Tmin/Tmax '''DONE'''
+ * Various smaller bugfixes '''DONE'''

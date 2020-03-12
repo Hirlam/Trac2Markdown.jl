@@ -1,0 +1,78 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM-Harmonie Working Week on Use of High Frequency Observations''' =
+''met.no, 14th - 18th of November 2011''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Participants =
+  ||AEMET ||Jana Sánchez Arriola, Carlos Geijo                                                                                                      ||
+  ||FMI   ||Tuuli Perttula                                                                                                                          ||
+  ||DMI   ||Mats Dahlbom, Henrik Vedel                                                                                                             ||
+  ||IMO   ||Sigurdur Thorsteinsson                                                                                                                  ||
+  ||KNMI  ||Wim Verkley                                                                                                                             ||
+  ||LACE  ||Tomislav Kovačić                                                                                                                        ||
+  ||METIE ||Eoin Whelan                                                                                                                             ||
+  ||METNO ||Trygve Aspelien, Jelena Bojarova, Martin Sigurd Grønsleth, Roger Randriamampianina, Harald Schyberg, Frank Thomas Tveter, Ole Vignes    ||
+  ||SMHI  ||Nils Gustafsson, Günther Haase, Magnus Lindskog, Martin Ridal                                                                            ||
+  ||ZAMG  ||Alexander Jann                                                                                                                          ||
+
+= Agenda =
+|||| Agenda [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/agenda.pdf Final Version (pdf)] ||
+|||| Monday the 14th of November ("status" presentations)  ||
+||13:00         ||Jelena Bojarova: "Welcome"   ||
+|||| First session: radar data assimilation  ||
+||13:05         ||Günther Haase : "Common radar data quality control algorithms "  [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/da_workshop_20111114_data_quality.pdf pdf] ||
+||13:15         ||Martin Sigurd Grønsleth: "Radar data exchange"  [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/highfreqobsRadardataexchange-pres.pdf pdf] ||
+||13:25         ||Martin Ridal:  "The preprocessing of radar data"  [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/Preproc_ridal_nov2011_op.pdf pdf] ||
+||13:35         ||Martin Sigurd Grønsleth "Assimilation of radar data reflectivity in HARMONIE" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/highfreqobsAssimofreflectivity-pres.pdf pdf]  ||
+||13:42         ||Martin Ridal "The experiences with assimilation of radar radial winds in HARMONIE" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/Preproc_ridal_nov2011_op.pdf pdf] ||
+||13:48         ||Wim Verkley "Assimilation of radar data at KNMI" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/HIRLAMradarPP_wim.pdf pdf] ||
+||13:55         ||Carlos Geijo "Towards the assimilation of AEMET radar data in HARMONIE" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/CarlosGeijoWW.pdf pdf] ||
+||14:05         ||Tomislav Kovačić "The present status of radar data assimilation in LACE" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/Oslo_wwHFO_2011.pdf pdf] ||
+||14:15-14:30   ||Coffee break  ||
+|||| Second Session : GPS and satellite data  ||
+||14:30         ||Mats Dahlbom  "The algorithm for assimilation GB GPS ZTD data" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/DMI-oslo.pdf pdf] ||
+||14:45         ||Roger Randriamampianina "VarBC for GPS ZTD" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/RogerR_obs_working_days_presentation1.pdf pdf] ||
+||15:00         ||Henrik Vedel "Quality of GBGPS" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/oslo-vedel-v05.pdf pdf] ||
+||15:15         ||Frank Thomas Tveter "ATOVS Techniques in HIRLAM" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/2011.11.14_FT.pdf pdf] ||
+||15:30         ||Harald Schyberg "Water vapor sensitive IASI channels" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/iasi-workweek-hs.pdf pdf] ||
+||15:45-16:00   ||Coffee break   ||
+||16:00-17:00   ||Discussion  ||
+|||| Tuesday the 8th of November ("Overview" presentations)  ||
+||09:00         ||Nils Gustafsson"For how long should what data be assimilated for meso-scale data assimilation systems", by Fabry and Sun, 2010) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/fabry.pdf pdf]  ||
+||09:20         ||Magnus Lindskog "RUC experiences in HIRLAM Community" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/magnus_hirlam_ruc_wmo_metnomeet.pdf pdf] ||
+||09:40         ||Eoin Whelan "Met Éireann: Frequent update cycle in HIRLAM" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/met.ie_HourlyHIRLAM.pdf pdf] ||
+||09:50         ||Eoin Whelan "Impact of the enhanced quality control for WMO station list" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/met.ie_WMOcorrections.pdf pdf] ||
+||10:00-10:15   ||Coffee break   ||
+||10:15         ||Jana Sánchez Arriola "DA diagnostics softwares by Jarvinen and Desroziers methods" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/TuningToolsfor_Harmonie2011.pdf pdf]  ||
+||10:35         ||Sigurdur Thorsteinsson "The ideas behind observation impact studies" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/sigml_coexp.pdf pdf] ||
+||10:50         ||Harald Schyberg "Microwave emissivity" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/workweek-emissivity-hs.pdf pdf] ||
+||11:10         ||Tuuli Perttula "Methods to assimilate IASI low-peaking channels" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/IASI_low_peaking_perttula_tuuli.pdf pdf] ||
+||11:25         ||Jelena Bojarova "Observation network for meso-scale data assimilation" [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/MESobs.pdf pdf] ||
+||11:40-11:45   ||Break  ||
+||11:45-12:05   ||Groups should be formed: 1. Radar data group (Responsible: Martin Ridal), 2. GPS data and RUC (Responsible: Magnus Lindskog), 3. Satellite data (Responsible: Nils Gustafsson), 4. Impact studies (Responsible: Jelena Bojarova)  ||
+||12:05-13:00    ||Lunch  ||
+|||| Tuesday afternoon ---- Thursday evening work in groups  ||
+|||| Friday Morning ("plenary" session)  ||
+|||| Presentation of the action plan by different groups  ||
+||09:00          ||"radar data" group ||
+||09:15          ||"GPS and RUC" group  ||
+||09:30          ||"Satellite data" group  ||
+||09:45          ||"Impact studies" group  ||
+||10:00-10:15    ||Coffee break   ||
+||10:15-12:15    ||"Plenary" discussion to take up questions which falls between/overlaps for the defined groups  ||
+||12:15-13:00    ||Lunch  ||
+||13:00-14:00    ||"Closing of the Working week"  ||
+
+= Reports =
+== Working group reports ==
+||Radar data group ||Report: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/radar_group_ww.pdf pdf] ||
+||GNSS data group  ||Report: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/gps_group_fin.pdf pdf]  ||
+||IASI data group  ||Report: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/IASI_work.pdf pdf]      ||
+||Impact studies   ||Report: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/impact_studies_group.pdf pdf] ||
+== Working Week Report ==
+HIRLAM-HARMONIE Working Week on Use of High Frequency Observations Report including report on MF-HIRLAM/HARMONIE video-conference: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201111/HH_obs_ww.pdf Report pdf]
+
+= Presentations are attached below =

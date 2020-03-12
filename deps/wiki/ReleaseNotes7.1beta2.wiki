@@ -1,0 +1,74 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.1 beta 2''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Hirlam 7.1 beta 2 ==
+
+Hirlam 7.1 beta 2 is the second beta release for [wiki:Hirlam_7.1 Hirlam 7.1]. The system includes following improvements over the version [wiki:ReleaseNotes7.1beta1 beta 1] released earlier:
+ * A further tuning on physical parameterisation, mainly that of STRACO. The update aims at a general improvement of precipitation forecast
+ * A modification in digital filter initialization to exempt cloud water/ice and TKE from filtering
+ * Addition of 3D total cloud cover to the model states for history i/o to allow recycling of cloud cover information
+ * An extension of post-processing stream with more diagnostic parameters such as CAPE-related quantities, precipitation species, gust wind etc.
+ * Addition of analysis strategy NOUA to allow dynamic adaptation cycling using combination of external upper air analysis and nested surface analysis 
+ * A revised archiving strategy at the default ECMWF platform with reduced archiving
+ * An enhanced ECMWF MARS data retrieval to enable use of BC-suite data, the option to retrieve data on rotated grid and with frame
+ * Enabling of running KF-RK scheme with moist CBR
+ * Other technical improvement
+
+== Description of the code and script changes ==
+
+The system 7.1 beta 2 is an updated version of the code development branch, hirlam-7.1 with
+[log:branches/hirlam-7.1#4869:4908 numerous modifications] of the source code and scripts over that of the previously tagged version  [wiki:ReleaseNotes7.1beta1 beta 1]:
+
+ * Further physics tuning ([4900], [4902], Sass)
+   * Modified entrainment model for convective cloud ascent (increased entrainment through most of the atmosphere)
+   * New convective cloud cover  
+   * Modified moistening parameter of the convection scheme dependent on both model resolution and relative humidity in the convective air column.
+   * Modified organisation of the condensation and precipitation computations inside a time step. Stratiform condensation is finished after the turbulence and before convection computation. 
+ * DFI adjustment and new i/o for 3-d cloud cover ([4887:4888], Yang)
+   * 3d-cloud cover TOTCOV added to history i/o stream and recycled between runs
+   * correction on digital filter initialisation to exempt cloud water/ice and TKE from DFI filtering; take away obsolete namelist variables and correct error in specification of TAU (stop band edge) value in FCinput
+   * no filtering of cloud water/ice and turbulent kinetic energy
+ * Extended post-processing stream ([4880], Tijm), with new parameters such as precipitation types; wind gust; CAPE; lifting condensation level, level of neutral buoyancy, convective inhibition, frictional velocity
+ * NOUA-analysis option ([4861], Yang)
+   * Use extrenal analysis to be coupled to the nested surface analysis via incremental DFI with option INMOD set to 2
+ * Revised archiving and default post-processing lists ([4893], Yang)
+   * default archiving into 'ectmp' instead of 'ec'
+   * extensive archiving only optional
+   * no model level output beyond 9 h and separate output frequencies for history and diagnosis files
+   * no field verification by default
+   * adjustment in output stream
+ * Extended option of MARS data retrieval including rotated and frame boundary and BC-suite data ([4892], Vignes and Yang)
+   * add boundary strategy option 'bc' to use BC-suite data
+   * enable retrieval of ECMWF data on rotated grid and with frames 
+   * use of ERA40 data instead of ERA 15 in case of ERA data retrival
+ * Other technical changes and improvement (Amstrup, Wilhelmsson, Vignes, Yang et al)
+   * reduce default 4DVAR iteration upper limit
+   * change default assimilation interval to 6 h
+   * earlier switch on of VARQC for 4DVAR
+   * relax default convergence criterion for 4DVAR minimization
+   * increase default halo zone width in both forecast and spectral models
+   * limit listing of active observation number in VAR to first iteration only 
+   * increase further memory allocation for LBC; perform long forecast only every 12 h 
+
+The description of new features in the previous releases for Hirlam 7.1, can be found in release notes for Hirlam 7.1 [wiki:ReleaseNotes7.1alpha1 alpha 1], [wiki:ReleaseNotes7.1alpha2 alpha 2], [wiki:ReleaseNotes7.1alpha3 alpha 3] and [wiki:ReleaseNotes7.1beta1 beta 1], respectively.
+
+== Meteorological and Technical Evaluations,  Outstanding problems, bugs ==
+
+See wiki page for [wiki:Hirlam_7.1 Hirlam 7.1], in particular, the preview about the performance of 7.1 beta 2 equivalent (B30) in comparison to the current reference version, 7.0.1 (701) and 7.1 alpha 3 (713), at the [https://hirlam.org/portal/validation/7.1/701713B30.html data portal]. More validation results will be provided in the model validation section about [wiki:Hirlam_7.1 Hirlam 7.1]
+
+== How to run Hirlam 7.1 beta 2 ==
+
+Please note that since Hirlam-7.1 beta 1, change has been made to the boot-strap script `./config-sh/Hirlam` to reflect the removal of directory level `/hirlam`. On ECMWF platform, users using various versions of previously tagged 7.x versions shall not be affected due to this change. For non-ECMWF platform, users are adviced to use version-specific Hirlam script to avoid inconsistency between versions. For information on further details, see instructions on wiki page for [wiki:Hirlam_7.1 Hirlam 7.1]
+
+== Coming official release of Hirlam 7.1 ==
+
+Based on the development so far, an official Hirlam 7.1 release will be made in about one month. This will be preceded by a launch of pre-operational parallel beta-suite at FMI within short and a release of Hirlam-7.1 rc1, release candidate version 1 in mid-February. The version Hirlam-7.1 rc1 will contain no major changes with meteorological significance to the currently tagged version, 7.1 beta2, but most probably with following additions:
+  * further refinement of forecast output and post-processing stream
+  * further technical changes relevant to the configuration at ECMWF platform, eg., in terms of data retrival and archiving.
+  * further minor tuning of the system if necessary, such as those in physical parameterisation and structure function rescaling
+  * introduction of non-default code and script options such as those for Hirlam EPS, ATOVS/RTTOV assimilation module etc.
+  * configuration adjustment for member service platforms, if available
+  * other technical improvement and efficiency/optimisation tuning, utilities and bug fixes

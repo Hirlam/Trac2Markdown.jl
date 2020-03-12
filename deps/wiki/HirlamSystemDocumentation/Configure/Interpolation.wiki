@@ -1,0 +1,31 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Boundary Interpolation''' =
+[[Center(end)]]
+
+== Input data ==
+ 1. Host (ECMWF) full or frame fields containing U,V,T,Q,LNPS, SST with orographic fields included or separated, on lat/long or rotated coordinate and Arakawa-a (ECMWF) or ARAKAWA-C (coarser resolution HIRLAM) grid, in ECMWF grib format or HIRLAM ASIMIF grib format
+ 1. Host model (ECMWF etc.) orographic field corresponding to the retrieval resolution in case the data above does not already contain so
+ 1. climate file of the month for the guest model
+
+== Output data ==
+ 1. Interpolated host model fields in the guest model grid mesh, on ARAKAWA-C grid. The data includes the interpolated information plus those copied directly from climate records of the guest model
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Look also for the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

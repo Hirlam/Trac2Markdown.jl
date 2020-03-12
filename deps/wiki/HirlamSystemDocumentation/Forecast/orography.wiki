@@ -1,0 +1,33 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Hirlam Orographic Parameterisation =
+[[Center(end)]]
+
+== '''Introduction''' ==
+== '''Publication''' ==
+ * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article12_Rontu_Orography_par.pdf Orography-related parametrizations in HIRLAM], Laura Rontu, Kai Sattler, Anastya Senkova and Mariken Homleid
+ * [https://hirlam.org/open/publications/NewsLetters/50/Paper5_Rontu.pdf Parametrization of mesoscale and small-scale orography effects in HIRLAM - final tests], Laura Rontu, Kai Sattler, Mariken Homleid 
+ * [https://hirlam.org/open/publications/NewsLetters/44/NL44_oro.pdf Derivation of orography-related climate variables for a fine resolution HIRLAM], Laura Rontu
+ * [https://hirlam.org/open/publications/NewsLetters/45/34_LR_ASM04_extabstr.pdf Experimenting with the orography of HIRLAM], Laura Rontu
+ * [https://hirlam.org/open/publications/NewsLetters/41/mountain1_abs.pdf Parametrization of the effects of subgrid-scale orography], Laura Rontu and Kai Sattler
+ * [https://hirlam.org/open/publications/NewsLetters/41/mountain2_abs.pdf Parametrization of mountain-related effects in fine-scale HIRLAM - items for discussion], Laura Rontu 
+ * [https://hirlam.org/open/publications/NewsLetters/38/24newsletter_article.pdf Aggregation of Subgrid Orography Parameters in the HIRLAM climate system], Kai Sattler
+ * [https://hirlam.org/open/publications/NewsLetters/38/25nl_MSO_2.pdf Parametrization of mesoscale orography effects in HIRLAM - testing the Meteo France scheme], Laura Rontu and Robert Sigg
+ * [https://hirlam.org/open/publications/NewsLetters/38/26nl_rough.pdf Note on roughness in HIRLAM], Laura Rontu
+ * [https://hirlam.org/open/publications/NewsLetters/37/RobertSigg.pdf Subgrid-scale orography parametrization for HIRLAM - first experiments], Robert Sigg, Laura Rontu, and Kai Sattler
+== '''Workshop contributions''' ==
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2004/09_LRo.pdf Parameterization of turbulent form drag due to the smallest-scale unresolved orograpy], Laura Rontu
+ * [http://hirlam.fmi.fi/Baltic/bhws/report/BHWS_wholereport.pdf Orography related problems in HIRLAM], In: Proceedings of Baltic HIRLAM workshop, St. Petersburg, 17-20 Nov 2003, Laura Rontu
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/mesoscaleDublinOct02/extabstr.pdf Problems of MSO parametrization: a case study with Arpege-HIRLAM comparison], Laura Rontu and Eric Bazile
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/SJa.pdfp3.pdf Gravity Waves Parameterization in GCMs], Francois Lott
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/Surface2001/SJa.pdfSWe.pdf Improving the representation of orography in the Met Office Unified Model], Stuart Webster
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

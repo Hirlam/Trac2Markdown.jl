@@ -1,0 +1,64 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''GLAMEPS Laboratory System: Technical Aspects''' ==
+[[LastModified]]
+[[Center(end)]]
+
+This page contains technical information about the laboratory system for GLAMEPS which is currently in its initial developing phase.
+
+Please note that GLAMEPS laboratory systerm is only at its initial development phase, the information presented on this page is subjected to updates by all staffs involved in this work.
+
+== GLAMEPS laboratory system ==
+ * purpose, scope
+ * contributing staff
+== Main features of GLAMEPS laboratory system ==
+  * HIRLAM EPS ensemble generation system
+    * mini-SMS script to control simultaneous ensemble forecasts
+    * purturbation of HIRLAM analysis using TEPS ensemble
+    * modification of MARS data retrival scripts for getting data on rotated coordinate and frames
+    * modification of post-processing streams for EPS purpose
+    * modification of archiving strategy for EPS purpose
+  * ALADIN EPS ensemble generation system
+  * GLAMEPS post-processing and verification system
+== Preliminary domain ==
+ * Hirlam EPS_7.1
+   * area coverage
+   * domain specification   
+||NLON || NLAT|| NLEV|| SOUTH||WEST||NORTH||EAST||POLAT||POLON||RESOLUTION||
+||306||260||40||-20.427||-46.475||31.373||14.525||-40.0||22.0||0.2 degree||          
+ * Aladin 
+   * domain specification
+     Rotated tilted Mercator projection
+||NLON||NLAT||NLEV||CLAT||CLON||ROT||RESOLUTION||
+|| 329|| 309|| 40?||-5.0||52.0||339||20 km||
+|| 309|| 289|| 40?||-5.0||52.0||339||22 km||
+   * area coverage
+== Technical aspects ==
+
+== HIRLAM EPS ==
+
+||tested HIRLAM model version|| model domain ||computer platform|| 
+|| 7.1 beta 1 || EPS_7.1[[FootNote(306x260x40)]]|| HPCE || 
+
+ [[FootNote]]
+
+=== Computation/Resource requirement === 
+
+ [[FootNote]]
+
+[[BR]]
+
+'''Forecast'''
+
+||domain||model system ||platform||nr of nodes|| task per node || nprocx||nprocy||ncpu_hgs||nhalo||initialization || time step||elapsed time per step||48 h Forecast elapse time|| size of history file || size of postpp file || HPC Billing cost||
+||EPS_7.1||7.1beta1||HPCE||3||30 || 8||11||2||6|| IDFI || 450s||0.32s||669s|| 46 mb || 4.2 mb|| 53||
+||EPS_7.1||7.1beta1||HPCE||1||30 || 6||5||0||6|| IDFI || 450s||0.94s||926s|| 46 mb || 4.2 mb|| 52||
+
+ [[FootNote]]
+
+[[BR]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

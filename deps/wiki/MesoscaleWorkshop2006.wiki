@@ -1,0 +1,145 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM-A mesoscale workshop at FMI, Helsinki''' =
+[[LastModified]]
+[[Center(end)]]
+[[Center(begin)]]
+== '''Objectives and outcome''' ==
+[[Center(end)]]
+
+ 1. To define the main features of the common reference hirlam mesoscale system, harmonie (Hirlam-Aladin Research toward Meso-scale Operational NWP system In Europe) in the HIRLAM repository.
+ 1. To discuss meso-scale monitoring and verification issues and validation study.
+ 1. To discuss meso-scale work plan for near future.
+
+[[Center(begin)]]
+== '''Agenda''' ==
+[[Center(end)]]
+
+'''Wed 29 Nov, Short reports about the progress. Discussions on plan and workshop agenda'''
+
+''9.00 - 9.15''
+
+1. Opening words. Discussion and suggestions concerning the schedule. (Sami, Laura)
+
+''9.15-10.15''
+
+2. [wiki:MesoscaleWorkshop2006/Status_2006 The status of pre-operational ALADIN/AROME runs at]
+
+ * DMI ([http://hirlam.fmi.fi/mesowrk/MWRK_Bjarne.pdf Bjarne])
+ * SMHI (Sami) [wiki:MesoscaleWorkshop2006/AROME_miniwork Report from AROME mini working days, 6-8 November at SMHI.]
+ * FMI (Sami)
+ * INM ([http://hirlam.fmi.fi/mesowrk/MWRK_Ana.pdf Ana])
+
+3. [wiki:MesoscaleWorkshop2006/Status_2006#MF The status of AROME at Meteo-France] [http://hirlam.fmi.fi/mesowrk/MWRK_Gwen.pdf Gwen].
+
+''11.00-11.20''
+
+4. HIRLAM IFS-compatible F90 physics ([http://hirlam.fmi.fi/mesowrk/MWRK_Bent.pdf Bent])
+
+ * Situation with phasing to AAA (cy32)
+ * Situation with implementation into HIRLAM
+
+''11.20-11.30''
+
+5. met.no experience with ALADIN DA [http://hirlam.fmi.fi/mesowrk/MWRK_Andrea.pdf Andrea]
+
+''11.30-12.30''
+
+6. [wiki:MesoscaleWorkshop2006/AAAH_status Construction of the AAAH reference system]: status and plan
+
+ * what to include in the reference harmonie system
+   * namelists
+   * scripts including monitoring/verification tools
+   * cycle?
+   * HIRLAM physics?
+   * Nesting ALADIN/AROME into HIRLAM?
+ * steps for the harmonie reference system to be included in the [wiki:MesoscaleWorkshop2006/AROME_miniwork#Repository svn repository]
+
+''12.30-13.30'' 
+
+Lunch
+
+''13.30-''
+
+7. [wiki:MesoscaleWorkshop2006/mesoscale_verification Monitoring and verification of mesoscale runs]
+ 
+ * verification of the preoperational runs? ( [https://hirlam.org/portal/smhi/WebgraF/ SMHI] , [http://fminwp.fmi.fi/WebgraF/ FMI])
+ * case studies and special periods? ([http://hirlam.fmi.fi/mesowrk/MWRK_Sander.pdf Sander], [http://hirlam.fmi.fi/mesowrk/CARAD_plan.html CARAD?] )
+ * tools (like Acadfa, 1D models) and data (like Sodankylä)?
+
+8. Work arrangements
+
+ * Groups concentrating e.g. issues 6 and 7.
+ * Other work?
+
+''17.30-''
+
+Walking to the restaurant "Helsinge" (http://www.ravintolahelsinge.fi) for dinner
+
+
+'''Thu 30 Nov'''
+
+''9.00-12.00''
+
+Work guided by Wednesday decisions
+
+''12.00-13.00''
+
+Lunch
+
+''13.00-''
+
+Work guided by Wednesday decisions
+
+'''Fri 1 Dec'''
+
+''9.00-10.30''
+
+Discussion/plan/report/suggestions.
+
+''10.30 - 12.00''
+
+Working continues
+
+''12.00-13.00'' 
+
+Lunch
+
+''13.00-''
+
+Working continues
+
+== '''Summary of the HARMONIE workshop discussion (based on [http://hirlam.fmi.fi/mesowrk/mesowrk_final.html the notes by LR, 1.12.2006 ])''' ==
+ * Creation of the HARMONIE repository and phasing of the system. 
+   * The aim is to make the basic code and tools available for all developers. During the workshop, the preliminary HARMONIE development directory was created in the hirlam source code repository, with participation of Tomas Wilhelmsson. The source code is a copy of the ALADIN/IFS release cycle 31t1, which is also included in the repository in form of vendor branch. The harmonie code system includes, in addition, scripts, namelist and utilities, which are required to set the whole system up at ECMWF HPCE in the framework of double- or triple-nesting between ECMWF/HIRLAM/ALADIN and ALADIN NH or AROME. The harmonie system will be developed further in the immediate future, in particular with emphasis on documentation and instruction, so that the first reference harmonie code can be released soon. It is also aimed to add source data and tools for the climate generation and flexbile definition of experiment domains etc to the repository. 
+   * Several HIRLAM staffs have been participating in IFS phasing weeks in Toulouse. In the future, the possibility of working in the ECMWF-HPCE environment in connection with phasing activities should be considered. Relation between phasing and HARMONIE system development requires further attention. On the other hand, the subversion tools could be used to prepare HARMONIE components for the next phasing. (Participants: HIRLAM system group, Ulf, Sami, Bjarne)
+ * Daily HARMONIE runs in HIRLAM institutes. 
+   * The task is to maintain or start daily HARMONIE runs of various setups over small areas and verify the results. In particular, we aim to enable options to run AROME coupled directly to HIRLAM. HIRLAM-ALADIN-(AROME) is running at SMHI, DMI, FMI, started at INM, met.no, planned at KNMI. The status of pre-operational implementations is described in more detail at the wiki pages. 
+   * At the moment HIRLAM-AROME coupling is technically ready, but of a very ad hoc nature in terms of the surface fields, and not yet used in the daily runs. Also, the compilation/optimization of the code in different computer environments requires much local work. ( Participants: Ulf (SMHI), Sami (FMI), Bjarne (DMI), Ana (INM), Andrea (met.no);  Contact points in AAA: Ryad el Khatib (system), Yann Seity (AROME), Martin Janousek (ALADIN))
+ * Verification issues. 
+   * For validation, maintenance of the everyday verification of forecasted parameters and starting of the systematic comparison studies on convection, are of high priority in order to understand and tune the system performance and demonstrate the added value of AROME in mesoscale. Presently, the daily verification system is available and running at SMHI, FMI and DMI. The systematic case studies on convection need to be started. It was agreed to set up a wiki page to report the interesting features observed in the daily results/verification and to save the related data for further studies. The page could be used also to keep track on other ongoing validation (case) studies. A more detailed plan of the convection studies and needed validation tools was discussed based on a draft by Sander. The plan will be made available at the wiki pages, adding also the ALADIN convection comparisons. 
+   * Available tools for verification and related model postprocessing include:
+     * Entity-based verification tool (Christoph, HIRLAM to provide)
+     * INCA (Haiden, ALADIN to provide).
+     * Radar simulator (Gunther, HIRLAM (Sami) to provide) 
+     * Satellite simulator (Gwen, MF to provide).
+   * The everyday verification will be improved by adding Sodankylä (Cabauw) comparisons for SMHI (KNMI) AROME areas. (Ulf, FMI staff for Sodankylä). Another possibility is to incorporate surface observations in meteogram-style output.
+ * Common short-term/continuous development issues
+   * Development/application of HIRLAM atmospheric physics parametrizations and phasing to HARMONIE was discussed.  Needed work includes APLPAR unification (CPTEND + planned APLPAR work in ALADIN - Bent, Radmila, Francois Bouyssel; synchronize with HIRLAM physics routines).
+   * Surface and SURFEX related developments, including snow-forest and lake/sea parametrizations and surface data assimilation, climate generation and orography parametrizations (Stefan, Katya, Niels, Han The et al. - to be planned after the SURFEX workshop)
+   * Radiation code comparison within AROME over complex orography (Laura, Doina, Gwen).
+ * Other related events
+   * SURFEX workshop Toulouse 11-13 Dec 2006
+   * Verification meeting during WMO workshop at ECMWF, (30 Jan 2006)
+   * Cloudy PBL workshop Toulouse 12-14 March 2007
+   * HIRLAM/ALADIN all staff meetings, Oslo, nn - nn April 2007
+ * Reporting
+   * The workshop material, including this report, will be made available to hirlam.org wiki pages.
+== '''Appendix: List of participants ''' ==
+ * CMHI: Radmila
+ * DMI: Bent, Bjarne, Xiaohua
+ * FMI: Laura, Sami, Kalle, Hamzai
+ * INM: Ana
+ * KNMI: Sander
+ * met.no: Andrea
+ * MF: Gwenaelle

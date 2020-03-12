@@ -1,0 +1,41 @@
+[[PageOutline]]
+[[Center(begin)]]
+= ''' Exercise: Town Energy Balance (TEB) ''' =
+[[Center(end)]]
+
+''' Responsible expert: Christer Jansson '''
+
+== Helsinki ==
+In this exercise we run TEB for Helsinki for two years. We can look at how TEB represents the urban heat island effect and examine the influence of different urban morphology settings on temperature and fluxes. Radiation fluxes can be compared to observations. Forcing data and observations are kindly provided by Carl Fortelius and Achim Drebs at FMI and should not be used outside the workshop without permission. 
+
+== Forcing data ==
+
+You can download the Helsinki forcing data (Forc_*.txt), configuration file (Params_config.txt) and namelist file (OPTIONS.nam)[https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpTEB/ here]. Put these files in a new directory in which you will run SURFEX. In this directory you must also define links to the ECOCLIMAP cover parameters files:
+
+{{{ln -s xxx/MY_RUN/ECOCLIMAP/ecoclimapI_covers_param.bin ecoclimapI_covers_param.bin}}}
+{{{ln -s xxx/MY_RUN/ECOCLIMAP/ecoclimapII_eu_covers_param.bin ecoclimapII_eu_covers_param.bin}}}
+
+where xxx is the path to your SURFEX code directory.
+
+== Observations ==
+You can download observations [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpTEB/obs_helsinki.tar here]. This includes data for within urban canyon radiation and temperature observations (temp, swout, swin, lwout, lwin) with separate files for morning (~08:00) and evening (~20:00) observations (an open office spread sheet containing both morning and evening data is also included).  
+
+
+== Exercise examples ==
+The urban heat island
+* Can TEB capture the so called urban heat island effect? Set the fraction of urban area to zero in OPTIONS.nam and compare the experiment to a reference run.
+* When do we get the biggest urban-rural t2m differences? Why? Try to explain by looking at the sensible, latent and ground heat fluxes.
+* During which forcing conditions would you expect to have the most pronounced urban heat island effect?
+
+Urban morphology
+* The ecolimap town type for Helsinki is “cold suburban” which includes the following key urban parameters: building height = 10m, building fraction =  0.5, wall surface over horizontal surface = 0.3. How "urban" is ecoclimap cold suburban compared to the settings in the reference OPTIONS.nam?
+* Apply the ecolimap cold suburban settings given above in OPTIONS.nam. How does this change the energy balance, road and canyon temperatures? Look at timeseries and mean diurnal plots.
+* Compare to observations. Is the net radiation more realistic when using the observed Helsinki settings compared to the ecoclimap settings? Here you can eg compare to the morning observations (you might want to select simulated data that matches the time stamps of the observations). (Note that the time stamps in the observations are in Excel format).
+
+If you have not already completed the TEB exercise from the Toulouse SURFEX course you can find it[https://hirlam.org/trac/wiki/NordicSurfexCourse2013/ToulouseCourse here]
+
+== MATLAB scripts for reading and visualization of data ==
+See [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/ExpTEB/ Attachments]. 
+
+
+--------------------------------------

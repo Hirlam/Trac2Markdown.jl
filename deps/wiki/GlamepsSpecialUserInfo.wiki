@@ -1,0 +1,99 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''GLAMEPS Production System: Special User Information''' =
+Last modified on [[LastModified]]
+[[Center(end)]]
+
+This page contains some special technical information for those GLAMEPS users, who utilize GLAMEPS beyond the standard products and applications.
+
+[[Color(red, NOTE: The products and data described in this document are provided by GLAMEPS)]]'''[[Color(red,  as is)]]'''[[Color(red, , and their provision )]]'''[[Color(red, cannot be guarateed)]]'''[[Color(red,  in the same way as for the standard products from GLAMEPS.)]]
+
+== '''Raw Model Level Data''' ==
+
+=== General ===
+
+The LAM ensemble models used in GLAMEPS create model level files including all variables relevant for the respective model while it is running. This raw model level data is made available for use outside of the GLAMEPS production chain. The GLAMEPS models and their ensemble member constitution are described in [wiki:GlamepsProductionUserInfo].
+
+In each of the four daily cycles in GLAMEPS half of the perturbed ensemble members are produced, while the ''control'' runs are run to full forecast length in each cycle. This means that in order to access all ensemble members processed within GLAMEPS, two cyles have to be addressed.
+
+In order to provide full ensemble member sets as well as a reasonable time span for data access, the model level data from the latest four cycles are available at a time.
+
+[[Color(red, NOTE: In order to be able to make use of the model level data from GLAMEPS models, you need to have experience with and knowledge about the different models involved in GLAMEPS. The GLAMEPS documentation does )]]'''[[Color(red, not)]]'''[[Color(red,  provide any specific information about these. Please refer to the official documentation for each model.)]]
+
+
+=== Data Access ===
+
+Due to the large amount of data invloved, the model level data is made available under the temporary storage areas on the file systems of the ECMWF HPC. As the time-critical production environment at ECMWF consists of two separate storage areas (storage clusters), the model level data may be found on either of these two storage clusters, depending on the current operational production setup. Please note that '''this may change from cycle to cycle'''.
+
+So the model level data from ''the latest cycles'' for GLAMEPS is available under ''one'' of the two following paths [[FootNote(Data is either placed under the first, or under the second path, not on both. You'll have to check both paths every time, because the path may change between two consecutive cycles)]]:
+
+ [[Color(green, cca:/sc1/tcwork/zno/GLAMEPS/ml_pool/PROD/)]]
+
+ [[Color(green, cca:/sc2/tcwork/zno/GLAMEPS/ml_pool/PROD/)]]
+
+These directories each contain following sub-directory structure:
+
+{{{
+   .../<model acronym>/<yyyy><mm><dd>_<HH>/<mbr<nnn>/
+}}}
+
+where '<model acronym>' stands for the GLAMEPS LAM model (see [wiki:GlamepsProductionUserInfo] for details), '<yyyy><mm><dd>_<HH>' identify cycle date and time, and ensemble member identification is by the sub-directory ''mbr<nnn>'', with ''<nnn>'' refering to the member number.
+
+Below each of these paths, the model level data files are located. Note that file names, file content, as well as file format are ''not unified''. Please refer to official documentation for each model for more information.
+
+
+
+=== TC1 - signals ===
+
+Following event signals for jobs of type ''time-critical option 1'' on 'ecgate' can be used to trigger any job action related to the model level data:
+
+ [[Color(#009BD1, gl00h54)]]
+ [[Color(#009BD1, gl06h54)]]
+ [[Color(#009BD1, gl12h54)]]
+ [[Color(#009BD1, gl18h54)]]
+
+see also
+
+{{{
+==> ecaccess-event-list | grep gl[0-9][0-9]h54
+}}}
+
+
+=== Model Grids ===
+
+As the model grids differ between the HirEPS and the AloEPS models, the two grids are listed here:
+
+ '''HirEPS'''
+ * rotated lat-lon grid (it's identical with the GLAMEPS common grid)
+ * 40 vertical levels
+
+ || NLON|| NLAT|| SOUTH||  WEST||  NORTH||   EAST|| POLAT|| POLON|| mesh size||
+ ||  870||  660|| -11.5|| -52.4|| 37.925|| 12.775|| -46.0||  30.0|| 0.075°||
+
+ '''AloEPS'''
+ * Lambert projection
+ * 853x709 real grid points (864x720 with periodicisation zone included)
+ * resolution: 8.9km
+ * 40 vertical levels (like Hirlam)
+
+ || projection || dx   || dy   ||  nx ||  ny || clon      || clat      || reflon || reflat ||
+ || Lambert    || 8900 || 8900 || 853 || 709 || -3.514364 || 55.229520 ||     28 ||   42.8 ||
+
+
+=== Data Availability ===
+
+Under normal circumstances, model level data are available for the latest four cycles. However, please note that in case of serious issues affecting operational GLAMEPS production, and especially is cases of disk space shortage, GLAMEPS model level data may not become fully available. Full availability cannot be guarateed at all times.
+
+=== Data Recovery ===
+
+Please note that no backup, archiving or whatsoever will be made from the GLAMEPS model level data. Once the data has disappeared form the above mentioned locations, it ''will be gone''.
+
+
+[[FootNote]]
+
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+[[Center(end)]]

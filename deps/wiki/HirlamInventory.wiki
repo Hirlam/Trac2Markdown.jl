@@ -1,0 +1,21 @@
+[[PageOutline]]
+= Operational HIRLAM System Inventory =
+With this we intend to collect information about the HIRLAM operational system. Due to its nature the accuracy and timeliness of the information presented on these pages depend on the efforts of staffs from each and every HIRLAM institute. 
+
+ * [wiki:HirlamInventory/Operational Hirlam operational system]
+ * [wiki:HirlamInventory/Computer Computer platform]
+ * [wiki:HirlamInventory/DataFormat Data format ]
+ * [wiki:HirlamInventory/Graphics Graphics]
+ * [wiki:HirlamInventory/Monitoring Observation use monitoring]
+ * [wiki:HirlamInventory/PostPP Post-processing ]
+ * [wiki:HirlamInventory/Verification Verification ]
+ * [wiki:HirlamInventory/Webfeature NWP product display ]
+ * [wiki:HirlamInventory/Diagnostics Diagnostics tools ]
+
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+

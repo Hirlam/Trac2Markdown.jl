@@ -1,0 +1,100 @@
+[[PageOutline]]
+[[Center(begin)]]
+== Copernicus  Arctic Regional Re-Analysis ==
+
+= '''CARRA System Repository''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+This page collects information related to [https://hirlam.org/trac/wiki/CARRA/CARRA_system  CARRA Re-analysis system] repository, users instruction and release history.
+
+== CARRA system repository ==
+
+ * !20181223: Tagging of CARRA beta.2, the updated system baseline for CARRA, see system information about [wiki:CARRA.beta.2 carra.beta.2]. It is recommended to launch beta.2 experiments with St script. See wiki [wiki:CARRA.beta.2 carra.beta.2] about this.
+  * The sandbox on ECMWF hpc is in
+    * ~nhx/CARRA_repository/tags/carra.beta.2
+ * !20181025: Tagging of CARRA beta.1, the new system baseline for CARRA, see system information about [wiki:CARRA.beta.1 carra.beta.1]
+ * !20180704: Tagging of CARRA technical baseline, see [wiki:CARRA/CARRA.alpha.2 Releasenote of carra.alpha.2]
+ * !20171220: Tagging of CARRA system baseline, see [wiki:CARRA/CARRA.alpha.1 Releasenote of carra.alpha.1] !!! It is now obsolete
+ * !20171012: Set up of CARRA working code branches prior to CARRA baseline
+  * [https://hirlam.org/trac/browser/branches/CARRA/harmonie-40h1.1_carra  https://svn.hirlam.org/branches/CARRA/harmonie-40h1.1_carra 40h1.1 based on 40h1.1.bf1 ] !!! It is now obsolete
+  * [https://hirlam.org/trac/browser/branches/CARRA/harmonie-40h1.2_carra https://svn.hirlam.org/branches/CARRA/harmonie-40h1.2_carra 40h1.1 based on trunk-16325] !!! It is now obsolete
+ * The sandbox of CARRA branch on ECMWF hpc are in
+    * ~nhx/CARRA_repository/carra
+
+== Development of CARRA re-analysis system ==
+=== Preparation phase (Sept - Dec 2017)  ===
+ * Following decisions from the CARRA kickoff meeting on Sept 27 2017, preliminary CARRA code branches are established to enable validation runs to select between Harmonie 40h1.1 and 40h1.2/trunk a CARRA system baseline. Models are validated on both of the targeted CARRA domains for the month of Sept 2017. Optionally the tests can include additional historical periods.
+ *For CARRA-SW domain (IGB) the initial configurations are following, in consistence to the settings used in the operational DMI-IMO IGA
+{{{
+   blending at 6h interval
+   quadratic grid
+   lcond=.false.
+   HWSD soil database 
+   for 40h1.2, a configuration of SICE, 1 patche and no SBL have been selected.
+}}}
+ * For CARRA-NE domain (AA) the initial domain is the same as AROME-arctic with following setup,
+{{{
+   3DVAR with 3h cycling
+   Linear grid
+   for 40h1.2, a configuration of SICE, 2 patches and no SBL have been selected.
+}}}
+ * [wiki:CARRA/validation_about_40h1.2 Collection of validation about 40h1.1 vs 40h1.2] 
+
+=== From CARRA alpha (Dec 21 2017) to CARRA beta.1 (Sept 2018)  ===
+Following aspects are to be addressed toward final version of CARRA re-analysis system
+ * Upper air data assimilation
+  * Control of large scale information (Jk vs LSMIX)
+  * Derivation of climatological structure function; with EDA or BRAND scheme
+  * Possible use of evolving structure functions to partially account for changes of observation system
+  * Provide a measure of uncertainties for through EDA for selected episodes
+  * Assimilation of Radiance data, AMV, Scatterometer, RO
+  * Application of VarBC for aircraft data
+  * Use of ECMWF ERA5/MARS data stream and use of blacklist information
+  * Use of locally collected observation data
+ * Surface data assimilation and representation of sea/ice states
+  * Use of locally collected surface observation data including those of snow
+  * Use of high resolution regional SST/ice data
+ * Forecast model
+  * Exploration of improved snow parameterisation and handling of glacier ice
+  * Improvement in PGD data including local corrections
+  * Test/tuning about physical parameterisation: two patches/Canopy scheme, SSO, ocnd2, microphysics.
+  * Code optimisation (optimal use of compilor/options, i/o server, hybrid parallelisation)
+  * Development and adpatation about output data stream and data storage into MARS
+  * HARMONIE on extended domain covering North Polar with changed projection
+ * Verification and validation
+  * CARRA production monitoring/diagnosis platform
+  * Collection of station information and extended observation data for verification
+  * Field verification
+=== From CARRA beta.1 (Oct 25 2018) to CARRA beta.2 (mid Dec 2018)  ===
+Following aspects are yet to be finalised toward next version of CARRA re-analysis system
+ * Upper air data assimilation
+  * Control of large scale information (Jk vs LSMIX)
+  * Derivation of climatological structure function; with EDA using either observation perturbation or BRAND scheme
+  * Possible use of evolving structure functions to partially account for changes of observation system
+  * Provide a measure of uncertainties for through EDA for selected episodes
+  * Assimilation of Radiance data, AMV
+  * Application of VarBC for aircraft data
+ * Surface data assimilation and representation of sea/ice states
+  * Assimilation of satellite snow data
+  * Assimlation with MESCAN
+ * Forecast model
+  * Further improvement in orographic data by use of ARCTIC DEM
+  * Code optimisation (optimal use of compilor/options, i/o server, hybrid parallelisation)
+  * Development and adaptation about output data stream and data storage into MARS
+  * HARMONIE on extended domain covering North Polar with changed projection
+ * Verification and validation
+  * CARRA production monitoring/diagnosis platform
+  * Collection of station information and extended observation data for verification
+  * Field verification
+[[Center(begin)]]
+==  Back to [https://hirlam.org/trac/wiki/CARRA%20Reanalysis CARRA Re-analysis] main page ==
+
+[[Center(end)]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

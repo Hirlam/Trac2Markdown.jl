@@ -1,0 +1,362 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''ECMWF, 17th - 21st June 2019''
+
+Last modified [[LastModified]]
+
+[[Image(IFSandHarmonieDucks.jpeg,30%)]]
+
+'' System meeting between ''' "Low-Res" IFS ''' and ''' "Hi-Res" Harmonie ''' duck leaders ''   
+         
+
+[[Center(end)]]
+
+
+              
+== Practical ==
+ 
+The meeting will be in ECMWF premises (Shinfield Park Reading RG2 9AX United Kingdom
+
+=== Participants ===
+||= Name              =||= Institute =||= ARR - DEP, Hotel                      =||
+||Daniel Santos        ||AEMET        ||Sunday - Friday,  Ibis Styles Reading Oxford  Road Hotel            ||
+||Roel Stappers        ||MET          ||Sunday - Saturday, Ibis Friar street ||
+||Eoin Whelan          ||METIE        ||Monday - Thursday, Ibis Friar street ||
+||Bert van Ulft        ||KNMI         ||Sunday - Friday, Hillingdon Prince Hotel ||
+||Kai Sattler          ||DMI          ||Monday (lunch) - Thursday , Premier Inn Hotel ||
+||Xiaohua Yang          ||DMI         ||Wednesday - Thursday ||
+||Ulf Andrae           ||SMHI         ||Monday (lunch) - Thursday (lunch), Elmhurst, luxury appartments and SPA ||
+||Angeles Hernandez    ||AEMET        ||Sunday - Friday lunch, Ibis Friar St ||
+||Toon Moene           ||KNMI         ||Monday (lunch) - Friday (lunch), Ibis Friar St ||
+||Ole Vignes           ||MET Norway   ||Monday (lunch) - Thursday, Hillingdon Prince ||
+||Niko Sokka           ||FMI          ||Sunday - Thursday, Ibis Styles Reading Oxford Road Hotel ||
+
+=== Accommodation ===
+
+
+ * [https://www.accorhotels.com/es/hotel-5431-ibis-reading-centre-nuevas-habitaciones-ibis/index.shtml Ibis Center Reading] 25A Friar St, Reading RG1 1DP, UK
+ * [https://www.accorhotels.com/es/hotel-A071-ibis-styles-reading-centre-/index.shtml Ibis Styles Reading Centre] 4 8 Duke Street  RG1 4RY, Reading, UK 
+ * [https://www.accorhotels.com/es/hotel-9686-ibis-styles-reading-oxford-road/index.shtml Ibis Styles Reading Oxford Road] 648 654  Oxford Road RG30 1EH, Reading, UK
+
+ 
+== Transport ==
+
+If you are arriving at Heathrow airport, you can take a Rail Air Link bus to Reading train station. Buses depart every half hour and the journey time is about 60 minutes. You can buy tickets online or at the ticket office at the station. You can then take a bus or taxi to ECMWF.
+
+If you are arriving at Gatwick airport, take a train to Reading train station. Fast trains depart once an hour and the journey time is about 75 minutes.
+
+More info available [https://www.ecmwf.int/en/about/contact-us/location here]
+
+
+== Agenda ==
+
+
+==== Monday ====
+
+9:00-9:30 Welcome and introduction to the WW
+
+9:30-11:00 Hirlam system practical work - Brainstorming and open questions
+
+11:00-11:30 Coffee Break
+
+11:30-13:00 Hirlam system practical work - Brainstorming and open questions (cont)
+
+13:00-14:00 Lunch break
+
+14:00-15:00 ECMWF invited talk and discussion:[https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/Hirlam%20WW_%20ecBuild%20and%20CMake%20in%20IFS.pptx.pdf ECBuild and Cmake] - Tomas Kraal (Former member of the IFS systems team) and Willem Deconinck.
+
+                 *    Compilation trace file for Cray can be found here:
+                             [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/ninja_log-cray-8.5.8.html  Optimised build --> ~40 min],  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/trace-cray-8.5.8-debug.html Debug build --> ~15 min] 
+                 *   (Follow-up on the HARMONIE-C Make Yurii’s [http://www.umr-cnrm.fr/aladin/IMG/pdf/batrak-cmake-2019.pdf presentation] https://hirlam.org/pipermail/system-core/2019-April/003157.html) ( GIT File moving to compile)       
+
+15:00-16:00 Hirlam system practical work
+
+16:00-16:30 Coffee break
+
+16:30-18:00 Hirlam system practical work
+
+==== Tuesday ====
+
+9:00-11:00 Hirlam system practical work
+
+11:00-11:30 Coffee Break
+
+11:30-13:00 Hirlam system practical work
+
+13:00-14:00 Lunch break
+
+14:00-15:00 BSC  invited talk and discussion: BSC project roadmap:status of Harmonie code profiling -Xavier Yepes  and remotely Mario Acosta and Kim Serradell [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/BSC-HIRLAM%20collaboration_%20HARMONIE%20code%20profiling%20roadmap%20and%20current%20status.pdf presentation]
+
+15:00-16:00 Hirlam system practical work
+
+16:00-16:30 Coffee break
+
+16:30-18:00 ECMWF invited talk and discussion Bolognia impact on HIRLAM users: NX, ssh conection, ecgate - Xavier Abellan [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/BOND_for_HIRLAM.pdf BOND 007]
+
+
+==== Wednesday ====
+
+9:00-10:00  Hirlam system practical work
+
+11:00-11:30 Coffee break
+
+11:30-13:00 Hirlam system practical work
+
+13:00-14:00 Lunch break 
+
+14:00-15:00 ECMWF invited talk and discussion: GRIB2 and subhourly outputs -Shahram Najm (ecCodes Developer), somebody from MARS team.
+
+
+15:00-16:00 Hirlam system practical work
+
+16:00-16:30 Coffee break
+
+16:30-18:00 Hirlam system practical work
+
+==== Thursday ====
+
+9:00-10:00 ECMWF invited talk and discussion: ECFlow usage and future developments -  Andrew Dawson(IFS System Design Team) [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201906/dawson_ifs_suites.pdf IFS suites, pysuite and pyflow] 
+
+10:00-11:00  ECMWF invited talk and discussion: GIT organization and tools (BitBucket, Atlasian, Confluence): tags naming and workflow - Mike Sleigh (Head of Integrated Forecast Systems Section),
+
+    [https://git.ecmwf.int/projects/IFS The IFS Bitbucket space ]
+    [https://jira.ecmwf.int/projects/IFS/issues IFS Jira space ]
+    [https://confluence.ecmwf.int/display/IFS/Working+with+IFS+under+Git IFS under Git user documentation]
+    [https://bamboo.ecmwf.int/browse/IFS-DEV Bamboo continuous-integration testing]
+    [https://confluence.ecmwf.int/display/IFSS/Training+in+the+IFS+Developer+workflow The recent training course]
+
+11:00-11:30 Coffee break
+
+11:30-13:00 Hirlam system practical work
+
+13:00-14:00 Lunch break
+
+14:00-15:30 Hirlam system practical work
+
+15:30-16:00 Coffee break
+
+16:00-18:00 Hirlam system practical work
+
+
+==== Friday ====
+
+9:00-11:00    Hirlam system practical work
+
+11:00-11:30 Coffee break
+
+11:30-13:00 Wrapup
+
+13:00-14:00 Lunch break and go back home.
+
+
+== System Tasks ==
+
+  * cmake and ecBuild:
+      - ecbuild replaced IFS build system in CY45R2  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/PreSAC_2018_Kral.pdf]
+      - Target bulding system for cy46 (maybe cy43h2.2)
+      - Grant Yurii's access to cmake setup from IFS repo to check how it is done
+      - Possible strategy is to copy ECMWF cmake setup and use it. It is not present on MF arpifs git mirror
+      - If finally we follow this strategy, communicate it to the partners.
+      - Ask Mike about the possibility to access ifs repo - '''Daniel'''
+      - Consider the possibility to send Yurii to ECMWF - '''HMG'''
+
+  * cy43 pending contributions: 
+     - Jelena's code - '''Ulf''' - pushed in [changeset:8561c8/Harmonie]
+     - Wim's  code  - '''Daniel, Kai''' - pushed in [changeset:000e0fa/Harmonie]
+                - Some controversial HARATU vs HARAT in mpa routines under investigation 
+     - Karl-Ivar  - '''Daniel, Sander''' - ongoing probably pushed 1st week of July            
+     - DA: problems with radiosondes in MetCoOp - '''Eoin''' - pushed in [changeset:ded0bc5/Harmonie]
+     - DA: RTTOV coefficients - '''Eoin''' - Roger has supplied up to date coefficient files and are in place on cca; pushed in [changeset:dffaad5/Harmonie dffaad5]
+            - Coefs in HDF5 format no ready - '''Ole'''
+     - System cleaning:  gmkpack and mSMS will be phase out - '''Ulf''' - pushed in [changeset:a9341a5/Harmonie]
+     - Surfex contribuitons - '''Patrick''' will be pushed by '''Daniel,Kai'''
+     - EC blacklisting - '''Roger'''
+              - satellite: ok 
+              - conventional: problems in black routine rejects radiosondes and synop
+     - Obsmon extract produces incomplete sqlite files Linked with ODB_IO_METHOD=1 or 4 - ''' Eoin, Paulo, Roger '''
+       - Eoin: ODB_IO_METHOD=4 by default pushed in [changeset:4611c6b/Harmonie] but conventional feedback extraction needs correction/refinement.
+     - DA namelist crosscheck - ''' Roger '''
+
+ * mSMS phase out in details: Available in https://git.hirlam.org/users/uandrae/Harmonie as branch rm_msms [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/PruningOfmSMS info]
+          - Containers must be created under ecf not using .sms and default as base - '''Ulf''' '''DONE'''
+          - New containers allow us to introduce manuals - '''Angeles'''
+          - Prune all .sms containers and create .ecf ones. - '''Ulf''' '''DONE'''
+          - Remove all if(ECFLOW) statements in our logic - '''Ulf''' '''DONE'''
+          - Python API, pysuite and pyflow suite management: get rid of /msms/mSMS.pl and create a new script based on python.- '''Roel,Bert'''
+          - tdf2def.pl simplify version of mSMS.pl - '''Ole''' 
+                     - PROS: 
+                             - Better use of ecflow features (python API)
+                             - Documentation available in ecmwf
+                             - Experiences with that in MetCoOp, Met Éireann and AEMET
+                             - More dynamical suite creation
+                     - CONS:
+                             -  Readability of python script using object oriented programming 
+ * openMP testing:
+     - Test has been carried out without Flake.
+     -  Single precision and double precision tests has been tested.
+     -  New setup for SP 
+     - Intel compiler must be the default compiler for Harmonie?
+ * hirlam.org - '''Ole'''
+      - New server has Ubuntu 16 OS. This is DMI IT requirement (the latest version is18)
+      - Possible WW on hirlam.org at DMI: First week of August. Find more human resources inside or outside system core group to maintain the new hirlam.org- '''Ole,Daniel'''
+      - Evaluate the cost of outsourcing git services under gitlab or GitHub - '''Daniel, Roel''' 
+      - Evaluate the possible use of ECMWF Attlasian infraestructure             
+      - Ask DMI about a possible overlapping period between both servers - '''Daniel'''
+      - Ask DMI about facilitate the testing of the new server - '''Daniel'''
+      - IT people must be included in RWP and system team to increase system core capabilities - '''Daniel, Jeanette'''
+ 
+ * Nowcasting model - '''Xiaohua'''
+    - There are needs for sub-hour output freqeuncy for both output (eg., down to every 10 min to facilitate comparison to radar imagies) and input for data assimilation in connection with frequent assimilation. 
+    - Currently the option to make sub-hourly output already exists but solution is ad hoc (in terms of use of time-unit in FA data) . For GIRB 1 output, 15 min interval is the current limit. A more proper implementation is needed to use hhmm instead, and the work shall be done with GRIB 2.
+    - In connection with sub-hour input/output the convention about DTG needs to be expanded to enable minute, this involves modification of 100+ scripts involving DTG.
+    - It is agreed to target for the sub-hour grib option in later versions of CY43H in autumn. Ulf will participate in this work after summer.
+ * cy46 - '''Toon'''
+    - Working on the merge.
+    - gcc compilator bug reported.
+    - Drhook.c does not compile.
+    - This problem could be solved by "stealing" drhook.c and drhook.h from a pristine Cycle 46 branch that I used at Meteo France last year.
+    - However, now more and more "missing" sources turn up (none of them listed in Kai's lists).
+    - This work has to go back to the drawing board ...
+ * mitraillette cy46 - '''Niko'''
+     - Only upper air can be tested due to different surfer version
+     - Tested with MF imputes files
+     - Discuss how to work with new Surfex V8.1 (separate MSE directories for each CMS ?)
+ * ecCodes, GRIB1, GRIB2 -'''Ulf,Angeles'''
+     - Be as close as possible to WMO tables
+     - GRIB2 encoding of Surfex '''Samuel,SMHI team'''
+     - netCDF under climate community control - '''David, Daniel, Bert'''
+
+* git usage and HIRLAM working practices - ''' Kai, Daniel '''
+       - Coding norms check  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/ykarchi46.pdf cy46 document]
+       - Exercise on creating harmonie-46t1 starting with cy46t1.v02 and upgrade to cy46t1.v03 later on
+       - Short GIt [https://hirlam.org/trac/wiki/GitShortTutorial tutorial]
+       - Svn 2 git [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/List%20of%20Equivalent%20Commands%20in%20Git%20and%20Subversion.pdf equivalence]
+       - MF mirror git clone ssh://reader054@git.cnrm-game-meteo.fr/git/arpifs.git
+       - [#hmrepo some informations and practices] for system-core members 
+ 
+* Scripting redesign- '''Roel, Daniel, Paulo, Bert, Angeles?, Alex ?'''
+     - Scripting documentation and progress  
+           - possible inclusion for 4DVar, EPS as incremental document on top of current 3DVar
+           - Use the 3DVar to establish a working plan
+     - ecFlow server status check 
+     - Use of json to share env 
+     - 1st  Meeting of Harmonie Scripting Redesign Working Group (HSRWG) 20181114
+            - Posible candidates to start: 1) Harmonie set up phase 2) Submission strategy   3) Definition file in run time 
+            - Definition file in run time => get rid off mSMS.pl, create ecf containers in repo, add manuals into them
+             -  mSMS phase out and python API to suite management 
+             - Increase the capabilities of ecFlow containers: manual, python scripting ...
+             - Containers must be created under ecf not using .sms and default as base
+             - Allows us to introduce manuals - '''Roel, Ronan'''
+             - Prune all .sms containers and create .ecf ones.
+             - Remove all if(ECFLOW) statements in ./msms/mSMS.pl and create a new script based on python.
+                 - PROS: 
+                             - Better use of ecflow features (python API)
+                             - Documentation available in ecmwf
+                             - Experiences with that in MetCoOp, Met Éireann and AEMET
+                             - More dynamical suite creation
+                  - CONS:
+                             -  Readability of python script using object oriented programming 
+
+
+== "Brainstorming" notes ==
+
+Due to different arrival times we started a more informal "brainstorming meeting". Here they are some notes about it:
+
+
+  * Namelist documentation :
+    - WRF  [https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html namelist example]
+    - ALARO-1 [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/e001_ALARO-1_CY43T2bf09_commented.nam namelist]  
+    - Perl wrapper to create the first draft of HARMONIE namelist comments  
+  * SAPP: Eoin and Toon attended to the ECMWF training 
+  * Vortex
+  * GitHub, GitLab, Confluence
+  * local NMS branches on hirlam.org
+  * Running harmonie in debugging mode
+  * prepOpera update to python 3 (now 2.7)
+  * 4DVar scalability 
+
+
+== New Harmonie Repository (in git) == #hmrepo
+
+The structure of the official central Harmonie git repository is outlined in HarmonieSystemDocumentation/SourceCodeRepository#RepositoryStructure
+
+* the major development branch `develop` now refers to cycle 43
+
+* next development cycle will be for [#cycle46 cycle 46]
+
+
+The Harmonie git repository contains both source code and script code. Only the source code is connected to the 'arpifs' repository, so any merge operation with 'arpifs' has to take care of this. The source code is organized in Harmonie under subdirectory ''src'', so merge oparations with 'arpifs' are done with the ''subtree'' option, like e.g.:
+{{{
+   git merge --no-ff -s recursive -Xtheirs -Xsubtree=src <arpifs commit>
+}}}
+
+Such kind of operation is supposed to happen within a ''phasing repository'', which contains a remote connection to both '''arpifs''' and the official central Harmonie git repository, like e.g. the ''remotes'':
+
+{{{
+arpifs  ssh://reader054@mfgit/git/arpifs.git (fetch)
+arpifs  ssh://reader054@mfgit/git/arpifs.git (push)
+public  git@hirlam.org:Harmonie (fetch)
+public  git@hirlam.org:Harmonie (push)
+}}}
+
+
+=== Handling pull requests ===
+
+Harmonie developpers are asked to send a [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SourceCodeRepository#PublishingDevelopment pull request] to system-core in order to push their development to the official central Harmonie git repository. If they have followed the instructions, then their development feature is provided within a dedicated //feature branch// under their respective [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SourceCodeRepository#shareduserrepo shared user repository].
+
+The task of one of the system-core members then is to
+
+* ''pull'' the //feature branch//
+* check it, including check for white space issues
+* rebase it on top of the latest snapshot of the official development branch - if desired, squash or group the feature commits
+* merge it into the official development branch (should be a simple fast forward now)
+* and push the result to the official central Harmonie git repository on hirlam.org
+
+Especially the rebase operation may contain conflicts that need to be resolved. The amount of conflicts is, however, minimized the more the feature developper has kept the //feature branch// up-to-date with the official development branch, and the earlier a pull request is being followed up upon by the system-core members.
+
+This procedure of incorporating pull requests includes a re-write of the commit history due to the use of ''rebase''. This avoids inclusion of merge commits, leading to a more clear commit history. The original ''author date'' and ''author name'' are retained, though.
+
+[[Color(red, CAUTION: the re-write of commit history renders the feature branch from the developper obsolete, meaning that this branch must be removed after the push to the official central Harmonie git repository, in order to avoid confusion in the future)]]
+
+=== Towards CY46 development branch ===
+
+    A preliminary branch for cycle 46 has been created:
+
+      1. by branching off from the develop branch (cy43) at
+{{{
+9bf5b5e  2019-02-21 11:22:10 +0100  Fix problems with SICE initialization
+}}}
+
+      2. then arpifs tag CY44 was was merged in (strategy ''ours'') as staring point for merging up to CY46, the relevant commit is
+{{{
+b64a977  2019-02-22 11:44:45 +0000  merge up to mf-tag-CY44, strategy ours
+}}}
+
+         this established a reasonably recent common ancestor for the CY46 merge
+
+      3. arpifs tag CY46 is the target to merge into.
+
+         the merge of this tag contains many conflicts, which still need to be resolved. All these conflicts have been ''preliminarily resolved'' within one single commit:
+{{{
+2237d1a  2019-03-06 11:06:15 +0000  Merge commit 'mf-tag-CY46' into pre-CY46
+}}}
+         in order to make it easier to share the work. This preliminary resolivng procedure consists of:
+
+{{{
+         - deleted by us: 219 files -- keep
+         - deleted by them: 131 files -- keep
+         - both deleted: 8 files -- remove
+         - added by us: 9 files -- add
+         - added by them: 523 files -- add
+         - both added: 7 files -- add (don't appear in this commit any more)
+}}}
+
+         the log message of merge commit [[Color(red, 2237d1a)]] contains more details.
+
+The preliminary branch is called ''' pre-CY46''', and can be cloned from [[Color(green, git@hirlam.org:users/ksa/Harmonie)]]
+
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

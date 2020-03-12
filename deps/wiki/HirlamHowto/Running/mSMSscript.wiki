@@ -1,0 +1,55 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= '''Running HIRLAM with mini-SMS script''' =
+[[Center(end)]]
+
+== How to launch a HIRLAM experiment ==
+ 1. set up an experiment directory $expdir under $HOME/hl_home
+{{{
+   mkdir -p $HOME/hl_home/$expdir
+   cd $HOME/hl_home/$expdir
+}}}
+ 1. let $VERSION be an available HIRLAM reference model version such as 7.0 or HEAD or snowscheme, do
+{{{
+   Hirlam setup -r $VERSION
+}}}
+ 1. if applicable, 'check out' some source code or script and do modification
+{{{
+   Hirlam co scripts/Env_domain
+   Hirlam co scripts/Env_expdesc
+   Hirlam co spdy/gemini_tl.F
+}}}
+ 1. launch experiment, e.g.,
+{{{
+   Hirlam start DTG=2006030806 DTGEND=2006030812
+}}}
+
+== How to re-start a HIRLAM run ==
+ 1. cd $HOME/hl_home/$expdir
+ 1. verify that DTG, DTGBEG etc. are correct in progress.log and progressPP.log
+ 1. to check and continue or recover a production run, e.g.,
+{{{
+   Hirlam prod DTGEND=2006030812
+}}}
+ 1. or, the following can also continue from cycle DTG as in progress.log 
+{{{
+   Hirlam continue DTGEND=2006030812
+}}}
+ 1. or, the following can also resume an interrupted experiment at check point 
+{{{
+   Hirlam resume DTGEND=2006030812
+}}}
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

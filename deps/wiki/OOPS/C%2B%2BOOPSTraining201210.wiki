@@ -1,0 +1,106 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Training Week on C++ and OOPS''' =
+''AEMET, 22 Jan - 26 October 2012''
+
+[[LastModified]]
+[[Center(end)]]
+
+== Purpose ==
+
+Learn more about C++ and OOPs
+
+== Participation, period and location ==
+
+The working meeting starts at 0900 on Monday morning, Oct 22, at AEMET, finishes lunchtime on Friday, 26 Oct 2012
+
+Practical information about accommodation and local transport can be found [https://hirlam.org/trac/attachment/wiki/C%2B%2BOOPSTraining201210/Information-Note-HIRLAM%20OOPS-1.doc here].
+
+== Participants ==
+
+ 1. Ulf Andrae, SMHI
+ 2. Jelena Bojarova, met.no
+ 3. Nils Gustafsson, SMHI
+ 4. Antonin Bucanek, CHMI
+ 5. Antonio Stanesic, DHMZ
+ 6. Mate Mile, OMSZ
+ 7. Roger Randriamampianina, OMSZ
+ 8. Daan Degrauwe, RMI
+ 9. Annelies Duerinck, RMI
+10. Piet Termonia, RMI
+11. Carlos Geijo, AEMET
+12. Mats Dahlbom, DMI
+13. Jana Sanchez, AEMET
+14. Eoin Whelan, Met Éireann
+15. Stjepan Ivatek-Sahdan DHMZ
+16. Mariano Hortal, AEMET
+17. Bogdan Bochenek, Polen
+18. Tomas Morales
+
+== Agenda ==
+
+ Start every morning at 09.00 am.
+
+ [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/C%2B%2B_English_final_v1.pptx Original slides from the training at Meteo France][[BR]]
+ [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/exercises.tar Exercises][[BR]]
+
+ * Monday
+   * C++ lectures and exercises, Jesus M
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop1.pdf Lecture 1]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop2.pdf Lecture 2]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop3.pdf Lecture 3]
+
+ * Tuesday
+   * C++ lectures and exercises, Jesus M
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop4.pdf Lecture 4]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop5.pdf Lecture 5]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop6.pdf Lecture 6]
+
+ * Wednesday
+   * C++ lectures and exercises, Jesus M
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop7a.pdf Lecture 7a]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oop7b.pdf Lecture 7b]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/OOPSArch.pdf OOPS design]
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/uml.pdf OOPS UML diagram]
+
+ * Thursday
+   Preliminary content of the Thursday OOPS lectures
+   * [
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/oops_intro_nils.pdf Background of the OOPS design] NG
+   * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/slides_daan.pdf Definition of field sets and state. LAM features in OOPS] DD
+   * LAM in the QG  OOPS NG
+     * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/changeset_LAM.tar.gz Code updates to run LAM qg]
+
+   * Design tasks and discussion points
+    * Treatment of lateral boundaries in models/ and control of lateral boundaries in
+     data assimilation.
+     Motivation: The lateral boundaries is what makes a LAM different from the global model.
+    * How to go from global to LAM or LAM/LAM geometries
+      Motivation: Interpolation between different geometries is an important part of a LAM setup. How can we see that this can be handled within OOPS (probably on a level below, or as a separate task that calls a change geometry function in State)
+    * Background errors in the qg model
+      Motivation: Here we also need to consider the LAM geometry and also apply an extension zone.
+    * Control of the large scale ( JK ) in DA and spectral nudging in mdels
+      Motivation: Should the large scale fields be a separate auxiliary information in State or the same as the LBC fields?
+    * Ensembles in OOPS
+      Motivation: Ensemble methods are today an integrated part of the DA system. How can we construct OOPS in an optimal way to be able to handle this. On one hand an ensemble can be considered as information for the background error covariance. On the other hand we also want to do assimilation separately for each ensemble member. Shall we talk about a state of ensemble members or an ensemble of member states?
+ 
+ * Friday 09.00
+   * Outcome of Thursday discussions,09.30 - 10.15 telephone conference with Meteo France.
+
+
+== Preparation and documentation ==
+
+ A number of documents have been uploaded to this page and are meant to serve as preparatory and working material for the training.
+
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/OOPSdesign.pdf OOPS design]
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/TC_oops.pdf Basic technical instructions]
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/Traits.pdf Model traits interfaces]
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/OOPSforReview.tar.gz The OOPS code]
+
+ A good exercise is to download the source code, try to build it locally and run the example described in the technical instructions.
+
+== Conclusions ==
+
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/hirlamWW_Oct2012_report_C++OOPS.pdf Final report]
+ * [https://hirlam.org/trac/attachment/wiki/OOPS/C%2B%2BOOPSTraining201210/Evaluation_C++OOPS.pdf Evaluation]
+

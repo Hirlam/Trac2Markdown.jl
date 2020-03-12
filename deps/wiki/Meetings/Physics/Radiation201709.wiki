@@ -1,0 +1,216 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Radiation Working Day 5^th^ of September 2017''''' =
+''Met Eireann, Dublin, Ireland'' 
+
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Practical =
+
+  ||= Institutes                                        =||= Participants in Dublin   =||= Online participants =|| 
+  || Danish Meteorological Institute                     ||   Kristian Pagh Nielsen     ||                     ||
+  || Met Éireann                                         ||   Emily Gleeson             ||                     ||
+  || Finnish Meteorological Institute                    ||   Laura Rontu               ||                     || 
+  || Finnish Meteorological Institute                    ||   Petri Räisänen            ||                     || 
+  || Czech Hydrometeorological Institute 	         ||                             || Jan Masek           || 
+  || SMHI	                                         ||                             || Karl-Ivar Ivarsson          || 
+  || FMI	                                         ||                             || Joni-Pekka Pietikäinen      || 
+  || University of Reading                               ||                             || Velle Toll                  ||
+
+[[Image(RT4.JPG, 50%)]]
+''Lunchtime at the National Botanic Gardens, Dublin''
+
+
+= Objectives =
+
+The ultimate goal of this work is to make comparisons and improvements of the radiation schemes available in HARMONIE, i.e. the IFS, ACRANEB and HLRADIA. AROME physics has been chosen for the platform where all radiation routines can be compared in a clean way. Thus, calls of all three radiation routines are being implemented in apl_arome.F90 (or apl_par.F90?), with common interfaces between radiation and clouds, aerosol and surface. In this framework, a clean comparison of any further developments inside the three radiation schemes is also possible. It is important to allow the radiation routines to concentrate on radiation and prepare the common input concerning cloud, aerosol and surface state before entering the radiation calculations.  
+
+
+= Previous radiation working days =
+
+10. Helsinki April 2017 https://hirlam.org/trac/wiki/Meetings/Physics/CAR2017
+
+9. Lisboa April 2016 https://hirlam.org/trac/wiki/Meetings/Physics/Radiation201604
+
+8. Tallinn November 2015 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201511
+
+7. Copenhagen April 2015 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201504
+
+6. Copenhagen September 2014 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201409
+
+5. Prague March 2014 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201403
+
+4. Helsinki October 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201310
+
+3. Copenhagen February 2013 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201302
+ 
+2. Dublin October 2012 https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201210
+
+1. Helsinki April 2012
+
+----
+
+= Agenda =
+
+ == 8 UTC          Start of the local meeting ==
+
+                Summary of the [http://meetingorganizer.copernicus.org/EMS2017/session/25550 EMS radiation session] from the point of view of HARMONIE developments
+
+                Status of HARMONIE radiation work, system aspects, articles planned, recently done etc
+
+ == 10 - 12 UTC    Google hangouts session ==
+
+                Jan's news from Prague
+                
+                Radiation - microphysics : how to advance Karl-Ivar's reff within cy43
+
+                Aerosol status and plans : Laura, Velle's news and comments
+
+                RWW18 in ECMWF April 2018: what to suggest to Robin? ECRAD in HARMONIE-AROME.
+
+ 
+ == 12 - 13 UTC    Lunch == 
+
+ == 13 UTC         Plans, actions, notes ==
+
+                HARMONIE plans and reporting
+
+                RWW 2018 in ECMWF
+                    ECRAD: https://www.ecmwf.int/en/elibrary/16901-ecrad-new-radiation-scheme-ifs
+            
+                SW/cloud verification (operational)
+
+ == 15 UTC         End of the meeting ==  
+
+----
+
+= Discussion of articles =
+
+Following the Monday session at EMS on radiation, aerosols and clouds two papers were discussed. In the short term, a paper on the 
+global horizontal irradiance (GHI) verification results  with the clear sky index (CSI) and variability index (VI) could be written. One option is to write this for the special issue entitled "Solar and Wind Forecasting Methods" that is to be published in Atmosphere in 2018. John Boland has sent an invitation regarding this. The deadline is the 31^^st^^ of January.
+
+Second paper: Comparison of the 3 radiation schemes (Finnish and Irish domains, CSI, VI statistics)
+
+Future work/paper: could be on quantifying the impact of running the IFS and ACRANEB2 radiation scheme at every time step as 
+compared with running these intermittently in HARMONIE-AROME. Comprehensive studies should be done of this before publishing 
+this paper.
+
+
+== EMS follow-up ==
+
+ - Articles based on presentations
+
+ - Arrangement of radiation-cloud-aerosol session also in next EMS in Budapest, perhaps more weight to cloud microphysics 
+
+ 
+= Rolling plan =
+
+- Radiation in the rolling plan - what has been done, how to continue
+
+http://hirlam.org/index.php/hirlam-documentation/doc_download/1800-rolling-workplan-hirlam-2017-v20170223
+
+https://hirlam.org/trac/wiki/Radiationgroupplan
+
+https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/progress_Madrid_Feb2017.pdf
+
+https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/PH2_2018_draft.pdf
+
+
+== Task PH 2.6: Cloud microphysics - radiation interaction ==
+
+This work relates to Karl Ivar Ivarson's work on the LOCDN2 option, where the radiative effects of graupel and snow are accounted for. This
+is important to finish.
+
+Under this task testing the 2-stream approximation is mentioned. This should be removed, as our tests so far have showed the 2-stream approximation not 
+to have too large errors relative to the uncertainties of the ice and aerosol optical properties.
+
+Suggested new formulation for PH 2.6. : 
+
+Ensure consistency between the current cloud microphysics and radiation schemes. Import effective size (radius) of cloud ice, cloud liquid, graupel, snow and rain particles from microphysics to the  radiation schemes. Externalise effective radius calculations from inside IFS, ACRANEB2 and HLRADIA; develop, recode, test within MUSC cycle cy43 (44), implement in cy44.  People: Karl-Ivar, Emily.
+
+== Task PH 2.7 & 2.8 ==
+
+The descriptions of these are good as the are.
+
+= Aerosol =
+
+- Status and tasks related to aerosol: 
+
+0) Simplified CAMS climatology of AOD550 is available for comparison of optical properties from the Tegen climatology and the more advanced CAMS climatology. Background values, SSA and g modifications. Do not suggest the simplified packages for operational use!
+
+1) externalisation of aerosol calculations from inside the radiation schemes 
+
+2) advanced climatological CAMS 
+
+3) towards the more real-time CAMS
+
+Examples of HCLIM with Tegen/simplified CAMS - slides by Joni-Pekka: 
+
+- https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/JOKIOINEN_SW_analysis_seasons.pdf 
+- https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/SODANKYLA_SW_analysis_seasons.pdf
+
+https://hirlam.org/trac/wiki/Aerosol
+
+https://www.ecmwf.int/en/elibrary/17219-implementation-cams-based-aerosol-climatology-ifs
+
+
+
+= Effective radiuses =
+
+- Effective radiuses for 5 species from the present microphysics for the present 3 radiation schemes: testing, externalisation of effective radiuses from inside the radiation schemes.
+
+  Development and experimenting to be done using MUSC of cy43(44). People: Karl-Ivar, Emily. 
+
+
+= HARMONIE radiation code development = 
+
+- Status and tasks of the HARMONIE radiation branches, cy40, cy43? MUSC and 3D, how to advance with hlradia finalisation, remaining technical questions
+
+  cy43t - cy44t work has been ongoing in Meteo France: expecting news, decisions and code basis in September. HARMONIE code compiles in 3D and MUSC with SURFEX8, 3D experiments not yet possible.
+
+  Radiation branch [https://hirlam.org/trac/browser/branches/harmonie-40h1.radiation harmonie-40h1.radiation] updated to HARMONIE trunk level in June.  Radiation branch could be used as basis for MUSC experiments in the same way as cy43t.
+
+  Tasks to finalise hlradia within harmonie-40h1.radiation:
+
+  - For the 3D EMS experiments, it was necessary to run hlradia with old aerosol - why?
+  -- Note from Emily: HLRADIA works for me in the radiation branch but ACRANEB2 fails. I have not checked the ZSFILTER=0 recommended by LR.
+
+  - Direct and diffuse radiation. Output of clear-sky SW and LW radiation from all 3 schemes.
+  - Issue with HLRADIA LW (seen in CIRC expts for example)
+
+- what was left for further study in the cloud CIRC cases? CIRC with MUSC, finally, solving the remaining problems, understanding differences between SA and MUSC
+
+- RADSN and RADGR: I am running the present Finnish experiments with RADGR=0.8, RADSN=0 which was taken from hat without any studies - perhaps we could see sensitivities first
+
+
+= RWW 2018 in ECMWF = 
+
+- Preparations to the radiation ww in ECMWF in April 2018 (16-19 is when ASM is on; Easter is at the start of April). Focusing in long-term developments: ECRADIA for ALADIN-IFS NWP system, advanced aerosol optical properties. What are the most important processes for different scales of modelling: 3D radiation, spectral resolutions, streams, cloud and aerosol optical properties, details of surface interactions... How to study sensitivities systematically, which kind of experiments.
+
+
+= Recently published / presented = 
+
+Rontu, L., Gleeson, E., Räisänen, P., Pagh Nielsen, K., Savijärvi, H., and Hansen Sass, B.: The HIRLAM fast radiation scheme for mesoscale numerical weather prediction models, Adv. Sci. Res., 14, 195-215, https://doi.org/10.5194/asr-14-195-2017, 2017.
+
+Termonia, P., Fischer, C., Bazile, E., Bouyssel, F., Brožková, R., Bénard, P., Bochenek, B., Degrauwe, D., Derkova, M., El Khatib, R., Hamdi, R., Mašek, J., Pottier, P., Pristov, N., Seity, Y., Smolíková, P., Spaniel, O., Tudor, M., Wang, Y., Wittmann, C., and Joly, A.: The ALADIN System and its Canonical Model Configurations AROME CY41T1 and ALARO CY40T1, Geosci. Model Dev. Discuss., https://doi.org/10.5194/gmd-2017-103, in review, 2017. 
+
+Bengtsson et al. https://doi.org/10.1175/MWR-D-16-0417.1
+
+Geleyn, J.-F., Mašek, J., Brožková, R., Kuma, P., Degrauwe, D., Hello, G. and Pristov, N. (2017), Single interval longwave radiation scheme based on the net exchanged rate decomposition with bracketing. Q.J.R. Meteorol. Soc., 143: 1313–1335. https://dx.doi.org/10.1002/qj.3006
+
+http://www.umr-cnrm.fr/aladin/IMG/pdf/rontu_asw17.pdf
+
+http://www.umr-cnrm.fr/aladin/IMG/pdf/gleesonetal_asm2017_poster_31032017_final.pdf
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/SR17-22.pdf Weismann Poulsen and Berg (2017)] report on tuning the ACRANEB2 radiation scheme for
+GPUs, Xeon and Xeon Phi processors.
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/Raisanen_EMS17.pdf Raisanen] EMS 2017 radiation session presentation
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/Nielsen_radiation_verification_20170903.pdf Nielsen & Gleeson] EMS 2017 radiation session presentation
+
+[https://hirlam.org/trac/attachment/wiki/Meetings/Physics/Radiation201709/MERA_SW_EMS_2017.pdf Gleeson et al.] EMS 2017 radiation session presentation
+
+[http://hirlam.fmi.fi/tmp/Rontu_EMS17.pdf Rontu et.al] EMS 2017 radiation session presentation

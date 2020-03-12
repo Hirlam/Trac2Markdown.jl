@@ -1,0 +1,128 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''The status of pre-operational ALADIN/AROME runs''' =
+[[LastModified]]
+[[Center(end)]]
+
+Please use the [https://hirlam.org/trac/wiki/HirlamInventory/HarmonieSystem link ] for further update about the content of this page.
+
+== '''DMI''' ==
+
+DMI is running '''CY29t2''' with :
+
+ * '''ALADIN''' Scandinavia 11km, 40 levels. Once a day, 00 UTC ''+24h''
+ * '''ALADIN-H/NH''' Denmark 2.5km, 40 levels, ''with HIRLAM physics''. Once a day, 00 UTC ''+24h''
+ * '''ALADIN-H/NH''' Denmark 2.5km, 40 levels, ''with MF physics''. Once a day, 00 UTC ''+24h''
+
+Nesting :
+
+ * HIRLAM (15km) --> ALADIN (11km) --> ALADIN (2.5km) 
+
+DMI will soon replace the above cycle with a new one, '''CY31t1''':
+
+ * '''ALADIN''' Scandinavia 11km, 40 levels. Once a day, 00 UTC ''+24h''
+ * '''ALADIN-NH''' Denmark 2.5km, 40 levels, ''with HIRLAM physics''. Once a day, 00 UTC ''+24h''
+ * '''AROME''' Denmark 2.5km, 40 levels. Once a day, 00 UTC ''+24h''
+
+== '''SMHI''' ==
+
+SMHI is running '''CY31t0''' with :
+
+ *  '''ALADIN''' Scandinavia 10km, 60 levels. Twice a day, 00,12 UTC ''+48h''
+ *  '''AROME''' South Sweden 2.5km, 60 levels.  Once a day, 00 UTC ''+24h''
+ *  '''AROME''' North Sweden 2.5km, 60 levels.  Once a day, 00 UTC ''+24h''
+
+Nesting :
+
+ * HIRLAM (22km) --> ALADIN (10km) --> AROME (2.5km) 
+
+Problems :
+
+ * In AROME there is sometimes spurious cold temperatures. The problem seems to be computer related, because it is not seen on HPCE at ECMWF
+
+Tests of '''CY31t1''' also on HPCE at ECMWF :
+
+ * '''ALADIN''' Scandinavia 10km, 40 levels, with ECMWF boundaries  
+ * '''ALADIN''' Scandinavia 10km, 91 levels, with ECMWF boundaries  
+ * '''ALADIN''' Scandinavia 10km, 40 levels, with HIRLAM - RCR boundaries  
+ * '''AROME'''  North Scandinavia 2.5km, 60 levels, with ALADIN boundaries  
+
+Problems :
+
+ * Running ALADIN with ECMWF on the boundaries needs more evaluation
+
+'''HIRLAM'''/'''ALADIN'''/'''AROME'''/'''UM''' verification against ''SYNOP'' and ''TEMP'' stations is available online at
+https://hirlam.org/portal/smhi/WebgraF/
+ 
+== '''FMI''' ==
+
+FMI is running '''CY32h2''' with :
+
+ * '''AROME''' South Finland 2.5km, 40 levels. Twice a day, 00,12 UTC ''+24h'' 
+
+Nesting :
+
+ * HIRLAM (7.5km) --> AROME (2.5km) 
+
+Problems :
+
+ * Too strong precipitation for deep convection.
+ * Too strong outflow from the convective systems.
+ * T2m too cold.
+
+'''HIRLAM'''/'''AROME''' verification against ''SYNOP'', ''TEMP'' and ''Helsinki testbed'' stations is available online at http://fminwp.fmi.fi/WebgraF/
+
+
+== '''KNMI''' ==
+
+KNMI is running '''CY31h1''' with
+
+ * '''AROME''' Netherlands (300x300), 40 levels. Once a day, 00 ''+24h''
+ * Wall clock time 1h50m, forecast 1h35m on 64 processors (more in convective weather)
+ * Initialized from interpolated 11 km HIRLAM analysis (3D-VAR)
+
+Nesting :
+
+ * HIRLAM - H11(11km) --> AROME (2.5km) 
+
+Problems :
+
+ * Clouds/showers develop too late over the sea, especially with dry middle troposphere
+ * Too strong precipitation for deep convection, too many spreading anvils
+ * Too strong outflow out of showers (temperature of outflow seems OK)
+ * Not enough weak precipitation over larger areas with Mesoscale convective systems
+ * Too weak winds near the surface over land?
+ * Small cold spots during the night (nesting problem of AROME in HIRLAM?)
+
+== '''INM''' ==
+
+INM has been experimenting '''CY29t2''' on HPCE with :
+
+ * '''ALADIN''' with ''HIRLAM physics''.
+
+INM is also on the way in building daily runs over Spanish domain. '''CY31t1''' 
+will be built on INM's Cray X1E platform:
+
+ * '''ALADIN''' Spain 11km, 40 levels.
+ * '''ALADIN-NH''' Spain 2.5km, 40 levels. 
+
+== '''MF''' ==
+
+MF is running '''CY31t2''' with
+
+ * '''AROME''' South-west of France 2.5km (240x240), 41 levels. Once a day, 00 ''+30h''
+ * Initialized from interpolated ALADIN analysis (3D-VAR). No meso-scale DA yet.
+
+Problems :
+
+ * AROME is too cold and dry during night-time. Day-time is OK.
+ * Coupling problems: convergence in boundary region --> spurious rain amounts.
+ * AROME is not always able to present weak precipitation amounts (about 0-4 mm/12h) well. 
+
+Near furure:
+
+ * Moving to NEC platform --> Area enlarged to cover whole France.
+ * CY32t1
+   * Hail included.
+   * Microphysics enhancements for low clouds (fog).
+   * New cloud scheme + EDKF for shallow convection.

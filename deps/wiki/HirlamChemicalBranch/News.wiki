@@ -1,0 +1,25 @@
+20.02.2009
+
+Dear Enviro-HIRLAM/ChemBranch course participants, supervisors and all participants of the HIRLAM Chemical Branch,
+
+there are several HIRLAM CHEM-branch issues/news to discuss/inform you.
+
+1. Finally, the January 2009 Enviro-HIRLAM/ChemBranch course at DMI has finished, and all materials (lectures, etc) have been collated by Alexander Mahura and uploaded at netfam.fmi.fi web-site by Laura Rontu. It can be easily accessible at:
+http://netfam.fmi.fi/ENV09/, including summary notes of the course:
+http://netfam.fmi.fi/ENV09/EnvHCourseOutcome.pdf. 
+I am also sending [https://hirlam.org/trac/attachment/wiki/HirlamChemicalBranch/News/EnvHIRLAM_StudentsInvolved_fv.pdf attached] the draft table for planned further studies by different groups involved students with EnviroHIRLAM. We hope it could be a good basis for your new MS and PhD students involved.
+Your comments and suggestions (especially from the main home supervisors of the students) are very welcome.
+
+2. As we promised on the course the HIRLAM Chemical Branch wiki-pages are opened now, see on: https://hirlam.org/trac/wiki
+This site should be available for all users from HIRLAM member organizations (if you opening it from your institute server/computer). If you have problems to open this site in your organisation, please, write me or Xiaohua Yang <xiaohua@dmi.dk>. He can open a personal account for you. Soon it will be split into open and internal parts.
+You can find some initial information about the HIRLAM Chemical Branch, baseline Enviro-HIRLAM system, corresponding meetings, lecture courses, publications, etc. This site will be updated constantly and you are welcome to contribute with your information as well.
+All of the course participants received some version of the Enviro-HIRLAM model code to start your own work (e.g. see the attached table). As we mentioned, there are several versions of Enviro-HIRLAM. One of them, which is used by most of you, is based on DMI-HIRLAM version and adopted for PC, other simplified version is based on reference HIRLAM 7.2. The reference version will be used for further developments by all the partners within the HIRLAM Chemical Branch. Xiaohua is working now to harmonize all the scripts in this version with the HIRLAM reference system, Ulrik will be back after his paternity leave in middle of March and will prepare a more comprehensive version of the reference Enviro-HIRLAM for the Chemical Branch. Then that version of the code will be available directly from the Chemical Branch web-page. However, if some of you need this current reference version of Enviro-HIRLAM earlier, please, contact with us and we’ll send it to you.
+You can use also for correspondence the email-list of participants for CHEM-Branch (it's a separate service). The chemical@hirlam.org includes at this stage the initial subscribers as listed in https://hirlam.org/mailman/roster/chemical (by the way, please, check are your email addresses correct there?). The mailing list subscription is open to all in the community, please, go to https://hirlam.org/mailman/listinfo/chemical to subscribe.
+
+3. NetFAM network (http://netfam.fmi.fi) is finishing in 2009, so we are preparing a new network proposal to the Nordic Research Board (NorForsk, see http://www.nordforsk.org/). It will focus on the integrated 'Meteorology-Air Pollution' modelling in mesoscale (Enviro-HIRLAM
+etc.). The proposal writing meeting will be on 12-13 March in
+Tallinn, Estonia. If you are interested to participate in the proposal writing, please, contact with Rein Rõõm <Rein.Room@ut.ee> or Marko Kaasik <marko.kaasik@ut.ee>.
+
+Alexander Baklanov, 
+Danish Meteorological Institute (DMI), Lyngbyvej 100, DK-2100 Copenhagen, Denmark
+Phone: +45 39157441; Email: alb@dmi.dk 

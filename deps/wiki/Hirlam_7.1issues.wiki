@@ -1,0 +1,38 @@
+== Hirlam 7.1 Roadmap (Candidate Issues) ==
+
+[[Timestamp]]
+
+||Issue ID||Description||Type||Priority of [[BR]]Implementation||Project||Coordinating PL||Staffs||Status||
+||||horizontral resolution[[BR]] upgrade||Enhance||high||AP||XY||XY||TBS||
+||||vertical resolution [[BR]]upgrade||Enhance||high||AP||XY||KE,XY,+??||TBS||
+||||forecast code [[BR]]reproducibility||Enhance||high||AP||XY||KE,TW,+??||TBS||
+||||system script[[BR]]cleaning,modification||Enhance||high||AP||XY||TM+TW,+??||TBS||
+||||vertical resolution [[BR]]upgrade||Enhance||high||AP||XY||KE,XY,+??||TBS||
+||||snow scheme||Feature||high||PH||ST||SG,ST,+??||STARTED||
+||||moist CBR||Feature||high||PH||ST||?||STARTED||
+||||MSO/SSO parameters [[BR]]in climate generation||Feature||high||AP||XY||KSA||STARTED||
+||||tuned CBR+STRACO||Enhance||high||PH||ST||BHS,NWN,ST||TBS||
+||||KF||Enhance||medium||PH||ST||KI,JC||TBS||
+||||recoded physics+interface||medium||PH||ST||LR,BHS,ST+??||STARTED||
+||||60L structure function||Feature||high||DA||NG||??||TBS||
+||||Enabling of BUFR-format[[BR]]aircraft data||Enhance||high||AP||XY||KE,NS||STARTED||
+||||6 h instead of 3h [[BR] assimilation interval||Enhance||medium||AP||XY||KE,XY||TBS||
+||||OSI-SAF||Feature||medium||DA||NG||FT,+??||STARTED||
+||||AMV wind||Feature||medium||DA||DB||CG,+??||TBS||
+||||Quickscat wind||Feature||medium||DA||DB||CG,+??||TBS||
+||||RCR-operational [[BR]]bd strategy update||Feature||medium||AP||XY||KE,TM||TBS||
+||||statistical balance [[br]]structure function||Feature||medium||DA||NG||?||TBS||
+||||climate index fields||Feature||medium||DA||NG+DB||ML||TBS||
+||||Modified humidity control variable||Feature||medium||DA||NG+DB||ST||TBS||
+||||use of full resolution [[BR]]LBC data at ECMWF||Feature||medium||AP||XY||TM,XY||STARTED||
+||||4D-VAR-cycling||Feature||medium||DA||NG,DB||XY,NG+??||STARTED||
+||||Surface synop wind obs||Feature||low||DA||DB||AC||TBS||
+||||Surface synop 2m RH obs||Feature||low||DA||DB||JS||TBS||
+||||4D-VAR with BGMIX||Feature||low||AP||XY||XY||TBS||
+||||4D-VAR with multi-loop||Feature||low||DA||||XY||TBS||
+||||Enhanced Postpp||Feature||medium||AP||XY||ST+XY||TBS||
+||||cleaned CPP/defined options||Feature||low||AP||XY||JWP,TW,XIAOHUA||TBS||
+||||cleaned scriptss||Feature||low||AP||XY||JWP,TW,XIAOHUA||TBS||
+||||re-structured code and scripts repository||Feature||low||AP||XY||TW,TM,JWP,XIAOHUA||TBS||
+||||improved Hirlam make||Feature||low||AP||XY||JWP,TW,XIAOHUA||TBS||
+||||forecast code reproducibility||Feature||low||AP||XY||JWP,TW,XIAOHUA||TBS||

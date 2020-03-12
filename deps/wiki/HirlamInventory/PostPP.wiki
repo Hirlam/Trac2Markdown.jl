@@ -1,0 +1,55 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''Post-Processing in Operational Systems ''' =
+[[Center(end)]]
+
+== Current forecast model output with the Reference HIRLAM ==
+
+The HIRLAM forecast model writes its primary output to a so called history file (fcyyyymmdd_hh+lll), containing full model state which can enable re-start of forecast if necessary, as well as the fields for model diagnostics (fcyyyymmdd_hh+lllmd). For FMI-RCR, these data are archived at 1 hour interval up to 9 hour forecast, and at 3 hours intervals from there on. Fields for verification are written to a file with suffix `ve' (fcyyyymmdd_hh+lllve), at 3 hours intervals. 
+
+A complete listing of the output parameters from the Reference HIRLAM system is [http://fminwp.fmi.fi/docs/Hirlam_Archives.html available here]
+
+== Additional post-pp products as direct model output ==
+
+|| Product  || DMI || EMHI || FMI || INM || KNMI || LHMS || met.ie || met.no || SMHI ||
+|| visibility || yes || || ||no|| yes[[FootNote(partly offline)]] || yes || || || ||
+|| T2m min/max || yes || || ||no|| || no || || || ||
+|| W10m min/max || yes || || ||no|| || no || || || ||
+|| W10m gust || yes || || ||yes|| no[[FootNote(done offline)]] || yes || || || ||
+|| pseudo-satellite image || no[[FootNote(done offline)]] || ||no[[FootNote(done offline)]] ||no|| yes || yes || || || ||
+|| CAPE, CIN, LFC, LNB || || || ||no|| [http://www.knmi.nl/~tijm/postproc/postproc.html yes] || no || || || ||
+|| Precipitation type || || || ||no|| yes || yes || || || ||
+[[FootNote]]
+
+== Offline post-pp products ==
+
+|| Product  || DMI || EMHI || FMI || INM || KNMI || met.ie || met.no || SMHI ||
+|| pseudo satellite image || yes[[FootNote(DMI employs an algorithm to derive pseudo satellite image as proposed by Sander Tijm in 2004.)]] || || yes ||yes|| no[[FootNote(done as direct output)]] || || || ||
+|| lightning index || yes || || ||no|| || || || ||
+|| glider plane forecast || || || ||no|| yes || || || ||
+|| multi-layer cloudmap in false colours [[FootNote(In fashion as used on ECMWF web-page and described in ECMWF Newsletter nr 101)]]|| || yes || || || || || || ||
+[[FootNote]]
+
+== Potential additional products ==
+
+Apart from the additional post-PP products as listed above, following quantities may also be of interests, all of them directly derivable from the the existing HIRLAM model paramters:
+
+ * [http://www.knmi.nl/~tijm/postproc/postproc.html Satellite imagery (MSG types of images)]
+ * Radar reflectivity
+ 
+Examples of some of these products can be found through:
+ 
+http://www.knmi.nl/~tijm/postproc/postproc.html 
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

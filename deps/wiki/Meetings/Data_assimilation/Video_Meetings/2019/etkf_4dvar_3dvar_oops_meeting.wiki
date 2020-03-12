@@ -1,0 +1,192 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on ETKF 4DVAR 3DVAR and OOPS''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Seventh meeting: 9 April 2019, 14:00 CET ==
+
+
+
+== Participants ==
+ 
+ * Yann Michel
+ * Jana Sanchez Arriola
+ * Magnus Laindskog
+ * Roel Stapers
+ * Carlos Geijo
+ * Erik Gregow
+ * Nils Gustafsson
+ * Martin Ridal
+ * Eoin Whelan
+ * Roohollah Azad
+ * Jeanette Onvlee
+ * Zheng Qi Wang
+ * Florian Meier
+ * Benedikt Strajnar
+ * Per Dahlgren
+ * Martina Tudor
+ * Jan Barkmeijer
+ * Roger Randriamampianina
+ * Pau Escribà
+
+
+== Topics of the day: ==  
+
+=== Actions from previous meetings: ===
+
+ - ** Action 2 on Claude** to report about the experience on iteration and convergence wrt number of observations in variational analysis. Yann said that the minimisation in variational depends on the number of observations. The more obs we use the longer the needed iterations. CONJGRAD is good to monitor the convergence.[[BR]]
+   ==> **done**
+
+ - ** Action 3 Trouble with CY41: **  Ryad solved the problem related to using of FA file directly in Festat. In hHarmonie we have the updated version. The newer versions are a little bit different, but out of bugs and can be "parallelized". **Claude** suggested to take the Festat from the CY43, which should be compatible with any versions.[[BR]]
+   ==> **done**
+
+ - ** Action 1 from the last meeting:** To keep in touch regarding the issue with high level clouds in EDA.[[BR]]
+  - The problem observed in Harmonie EDA was not related to DA. It was caused by a application called !PertAna in Harmonie. See the Annex 1 for more details or ask **Mate Mile** or **Inger-Lise Frogner**.[[BR]]
+   ==> **we decided to keep this Action open**
+
+=== Initialisation: ===
+==== Field alignment (FA):====
+ - **Carlos** implementing the approach in the IFS/AROME framework. He is making it to be available with the configuration "002" (screening) and "131" (minimisation). The reason for this additional work is that the original version of the code was done with the GL package. Now, the ODB handling is also more integrated in the DA system. [[BR]]
+==== Variational Constraint scheme: ====
+ - ** Carlos** said that when he is ready with the FA scheme, the same implementation procedure will be done.[[BR]]
+ 
+==== Incremental analysis update (IAU): ====
+ - **Roger** mentioned that Jelena Bojarova succeed to test the IAU approach in Harmonie as reported [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseofObsandALGO201812/DAEPS_WW2018_jelena.pdf here].[[BR]]
+ - **Florian** reported that they use this approach is also tested in Austria. They use it to filter the noise present after analysis. The filtering time period is 45 min. Increments are divided according to the "start" and "end" times. (Florian please explain more)[[BR]]
+
+==== Cloud initialisation: ====
+ - Tested in !MetCoOp nowcasting system.[[BR]]
+ - **Erik** reported about the latest improvement using the first estimate of the cloud base from the previous forecast. The cloud base analysis using SYNOP observations is done using the gridPP package. [[BR]]
+ - ** Magnus** mentioned that they also tested this approach using data from both geo- and polar orbiting satellites.[[BR]]
+ 
+=== 3D-VAR vs 4D-Var: ===
+==== Single observation study: ==== 
+  -- **Nils**, **Jan** and **Roohollah** performed single observation study where good evolvement of the increment was observed in Nils' and Jan's tests. [[BR]]
+  -- **Roohollah** tested the assimilation of single profile of humidity. He [https://hirlam.org/trac/attachment/wiki/data_assimilation_plan/WW-DA-Norrkoping.pdf presented] a relatively weak balance on temperature. Nils Commented that this is not so surprising. So, Humidity have weak balance, but the other parameters can show stronger and "unwished" effect. This work will be continued during the working week in Norrkoping.[[BR]]
+
+=== 4D-Var: ===
+ - **Nils** mentioned that the adjoint model seems to work well. Well handled advection is observed in test runs. Although, clear signal of gravity wave is also observed. [[BR]]
+ - **Nils** also mentioned that in his test runs, he could see two weeks with clear improvement. But, he also found that there were two polar low cases, which were not well treated. Use of relatively small domain needs better treatment of LBCs. For example, two LBC approaches ("simulate operational" vs "simulate metcoop") show different results. [[BR]]
+ - Regarding the status of latest development from Nils, **Eoin** said that all changes will be available in the system by Monday (beginning of the working week).
+ - **Jan** mentioned that the implemented Aladin linear physics was relatively old. He got newer version from Meteo France. The new version allow the use of longer time step.[[BR]]
+ - **Jan** also mentioned that one can see in the logs that in case of relatively larger domain, there can be memory problem caused by the fact that we do physics computation at each time step. IFS and ARP skip some time steps to get rid of this. Doing this can allow us to run the system faster. Below more explanation from Jan.[[BR]]
+{{{
+ When using the linear physics under NAMSIMPHL and in particular the switches LTRAJPS and LTRAJPST, 
+huge trajectory arrays are created when running the nonlinear model. These arrays may cause resource 
+issues. The arrays are called TRAJPHYS and TRAJPHTE respectively. I noticed that ECMWF skips steps in 
+similar trajectories when running 131 and 4/5/601.
+}}}
+ - **Pau** asked about the use of larger difference in resolution in the different loops. **Nils** said that the system is multi-incremental. The following setting was tested: 6dx, 3dx, dx. **Nils** mentioned that re-linearisation is more important in 4D-Var than change of resolution. New trajectory run is more important. [[BR]]
+ - **Jan** also mentioned that the Hessian computation is working in 4D-Var.[[BR]]
+
+=== LETKF: ===
+ - **Pau ** **Pau** is working with migration of the scheme into CY43. He also mentioned the comparison study he presented at All Staff Meeting. Order of coupling with surface was also mentioned. Now the surface analysis is done after the LETKF, but testing it before the LTKF sould be done to have better comparison with the 3D-Var scheme. [[BR]]
+
+=== !EnVar: ===
+ - **Roger** mentioned that Jelena Bojarova finished the implementation of the !EnVar approach similar to the one implemented in the Hirlam model. [[BR]]
+ - **Yann** reported that they succeed to have the !EnVar scheme technically working in CY46. He mentioned two things:[[BR]]
+ - 1) New development of more standard square-root formulation with or without OOPS; and [[BR]]
+ - 2) There is project to study the non-linear state of the !EnVar, also look at the use of different resolutions.[[BR]]
+ - the outer loop study is done with Arpege and the !EnVar is with the AROME model.[[BR]]
+ - 4DEnVar using square-root based computation and not via OOPS.[[BR]]
+ - The !EnVar using the square-root version is compatible with the VarBC and produce coparable results with the operational AROME model.[[BR]]
+ - ** Benedikt** asked about the tool used to handle the different Bs. The share a fortran code and this is available in CY46T1.[[BR]]
+ - Square-root solution requires that the ensemble is at the same resolution.(??)[[BR]]
+ - Yann metioned that Sebastien Massart at ECMWF implenented a version of a square-root B. Comparison of the three solutions (ECMWF, MF, and Harmonie (Jelena's)) can be interesting. He also asked where to get the code with hirlam solution?[[BR]]
+
+
+=== OOPS: ===
+ - **Roel** will visit Meteo France to work with 4D-Var and OOPS. [[BR]]
+ - **Roel** also mentioned that he is working something similar to the Prep-IFS environment for the Harmonie system.[[BR]]
+
+=== AOB: ===
+ - **Florian** asked about the following issue:[[BR]]
+   -- We add old ISBA fields from somewhere (for example ARPEGE/IFS coupling + special 927) by ADDSURF binary to first guess, before we run 002/131/701 config. Otherwise these configs complain about missing soil fields. This is technically not perfect, because we need old ISBA fields on current grid and additional ADDSURF step, which makes things a bit complicated (compared to old ALADIN 3D-Var). It has also consequences on the results. [[BR]]
+   -- If old ISBA fields are interpolated with 927 and switch NFPCLI not equal 3, as I did in the past, minimization can run through without minimizing anymore e.g. ANA=FG without visible crash but cost function=NAN in NODE-file, which is rather dangerous (experience in cy40t1 export). If NFCLI=3, it should be safe (statement from Pierre Brousseau), but:[[BR]]
+      -- Roughness and other old ISBA fields are rather coarse and they are used to diagnose screen level values T2m/RH2m/10m wind within config 131. In screening we can just take it from FG, but during minimization this is not possible due to iterations. This might be also not consistent with diagnostics within 001 which is called from SURFEX. What I recently did to avoid the problem of non-working 131 was to exchange roughness with the values from SURFEX-INIT values by modified blendsur (which is technically even more complicated, but avoids non-minimizing 131). The units in SURFEX and old ISBA are different so some adaptation is needed.[[BR]]
+      -- I also know that some kind of SURFEX-old ISBA exchange was already tried by Martina Tudor in Croatia and Jure Cedilnik in Slovenia without knowing all the details of their work.[[BR]]
+   -- The cleanest way in the future should be that 701/002/131 reads needed soil fields directly from SFX-file, if LAROME=T without any need for old ISBA anymore, but this might indicate some significant work on the code. SURFTEMPERATURE is an exception, because it is already exchanged between SURFEX and AROME atmospheric model and should be more or less consistent (except that in SURFEX it is split to different patches/tiles).[[BR]]
+   -- It would be interesting, if MF plans to go into this direction and if they can estimate the amount of coding needed to get there. A temporal solution/step in  between might be, that SURFEX content enters the atmospheric climate file production where some of the old ISBA fields are extracted during the 927 step, which seems to be already on-going in MF with the new climate file 923 replacing config 903, when I got it right. However, in that case we still need additional 927/ADDSURF step.[[BR]]
+
+  **==>** Given the fact that Florian sent the above description about his comments an suggestions, It'd be good to open discussion with experts from Surface working group. [[BR]]
+  **==> Action 2 on Roger** to organise meeting with surface expert group.
+
+ - **Pau** reported that applying the LSMIXBC also to humidity field at AEMET shows positive impact and this solution is now in parallel suite.
+
+
+**Annex 1:** Mail from Mate describing the possible reason of the stratospheric humidity problem observed in the Harmonie EDA test.
+ - As far as I understood ptop limits the height of humidity control in BC(gl_grib_api:limit_rh.f90) and !PertAna(addpert.f90) tasks. Below this vertical level the humidity is checked and overwritten if it's out from a given min and max rh values.
+The 90hPa means humidity control below 5th vertical level (from L65 of HarmonEPS) however, if I think well it is not appropriate due to very very small positive humidity is also overwritten in high atmosphere by the given min (rh=5%) which makes a small but deteriorating humidity bias there. After few tests experimenting in one case, the 300hPa (humidity check below 15th model level) seems a better choice without making control on high levels. I made these tests with SLAF coupling and I didn't see negative humidity values after BC differences, however, I checked only one case and not the whole period.
+  
+
+===========================================================================
+
+
+== Fifth meeting: 6 April 2018, 14:00 CET ==
+
+
+
+== Participants ==
+
+ * Thibaut Montmerle 
+ * Yann Michel
+ * Jana Sanchez Arriola
+ * Magnus Laindskog
+ * Alena Trojakova
+ * Roel Stapers
+ * Carlos Geijo
+ * Xiaohua Yang
+ * Mate Mile
+ * Erik Gregow
+ * Claude Fischer
+ * Roger Randriamampianina
+
+
+== Topics of the day: ==  
+
+** Actions from previous meetings **[[BR]]
+
+ - ** Action 2 on Claude** to report about the experience on iteration and convergence wrt number of observations in variational analysis. Yann said that the minimisation in variational depends on the number of observations. The more obs we use the longer the needed iterations. CONJGRAD is good to monitor the convergence.[[BR]]
+
+ - ** Action 3 Trouble with CY41: **  Ryad solved the problem related to using of FA file directly in Festat. In hHarmonie we have the updated version. The newer versions are a little bit different, but out of bugs and can be "parallelized". **Claude** suggested to take the Festat from the CY43, which should be compatible with any versions.[[BR]]
+
+**Initialisation:**[[BR]]
+ - ** Variational constraint scheme:** **Carlos** reported that the scheme was tested in 3D-Var and LETKF. The results showed the necessity of further tuning tuning, meaning that it looks to not fully integrated into the Harmonie system. Probably it will be useful in a shorter cycling systems. MSLP and T2m are degraded. [[BR]]
+
+ - ** Field alignment:** **Carlos** will put it into the Harmonie system.[[BR]]
+ 
+**Incremental analysis update (IAU):** [[BR]]
+ - ** Claude** said the it's used when doing long-range forecasts at 00, when usually the analysis from 1 hour is already ready. We decided to talk about it in Toulouse during the ASM.[[BR]]
+ 
+**3D-VAR:**[[BR]]
+ - **Convergence issue**: The convergence issue was discussed (see above).[[BR]]
+
+
+**EDA:**[[BR]]
+ - **at MF**, AROME-based EDA is planned to be operational in May with CY42_op3 with 45 members, at 3.25km resolution.[[BR]]
+ - In Harmonie the EDA system was tested by Inger-lise in MEPS. It produces very promising positive impact on surface parameters. Although issue related to high-level cloudiness was detected. This will be investigated soon when Mate joins MET Norway. **Roger** will check the use of stratospheric IASI channels in the system, since there are few of them having also influence widely in stratosphere. **Yann** mentioned that Philippe Chambon also reported problems related to stratus clouds at MF. Use of EDA in AROME-Fr is a work in progress.[[BR]]
+
+** Action 1** To keep in touch regarding the issue with high level clouds in EDA.[[BR]]
+
+**4D-VAR**[[BR]]
+ - THe Harmonie trunk is updated with the 4D-Var that works t"technically" with all kinds of obs. Although using 2 outer loops shows problem with the ATOVS. Tskin is not used now. It's changed to surface temp. from surface field. There need to control the use of moving platforms in 4D-Var in different time slots. **Yann* said that the Tskin is used as sink variable.[[BR]]
+ - **Eoin** confirmed that the above mentioned changes are in the trunk and in the latest tag of the cycles.[[BR]]
+
+**ETKF:**[[BR]]
+ - **Pau and Eoin** are working on the porting the changes in the branch. The solution is still using some of the GL routines, which needs to be changed later.[[BR]]
+ - **Carlos** reported the testing of Var. Constr. scheme in LETKF, where FG=FG + VCfilter*[LETKF -FG]. Checking the impact in controlling the spinup through ECHKEVO showed that 3D-Var shows less impact than the LETKF with VC.[[BR]]
+
+**!EnVar** [[BR]]
+ - **Thibaut** mentioned that a paper describing their implementation will be soon out. It's about testing use of grid point or spectral representation in an AROME with 3.25km resolution. The hybrid system sows better results, where the noise is reduce when using time lagged, and localisation in grid point. Most efficient way is to use IAU in the first half hour. The IAU is laso applied in global scale. The IAU is available from CY41_T1_op1. It's only a branch in Harmonie. It should be also available in CY43. [[BR]]
+
+
+**OOPS:** [[BR]]
+ - **Roel** is discussing with Claude his visit to Toulouse. **Claude** mentined that ECMWF may be delayed with OOPS oper implementation. Plan is to be ready in May. They will not be ready, probably in the end of the year. Building the next joint ARP/IFS the end of the year. CY47 will start in the beginning of next year. Technical part of the development is still ongoing. ECMWF is working on VarBC/VarQC.[[BR]]
+
+**New cycle**
+ - ** Claude** asked about the status of CY43 in Harmonie. It works with the Intel compiler. Gnu Fortran is still problematic.
+  
+
+===========================================================================

@@ -1,0 +1,49 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= ''' HIRLAM Model Level Definitions ''' =
+[[Center(end)]]
+
+=== '''HIRLAM vertical coordinate''' ===
+HIRLAM model is constructed for a general pressure based and terrain following vertical coordinate n(p,p,,s,,), where
+
+n(0,P,,s,,) = 0 and n(p,,s,,,p,,s,,) = 1
+
+The formulation corresponds to the ECMWF hybrid system with some modifications, because the continuity equations is integrated upwards in the HIRLAM model. The model is formulated for a spherical coordinate system (lamda, theta), but in the code two metric coefficients (h,,x,,,h,,y,,) have been introduced. This is done to prepare the model for any orthogonal coordinate system or map projection with axes (x,y). However, this is not fully implemented in all parts of the dynamics.
+
+To represent the vertical variation of the dependent variables (U, V, T and Q), the atmosphere is divided into "nlev" layers. These layers are defined by the pressures at the interfaces between them (the `half-levels'). From the general expression
+
+p,,k+1/2,, = A,,k+1/2,,(n) + B,,k+1/2,,(n) * p,,s,,(x,y)          for k=0,1,...,nlev
+
+the vertical surfaces for half-levels are defined. Pure pressure surfaces are obtained for B=0 and pure sigma surfaces for A=0. `full-level' pressure associated with each model level (middle of two half layers) is then determined accordingly.
+=== '''Definition of model levels in HIRLAM''' ===
+The script [https://hirlam.org/trac/browser/trunk/hirlam/scripts/Vineta Vineta] contains definition of vertical levels that have been used in HIRLAM community for research and/or operational purposes. Currently the reference HIRLAM RCR (v 7.1) uses 60-level structure. Model level definitions for commonly used vertical structures in HIRLAM are listed below.
+ * SixteenLevel: 16 model levels (for simple code test only)
+ * ThirtyoneLevel: 31 model levels (? -Nov 2003)
+ * FourtyLevel: 40 model levels (Hirlam 6.2.1, Nov 2003 -)
+ * SixtyLevel: 60 model levels (Hirlam 7.1, March 2007 -)
+ * SixtyoneLevel: 61 model levels (DMI experimental since 2006)
+ * SixtyfiveLevel: 65 model levels (Per Unden, experimental at DMI since 2009)
+When performing HIRLAM experiment, users can select vertical levels by changing NLEV in the script [https://hirlam.org/trac/browser/trunk/hirlam/scripts/Env_domain Env_domain]. If a non-standard level number is to be chosen, the script [https://hirlam.org/trac/browser/trunk/hirlam/scripts/Vineta Vineta] needs to be edited to add layer definition.
+=== '''Relevant corresponding data set for different vertical structure ''' ===
+HIRLAM upper air data assimilation using variational approach needs background error structure function for each given vertical layer structure. It is noted that [https://hirlam.org/trac/browser/trunk/hirlam/data/hirvda/strfun_data the structure function data included in the reference HIRLAM repository] is incomplete and often inadequate. For v7.1, a statistical balance structure function data derived for the RCR-7.1 60 layer structure is included. For v7.0 and earlier, the analytical balance structure function data for 40 and 31 layer structure, derived from earlier SMHI 0.44d data set, are available. Users that apply non-standard configuration for vertical structure is strongly recommended to derive proper structure function data using own data archive to avoid improper use of structure function.
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Look also for the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

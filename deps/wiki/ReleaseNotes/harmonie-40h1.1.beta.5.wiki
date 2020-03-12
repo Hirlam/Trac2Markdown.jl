@@ -1,0 +1,293 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 40h1''' ==
+
+[[Center(end)]]
+
+== Description of Harmonie 40h1 ==
+
+Harmonie 40h1 is HIRLAM's adaptation to the IFS/ARPEGE CY40T1 released in April 2014 and the subsequent bugfix versions 1 to 5. 
+
+At its default, Harmonie-40h1 comprises the following features:
+
+ * A meso-scale NWP forecasting deterministic system with non-hydrostatic dynamics on a model grid with 2.5 km grid-spacing in horizontal and 65 vertical levels.
+ * Two choices of convection-permitting atmospheric physics packages: AROME or ALARO
+ * Treatment of surface processes by SURFEX
+ * 3D-VAR upper air assimilation with 3h cycling using conventional observations and AMSUA AMSUB/MHS satellite information.
+ * Optimal interpolation-based surface analysis using CANARI for the spatialization and SODA for the update of surface variables.
+ * A comprehensive set of utilities for observation preprocessing, model diagnostics, monitoring and verification.
+ * A scheduler, mSMS, and a graphical interface, mXCdp, for running an controlling the full suite.
+ * An ensemble system configuration, HarmonEPS including 10+1 AROME and 10+1 ALARO members running on 2.5km.
+
+== News in Harmonie-40h1 ==
+
+=== Major changes ===
+
+ Some highlighted changes and available options in cy40h1.1.beta.5 compared to cy38h1.2 are listed below. Note that the list of changes is a mixture of contributions from all collaborators.
+
+ * Upper air physics
+  * New physics/dynamics interface CPTEND_FLEX
+  * Introduction of sub-grid precipitation in AROME
+  * Fixes and optimisation in EDKF 
+  * Fixes for hail, cloud sedimentation, coupling with 1D model
+  * ALARO1 physics ( ACRANEB2, TOUCANS, updated microphysics )
+  * Inohomogeneity factor in radiation set to 1.0 and NRADIP=3 i.e. hexagonal crystals for definition of equivalent radius/diameter.
+  * Preserve cloud fraction between forecasts for better spinup.
+  * Shallow convection (temperature dependent critical condensation level)
+  * HARATU turbulence scheme
+
+ * Surface treatment
+  * SURFEX 7.3, for documentation of SURFEX versions see the [http://www.cnrm.meteo.fr/surfex-lab/spip.php?rubrique12 SURFEX webpage] including (summary list)
+   * New TEB
+   * Optimisation in PREP
+   * Surface perturbations in SURFEX
+   * Parallelization of the OFFLINE driver
+   * ISBA coupling with the TOPMODEL
+   * Modifications for flake fluxes and 1D ocean model
+   * CROCUS updates
+  * Support for selection of fields in the SURFEX output.
+  * Use of PREP instead of gl+fullpos for generation of inital surfex conditions ( SURFEX_PREP=yes)
+  * Simple sea ice model in SURFEX
+ * Dynamics
+  * Flow-dependent SL interpolations, COMAD option
+  * Vertical Finite Elements code for NH/LAM+global
+ * Assimilation and observations
+  * Fix for IO_METHOD=4 in ODB
+  * Enhanced observation monitoring
+  * Generation of superobservations for radar
+  * Allow different VARBC update frequency for GNSS data.
+  * Handling of E-AMDAR in Oulan
+ * Technical
+  * Introduction of FULLPOs 2
+  * optimization of I/O; re-write of LFI package in C; frame option for coupling data 
+  * Optimization in “couplingsurf” task in SURFEX (for restart)
+  * Optional usage of ECFLOW as scheduler at ECMWF. Read more [wiki:HarmonieSystemDocumentation/ECFLOW here]
+  * OpenMP optimization in verification extraction ( fldextr )
+ * Verification
+  * Various bug fixes
+  * Corrections for seasonal verification
+ * Diagnostics and postprocessing
+  * Fix about the post-processing period of wind gusts
+  * GRIB table corrections
+ * HarmonEPS
+  * Treatment of failing members
+  * Control of SLAF perturbations
+  * Reduced output in EPS mode
+
+=== Changes between CY38T1 and CY40T1 ===
+
+The changes in the common IFS/ARPEGE code are documented in the following documents.
+
+ * [https://hirlam.org/trac/attachment/wiki/Harmonie_38h1/cy38t1.pdf CY38T1 memorandum] 
+ * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/cy39.pdf CY39 memorandum]
+ * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/cy39t1.pdf CY39T1 memorandum]
+ * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/cy40.pdf CY40 memorandum]
+ * [http://www.cnrm.meteo.fr/aladin/IMG/pdf/cy40t1.pdf CY40T1 memorandum]
+  * [https://hirlam.org/trac/attachment/wiki/Harmonie_40h1/cy40t1_bf.01.txt CY40T1 bugfix 1]
+  * [https://hirlam.org/trac/attachment/wiki/Harmonie_40h1/cy40t1_bf.02.txt CY40T1 bugfix 2]
+  * [https://hirlam.org/trac/attachment/wiki/Harmonie_40h1/cy40t1_bf.03.txt CY40T1 bugfix 3]
+
+ See also the meeting notes from the IFS-ARPEGE [http://www.cnrm.meteo.fr/aladin/spip.php?article170&lang=en coordination meetings].
+
+=== Changes between harmonie-40h1.1.alpha.1 and harmonie-40h1.1.beta.1 ===
+
+ * Optional usage of ECFLOW as scheduler at ECMWF. Read more [wiki:HarmonieSystemDocumentation/ECFLOW here].
+ * Inohomogeneity factor in radiation set to 1.0 and NRADIP=3 i.e. hexagonal crystals for definition of equivalent radius/diameter.
+ * Allow different VARBC update frequency for GNSS data.
+ * Preserve cloud fraction between forecasts for better spinup
+ * Generation of superobservations for radar
+ * Corrections for seasonal verification
+ * Introduction of GNSS in obsmonitoring
+ * Corrections for wind direction calculations in gl
+
+=== Changes between harmonie-40h1.1.beta.1 and harmonie-40h1.1.beta.2 ===
+
+ * Changes to enable run with linear/quadratic/cubic grid including first order time scheme during the first time steps. 
+ * ECFLOW corrections. HarmonEPS now works under ECFLOW
+ * Correction of maximum random overlap calculations
+ * Changes for interpolation of pressure level boundary data
+ * OBSMON updates
+ * Oulan changes to handle E-AMDAR including update to BUFRDC library v405.
+ * Namelist settings for ALARO1 physics
+ * Updates to Harmonie -CleanUp facilities
+
+=== Changes between harmonie-40h1.1.beta.2 and harmonie-40h1.1.beta.3 ===
+
+ * Various updates related to climate simulation mode such as output of NETCDF files.
+ * Support for output of selected fields from SURFEX.
+ * Support for usage of GMTED2010 data.
+ * Additional convective parameters in the FA2GRIB conversion.
+
+=== Changes between harmonie-40h1.1.beta.3 and harmonie-40h1.1.beta.4 ===
+
+  * Bugfix for assimilation ( NAMJO -> NAMCOSJO)
+  * Name preserving FA/LFI to NetCDF conversion
+  * Make generation of GMTED2010 combined files less memory demanding.
+  * Oulan fixes and related changes in ODB for CANARI (memory and control of data amount)
+  * Simple sea ice model in SURFEX, https://hirlam.org/trac/changeset/14357/trunk/harmonie
+  * Shallow convection (temperature dependent critical condensation level), https://hirlam.org/trac/changeset/14374
+  * Corrections for AROME 4DVAR, https://hirlam.org/trac/changeset/14359
+  * HARATU turbulence scheme, https://hirlam.org/trac/changeset/14385
+  * Control of SLAF perturbations and reduced output in EPS mode
+  * Various smaller fixes
+
+=== Changes between harmonie-40h1.1.beta.3 and harmonie-40h1.1.beta.5 ===
+
+  * Switch back to TOPO_SOURCE=gtopo30
+  * GMTED2010 processing updates
+  * Bugfixes for RUNNING_MODE=operational
+  * Bugfixes for FULLPOS
+  * Bugfix for HarmonEPS
+  * Code cleaning of util projects
+
+=== Difference between CY40T1 and harmonie-40h1 ===
+
+ Harmonie-cy40h1 contains a number of developments not introduced in or done after the release of CY40T1. The difference between harmonie-40h1.1.beta.5 and CY40T1_bf.05 can be summarized as:
+
+ * Data assimilation and observations
+  * Satellite BUFR file decoding in Bator and treatment of empty pools
+  * ATOVS blacklisting and VARBC predictor treatment
+  * Corrections for handling of RADAR, GPS and VarBC, ATOVS and AMV data
+  * Perturbation of observations
+  * GNSS preprocessing
+  * Preserve cloud fraction between forecasts for better spinup
+  * Corrections for AROME 4DVAR
+ * Upper air physics
+  * Correction for extraction of direct/diffuse SW radiation from the ECMWF radiation scheme
+  * Correction of short wave radiative fluxes. Additional output of direct normal irradiance
+  * Mixed phase clouds, LOCND2=T
+  * Add influence of snow and graupel to radiation, controlled by LOCND2 flag
+  * Tuning of CA coupling in ALARO0
+  * ALARO0 interface changes to surfex
+  * Correction of maximum random overlap calculations
+  * Shallow convection (temperature dependent critical condensation level)
+  * HARATU turbulence scheme
+ * Surface assimilation and modelling
+  * Snow analysis changes
+  * Support for output of selected SURFEX fields
+  * ALARO0 interface changes to surfex
+  * Simple sea ice model in SURFEX
+ * Dynamics
+  * Updates to spectral BD handling
+  * De-aliasing and upper BD conditions
+  * Optional application of lateral boundary conditions in spectral space
+  * Optional first order time scheme during the first time steps. 
+ * Technical
+  * Ability to run SODA inline CANARI
+ * Bugfixes
+  * Out of bound problem in radiation code [13930]
+  * Fix in FULLPOS interpolation of relative humidity [13940]
+  * Correct timestamp in FA output for t<30 minutes [14341]
+
+The full list of changes can be found in the following [https://hirlam.org/trac/attachment/wiki/Harmonie_40h1/svndiff_all_cy40h1.1.beta.1.txt document]. Some of the differences have already been introduced in [wiki:Harmonie_41h1/41t1_contributions CY41T1] and some will be subject for discussion for CY43T1.
+
+=== Next release ===
+
+The next release, harmonie-40h1.1.rc1, is planned for the 20th of November 2015. The release will include
+
+ * To be included
+  * Ensemble assimilation changes
+  * Adapt to minute based output with new FA file name convention, NTIMFMT=1.
+  * Infrastructure for FLAKE
+  * Asynchronous reading of boundary files ( backphase from 41t1 )
+    
+=== Tentative remaining changes for final harmonie-40h1.1 ===
+
+A preliminary list of changes still planned to be part of the final harmonie-40h1.1 includes
+
+ * Utilities for preparation of MSG data
+ * Cleaning of satellite data input files
+ * ALARO1 surfex interface
+
+== Tested configurations ==
+
+The following configurations have been tested and are working technically at ECMWF and several linux clusters.
+
+ * AROME_3DVAR: AROME physics with surface assimilation and 3DVAR, the default configuration
+ * AROME: AROME physics with surface assimilation and upper air blending 
+ * AROME_MUSC: Single column model (MUSC) with AROME physics
+ * ALARO_3DVAR_OLD: ALARO0 physics and old ISBA with surface assimilation and 3DVAR
+ * ALARO1_3DVAR_OLD: ALARO1 physics and old ISBA with surface assimilation and 3DVAR
+ * ALARO_OLD: ALARO physics and old ISBA with surface assimilation and upper air blending
+ * ALARO: ALARO + SURFEX
+ * ALARO_MUSC: Single column model (MUSC) with ALARO physics and SURFEX
+ * ALARO_OLD_MUSC: Single column model (MUSC) with ALARO physics without SURFEX
+ * AROME_CLIMSIM: Climate simulation with AROME physics
+ * HarmonEPS: HarmonEPS setup 
+ * AROME_CLIMSIM: Technical test of the climate simulation configuration
+ * AROME_EKF: AROME with SODA+EKF
+
+Full scale tests
+
+ * The default configuration, AROME_3DVAR, including assimilation of AMSU data has been tested and works satisfactory on a full sized domain, DKCOEXP at ECMWF. Read more about the [#MeteorologicalperformanceofHarmonie-40h1 performance] further down.
+ * ALARO_3DVAR which includes ALARO1 and SURFEX does not work properly yet.
+
+== Releases ==
+
+The following versions of harmonie-40h1 have been released
+
+ * First technical version [browser:tags/harmonie-40h1.1.alpha.1 harmonie-40h1.1.alpha.1], tagged Jan 28th 2015
+ * First beta version [browser:tags/harmonie-40h1.1.beta.1 harmonie-40h1.1.beta.1], tagged Jun 5th 2015
+ * Second beta version [browser:tags/harmonie-40h1.1.beta.2 harmonie-40h1.1.beta.2], tagged July 24th 2015
+ * Third beta version [browser:tags/harmonie-40h1.1.beta.3 harmonie-40h1.1.beta.3], tagged September 10th 2015
+ * Fourth beta version [browser:tags/harmonie-40h1.1.beta.4 harmonie-40h1.1.beta.4], tagged November 2nd 2015. '''Use of this version is not recommended'''
+ * Fifth beta version [browser:tags/harmonie-40h1.1.beta.5 harmonie-40h1.1.beta.5], tagged November 16th 2015
+
+== Harmonie-40h1 downloads ==
+
+ * On ECMWF, the check-out version of harmonie-40h1.1.beta.5 is available as,
+{{{
+   ecgate:/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-40h1.1.beta.5
+}}}
+ * Via Subversion:
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-40h1.1.beta.5
+}}}
+ * As a tarball [https://hirlam.org/portal/download/harmonie-40h1.1.beta.5.tar.gz]
+ * The testbed data set including boundaries, observations, climate files and background statistics for assimilation can be downloaded [https://hirlam.org/portal/download/testbed/38h1/38h1.tar here]. Read more about the testbed [wiki:HarmonieSystemDocumentation/Evaluation/HarmonieTestbed here].
+
+ * Climate
+  * Climate data for cy40h1 can be found under [https://hirlam.org/portal/download/harmonie_climate/38h1.1.tar.gz] with an increment for [https://hirlam.org/portal/download/harmonie_climate/40h1_increment_to_38h1.1.tar.gz 40h1] or on cca under {{{/project/hirlam/harmonie/climate/40h1}}}. 
+  * GMTED2010 input data should be downloaded separately. Read more [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/How_to_use_hires_topography#DoitallinsideHARMONIEaddedbyUlfAndraeandEsbj%C3%B6rnOlsson here].
+ * RTTOV constants for cy40h1 are the same as for 38h1.2 and can be found under [https://hirlam.org/portal/download/sat_const/sat_const_cy38h1.2.tar.gz] or on c2a under {{{/project/hirlam/harmonie/sat_const/cy40h1}}}.
+
+== Model Installation and Experiment Configuration ==
+
+Users are referred to the system wiki documentation about [wiki:HarmonieSystemDocumentation/Installation Information and Instruction on basic system installation and experiment configuration] and to the [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Harmonie-mSMS Harmonie-mSMS configuration documentation] for running an experiment at ECMWF in particular and on your local platform in general.
+
+The version for starting an experiment is available on ecgb as:
+
+{{{
+~hlam/harmonie_release/tags/harmonie-40h1.1.beta.5/config-sh/Harmonie setup
+}}}
+
+== Meteorological performance of Harmonie-40h1 ==
+
+ All information about the validation of harmonie-40h1.1 can be found [https://hirlam.org/trac/wiki/Harmonie_40h1/ValidationTests here].
+
+== Technical aspects of Harmonie-40h1 ==
+
+=== Performance numbers ===
+
+|| !Version/Platform/Domain || Bator || Canari + SODA  || Screening       || Minimisation    || Forecast                   ||
+|| 38h1.2 Cray XC30 (cca) gnu DKCOEXP[[FootNote(All numbers are averaged over 7 cycles. The times are very dependent on the file system load)]] || 96s || 356s (nproc=4) || 170s (nproc=96) || 108s (nproc=96) || 2143s (36h) (nproc=24x24, 3h output freq, no io_server) ||
+|| 38h1.2 Cray XC30 (cca) cce DKCOEXP[[FootNote(All numbers are averaged over 7 cycles. The times are very dependent on the file system load)]] || 179s || 249s (nproc=4) || 134s (nproc=96) || 101s (nproc=96) || 2609s (36h) (nproc=24x24, 3h output freq, no io_server) ||
+|| 40h1.1.alpha.1 Cray XC30 (cca) gnu DKCOEXP[[FootNote(All numbers are averaged over 5 cycles. The times are very dependent on the file system load)]] || 138s || 182s (nproc=4) || 145s (nproc=96) || 162s (nproc=96) || 2837s (36h) (nproc=24x24, 3h output freq, no io_server) ||
+
+
+[[FootNote]]
+
+
+=== Problems and bugfixes ===
+
+There are still a number of unresolved problems with cy40h1. For the latest status see [https://hirlam.org/trac/query?status=accepted&status=assigned&status=new&status=reopened&version=40h1 ticket page]. 
+
+== Acknowledgements ==
+ The 40h1-system is the result of collective development and implementation work of HIRLAM-B programme under the cooperation context of HARMONIE, with major scientific and technical contribution from partners at ECMWF, Meteo France and members of the ALADIN consortia. We thank colleagues in our partner institutes for all the valuable contribution and assistance during the implementation of CY40T1.
+
+Eoin Whelan, Met Eirann, is the responding system manager for the 40h1-code series. Bjarne Andersen, Ulf Andrae, Trygve Aspelien, Lisa Bengtsson, Jelena Bojarova, Dag Björge, Javier Calvo, Mats Dahlbom, Per Dahlgren, Inger-Lise Frogner, Jose Antonio Garcia-Moya Zapata, Emilie Gleeson, Mariken Holmleid, Mariano Hortal, Karl-Ivar Ivarsson, Rimvydas Jasinskas, Martynas Kauzlaukas, Magnus Lindskog,  Toon Moene, Sami Niemela, Enda O'Brien, Kristian Pagh Nielsen, Roger Randriamampianina, Laura Rontu, Sami Saarinen, Jana Sanchez, Daniel Santos, Niko Sokka, Sander Tijm, Ole Vignes, and Xiaohua Yang has contributed in different ways through development, evaluation and testing. 
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

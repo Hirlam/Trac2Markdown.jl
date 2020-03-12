@@ -1,0 +1,157 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Validation of HARMONIE-36h1'' ==
+
+[[Center(end)]]
+
+== Introduction ==
+A coordinated validation of [wiki:Harmonie_36h1 harmonie-36h1] has been organised in HIRLAM-A with a primary view to enable release of the first official and '''quality assured''' HARMONIE forecast system, [wiki:ReleaseNotes36h1.3 36h1.3, targeted for tagging at the end of 2010]. Following the plan in HIRLAM-A, 36h1.3 includes a set of default (baseline) configurations which defines an operationally feasible meso-scale forecast system including that of data assimilation. To address the requirement about quality-assurance, a series of [wiki:Harmonie_36h1/ValidationTests36h13 validation experiments for 36h1.3 ] has been conducted for technical and meteorological evaluation, both by means of conventional observation verification inter-comparisons and by episode studies.
+
+Following the successful validation of 36h1.3, several follow-up impact studies have been done to test various correction and updates on top of the tagged 36h1.3. In June 2011, the updated version with harmonie-36h1 (stable branch) is again validated for selected configurations efore tagging of 36h1.4
+
+== Validation experiments ==
+For each validation study, an user experiment is setup with reference to a version of the HARMONIE trunk, (and after release of 36h1.3, the harmonie-36h1 branch). A series of experiments are launched with varying configurations for two selected month-long periods 2010010100-2010013118, a rather cold winter month in North Europe, and 2010080100-2010083118, which is characterised by several heavy rain episodes. The baseline experiments are defined for three model configurations using AROME and ALARO physics, all cycled with 3D-VAR and coupled to ECMWF forecast as lateral boundaries,respectively
+ * AROME: DENMARK and FINLAND domain at 2.5 km grid spacing and 65 vertical levels, 24 h forecast
+ * ALARO: SCANDINAVIA_5.5 domain with 5.5 km spacing and 60 levels, 36 h forecast
+
+In addition, some validation studies also involve alternative configurations to examine sensitivities on
+ * domain
+ * vertical resolutions (using MF_60 and HIRLAM_60)
+ * assimilation scheme (downscaling; surface analysis only; 4dvar with ALADIN)
+ * physics & surface schemes (edkf vs edmfm in AROME, ALARO with surfex vs isba scheme)
+ * impact of spin-up period following cold-start
+
+== Validation results ==
+Observation verification inter-comparisons have been made to cross-compare HARMONIE validation runs with different configurations, and also relevant operational HIRLAM forecasts from DMI, FMI and SMHI. In addition, a short period with several extreme summer precipitation cases has been investigated to examine performance of the HARMONIE forecasts
+
+=== Observation verification ===
+For 36h1.3, inter-comparison has been made to look for answers to questions such as,
+ * How does AROME 3DVAR-runs compared to blending scenario and to non-cycled downscaling scenario (without any data assimilation)?
+ * How does ALARO 3DVAR-runs compared to blending scenario?
+ * How does AROME, ALARO and ALADIN compare?
+ * How does HARMONIE-AROME compared to operational, high resolution HIRLAM at similar resolution?
+ * How does HARMONIE-ALADIN compared to operational HIRLAM at regional scales (ca 10 km)?
+ * How does ALARO/ALADIN compare at 5.5 km?
+ * How does ALADIN runs compare with 5.5km vs 11 km resolutions?
+ * How is sensitivity with surface scheme in ALARO model?
+ * How is sensitivity of vertical resolution with AROME/ALARO model?
+ * How does 4D-VAR compared to 3D-VAR
+ * Sensitivity due to source code update following implementation of 36T1-bf9
+
+After tagging of 36h1.3, several tuning experiments have also been performed, 
+ * Sensitivity due to correction about use of several conventional obs data (surface and aircraft data)
+ * Sensitivity due to use of onset of CANOPY_DRAG switch
+ * Test of EDMFM scheme in AROME, following correction by Wim de Rooy 
+Details for the above validation results can be found in the wiki page about [wiki:Harmonie_36h1/ValidationTests36h13 details validation of 36h1.3 ] 
+
+For 36h1.4, the validation are limited to check the new versions against the tagged 36h1.3 with various corrections and updates committed to the harmonie-36h1 branch during the past half year, especially
+ * impact of corrected snow analysis 
+ * impact of switching AROME-edkf to AROME-edmfm option
+ * Impact of LMIXBC=yes for ALARO
+ * in addition, impact of length of warm-up period for screen level temperature and humidity is also examined. 
+
+Validation runs for 36h1.4
+ * Summer test
+   * AROME, DENMARK domain (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_summer_201008" target="_blank"> AROME with 3DVAR using 36h1.3 (36h13_arome_3dvar), 36h1.3 with 36h1 branch on Feb 22 with surface canopy drag and EDMFM (36h13_arome_3dvar_edmfm) and 36h1.4 (36h14_arome_3dvar), 20100801-20100831</a>
+}}}
+   * AROME, DENMARK domain, short and long spin-up (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_summer_warmup" target="_blank"> AROME with 3DVAR using 36h1.4, cold start from Aug 1 (36h13_arome_3dvar) and start from July 20 (36h13_arome_3dvar_wup), DENMARK domain</a>
+}}}
+   * ALARO, SCANDINAVIA_5.5 domain vs AROME (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_alaro_summer_201008" target="_blank"> ALARO with 3DVAR using 36h1.3 (36h13_alaro_3dvar), (36h13_arome_3dvar_edmfm) and 36h1.4 (36h14_alaro_3dvar), 20100801-20100831</a>
+}}}
+   * ALARO, SCANDINAVIA_5.5 domain domain with and without LMIXBC (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/smhi/HARMONIE_MONITOR/alaro_36h14_summer/" target="_blank"> ALARO with 3DVAR using 36h1.3 (validate36h13_alaro_3dvar), 36h1.4 (alaro_36h14) and 36h1.4 with LMIBXBC=yes (alaro_36h14_mixbc), 20100801-20100831</a>
+}}}
+
+
+
+ * Winter test
+   * AROME, DENMARK domain (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_winter_201001" target="_blank"> AROME with 3DVAR using 36h1.3 (36h13_arome_3dvar), 36h1.3 with 36h1 branch on Feb 22 with surface canopy drag and EDMFM (36h13_arome_3dvar_edmfm) and 36h1.4 (36h14_arome_3dvar), 20100101-20100131</a>
+}}}
+   * AROME, DENMARK domain, short and long spin-up (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_winter_warmup" target="_blank"> AROME with 3DVAR using 36h1.4, cold start from Jan 1 2010 (36h13_arome_3dvar) and start from Dec 20 2009 (36h13_arome_3dvar_wup), DENMARK domain</a>
+}}}
+   * ALARO, SCANDINAVIA_5.5 domain vs AROME (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_alaro_winter_201001" target="_blank"> ALARO with 3DVAR using 36h1.3 (36h13_alaro_3dvar), (36h13_arome_3dvar_edmfm) and 36h1.4 (36h14_alaro_3dvar), 20100101-20100131</a>
+}}}
+   * ALARO, SCANDINAVIA_5.5 domain with and without LMIXBC
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/smhi/HARMONIE_MONITOR/alaro_36h14_winter/" target="_blank"> ALARO with 3DVAR using 36h1.3 (validate36h13_alaro_3dvar), 36h1.4 (alaro_36h14) and 36h1.4 with LMIBXBC=yes (alaro_36h14_mixbc), 20100101-20100131</a>
+}}}
+   * AROME, FINLAND domain (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_winter_FIN_201001" target="_blank"> AROME with 3DVAR using 36h1.3 (36h13_arome_3dvar_FIN), and 36h1.4 (36h14_arome_3dvar_FIN), 20100101-20100131</a>
+}}}
+   * AROME, FINLAND domain, short and long spin-up (ongoing)
+{{{ 
+#!html 
+<a href="https://hirlam.org/portal/validation/36h1/36h14_winter_FIN_warmup" target="_blank"> AROME with 3DVAR using 36h1.4, cold start from Jan 1 2010 (36h13_winter_FIN_3dvar) and start from Dec 20 2009 (36h13_winter_FIN_wup), FINLAND domain</a>
+}}}
+
+
+=== Episode studies ===
+ * [http://www.dmi.dk/dmi/regnfuld_weekend_ramte_ved_siden_af 2010081421, "Copenhagen/North Zealand" case ]
+|| "northsea" domain, AROME blending || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081400.gif 081400 ] || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081406.gif 081406 ] ||[https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081412.gif  081412 ] || 
+|| "denmark" domain, AROME 3dvar, 36h1.3 || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081400.gif 081400 ] || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081406.gif 081406 ] ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081412.gif  081412 ] || 
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edkf || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar_c12010081400.gif 081400 ] || ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar_c12010081412.gif  081412 ] || 
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edmfm || [https://hirlam.org/portal/validation/36h1/case/arome_3dvar_edmfm2010081400.gif 081400 ] || ||[https://hirlam.org/portal/validation/36h1/case/arome_3dvar_edmfm2010081412.gif  081412 ] || 
+|| "denmark" domain, AROME 3dvar, 36h1.4, edmfm || [https://hirlam.org/portal/validation/36h1/case/arome_36h14_2010081400.gif 081400 ] || ||[https://hirlam.org/portal/validation/36h1/case/arome_36h14_2010081412.gif  081412 ] || 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.3 || [https://hirlam.org/portal/validation/36h1/case/alaro_3dvar2010081400.gif 081400 ] ||  ||[https://hirlam.org/portal/validation/36h1/case/alaro_3dvar2010081412.gif  081412 ] || 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.4 || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_2010081400.gif 081400 ] ||  ||[https://hirlam.org/portal/validation/36h1/case/alaro_36h14_2010081412.gif  081412 ] || 
+|| "scandinavia_5.5" domain, ALARO 3dvar, mixbc, 36h1.4 || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081400.gif 081400 ] ||  ||[https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081412.gif  081412 ] || 
+|| "scandinavia_5.5" domain, ALADIN 3dvar || [https://hirlam.org/portal/validation/36h1/case/aladin_5,52010081400.gif 081400 ] ||  ||[https://hirlam.org/portal/validation/36h1/case/aladin_5.52010081412.gif  081412 ] || 
+|| "scandinavia" domain, ALADIN 4dvar || [https://hirlam.org/portal/validation/36h1/case/4dvar2010081400.gif 081400 ] ||  ||[https://hirlam.org/portal/validation/36h1/case/4dvar2010081412.gif  081412 ] || 
+ * [http://www.dmi.dk/dmi/skybrud_pa_bornholm 2010081706, Bornholm "flashfloods " case ]
+|| "northsea" domain, AROME blending || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081606.gif 081606 ] || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081612.gif 081612 ] ||[https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081618.gif  081618 ] || 
+|| "denmark" domain, AROME 3dvar || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081606.gif 081606 ] || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081612.gif 081612 ] ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081618.gif  081618 ] ||
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edkf || ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar_c12010081612.gif  081612 ] || ||
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edmfm || ||[https://hirlam.org/portal/validation/36h1/case/arome_3dvar_edmfm2010081612.gif  081612 ] || ||
+|| "denmark" domain, AROME 3dvar, 36h1.4, edmfm || ||[https://hirlam.org/portal/validation/36h1/case/arome_36h14_2010081612.gif  081612 ] || ||
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.3 || || [https://hirlam.org/portal/validation/36h1/case/alaro_3dvar2010081612.gif 081612 ] || || 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.4 || || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081612.gif 081612 ] || || 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.4 mixbc || || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081612.gif 081612 ] || || 
+|| "scandinavia_5.5" domain, ALADIN 3dvar || || [https://hirlam.org/portal/validation/36h1/case/aladin_5.52010081612.gif 081612 ] || || 
+|| "scandinavia" domain, ALADIN 4dvar || || [https://hirlam.org/portal/validation/36h1/case/4dvar2010081612.gif 081612 ] || || 
+ * [http://www.dmi.dk/dmi/voldsom_regn_i_billund 2010081809, "Billund" case ]
+|| "northsea" domain, AROME blending || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081712.gif 081712 ] || [https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081718.gif 081718 ] ||[https://hirlam.org/portal/validation/36h1/case/NORTHSEA2010081800.gif  081800 ] || 
+|| "denmark" domain, AROME 3dvar || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar20100811712.gif 081712 ] || [https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081718.gif 081718 ] ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar2010081800.gif  081800 ] ||  
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edkf ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar_c12010081712.gif  081712 ] || ||[https://hirlam.org/portal/validation/36h1/case/arome36_3dvar_c12010081800.gif  081800 ] ||
+|| "denmark" domain, AROME 3dvar, 36h1.3+, edmfm || [https://hirlam.org/portal/validation/36h1/case/arome_3dvar_edmfm2010081712.gif  081712 ] || ||  [https://hirlam.org/portal/validation/36h1/case/arome_3dvar_edmfm2010081800.gif  081800 ] ||
+|| "denmark" domain, AROME 3dvar, 36h1.4, edmfm || [https://hirlam.org/portal/validation/36h1/case/arome_36h14_2010081712.gif  081712 ] || ||  [https://hirlam.org/portal/validation/36h1/case/arome_36h14_2010081800.gif  081800 ] ||
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.3 ||[https://hirlam.org/portal/validation/36h1/case/alaro_3dvar2010081712.gif 081712 ] ||  || [https://hirlam.org/portal/validation/36h1/case/alaro_3dvar2010081800.gif 081800 ]|| 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.4 ||[https://hirlam.org/portal/validation/36h1/case/alaro_36h14_2010081712.gif 081712 ] ||  || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_2010081800.gif 081800 ]|| 
+|| "scandinavia_5.5" domain, ALARO 3dvar, 36h1.4 mixbc ||[https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081712.gif 081712 ] ||  || [https://hirlam.org/portal/validation/36h1/case/alaro_36h14_mixbc_2010081800.gif 081800 ]|| 
+|| "scandinavia_5.5" domain, ALADIN 3dvar ||[https://hirlam.org/portal/validation/36h1/case/aladin_5.52010081712.gif 081712 ] ||  || [https://hirlam.org/portal/validation/36h1/case/aladin_5.52010081800.gif 081800 ]|| 
+|| "scandinavia" domain, ALADIN 4dvar ||[https://hirlam.org/portal/validation/36h1/case/4dvar2010081712.gif 081712 ] ||  || [https://hirlam.org/portal/validation/36h1/case/4dvar2010081800.gif 081800 ]|| 
+
+=== '''Headlines of main validation conclusions about 36h1.3''' ===
+  * ''AROME produces forecasts with comparable skill to those of operational HIRLAM at 3-5 km resolution; AROME forecast is seen to be capable to forecast extreme summer precipitation cases''
+  * ''ALADIN runs produce forecasts of basic parameters with comparable skill to those of operational HIRLAM at 5 to 10 km range''
+  * ''AROME and ALARO suffers deficiency in forecast of cold Nordic winter temperature''
+  * ''AROME forecast in 36h1.3 suffers excessive surface wind bias. This can be effectively eliminated through activation of CANOPY_DRAG switch in surfex''
+  * ''In AROME runs, a clear benefit of surface data assimilation is shown compared to 'dynamic downscaling' case. 3D-VAR results in improved initial fit but the benefit disappear along forecast length. Tuning needed''
+  * ''In ALARO, 3D-VAR has negative impact on surface humidity and related forecasts''
+  * ''After correction on some settings in 36h1.3 about observation data usage, ALADIN-4DVAR provides comparable scores to that of 3D-VAR''
+== Reference: 36h1.3 and recent HARMONIE working weeks ==
+ [wiki:ReleaseNotes36h1.3 Release notes for 36h1.3, Dec 29 2010]
+ * [wiki:HarmonieWorkingWeek/4DVAR201011 HARMONIE System Working Week ], 22 -26 Nov 2010, Norrköping
+ * [wiki:HarmonieWorkingWeek/System201011 HARMONIE System Working Week], 29 Nov - 3 Dec 2010, Copenhagen

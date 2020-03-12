@@ -1,0 +1,162 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 32h3''' ==
+(Tagged on Dec 20 2007)
+[[Center(end)]]
+
+== Highlights of Harmonie 32h3 ==
+HARMONIE is the acronym for Hirlam's meso-scale forecast system (Hirlam Aladin Regional/Meso-scale Operational NWP In Europe). The HARMONIE system is the product of the HIRLAM-ALADIN joint project HARMONIE: Hirlam-Aladin Research towards Meso-scale Operational NWP in Europe.
+
+Harmonie 32h3 features the first installation of the HIRLAM Supervision and Monitoring System, commonly known as [wiki:HirlamSystemDocumentation/scripts/Scripts mini-SMS script system]. Although still incomplete, the Harmonie 32h3 script system now enables Hirlam developers to use their familiar script tool/interface to configure, build and run experiments, e.g., to
+ * build main source and utilities using reference installation
+ * syncronise local modifications of source codes and scripts with reference
+ * define experiment characteristics such as 
+  * configuration of model domain and resolution
+  * coupling scheme
+  * dynamics
+  * physics
+ * generate climate data
+ * prepare initial and lateral boundaries using host model data
+ * prepare experiment namelists
+ * perform forecasts using ALADIN or AROME models with hydrostatic or nonhydrostatic dynamics with various physics packages including that of 
+  * ALADIN
+  * AROME
+  * ALARO
+  * HIRLAM
+ * post-processing forecast data
+ * observation verification 
+
+The source codes of the model version are based mainly on ARPEGE/IFS system Cycle 32t3, including some of HIRLAM's local modifications, scripts and utilities. Compared to 32h2, the system 32h3 features 
+ * Further changes for the Arpège/SURFEX interface
+ * Use PBL fields directly from input file (possibly computed by SURFEX previously) –under logical key
+ * Corrections for ALARO0 physics to match the operational version at CHMI
+ * New treatment of surface emissivity for microwave radiances over land
+ * Adapt DDH for 3MT and prognostic microphysics
+ * Bugfixes for CANARI OI scheme
+ * Optimisation of SL/AD code
+ * Screening of radar radial winds made available within Arpège/IFS software
+ * Adapt code for the assimilation of relative humidity retrievals from the 1D Bayesian inversion of reflectivities
+ * Further cleanings in dynamics; setup for VFE-NH code
+ * NEC optimisation features for AROME
+ * Protections against too aggressive optimisation by NEC compiler
+
+== Harmonie-32h3 source code downloads ==
+
+ * On ECMWF, export version (the checkout of the source code with Subversion export command) of the harmonie-32h3 is available on,
+{{{
+   ecgate:/home/ms/dk/nhz/harmonie_release/32h3  # on ecgate
+   hpce:/ms_perm/hirlam/harmonie_release/32h3    # on hpce
+}}}
+ * harmonie-32h3 release can also be obtained via Subversion command, (At ECMWF, the svn client is available on ecgate but not on HPCE)
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-32h3
+}}}
+ * The export tarball of the harmonie-32h3 is available on ECMWF:ecgate as /scratch/ms/dk/nhz/harmonie-32h3.tar.gz, or on ECFS: ec:/hirlam/src/tar/harmonie-32h3.tar.gz
+
+== Setting up and performing experiments with Harmonie-32h3 ==
+
+=== HARMONIE ROOTPACK and reference installation on ECMWF-HPCE ===
+
+Comparing to a typical synoptic-HIRLAM system, the Harmonie system takes substantially longer time to build from scratch. On ECMWF HPCE platform, e.g., a standard build of the full harmonie-32h3 system takes more than 2 hours. Thus it is practical to split a typical system build into two parts, one to build "rootpack", i.e, a full reference system build, and another to build "target pack", the latter to use the pre-built objects in ROOTPACK to build user-tailored system. The Harmonie mSMS has been constructed to allow various build (and run) options:
+ * Installation of rootpack
+ * Build of target pack and utility + running an experiment (climate generation, forecast, post-processing etc.)
+ * Build of utility only + running an experiment 
+ * No build (assuming build is already done), running an experiment  
+
+For the HIRLAM reference platform, --- ECMWF HPCE ---, a ROOTPACK, which installs and builds the complete HARMONIE-32h3 source, has been built, as part of the Harmonie-32h3 release. As specified in [source:tags/harmonie-32h3/config-sh/config.hpce Env_system], the installed rootpack for Harmonie-32h3 is located at
+{{{
+    HPCE:  /ms_perm/hirlam/harmonie/pack/32h3
+}}}
+and available to all registered HIRLAM/HIRALD users on ECMWF platform.
+
+=== Build HARMONIE ROOTPACK on non-ECMWF platform ===
+
+If you work on ECMWF HPCE platform, please skip this step and proceed to the next section, unless you want to learn building your personal copy of HARMONIE ROOTPACK.
+
+If this is the first time you try Harmonie on your local platform, you are advised to go through some of the [wiki:HarmonieSystemDocumentation/LocalInstall32 instructions] for preparation of some basic tools/software and data.
+
+For build of the Harmonie-32h3 rootpack using mSMS system on a local platform, following steps are involved  
+ 1. Download Harmonie-32h3 source as described above
+ 1. Identify the local computer platform/architecture in one of the config files under config-sh (and if nonexisting, construct a new config.YOURHOST definition file following example of, e.g. the file [source:tags/harmonie-32h3/config-sh/config.hpce config.hpce]). Correct specification of a few important optional settings in this file is essential:
+{{{
+ COMPCENTRE       # e.g., local, shall be something else than ECMWF for non-HPCE platform
+ HM_DATA          # where you run your experiments and keep your "local" binaries
+ ROOTPACK         # where you refer/put your rootpack installations
+ HARMONIE_CONFIG  # identifies your configuration
+}}}
+ 1. Identify your submit file in config-sh or write a new submit.YOURHOST file. This file defines how you submit your jobs in your local batch system. Any job that is not defined in the @scalar_list, for scalar jobs, or @par_list, for parallel jobs, is by definition executed as a background job. [source:trunk/harmonie/config-sh/submit.fmisms submit.fmisms] is a good example to start from.
+ 1. Identify your system for gmkpack in:
+{{{
+        util/gmkpack/arch/YOURMACHINE.HARMONIE_CONFIG
+}}}
+ 1. To start the build, create an experiment directory under $HOME/hm_home and run
+{{{
+   PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -d YOURHOST  # Note the options "-r" and "-d" differ from those used 
+                                                                              # in the script Hirlam for synoptic-scale Hirlam                                                                             
+}}}
+   * The above command creates the following files/directories under
+{{{
+   config-sh/hm_rev                         # gives the path to the reference installation, similar to hl_rev in synoptic-Hirlam
+   config-sh/Main                           # a script to enable start Harmonie, similar to Start in synoptic-Hirlam
+   Env_system -> config-sh/config.YOURHOST  # describing your system, similar to Env_system in synoptic-Hirlam
+   Env_submit -> config-sh/submit.YOURHOST  # describing your submit commands, comparable to submission.db in synoptic-Hirlam
+   sms/config_exp.h                         # defines your experiment, comparable to Env_expdesc in synoptic-Hirlam
+}}}
+ 1. In sms/config_exp.h you may identify and modify, if necessary, the following options for the compilation utility "gmkpack"
+{{{
+# Build libraries and binaries
+REVISION=32h3
+BRANCH=main
+VERSION=01
+OPTION=x
+PROGRAM=aromodb
+}}}
+ 1. Start the compilation, which, if successful, will install the reference Harmonie-32h3 on the specified ROOTPACK directory:
+{{{
+      PATH_TO_HARMONIE/config-sh/Harmonie start DTG=2007110800 PLAYFILE=Install_rootpack
+}}}
+Users may also consult [wiki:HarmonieSystemDocumentation/Harmonie-mSMS the wiki link about mSMS] for more details or updates.
+=== Building HARMONIE local (target) pack and configure experiment ===
+Following the practice in the synoptic Hirlam mSMS, the configuration of an HARMONIE experiment with mSMS also involves a step to install and build the complete model system, --- local "target pack" ---, which may optionally contains various local modification on top of the reference system. With a reference ROOTPACK built/existing, it can be referenced conveniently in building of such a target pack, which syncronise local source modifications against that of the reference. Since the ROOTPACK contains pre-compiled objects, the building of local pack become rather efficient, typically within minutes. 
+
+Using mSMS, the process of configuring an experiment including build of a target pack is somewhat similar to the process of installing rootpack.   
+ 1. Create an experiment directory under $HOME/hm_home and run the setup
+{{{
+   mkdir $EXPNAME
+   cd $EXPNAME
+   PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -d YOURHOST
+}}}
+ 1. If applicable, put your local source or script changes, which are different but consistent with the reference version as installed in the ROOTPACK, into the current $HOME/hm_home/$EXPNAME directory, using exactly the same subdirectory structure as in the reference
+ 1. Edit basic configuration files such as [source:trunk/harmonie/config-sh/config.hpce Env_system -> config-sh/config.YOURHOST] and [source:trunk/harmonie/sms/config_exp.h sms/config_exp.h] to configure your experiment scenarios. Make sure the location of ROOTPACK is specified correctly in Env_system. Modify specifications for model versions (ALADIN, AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc.
+ 1. Launch the experiment
+{{{
+      PATH_TO_HARMONIE/config-sh/Harmonie start DTG=YYYYMMDDHH DTGEND=YYYYMMDDHH
+}}}
+If successful, mSMS will identify your experiment name, launch mXcdp and start build and run. If not, you need to examine the mSMS log file $HM_DATA/mSMS.log. $HM_DATA is defined in your Env_system file
+
+The working directory of your experiment is under HM_DATA which, on HPCE, shall be something like {{{ $TEMP/hm_home/$EXPNAME }}}. Under this directory you will find :
+
+   * All binaries under bin
+   * Model libraries, object files and source code under gmkpack_build
+   * Scripts, config files, sms and msms definitions under lib/
+   * Utilities such as gmkpack, gl and verification under lib/util
+   * Climate files under climate
+   * Archived files under archive
+   * Working directory for the current cycle under YYYYMMDD_HH
+   * Verification working directory under verification
+   * Log files under $EXPNAME. All logfiles are also archived in archive
+
+== Technical aspects ==
+=== Tested model version, domains, components and computer architecture ===
+
+== Acknowledgement ==
+
+Ulf Andrae, SMHI, has been the main architect behind the Harmonie mini-SMS script system. Contributions from Sami Niemela, Toon Moene, Ole Vignes, Gerard Cats, Tomas Wilhelmsson and Xiaohua Yang are acknowledged.
+
+== References and documentation ==
+ * Yessad, K., 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article29 Basics about ARPEGE/IFS, ALADIN and AROME in the cycle 32T2 of ARPEGE/IFS]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

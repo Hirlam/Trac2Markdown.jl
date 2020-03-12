@@ -1,0 +1,247 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Oslo, 25th -  29th  November 2019''
+
+Last modified [[LastModified]]
+
+
+
+[[Center(end)]]
+
+=== Hard Working and beers ===
+
+[[Image(IMG_8155.jpg, 30%)]] [[Image(IMG_8184.jpg, 30%)]]
+
+=== Met.no  ===
+
+[[Image(A18F2F58-81FC-468E-BE25-5D8A91577243.jpg, 25%)]] [[Image(D47C2D6F-692C-47B9-958D-B89C7BCE5144.jpg, 30%)]]
+ 
+=== Oslo nights ===
+
+[[Image(CA4607BA-217F-4394-8FCB-9F70391D0956.jpg , 30%)]] [[Image(C70C0CD9-E188-4A19-A153-F9C0DE44FB0E.jpg, 30%)]]
+
+              
+== Practical ==
+ 
+The meeting will be in Met.No premises, Tallhall (meet and register in main building)[[BR]]
+Map: [https://www.google.no/maps/place/Meteorologisk+institutt/@59.9426757,10.7184724,17z/data=!4m5!3m4!1s0x46416de66f796f53:0x62f6d2aec00d71b!8m2!3d59.9426757!4d10.7206611]
+
+=== Participants ===
+||= Name              =||= Institute =||= ARR - DEP =||= Hotel                      =||
+||Daniel Santos        ||AEMET        ||Sunday - Friday     || First Hotel Millennium||
+||Ole Vignes           ||MET Norway   ||Monday - Friday     ||       ||
+||Trygve Aspelien      ||MET Norway   ||Monday - Thursday   || will attend when having time   ||
+||Eoin Whelan          ||Met Éireann  ||Monday (afternoon) - Thursday    ||First Hotel Millennium  ||
+||Ulf Andrae           ||SMHI         ||Monday (late afternoon) - Friday || First Hotel Millennium ||
+||Kai Sattler          ||DMI          ||Tuesday (lunch) - Friday || Thon hotel Nunch ||
+||Roel Stappers        ||MET Norway    ||Monday - Friday ||   ||
+||Bert van Ulft        ||KNMI         ||Monday (afternoon) - Friday ||Saga Hotel Oslo ||
+||Toon Moene           ||KNMI         ||Monday (afternoon) - Friday ||Saga Hotel Oslo ||
+||Vanda Costa     || IPMA        ||Sunday - Friday     ||First Hotel Millennium||
+||Niko Sokka           ||FMI         ||Monday (afternoon) - Friday ||Soria Moria, Oslo ||
+||Xavier Yepes         ||BSC          ||Monday (night) - Wednesday (noon)  ||Citybox Oslo ||
+
+
+== Agenda ==
+
+
+==== Monday ====
+
+Morning: Drop In
+
+Afternoon: Informal discussions, brain storming and status review from actions of June meeting: [wiki:Meetings/System/System201906#SystemTasks System201906#SystemTasks]
+
+Late Afteernoon - Subhourly cycling adaptations and blacklisting strategy - Roger, Ole 
+
+==== Tuesday ====
+
+9:00 - 10:30 cmake build for Harmonie and discussion [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/presentation-cmake.pdf slides] - Yurii, [raw-attachment:eoinWhelan_SYS201911.pdf Eoin], Daniel
+
+10:30 -11:00  BSC profiling status and future [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/Harmonie_performance_analyis_update_status.pdf slides] - Xavier Yepes
+
+11:00 - 12:00 - Practical session with Paraver tool with Harmonie traces (1st Part) [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/paraver_harmonie_hands-on_document.pdf pdf] - Xavier Yepes 
+
+12:00 - 13:00 Lunch break
+
+13:00 - 14:00  Practical session with Paraver tool with Harmonie traces (2nd Part) [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/paraver_harmonie_hands-on_document.pdf pdf] - Xavier Yepes 
+
+14:00- 18 :00 - Work on cycle 46t1_bf.02 phasing [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02 Phasing information ]
+
+==== Wednesday ====
+
+9:00 - 10:00 - Summary of MF stay on OOPS unit tests in Olive/Vortex -Roel 
+
+10:00 - 11:00 - Use of TOML and JSON-schema for Harmonie configuration [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/Harmonie_script.pdf slides] - Roel
+
+11:00 - 12:00 -   A python framework for running offline and inline SURFEX tasks  [https://docs.google.com/presentation/d/15lQAyZ0TYIGkqrbAVPVK08qDT2E3GxAB4t_lIc-31vw slides]- Trygve
+
+   - TITAN/GRIDPP portability [https://docs.google.com/presentation/d/1nMQHujEa0nB9_I5QjtuAqH27EpAL2RitKJHsba_gJqo slides]
+
+12:30 - 13:00 Lunch break
+
+13:00 - 14:00 - - Discussion about cy43 status, documentation and future cycles strategy and single precision test over Canary Islands [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/singleprecision.pdf Alvaro slides]  
+
+14:00- 18 :00 - Work on cycle 46t1_bf.02 phasing [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02 Phasing information ]
+
+
+==== Thursday ====
+
+9:00 - 10:00  - MetCoOp regular meeting
+
+10:00- 12:00 -  GIT users webinar [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/SourceCodeRepositoryTutorial/FeatureDevelopment Harmonie git repository tutorial - feature development ]
+
+12:00 - 13:00 Lunch break
+
+13:00- 18 :00 - Work on cycle 46t1_bf.02 phasing [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02 Phasing information ]
+
+
+==== Friday ====
+
+9:00- 12:00 - Work on cycle 46t1_bf.02 phasing [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/PhasingWithGit/Cycle46t1_bf.02 Phasing information ]
+
+12:00 - 13:00 - Lunch break
+
+13:00 - 14:00 Wrapup 
+ == 2020 System Team Priorities ==
+
+1.- cy48 phasing - '''deadline Sept/Oct 2020'''
+       -  Work on pre-cy46h1 to prepare contributions - 
+             - Run Mitraillette at ECMWF as sanity check pre-cy46h1 vs cy46T1.bf02  '''ASAP'''
+             - Run with MF namelist 
+             - Declare release-46h1.alpha.1
+       - Elaborate the list of posible phasing contributions and start the interaction with MF with Roger participation- '''Spring 2020'''
+ 
+2.- Changes on compilation and placement in ECMWF for cy43h2.1 - '''before initiation of the running tests for harmon-43h2.1 in Jan-Feb'''
+        - Transfer the FMI settings - Niko
+        - Transfer BSC findings
+
+3.- Single Precision - ''' Xmas present 2019 '''
+     - Testing swithing of radiation and other physic parametrization to analize the PMSL BIAS
+     - Technical job to compile in sp and dp (intel compiler) 
+               ''' Check fix on cy46 on micro physics from Yann Seity'''
+
+4.- Work on cy43h2.2 - '''End 2020''''
+         - Include 4DVar code
+        - ISBA mods from SURFEX
+        - Technical : cmake and configuration based on JSON/TOML/YAML   
+
+5.- Sub hourly output and sub-hourly cycling 
+        - Technical work is needed
+
+
+
+ == System Tasks ==
+ 
+  * Sub hourly cycling - Ole, Ulf
+      - Minutes in mandtg 
+      - Family hours in tdf and also  HH … => enumerate  :
+              - 30 min 20 min 15 min  10 min => Hour loop and minute inside but if we allow more variety more changes => HH_LIST  MM_LIST  ( Divisible by 60 )
+              - 45 min cycling => less HPC cost more script complexity 
+      - File names must changes  
+      - Introduce by a branch
+      - Codify in hour min sec in FA files '''Available in cy43T'''
+      - Old syntax in hours is maintained, Cy 43 -  6h window hardcoded   Env Varible (penalization for  this cycle)     cy40 -  3h window   - Eoin
+      - Sub hourly LBC from AROME into AROME through FULL POS - Ulf  '''Available in cy43T'''
+
+  * Blacklisting - Roger
+       - Blacklisting file = Hirlam_external (header definition )+ Data selection + update monthly 
+       - Operational change hirlam_blacklist.b_monthly_recent needs to be compiled offline (Draw backs) 
+       -  Monthly task at ecFlow to compile in operations
+       - Monthly is global 
+       - Common procedure to update the local blaklisting 
+       -  HR simulation impact, some obs can be bl from ECMWF that could be useful in HR
+       - Long runs in the past is fixed  hirlam_blacklist.B 
+       - Documentation 
+       - Gen_hirlam_blacklist script from Ulf – Cating all files =>  Can Too long list create memory problems? => -O0 to compile !!!!
+       - Local blacklist : where to touch ? LISTE_NOIRE.DIAP is only use for surfex, hirlam_blacklist.b.data_select includes satelite. Mon_black$DATE.b is touched every month by ecmwf BEST créate a PROTOTYPE Mon_black$DOMAIN.b   based on ECMWF but take care DOAMAIN changes. 
+       - (Ole) in check_options.pl and (Eoin) in bartor
+       - ABORT  if LISTE_LOC.$DOMAIN is not present
+       - WARNING if  Mon_black$DOMAIN.b is not present
+
+
+  * Analysis only ODB archiving - Ulf
+
+  * cmake and ecBuild - '''Eoin & Yurii'''
+      - ecbuild replaced IFS build system in CY45R2  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/PreSAC_2018_Kral.pdf]
+      - Target bulding system for cy46 and backport to cy43 
+      - Grant Yurii's access to cmake setup from IFS repo to check how it is done
+      - Possible strategy is to copy ECMWF cmake setup and use it. It is not present on MF arpifs git mirror - '''Daniel discussed with ECMWF Olivier Masden'''
+      - If finally we follow this strategy, communicate it to the partners.
+      - Ask Mike about the possibility to access ifs repo - Daniel - '''DONE'''
+ 
+
+* IASI problems - Roger & Met.no team
+      - Use namelist in defrun in the same way that is done in bator script  ROERR_RAD1C not hardcoded on ../src/arpifs/obs_preproc  and 2.00_JPRR by default  
+
+* BSC code profiling and training session on palaver:
+      - [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/Harmonie%20performance%20analyis_%20update%20status.pdf Harmonie performance anlysis]
+      - [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/paraver_harmonie_hands-on_document.pdf Paraver practical session]
+      - Benefits of vectorization is under investigation
+      - Unbalance on mpi due to extension zone treatment 
+      - Update reference placement and compilation at CCA following BSC recomendations 
+      - Check if FMI optimization options works for CCA - Niko
+      - Possible objetive for 2nd Phase a good compilation and placement at Bologna.
+      - Possible next practical exercise cy40 vs cy43 profiling
+      - DR HOOK profiling  cy40 vs cy43 profiling - Ulf & Ole
+      - Periodic automatic profiling graphs generation 
+
+*  pre46h1 version
+       - Split the job in the 156 remaing conflicts  in dmm 
+       - Cmake compilation – Eoin & Yurii
+       - Makeup  
+            - 1st pre-CY46h1
+            - 2nd 46t1_bf.02 - Daniel
+       - Mitraillette – Niko 
+       - Full namelist from MF investigation.
+
+*  Olive and new config JASON/TOML/YAML- Roel - https://hirlam.org/trac/attachment/wiki/Meetings/System/System201911/Harmonie_script.pdf slides]
+       - Separation config data and scripts
+       - In the same repo but in different  directory
+       - EPS is not included yet, request dynamical growing of the options
+
+* Offline surfex based on JSON, wrappers and python [https://docs.google.com/presentation/d/15lQAyZ0TYIGkqrbAVPVK08qDT2E3GxAB4t_lIc-31vw slides]
+
+* TITAN/ GRID PP portability and computational efficiency [https://docs.google.com/presentation/d/1nMQHujEa0nB9_I5QjtuAqH27EpAL2RitKJHsba_gJqo slides]
+       - TITAN is based in R script that calls C++ code for spatial consistency checks
+       - Evolution of TITAN:  all consistency test in C++ called by command line in Python or CPP or R
+       - GRIDPP c++  and single member OI  and ensemble OI
+       - Evolution of GRIDPP: Single member as base and command line in python
+
+* Spring System WW [https://doodle.com/poll/y2iq75wk9rx2tvg4 doodle ]
+
+* Harmonie Training  [https://doodle.com/poll/x4g7iiggp6mupa2tdoodle]
+
+== Profiling & Reproducibility ==
+
+Forecast model profiling
+
+||= CY        =||= Platform =||= Compiler =||= Domain   =||= nprocx nprocy threads =||= Timing =||= Comment =||
+|| 43h2        || cca        || gnu 7.3    || METCOOP25B || 15x19x1                 || 7152s    || +48h, output every hour ||
+|| 43h2        || cca        || gnu 7.3    || METCOOP25B || 15x19x1                 || 6561s    || +48h, one single output ||
+|| 40h111      || cca        || gnu 5.3    || METCOOP25B || 15x19x1                 || 7579s    || +48h, output every hour || 
+|| 40h111      || cca        || gnu 5.3    || METCOOP25B || 15x19x1                 || 6815s    || +48h, one single output ||
+|| 40h111      || cirrus     || intel 18.0.1 || METCOOP25D || 16x41x4               || 2319s    || +66h, operational output || 
+|| 43h2        || cirrus     || intel 18.0.1 || METCOOP25D || 32x41x1               || 1990s    || +60h, operational output || 
+
+From the numbers above we see that 43h2 is ~5% faster than 40h111. 
+
+Forecast model reproducibility
+
+||= Platform =||= Compiler =||= Domain   =||= nprocx nprocy threads =||= Comment =||
+|| stratus    || intel 18   || METCOOP25D || 32x41x1                 || "ref" ||
+|| stratus    || intel 18   || METCOOP25D || 16x82x1                 || differs with 32x41x1 ||
+|| stratus    || intel 18   || METCOOP25D || 16x82x2                 || reproduces 16x82x1 if KMP_DETERMINISTIC_REDUCTION=1, MKL_CWBR=COMPATIBLE ||
+|| cca        || gnu 7.3    || DKCOEXP    || 13x22x1                 ||  ref_DKCOEXP || 
+|| cca        || gnu 7.3    || DKCOEXP    || 15x19x1                 ||  reproduces ref_DKCOEXP || 
+|| cca        || gnu 7.3    || DKCOEXP    || 11x13x2                 ||  reproduces ref_DKCOEXP || 
+|| cca        || gnu 7.3    || DKCOEXP    || 12x14x4                 ||  reproduces ref_DKCOEXP || 
+|| cca        || gnu 7.3    || METCOOP25B || 15x19x1                 || ref ||
+|| cca        || gnu 7.3    || METCOOP25B || 15x19x2                 || reproduces ref METCOOP25B ||
+|| cca        || gnu 7.3    || METCOOP25B || 11x16x2                 || reproduces ref METCOOP25B ||
+
+Thus the model seems to be reproducible under mpi/OpenMP changes.
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

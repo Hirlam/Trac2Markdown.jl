@@ -1,0 +1,157 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''DMI, 14th - 17th of June 2011''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Participation, period and location ==
+Participants are,
+ * DMI:     Xiaohua Yang, Mats Dahlbom, Bjarne Stig Andersen, ( Kai Sattler )
+ * KNMI:    Toon Moene 
+ * met.no:  Ole Vignes, Trygve Aspelien
+ * SMHI:    Ulf Andrae 
+Locations at DMI,
+ * Tuesday 14/6, 10-13,  7. Himmel - Østbygning, 3. sal, 13-17, Daneborg, Sydbygning kælderen
+ * Wednsday 15/6, HIRLAM 
+ * Thursday 16/6, Millibaren, Sydbygningen, 2. sal
+ * Friday 17/6, Millibaren, Sydbygningen, 2.sal
+
+== Objectives ==
+
+The main goal for the practical part of this working week is to prepare for tagging of cy36h1.4 and get cy37t1 running. We also need to discuss a number of general issues as listed below.
+
+== Discussion on general issues ==
+
+- Helpdesk and on-duty team, Xiaohua
+  * The On-duty activity was launched in March and has since carried through many useful work in regular monitoring activities and in user support. The activity also helped to push more community-wide communication from mailing list to forum. The on-duty shift is arrnaged on a volunteer basis but in principle all member services are obligated to contribute with manpower, the manpower contribution there is billed to HIRLAM-B research programme.
+  * For the monitoring activity concerning operational suites and GLAMEPS, the regular check lists have been made in the wiki pages. The task here is mainly monitor and report anomaly, not to solve problems on ones own. In the future, we hope to see more documentation from the monitoring activities. 
+
+- GRIB2 experiences, Toon
+
+- HARMEPS, Ole
+ * [attachment:harmeps_ww.ppt ppt]
+
+- cy37t1 phasing, Toon/Ulf
+ * On site experinces
+ * Remote phasing experiences
+ * Future working methods, upstream coordination
+
+- HIRLAM questions, Xiaohua
+ * remaining technical issues with trunk toward 7.4beta1
+   * proper entry of lake parameters at LSMIX. Currently the lake/snow problem is seen in nordic area from the trunk runs  '''SOLVED'''
+   * update of new reference domain definition '''COMPLETE'''
+   * 32 bits vs 64 bits in connection with surface wind noise at high resolution? to be verified on different platform/domain tests later.
+   * HGS server. reproducibility to be checked.
+
+- GLAMEPS status, problems, experiences (Kai,Xiaohua)
+   * SMS scripting, validation
+
+- How to do efficient profiling (Ulf)
+
+== cy36h1 tasks ==
+
+ * Define test periods and default options and distribute work (Xiahoua, Ulf)
+   * test around new features (EDMFM, snow analysis, ATOVS data entry ...)
+   * period of 201001 and 201008 for DENMARK (AROME) and SCANDINAVIA_5.5 (ALARO) '''ONGOING'''
+   * similar for FINLAND on AROME domain (Sami N.)
+
+ * ECPHY option
+   * Port Marianos changes from cy35 to cy36. (Xiaohua,Ulf) '''ONGOING'''
+
+ * Run HARMONIE from HIRLAM 7.3
+   
+   gl can not handle the new surface field structure introduced with newsnow. This is a clear bug, the question of urgency is dependent on to what extent HARMONIE is forced with HIRLAM data operationally. Investigate urgency first (Ulf)
+
+ * Clarify which BDSTRATEGY to be used in an operational environment ( rename operational-> as_operational ) in sms/config_exp.h and in a Blog post. Fixed in [9451] '''COMPLETE'''
+
+ * Update gl in 36h1 to the level of the trunk ( excluding Trygves changes since this creates a netcdf dependency? ) (Ulf) '''COMPLETE'''
+
+ * Update monitor in 36h1 to the level of the trunk (Ulf) '''COMPLETE'''
+
+ * Solve #64, postprocessing problem related to extension zone. (Ulf) '''COMPLETE'''
+ 
+ * Redesign of listener to avoid orphan background jobs, #52. '''COMPLETE'''
+  * Fixed in [9459]
+
+ * Test the new ECFS client, #65 (Ulf) '''COMPLETE'''
+  * ECFS returns warnings. ECMWF notified and will check. No further action from our side.
+
+ * Is satellite data working properly on c1a? (Mats,Xiaohua) '''COMPLETE'''
+  * Yes for MARS ATOVS data except for NOAA-19 MHS data after latest update
+  * Not yet for ATOVS data exported from DMI (got filtered out at BATODB).
+  * AMV data problem in !RunScreening
+
+ * HarmonEPS structure (Ole) '''COMPLETE'''
+
+ * Tag 36h1.4 (Ulf) '''COMPLETE'''
+
+
+ * '''Any other problem in cy36h1?'''
+
+== cy37t1 tasks ==
+
+ * Gather, explain and introduce new namelists (Toon,Trygve)
+   * Determine differences between 36t1 and 37, and subsequently between 37 and 37t1 mitraillette 
+     namelists (including file name changes) (Toon) '''DONE'''
+   * Do we need to restructure harmonie_namelists.pm (as suggested by Trygve)?
+
+ * Solved #66 (Ulf) '''COMPLETE'''
+ * Build cy37t1 on as many platform as possible (Everyone)
+
+ * Go through the different testbed configurations
+
+ * Rerun ALL mitraillette configurations for the vendor branch and our trunk and verify the differences (Mats)
+    * Trunk results
+       * job_an1p_e001_nhsad_d4_sl2_rdbbc_pcc fails
+       * job_an1p_e001_nhsad_d4_sl2_gwadv_pcc fails
+    * Vendor results
+
+ * Create a changeset with bugfixes to be sent to MF (Ole, Toon). '''DONE'''
+
+ * Fix #75
+
+ * Make sure all testbed configurations run properly
+
+ * Port applicable changes from harmonie-36h1 to the trunk
+  
+ * Tag 37h1.alpha1 (Ulf)
+
+
+ === Outstanding tasks from previous working weeks ===
+
+     * Currently users on ECMWF platform needs to fiddle with resource requests in Env_submit in order to run their own configurations. Note that 3DVAR screening and minimisation appear to require large memory, thus many nodes. On [wiki:Harmonie_36h1#SamplecomputationalcostsforrunningHARMONIE-36h1 wiki page about 36h1], some sample information have been given to illustrate technical information for successful runs
+       * Try 3D-FGAT and memory consumption is reduced as observations are fetched in timeslots
+     * '''ACTIONS (Ole, Ulf, Xiaohua)'''
+       * Gather relevant data form different runs and see some empirical relations can be designed
+
+   * Streamlining of GRIB parameter-translation problems, 
+     * In first go, examine what's currently applied in GL
+     * '''ACTIONS (Toon, Ulf, Laura)'''
+       * Bring this up in the coming interoperability meeting at ECMWF to see what general recommendations can be made in GRIB-II framework 
+       * Try to avoid conflict between HARMONIE and HIRLAM parameter definitions; A discussion about conventions shall be done within a few months
+
+   * extension of configuration domain options '''COMPLETE'''
+     * add MF ALADIN and AROME domains; Add LACE option ( domain already in sms/config_exp.h). These will enable easier comparisons/sanity check about HARMONIE configurations in comparison to other centers
+     * '''ACTIONS (Ole)''',
+       * MF and LACE will be contacted
+
+   * Add variables like Tmax/Tmin from HARMONIE
+     * T2m (max, min) is to be looked at later. Need further enhancement of fldextr and monitor.
+
+   * Port RUNNING_MODE=operational from SMHI branch. Check how it works for SURFEX (not tested yet) (Ulf) 
+     * Obsolete by [9404]
+
+== Summary ==
+ 
+ * 36h1.4 was tagged on the 13th of July
+ 
+ * HarmonEPS
+  * First version of HarmonEPS script system completed and tested during working week.
+  * Since model level data from ECMWF EPS are not available in MARS, the only option so far is to run with Martin Leutbecher's test data for 2010070812.
+  * Changes are not committed at end of WW, as not all necessary tests are completed (e.g. to check that the modified scripts still work in deterministic mode).
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

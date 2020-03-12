@@ -1,0 +1,148 @@
+[[PageOutline]]
+[[Center(begin)]]
+= ''' The HARMONIE OOPS/C++ Working Meeting ''' =
+''KNMI, 1 - 3 September 2014''
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Participants =
+||MET NO|| Jelena Bojarova || 1.9-2.9 ||
+||MET NO || Roel Stappers || 1.9-3.9 ||
+||MET NO || Ole Vignes || 1.9-3.9|| 
+||SMHI|| Nils Gustafsson || 1.9-3.9 ||
+||SMHI|| Magnus Lindskog || 1.9-3.9 ||
+||SMHI|| Per Dahlgren || 1.9-3.9|| 
+||KNMI|| Sibbo van der Veen || 1.9-3.9 ||
+||KNMI|| Jan Barkmeijer || 1.9-5.9||
+||KNMI|| Gert-Jan Marseille || 1.9-2.9||
+||KNMI|| Wim Verkley || 1.9-3.9||
+||KNMI|| Siebren de Haan || ||
+||AEMET|| Carlos Geijo || 1.9-3.9||
+
+
+
+
+= Algorithmic developments on meso-scale data assimilation in the HIRLAM consortia =
+ 
+There are several on-going algorithmic developments within the HIRLAM consortia relevant for the data assimilation on meso-scales (Cloud mask initialisation, phase-error correction, Hybrid (EnVAR/4DEnVAR), HARMONIE AROME 4DVAR, Large scale error constraint, among others). Some of them are implemented outside the HARMONIE variational data assimilation. It would be an advantage to integrate  these development into the joint HARMONIE variational data assimilation framework. One of the intensions of IFS/Fortran code refactoring imposed by the OOPS re-design was to create a more flexible system which make easier to integrate in new developments.
+ 
+= Practical constraints working in the IFS/OOPS environment =
+
+The OOPS/IFS redesign has imposed deep refactoring of the IFS/Fortran codes. The release of the CY41 (scheduled on mid July 2014) contains a mature and stable OOPS/C++ layer which can incorporate such functionalities as 4DVAR, Hybrid, model error term, VarBC, digital filter initialisation, etc. Some OOPS functionalities are already available in CY40. MF has recently confirmed that the LAM OOPS 3DVAR is  functioning in their code prototype based on CY40 with conventional observations. The Hybrid scheme based "on the B-matrix approach" is also under developments in the same code prototype at MF (Gerald Dezroziers and Etienne Arbogast).  More advanced features will became available in CY41 (mid July 2014) and CY42 (July 2015) and the significant changes in the IFS Fortran code layer are on the way. The phasing of LAM features will come in addition.
+
+= Purpose of the Working Meeting =
+
+The goal from the HIRLAM side is to investigate if the OOPS/C++ layer proposed by the ECMWF is flexible enough to incorporate existing algorithmic developments.
+The purpose of the Meeting is to bring the HARMONIE OOPS DA experts together and to discuss the practical constraints working in the IFS/OOPS environment
+ During the Working Meeting we would like 
+   - to make an overview of the algorithmic developments within the HIRLAM consortia; 
+   - to introduce OOPS/C++ layer and the toy QG model framework which might be used for design; 
+   - to define the possibilities to integrate the developments into the HARMONIE Variational Data Assimilation and put priorities; 
+   - to discuss the practical constraints working in the IFS/OOPS environment 
+   - to address  the timing of CYcles release and the level of the IFS/Fortran code refactoring in connection to them. 
+   
+
+
+= A very preliminary agenda = 
+ 
+ == Day1 :
+
+  * The  overview of the algorithmic developments in the HIRLAM consortia  
+    including topic presentations (5-10 minutes) depending on the list of participants (09:30-11:30)  
+    - HARMONIE AROME 4DVAR
+    - Centered 3DVAR FGAT scheme
+    - Large-scale error constraint (Jk term)
+    - Control of the Lateral boundary conditions in 4DVAR scheme  
+    - cloud mask initialisation (Sibbo)
+    - radar radial winds assimilation using FA (Field alignment) (Carlos)
+    - phase-error correction via image registration
+    - Guassian quadrature 4DVAR (Roel)
+    - Hybrid Ensemble Variational Data assimilation (EnVAR/4DEnVAR) (Nils)
+    - The (L)ETKF-based perturbations
+
+  * Lunch break (11:30 - 13:00)
+
+  * The OOPS/C++ layer and the interaction with the Fortran world (13:00-15:00)
+    - "Harmonie OOPS: What? Why? How? Should I?" (Jelena)
+    - "How to make C++/OOPS design more flexible ?" (Roel)   
+    - EnVAR scheme ("B"-matrix approach) (MF presentation)
+  
+  * Coffee break (15:00-15:30)  
+  * Practical session  (15:30-17:30)
+    - The OOPS QG toy model
+
+ ==  Day 2:
+
+   * The joint HARMONIE Variational DA framework (09:00-10:00) 
+     - List of priorities and staffing 
+   * Coffee break (10:00-10:15)
+   * Status and timelines for CYcles release, the level of the IFS/Fortran code refactoring, "stability" of OOPS/C++ layer (10:15-11:30)
+      - CY40 (OOPS in HARMONIE CY40 : what is available )
+      - CY41 (mid July; phasing : how can we contribute ?)
+      - CY42 (July 2015 : encapsulation and Fortran code refactoring  )
+   * Lunch break (11:30-12:45)
+   * Discussion: "How to come from theory to practice? " (12:45-13:45)
+       - on what CYcle should we base research and further algorithmic developments 
+       - what prohibits the introduction into OOPS and how to overcome obstacles    
+   * Coffee break (13:45-14:00)
+   * Teleconf with MF and LACE "LAM in OOPS " (14:00-16:00 ) 
+       - consistency between the C++/OOPS IFS layer and the "oops interface" for different CYcles
+       - OOPS IFS re-factoring and LAM adaptations
+       - possibilities for collaboration in LAM community 
+   * Coffee break (16:00-16:30)
+   * Outcome summary and the list of actions : towards OOPS LAM Hybrid 3DVAR  
+       - Step 1: HARMONIE LAM OOPS 3DVAR  (team and the distribution of work)
+       - Next working meeting : week 42 (DA WW in Santander)
+  == Day 3:
+
+  *  "Work in team"    
+
+  * Note: The Meeting Room is reserved for the whole week (1/9-5/9)
+
+ = Important links
+ A lot of useful information You can find on the ECMWF OOPS Home page  
+          https://software.ecmwf.int/wiki/display/OOPS/OOPS+Home 
+   
+ The notes from the technical video-conferences and coordination meeting are available from the ALADIN website
+
+ http://www.cnrm.meteo.fr/aladin/spip.php?rubrique14
+  
+
+ = Practical Information
+ 
+ == OOPS on hirlam.org ==
+
+ An updated copy of the OOPS repository exists on hirlam.org [source:oops here]. To see the different branches and tags use the curtain menu near ''Visit''. To get your own copy of the code make a clone by
+
+ {{{
+  export GIT_SSL_NO_VERIFY=true
+  git clone https://your_hirlam_org_user_name@git.hirlam.org/oops
+ }}}
+
+ Update your existing repository by 
+ 
+ {{{
+  export GIT_SSL_NO_VERIFY=true
+  git pull
+ }}}
+
+ The lam changes is maintained in a branch called lam. To switch to the lam branch do
+
+ {{{
+  git checkout lam
+ }}}
+
+ To list tagged versions and to checkout one of them type e.g.
+
+ {{{
+  git tag -l
+  git checkout tags/CY40R1
+ }}}
+ == Additional Information ==
+*  Work Package IFS-OOPS at ECMWF  [https://hirlam.org/trac/attachment/wiki/OOPS/KNMI_201409/OOPSv2.pdf pdf]
+*  New Approach for Refactoring strategy at ECMWF (version 12/01/2015) [https://hirlam.org/trac/attachment/wiki/OOPS/KNMI_201409/oopsplan.pdf pdf]
+*  MF Analysis of the new approach to the IFS-OOPS work package  [https://hirlam.org/trac/attachment/wiki/OOPS/KNMI_201409/newIFSOOPSwpGmapAnalysisV2_1.pdf pdf]
+* HMG position on the IFS Fortran code refactoring (based on ECMWF/MF/LAMS technical video-conf on the 22/01/2015) [https://hirlam.org/trac/attachment/wiki/OOPS/KNMI_201409/OOPS_answer_HMG.pdf pdf]
+* OOPS: questions and answers [https://hirlam.org/trac/attachment/wiki/OOPS/KNMI_201409/OOPS_questions.pdf pdf]
+
+

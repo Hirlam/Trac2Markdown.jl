@@ -1,0 +1,21 @@
+[[PageOutline]]
+= HARMONIE Observation Preprocessing =
+== Introduction ==
+The following figure shows different schematic steps in the HARMONIE data assimilation system.  
+[[Center(begin)]]
+[[Image(Analysis_diagram.png)]]
+[[Center(end)]]
+It is worth to mention some differences between the observation pre-processing systems used by ECMWF/IFS (IFS), Météo France (MF),HARMONIE, and HIRLAM. Some of these differences are listed below:
+||                           ||=Météo France                                =||=IFS                                      =||=HARMONIE                                    =||=HIRLAM                          =||
+||=data format/content      =|| BUFR, but sometimes with own table           || BUFR with WMO code                        || BUFR with WMO code                           || BUFR with WMO code               ||
+||=creation of ODB database =|| two steps using oulan and bator              || one step, use of complex package bufr2odb || two steps using oulan and bator              || no ODB for HIRLAM                ||
+||=blacklisting technique   =|| during the creation of the ODB and screening || (may be) only during screening            || during the creation of the ODB and screening || blacklist files read by hirvda.x ||
+
+
+== Observation file preparation ==
+  * [wiki:HarmonieSystemDocumentation/ObservationPreprocessing/ObservationData Observation Data] ([wiki:HarmonieSystemDocumentation/ObservationPreprocessing/ObservationData?format=pdfarticle pdf]): Observation data
+
+== Preprocessing Software ==
+  * [wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Oulan Oulan] ([wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Oulan?format=pdfarticle pdf]): Oulan - Converts conventional BUFR data to OBSOUL file that is read by BATOR
+  * [wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Bator Bator] ([wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Bator?format=pdfarticle pdf]): Bator - reads OBSOUL/BUFR/HDF5/GRIB observation data and writes ODBs used by data assimilation
+  * [wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Cope Cope] ([wiki:HarmonieSystemDocumentation/ObservationPreprocessing/Cope?format=pdfarticle pdf]): Cope - preparation of ODBs used by data assimilation (in development)

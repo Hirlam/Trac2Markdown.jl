@@ -1,0 +1,223 @@
+= The SAMIO module =
+
+== Background ==
+
+The SAMIO-module is a surprisingly simple hack to separate computational only and I/O only tasks.
+It is used for FA-files (SURFEX & atmosph.) in FMI's branch of AROME and can improve performance by 5-10%, especially with large core counts (>> 100).
+
+The SAMIO-module has been tested on FMI's Cray XT5m system, but is written in a machine independent way, and thus ought to be portable to any platform.
+
+== How to activate ? ==
+
+Nearly all the source code for SAMIO is situated in the file {{{src/xrd/module/samio_mod.F90}}} (there is also 
+a C-routine for the raw write in the file {{{xrd/support/csamio.c}}}).
+
+In order to activate its use, you need to compile AROME by activating preprocessing macro USE_SAMIO through {{{-DUSE_SAMIO}}}.
+Even then SAMIO is not really used by default, unless a particular environment variable ({{{SAMIO_NUM_IOPES}}}) is set properly.
+
+== How it works ? ==
+
+The SAMIO-module separates computation and direct access I/O (= write of FA-files). This gives computational tasks freedom to continue with
+computational aspects of the AROME by leaving I/O-related issues for the dedicated I/O-tasks.
+
+One of the toughest part in implementing separate I/O-tasks in AROME-context was to initiate them ''before'' the MPL-library had been initialized.
+Please have a look at {{{src/arp/programs/master.F90}}} for details.
+
+The next step was to "imitate" Fortran '''OPEN''', '''READ''', '''WRITE''' and '''CLOSE''' statements with '''SAMIO_OPEN''', '''SAMIO_READ''', 
+'''SAMIO_WRITE''' and '''SAMIO_CLOSE'''. In addition, occasional INQUIRE-statements needed to be dealth correctly with, too.
+
+There can be several FA-files open simultaneously, given that there are that many I/O-tasks reserved. Namely, to simplify design, it was decided very early on,
+that each individual I/O-task handles the I/O of a ''single file'' from the start to the end. 
+
+=== Under the bonnet ===
+
+A computational task (usually the master task in AROME), opens a file
+and "writes" data to SAMIO and closes the file. Behind the scenes happens the following:
+
+  * wake-up the next available I/O-task and send the file credentials there
+  * buffer appropriate number of records and send them to I/O-task using asynchronous, non-blocking send
+  * once all buffers sent, close the file, but do not check/wait for completion
+
+Especially the last step could be time consuming for the computational task had it been waiting for the completion.
+However, now it can proceed with more crucial task : progressing the computation, and leaving the I/O-details for the I/O-task.
+
+Once I/O is indeed completed, the I/O-task goes to a spin-loop and expects to be woken up soon for more I/O-work.
+
+=== Which files involved ? ===
+
+The SAMIO module is referenced in just total of 8 files :
+
+|| '''Source file''' || '''Function''' ||
+|| src/arp/programs/master.F90 || Initialize SAMIO ||
+|| src/xrd/lfi/lfiouv.F || OPEN a file ||
+|| src/xrd/lfi/lfiecc.F || WRITE a character record ||
+|| src/xrd/lfi/lfiedo.F || WRITE an integer (equivalent) record ||
+|| src/xrd/lfi/lfifcc.F || READ a character (header) record ||
+|| src/xrd/lfi/lfifdo.F || READ an integer (header equivalent) record ||
+|| src/xrd/lfi/lfifer.F || CLOSE a file ||
+|| src/control/cnt0.F90 || Terminate SAMIO ||
+
+
+----
+
+== Defining I/O-tasks in jobcard level ==
+
+On FMI's Cray XT5m-system the following script snippet defines 12 I/O-tasks and 288 computational only tasks for the job.
+So we need to make sure we allocate 300 cores (= mppwidth) in total for the job.
+
+{{{
+#!sh
+#!/bin/bash
+#PBS -S /bin/bash
+#PBS -l mppwidth=300
+#PBS -v "NUM_IOPES=12"
+#PBS -l walltime=01:30:00
+#PBS -N jobname
+#PBS -j oe
+
+set -vx
+cd ${PBS_O_WORKDIR:-.}
+
+# No. of cores as in jobcard
+NPES=$(qstat -f $PBS_JOBID | fgrep 'Resource_List.mppwidth' | awk '{print $NF}')
+export NPES
+
+# No. of I/O-cores
+NUM_IOPES=${NUM_IOPES:-0}
+export NUM_IOPES
+export SAMIO_NUM_IOPES=$NUM_IOPES
+
+# No. of computational cores only
+((NPROC = NPES - NUM_IOPES))
+
+# No. of MPI-tasks for "mpirun"
+((mpitasks = NPROC + NUM_IOPES))
+export MPPEXEC="aprun -n $mpitasks -cc cpu -ss"
+...
+# Finally: run
+$MPPEXEC $EXECDIR/MASTERODB -maladin -v$VERSION -e$CNMEXP -c$NCONF -t$TSTEP -f$LL -a$ADVEC -procs $NPROC
+}}}
+
+=== Impact of '''OpenMP'''-threads in implicit reduction of effective I/O-task counts === 
+
+SAMIO is not multithreaded, thus
+the effective I/O-task count gets reduced, when {{{OpenMP}}}-threads are used.
+Let suppose we would like to run the previous job with 2 threads and still specified the {{{NUM_IOPES}}} as 12.
+Then the actual number of I/O-tasks will be reduced to 6, with one idle {{{OpenMP}}}-thread per I/O-task.
+In the future evolutions of SAMIO it maybe useful to active all threads, but as we see it now, the idling threads are "cheap" 
+and thus not subject for greater worry.
+
+Multithreading job-script snippet follows:
+
+{{{
+#!sh
+#!/bin/bash
+#PBS -S /bin/bash
+#PBS -l mppwidth=300
+#PBS -v "NUM_IOPES=12,OMP=2"
+#PBS -l walltime=01:30:00
+#PBS -N jobname
+#PBS -j oe
+
+set -vx
+cd ${PBS_O_WORKDIR:-.}
+
+# No. of OpenMP-threads
+OMP=${OMP:-1}
+export OMP 
+
+# No. of cores as in jobcard
+NPES=$(qstat -f $PBS_JOBID | fgrep 'Resource_List.mppwidth' | awk '{print $NF}')
+((NPES /= OMP))
+export NPES
+
+# No. of I/O-cores
+NUM_IOPES=${NUM_IOPES:-0}
+((NUM_IOPES /= OMP))
+export NUM_IOPES
+export SAMIO_NUM_IOPES=$NUM_IOPES
+
+# No. of computational cores only
+((NPROC = NPES - NUM_IOPES))
+
+# No. of MPI-tasks for "mpirun"
+((mpitasks = NPROC + NUM_IOPES))
+export MPPEXEC="aprun -n $mpitasks -cc cpu -ss -d $OMP"
+export OMP_NUM_THREADS=$OMP
+...
+# Finally: run
+$MPPEXEC $EXECDIR/MASTERODB -maladin -v$VERSION -e$CNMEXP -c$NCONF -t$TSTEP -f$LL -a$ADVEC -procs $NPROC
+}}}
+
+Please note: both of the variables {{{NPES}}} and {{{NUM_IOPES}}} must be divisible by the variable {{{OMP}}}, or the concept will fail !
+
+----
+
+== Environment variables ==
+
+As can already be guessed from the previous job-script snippets, the SAMIO-module gets its runtime activation
+only after setting the environment variable {{{SAMIO_NUM_IOPES}}}, e.g. to 6:
+
+{{{
+#!sh
+export SAMIO_NUM_IOPES=6
+}}}
+
+If this variable is not set or is less than 1, then SAMIO -- even if compiled in via {{{-DUSE_SAMIO}}} -- gets ignored.
+
+There is a bunch of other environment variables, which can (or need to) be set to control SAMIO. Currently they are set by default to
+run 40-level AROME-runs around Finland (mesh 300x600) successfully.
+
+||'''Variable'''|| '''Description''' || '''Default value''' ||
+|| SAMIO_NUM_IOPES || Number of I/O-tasks || 0 ||
+|| SAMIO_HDRCACHE_LEN || Length of header cache (in records) for occasional reads & rewrites || 5 ||
+|| SAMIO_READCACHE_LEN || Read cache length in records || 1000 ||
+|| SAMIO_READCACHE_NBUFS || Number of asynchronous read cache buffers || 10 ||
+|| SAMIO_WRITECACHE_LEN || Write cache length in records || 20000 ||
+|| SAMIO_WRITE_BIG_ENDIAN || Write big endian output files || 1 ||
+
+By looking at the way AROME is conducting its write operations (see {{{lfi}}} and {{{fa}}} directories under {{{xrd/}}} project),
+it performs occasional reads and updates of records at the beginning of the random access file. The SAMIO-module will cache these records on the computational
+task (i.e. ''client'') side memory to reduce overheads. Environment variable {{{SAMIO_HDRCACHE_LEN}}} controls this.
+
+Furthermore, the records ''to be written'' are initially cached to the ''client''-side before sending more of them in one go to the approriate I/O-task (''server'') in concern.
+By default {{{SAMIO_READCACHE_LEN}}} records are kept on the ''client''-side before sending them ''asyncronously'' to the ''server''. In addition up to {{{SAMIO_READCACHE_NBUFS}}} asynchronous buffers
+are declared, which further improves performance and enables overlapping of communication and computation on the ''client'' side.
+
+A pure I/O-task handles one file at a time and does it by doing full buffering, that is, by keeping {{{SAMIO_WRITECACHE_LEN}}} records in memory before write. At present SAMIO writes only once : upon closing a file. The file is written using direct C I/O with full compliance with Fortran I/O and data is converted to big-endian format if necessary: this is controlled by {{{SAMIO_WRITE_BIG_ENDIAN}}} and if the machine platform is detected to be a little-endian one. Similarly, if {{{SAMIO_WRITE_BIG_ENDIAN}}} was for some reason set to zero (0), and the machine platform was a big-endian one, then correct byteswaps to little-endian will be performed. 
+
+Please note that byteswapping is performed on the ''server''-side thus further improving overall performance of AROME ; byteswapping can contribute 10-30% to the total I/O-cost and thus it is nice to see it dissappearing from the computational side altogether.
+
+=== Altering environment variables: a practical case ===
+
+Usually the FA-files have Fortran direct access I/O record length of 3072 8-byte words i.e. a record is 24576 bytes long. The direct access records do not contain any extra record delimiters.
+With {{{SAMIO_WRITECACHE_LEN}}} being 20000, the maximum file size is expected not to exceed 491520000 bytes (roughly 468 MBytes). Clearly, when running with more levels than 40 and with larger computational area, then the variable {{{SAMIO_WRITECACHE_LEN}}} must be increased accordingly. To figure out how much, please do run one output time step without SAMIO first and get the typical file sizes. Suppose the new file size is, say, 800 MBytes (838860800 bytes), then the math gives:
+
+{{{
+#!sh
+((SAMIO_WRITECACHE_LEN=838860800/24576))
+export SAMIO_WRITECACHE_LEN
+}}}
+
+There may also be need to change the variable {{{SAMIO_READCACHE_LEN}}}, or even {{{SAMIO_READCACHE_NBUFS}}}. The former one caches records on the ''client''-side. In case of 24576 byte records, about 24  MBytes of data is cached before issuing '''MPI_isend''', which is asynchronous (non-blocking) MPI-send. There maybe up to {{{SAMIO_READCACHE_NBUFS}}} outstanding asynchronous sends at a given moment. This is highly unlikely though, thus the buffers gets recycled. However, on Cray XT systems at least, pay attention to environment variable {{{MPICH_UNEX_BUFFER_SIZE}}}. By default it is set (by Cray) to 60 MBytes:
+
+{{{
+#!sh
+export MPICH_UNEX_BUFFER_SIZE=62914560
+}}}
+
+This value would accomodate just roughly two (2) outstanding 25 MBytes asynchronous read cache buffer at a time. If in doubt, then reduce the value of {{{SAMIO_READCACHE_LEN}}}, or set the number of buffers to 2:
+
+{{{
+#!sh
+export SAMIO_READCACHE_NBUFS=2
+}}}
+
+----
+
+== SAMIO : in summary ==
+
+In order to use SAMIO, you need to compile the source code with the preprocessing directive {{{-DUSE_SAMIO}}}.
+For the runtime environment you need set only one compulsary environment variable ({{{SAMIO_NUM_IOPES}}}) to activate SAMIO-module.
+
+If any of you files exceeds 486 MBytes (assuming the record sizes stay at {{{3072x8}}} bytes) in size, then increase the value of {{{SAMIO_WRITECACHE_LEN}}} proportionally to the (increased) file size.

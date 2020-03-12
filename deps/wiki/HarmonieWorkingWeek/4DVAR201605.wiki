@@ -1,0 +1,170 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie 4DVAR Extended Working Days 2016''' =
+''Norrköping, Sweden,  30th May - 3rd June 2016''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+The HARMONIE 4DVAR Working Week 2016 will be held this year at SMHI.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =|| Hotel   ||
+||Roger Randriamampianina || MET Norway      || Arr.:Sun 29 21:15 Dep: Fri 3 16:24   || Best Western Princess Hotel  ||
+||Roel Stappers           || MET Norway      ||                   ||         ||    
+||Jelena Bojarova         ||SMHI             ||                   ||         ||
+||Magnus Lindskog         ||SMHI             || mon am - wed pm   ||         ||
+||Nils Gustafsson         ||SMHI             ||                   ||         ||
+||Xiaohua Yang            ||DMI              ||  Sun  - Fri 15    ||  Grand Elite   ||
+||Jan Barkmeijer          ||KNMI             ||                   ||         ||
+||Ziga Zaplotnik          ||Slovenija Univ.  ||                   ||         ||
+||Sigurdur Thorsteinsson  ||IMO              ||                   ||         || 
+||Martin Ridal            ||SMHI             ||                   ||         ||
+||Ulf Andrae              ||SMHI             ||                   ||         ||
+||Carlos Geijo            ||AEMET            ||                   ||         ||
+
+== Aim of the Extended Working Days ==
+
+The main objective of the AROME 4DVAR Extended Working Days is to coordinate the efforts in further development of AROME 4DVAR and eventually rise it to the level of the "canonical" model configuration. In addition the algorithmic developments in the HIRLAM consortium will be discussed. 
+
+AROME 4DVAR is being considered as the baseline scheme for algorithmic developments in HIRLAM consortium, and as the basis for further developments of flow-dependent methods. The strategy meeting in the ALADIN-HIRLAM consortia took place in April 2016. In view of this strategy meeting the priorities for the algorithmic developments might need to be reconsidered and agreed.
+ 
+== The tasks to be addressed ==
+
+The topics to be addressed :
+
+ * 1) technical performance and design of AROME 4DVAR (change of resolution, outer loops)
+ * 2) meteorological performance, including Jc-DFI
+ * 3) Tangent-linear and adjoint tests (some problem with convergence on small scales)  
+ * 4) Consistent implementation of AROME 4DVAR and AROME LETKF (CY40)
+ * 5) Use of High-Resolution Observations (radar and GNSS) in AROME 4DVAR, depending on whom will attend
+ * 6) Testing of AROME 4DVAR in CY43 need to be done or coordinated (depending on status of CY43h). There are several new solutions in CY43 due to refactoring and the redesign of the code, in particular treating spectral and grid-points fields. One need to check that everything works as one expect it in for AROME 4DVAR.
+
+== Agenda ==
+30.05.16 Monday: [[BR]]
+09:00 - 15:00: Status report from participants:[[BR]]
+We decided to start the meeting with presentation given by **Nils** about a few years old plans on data assimilation strategy aiming at convergence of Aladin and Hirlam data assimilation systems. It was interesting to see that, among others, the following still relevant problems were already raised some years back from now:
+– B matrix; Balance issues; surface and soil data assimilation; localisation issues in ensemble systems; water vapour control variable; non-linear balance; standard deviation-based ensemble; Flow dependent through background error correlation-based ensemble; new physics for 4DVAR and forecast systems; blending of large scale information.[[BR]]
+
+**Thought of the day from Nils:** “we should start to complain less and to do more!”[[BR]]
+
+**Nils** followed with [status report of 4D-VAR development][[BR]]
+
+Prior to WW, **Nils** delivered a 4DVAR update including corrected JcDFI, an recoded alternative data flow to the existing approach with fullpos in resolution/spectral transformation. During the working week we worked to port the changeset based on 40h1.1beta5 to the trunk. The porting is nearly finished and will be delivered for inclusion to 40h1.1 as a non-default option.[[BR]]
+
+**Jan** Among other assessment results, he presented the impact of different observations in 3D- and 4DVAR (CY38h12), during a 1,5 month winter experimentation period and mentioned that 4DVAR is performing better than 3DVAR, when both using Mode-S EHS,  and the positive impact is seen on forecast of wind direction, cloud cover, humidity (bias). The benefit of 4DVAR was shown for 4 march 2014, where only 4DVAR from the various model suites was able to forecast clear sky. He also showed the capability of 5km linear models to define efficient (only 2 hours lead time) triggers for convection and alluded to the possibility of modifying first guess fields in such a way that modelled instantaneous precipitation corresponds with the observed (radar) instantaneous precipitation.[[BR]]
+
+**Magnus** reported the results of a sensitivity study based on the performance of the AROME-MetCoOp data assimilation. He showed the influence of the anti-correlation between Ps and humidity through mean humidity analysis. He reported also Ps bias, which could originate from a mismatch in orography and model representation of the data. Further, comparing obs-guess and obs-alanysis, he found that there are ship stations with large obs-background value and are accepted by the assimilation system. Mainly, ships provide negative increments. He pointed to the importance of good monitoring tool to detect similar bad observing stations in Harmonie. [[BR]]
+
+**Carlos** reported the impact of radar wind data using field alignment (FA) and 3DVAR. Standard verification (using the monitor tool) showed neutral impact of the radar winds with FA+3DVAR, but comparison against the land radar data showed positive impact up to 3-6 hours. This technique is able to extract mososcale features. This technique is ready to be tested with Doppler winds. [[BR]]
+
+**Sigurdur** reported the evolution of the varbc coefficients in time. It was sown that the two tested predictors have very small influence. He continued working on this issue during the working week and with Roger they found out that the predictors for surface VarBC were not set up at all. A new experiment will be prepared and the impact of more predictors will be estimated again. He also continued his work with preparation of VarBC coefficients for ATOVS. During the meeting Roger was contacted by Joan Campins from Spain (AEMET) about the settings for passive assimilation of ATOVS data in their systems (EAMET is implementing ATOVS in two models). More about the reported problem and solution can be found [ref_to_WW_UoO here]. Furthermore he studied the contain of AROME 4DVAR and how to run it. [[BR]]
+
+**Roel** talked about the basic idea for the OOPS code. He also presented the proposed tasks for his visit to ECMWF, which will consist of the following tasks:
+– Further discussions with ECMWF colleagues for efficient realisation of the use of matrix free linear algebra (MFLA);[[BR]]
+– Working on testing and developing unit tests. This will require a relatively high level of Fortran code development;[[BR]]
+– Developing the model tangent linear (TL) and adjoint (AD) with the aim to have 4D-VAR working with both global and LAM models. This task will also comprise a development of the LAM part of semi-Lagrangian scheme.[[BR]]
+– If time permit, it would be nice if Roel could work with the VarBC scheme.[[BR]]
+
+**Jelena** talked about the background error statistics and the evolution of uncertainties on mesoscale [refer_to_pdf_here pdf]. Randomly perturbing the control vectors allows full perturbation of the model state, but the influence of the perturbation was seen most of all on large scale. More precisely, as expected wind field adjust to mass field on large scales. This means for example that in case of the bias correction for the surface pressure, the large scale wind increment will be introduced. Temperature adjust to wind on smaller scales. Humidity field on large scales is very strongly determined by other variables. However, it takes several hours before small scale humidity structures will be generated by the flow. There is a hope that introduced humidity analysis increments can survive a linear advection during first one-two hours. Introducing random perturbation with the “proper” spectra does not guarantee that a random perturbations will be accepted by the model. Most of the energy will escape in form of gravity waves, however small part of energy will remain in the dynamically active areas. Non-random perturbations sampling the area of the error growth might be a better alternative. Jelena has also shown that switch off the “unrealistic climatological” balances (mass-humidity, mass-divergence, humidity-divergence) leads to the improved verification scores (wind speed and 12h accumulated precipitation) for the period with active convective developments. It would be interesting to redo the experiments using less noisy fields for estimation of background error statistics. [[BR]]
+
+** Xiaohua** performed single observation test comparing climotological structure functions derived from downscaling and from EDA runs. He tested both upper air observation (radiosonde Temperature at 500 hPa) and surface data (Pressure from BUOY observation).[[BR]]
+
+Relevant topics have been discussed during the presentations and the following tasks were defined during the working week. It was agreed that the participants should discuss as much as possible the tasks and start working on them. We also agreed that the list is very ambitious and long, but we would like to have them treated. For those, who were not able to join the meeting, but found some of the tasks interesting and would like to join, they are free to contact Roger and subscribe the preferred tasks.[[BR]]
+
+**1- Poor convergence issue** – test TL and AD (Magnus, Roel, Jan)[[BR]]
+ Jan reported that with LPROCLD=.TRUE., which is the default setting in 4DVAR, the identity test  [M^TM x,y] = [x, M^TMy] failed. With LPROCLDTL=.FALSE., he succeeded to get good results But, when Nils tried to run the 4DVAR with the same setting of the key, the minimization  crashed. Nils and Jan will investigate the reason of the crash.[[BR]]
+
+**2- Check the performance of the physics in minimisation** (Xiaohua, Magnus,Jan)[[BR]]
+ This task is dependent to the task 1-. So, it will be tackled later.[[BR]]
+
+**3- Extension zone – use B for preconditioning** (Nils, Xiaohua, Carlos)[[BR]]
+ **Xiaohua** and **Nils** will keep in touch and decide about the test to be done.
+
+**4- Where to put the change of resolution in the scheduler** (Nils, Jan)
+ **Nils** succeed to implement the ECMWF technique to change resolution (in spectral space) of the control vector during 4DVAR process. The ECMWF procedure to similarly change resolution of the trajectory (including the background state) has not yet been introduced, since the LAM version of this was never completed. Nils will continue utilizing as far as possible existing ECMWF code.[[BR]]
+
+**5- Test of VarQC or VarBC for Synop data** (Roger, Magnus, Jelena, Martin, Sigurdur)[[BR]]
+ **Magnus** got in touch with experts from ECMWF asking about how to activate the VarBC for only ship data. He got some hits on where to look at more carefully.[[BR]]
+ **Roger** started with the implementation of VarBC for ship data. Although for APD (GNSS ZTD) use of VarBC is well implemented, the move to another Synop subtype is not trivial. All implementation process needs to be repeated again. Roger is still thinking about how to start a good coldstart with Ship data VarBC.[[BR]]
+ To check the functionality of VarQC one may need an outerloop process also working for 3DVAR. So, this will wait for the task 16- to be done.[[BR]]
+
+5.1- **Karl-Ivar** was invited to present his work in MetCoOp with respect to **MSLP model bias** [ref to pres here][[BR]]
+
+6- **Check the functionality of background check during the screening** (Roger, Magnus, Jan, Sigurdur)[[BR]]
+ This task has not yet started.[[BR]]
+
+7- **Use of field alignment (FA) with winds in 4DVAR** (Carlos, Nils)[[BR]]
+ The group decided to test different ways of implementation of the FA with 4DVAR:[[BR]]
+ – Use FA to correct the first-guess;[[BR]]
+ – Use FA in different slot configurations:[[BR]]
+    1- use it in the first slot only;[[BR]]
+    2- use it in all slots.[[BR]]
+
+**8- Check the humidity increment and its evolution in time** (Xiaohua, Jan, Roger)[[BR]]
+ **Xiaohua** reported that they started working with this task at DMI, and they will check the results and report later. Roger will help him on what to check from different files.[[BR]]
+
+**9- Use of radar data in 4DVAR** (Martin, Xiaohua, Jan)[[BR]]
+ **Martin** succeed to have the radar data in all slots of ODB and have Bator and Screening running successfully. It seems that there is a problem with the minimization when other data are used on top of conventional (??). This problem is blocking further tests of the new structure of radar data in 4DVAR(??).[[BR]]
+
+**10- Incremental analysis – strong vs weak** (Nils, Roel)[[BR]]
+ This task was heavily discussed at some point during the meeting and 3 different solutions were considered:[[BR]]
+ 1--  Incremental analysis update during the non-linear model integration;[[BR]]
+ 2-- use solution 1-) also into TL/AD of 4D-Var;[[BR]]
+ 3-- use a weak constraint 4D-Var formulation.[[BR]]
+
+**11- LETKF with 4DVAR screening** (Jelena, Roger)[[BR]]
+ **Jelena** set up one experiment with LETKF. She faced problem with some ODB updates in the code. This work is progressing.[[BR]]
+
+**12- Check that the correct innovation is extracted from ODB (NUPTRA)** (Nils, Roger)[[BR]]
+ **Roger** will check the evolution of increments in ODB through the 4DVAR process. Note that Nils have checked one of his runs, which looked quite good except the last solution, which looked erroneous. He was not sure about the correctness of that last check.[[BR]]
+
+**13- Warm start of minimisation** (Nils, Magnus)[[BR]]
+ **Nils** knows how to proceed with this task  (information about Hessian should be transferred between outer loop iterations – code exists and needs to be activated).[[BR]]
+
+**14- Coordinated effort in B computation** (Xiaohua, Roger, Nils, Jan)[[BR]]
+ The participants would like to discuss first before proceeding with task. [[BR]]
+
+**15- Proxy weak constraint** (Jan)[[BR]]
+ **Jan** would like to have LFORCE and LFORCENL working under LELAM. It is implemented under LELAM=.false. and enables to determine optimal tendency perturbations.  It also provides the possibility to run 4DVAR with solely tendency increments (and without analysis increments). [[BR]]
+
+**16- 3D-VAR outerloop** (Nils, Xiaohua)[[BR]]
+ **Nils** and **Xiaohua** will work this task out.[[BR]]
+
+ Normal daily agenda:[[BR]]
+09:00 - 10:00: Working in groups[[BR]]
+10:00 - 10:30: coffee break[[BR]]
+10:30 - 12:00: working in groups[[BR]]
+12:00 - 13:00: lunch break[[BR]]
+13:00 - 15:00: working in groups[[BR]]
+15:00 - 15:30: coffee break[[BR]]
+15:30 - 17:30: working in groups[[BR]]
+We checked twice the progress from different tasks during the meeting  [[BR]]
+
+
+== Practical local information ==
+
+Note that Hotel Kneippen has closed down. Another alternative is Scandic Hotel,
+close to the railway station and in 30-40 min walking distance to SMHI. An 
+alternative to walking would be to take a tram to SMHI. It will also take you
+roughly 30 min.
+
+When you arrive to the reception you will get a badge with your name and on 
+the backside of it you will find the wifi password. The working week will take
+place in a room called Nikkaluokta (24/191) placed just 30 m behind the 
+Reception. On arrival please ask the Rececption to call for Jelena or Magnus.
+
+
+
+
+== Reference: previous HARMONIE DA/UO working weeks ==
+
+
+* [wiki:HarmonieWorkingWeek/UseObs201605 201605], Madrid, UO working week 
+* [wiki:HarmonieWorkingWeek/4DVAR201511 201512], ECMWF, 4D-Var Working Week 2016
+* [wiki:HarmonieWorkingWeek/UseObs201509 201509], Dublin, The Harmonie DA&UO Working Week 2015
+* [wiki:HarmonieWorkingWeek/4DVAR201503 201503], Norrkøping, The Harmonie 4DVAR Working Week 2015
+* [wiki:HarmonieWorkingWeek/UseObs201410 201410], Santander, The Harmonie DA&UO Working Week 2014
+* [wiki:OOPS/KNMI_201409 201409], KNMI, The HARMONIE OOPS/C++ Working Meeting
+

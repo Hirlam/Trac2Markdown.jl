@@ -1,0 +1,27 @@
+'''HARMONIE 4D-VAR working week''' 
+
+''20091130-20091204''
+
+== Presentation ==
+
+Claude Fischer: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/arpege_ifs_4dvar.2.ppt Arpège 4D-VAR and some technicalities: link with the IFS, coding rules] 
+
+Ole Vignes: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/4DVarWW-SMHI-0912-OleV.2.ppt Harmonie 4D-VAR: mini-SMS scripts]
+
+Magnus Lindskog: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/magnus_wwpres.2.ppt Harmonie 4DVAR: Observation Handling, Error statistics, Assimilation and Postprocessing]
+
+Ulf Andrae: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/metgraf_ulf.2.odp A few ways to create and plot you first guess departure at ECMWF]
+
+Benedikt Strajnar: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/Norkopping_dec2009.ppt Test of 4DVAR at local computer in Ljubliana]
+
+Olivier Riviere: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/pres_ww4dvar.pdf Arpege Simplified Physics]
+
+Trygve Aspelien: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/TLAD_test_Harmonie.ppt Tangent-linear and adjoint tests in Harmonie]
+
+== Summary ==
+[https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/4DVAR200911/4dvarww_notes_Dec2009.pdf Nils Gustafsson: Summary report of the working week]
+
+
+
+
+

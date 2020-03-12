@@ -1,0 +1,107 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Performing Field Verification with Reference Hirlam''' =
+[[Center(end)]]
+
+The field verification computes forecast errors relative to the verifying analyses. The process is normally done in two steps. First relevant statistics are done per cycle and accumulated; In the second step, a monthly summaryis computed.
+== Computation of statistics per cycle with accumulation ==
+
+This will create efYYYYMM_HH+LLLve and efYYYYMM_HH+LLL and corresponding cf-files (in ASIMOF-GRIB). The e-files contain bias and rms, and the c-files climatology. Separate files are produced for runs starting 00, 06, 18 and 18 runs and everything is on monthly basis. This step can be done either online or offline.
+   * Online approach, which is currently optional (non-default), users add to the default settings
+{{{
+      VERIFY=:ve:vf:
+}}}
+with "fd:"
+{{{
+      VERIFY=:ve:vf:fd:
+}}}
+The above settings are normally turned off due to lengthy processing time. To perform the task offline, one can, after the completion of the whole runs, redo the period by
+{{{
+   Hirlam start DTG=$DTG DTGEDN=$DTGEND PLAYFILE=verif
+}}}
+
+The variable HL_VER in Env_expdesc defines where the fields to be verified are extracted. By default 
+{{{
+      HL_VER=$HL_EXP
+}}}
+ie. the fields from the current experiment are verified. Also the fields from another experiment can be verified. For instance, by setting 
+{{{
+      HL_VER=ec:/hirlam/RCRa
+}}}
+the RCRa forecast are verified. The results are always written to the archive directory of the current experiment. 
+ 
+Results are archived in
+{{{
+   $ECFSLOC:/$user/hirlam/$exp/$yyyy/$mm/$hh/ef{$yyyy$mm_$hh+$lll}ve
+   $ECFSLOC:/$user/hirlam/$exp/$yyyy/$mm/$hh/cf{$yyyy$mm_$hh+$lll}ve
+   $ECFSLOC:/$user/hirlam/$exp/$yyyy/$mm/$hh/ef{$yyyy$mm_$hh+$lll}
+   $ECFSLOC:/$user/hirlam/$exp/$yyyy/$mm/$hh/cf{$yyyy$mm_$hh+$lll}
+   $ECFSLOC:/$user/hirlam/$exp/$yyyy/$mm/$dd/$hh/HL_VerifCycle_$yyyy$mm$dd$hh.html              # log files
+}}}
+The ef-files contain the rm-error and bias and the cf-files the mean of the fields, ie. the climatology.
+
+As seen from the naming convention, the error files are arranged so that forecasts from same cycle are written in the same file. For example, files $hh/ef{$yyyy$mm_00+$lll}ve contain forecast rms-error and bias for forecasts, which have been run from 00 UTC analysis. Furthermore, the files are arranged by monthly basis. So one file can contain only forecasts from a given month. This procedure suits very well for operational verification, but has serious limitations when running experiments. Therefor new options have been made. Note that by default everything works as earlier, but the user can define an alternative strategy. In Env_expdesc there are new options: 
+{{{
+      VER_FD_YYYY=""          # File name conventions to the field verification      
+      VER_FD_MM=""            # files and directories. Default: Montly 
+      VER_FD_HH1=""           # verification files, every forecast verified
+      VER_FD_HH2=""           # into the file of its own cycle
+      
+      ###VER_FD_YYYY="2008" # This would mean that years 2007 and 2008, months
+      ###VER_FD_MM="07-08";      # 08 and 09 and would be accumulated into the same
+      ###VER_FD_HH1="00-12"      # file, with two set of files: one for 00 and 12
+      ###VER_FD_HH2="06-18"      # cycles and the other for 06 and 18
+}}}
+By setting the variables VER_FD_... empty, the default option is selected and everything works as earlier. The user can modify this by modifying these variables. For instance the commented lines would mean that forecasts for the year 2008 are arranged so that months 07 and 08 are combined together in such a way the forecasts from 00 and 12 UTC analysis are accumulated into same files and forecasts from 06 and 18 UTC run together. The option
+{{{
+      VER_FD_HH1="00-06-12-18"
+}}}
+would mean that all the four daily runs are accumulated to the same files.
+
+The archiving structure is different if any of the VER_FD_... option are given: The files are archived in the $HL_EXP directory. If any option VER_FD... is gigen the accumulated files will be archived into the directory
+{{{
+      $HL_EXP/99999999_99/ef$VER_FD_YYYY$VER_FD_MM$VERFD_HHx+${lll}ve
+      $HL_EXP/99999999_99/cf$VER_FD_YYYY$VER_FD_MM$VERFD_HHx+${lll}ve
+      $HL_EXP/99999999_99/ef$VER_FD_YYYY$VER_FD_MM$VERFD_HHx+${lll}
+      $HL_EXP/99999999_99/cf$VER_FD_YYYY$VER_FD_MM$VERFD_HHx+${lll}
+}}}
+where '''x''' is 1 or 2. Note that both can VER_FD_HH1 and VER_FD_HH2 files can be created. 
+       
+
+ == Computation of monthly summary ==
+This phase cannot yet handle the new optional type of accumulated file.
+This step is done offline by issuing a separate mSMS job upon completion of whole cycles, assuming availability of e- and c- files as mentioned above
+{{{
+   Hirlam start DTG=$DTG DTGEND=$DTGEND PLAYFILE=verif_summary
+}}}
+One may needs to edit scripts Env_verif_summary to specify field-verification related variables such as
+{{{
+   VEVER_TIME_SERIES=no   turn off the reference observation verification
+   VER_OBS_STAT=no
+   VER_OBS_STATIONS=no
+   FIELD_VER=yes
+   ARC_EXP="/$usr1/hirlam/$exp1  /$usr2/hirlam/$exp2   #archived data in ECFS
+}}}
+The first three of the above turns off the observation verification with the reference package. It is recommended to put "no" and to use common verification tool with HARMONIE system instead.
+== Notes ==
+ * The field verification algorithm is designed to be done on monthly basis. It does not handle cross-month period.
+ * The default uses analyses of each experiments' own. It is possible to use instead a common analyses or third party analyses by modification of relevant scripts.
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

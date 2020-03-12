@@ -1,0 +1,39 @@
+[[PageOutline(2-3, Contents)]]
+= Syntax Highlighting of mSMS template definition files =
+`[`last modified: [[LastModified]]`]`
+
+== TDF Highlighting Scheme for `vim` Editor ==
+
+=== Description ===
+
+Editing a mini-SMS template definition file (.tdf file) can be tedious, because it contains both comments and code. Even though the underlying format is based on HTML, the syntax highlighting for HTML is not useful, because the mSMS commands are not taken into account.
+
+The attached [attachment:mSMS.vim] implements a syntax highlighting for the `vim` editor version 6 or higher, which will make editing of mSMS template definition files much easier.
+
+Note that on many modern Linux/UNIX systems, the `vi` editor coincides with `vim`.
+
+
+=== Installation ===
+
+  * check your vim version
+{{{
+  vi --version
+}}}
+  * download [attachment:mSMS.vim] and put it under [[Color(green, `~/.vim/syntax/`)]]
+  * download [attachment:filetype.vim] and put it under [[Color(green, `~/.vim/`)]]. Note the different path
+
+
+=== Usage ===
+
+  * edit a `.tdf` file, and if `vim`'s syntax highlighting is switched on, the text should appear in colors
+  * switch syntax highlighting on with the vi-command
+{{{
+  :syntax on
+}}}
+  * NOTE: Colors only appear on terminals that support colors. On monochrome terminals syntax highlighting may appear in different font shapes. This may be the case for treminals connected to ECMWF computers.
+  * for more information on syntax highlighting, consult the vim help, e.g.
+{{{
+  :help syntax
+}}}
+
+[[Disclaimer]]

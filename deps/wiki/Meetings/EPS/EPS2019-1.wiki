@@ -1,0 +1,125 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HarmonEPS working week''' =
+''KNMI, De Bilt. Monday 6 May - Friday 10 May 2019. ''
+Meeting starts Monday, drop-in as people arrives. Meeting ending Friday before lunch.
+
+[[Center(end)]]
+
+
+== Location ==
+KNMI, De Bilt
+[[BR]]
+Room: A0.34 & A0.36
+
+[[Image(20190507_132325.jpg, 25%)]]
+[[Image(20190507_132328.jpg, 25%)]]
+[[Image(20190507_132319.jpg, 25%)]]
+
+
+== Participants ==
+|| Name                                    || Expect to be at ww     || Leaving || Working with                 || Hotel     ||
+|| Inger-Lise Frogner, MET Norway          || Monday morning         || Friday ~ 11 || HarmonEPS SPP            || Van der Valk Hotel de Bilt ||
+|| John Bjørnar Bremnes, MET Norway        || Monday noon            || Friday afternoon || calibration                  || Van der Valk Hotel de Bilt ||
+|| Maurice Schmeits, KNMI                  || Monday morning         || Friday  || calibration                  ||        ||
+|| Ulf Andrae, SMHI                        || Monday morning         || Friday  || HarmonEPS SPP                || Van der Valk Hotel de Bilt ||
+|| Jelena Bojarova, SMHI                   || Monday morning         || Friday  || HarmonEPS IC                 || Van der Valk Hotel de Bilt ||           
+|| Alfons Callado, AEMET                   || Monday noon            || Friday  || HarmonEPS                    || Star Lodge Hotel       ||
+|| Mauri Martínez, AEMET (CANCELLED)       || Monday morning         || Friday  || Verification HARP            || Star Lodge Hotel       ||
+|| David Quintero, AEMET                   || Monday morning         || Friday  || Machine Learning             || Star Lodge Hotel       ||
+|| Alan Hally, Met Éireann  (CANCELLED)    || Monday morning         || Friday  || HarmonEPS SPPT               || Van der Valk Hotel de Bilt ||
+|| Karoliina Hämäläinen, FMI               || Monday morning         || Wednesday morning  || HarmonEPS SPPT    || Star Lodge Hotel ||
+|| Janne Kauhanen, FMI                     || Monday morning         || Thursday  || HarmonEPS SPPT             || Star Lodge Hotel ||
+|| Henrik Feddersen, DMI                   || Tuesday morning        || Friday  || HarmonEPS LBC, Harp          || Van der Valk Hotel de Bilt ||
+|| Kirien Whan, KNMI                       || Monday morning         || Friday  || calibration                  ||        ||
+|| Pirkka Ollinaho, FMI                    || Monday morning         ||Wednesday ||HarmonEPS SPP                || Van der Valk Hotel de Bilt ||
+|| Åke Johansson, SMHI                     || Monday morning         || Friday  || Verification and Equally likely ensemble members || Van der Valk Hotel de Bilt ||
+|| Sibbo van der Veen, KNMI                || Monday morning         || Friday  || HarmonEPS         || ||
+|| Teresa Valkonen, MET                    || Monday morning         || Wednesday || SPP       || Van der Valk Hotel de Bilt ||
+|| Andrew Singleton, MET                   || Monday morning         || Friday || harp, harmonEPS paper  ||    ||
+
+
+
+== Agenda ==
+
+Coffee breaks morning and afternoon every day
+
+* Monday 6. May
+  * Morning: Drop-in as people arrives
+  * 12.00: Lunch
+  * 13.30: Welcome and status by Inger-Lise: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/State_of_the_nation.pdf Status of EPS work]
+  * Presentations:
+    * Janne, Karoliina: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/SPPT-Experiments-EPS-WW.pdf SPPT status and plans]
+    * Inger-Lise: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/SPP_EPSww_May2019.pdf SPP status and plans]
+    * Sibbo: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/HarmonEPS_SWrad.pptx Shortwave solar radiation forecasts in HarmonEPS context]
+    * David: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/HarmonEPS_DQ.pdf Calibration with machine learning methods]
+    * John Bjørnar: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/Hirlam_calibration_May2019.pdf status of the calibration work]
+  * Work
+
+* Tuesday 7. May
+  * 09.00: Work
+  * 09.00:
+          * Discussion about HarmonEPS paper and how to proceed with the review
+          * SPPT/SPP discussion in smaller group
+  * 12.00: Lunch
+  * 13.00: Discussion about cy43 testing and assign persons to the tasks. [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/Testing_of_EPS_components_in_cy43.pdf Testing of EPS components in cy43]
+     * we need to check that things are working as expected in cy43, eg we need to test surface perturbations, EDA, SPPT with default pattern generator and SLAF and ENS nesting. Also a reference with cy40 is needed. 
+       * ~hlam/hm_home/HEPS_40h111_ref reference for cy40 with ENS boundaries. Period !2019041500 - !2019041921 ( ongoing )
+       * ~hlam/hm_home/HEPS_43h2b2 reference for CY43 using ENS boundaries based on release-43h2.beta.2 + corrections. Period !2019041500 - !2019041600 
+       * ~hlam/hm_home/HEPS_43h2b2_SLAF reference for CY43 using HRES boundaries based on release-43h2.beta.2 + corrections. Period !2019041500 - !2019041600. Two members only
+  * Work
+  * 19:30: Dinner at restaurant Oudaen (https://www.oudaen.nl/en/home-en/; exit at bus stop Neude). A 3-course menu for €29,50 with some options to choose (in the restaurant; see attachment in Dutch).
+
+* Wednesday 8. May
+  * 09.00: Work
+           Jelena: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/STRFUNC.pdf structure functions with EDA and BRAND]
+  * 12.00: Lunch
+  * 13.00: Work
+
+* Thursday 9. May
+  * 09.00: Work
+  * 12.00: Lunch
+  * 13.00: Work 
+  * 14.00: Wim: Presentation about model (including HarmonEPS) performance of last week
+  * 14.30: Work
+
+* Friday 10. May
+  * 09.00: work
+  * 10.00: Åke [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/Verification.Daily.Cycle.EPSWW1.2019.AJ.pdf Verification and daily cycle ]
+  * 10.30: Summary 
+  * 11.00: End of ww
+
+== Summary ==
+* HarmonEPS paper - looked at the review in detail and all questions have assigned people to update the manuscript accordingly. Deadline is 11 June, so everybody to have their contributions ready by end of May.
+* cy43 testing 
+  * See attachment for what will be tested and who will do what: [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2019-1/Testing_of_EPS_components_in_cy43.pdf Testing of EPS components in cy43]
+    * Ulf: BND/PertAna OK, EDA technically OK, clustering OK, surface perturbations ok. Misc. updates including new default setup.
+    * Karoliina and Janne: SPPT testing started
+    * Inger-Lise: EDA testing to start next week
+    * Ole: SPG compiles and work technically with SPPT=yes
+    * Jelena: debugging of BRAND and EnVar
+*  Calibration (JBB) based on millions of training cases and operational prediction at millions of grid points are computationally very challenging, in particular for methods like quantile regression forests (random forest). In this regard stochastic gradient boosting (SGB) may be a good alternative, since less complex models often are sufficient. Selection of tuning parameters in SGB has been investigated with respect to deterministic forecast quality (23% improvement of MAE for temperature), computational requirements and model complexity. Preliminary results are promising, but it is not straightforward to make probabilistic forecasts. By making separate models for the mean and variance, forecasts in terms of two-parameter distributions can be made, though. Future work include how to make probabilistic forecasts and setting up an experimental system making temperature forecasts at a 500m grid, say.
+* SPP and SPPT: 
+  * For SPPT testing of different SDEV are ongoing (Alan, Janne and Karoliina). 
+  * For SPP Ulf has implemented two new radiation parameters. 
+  * Inger-Lise is currently testing zl_inf. 
+  * A SPP testing plan for a winter period was made, and Sibbo, Pirkka and Inger-Lise will run  the same as was done for the summer period, some runs were stared this week. 
+  * When happy with SPP settings two longer periods will be run for both SPP and SPPT, one winter and one summer period. 
+  * Ideas on how to use tendencies for diagnosing the perturbations were discussed. 
+  * For SPPT we would like to implement and test pSPPT. 
+  * A combination of SPP and SPPT will be tried. 
+  * We aim to start writing a paper about SPP and SPPT this summer. 
+* Harp-v3: Andrew has worked on speed-up at ecgate, good progress but still a little remaining
+* Humidity bias seen in perturbed members: Henrik has started to investigate this. In a first set of experiments humidity impact was tested in PertAna, by reducing them or switching them off. Results needs to be studied more. Next steps to test same in boundaries and in surface perturbations. 
+* Discussions with Jan B about KNMI contributions to HIRLAM EPS work
+* Andrew and John had discussion about work on perturbing surface fluxes, work to start in the autumn.
+* NEXT WORKING WEEK: 11. -15. November 2019 (week 46), Barcelona.
+
+
+
+
+== Block hotel reservation ==
+A block hotel reservation has been made in Star Lodge (situated between Utrecht and De Bilt; there are bus stops close to the hotel with direct connections to KNMI and Utrecht central station). The costs are 87.50 EUR per room per night, including breakfast, excluding taxes. You can book a room with the code EPSKNMI2019 on their website (https://www.starlodgehotelsutrecht.nl/en/hotel-utrecht.html).
+
+== How to reach KNMI ==
+See https://www.knmi.nl/over-het-knmi/how-to-contact-knmi. Please note that you have to enter via the main entrance gate of KNMI along the Utrechtseweg (number 297), because the other gate (at the Wilhelminalaan) is not open momentarily.

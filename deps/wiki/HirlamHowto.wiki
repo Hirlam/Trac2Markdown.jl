@@ -1,0 +1,95 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam HOWTOs''' =
+[[Center(end)]]
+
+The following is a list of topics intended to be covered by the multi-year HIRLAM-A system documentation project. We hope to involve as many as possible HIRLAM developers to contribute to the project. Contributions from all, both in form of questions and answers, are welcome.
+
+
+== Source Code and Revision Control ==
+
+ * [wiki:HirlamHowto/Svn/Source Get Hirlam source]
+ * [wiki:HirlamHowto/Svn/Subversion svn revision control]
+ * [wiki:HirlamHowto/Svn/Diff View differences between versions]
+
+== Installation ==
+ * [wiki:HirlamHowto/Install/General General Questions]
+ * [wiki:HirlamHowto/Install/ECMWF ECMWF platform]
+ * [wiki:HirlamHowto/Install/LinuxPc LinuxPC platform]
+
+== Running HIRLAM experiment ==
+ * [wiki:HirlamHowto/Running/mSMSscript Running HIRLAM using mSMS]
+ * [wiki:HirlamHowto/Running/Monitoring Monitoring a running experiment]
+
+== Basic Configuration ==
+
+ * [wiki:HirlamHowto/Configure/Domain Domain]
+ * [wiki:HirlamHowto/Configure/HorizontalGrid Forecast Grid]
+ * [wiki:HirlamHowto/Configure/VerticalGrid Vertical Grid]
+ * [wiki:HirlamHowto/Configure/ClimateGeneration Climate Generation]
+ * [wiki:HirlamHowto/Configure/BoundaryData Lateral Boundary]
+ * [wiki:HirlamHowto/Configure/DataAssimilation Data Assimilation]
+ * [wiki:HirlamHowto/Configure/ModelCoupling Initialization, Coupling and Nesting]
+ * [wiki:HirlamHowto/Configure/ForecastConfiguration Forecast]
+ * [wiki:HirlamHowto/Configure/PostProcessing Post Processing]
+
+== Analysis ==
+
+ * [wiki:HirlamHowto/Analysis/Observation Observation Data Usage]
+ * [wiki:HirlamHowto/Analysis/Screening Observation Data Screening]
+ * [wiki:HirlamHowto/Analysis/SurfaceAnalysis Surface Analysis]
+ * [wiki:HirlamHowto/Analysis/Namelist HIRVDA Name-list]
+ * [wiki:HirlamHowto/Analysis/ThreeDVAR 3DVAR]
+ * [wiki:HirlamHowto/Analysis/FourDVAR 4DVAR]
+ * [wiki:HirlamHowto/Analysis/ComputationAspects Computation Aspects]
+ * [wiki:HirlamHowto/Analysis/VarQc Variational Quality Control]
+ * [wiki:HirlamHowto/Analysis/ObservationErrorStatistics Observation Error Specification]
+ * [wiki:HirlamHowto/Analysis/BackgroundStatistics Background Error Statistics]
+ * [wiki:HirlamHowto/Analysis/AnalysisMonitoring Analysis Monitoring]
+
+ * [wiki:HirlamHowto/Analysis/ATOVS Using ATOVS observations]
+ * [wiki:HirlamHowto/Analysis/QuikScat Using QuikScat observations]
+
+ * [wiki:HirlamHowto/Analysis/BGOS Running BGOS on hpce with RTTOV8]
+
+== Forecast ==
+
+ * [wiki:HirlamHowto/Forecast/Initialization Initialization]
+ * [wiki:HirlamHowto/Forecast/Namelist Name-list]
+ * [wiki:HirlamHowto/Forecast/ComputationAspects Computation Aspects]
+ * [wiki:HirlamHowto/Forecast/Dynamics Dynamics]
+ * [wiki:HirlamHowto/Forecast/Physics Physics]
+ * [wiki:HirlamHowto/Forecast/Output Model Output]
+ * [wiki:HirlamHowto/Forecast/Error Typical Runtime Errors]
+
+== Post Processing ==
+
+ * [wiki:HirlamHowto/PostPP/Verification Verification]
+ * [wiki:HirlamHowto/PostPP/Diagnostics Diagnostics]
+ * [wiki:HirlamHowto/PostPP/Graphics Graphics]
+
+== HIRLAM EPS ==
+
+ * [wiki:HirlamHowto/EPS/HirlamEPS HIRLAM EPS]
+
+== Source code update ==
+
+ * [wiki:HirlamHowto/Update/Update Update Procedure]
+
+== HIRLAM coupled with meso-scale ALADIN/AROME system ==
+
+ * [wiki:HirlamHowto/Mesoscale/MesoScaleCoupling Hirlam coupled with ALADIN system]
+
+
+== HIRLAM System Wiki ==
+
+ * [wiki:HirlamHowto/Systemwiki/AccessContribution Access and contribution]
+
+
+
+[[SubWiki]]
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

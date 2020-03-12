@@ -1,0 +1,61 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Hirlam Data Portal''' ===
+== '''Monitoring and Intercomparison of Operational HIRLAM/Harmonie''' ==
+= '''Data''' =
+[[Center(end)]]
+
+== '''Data featured in theHIRLAM data portal''' ==
+
+|| Operational Service ||  Model || Specification || Forecast || [https://hirlam.org/portal/oprint/WebgraF/ObsVer Observation Verification] || [https://hirlam.org/portal/oprint/WebgraF/ObsUse Use of Observation ] ||  [https://hirlam.org/monitor/start.php Forecast&Data assimilation monitoring] ||
+|| GLAMEPS  || GLAMEPS || GLAMEPS V2, 8 km || [https://glameps.hirlam.org/ Daily forecast ]  || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/InterComp GLGTL ]  || || ||
+|| [wiki:AEMET_HIRLAM AEMET]  ||  '''ONR''' || HIRLAM, 0.16d ||  || [https://hirlam.org/portal/WebgraF/ObsVer/AEMET AEMET ]   ||  ||  ||  
+|| [wiki:AEMET_HIRLAM AEMET] ||  '''HNR''' || HIRLAM, 0.05d || ||  [https://hirlam.org/portal/WebgraF/ObsVer/AEMET  AEMET ]   ||   ||  ||  
+|| [wiki:AEMET_HIRLAM AEMET] || || Valladolid Mast ||  || ||  ||  ||
+|| [wiki:DMI_HIRLAM DMI] || '''dka38h12''' ||  HARMONIE-Denmark, 2.5 km (RCR) || [https://hirlam.org/portal/dmi/harmonie/dka38h12/forecasts/select_date.html dka38h12 forecast ] || [https://hirlam.org/portal/WebgraF/ObsVer/DMI DMI] || [https://shiny.hirlam.org/obsDMI obs use] || [https://hirlam.org/portal/dmi/harmonie/monitor/dka38h12/?choice_ind=Surface dka38h12 monitoring  ] || 
+|| [wiki:DMI_HIRLAM DMI] || '''glb38h12''' || HARMONIE-Greenland, 2km  || [https://hirlam.org/portal/dmi/harmonie/glb38h12/forecasts/select_date.html glb38h12 forecast ] || [https://hirlam.org/portal/WebgraF/ObsVer/DMI DMI] || [https://shiny.hirlam.org/obsDMI obs use ] || [https://hirlam.org/portal/dmi/harmonie/monitor/glb38h12/?choice_ind=Surface glb38h12 monitoring  ] || 
+|| [wiki:DMI_HIRLAM DMI] ||  '''SKA''' ||  HIRLAM, 0.03d Scandinavia || [https://hirlam.org/portal/dmi/s05eps/  forecast, meteograms ] || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/DMI DMI ]  ||    ||   ||
+|| [wiki:DMI_HIRLAM DMI] ||  '''EPSEM''' ||  HIRLAM, 5km ensemble || [https://hirlam.org/portal/dmi/s05eps/  forecast, meteograms ] || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/DMI DMI ]  ||    ||    ||
+|| EMHI || '''ETA''' ||  HIRLAM-0.10d || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/EMHI EMHI ]  ||  ||   ||
+|| EMHI || '''ETB''' || HIRLAM-0.03d nonhydrostatic || ||  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/EMHI EMHI ] ||   ||  ||  
+|| [wiki:FMI_RCR FMI]  || '''aro38h12''' ||  HARMONIE-scandinavia, 2.5 km ||  [http://fminwp.fmi.fi/Harmonie/animations/ daily forecast ] || [http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/ FMI verification] ||  [https://shiny.hirlam.org/obsmon2 obs use] || [http://fminwp.fmi.fi/monitor/06/MonIdx_All.html obs monitoring ] ||
+|| [wiki:FMI_RCR FMI]  || '''RCR''' || HIRLAM, FMI 7 km ||  [http://fminwp.fmi.fi/animations/index.html daily forecast ] || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/FMI  RCR] || [http://fminwp.fmi.fi/monitor/06/MonIdx_All.html obs monitoring ] || [http://fminwp.fmi.fi/WebgraF/FMI-HIRLAM/ FMI monitoring] ||
+|| [wiki:FMI_RCR FMI] ||  || Sodankyla Mast ||  ||  ||  ||  ||
+|| [wiki:KNMI_HIRLAM]  || '''36h12''' ||  HARMONIE, KNMI 2.5 km|| || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/KNMI Verification ]   ||   ||  || 
+|| [wiki:KNMI_HIRLAM]  || '''CIS''' || HIRLAM, 0.10d || ||  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/KNMI Verification ]   ||   ||  ||
+|| [wiki:KNMI_HIRLAM] ||  ||  Cabauw Mast ||  ||  ||  || ||
+|| LHMS || '''HL8''' || HIRLAM, 0.07d || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/LHMS LHMS ]  ||   || ||
+|| [wiki:METIE_HIRLAM MetEireann (METIE)] || '''37h1p1''' || HARMONIE-Ireland 2.5km || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METIE METIE ] ||   ||   || 
+|| [wiki:METIE_HIRLAM MetEireann (METIE)] || '''ICH''' || HIRLAM, 0.1d || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METIE METIE ] ||  ||   ||
+|| [wiki:metno_HIRLAM Met.no] || '''H08''' || HIRLAM, 0.08d || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METNO METNO ]  ||  ||   || 
+|| [wiki:SMHI_HIRLAM SMHI] || '''C11''' || HIRLAM, 0.11d || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/SMHI SMHI  ]  ||  ||   ||  
+|| !MetCoOp || '''AM25''' || HARMONIE-scandinavia 2.5 km (RCR) || || [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METCOOP METCOOP]  ||  [https://shiny.hirlam.org/obsmon2 obs monitoring ] ||   ||  
+|| ECMWF || '''ECH''' || global model,  0.15d  || ||  [https://hirlam.org/portal/oprint/WebgraF/ObsVer/InterComp Intercomp ]  || ||   ||
+
+[[FootNote]]
+
+
+[wiki:HarmonieInventory/Operational Overview of operational mesoscale HARMONIE models]
+
+[wiki:HirlamInventory/Operational Overview of operational HIRLAM models]
+
+==  '''Data policy with Hirlam-B data portal''' ==
+In an effort to promote closer operational cooperation between NWP services, especially those involved in HIRLAM cooperation, and improve on monitoring of real-time operational HIRLAM and HARMONIE forecasts, Hirlam programme has over the past years worked on an establishment of hirlam data portal which is primarily hosted at https://hirlam.org. At current stage, the main emphasis of the data portal is on enabling of near real-time joint operational HIRLAM/HARMONIE monitoring and model inter-comparison. Where applicable, the set up will be extended further to cover suitable observations and forecasts provided by other participating data providers, including enabling of operational data exchange when conditions permits.
+
+The web content of the hirlam data portal is available to the entire hirlam community, including that of the cooperation partners in Meteo France and ALADIN community. Users outside of this community may acquire access by contacting HIRLAM-B programme. The presentation materials and data featured in the hirlam data portal may not be used for non-research purpose. Publication with reference to the presented data portal materials need to be agreed in advance, with due acknowledge made to hirlam-B and data providers. For the raw observation and forecast data, the ownership remains at data providers. 
+
+== '''Questions and Comments''' ==
+
+Contact xiaohua@dmi.dk
+
+
+[[Center(begin)]]
+[wiki:dataportal Back to the main page of Hirlam data portal]
+[[Center(end)]]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

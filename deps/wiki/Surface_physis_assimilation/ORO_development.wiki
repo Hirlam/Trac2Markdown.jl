@@ -1,0 +1,56 @@
+'''This page is indended for planning and communication between the developers of orographic parametrizations in SURFEX for the ALADIN-HIRLAM forecasting system'''
+
+
+= Starting points =
+
+Old rolling plan 2015 on "Orographic effects on radiation and momentum"
+
+* Implement Hirlam orographic radiation parametrisations into Surfex, and upgrade this code following suggestions by Manners et al., 2011. Study existing approximations in Surfex related to slopes and introduce improvements or alternative treatments based on the modified Hirlam parametrizations. Introduce the required slope statistical parameters based on very high resolution digital elevation data. 
+
+* Study possibilities to introduce in Surfex the Hirlam smallest-scale orography parametrisations based on Wood et al., 2001. Check the usage of orographic roughness in Surfex and switch it off in case SSO parametrisations are applied. The required orographic slope statistics needed for the parametrisations is to be prepared in ... Check the consistency of these parametrisations with the atmospheric turbulence parametrisations, which use the surface layer momentum as lower boundary condition. Consider introduction of the Alaro / Hirlam buoyancy wave parametrisations into Arome.
+ 
+
+= Plans =
+
+
+== Ororad ==
+
+Test ororad within cy43 with SURFEX v.8
+
+* Check the calculation of input orography fields, based on GMTED or SRTM, select needed accuracy in the Toulouse approach
+
+* Study the definitions of local horizon angle and sky view factor, test alternative formulations and correct possible mistakes
+
+* Run techical and sensitivity tests within HARMONIE cy43h1, compare with earlier Caucasian and Alpine experiments, obtain radiation observations for comparison
+
+
+
+== Orotur ==
+
+Introduce parametrization of the momentum fluxes due to the smallest scale orography features, following the HIRLAM approach based on Wood et al, 2001
+
+* Study the use of different variables describing the sub-grid-scale orography variation: SSO std, SSO slope, sky view factor (derived for ororad)
+
+* Run sensitivity tests within MUSC_cy43h1 and full HARMONIE 
+
+* Document the orotur parametrizations in a technical report, journal
+ 
+
+
+= Publications and reference material =
+
+Rontu Laura, 2006. A study on parametrization of orography-related momentum fluxes in a synoptic-scale NWP model, Tellus A, http://dx.doi.org/10.1111/j.1600-0870.2006.00162.x
+
+Ronru Laura, 2007. Studies on orographic effects in a numerical weather prediction model. http://urn.fi/URN:ISBN:978-952-10-4184-6 
+
+Rontu Laura, Wastl Clemens, Niemela Sami, 2016: Influence of the details of topography on weather forecast – evaluation of HARMONIE experiments in the Sochi Olympics domain over the Caucasian mountains, Frontiers in Earth Science,4,(13).
+doi: http://dx.doi.org/10.3389/feart.2016.00013      
+
+Wastl C. , A. Mary , Y. Seity , L. Rontu and C. Wittmann, 2015. Parameterization of orographic effects on surface radiation in AROME-SURFEX. ALADIN-HIRLAM Newsletter, No. 5}, 81--82}. http://www.cnrm.meteo.fr/aladin/IMG/pdf/nl5.pdf
+
+
+
+= Useful links = 
+
+[https://hirlam.org/trac/wiki/ororad  Old ororad wiki page]
+

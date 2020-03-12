@@ -1,0 +1,151 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''MSG/SYNOP assisted initialization of model water vapor and temperature''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+= Philosophia Naturalis =
+
+Given synoptic observations of cloud base, cloud mask from the !NowCasting SAF, and !MeteoSat-Second-Generation (MSG) observations of cloud top infrared radiation (and hence, cloud top temperature) [coupled to the expectation value of atmospheric temperature at a certain height] one can deduce that in a column of atmosphere from cloud base to cloud top, air is more or less saturated with water vapor, depending on the degree of cloud cover obtained from the cloud mask.
+
+This procedure is an effective way to nudge the model atmosphere's water vapor content in each column to a value consistent with these observations.
+
+A limitation of this approach is that often not enough information is available on the vertical structure of clouds in the atmosphere. Nevertheless, the method seems to perform quite well in correcting the atmospheric water vapor content and clouds in the model. 
+
+= Algorithm =
+
+Given the model fields T (temperature), Q (specific humidity), S (cloud water), QI (cloud ice), R (rain), SN (snow), G (graupel), H (height),
+and the fields derived from SYNOP cloud base height (CBH), from MSG cloud top temperature (CTT) and Nowcasting SAF cloud mask / cloud cover (CCN),
+perform the following:
+
+* For each grid point column do
+  * Loop from model level 3 down to the lowest model level
+    * Repeat the following procedure 10 times for convergence
+      - Compute TV (virtual temperature)
+      - Compute SVP (saturation vapor pressure)
+      - Compute QS (saturation specific humidity)
+      - Compute a first estimate of CC (cloud cover) between relative humidity at which clouds are formed in mid-troposphere (RHMIN) and at lowest model level (RHMAX) [interpolate smoothly based on pressure difference between current layer and lowest layer]
+      - If
+        * model layer height H is less than orography + cloud base CBH from SYNOP, or
+        * model layer temperature is less than cloud top temperature CTT from MSG, or
+        * cloud cover is less than predefined minimum (= 0.001)
+      - Then
+        * If the model specific humidity is greater than cloud cover times saturation specific humidity, use the latter as value
+      - Else
+        * Set the model specific humidity to the saturation specific humidity times a cloud cover value between the model cloud cover and the one based on the Nowcasting SAF's estimate CCN
+      * Subsequently, limit the change in model specific humidity to 20 % of its original value
+      * Then compute the model new temperature by using the virtual temperature computed above and the new model specific humidity
+
+= Current implementation =
+
+== Script: MSG_ALL.sc ==
+
+This is the master script that calls the following scripts:
+
+== Script: Meteosat-8_2BULL.sc ==
+
+This script collects the relevant Meteosat HDF5 files from KNMI specific locations.
+
+Naming convention: METEO_{8|9|10}_SEVIRI_EUROPE_YYYY_MM_DD_HH_{00!45}_00.h5.
+
+== Script: MSGcloudmaskRUC2BULL.sc ==
+
+This script collects the SAFNWC files with cloud mask data from KNMI specific places.
+
+Naming convention: SAFNWC_MSG{1|2|3}_CMa__YYYYMMDDHH45_MSG-N_______.h5.
+
+== Script: MAKE_SYNOP ==
+
+This script gathers BUFR files for the current time interval (albeit from KNMI specific locations) and calls the program "synop_basis" that extracts the cloud base observations into a ASCII file "YYYYMMDDHH.basis".
+
+== Script: SCsafnwcmaskhr.sc ==
+
+Using file SAFNWC_MSG3_CMa__YYYYMMDDHH45_MSG-N_______.h5 this script computes the cloud mask using programs "safnwcMASK.x" and "nwcmaskHR.x" in the file "cloud_coverHR".
+
+== Script: SCmet8_108hr.sc ==
+
+From the file METEOSAT_10_SEVIRI_EUROPE_YYYY_MM_DD_HH_00_00.h5 it computes the cloud top temperature using the programs "met8_108.x" and "msg108HR.x" in file "cloudtop_tempHR".
+
+== Script: RUC_H11.sc ==
+
+Using the files: "cloud_coverHR", "cloudtop_tempHR" and "YYYYMMDDHH.basis" (locally called "basisBEGIN") produced by the scripts above, it uses program "Make_cloudinit_gribfile.x" to create the GRIB file "MSG_RUC_HAR_YYYYMMDDHH" with the water vapor estimate.
+
+== Program: synop_basis ==
+
+This program extracts cloud base height and cloud amount from BUFR messages.
+
+It writes a file with lines of the following format (all numbers are integers, missing data represented by -1) to unit 10, which is linked to "YYYYMMDDHH.basis":
+
+<cloud base height> <cloud amount> <longitude*100> <latitude*100> <BUFR identifier 4004>
+
+It uses the following routines:
+
+=== Subroutine: pbmesr ===
+
+A routine that returns one BUFR message into an array; comes from HIRLAM libraries, but was written by me (so I know how it works).
+
+=== Subroutine: bus012 ===
+
+This routine comes from the BUFREX library - we can probably use the library installed with HARMONIE.
+
+=== Subroutine: bufrex ===
+
+Ditto.
+
+=== Subroutine: busel ===
+
+Ditto.
+
+== Program: safnwcMASK.x ==
+
+Reads the cloud mask from a file "INmask.h5" (which should be a link to the appropriate "SAFNWC...h5" file).
+
+Written in C. Uses only standard HDF5 calls and C formatted I/O to stdout (redirected to file "OUTmask"), so should easily be converted to Fortran.
+
+== Program: nwcmaskHR.x ==
+
+Computes an average cloud cover based on a 5x3 array of pixels in the cloud mask (input file "OUTmask"). Standard Fortran, with formatted I/O to file "cloud_coverHR".
+
+== Program: met8_108.x ==
+
+Read cloud type from HDF5 file "IN108" (which should be linked to the appropriate "METEOSAT_10_SEVIRI_EUROPE_...h5" file) using standard HDF5 calls. Written in C using C formatted I/O to stdout (redirected to "OUT108"). Easily recoded in Fortran.
+
+== Program: msg108HR.x ==
+
+Standard Fortran program reads MSG pixels from file "OUT108" and write cloud top temperatures, with formatted I/O to file "cloudtop_tempHR".
+
+== Program: Make_cloudinit_gribfile.x ==
+
+Given the input files "cloud_coverHR", "cloudtop_tempHR" and "basisBEGIN", this program writes an ASIMOF grib file (on the grid of KNMI's 306x290 0.1x0.1 degree HIRLAM) with fields 76 (cloud water content), 71 (cloud cover), and 51 (specific humidity). The vertical level encoding is rather special (level type 109 - model level, level 1 - top).
+
+The coupling of the satellite and synop data geographically is done by first computing for every position in the rotated grid the regular lat/lon pair, looking up the values, and assigning them to that position. Synop data is simply interpolated to the grid
+
+= Proposed implementation in HARMONIE cycle 40h1 =
+
+The routine to update water vapor and temperature in the model atmosphere is in arp/phys_dmn/msginit.F90.
+
+== Gather observations and output cloud cover, cloud top temperature and cloud base in FA ==
+
+* Read a climate file of the experiment for the definition of the model grid.
+* Read BUFR synop observation and extract cloud base height, cloud amount, latitude and longitude.
+* Read cloud mask HDF5 observation and extract cloud mask and (estimated) cloud cover.
+* Read cloud top temperature HDF5 observation.
+* Interpolate all three observations to the model's grid, as determined by the climate file (see gl_grib_api's module_interpol.f90).
+* Write the resulting three-field FA file.
+
+To be determined:
+
+* On what grid do we define the output FA ?
+  - The HARMONIE model grid ? This might be prescribed because we want to use the "blend" program to do the field adaptation. Indeed, this is a requirement of the "blend" program.
+  - The grid of the MSG pixels ? No - see above.
+* How do we determine the cloud base height on this grid ?
+  - Interpolate between observations ? Probably, look at Sibbo's algorithm.
+  - Set missing data where there is no SYNOP observation ? As a last resort.
+
+== Use the "blend" program to adapt model specific humidity and temperature ==
+
+* Use the "blend" program to read model state (in FA) and the above produced FA file.
+* On each grid point of the "observation" FA file (that doesn't contain "missing values" - see above), find the nearest model grid point.
+* Adapt cloud water and specific humidity in the column from cloud base to the model level corresponding to the cloud top temperature for that grid point.
+* Let the "blend" program write the result FA file.

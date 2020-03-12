@@ -1,0 +1,56 @@
+== '''Operational suite at Lhms''' ==
+
+
+
+
+ * '''Domain configuration'''
+{{{
+#!html
+<table>
+<td>
+}}}
+
+|| Model             || '''HL_L7''' || '''HL_L4''' || 
+|| Domain            || 492X398 || 658X580 ||
+|| Levels            ||      60 ||      60 ||
+|| Mesh size (deg.)  ||   0.071 ||   0.036 ||
+|| ANALYSIS          ||  3DVAR  ||  3DVAR  || 
+|| FGAT              ||     Yes ||     Yes ||
+|| DA cycle          ||     6h  ||      6h ||
+|| Host model        ||   ECMWF ||  ECMWF  ||
+|| Boundary age (FC) ||      6h ||      6h ||
+|| Boundary interval ||      3h ||      1h ||
+|| Forecast length   ||     54h ||     54h ||
+|| Forecasts per day ||       4 ||       4 ||
+|| Re-forecasts / day||       4 ||       4 ||
+|| Timestep          ||    180s ||    120s ||
+|| Cond. scheme      ||  Straco || KF  ||
+{{{
+#!html
+<td> &nbsp; <td>
+}}}
+
+ * '''Coverage'''
+[[Image(teritorija.png)]]
+
+ * '''Computer platform'''
+
+
+
+ * SGI Altix ICE 8200 EX
+ * 128 cores for operational (Intel Xeon 55700(Nehalem) 2.93 GHZ/3GB mem.)
+ * Intel compilers
+ * SGI MPI
+ * Hirlam runs with HGS_GIO
+ * Linux (SLES)
+ * 8 TB storage
+
+
+
+
+'''Contact staff'''
+
+
+
+Martynas Kazlauskas
+

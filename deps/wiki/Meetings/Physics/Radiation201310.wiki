@@ -1,0 +1,291 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Radiation Working Week''' =
+''FMI, 29^th^ October - 1^st^ of November 2013''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Practical ==
+
+ * Participants:
+  * Met Éireann:                          Emily Gleeson
+  * Danish Meteorological Institute:      Kristian Pagh Nielsen
+  * Czech  Hydrometeorological Institute: Jan Masek
+  * Estonian Meteorological and Hydrological institute / Tartu University:  Aarne Männik, Velle Toll, Rein Rööm, Marko Kaasik, Marko Zirk, Ketlin Reis
+  * Finnish Meteorological Institute:     Laura Rontu, Marje Prank, (Julius Vira, Rostislav Kuznetsov, Niko Sokka, Sylvain Joffre)
+  
+== Objectives ==
+
+The ultimate goal of this work is to make comparisons and improvements of the radiation schemes available in HARMONIE, i.e. the IFS, ACRANEB and HLRADIA. AROME physics has been chosen for the platform where all radiation routines can be compared in a clean way. Thus, calls of all three radiation routines are being implemented in apl_arome.F90, with common interfaces between radiation and clouds, aerosol and surface. In this framework, a clean comparison of any further developments inside the three radition schemes is also possible. It is important to allow the radiation routines to concentrate on radiation and prepare the common input concerning cloud, aerosol and surface state before entering the radiation calculations.  
+
+During this working week we pay special attention to the aerosol-radiation interactions and planning of related HARMONIE experiments. This work is a continuation from [https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201302 the previous radiation working weeks].
+
+== Agenda ==
+
+Tuesday 9.30 - 17.30 . Meeting room Sykloni, 4th floor
+
+Basic radiation work by Emily, Kristian, Jan, Laura. 
+
+Startup reporting and discussion about ongoing work: 
+
+ * HARMONIE SW comparison. 
+
+ * ACRANEB renewal and testing. 
+
+ * The task of radiation cleaning in AROME. 
+ 
+ * Status of orographic radiation work in HARMONIE. 
+
+ * Filling of short-term to-do list:
+
+----
+
+Wednesday, day of aerosols 9.30 - 17.30 . Meeting rooms Sykloni (in the morning only), Turbulenssi and Sateenkaari (afternoon) 
+
+Morning:  Presentations and general discussion
+
+ * HIRLAM-B aerosol policy (Laura) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/Aeropolicy.pdf Slides]
+
+ * A summary of EUMETCHEM Toulouse discussions (Kristian) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/A%20summary%20of%20EUMETCHEM%20Toulouse%20discussions.pptx Slides]
+Attached is an unofficial draft of notes of the NWP group: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/EUMETCHEM_NWP.pdf pdf]. This is the link to the whole meeting, with some presentations: [http://www.eumetchem.info/index.php?option=com_content&view=article&id=81&Itemid=66&lang=en COST ES1004 EuMetChem HIRLAM-ALADIN working meeting on Integrated Meteorology-Aerosol-Chemistry Modelling]
+
+ * Aerosols in SILAM (Marje) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/Prank.pdf Slides]
+
+ * HARMONIE aerosols (Emily) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/Hm-Aero.pdf Slides]
+
+ * Aero-hlradia (Kristian) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/Nielsen_Direct_aerosol_effects_20130926.pdf Slides]
+
+ * Estonian experience with SILAM and aerosol (Marko) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/Kaasik.pdf Slides]
+
+ * Derecho 08.08.2010 (Velle) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/derecho_08082010_Velle.pdf Slides]
+
+ * Derecho and aerosol (Aarne) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/ettekanne_AMannik20131030.pdf Slides]
+
+Afternoon: planning of coming aerosol-radiation experiments in two groups: one for Harmonie_MUSC_cy38h1, another for full HARMONIE. 
+
+* [http://www.ecmwf.int/research/ifsdocs/CY28r1/Physics/Physics-03-6.html Documentation of how GADS/OPAC aerosols are related to the IFS aerosols (see section 2.5.3)]
+
+Evening: Dinner together - reservation made in [http://saydelicious.com Say Delicious]
+
+
+----
+
+Thursday 9 - 12, 13 - 17 . Meeting rooms Sykloni and Turbulenssi
+
+Morning: finishing group work, discussion and decisions about further plans, end of aerosol work. 
+
+Afternoon: continuation of basic radiation work 
+
+
+----
+
+Friday 9 - 14 . Meeting room Sykloni
+
+ * Radiation cleaning in apl_arome as a task in HARMONIE physics-dynamics interface work
+
+ * Final discussion on radiation plans, update of the HIRLAM-ALADIN rolling plan 2014
+
+----
+
+== Work space: notes, plans, comments ==
+
+=== Short term tasks ===
+
+hlradia clear sky SW tuning
+
+ACRANEB SW testing in MUSC
+
+IFS radiation scheme (from cycle 27)
+- direct/diffuse split with proper coupling to SURFEX
+- set inhomogeneity factor to 1 everywhere for SW and LW, check in 3D
+- new liquid cloud optical properties by Kristian, test, check in 3D
+- test hlradia with aerosols in MUSC and 3D
+- cloud overlap settings to choose (NOVLP5-7)
+
+Technical
+- harmonie_38h1.radiation branch
+- start radiation cleaning
+
+== Aerosols ==
+
+=== Aerosol shopping list for SILAM ===
+
+- 3D fields of aerosol concentration (kg/m3 or kg/kg?) with 3hr interval for 10 July - 20 August 2010 from 10E to 55 E and 50N to 70N, with input resolution of ca. 10km/10L
+- The GADS/OPAC aerosol types are: Sea salt, soot, minerals, sulphates, insoluble, water soluble, where sea salt exists in two size modes: accumulation mode and coarse mode, and minerals exists in four size modes: nucleation mode, accumulation mode, coarse mode and transported mode. Including the modes there are thus ten different aerosols in GADS/OPAC. In aero_rt6.F90 four of these are not used: sea salt accumulation mode and the three mineral size modes besides the transported mode. 
+- Question of levels and interpolation in vertical: to be done in SILAM or in HARMONIE by gl? Answer: with gl from the height level data
+- Horizontal input from SILAM to HARMONIE: requested rotated lat-lon, used inside HARMONIE Lambert - interpolation to be done in HARMONIE by gl within the boundary generation
+- role of FMI and Tartu SILAM in providing the aerosol: Tartu does the SILAM runs under guidance from FMI
+- For the future: study [http://www.gmes-atmosphere.eu/d/services/gac/nrt/nrt_opticaldepth!36!Total!Global!macc!od!enfo!nrt_opticaldepth!latest!!/ MACC aerosol], which is of coarser resolution, integrated concentration and simplified classification compared to input available from SILAM
+
+Aerosol preparation by SILAM: Marko in connection with Marje
+
+=== How to use the aerosol in and pass it as input to AROME physics routines===
+
+- Use the values provided by SILAM as such: interpolation of full fields in time, no advection inside the HARMONIE experiment to provide best possible continuity
+- How the input from boundary files is interpolated to every time-step inside HARMONIE: to be studied together with the HARMONIE system people (at the moment, we do not know)?
+- Use separate files or the normal boundary files for transfer? Answer: preferably boundary files, not the separate ones
+- Preparation of the aerosol input via boundaries: Aarne in connection with Ulf
+- Define the 6 aerosol fields as 3D GFL variables, read from input, pass all over the model
+
+=== Current aerosol handling in …/arp/phys_dmn/apl_arome.F90. ===
+
+The line numbers given below are approximate.
+
+1. Climatological aerosol input in the arrays: PAESEA(KLON), PAELAN(KLON), PAESOO(KLON), PAEDES(KLON), PAESUL(KLON) and PAEVOL(KLON). These are the 6 IFS aerosol types: Sea, land, soot/urban, desert dust, stratospheric sulphate background and volcano. 
+2. Aerosol initialisation (@~ line 775): ZAER(KLON,KLEV,6), ZAERD(KLON,KLEV) and ZAERINDS(KLON,KLEV) are set to 0.0. 
+  - Aerosol initialisation 2nd time (@~ line 835): ZAER(KLON,KLEV,6) is set to 0.0.
+3. Aerosol dust calculation if LDUST is true (@~ line 1490): ZAERD(KLON,KLEV) calculated in the subroutine …/aro_mnhdust.F90.
+  - The ZRAER declaration and use in the subroutine …/arp/phys_ec/radact.F90 have different order of the arrays.
+  - …/arp/phys_ec/radact.F90 is called in an impossible IF statement.
+4. Aerosol vertical distribution if IFS radiation is used (LRAYFM is true) at radiation time steps in …/arp/phys_ec/radaer.F90 (@~ line 1650): The arrays ZAER(KLON,KLEV,6) and ZAERINDS(KLON,KLEV) are given values. The unit is aerosol optical depth per model level at a wavelength of 550 nm.
+5. The IF(LRAYFM) statement before radaer.F90 is redundant.
+6. Aerosol dust replacement if LDUST is true (@~ line 1660): ZAER(KLON,KLEV,3) is set equal to ZAERD(KLON,KLEV).
+7. Call to radiation routine …/arp/phys_ec/radlsw.F90 via …/arp/phys_dmn/acradin.F90 and …/arp/phys_dmn/recmwf.F90 (@~ line 1690): In recmwf.F90 all array elements ZAER(:,:,5) is set equal to the constant RCAEROS, which is defined as 0.1462E-16 in the setup file …/arp/phys_ec/suaerh.F90.
+8. Aerosol wet deposition (or aerosol scavenging) if LMICRO AND LRDEPOS are true (@~ line 2550): Done with the subroutine …/mpa/chem/externals/aro_rainaero.F90.
+
+=== What needs to be changed in apl_arome.F90 to utilize GADS/OPAC aerosols from SILAM or another aerosol model ===
+
+1. Aerosol input: These will come from SILAM rather than the climatological aerosols that are currently used. The unit should be [kg/m3]. Six of the GADS/OPAC aerosols will replace the IFS aerosols, these are: 
+   1.	Insoluble aerosols; 
+   2.	Mineral aerosols (transported size mode); 
+   3.	Soot;   
+   4.	Sea salt (accumulation size mode); 
+   5.	Water soluble aerosols; 
+   6.	Sulphates.
+  - Aerosol initialisation: Remove the redundant 2nd initialisation of ZAER.
+2. Aerosol dust calculation and replacement: LDUST should be set to false.
+3. Aerosol vertical distribution: should also be disabled. A new logical variable LAEROINP = .TRUE. could do this.
+4. Aerosols for ACRADIN and ACRANEB: These radiation schemes will still use the IFS aerosols. The first four of these will now be calculated from the GADS/OPAC aerosols using the specifications in http://www.ecmwf.int/research/ifsdocs/CY28r1/Physics/Physics-03-6.html section 2.5.3. These are:
+   1.	Sea (or maritime) aerosols = 4.60% water soluble + 95.40% sea salt.
+   2.	Land (or continental) aerosols = 31.75% insoluble + 66.59% water soluble + 1.66% soot.
+   \\~~3.	Urban (or black carbon) aerosols = 18.44% insoluble + 41.27% water soluble + 40.29 soot.~~
+   3.	Urban (or black carbon) aerosols = 28.92% insoluble + 64.76% water soluble + 6.32 soot.  <--- Correction of error in the IFS documentation! Found September 2014.
+   4.	Desert (or dust-like) aerosols = 1.77% water soluble + 98.23% minerals.
+5. Aerosols for HLRADIA: Scaling factors for converting the aerosol optical thicknesses at a wavelength of 550 nm to broad band SW aerosol optical thicknesses should be added.
+6. The constant RCAEROS: should not overwrite ZAER(:,:,5) in …/arp/phys_dmn/recmwf.F90.
+7. Aerosol wet deposition: LRDEPOS should be set to false.
+
+=== HARMONIE aerosol experiments ===
+
+- Derecho case around 8th August 2010, see the presentations by Aarne and Velle
+- a possible pollution case in a layer capped by strong inversion
+
+Suggested text into the HIRLAM-ALADIN rolling plan about this task:
+
+Aerosol-radiation experiment: Perform a HARMONIE case study for the summer 2010 forest fires over Russia, to study the model sensitivity by coupling the aerosol input from SILAM (silam.fmi.fi). The results obtained by using the different radiation parametrizations available in the AROME framework (IFS, hlradia, acraneb) will be compared to each other and to the weather, aerosol and radiation observations available over a NE European study domain.The influence of replacing the presently available climatological aerosol information by three-dimensional observation-based data from SILAM will be studied. The possibility to compare also the indirect aerosol effects via various cloud microphysical parametrizations will be addressed.
+
+Preparation of the experiments: Aarne, Laura
+
+== Clouds ==
+
+=== Cloud overlap in HARMONIE ===
+
+The cloud cover for SW radiation calculations is set in the subroutine .../arp/phys_radi/swu.F90. The namelist variable NOVLP decides the cloud overlap scheme:
+
+* Maximum-random – NOVLP = 1, 6 or 8.
+* Maximum – NOVLP = 2 or 7.
+* Random – NOVLP = 3 or 5.
+* Hogan-Illingworth (2001) – NOVLP = 4.
+
+The cloud cover output variables from swu.F90 are PCLD(KLEV,KLON) and PCLEAR(KLON) (or ZCLD and ZCLEAR). PCLD is the cloud cover above a given grid box.  PCLEAR is the clear sky fraction above the surface.
+
+The NOVLP switches from 1 to 4 are the original IFS definitions, where the switches from 5 to 8 are specifically made for Meso-NH/AROME/HARMONIE high horizontal resolution calculations by Odile Thouron. In the Meso-NH versions the effective cloud cover is calculated differently from the way it is calculated in the IFS version in the subroutine …/arp/phys_radi/swr.F90.
+
+By default NOVLP = 6 (Maximum-random cloud overlap) is used in HARMONIE cy37h.
+
+== Other radiation issues ==
+
+=== The problem of direct and diffuse radiation in IFS ===
+
+[https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201210#SomepointsrelatingtotheModel Clues] of a potential problem with IFS radiation as implemented in AROME
+
+to be updated 
+
+=== Suggestions for SW improvements in Harmonie radiation schemes ===
+
+ *  The current choice of 6 spectral bands in HARMONIE/IFS should be re-assessed, as the first spectral band is irrelevant for NWP modelling.
+ *  The SW cloud inhomogeneity factor should be changed from 0.7 (0.8) to 1.0 in all schemes applied in HARMONIE.
+ *  The effects on the general 3D NWP results of using the Nielsen cloud liquid optical property parametrization within the IFS scheme should be tested.
+ *  In order to improve the delta-Eddington radiative transfer calculations, the possibility of using a variable Hopf q-function should be investigated.
+ *  The hlradia gaseous transmission coefficients should be tuned to the DISORT clear sky results presented here.
+
+=== Orographic radiation parametrizations ===
+
+[https://hirlam.org/trac/attachment/wiki/VeryFineResolution/orodoc2013.pdf pdf] Draft document about orography parameters applied in HIRLAM
+
+[https://hirlam.org/trac/browser/trunk/hirlam/src/phys/hlororad.F90 hlororad.F90] applied in HIRLAM
+
+[http://srnwp.met.hu/Annual_Meetings/2013/download/monday/Rontu_oro13.pdf pdf] Presentation about orography-related issues given in SRNWP 2013 meeting, including some material about radiation parametrizations
+
+Information and plan to be added: Laura
+
+=== Comparisons, observations, data etc ===
+
+[http://netfam.fmi.fi/Stable12/Rontu_presentation.pdf Old slides] about Sodankylä radiation comparison with HARMONIE
+
+== Technical issues ==
+
+=== Towards harmonie-38h1.radiation branch ===
+
+[https://hirlam.org/trac/browser/branches/harmonie-37h1.radiation harmonie-37h1.radiation] radiation branch based on cycle 37h1.2
+
+[https://hirlam.org/trac/browser/branches/harmonie_MUSC_cy38h1/test/radtest MUSC experiment radtest], with modified code in src, as a test case in harmonie_MUSC_cy38h1 
+
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Forecast/Outputlist/38h1 Output list] of cy38h1 (renewal of grib codes, especially in the SURFEX part!)
+
+First draft of the branch to be created after the first successful 3D experiments in ECMWF computers: Laura
+Update to include ACRANEB: after the first successful MUSC experiment: Jan
+Better formulation of the main switch in the namelist (LECMR, LHIRR, LALAR): Aarne
+ 
+=== Radiation cleaning ===
+
+From HIRLAM-ALADIN rolling plan draft, a subtask of physics-dynamics interface work: 
+
+Perform an exercise of radiation cleaning within AROME physics, with the aim of replacing the preparation of cloud and aerosol input from inside of the three available radiation schemes (IFS, hlradia, acraneb) with the usage of variables consistent with the micro-physical parametrizations.
+
+Slides prepared by Laura, Jan, Kristian for an interface web meeting 6 Nov 2013: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Radiation201310/cleanrad_20131106.pdf pdf]
+
+ * Interfaces: input to and output from radiation schemes
+
+input: 
+
+3D: qv, qliq, qice, cloud fraction, (precipitating liquid, ice), effective radius for liquid and ice 
+
+atmospheric gases (structure via setup?), 
+
+3D aerosol concentration/optical depth, spectral single scattering albedo and asymmetry factor via lookup tables in setup
+
+astronomy, hopefully consistently from one source: solar zenith and azimuth angle, solar constant etc
+
+surface variables: grid average spectral emissivity, spectral direct and diffuse albedo
+
+thermodynamics: 3D temperature, pressure; coefficients like R, cp via modules ...
+
+output:
+
+3D spectral net radiation fluxes
+
+spectral SSWDNDIR, SSWDNDIF, SLWDN, (SSWUP, SLWUP, TSWDN), TSWUP, TLWUP or via net fluxes instead of upwelling
+
+if possible: 4 main spectral building blocks
+
+Diffuse: clear sky diffuse + cloudy diffuse
+Direct:  clear sky direct + cloudy direct  
+Cloudy:  cloudy diffuse + cloudy direct
+Clear:   clear diffuse + clear direct
+
+3D temperature tendency, at least for the time being 
+
+ * Moving of input modifications from inside the radiation routines to the level of apl_arome
+
+ * Cleaning, streamlining, default values of namelist variables, setups, cycles and calls at apl_arome level
+
+Document & IFS code modifications based on previous radiation week: Emily
+
+ * Organising all setup routines to setup directory, modules to module directory (instead of present scattering of the routines all over)
+
+Suggestion of the radiation cleaning plan to the physics-dynamics interface team, meeting 6.November: Laura
+
+----
+

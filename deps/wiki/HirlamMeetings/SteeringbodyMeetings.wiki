@@ -1,0 +1,56 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Principal Steering Body Meetings''' =
+[[Center(end)]]
+HIRLAM Steering Body meetings including HIRLAM Council, ALADIN General Assembly and HIRLAM Advisory Committee/ ALADIN Policy Advisory Committee meetings[[BR]]
+[[BR]]
+[[Color(blue, Council/Assembly)]]
+ * 2nd Joint Meeting ALADIN General Assembly / HIRLAM Council, 8 December 2016, Darmstadt
+ * HIRLAM-C Council meeting 2, 7 December 2016, Darmstadt
+ * RC LACE Council, 38th Session, Darmstadt
+
+ * .....
+ * ALADIN Assembly, 23-24 February 2006, Brussels
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/Minutes_HIRLAM-A_Council_1.pdf" target="_blank">
+HIRLAM Council meeting 1, 5 July 2006, Oslo</a>
+}}}
+ * ALADIN General Assembly, 9-10 November 2006, Budapest
+ * LACE Council, 9 November 2006, Budapest 
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HC2_20061208.pdf" target="_blank">
+HIRLAM Council, 8 December 2006, Reading</a>
+}}}
+[[Color(blue, HIRLAM Advisory Committee/ ALADIN Policy Advisory Committee)]]
+ * HIRLAM Advisory Committee meeting, 11 November 2016, Reykjavik
+ * Combined Meeting HIRLAM Management Group / HIRLAM Advisory Committee, 10 November 2016, Reykjavik 
+
+ * ... 
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HAC03032006-05.pdf" target="_blank">
+HIRLAM Advisory Committee meeting 1, 2-3 March 2006, Reykjavik</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HAC_20060609.pdf" target="_blank">
+HIRLAM Advisory Committee meeting 2, 9 June 2006, telephone conference</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HAC_Sevilla_200610.pdf" target="_blank">
+HIRLAM Advisory Committee meeting 3, 9 June 2006, 26-27 OOct 2006, Seville</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/HAC_Tallinn_2007050707.pdf" target="_blank">
+HIRLAM Advisory Committee meeting 4, May 7 2007, Tallinn</a>
+}}}

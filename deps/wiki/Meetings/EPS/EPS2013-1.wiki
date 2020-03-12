@@ -1,0 +1,140 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Working Week on GLAMEPS & HarmonEPS 2013. Meeting on HARP''' =
+''RMI, Brussels. Monday 11 March - Friday 15 March. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+This is the first GLAMEPS/HarmonEPS working week for this year. In addition a side meeting is arranged with focus on ALADIN-HIRLAM collaboration on development of verification tools (HARP). 
+Following are the main headlines:
+
+ 1. Operational GLAMEPS.
+ 1. Hindcast-experiments for future GLAMEPS_v2
+ 1. HarmonEPS experiments.
+ 1. Post-processing and Ensemble calibration.
+ 1. Verification issues
+
+
+== Participants ==
+
+ * Geert Smet
+ * John Bjørnar Bremnes
+ * Trond Iversen (Tuesday and Wednesday morning)
+ * Åke Johansson
+ * Maurice Schmeits (Monday afternoon till Thursday evening)
+ * Kai Sattler
+ * Ole Vignes
+ * José Antonio Garcia-Moya
+ * Andrew Singleton
+ * Juha Kilpinen
+ * Emiel van der Plas
+ * Christoph Zingerle
+ * Bjørg Jenny Kokkvoll Engdahl (Wednesday till Friday)
+ * Pau Escribà
+ * Sibbo van der Veen (arrives ~14 on Monday)
+ * Henrik Feddersen
+ * Xiaohua Yang (Monday to Friday, stay in Best Western County House of Brussels Hotel)
+ * Alex Deckmyn
+ * Inger-Lise Frogner (Monday till Friday)
+
+== Agenda ==
+
+  * Monday
+   * 0900-1300: Working session for those that arrive early
+   * 1300-1500, Plenary session
+     * Welcome
+     * Geert will present his validation work on GLAMEPS without ECEPS and with LAEF
+     * Short overview of ongoing EPS verification work
+   * 1500-1700  Working session
+ * Tuesday
+   * 0900-1030, Status review on operational GLAMEPS
+     * candidate topics list:
+       * status of model versions, etc used in operations
+       * basic validation and verification scores
+       * 
+       * 
+   * 1030-1145  Discussions on GLAMEPS experimentation
+     * status of the experiments that have finished running
+     * status of planned experiments
+     * What remains before GLAMEPS can run in experimental mode at c2a?
+     * Presentation(s) at ASM?
+   * 1145-1300  Discussions on HarmonEPS experimentation
+     * status of system
+     * status of experimentation; who is running what.
+     * storage of experiments: directory structure and where?
+     * More output parameters? Newer version of gl?
+     * SBU usage
+     * New perturbation methods to be included
+     * Presentation(s) at ASM?
+   * 1300-1400  Lunch 
+   * 1400-1500  Discussions on post-processing and calibration
+     * status of work on ELR
+     * calibration for FROST-14
+     * Status of post-processing of GLAMEPS
+     * New products?
+   * 1500-1700  Working session 
+   * 0900-1700  Working Session for those that are not participating in the different discussions
+
+   Dinner in the evening, details to come later
+
+ * Wednesday
+   * 0900-1100  Discussion on verification and progress review on joint HIRLAM-ALADIN verification tools for spatial verification and EPS (HARP)
+   * 1100-1300  Working session
+   * 1300-1400  Lunch
+   * 1400-1700  Working session
+ * Thursday
+   * 0900-1300  Working session. NB: there is a system session on c2a all day!
+   * 1300-1400  Lunch
+   * 1400-1700  Working session
+     * Alex Deckmyn, a short course on setting up stand-alone GLAMEPS verification (to be corrected)
+       1. export R_VERSION=2.15.1; use R
+       1. on ecgate, do mkdir -p $srcdir
+       1. cd $srcdir; tar xf ~cv6/GLAMEPS/export/VerifExport.tar
+       1. cd !VerifExport; vi ASMSenv
+       1. edit Rtable.ksh
+         * Run Rtable.ksh to create Rtable from archived GLAMEPS model data (in the future this will be in SQLite format)
+       1. Prepare for verification
+         * adapt, if necessary, scr/Rsetup-verif.R 
+         * edit RVerif_noplot.ksh
+         * perform Rverif_noplot.ksh to compute verification scores by comparing model-derived Rtable against those of observation
+          * Results are in R-list object. In the future this will be changed into SQLite format.     
+          * Results will contain dozens of scores: ETS, ROC, CRPS...and in files like Verifdata_T2m.Rdata, which can be used for plot.
+       1. Plotting: manually from R, scripts to come later
+ * Friday
+   * 0900-1200  Working session. Wrap-up of working week.
+
+== Preparations ==
+
+* !WiFi access will be available. Preferably, people should bring their own laptop. Please let us know in advance if this is not possible.
+ 
+* How to get to RMI
+
+The easiest way to reach the hotel from the airport is to take the train (underground level in the airport). Stop at the Brussels South
+(Bruxelles-Midi) Station. From there, take the tram 4, direction “STALLE” and stop at “HEROS – HELDEN”. You are 1-minute walk from your
+hotel.
+
+
+The Institute can be reached easily by bus 43, direction “OBSERVATOIRE-STERRENWACHT”. Take it to a few meters from the hotel
+(cross Avenue De Fré) and stop at the terminus. See attached files at the bottom of this page (Map_Hotel_Heros.gif and
+Hotel-2-RMI.png)
+
+A single bus ticket costs 2,50 euro, which can be purchased on the bus; after validation, it can be used for any bus or tram connections during
+1 hour.
+
+Tickets for 10 journeys €11,80 are also available (e.g. in the station), but not on the bus.
+
+You can also walk from the hotel to IRM. It is about 1.5 km (uphill!).
+
+ * Hotel
+
+A block booking (valid until 11/Feb, but may be extended) at Best Western County House of Brussels Hotel
+Square des Héros 2, 1180 Uccle  +32 (0) 2 375 44 20
+http://best-western-county-house.h-rez.com/
+
+Price: 108 €/night.
+
+The participants will have to mention the reference "RMI-GLAMEPS" at the time of the reservation!
+
+This hotel is easily reached by tram from the centre, and is at about 10-15' walking distance from RMI (1.5km).

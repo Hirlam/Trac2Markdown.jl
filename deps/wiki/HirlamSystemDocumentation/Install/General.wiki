@@ -1,0 +1,42 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''General requirement for HIRLAM system installation''' =
+[[Center(end)]]
+
+== System requirements ==
+ * Revision control tools
+   * For version 6.4.4 or earlier releases, a CVS package
+   * For version 7.0beta1, a Subversion client
+   * For version 7.0rc1 (April 18 2006) or later releases, the Subversion client is optional
+ * Access to the HIRLAM source
+   * via internet and assuming availability of Subversion client: https://svn.hirlam.org: Access control is enforced if accessing outside of headquarters of the HIRLAM member services and ECMWF platform;
+   * via local copy of the repository
+   * via a HIRLAM release tarball, for releases after 7.0rc1 (April 18, 2006)
+ * Compilers, tools
+   * Compiler for F77/F90, C
+   * Perl, Shell
+   * Perl toolkit (not mandatory, for mini-SMS GUI)
+   * HDF 4.0 (mandatory for climate generation)
+ * Data that is not included in the HIRLAM source code repository
+   * Sample observation data for conventional data (bufr-format); satellite data (atovs etc.)
+   * Sample ECMWF lateral boundary data including SST information in GRIB format
+   * [https://hirlam.org/trac/wiki/HirlamHowto/Install/General#WhatisanHDFSETandwherecanIfindtheHDFsets HDF files for physiographic data]
+ 
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

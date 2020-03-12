@@ -1,0 +1,108 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Video Meetings on retrieval data''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== 6th meeting: 28 May 2019, 14:00 CET ==
+
+=== Participants ===
+ * Eoin Whelan
+ * Alena Trojakova
+ * Roel Stappers
+ * Roger Randriamampianina
+ * Michal Nestiak
+ * Mate Mile
+ * Erik Gregow
+ * Jana Sanchez
+ * Zheng Qi Wang
+ * Jean-François Mahfouf
+
+== Topics of the day: ==
+
+=== AMV – atmospheric motion vectors: ===
+ * **Roger** mentioned that the European (PRECISE) and Arctic (CARRA) reanalysis projects are implemented to handle all historical AMV and ASCAT data. The implementation was not straightforward because of different formats (AMV) and not readiness of Bator to handle all data (scatterometers - Qscat, Oscat, ERS1, ERS2, ASCAT).[[BR]]
+
+=== ASCAT data: ===
+ * See the comment on Scatterometer data above. [[BR]]
+ * **Mate** reported about his PhD work on implementation of the supermodding technique with assimilation of scatterometer data. He got good very good suggestion from Jean-Francois about how to check the efficiency of the suppermodding approach. Mate will continue the implementation task with other satellite observations.[[BR]]
+
+=== GPS ZTD: ===
+ - **Roger** reported about the work done at AEMET with combining the GNSS-ZTD data with radiances using VarBC. They succeed to have reasonably good impact with slightly modified observation error and thinning distance for GNSS data.
+ - **Jean-Francois** said that **Fatima Hdidou** implemented the assimilation of GNSS-ZTD over Morocco. She is writing paper on the applied processing and quality control technique. [[BR]]
+
+=== GPS Gradients in ZTD: ===
+ - **Jean-Francois** mentioned that the observation operator has been developed (codding is done) in CY43. **Fatima Hdidou** will come to MF to do some monitoring work and to make a proof of concept study. [[BR]]
+
+=== GPS refractivity: ===
+ - **Roger** asked about the refractivity data measuring the soil water content.[[BR]]
+ - **Jean-Francois** mentioned that at MF there was field experiment on these data and so far they found out that this approach is not giving the moisture. It's rather showing the information on growing vegetation.[[BR]]
+
+=== GPS STD: ===
+ - **Roger** asked help from the DA group during the last All Staff Meeting in Madrid. **Martini Imrisek and Benedikt** contacted Siebren with the aim to learn more about the implemented solution before making decision on porting the implementation into higher cycles. Martin is waiting for response from Siebren about the when and how the visit can happen. Siebren very much appreciated the idea, BTW. [[BR]]
+
+=== GPS RO: ===
+ - MF is testing data from FY-3C.[[BR]]
+ - Both European (PRECISE) and Arctic (CARRA) reanalysis projects use the re-processed GNSS-RO data and observe slightly positive impact. [[BR]]
+
+=== L2 temperature and humidity data from EUMETSAT: ===
+ - The profiles are from tretrieval using both IASI and microwave radiance data.[[BR]]
+ -MF tested the assimilation of these data in the AROME model. They found neutral impact on analyses and forecasts. They made QC of these data vs conv data. Report or paper will provided later.[[BR]]
+
+=== ADM Aeolus: (as lidar observation) ===
+ - See the video meeting on Conv data this time :). More discussion can be seen there. [[BR]] 
+
+=== Cloud initialisation: ===
+ - See the video meeting on Alogirthm this time :).
+
+
+==========================================================================================
+
+
+
+== Fifth meeting: 28 March 2018, 14:00 CET ==
+
+== Participants ==
+ 
+ * Jana Sanchez Arriola
+ * Roel Stappers
+ * Roohollah Azad 
+ * Erik Gregow
+ * Claude Fischer
+ * Alena Trojakova
+ * Siebren de Haan
+ * Roger Randriamampianina 
+
+== Topics of the day: ==
+
+**AMV – atmospheric motion vectors: **[[BR]]
+ * Erik has a plan to test the locally produced HRW in !MetCoOp jourly suit nowcasting system.[[BR]]
+
+**ASCAT data **[[BR]]
+ * Not discussed.[[BR]]
+
+**GPS ZTD: **[[BR]]
+ * **Maria** couldn't make it but she sent an e-mail informing us about her progress with GPS ZTD implementation:"I would like to tell you about the progress of GNSS over Canary Island. Using Jana approach of updating VARBC coefficients at 00 and 12 UTC, the calibration of the coefficients is stable now. So this part it's nice, after one month of the experiment the impact are not clear, at 12 UTC humidity scores improve, it's more clear near 700hPa, at 00 UTC humidity scores decrease over 400 hPa and surface. Now I am going to check the results for a case study on a rainfall event."
+ * **Jana** said that they use the off-set only in the VarBC for GPS ZTD. MF is willing to test some predictors.
+
+
+**GPS Gradients in ZTD**: [[BR]]
+ - Not discussed, but will be activated at MF ASAP , maybe with Morocco. [[BR]]
+
+**GPS STD: **[[BR]]
+ * **Siebren** promised to give update by May.[[BR]]
+
+**GPS RO**: [[BR]]
+ * MF plan for the next e-suite to add data from FY-3C.[[BR]]
+
+**Action on Claude** to ask any information regarding the use of GPS-RO as anchoring observation in DA.[[BR]]
+
+**ADM Aeolus: (as lidar observation)**[[BR]]
+ * **Roohollah** presented the first results of assimilation of a synthetic HLOS data in Harmonie using CY43h2T2. [[BR]] 
+
+**Cloud initialisation:**
+ * **Erik** reported about the plan to include this technique in the nowcasting suite for !MetCoOp, where for cloud base the SMHI solution will be used. This means that cloud base is the meteorological estimate of the cloud base from the SAF/NWC products.
+
+
+==========================================================================================

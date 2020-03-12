@@ -1,0 +1,57 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Release notes of HIRLAM 7.2''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Release of Hirlam 7.2 ==
+
+HIRLAM 7.2 is launched on Sept 2, 2008. It replaces [wiki:Hirlam_7.1 Hirlam 7.1] as the official Hirlam reference system. At Finnish Meteorological Institute (FMI), the operational NWP forecast suite, [http://fminwp.fmi.fi/ Regular Cycle of the Reference Hirlam (RCR)], has been switched over to the one based on Hirlam 7.2 starting with cycle 06 UTC on the same day.
+
+== Highlights of Hirlam 7.2 ==
+
+Hirlam 7.2 features several major updates with meteorological significance:
+ * __4D-VAR upper air analysis__, which no longer use explicit initialisation
+ * __Kain Fritsch Rasch Kristjansson condensation scheme__
+ * __Tuning in vertical diffusion__, in which the turning of wind stress vector (close to surface as implemented in 6.4) is removed
+ * __Technical upgrade in ATOVS data assimilation and use of RTTOV-8 library__ for satellite data assimilation 
+ * __Update in background error statistics data__ used for screening and for minimisation, update of bias correction data
+
+== Hirlam 7.2 source code downloads ==
+
+ * 7.2 release can be obtained via Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.2
+}}}
+ * On ECMWF, export version (checkout of the source code with Subversion export command) of the Hirlam 7.2 is available, on ecgate, 
+{{{
+   ecgate:/home/ms/dk/nhz/hirlam_release/7.2
+}}}
+ * The export tarball of the Hirlam 7.2 is available on ECMWF:ecgate as /scratch/ms/dk/nhz/hirlam-7.2.tar.gz, or on ECFS: ec:/hirlam/src/tar/hirlam-7.2.tar.gz
+
+== Meteorological Evaluation of Hirlam 7.2 ==
+
+A real time parallel suite using the latest version of the 7.2-series has been maintained for FMI-RCR-runs from May to August 2008. Verification scores for these months are shown at https://hirlam.org/portal/oprint/ObsVer/. Relative to HIRLAM 7.1 They show a general and persistent reduction of the random errors of the surface pressure and in all upper-air fields. The biggest improvement is found in the relative humidity: the earlier large wet bias near the jet stream level is gone, and the dry bias of the lower troposphere is reduced. Systematic changes in the weather parameters tend to be small during the test period. The new version gives a little lower night-time wind speeds, thus reducing to some extent the long-lasting positive bias. By contrast, although precipitation forecasts are improved in terms of standard deviation, the frequency of weak rainfall occurrence is clearly overestimated in Hirlam 7.2.
+
+== Additional information about [wiki:Hirlam_7.2] ==
+
+On  [wiki:Hirlam_7.2], more extended information about v7.2 can be found about 
+ * [wiki:Hirlam_7.2#NewFeaturesinHirlam7.2 Detailed listing of new features in 7.2]
+ * [wiki:Hirlam_7.2#RunningHirlam7.2-codeseriesontheECMWFplatform Running Hirlam 7.2 on the ECMWF platform]
+ * [wiki:Hirlam_7.2#Installandrun7.2systemonnon-ECMWFplatforms Install and run 7.2 system on non-ECMWF platforms]
+ * [wiki:Hirlam_7.2#AlternativeconfigurationswithHIRLAM7.2 Alternative configurations with 7.2]
+ * [wiki:Hirlam_7.2#TechnicalInformation Technical Information about tested platforms, computation costs etc.]
+
+== Acknowledgement ==
+The following are acknowledged for their direct contribution to the the code and script updates featured in HIRLAM 7.2, in alphabetical order:
+'''DA'''
+ * Bjarne Amstrup, Per Dahlgren, Carlos Geijo, Nils Gustafsson, Kirsti Salonen, Magnus Lindskog, Sigurdur Thorstensson, Frank Tveter, Henrik Vedel, Ole Vignes, John de Vries, Tomas Wilhelmsson, Xiaohua Yang     
+'''Forecast model'''
+ * Trygve Aspelien. Javier Calvo, Henrik Feddersen, Karl-Ivar Ivarsson, Aidan !McDonald, Sami Niemela, Veniamin Perov, Claus Petersen, Laura Rontu, Bent Hansen Sass, Sander Tijm  
+'''System'''
+ * Kalle Eerola, Toon Moene, Jacob Weismann Poulsen, Kai Sattler, Tomas Wilhelmsson, Ole Vignes, Xiaohua Yang
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

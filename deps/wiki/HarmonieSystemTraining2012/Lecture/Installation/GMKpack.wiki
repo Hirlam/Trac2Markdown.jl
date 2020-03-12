@@ -1,0 +1,37 @@
+== GMKpack ==
+
+Gmkpack is the ALADIN utility to compile ARPEGE/IFS
+
+ - Handle dependencies (includes/modules)
+ - Handle exceptions
+ - Compile the code
+ - Build the binaries
+
+A mainpack installs and builds a complete HARMONIE source (ALADIN/HIRALD/ALARO/AROME models). Generates a set of pre-compiled libraries (rootpack) and modules available for USE. 
+Each single user builds their own local "target" pack, which synchronized local source modifications with the reference libraries.  
+
+[http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=gmkpack gmapdoc]
+
+Gmkpack is intended to be installed and maintained separately. In HARMONIE it is a part of the system and used in Build_gmkpack, Build_rootpack and Build_pack.
+
+Sequence of tasks happening under mSMS in the GMKpack build:
+
+- Build_gmkpack 
+- Build_rootpack
+ - rsync the sources from HM_REV, HM_CMODS, HM_LIB
+ - cleanpack
+ - compiles the ODB compiler
+ - compiles IFS
+ - locks the pack
+
+- Build_pack
+ - build everything in the OTHER_PROGRAMS list. This is done inside HM_DATA/gmkpack_build
+ - build the utilities (gl/verobs/oulan)
+
+When things goes wrong
+
+ - ics_* can be run stand alone from the ROOTPACK. 
+   - Turn off the compilation and linking
+   - build the libraries by running the ics_* file by hand
+   - BUILD_ROOTPACK=no, put the corrections to the failing code in your experiment
+   - rerun Harmonie install

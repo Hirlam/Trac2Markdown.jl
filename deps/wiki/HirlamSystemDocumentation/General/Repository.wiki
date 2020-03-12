@@ -1,0 +1,254 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Hirlam Revision Control =
+[[Center(end)]]
+
+== HIRLAM system revision control ==
+
+Starting from 2006, HIRLAM-A chooses Subversion as its revision control system. The first Hirlam release with Subversion feature is Hirlam-7.0beta1, release in March 2006.
+
+== HIRLAM system versioning ==
+
+=== HIRLAM repository naming convention ===
+In the past few years, Hirlam tags an official system release about once a year. The official Hirlam release is named in form of Hirlam-l.m(.n), where 
+ * "l" refers to the current HIRLAM programme, l=6 for Hirlam-6 project, l=7 for Hirlam-A. 
+ * "m" is the serial number of the official release during the programme period, (for Hirlam-A, the official Hirlam releases consists of [source:tags/hirlam-7.0 Hirlam-7.0], [source:tags/hirlam-7.1 Hirlam-7.1], [source:tags/hirlam-7.2 Hirlam-7.2], Hirlam-7.3, Hirlam-7.4...) 
+ * "n" is not assigned at initial official release (and equivalent to zero). When a bugfix version or other technical update is tagged, "n" is assigned serial number 1, 2, 3, 4.
+   * e.g., for [source:tags/hirlam-7.2 Hirlam-7.2] released in Sept 2008, a follow up release [source:tags/hirlam-7.2.1 Hirlam-7.2.1] is tagged in April 2009 to update the default computer platform from ecgate/HPCE to ecgate/C1A, together with a few bug corrections.
+
+=== Official HIRLAM releases ===
+Hirlam system releases are feature based, each of them associated with certain major meteorological or technical features, which are normally declared in the release notes. An officially released Hirlam system shall satisfy some minimum requirements,
+ * That the release comes with new meteorological or technical features which overall outperform the previous release
+ * That the above required validatation has been done at the reference computer platform, i.e, ECMWF HPC
+ * That the release candidate has been in pre-operational status at the FMI for positive evaludation prior to tagging, with participation of duty forecasters and scientific developers
+
+The decision about the official release of the new Hirlam system is taken by the HIRLAM management group, with close consultation with FMI. The latter commits to use the official reference release as its main production suite.
+
+=== HIRLAM repository with Subversion revision control ===
+Hirlam system repository is maintained by the system group (system@hirlam.org) lead by the HIRLAM-A project leader on system and applications. The repository is maintained on hirlam.org using Subversion tool. The collection of system codes (including that of source code, scripts, build tools and other utilities) is organised in form of subversion trunk, branches and tags.
+ * Trunk 
+  * [source:trunk/hirlam trunk] is the main development code set as candidate for the next official system. e.g., 
+    * Before the launch of Hirlam-7.3, Hirlam trunk is always the latest update for 7.3.
+    * After tagging of 7.3, trunk becomes candidate of 7.4
+  * trunk is updated continuously, merging code updates submitted by various development teams. The candidate codes for merges can be delivered via email, tarball or repository (branches).
+  * Warnings!! Trunk is a moving system. Make sure that you do not base your experiment on a trunk sandbox which itself changes.
+ * Branches
+  * Technically [source:branches branches] is similar to [source:trunk/hirlam trunk], but for various development purposes
+    * national branch, in which usual configuration deviation from 'reference' features in the trunk are maintained.
+    * special feature branch in research/development stage (newsnow, cis)
+    * stable branch (such as [source:branches/hirlam-7.2 7.2 stable branch] which is set up after tagging of 7.2. The stable branch does not take in new features, but to collect essential bug fixes for the next tagging) 
+  * Using Subversion tools for merge/update, the features among branches and trunks can be merged to each other conveniently.
+ * Tags
+  * [source:tags Tagged codes] are anapshots of trunks or branches. Technically the tagged codes are no different from those trunk or branches, but for convention that no longer get further updated.
+  * In Hirlam, various tagging prior to official releases are made to provide user communities with a 'frozen' code set, even though the code has not necessarily been fully validated. These codes are often labeled as alpha, beta, rc.
+    * Alpha release (e.g., [source:tags/hirlam-7.3alpha 7.3alpha]): a snapshot of trunk which is unmature both technically and meteorologically
+    * Beta release (e.g., [source:tags/hirlam-7.3beta1 7.3beta1]): a snapshot of trunk which is deemed technically mature for evaluation and meteorological validation. On the other hand, there could still be possibility for more features to add
+    * Release candidate(e.g.,[source:tags/hirlam-7.2rc1 7.2rc1]): pre-release tagging for final evaluation
+  * Official release (e.g., [source:tags/hirlam-7.2 7.2]): mature for operational use
+  * Post-release tagging (e.g., [source:tags/hirlam-7.2.1 7.2.1]): bug fixes, platform change hpce-c1a;...
+
+== Subversion revision control system ==
+''excerpt from the'' [http://svnbook.red-bean.com/nightly/en/index.html Reference handbook] [[br]]
+Subversion is a free/open-source version control system. That is, Subversion manages files and directories over time. A tree of files is placed into a central repository. The repository is much like an ordinary file server, except that it remembers every change ever made to your files and directories. This allows you to recover older versions of your data, or examine the history of how your data changed. In this regard, many people think of a version control system as a sort of “time machine”.
+
+Subversion can access its repository across networks, which allows it to be used by people on different computers. At some level, the ability for various people to modify and manage the same set of data from their respective locations fosters collaboration. Progress can occur more quickly without a single conduit through which all modifications must occur. And because the work is versioned, you need not fear that quality is the trade-off for losing that conduit—if some incorrect change is made to the data, just undo that change.
+
+Some version control systems are also software configuration management (SCM) systems. These systems are specifically tailored to manage trees of source code, and have many features that are specific to software development—such as natively understanding programming languages, or supplying tools for building software. Subversion, however, is not one of these systems. It is a general system that can be used to manage any collection of files. For you, those files might be source code—for others, anything from grocery shopping lists to digital video mixdowns and beyond.
+
+Reference links:
+[http://svnbook.red-bean.com/nightly/en/index.html SVN Handbook]
+== Main features of the Subversion? ==
+''excerpt from the'' [http://svnbook.red-bean.com/nightly/en/index.html Reference handbook] [[br]]
+
+When discussing the features that Subversion brings to the version control table, it is often helpful to speak of them in terms of how they improve upon CVS's design. If you're not familiar with CVS, you may not understand all of these features. And if you're not familiar with version control at all, your eyes may glaze over unless you first read [http://svnbook.red-bean.com/nightly/en/svn.basic.html Basic Concepts], in which a gentle introduction to version control in general is provided.
+
+Subversion provides:
+
+ * Directory versioning
+
+    CVS only tracks the history of individual files, but Subversion implements a “virtual” versioned filesystem that tracks changes to whole directory trees over time. Files and directories are versioned.
+ * True version history
+
+    Since CVS is limited to file versioning, operations such as copies and renames—which might happen to files, but which are really changes to the contents of some containing directory—aren't supported in CVS. Additionally, in CVS you cannot replace a versioned file with some new thing of the same name without the new item inheriting the history of the old—perhaps completely unrelated—file. With Subversion, you can add, delete, copy, and rename both files and directories. And every newly added file begins with a fresh, clean history all its own.
+ * Atomic commits
+
+    A collection of modifications either goes into the repository completely, or not at all. This allows developers to construct and commit changes as logical chunks, and prevents problems that can occur when only a portion of a set of changes is successfully sent to the repository.
+
+ * Versioned metadata
+
+    Each file and directory has a set of properties—keys and their values—associated with it. You can create and store any arbitrary key/value pairs you wish. Properties are versioned over time, just like file contents.
+
+ * Choice of network layers
+
+    Subversion has an abstracted notion of repository access, making it easy for people to implement new network mechanisms. Subversion can plug into the Apache HTTP Server as an extension module. This gives Subversion a big advantage in stability and interoperability, and instant access to existing features provided by that server—authentication, authorization, wire compression, and so on. A more lightweight, standalone Subversion server process is also available. This server speaks a custom protocol which can be easily tunneled over SSH.
+
+ * Consistent data handling
+
+    Subversion expresses file differences using a binary differencing algorithm, which works identically on both text (human-readable) and binary (human-unreadable) files. Both types of files are stored equally compressed in the repository, and differences are transmitted in both directions across the network.
+Efficient branching and tagging
+
+    The cost of branching and tagging need not be proportional to the project size. Subversion creates branches and tags by simply copying the project, using a mechanism similar to a hard-link. Thus these operations take only a very small, constant amount of time. 
+Hackability
+
+    Subversion has no historical baggage; it is implemented as a collection of shared C libraries with well-defined APIs. This makes Subversion extremely maintainable and usable by other applications and languages.
+
+
+[[PageOutline]]
+
+== Basic Subversion commands ==
+''You are adviced to look at the reference link for '' [http://svnbook.red-bean.com/nightly/en/svn.ref.html svn basic commands] directly.
+
+The Subversion Command Line Client: svn
+{{{
+    svn Switches
+    svn Subcommands
+
+        svn add
+        svn blame
+        svn cat
+        svn checkout
+        svn cleanup
+        svn commit
+        svn copy
+        svn delete
+        svn diff
+        svn export
+        svn help
+        svn import
+        svn info
+        svn list
+        svn lock
+        svn log
+        svn merge
+        svn mkdir
+        svn move
+        svn propdel
+        svn propedit
+        svn propget
+        svn proplist
+        svn propset
+        svn resolved
+        svn revert
+        svn status
+        svn switch
+        svn unlock
+        svn update
+}}}
+
+svnadmin
+{{{
+    svnadmin Switches
+    svnadmin Subcommands
+
+        svnadmin create
+        svnadmin deltify
+        svnadmin dump
+        svnadmin help
+        svnadmin hotcopy
+        svnadmin list-dblogs
+        svnadmin list-unused-dblogs
+        svnadmin load
+        svnadmin lslocks
+        svnadmin lstxns
+        svnadmin recover
+        svnadmin rmlocks
+        svnadmin rmtxns
+        svnadmin setlog
+        svnadmin verify
+}}}
+svnlook
+{{{
+    svnlook Switches
+    svnlook
+
+        svnlook author
+        svnlook cat
+        svnlook changed
+        svnlook date
+        svnlook diff
+        svnlook dirs-changed
+        svnlook help
+        svnlook history
+        svnlook info
+        svnlook lock
+        svnlook log
+        svnlook propget
+        svnlook proplist
+        svnlook tree
+        svnlook uuid
+        svnlook youngest
+}}}
+svnserve
+{{{
+    svnserve Switches
+}}}
+svnversion
+{{{
+    svnversion
+}}}
+mod_dav_svn
+{{{
+    mod_dav_svn Configuration Directives
+}}}
+
+[[PageOutline]]
+
+== How to install Subversion Client ==
+''excerpt from the'' [http://svnbook.red-bean.com/nightly/en/index.html Reference handbook] [[br]]
+Subversion is built on a portability layer called APR—the Apache Portable Runtime library. The APR library provides all the interfaces that Subversion needs to function on different operating systems: disk access, network access, memory management, and so on. While Subversion is able to use Apache as one of its network server programs, its dependence on APR does not mean that Apache is a required component. APR is a standalone library useable by any application. It does mean, however, that like Apache, Subversion clients and servers run on any operating system that the Apache httpd server runs on: Windows, Linux, all flavors of BSD, Mac OS X, Netware, and others.
+
+The easiest way to get Subversion is to download a binary package built for your operating system. Subversion's website (http://subversion.tigris.org) often has these packages available for download, posted by volunteers. The site usually contains graphical installer packages for users of Microsoft operating systems. If you run a Unix-like operating system, you can use your system's native package distribution system (RPMs, DEBs, the ports tree, etc.) to get Subversion.
+
+Alternately, you can build Subversion directly from source code. From the Subversion website, download the latest source-code release. After unpacking it, follow the instructions in the INSTALL file to build it. Note that a released source package contains everything you need to build a command-line client capable of talking to a remote repository (in particular, the apr, apr-util, and neon libraries). But optional portions of Subversion have many other dependencies, such as Berkeley DB and possibly Apache httpd. If you want to do a complete build, make sure you have all of the packages documented in the INSTALL file. If you plan to work on Subversion itself, you can use your client program to grab the latest, bleeding-edge source code. This is documented in the section called “Get the Source Code”.
+
+== Create sandbox of a certain HIRLAM release version? ==
+Assume that you have a svn client available in your platform, you may
+ 1. make sure that the server has been specified correctly in your ~/.subversion/servers. On ECGATE, you can do
+{{{
+   cp ~nhz/.subversion/servers ~/.subversion/servers
+}}}
+
+ 1. create a true svn sandbox, allowing all svn commands (such as "svn diff", "svn switch",etc. by performing
+{{{
+   svn co https://svn.hirlam.org/tags/HIRLAM5_1_4           # 5.1.4
+   svn co https://svn.hirlam.org/tags/HIRLAM6_4_4           # 6.4.4
+   svn co https://svn.hirlam.org/tags/hirlam-7.0rc1         # 7.0rc1
+   svn co https://svn.hirlam.org/tags/hirlam-7.0            # 7.0
+   svn co https://svn.hirlam.org/trunk         # trunk version of the repository (latest, unreleased update)
+}}}
+ 1. or, create a source-only copy of a certain release, with no possibility to use svn commands, by replacing co with export in the above
+{{{
+   svn export https://svn.hirlam.org/tags/HIRLAM5_1_4           # 5.1.4
+   svn export https://svn.hirlam.org/tags/HIRLAM6_4_4           # 6.4.4
+   svn export https://svn.hirlam.org/tags/hirlam-7.0rc1         # 7.0rc1
+   svn export https://svn.hirlam.org/tags/hirlam-7.0            # 7.0
+   svn export https://svn.hirlam.org/trunk  # HEAD version of the repository (latest, unreleased update)
+}}}
+
+if you have a local tarball of the svnroot, (available on ecgate at /scratch/ms/dk/nhz/svnroot.tar.gz), you can untar it and replace the above address https://svn.hirlam.org with something like file:///home/ms/dk/nhz/svnroot instead, e.g, on ECGATE,
+{{{
+   svn export file:///home/ms/dk/nhz/svnroot/tags/hirlam-7.0            # 7.0
+   svn export file:///home/ms/dk/nhz/svnroot/trunk  # HEAD version of the repository (latest, unreleased update)
+}}}
+
+
+== Who changed/created this line of code? Who should I contact? ==
+Within subversion sandbox of a certain HIRLAM system version you may try following:
+{{{
+ svn blame semla2t.F  
+ svn annotate semla2t.F
+}}}
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

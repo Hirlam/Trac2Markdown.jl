@@ -1,0 +1,117 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam HOWTOs''' ==
+= ''' How to generate and check assimilation structure functions with HIRLAM ''' =
+[[Center(end)]]
+
+== Overview ==
+This documents describes how assimilation structure functions, to be applied with the HIRLAM variational data assimilation, can be generated. A simple script for running the structure function generation on the ECMWF computer hpce is available in the HIRLAM system. This script can be easily adapted to generate structure functions on local computer platforms.
+
+Before using the generated structure functions, it is necessary to diagnose and check these, in order to see whether the locally generated structure functions are ”reasonable”. While the structure functions are generated, a number of diagnostic output files (in ASCII format) are also produced. From these diagnostic ASCII files, a number of diagnostic figures may be produced by GNUPLOT. A script to generate these diagnostic plots is also available in the HIRLAM system, and is described and discussed below.
+
+
+== Brief theory ==
+
+The HIRLAM variational data assimilation structure functions were developed by Lo¨ık Berre, and are described in the paper:
+Berre, L., 2000: Estimation of synoptic and meso scale forecast error covariances in a limited area model. Mon. Wea. Rev., 128, 644-667.
+The structure functions used in HIRLAM are generally referred to as statistical balance structure funtions. This means that no explicit analytical balance equations are applied, instead the balance between different model variables are derived by statistical regression techniques. The structure functions are derived through a series of tranforms, intended to derive assimilation control variables that can be considered to be decorrelated, and therefore having covariance matrices that are diagonal. The main steps, involving important implicit assumptions, of these transforms are:
+ * Transformation of the model variables to spectral space. Under the assumption of homogeneity with respect to correlations, these spectral coefficients can be assumed to be un-correlated.
+ * Transform the spectral wind component (u and v) coefficients to vorticity and divergence, since the statistical properties for these scalar variables describing the wind field are simpler than the corresponding properties for the wind vector field.
+ * Stepwise regression between the model variables to remove multivariate dependencies. This will result in the following assimilation control variables: vorticity, unbalanced divergence, unbalanced temperature and surface pressure and finally unbalanced moisture.
+ * Derive vertical covariance matrices, for each horizontal scale, for the assimilation control variables. Project on the eigen-vectors of these vertical covariance matrices, in order to remove the vertical dependencies. The diagonals of these vertical covariance matrices will provide us with the horizontal spectral densities, that are equivalent to horizontal autocorrelations in physical space.
+
+== Software overview ==
+
+The calculation of the assimilation structure functions is done by hirvda.x, utilizing the same parallelization strategy as 3D-Var and 4D-Var. The user should provide a number of forecast pairs, either forecasts of different lengths valid at the same time (the classical ”NMC-method”) or a number of ensemble forecast pairs with the same length and valid at the same time (the ”ensemble assimilation method”). The differences between forecast pairs are first calculated and transformed to spectral space and also stored in intermediate files to save calculation time. These differences between forecast pairs are taken as ”proxys” for background errors and the background error statistics (the assimilation structure functions) are estimated.
+
+=== A sample script and NAMELIST variables ===
+
+A sample script jb nmc RCR.sh for calculation of structure functions from arcived RCR +36h and +12h forecasts valid at the same time is provided in the HIRLAM system. The user has to provide a number of forecast pairs, that first are copied from the ECFS archive to disk. Then these forecasts are linked to fortran unit numbers as decribed by namelist variables. Then hirvda.x is called to carry out the statistical calculations. Main NAMELIST variables are described in tables below.
+All input, output and temporary files are stored in a directory, assigned in the beginning of the script. hirvda.x is copied from a appropriate HIRLAM experiment directory. The log file from executing hirvda.x is stored in out.nmcstat.
+
+
+
+|| Namelist name ||  Variable ||  Meaning ||
+|| Problemsize || nx global, ny_global || Grid dimensions ||
+|| Problemsize || nxl global, nyl_global||  Grid dimensions of extended area. The extension zone should be around 1000 km wide||
+|| Problemsize || kmax global, lmax_global  || Number of waves in the x-direction/y-direction,  kmax global -> nxl global/3; lmax global -> nyl global/3 ||
+|| Problemsize ||  nlev  || Number of vertical levels ||
+
+
+
+----
+
+
+|| Namelist name  || Variable  ||  default  || Meaning ||
+|| namrun ||  lstatbal  ||.true. || Statistical balance (only alternative) ||
+|| namrun ||  ljbvblf ||  .true. || variable f; .false. f-plane ||
+|| namrun || l_ljbstat  ||.true. ||  for J b statistics ||
+|| namrun  ||l_jkstat|| .true. || for J k statistics; .false. only J b ||
+|| namrun ||  l ecmwf ||  related to J k statistics ||
+|| namrun ||  l rz zero ||  .true. ||  forecast differences are put = 0. in the LBC relaxation zone to avoid influence of LBC noise ||
+|| namrun ||  l cgrid ||  input data on Arakawa C-grid ||
+|| namrun ||  ncases ||  ||  number of forecast pairs ||
+|| namrun ||  lun pert1 ||lam first ||unit number of first member of forecast pair (J b) ||
+|| namrun ||  lun pert2 ||lamfirst|| unit number of second member of forecast pair (J b) ||
+|| namrun ||  lun pert1 ||ls first  ||  unit number of first member of forecast pair (J k) ||
+|| namrun ||  lun pert2 ||  ls first ||   unit number of second member of forecast pair (J k) ||
+|| namrun ||  dkstar  ||  || width (in wave number units) for averaging over 1-dimensional wave numbers ||
+|| namrun  || nbzone ||  ||  width of LBC relaxtion zone where forecast differences are put = 0. ||
+|| namrun ||  l save spec  ||.true. || intermediate storing of spectral space forecast differences ||
+|| namrun ||  lun save  ||   first  || unit number for the intermediate  storing of spectral differences (1 per processor) ||
+|| namrun ||  lnewmoist ||  .true. || for q/qsat(Tb) as moisture control variable .false. for q ||
+|| namrun ||  l clean hum  ||.true. || for cleaning of stratospheric moisture (recommended) ||
+|| namrun ||  nlev clean hum ||  ||  number of upper-moist levels of humidity to be cleaned ||
+|| namrun ||  npoly rh  ||  || order of polynomials to fit standard deviations of moisture as functions of rel.hum. (lnewmoist) ||
+|| namrun  || nver rh  ||  || number of vertical levels for averaging of input to the fitting of relative humidity polynomials ||
+|| namrun ||  dslot rh ||  ||  relative humidity interval for the polynomial fitting ||
+|| namrun ||  l nsmax_trunc ||  .true. || truncation in the output J b statistics file ||
+|| namrun ||  nsmax _trunc  || ||1D wave-number for truncation ||
+
+
+
+=== Output files ===
+
+The main output file, the background error statistics file to be used by the assimilation software is given the name statbal stats.dat. In addition to this output
+file, a large number of small diagnostic output files are produced, intended for input to gnuplot (see below).
+
+== Diagnosis of the output ==
+
+The diagnostic output files, as described above, may be copied to a local workstation and the script plotjbstat.sh may be applied to produce a number of diagnostic gnuplot postscript files. This script needs to be adopted to the particular geometry applied in the generetion of the structure functions. Main parameters, given as environmental variables in the beginning of plotjbstat.sh are:
+ * DATDIR = directory of the input diagnostics files (produced by hirvda.x),
+ * FIGDIR = directory of the output postscript files, 
+
+ * NUMLEV = number of model levels,
+ * LEV1, LEV2, LEV3, LEV4 = selected levels for more detailed plots, 
+ *  NXL = maximum extended area dimension, 
+ *  NSMAX = maximum 1-dimensional wave number of the statistics, 
+ *  DS = average grid distance in km,
+ *  NUMSLOT = relative humidity interval for fitting of polynomials, 
+ *  NEWMOIST= old(=F) or new (=T) moisture control variable and 
+ *  NSTRUNC = possible truncation of 1-dimensional wave number.
+The user is recommended to inspect and understand (!) all diagnostic plots that are produced. We will give a few hints here, on where to look for problems:
+ 
+ * The plots of type spvar xxx.ps contains horizontal spectral densities for the different assimilation control variables. Normally, there should be a maximum of spectral density (”energy”) at wave-lengths corresponding to errors in synoptic scale weather systems. For smaller scales there is likely to be a smoothly decreasing energy. However, the model may produce ”noise” at the smallest resolved scales (largest horizontal wave-numbers). This noise may have structures of ”un-wished” gravity waves and it is advisable to apply a truncation (indicated in the plots).
+ * In case ”moisture cleaning” was applied in the generation of structure functions, the horizontal spectra of moisture at the uppermost model levels will appear very strange, with rather flat and noisy spectra. Do not worry, these spectra will be replaced in the output file used for assimilation with the spectra from the first level below those that are cleaned. The flat spectra originate from inserting random numbers for moisture field differences, replacing very noisy moisture differences in the stratosphere. The ”cleaning” procedure is applied to avoid ill-conditioned vertical covariance atrices in the assimilation structure functions (in some cases caused by GRIB truncation of moisture in the stratosphere).
+ *  The plots of type corvLL.ps contains plot of vertical correlations as functions of horizontal wave numbers. Here the vertical correlations normally should be more sharp for smaller horizontal scales. At the smallest resolved scales, however, gravity waves (noise?) may appear with larger vertical scales, a typical signature of gravity waves.
+ *  The file stdev.ps includes plots of standard deviations of all assimilation control variables. These should be inspected and be used as a basis for rescaling of these standard-deviations to represent background errors. Randomization techniques (”BGOS”) may be used to estimate the efficient background errors for observed quantities.
+ *  Look yourself and try to understand - the background error statistics is a very efficient model problem diagnostic tool!
+
+== Some final hints! ==
+
+ * The ”proof of the pudding” with regard to assimilation structure functions is single observation impact studies. Do these before embarking on very costly assimilation experimentation! And do these for different observed quantities, and inspect also the effects of the multivariate balances, which are built into the structure functions.
+ * A sample of diagnostic plots are available in the hirlam system (from the generation of the reference system structure functions). Compare these with the plots from your local generation of structure functions.
+ *  Good luck!
+ *  Please report Any interesting findings during your exercise!
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto Back to the main page of the HIRLAM-HOWTO]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

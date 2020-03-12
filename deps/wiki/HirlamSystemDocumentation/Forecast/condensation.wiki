@@ -1,0 +1,56 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= Hirlam Convection and Condensation Scheme =
+[[Center(end)]]
+
+== '''Introduction''' ==
+== '''STRACO''' ==
+ * Publication
+   * [https://hirlam.org/open/publications/NewsLetters/https://hirlam.org/open/publications/NewsLetters/48/33_BHS_fog.pdf Fog simulations using the HIRLAM model physics], Niels Woetmann Nielsen and Bent Hansen Sass
+   * [https://hirlam.org/open/publications/NewsLetters/48/52_ALu_luh.pdf Modeling a heavy rainfall case in North-East Estonia, August 2004.  Influence of model resolution], Andres Luhamaa 
+   * [https://hirlam.org/open/publications/NewsLetters/46/51_Flood2004.pdf" The flood case 27-29 July 2004: added value of the meso-scale HIRLAM], Sami Niemela
+   * [https://hirlam.org/open/publications/NewsLetters/43/staff03cloud.pdf Enhanced formulation of convective cloud cover], Bent Hansen Sass
+   * [https://hirlam.org/open/publications/NewsLetters/43/NL43_fortelius.pdf Ideas about the water vapour saturation pressure], Carl Fortelius
+   * [https://hirlam.org/open/publications/NewsLetters/42/STRACO.pdf Further updates to STRACO], Sander Tijm
+   * [https://hirlam.org/open/publications/NewsLetters/41/stracotest.pdf Recent tests of proposed revisions to the STRACO cloud scheme], Bent Hansen Sass and Xiaohua Yang
+   * [https://hirlam.org/open/publications/NewsLetters/40/HNews3.pdf Cloud advection in HIRLAM], Sibbo van der Veen
+   * [https://hirlam.org/open/publications/NewsLetters/38/23cloud0320.pdf On the Excessive Low Cloudiness in the DMR Runs], Xiaohua Yang
+   * [https://hirlam.org/open/publications/NewsLetters/36/XiaohuaYang Modification of Cloud Cover Initialization in the STRACO Scheme to Reduce Moisture Spin-up], Xiaohua Yang and Bent Hansen Sass
+== '''Kain Fritsch & Rasch Kristjansson''' ==
+ * Publication
+   * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article08_Ivarsson_KF-RK-condensation_scheme.pdf Experiences with HIRLAM and the Kain-Fritsch and Rasch Kristjansson scheme at 5.5km resolution], Karl-Ivar Ivarsson
+   * [https://hirlam.org/open/publications/NewsLetters/49/34_KII_rkn.pdf Some different ways to reduce numerical noise in the Rasch-Kristjansson scheme], Karl-Ivar Ivarsson
+   * [https://hirlam.org/open/publications/NewsLetters/45/37_CJohirnews_sc.pdf Representing stratocumulus clouds in numerical models: Sensitivity to model physics and vertical resolution], Colin Jones
+   * [https://hirlam.org/open/publications/NewsLetters/45/38_KFRK_javier_apr04.pdf Progress on Kain-Fritsch/Rash-Kristjansson], Javier Calvo
+   * [https://hirlam.org/open/publications/NewsLetters/42/KF_RaK.pdf Performance of Kain-Fritsch convection and Rasch-Kristjansson condensation scheme in HIRLAM], Javier Calvo, Jose Antonio Garcia-Moya, Viel Odegaard and Sander Tijm
+   * [https://hirlam.org/open/publications/NewsLetters/41/asmtijm.pdf Status Kain Fritsch Rash Kristjansson and Hirlam 22 km experiences], Sander Tijm, Roy Wichink, Oscar van de Velde, Ben Wichers Schreur and Toon Moene     
+   * [https://hirlam.org/open/publications/NewsLetters/41/arm_shallow_210697_new.pdf The representation of shallow cumulus convection and associated cloud fields in the Rossby Centre Atmospheric model], Colin Jones and Enrique Sanchez
+   * [https://hirlam.org/open/publications/NewsLetters/41/Straco_KFRK.pdf Comparison of convection and condensation schemes under non-hydrostatic Hirlam-model: A case study], Sami Niemela and Carl Fortelius
+   * [https://hirlam.org/open/publications/NewsLetters/40/bas.pdf Tests with different convection- and condensation schemes for a moist period in summer], Karl-Ivar Ivarsson
+   * [https://hirlam.org/open/publications/NewsLetters/38/20KF.pdf Tests for new convection and large scale condensation in HIRLAM], Javier Calvo
+   * [https://hirlam.org/open/publications/NewsLetters/38/21JAG_condensacion.pdf Kain-Fritsch in Hirlam], Jose Antonio Garcia-Moya
+   * [https://hirlam.org/open/publications/NewsLetters/38/22RMG_kf2_study.pdf Verification of Kain-Fritsch/Rash-Kristjansson Scheme], Ray !McGrath
+   * [https://hirlam.org/open/publications/NewsLetters/37/KlaraFinkele.pdf Simulation of a FASTEX storm at different resolutions], Klara Finkele
+   * [https://hirlam.org/open/publications/NewsLetters/37/JoseGarcia.pdf Kain-Fritsch in Hirlam. Convection over Spain an France], Jose A. Garcia-Moya
+   * [https://hirlam.org/open/publications/NewsLetters/35/JavierCalvo The third COMPARE exercise], Javier Calvo
+== '''Others''' ==
+ * Publication
+   * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article06_Sass_Hirald.pdf A short summary of the HIRLAM work on IFS/ALADIN during the Mesoscale project 2004-2006], Bent Hansen Sass
+   * [https://hirlam.org/open/publications/NewsLetters/51/NL51_Article24_Siebesma_convection_par_AROME.pdf Shallow Convection Parameterizations in AROME], Pier Siebesma
+   * [https://hirlam.org/open/publications/NewsLetters/43/extabs.pdf Recent physics modifications and results with KFB], Eric Bazile et al
+   * [https://hirlam.org/open/publications/NewsLetters/41/extabs.pdf Progress and problems in the Functional Boxes], Eric Bazile
+   * [https://hirlam.org/open/publications/NewsLetters/38/19extabs.pdf Preliminary results with FB's], Eric Bazile
+   * [https://hirlam.org/open/publications/NewsLetters/35/EricBazile.ps.gz Comparison between different NWP and a research model on the November 99 flash flood in Southern France], Eric Bazile and Peter Bechtold
+== '''Workshop contributions''' ==
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/mesoscaleDublinOct02/Convection.pdf Convection and condensation studies under hydrostatic and non-hydrostatic HIRLAM], Sami Niemela
+ * [https://hirlam.org/open/publications/HLworkshops/HL06/mesoscaleDublinOct02/w0210.pdf Towards high resolution precipitation forecasts], Bent Hansen Sass
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

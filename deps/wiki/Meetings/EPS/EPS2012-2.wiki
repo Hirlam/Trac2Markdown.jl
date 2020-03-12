@@ -1,0 +1,113 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Working Week on GLAMEPS & HarmoEPS 2012''' =
+''Copenhagen, DMI: Monday, 29 Oct 1300 - Friday 2 Nov 1200''
+
+=== Sponsored by [http://muscaten.ut.ee/ Nordic network MUSCATEN] ===
+[[LastModified]]
+[[Center(end)]]
+
+== Purpose ==
+
+This is the second GLAMEPS/HarmonEPS working week for this year, Following are the main headlines
+
+ 1. GLAMEPS TCF Opt 2 at ECMWF.
+ 1. Hindcast-experiments for future GLAMEPS_v2
+ 1. Preparing for a deep convection permitting EPS, HarmonEPS.
+ 1. Post-processing and Ensemble calibration.
+ 1. Verification issues
+
+In addition a side meeting is arranged between Oct 31 and 2 Nov 2012 with focus on ALADIN-HIRLAM collaboration on development of verification tools.
+
+== Participants ==
+
+ * Alfons Callado, AEMET, Oct 29- Nov 2
+ * Pau Escriba, AEMET (invited), Oct 29- Nov 2
+ * Henrik Feddersen, DMI, Oct 29- Nov 2
+ * Kristian Pagn Nielsen, DMI, Nov 1 - Nov 2
+ * Kai Sattler, DMI, Oct 29- Nov 2
+ * Xiaohua Yang, DMI, Oct 29- Nov 2
+ * Juha Kilpinen, FMI, Oct 29- Nov 2
+ * Sibbo van de Veen, KNMI (invited), Oct 29- Nov 2
+ * Emiel van der Plas, KNMI (invited), Oct 31 - Nov 2
+ * John Bjørnar, met.no, Oct 29- Nov 2
+ * Inger-Lise Frogner, met.no, Oct 29- Nov 2
+ * Ole Vignes, met.no, Oct 29- Nov 2
+ * Alex Deckmyn, RMI (invited), Oct 29- Nov 2
+ * Åke Johansson, SMHI, Oct 29- Nov 2
+ * Christoph Zingerle, ZAMG (invited), Oct 31- Nov 2
+
+== Agenda ==
+
+ * Monday, meeting rooms "Danebrog" + "HIRLAM"
+   * 0900-1200: "Danebrog" for early birds
+   * 1300-1700, "HIRLAM", plenary session with talks
+     * Alex Deckmyn (invited):       GLAMEPS-specific issues 
+     * Sibbo van de Veen (invited):  Cloud initialisation and EPS forecasting with Harmonie 
+     * Pau Escriba (invited):        LETKF 
+     * Alfons Callado:               SPPT 
+     * Åke Johansson:                Scale-dependent predictability and its consequences for the design of ensemble prediction systems on limited area domains 
+ * Tuesday,0900-1700, meeting rooms "HIRLAM" (fullday) + "Danebrog" (morning) + "Nordlys" (afternoon)
+   * 0900-1100, "Danebrog": Status review on operational GLAMEPS
+     * candidate topics list
+       * migration to c2a/c2b
+       * parallel suite and upgrade time table
+       * implementation of requested parameters, postpp plots
+       * implementation of non-TCF components with EPSgram, upscaling, verification
+       * backup suites
+       * product delivery to FROST, GEO-WOW
+       * operational manning
+       * gb12gb2
+       * current status of quality comparisons
+   * 1100-1230, "Danebrog": Moved to Thursday
+   * 1330-1530, "Nordlys":  Discussions on GLAMEPS experimentation, Jelena joins on Skype 
+   * 1530-1700, "Nordlys":  Discussions on calibration and post-processing 
+   * 0900-1700  "HIRLAM":   Working Session on GLAMEPS/HarmonEPS
+ * Wednesday,0900-1700, meeting rooms "HIRLAM" + "Millibar"
+   * 0900-1200, "HIRLAM": Lecture, report, discussion on verification and progress review on joint HIRLAM-ALADIN verification tools for spatial verification and EPS
+     * Christoph Zingerle (invited)
+     * Emiel van der Plas (invited)
+     * Alex Deckmyn (invited) 
+     * Kristian Pagn Nielsen: Real-time cloud microphysics properties retrieval suitable for spatial verification
+   * 1300-1700, "HIRLAM": Working session on planning and development of joint HIRLAM-ALADIN verification tools for spatial verification and EPS
+     * candidate topics list
+       * available scores and obs data screening on point verification
+       * SQLite, common data format
+         * all parameter in one file for deterministic model, one file per parameter in EPS;
+         * data stamp. yyyymmddhhMMss, posix format (2 columns)
+         * vobs/vfld data: 1 file with 2 tables
+       * spatial verification: tools, scores and configuration issue
+       * git repository
+   * 0900-1700, "Millibar": work session on GLAMEPS/Harmoneps
+ * Thursday,0900-1700, meeting rooms "HIRLAM" + "Millibar" 
+   * Kai: "GIT cheat sheet"
+   * 1000 - 1700: Ole: HarmonEPS set-up. Discussions on HarmonEPS, uncertainty strategies and practical issues   
+   * "HIRLAM": working session on GLAMEPS/Harmoneps
+   * "Millibar": Working session on joint verification tool development: (Christoph, ALex, Emiel, Xiaohua, Kai)
+     * HARP repository directory structure
+     * targets, milestones and work plan
+   * Discussion on GLAMEPS output parameters (Alex, Kai, Inger-lise, Xiaohua)
+   * 1900: Workshop dinner, Restaurant [http://www.rugantino.dk/ Rugantino]
+ * Friday, 0900-1200, meeting rooms "HIRLAM" + "Daneborg"
+   * "HIRLAM": working session on GLAMEPS/Harmoneps
+   * 0900-1600: "Daneborg": working session on joint verification tool development
+
+== Preparations ==
+
+ * How to get to DMI
+DMI-headquarter is located in the immediate vicinity of Ryparken S-train station, 2 zones away from central railway station and 3 zones from Copenhagen airport. Ryparken station is most conveniently reachable by S-train with line A or H toward FARUM direction. After arriving to Ryparken, exit from the southern end and use the stairs to the left that leads directly up to the DMI. When approaching reception, tell the staff that you come for the GLAMEPS/HIRLAM working week. Kai Sattler and Xiaohua Yang are local contact persons.
+
+Address: Danish Meteorological Institute, Lyngbyvej 100, 2100 Copenhagen. Phone 39 15 75 00
+ * Hotel options: Participants are suggested to do their own booking via internet. The following two are hotels in central Copenhagen that have been commonly used by HIRLAM colleagues visiting DMI, with reasonable prices and relatively convenient transportation to DMI and to airport.
+  * [http://www.firsthotels.com/Our-hotels/Hotels-in-Denmark/Copenhagen/First-Hotel-Osterport/ Hotel Østerport]
+  * [http://www.ibsenshotel.dk/ Ibsens Hotel]
+ * Diverse
+  *  [http://www.rejseplanen.dk/bin/query.exe/en? DSB]
+  * Weather forecast: 
+   * [https://hirlam.org/portal/dmi/s05eps/meteograms.php?typ=fan&age=new&stn=06184&rgn=dk DMI-HIRLAM forecast for Copenhagen/Jagersborg]; 
+   * [http://www.dmi.dk/dmi/index/danmark/byvejr_danmark.htm?by=1000 Public forecast Copenhagen ]
+
+== Travel fund ==
+
+This working week is partially supported by [http://muscaten.ut.ee/ Nordic Network MUSCATEN]. If interested, please contact Inger-lise Frogner and Xiaohua Yang for inquiry of funding options and if applicable, a cost estimation.  Please read as example the instructions about [wiki:HarmonieSystemTraining2012/MuscatenFunding reimbursement of traveling costs for an earlier HIRLAM event].
+

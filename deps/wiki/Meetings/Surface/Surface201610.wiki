@@ -1,0 +1,230 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM/ALADIN/LACE/SURFEX Surface Working Week''' =
+''Zagreb, October 24-26, 2016''
+
+Last modified [[LastModified]]
+
+[[Image(IMG_0179_new.JPG, 25%)]]
+Tuesday lunch at CMHS.
+
+[[Center(end)]]
+
+== Purpose and working items ==
+
+At [http://www.cnrm-game-meteo.fr/aladin/spip.php?article287 Joint 26th ALADIN Workshop & HIRLAM All Staff Meeting 2016, Lisbon, Portugal] we had a side meeting on surface data assimilation. Then we said that we should try to coordinate our work on surface data assimilation among researchers in HIRLAM/ALADIN/LACE/SURFEX. This will happen now :-)  October 24-26 we are kindly invited to Zagreb by the Croatian Meteorological and Hydrological Service, who will host the meeting. 
+A common item for many of us I think would be EKF data assimilation methods with corresponding development in surface processes related to force-restore/diffusion soil scheme/snow, lakes and sea-ice. And of course corresponding observations SYNOP/satellite products in combination with development of observation operators. Surface people not involved in EKF but see this gathering as useful please feel welcome and please suggest topics of interest.
+
+To inspire and help us to work more concretely together a specific SODA branch has been setup in the SURFEX repository: [http://svn.cnrm-game-meteo.fr/projets/surfex/branches/SODA_V8]. The purpose with this branch is that we can share SODA development by committing it to the repository. If you cannot access the SURFEX repository please [http://www.cnrm-game-meteo.fr/surfex/spip.php?article147 follow these instructions] on the SURFEX web page. A SODA experiment setup has been prepared by Clément Albergel in the SURFEX team at Météo-France. [wiki:HirlamMeetings/Surface201610/1D_test_case See here.]
+
+=== Wish list of working items and who can hopefully be involved ===
+
+Please add items you would like to be discussed if/when you show up at the meeting and indicate which people (if you know) you would like to see present for this item. Suggestion: if people are listed as participants below, just add them. If people are not listed, add them with question mark.
+
+ * SODA status/development in SURFEXv8 with focus on EKF (Extended Kalman Filter) method for SYNOP/satellite observations and for Force-restore option and DIF/ES/MEB options (Patrick Samuelsson, Clément Albergel, Helga Toth, Stefan Schneider)  
+ * Development of EnKF (Ensemble Kalman Filter) method for satellite observations and SURFEX options DIF/ES+two patches (Tomas Landelius, Jostein Blyverket, Stefan Schneider) 
+ * TEB (Town Energy Balance) applications/developments in SURFEX for cy40 and cy43 NWP needs (Alexander Mahura, Rosmarie de Wit, Patrick Le Moigne, Patrick Samuelsson)
+ * Test and use of MESCAN instead of CANARI (Patrick Samuelsson, Tomas Landelius)
+ * Coupling of SURFEXv8 to ALARO1 for TOUCANS needs
+ * Development of EKF in combination with Force-restore in cy40 (SURFEX7.3+SODA) (Patrick Samuelsson, Helga Toth, Stefan Schneider)
+ * Glacier development in SURFEXv8, i.e. modifications of the Explicit Snow Scheme (12 layers) for NWP/climate glacier needs
+ * Efficiency/parallelisation of the surface assimilation (Clément Albergel, Stefan Schneider)
+ * [wiki:Surface_physis_assimilation/Satellite_list Satellite products for surface data assimilation].
+
+=== A SODA experiment setup: 1D_test_case ===
+
+[wiki:HirlamMeetings/Surface201610/1D_test_case Link to wiki on 1D_test_case setup]
+
+== Location of meeting and practical information ==
+
+The meeting will take place at [https://hotel-dubrovnik.hr/conferences/conferences/ Hotel Dubrovnik] in Zagreb (Dubrovnik is the name of the hotel, please book tickets for Zagreb, not Dubrovnik!) in Ban Frankopan room at the Mezanin floor (M in the elevator). It is a four star hotel situated in the city centre, on the main square, in the pedestrian zone but has its own parking.
+
+=== Accommodation ===
+
+The room prices in Hotel Dubrovnik start at 85.5 EUR/night (breakfast included). But you can of course take any hotel of your choice. There are plenty of choices within
+5 minutes walking distance on [http://booking.com].
+
+It might be worth looking at hostels around, for example [http://www.booking.com/hotel/hr/chillout-hostel-zagreb.en-gb.html Chillout Hostel Zagreb]
+also offers double-bed rooms for 45EUR/night (40 + 1 for taxes + 4 for breakfast).
+
+Local currency is Croatian kuna (HRK), 1 EUR = 7.5 HRK.
+
+Most of the credit and debit cards are accepted in most shops, hotels and kiosks. It is possible to pay for airport bus using a card. Please verify with the taxi driver that he can charge from a card before boarding the taxi.
+
+In restaurants, there could be problems splitting a bill over several cards or cash and cards, so announce it when ordering food, they will keep separate bills.
+
+It is mandatory to issue and take a bill for any purchase (there are few exceptions). And each bill is immediately registered in the treasury.
+
+=== Visa etc. === 
+
+Croatia is in EU but outside Schengen border. All people from Schengen can enter Croatia with ID, others need a passport.
+Visas are required for passports for example from Turkey, Algeria, Morocco and Tunisia. But if participant is coming from a country for which a visa is required, BUT already has a valid multi-entry visa for any EU country, then this person does not need to get the Croatian visa. The invitation letter will be provided to the participant and there is a Visa desk at the airport where there might be some administrative procedure. So if you need a visa for Croatia, check if you have a valid visa for a EU country.
+
+=== Arrival by plane ===
+
+Zagreb Airport is 30 km south from the centre of Zagreb. There is a bus going from the airport to the bus terminal. It goes every half and full hour. It costs 30 HRK (4 EUR) one way. From the bus terminal there are slightly more than 2 km to hotel Dubrovnik. One can continue using tram number 6, take 5 stops toward "Crnomerec" until the Ban Jelacic square (the second statue of a guy on a horse that you see), or take a taxi from there since the city taxis are much cheaper than the airport ones.
+From the Airport to the city centre one can take a taxi. Unfortunately there is a monopoly and it could cost you more than 30EUR, depending on the time of the day, please ask for the price first. To go from the city centre to the airport one can take any city taxi for about 15 EUR.
+
+=== Arrival by car ===
+
+Google navigation does not know it, but there will be some roadworks in Gajeva street that leads straight to the hotel entrance, so take Zrinjevac square and then Praska street (the parking of Hotel Dubrovnik is in Praska street anyway). The whole street is less than 100m long and it is the only parking there.
+
+=== Arrival by train ===
+
+The main train station is 10 minute walk from hotel Dubrovnik (or two tram stations). It might be faster to walk (when you consider the time for waiting for a tram).
+
+=== Arrival by bus ===
+
+From the bus terminal there are slightly more than 2 km to hotel Dubrovnik and one can continue using tram number 6, take 5 stops toward "Crnomerec"
+until the  Ban Jelacic square (the second statue of a guy on a horse that you see), or take a taxi from there.
+
+=== Public transport ===
+
+There are taxis, trams and buses. The tram tickets can be purchased at any kiosk. There are paper ones and an electronic rechargable one.
+The electronic one you can buy once for 40 HRK a a kiosk with 3 rides on it and then fill it with more rides, 10 HRK per ride.  One ride is 1.5 hours and it does not matter how many vehicles or directions you change. 
+Paper card is 10 HRK during the day and 15 HRK in the night. It can be purchased from a kiosk and even from the driver, it has to be validated on the machine next to the driver (other machines on the tram do not have an option to validate the paper card) and it is valid in one direction only.
+The driver should return change (if he has any).
+There are several taxi companies that operatie in Zagreb, start is 1-1.5 EUR and then 0.9-1.1 EUR per km.
+
+=== Visiting the Croatian Meteorological and Hydrological Service ===
+
+There is an option to organize a visit to the Croatian Meteorological and Hydrological Service. The main building is 10 minute walk from the meeting venue. We investigate interest at the meeting.
+
+
+== Agenda ==
+
+The idea is in general to have presentations/discussions during morning hours and time for work in different sub-group constellations during afternoon hours.
+Please add presentations below (title and name) and also upload and link your presentation to this wiki.
+
+Room: Ban Frankopan at the Mezanin floor (M in the elevator)
+
+=== Monday October 24 ===
+
+ * 09:00-12:00 
+   * Opening of Workshop.
+     * Around-the-table presentation of participants ([wiki:Surface_physis_assimilation/Surface_assimilation_people list of surface related people]), including expert area and expected outcome of the Workshop.
+   * Practical matters
+   * Purpose of Workshop (Patrick Samuelsson, SMHI) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Patrick_Zagreb_purpose_161024.pdf  pdf]
+     * Additional presentations not yet announced
+     * Additional working items and constellation of groups.
+   * SURFEXv8 overview (Patrick Le Moigne, Météo-France) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/LeMoigne_ZAGREB2016_2.pdf pdf]
+  
+ * 10:30 Coffee break
+   * SODA (SURFEX Offline Data Assimilation) overview (Clément Albergel, Météo-France) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Albergel_Zagreb_20162310.pdf pdf]
+
+ * ~12:00 Lunch
+   * Overview of LACE surface activities (Stefan Schneider, ZAMG) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/LACEoverview_HALSsurfaceWW_Zagreb.pdf pdf]
+   * Overview of ALADIN surface activities (Rafiq Hamdi, RMI) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Hamdi_SDAW2016.pdf pdf]
+   * Overview of HIRLAM surface activities (Patrick Samuelsson, SMHI) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Patrick_HIRLAM_Surface_Zagreb_161024.pdf pdf]
+   * Assimilating SMOS Surface Soil Moisture using the EnKF (Jostein Blyverket, NILU) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/nilu_ldas.2.pdf pdf]
+
+ * 14:30 Coffee break
+   * Using MESCAN instead of CANARI in cy38t1 (Antonio Stanešić, CMHS) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Mescan_CRO_2016.pdf pdf]
+   * Surface assimilation with EKF and conventional observations (Helga Toth, HMS) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Surfex-week_Zagrab_20161024_TothH.pdf pdf]
+   * EnKF developments for surface data assimilation (Tomas Landelius, SMHI) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/surfex_ws161024_smhi_TL.pdf pdf]
+
+https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/surfex_ws161024_smhi_TL.pdf
+
+   * PGD work @ IMO (Bolli Palmason, IMO) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/palmason_sfx-ww-201610.pdf pdf]
+   * Urban model application (Rosmarie de Wit, ZAMG) [https://hirlam.org/trac/attachment/wiki/Meetings/Surface/Surface201610/Workshop_Zagreb_20161020.pdf pdf]
+
+ * Dinner is offered by CMHS, reservation made at the restaurant [http://www.kaptolska-klet.eu/food# Kaptolska Klet] (we will have to let them know about te total number of participants and the menu about 11 AM in the morning)
+
+=== Tuesday October 25 ===
+
+ * 08:30 Compiling of SODA_V8 branch and setup of the [wiki:HirlamMeetings/Surface201610/1D_test_case 1D_test_case]
+ * 09:15 Definition of subjects for morning sub-group constellations
+   * Urban/TEB group:
+     Discussions went into two directions - climate and NWP. For climate applications: possibility of urban finger-print was considered for climate adaptation studies. NWP applications: Importance of urban areas representation in the ECOCLIMAP; Sub-grid representation of urban areas; !Precip/Snow in Nordic environment. Communication was established between involved persons/teams. Possible contributions (area in focus, tasks with priorities, etc) from teams were proposed and will be added. Detailed notes are avialble at wiki of [wiki:Surface_physis_assimilation/TEB_development Applications and developments of TEB for use in ALADIN-HIRLAM NWP system / SURFEX].
+   * Organisation of the SODA_V8 branch and development: A [wiki:HirlamMeetings/Surface201610/SODA_development SODA wiki] is temporarily available under hirlam.org before the SURFEX wiki problems are solved, to share who is doing what in SODA development. It was concluded that similar meetings like this one will be useful in the future but we can hopefully coordinate them better with already existing regular meetings like e.g. the LACE data assimilation meeting. Patrick S will discuss this with Mate and Roger.
+
+ * 09:30 
+ * 10:30 Coffee break
+ * 11:30 Continue of setup of the [wiki:HirlamMeetings/Surface201610/1D_test_case 1D_test_case]
+
+ * ~12:00 Lunch including a visit to the Croatian Meteorological and Hydrological Service located in the old town.
+
+ * 13:00 Definition of subjects for afternoon sub-group constellations
+   * EKF and Force-restore combination in cy38/40. Stefan, Helga and Patrick S had a discussion on possible cooperation items:
+     * However, we concluded that at the moment we are very much doing our job in different cycles and with different combinations of code (e.g. Stefan is using cy38/SURFEXv7.3 in combination with SODA from SURFEXv8). Stefan has a need to run diffusion soil scheme in cy40/SURFEX7.3 but since diffusion soil in SURFEX7.3 is dubious the diffusion soil from ISBAv8 should be considered. Such a mix of SURFEX7.3+ISVAv8 exists in the HIRLAM repository for cy40h [https://svn.hirlam.org/branches/harmonie-40h1_ISBASFX8 here] and a documentation of how this mix is done is available in this [https://hirlam.org/trac/browser/branches/harmonie-40h1_ISBASFX8/src/surfex/README README] file.
+     * We discussed that possibly the B- and R-matrices are domain and/or namelist dependent. If so, there is a need to develop methods on how these matrices should be calculated. Such methods may be shared and developed together in the future...
+     * We concluded that, at the moment we will keep ourselves informed about work and progress and keep in mind to share any information with each other which we think can be useful for all.
+   * ECOCLIMAP PGD modification
+     * Bolli showed us how he is working with a combination of python, [https://pypi.python.org/pypi/GDAL/ GDAL] and [http://www.qgis.org/en/site/ QGIS] for visualisation and modification of ECOCLIMAP binary files. E.g. for changing of cover numbers and to utilize [https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mod15a2 MODIS LAI] information. Bolli will document his methods. 
+   * FLake status and update:
+     * HIRLAM, Ekaterina Kurzeneva (FMI) is currently updating lake model FLake in the HIRLAM repository for cy40h ([https://svn.hirlam.org/branches/harmonie-40h1_FLake]). The plan is to have FLake operational as soon as possible running in peaceful coexistence (without lake data assimilation).
+
+ * 14:30 Coffee break
+
+=== Wednesday October 26 ===
+
+ * 09:00 Definition of subjects for morning sub-group constellations
+   * EnKF implementation: Tomas, Jostein and Åsmund had a discussion on status and future plans:
+     * I/O is currently an issue in the SODA/EnKF application applied by Jostein, the default SODA read/write simply takes too long time. Therefore, he has implemented a local solution for this to speed it up.
+     * Eventually the Sodankylä data set added under {{{MY_RUN/KTEST/Sodankyla}}} in the SODA_V8 branch can be used to compare EKF and EnKF applications.
+   * CANARI/MESCAN
+     * LDIRCLSMOD=.T. namelist switch (NAMDPHY) in CANARI/MESCAN can be used to enable direct reading of 2m fields if they exist in FA file which is used as a background for performing analysis.
+     * With this switch set to .F. CANARI will diagnose  2m fields and it can produce different results.
+     * Using this switch set to .T. is recommended but it should be tested in your environment.
+     * More on this can be seen in [https://hirlam.org/trac/attachment/wiki/Surface/Meetings/Surface201610/Mescan_CRO_2016.pdf presentation by Antonio Stanešić].
+
+ * 10:30 Coffee break
+
+== Summary of meeting and common plans ==
+
+   * '''Agreed to use SURFEX repository SODA_V8 branch in combination with a [wiki:HirlamMeetings/Surface201610/SODA_development SODA_V8 wiki] for sharing of development.'''
+
+   * Development of ECOCLIMAP-SG will first be based on [http://maps.elie.ucl.ac.be/CCI/viewer/index.php ESA-CCI land cover map]. In a later stage SURFEX users will be asked to provide higher quality data based on e.g. national data bases.
+   * It is strongly recommended to go for SURFEXv8 if processes like diffusion soil scheme and explicit snow scheme are of interest since considerable development of these processes have taken place since earlier SURFEX versions.
+   * Clément stressed that one shouldn't limit the Jacobians but rather the perturbations.
+   * Be careful not to assimilate very fast variables like top soil moisture or surface temperature and how it is related to the assimilation window.
+   * If you go for evolving B-matrix then you need to estimate the Q-matrix which is tricky. So, be careful to activate evolving B-matrix.
+   * An Algerian colleague, Arab Djjebar, will start to work with SODA_V8 branch in collaboration with Rafiq.
+   * Seriously look into STAEKF for variables like LAI and albedo.
+   * Rafiq will visit Bratislava soon to work on ALARO1-SURFEX coupling for Toucans.
+   * Near future HIRLAM plan is to have EKF working with Force restore.
+   * What about computational costs for new physics options in SURFEX?
+   * How many control variables in EKF is realistic? For each control variables one needs one perturbed run. Patrick S estimated that number of control variables increases from order of 10 with Force restore to order of 100 with diffusion soil and explicit snow. However, Clément argued that a realistic number of perturbed variables in EKF is 10, otherwise it would be too expensive. In the end, what is affordable, is also dependent on the HPC resources available. Thus, in a parallel NWP environment many perturbations can still be realistic. To be investigated...
+   * Jostein has uploaded the NILU EnKF development to the SODA_V8 branch. Work to be done is to merge the default and NILU EnKF methods in the same code but with a namelist switch to decide which one to use.
+   * In the development of EnKF by Tomas Landelius et al. a method for estimating the B matrix can be available which can be used to estimate B for different model domains. The R-matrix will depend on the observation used (satellite products).
+   * A tip: To find out which control variables you have active in SURFEX a good way is to check the NetCDF output file ISBA_PROGNOTIC_OUT.nc (Do not use LSELECT/CSELECT!).
+   * A crash course was held by Bolli on how to visualize/modify ECOCLIMAP (see notes above).
+   * How to organise future meetings? One idea could be to have like a 5-day meeting at one location but that the meeting gradually goes from upper air to surface and that people can choose to concentrate maybe on 2-3 days depending on their interest. Patrick S checks with Mate and Roger on this.
+   * Patrick S checks interest in let's say half a year to see if a google-hangouts type meeting is of interest to update ourselves in development.
+   * Investigate possibility of new COST action to support surface data assimilation activities in Europe to involve universities in our research.
+   * For Nordic partners investigate possibilities of !NordForsk funding for Nordic Centre of Excellence on data assimilation (theoretical studies and applications for NWP, climate, ocean sea-ice and environmental modelling). Link with universities as coordinator.
+   * Soon Patrick LM will announce a SURFEX course to be held in Toulouse in February 2017.
+   * Patrick LM also plans a SURFEX community Workshop for SURFEX users and developers. To be held in Toulouse during spring 2017.
+   * Urban discussion summary: i) climate (urban finger-prints) and ii) NWP a: (urban areas representation in the ECOCLIMAP - underestimation of urban areas, using national high resolution databases, enlarging (tuning) representation of urban areas, and expecting improved ECOCLIMAP-SG; b: Sub-grid representation of urban areas - characteristics for urban classes, urban districts , statistics, local climate zones; c: !Precip/Snow in Nordic environment - summer precipitation removed through drainage network, spring with melting snow period, impact of snow removal.
+   * Alexander Mahura suggested possibility of adding info (climatological, operational from MACC) aerosol/ black carbon (for latitudinal distribution, for areas with deposition, especially wet - on surface) for more accurate (instead of tuning) albedo for snow on surface/lakes and especially in the northern regions. This might help  (e.g. serving as CCN) also with better prediction of temperature, humidity, precipitation, cloudiness for different geographical regions and urban areas.
+
+
+== Meeting registration and participants ==
+
+You register to this meeting simply by adding your name (institute) to this list of participants. Please indicate time of arrival/departure and hotel
+
+ * Patrick Samuelsson (SMHI), Sat-Fri, Hotel Dubrovnik
+ * Tomas Landelius (SMHI)
+ * Martina Tudor (CMHS)
+ * Patrick Le Moigne (Météo-France)
+ * Clément Albergel (Météo-France)
+ * Alexander Mahura (DMI)
+ * Stjepan Ivatek-Šahdan (CMHS)
+ * Antonio Stanešić (CMHS)
+ * Tomislav Kovačić (CMHS)
+ * Mario Hrastinski (CMHS)
+ * Iris Odak Plenković (CHMS)
+ * Ana Juračić (Dept. of Geophys.)
+ * Åsmund Bakketun (!MetNorway)
+ * Jostein Blyverket (NILU)
+ * Branko Grisogono (Dept. of Geophys.)
+ * Stefan Schneider (ZAMG; Mon-Tue)
+ * Rosmarie de Wit (ZAMG)
+ * Helga Toth (HMS)
+ * Rafiq Hamdi (RMI)
+ * Bolli Palmason (IMO)
+
+
+== Useful links and references ==
+
+[http://www.cnrm-game-meteo.fr/surfex/ SURFEX Home Page].

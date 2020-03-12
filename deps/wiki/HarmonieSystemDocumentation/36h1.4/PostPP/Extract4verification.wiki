@@ -1,0 +1,59 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie System Documentation''' =
+== '''Verification preparation''' ==
+[[LastModified]]
+[[Center(end)]]
+== Introduction ==
+
+Before we can run the verification we need to extract data for each geographical point and produce files in a format that the verification program can use. In HARMONIE there are two programs, one fore extracting model data (fldextr) and one for observations ( obsextr ). Both are part of the [source:tags/harmonie-36h1.4/util/gl gl package]. 
+
+  fldextr is capable of extracting data from several sources (HARMONIE/HIRLAM/IFS and produces so called vfld-files in ASCII format. The main tasks of the program is to:
+
+   - Recalculates rh,td to be over water
+   - Interpolates to geographical points according to a synop.list and temp.list
+   - Does MSLP,RH2M,TD2M calculations if the are not available in the input file
+   - Optional fraction of land check.
+   - Interpolates to pressure levels for TEMP data.
+
+  obsextr extracts conventional observations from BUFR data and creates a vobs file similar to the vfld file. It:
+
+   - Reads SYNOP and TEMP
+   - LUSE_LIST controls the usage of a station list
+
+
+== Field extraction ==
+
+[source:tags/harmonie-36h1.4/scr/Run_fldver Run_fldver]. This script goes through all forecast files and 
+collects all the variables (T2m, V10m, mean sea level pressure, RH2m, Q2m, total cloudiness, precipitation + profiles) 
+needed in basic verification.
+
+ * Input parameters: none.
+ * Data: Forecast files.
+ * Namelists: Station lists for surface data (ewglam.list) and radiosounding data (temp.list).
+ * Executables: fldextr.
+ * Output: Field extraction files (vfld${EXP}${DTG}), which are placed in ''EXTRARCH''.
+
+== Extract observations ==
+
+[source:tags/harmonie-36h1.4/scr/FetchOBS FetchOBS] scripts takes care of the observation 
+extraction for verification. First, the observation BUFR-file is fetched from the MARS ('''ExtractVEROBSfromMARS'''), 
+then all the needed data is extracted from the BUFR-files.
+
+ * Input parameters: none.  
+ * Data:  Station lists for surface data (ewglam.list) and radiosounding data (temp.list). These shoud be found from ''SCRDIR''  
+ * Executables: mars, obsextr.  
+ * Output: Field extraction files (vobs*), which are placed in ''EXTRARCH''.
+
+
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

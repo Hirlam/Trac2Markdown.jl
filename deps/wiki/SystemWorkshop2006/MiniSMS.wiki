@@ -1,0 +1,15 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''miniSMS in Hirlam 7.1 (under construction)''' =
+
+=== '''Main topics''' ===
+[[Center(end)]]
+ * General review
+ * Relevent code and scripts in the reference system
+ * Namelists, tunables
+ * Relevant issues about operational implementation
+ * Overhaul issues
+
+[[Center(begin)]]
+== '''Overview''' ==
+[[Center(end)]]

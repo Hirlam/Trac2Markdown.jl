@@ -1,0 +1,327 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie Working Week on Use of Observations and Algorithm development ''' =
+ Orotava Hotel, Av. Aguilar y Quesada, 3, 38400, Puerto de la Cruz, Tenerife, Spain 
+''Tenerife, 14th - 18th of October 2019''
+
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+[[Image(All_panoramic_mod.jpg, 35%)]]
+[[Image(All_in_meeting_room_mod.jpg, 35%)]]
+
+
+== Attendees ==
+||=Name                  =||= Institute    =||=    Arr.-Dep.         =||= Hotel          =||= Misc.    =|| 
+||Roger Randriamampianina ||MET Norway      || Oct. 13 - 18           ||Orotava Hotel     ||            ||
+||Roohollah Azad          ||MET Norway      || Oct. 13 - 18           ||Orotava Hotel     ||            ||
+||Ole Vignes              ||MET Norway      || Oct. 13 - 18           ||Orotava Hotel     ||            ||
+||Magnus Lindskog         ||SMHI            || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Nils Gustafsson         ||SMHI            || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Jelena Bojarova         ||SMHI            || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Martin Ridal            ||SMHI            || Oct. 13 - 19           ||Orotava Hotel     ||            ||
+||Sigurdur Thorsteinsson  ||IMO             || Oct.  9 - 19           ||Orotava Hotel     ||            ||
+||Carlos Geijo            ||AEMET           || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Eoin Whelan             ||METIE           || Oct. 13 - 18           ||Orotava Hotel     ||            ||
+||Xiaohua Yang            ||DMI             || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Jan Barkmeijer          ||KNMI            || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Jana Sánchez            ||AEMET           || Oct. 13 - 18           ||Orotava Hotel     ||            ||
+||Joan Campins            ||AEMET           || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Pau Escribà             ||AEMET           || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Maria Diez              ||AEMET           || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Isabel Monteiro         ||IPMA            || Oct. 13 - 18           ||Aparthotel RF Astoria||            ||
+||Alena Trojakova         ||CHMI            || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Yann Michel             ||Meteo France    || Oct. 13 - 18?          ||Orotava Hotel     ||            ||
+||Erik Gregow             ||FMI             || Oct. 13 - 19           ||Orotava Hotel     ||            ||
+
+
+
+== Agenda ==
+
+Normal daily agenda:[[BR]]
+09:00 - 10:30: Working in groups[[BR]]
+10:30 - 10:50: coffee break[[BR]]
+10:50 - 13:30: working in groups[[BR]]
+13:30 - 14:30: lunch break[[BR]]
+14:30 - 16:00: working in groups[[BR]]
+16:00 - 16:30: coffee break[[BR]]
+16:30 - 18:00: working in groups[[BR]]
+
+== Report topics ==
+We started with short progress report from Participants as follows.[[BR]]
+ * **Magnus** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/magnus_pres_canary.pdf reported] about 
+     * The use of the 54 levels RT coeffs (compared to RT coeffs in 44 levels) files was checked and the difference is small in a two weeks experiments.[[BR]]
+     * Microwave data (MWHS-2) from the Chinese FY series satellites (FY-3D & FY-3C) was implemented in the !MetCoOp DA system. These data are important because of their availability during early morning assimilation times. 
+     * Metop-C microwave data are added in their DA system.[[BR]]
+     * In collaboration with Roohollah, the Aeolus data were also checked in passive mode and they made these data now available for monitoring in Obsmon.[[BR]]
+     * Nordic countries are collecting Mode-S (EHS) data and send it to KNMI for processing. Swedish data have so far bad quality, but Siebren and his colleagues are working on improving it.
+     * The 4D-Var scheme was tested using the !MetCoOp branch. Issue in the conversion from full to low resolution using GL was found. Using the !FullPos solved this problem.
+ * **Jana** reported at [raw-attachment: JanaSanchez_TenerifeWW2019.pdf] about: 
+     * GNSS DA: It has been necessary to decrease the weight of these observations in the operational run due to decrease of the quality of these observations over the domain. [[BR]]
+     * Reflectivity RADAR DA: parallel runs with assimilation of T2m&RH2m and LSQMIX-q  apart of radar reflectivity assimilation have been performed  for different periods over Iberian Peninsula domain  and a positive impact on the precipitation due to a decrease of the FAR for several periods of study  has been found. [[BR]]
+     * Doppler Winds RADAR DA: The status of the files received from France, Portugal and Spain have been checked. New experiments ongoing. [[BR]]
+     * ASCAT DA:v10m Scatt observations  have been assimilated in a parallel run for a 3 weeks period. Like for other periods performed , an slightly positive impact has been found on mslp and on precipitation forecast. The parallel run will continue. [[BR]]
+ * **Eoin** reported [raw-attachment:eoinWhelan_DAUO201910.pdf eoinWhelan_DAUO201910.pdf] on his activities since the last WW in May:
+   * Ireland are now assimilating Metop-C ASCAT winds and radiance (AMSU-A, MHS, IASI) data operationally. Ireland are close to using SAPP operationally.
+   * CY43 components listed on [wiki:Harmonie_43h2/Potential_updates_for_tagging_43h2.1 Harmonie_43h2/Potential_updates_for_tagging_43h2.1] were briefly discussed. Assimilation of P,,s,, (instead of Z) is implemented in develop. Work to implement Nils' larger extension changes has not yet started.
+   * Some initial (CY40) results suggest reasonable performance for Irish domain without assimilation of radiance data.
+   * The availability of CY46 and phasing for CY47 was also mentioned.
+ * **Isabel** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/Isabel_4DVar_feasability_Iberia_v2.pdf repoted] about 3D-Var and 4D-Var results from her experiments. From her report, we found a "flat" error in upper-air, which needs be better understood why?
+ * **Jan** reported [raw-attachment:WW_TENERIFE_JB.pdf] about:
+   * two 4dvar experiments for the NL domain during 3 weeks (excluding 2 weeks spinup), using arome and aladin physics. Ascat-A and Mode-S EHS are assimilated. Overall the feeling was that 4dvar and 3dvar perform comparably. But note that 3dvar is using large scale mixing. 
+   * A 4dvar with tendency perturbations used in the 2nd loop (FORCE2) is still running
+   * Further GNSS (also slant) is working apart from an issue with VarQC. 
+   * AMSU-A implementation at KNMI is slowly progressing 
+   * Also mentioned that MONITOR may not be ideal to infer on model performance. An example was shown where performance statistics was obrtained by using Mode-S EHS as validation set
+ * **Alena** presented overview of [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/LACE_DA.pdf RC LACE DA activities]  
+     * Status of operational systems
+     * Algorithmic developments: pre-operational hourly AROME RUC at 1.2km implementation in Austria, background errors studies, VarBC in LAM, [https://journals.ametsoc.org/doi/abs/10.1175/MWR-D-18-0359.1?af=R&mobileUi=0& Benacek and Mile (2019)] 
+     * Advances in observation use: first impact studies with OPERA radar data, ongoing work on Doppler wind dealiasing, quality assessment of SYNOP and wind profiler data to construct/update a local blacklisting, DA studies with GNSS ZTD and Mode-S data, and first trials of assimilating rain rates from attenuation in telecommunication microwave link (crowd-sourced data) 
+ * **Pau** reported [raw-attachment: DA_WW_oct19_pau.pdf] about:
+     * Surface Pressure (SP) assimilation compared to Z=0 assimilation. First results show some positive impact in the first 6 hours of forecast and no degradation of scores. More work on-going with SP bias correction.
+     * T2m & Rh2m assimilation and LSMIX of Q in operational AEMET 3DVAR shows positive impact, specially in humidity in the vertical and precipitation in strong convective episodes
+     * Migration of LETKF code to HARMONIE Cy43 is on-going. The code compiles and is embedded in the ecflow suite. Work with new scripts must be done.
+ * **Maria** reported local implementation of:
+     * MODE-S.
+     * SAPP.
+     * SEVIRI. Pre-processing and DA.
+ * **Martin** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/ridal_radar.pdf reported] about:
+     * use of new HDF5 Norwegian data. He reported that reflectivity data (RFL) have positive impact, while the Doppler wind (DOW) data in separate file is problematic. DOW data need to be in the same file as RFL to be well quality controlled.
+     * adding radar data (so far only reflectivity) showed promising results. So these data are now added to the preop version of MEPS.
+ * **Joan** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/Assimilation_of_IASI_JC.pdf reported] about 
+     * The assimilation (in passive mode) of IASI clear-sky radiances for METOP-A and B during a month-period for VarBC initialization.
+ * **Erik** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/WW_Tenerife_ErikG.ppt reported] about:
+     * !MetCoOp rapid refresh daily run, which uses GNSS ZTD short cut-off data, radar RFL. He mentioned that the composition of observations is different at different assimilation time. 
+     * Cloud initialisation, which can help with clouds and precipitation nowcasting. **Jan B** asked about the performance of this scheme because at KNMI, they found strange additional features created by this tool. It was mentioned that there were few more developments done on top of the version taken from KNMI, like for example cloud base interåolated using GridPP. 
+     * Form the answer to questions it was mentioned that they plan to use HRW (AMV), Modes-S and Netatmo data in near future.
+ * **Roohollah** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/RoohollahTenerif.pdf reported] about new results on 
+     * use of Aeolus HLOS in Harmonie. So far neutral impact of these data was found after one month assimilation test. 
+     * tuning REDNMC in MetCoOp nowcasting (MNWC) to give more weight to observations in minimization. 
+ * **Yann** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/20191014_harmoniewv_report.pdf reported] about
+     * Assimilation experiments performed at MF with OPERA radars and MODE-S data by M. Martet and V. Pourret
+     * Latest results from M. Destouches about high resolution system and introducing hydrometeors as control variable into the OOPS-based AROME 3DEnVar prototype.
+ * **Carlos** reported on the status of work being done at AEMET in development of nowcasting methods. 
+    The FA alignment software is now integrated in v40 after a bug in the interpolation software (laidliobs.F90) was detected and corrected (see comments 
+    of previous WW in May-Norrkoping). It was checked that in v43 somebody corrected already for it. Testing on several cases (HyMEX SOP 2012) of how this 
+    integrated FA software performs in meteorological terms are in progress.
+    Ahead is now the integration of the VC software. A first major problem is the current non-compatibility of variational runs (NCONF=131) and the LNHDYN option.
+    As VC focus on dynamical balances considering the whole SI system, this problem clearly has to be sorted out somehow. 
+    Also a discussion on some issues (LBC) standing in the way towards a NWC app were pointed out in his presentation. 
+ * **Jelena** [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/STRFUNC.pdf reported] about the following:
+     * The implemented large scale error constraint in Harmonie (LSMIX and Jk)
+     * Modelling of uncertainty: She reported about the background errors computed using EDA with observation  and BRAND perturbation techniques.
+     * The implemented !HybridEnVar scheme in Harmonie-Arome DA system. 
+
+== List of discussion topics during working week Tenerife ==
+
+  ==== Suggestion by Erik G.: ==== 
+         * Use of new Station-pressure DA method in c43, for assimilation of Netatmo data (Erik, Eoin, Martin, Pau, Jana, Jelena, Magnus,...)
+         * Harmonie-Nowcasting (MNWC), cloud-ingest method developments (Erik, Magnus,.....)
+         * Harmonie High-resolution (<1km) experiments, assimilation of MODE-S (Erik, Xiaohua,......)
+         * tuning REDNMC and B with more vertical levels (Erik, Roohollah,...)
+
+The following topics were selected for separate group discussion:
+
+=== **Use of observations ** ===
+==== Assimilation of Surface Pressure observations (Erik, Eoin, Martin, Pau, Jana, Jelena, Magnus...) ====
+Discussion (Thursday) with Eoin, Roger, Martin, Jana, Pau, Xiaohua, Erik, Alena
+
+       Eoin introduced the topic with a description of the changes made to develop (CY43) to enable the assimilation of P,,s,,. Changes have been made to the BATOR code the means both geopotential, Z, (calculated from PMSL/P,,s,,) and pressure are written to the ODB (ECMA.conv) read by Screening. The processing strategy applied when reading PMSL and/or P,,s,, is controlled by a new SynopPsMethod namelist entry in the BUFR namelist read by BATOR. The assimilation of Z or P,,s,, is then controlled by blacklisting.
+
+       There are a few motivations for these developments: 1. make better use of higher altitude stations, 2. explore possibilities of applying VarBC to SYNOP P,,s,, observations and 3. assimilate P,,s,, observations from !NetAtmo stations.
+
+       AEMET (Jana & Pau) have carried out experiments to assimilate P,,s,, instead of PMSL and use stations above 500 m. Results of these experiments suggest a neutral to slightly positive impact ([raw-attachment:DA_WW_oct19_Pau.pdf DA_WW_oct19_Pau.pdf]). Alena raised the issue of verification - at CHMI only stations below 500 m are used for verification of PMSL. '''ACTION''': Pau to check. 
+
+       The possibilities to correct biases in P,,s,, observations were discussed. Currently no bias correction is applied by the HARMONIE system. Jana suggested an approach similar to the static bias correction applied to GNSS data (prior to use of VarBC) could be used. Eoin mentioned that in the past Ireland corrected WMO station height errors to correct biases (described in presentation at 2011 DA WW [raw-attachment:met.ie_WMOcorrections.pdf:wiki:HarmonieWorkingWeek/UseObs201111/ met.ie_WMOcorrections.pdf], [wiki:HarmonieWorkingWeek/UseObs201111 HarmonieWorkingWeek/UseObs201111]). ECMWF have also developed the option to apply VarBC to SYNOP P,,s,, observations. The issue of a lack of "anchoring observations" for VarBC was discussed.This may not be a problem since not all the Ps obs are biased, so the correct ones may be used as "anchor". It was agreed that the static approach may be better but if VarBC for P,,s,, functions with little effort this should also be explored. '''ACTION:''' Jana to explore bias correction possibilities.
+
+       The issue of passively assimilating P,,s,, and other observations was also discussed. This is achieved by inflating the specified observation errors to very large values so that they have a minimal impact on the minimization. Alena reported that CHMI have used this with an offline approach (without cycling using operational first-guess files) to gather innovation statistics.
+
+       The group requested clearer switches for assimilation of Z or P,,s,,. '''ACTION:''' Eoin to implement a swtich (at least at script level) and to provide documentataion.
+
+       In order to make assimilation of SYNOP P,,s,, default it was agreed that MetCoop (and hopefully Ireland) will run tests to confirm results presented by Pau.
+
+  ==== Radar DOW DA status (Martin R., Jana,...)
+AEMET (Jana)  will start new experiments using french, portuguese and spanish DOW observations according with the code changes/filters suggested by Martin R.
+  
+  ==== ASCAT DA status (Isabel, Jana)
+AEMET (Jana)  will adapt AEMET's code to assimilate METOP-C ASCAT winds according with the code changes suggested by Isabel M.
+
+  ==== Satellite Observations and all-sky radiance ====
+ * '''Radiance data 1''': Two Chinese satellites (FY-3C, FY-3D) have microwave sounders (MWHS-II) like MHS on Metop and NOAA satelites. The MWHS-II data are available via the [https://www.eumetsat.int/website/home/Data/RegionalDataServiceEARS/EARSVASS/index.html EARS-VASS service]. Maybe is good to try. 
+ * '''Radiance data 2''': Isabel reported that the orbit that METOP-C is going to be modified. It will take 6 weeks and it will be finished in February. Be aware that the orbit of METOP-A will be also modified.
+ * '''Scatterometers'''. There is a new Chinese-French new satellite (CFOSAT) in orbit [http://www.osi-saf.org/?q=content/cfosat-25-km-wind-vectors http://www.osi-saf.org/?q=content/cfosat-25-km-wind-vectors]. The resolution is similar to OSCAT of 25 km of resolution. From OSI-SAF website: "Near-real time level 2 ocean wind vectors on a 25 km swath grid, based on the backscatter measurements of the Chinese/French CFOSAT/RFSCAT (Rotating Fanbeam Scatterometer)."
+ * '''IASI.'''  It would be a good idea to check the NBG value for IASI, maybe is too big. In the future MTG-S will have a similar instrument.
+ * '''Atlas  DB Emissivity.''' It is going to be at the reference system like an option.
+ * '''Seviri.''' Maria, have begun to work it.
+ * '''LTOVSCV.''' For historical reasons we have LTOVSCV=F, but MF have LTOVSCV= T it means that Surface Temperature used as slack variable. Sigurdur will look at this.
+ * '''Cris, AIRS & ATMS.'''  To be tested. Eoin will test ATMS data again.
+ * '''All Sky radiances.''' It is dealt with as a new type of observation though it is the same AMSU/MHS obs. First one must create a new interface in bator (new obstype=17) to create odb file which later will go through a new observation operator called RTTOV_SCATT.
+
+  ==== Wind profilers ====
+This was briefly discussed. Jan mentioned he found problems assimilating wind farm data cast as as single level wind profilers. He experienced increments at lowest model level when carrying out single obs experiments, regardless of provided measurement height via OBSOUL. Jan managed to handle this using model pressure information. He adopted the OBSOUL from WP obsoul provided by oulan. 
+
+Alena, Eoin and Magnus promised to contribute to comparison to finding source of problem. Does it originate from OBSOUL files or from OULAN, Bator or from observation operator?
+
+Eoin will implement a EPROF_OBS=0/1 option to assimilate [https://www.eumetnet.eu/activities/observations-programme/current-activities/e-profile/ E-PROFILE data] (available in MARS archive, see ecgate:/home/ms/ie/dui/hm_home/testEPROF).
+
+  ==== SAPP implementation ====
+
+  ==== Blacklisting ====
+  **Pau** mentioned that the new blacklisting might be built accounting the IFS effective resolution. He will contact ECMWF to know more about how the monthly blacklisting decision is done and report to the group.
+
+=== Crowd-sourced data ===
+
+     It is clear from previous discussions, that there is a need of more observations in NWP, even though these observations are only near surface.
+
+     Roger reported that at MetNo NetAtmo is used with GridPP, a flexible tool for optimal-interpolation (MEPS covariance structure is used). Need of QC; already neighborhood comparison (buddy check), ensamble information and spatial consistency check. Tryggve has done work to put GridPP into c43.
+     Discussion of: The usage of SAPP for this data (BUFR output). Assimilate observations themselves or gridded fields? 	How to take into account privacy issues (superobbing with new ID, or use fields). How to treat and use an ID that is known to be good, used with more trust even when changing location (mobile phone). Use of VARBC for this kind of data, or not? Note: VARBC and ObsMOn needs a static ID. 
+  '''ACTION:''' How to use the observations; superobbing, thinning in 3D(4D)-VAR) or as gridded field (Nudging). Erik, Martin, to be further discussed within iOBS-project.
+
+
+     Could T2m and RH2 be used in upper-air assimilation? It can risky to do that, need to adapt many things. 	Pau and Jana have done this kind of experiments in c40, with positive outcome (Pau noted to put “LSOE=FALSE” it is important!). Also EC is doing work in this field. Much uncertainties how to use/do this. MetNo (Tryggve) has some info also. RH2m is probably better to use than T2m. Recommendation to test in other systems, for example MNWC.
+
+     How is EC using the blacklist for these observations (netatmo, phones...)? 
+  '''ACTION:''' Pau will continue this investigation.
+
+
+=== Nowcasting (NWC) ===
+
+General discussion: 
+
+   Magnus mentioned that there is a need to have the NWC adapted for both ensemble and deterministic model. All agree.
+'''ACTION:''' Make the Harmonie system available for sub-hourly DTG. → Pass info to system manager (via Ole)
+
+
+High-Resolution: 
+
+   Xiaohua reported that there is a potential to resolve small-scale phenomena and strong convection with nowcasting and high-resolution. It has been seen with 500m horisontal can resolve such strong precipitation cases. Because of HPC-resources, DMI has chosen 750m, with 65 vertical levels. Aiming for 3-6h forecast. Remark by Jelena that the construction of B-matrix should be done with EDA. 
+
+
+Sub-hour cycling: 
+
+    Xiaohua gave presentation: Results depend on cycling strategy and which time-window is used. Problem with input of minutes in Grib1, would need Grib2. But this is only supported in c43. 
+
+    It was agreed that there is a need of a separate NWC branch (start from c43 due to minute handling and Grib2). 
+ '''ACTION:''' Pass this question to system manager (via Ole) 
+
+    The different ensemble developments adaption to be used in a NWC-branch c43 (to meet final goals from HIRLAM). To be considered by developers. 
+
+MSG-cloud ingest method: 
+
+    Need to make sure that the MSG-cloud ingest and other related NWC developments (Florian’s work) are maintained and kept in the upcoming versions. '''ACTION:''' Pass this question to system manager (via Ole). 
+
+    Carlos asked if there are any plans to try MSG-ingest in 1-3-1 DA, adjusting the FG? Erik: No plans so far but it should be tested. 
+
+   KNMI will work on the cloud ingest topic as well. Coordinate the work with FMI. 
+
+
+
+
+   ==== FieldALignment (FA) implementation: 
+                                            Carlos reported that the integration of FA in v40 is now finished. Hands-on sessions during this WW were
+                                            mainly dedicated to transfer the present implementation as "utility" to a sub-project of project "aladin".
+                                            In this way, compilation and utilization of it (under NCONF=131, and new flag LFLDALIGN=.TRUE. in NAMCT0 activated) will
+                                            be so facilitated to the whole HIRLAM community. This transfer process was not finished during the WW but advanced well.
+                                            Eoin will have to support in a final stage. The result will be in a v40 branch (40h1.1_FLDALIGN). 
+                                            During the week it was more or less agreed that developments in NWC will from now on be done on v43. 
+                                            A first evaluation of the integration of the FA in v43 was done by Carlos. It is expected to do this v43 integration
+                                            in the near future, depending in part on how the testing (using v40) progresses. It is considered that priority should be
+                                            given now to performance evaluation over technical issues.         
+
+
+   ==== Sub-hour assimilation ====          
+        
+  
+=== Tuning of observation error and uncertainties estimation ===
+Current system has observations errors values in several places in Bator. Apart of this, there are scaling factors that may change original values. Need for a namelist specified for Harmonie System with these fix values.
+A tuning of Obs errors and Rejection Limits is needed in Cy43. Magnus&Jana will do it for MetCoop and big Iberian domains respectively. They will use Diagnostic tools like Desroziers, Optimal Thinning Distances calculations(P. Benacek)  etc.
+
+
+=== 4D-Var development ===
+
+Nils started the discussion with [https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/NG_4DV_Oct2019.pdf some thoughts] on why to choose 4D-Var and reminding about what have been achieved. Among others, he mentioned the importance the following:
+    * We need to define meaningful coarse resolution in inner loop 
+    * Initialisation technique: is weak DFI appropriate?
+    * Accounting for temporal observation error
+    * Do we have appropriate simplified physics? Can we check the EC (IFS) physics?
+    * Control of LBCs, at both beginning and end of the minim
+    * Propagate TL increment to middle of assimilation window ?
+    * Which trajectory model? Low resolution trajectories or trajectory truncation?
+
+Summary of the discussion on the planning strategy for 4dvar
+
+There is a technical solution for the large extension zone option which makes further work less urgent. It entails the selection of a sufficiently large NPROCX (Nils). Because 4DVMIN is quadratic it was decided to use CONGRAD in stead of M1QN3 as minimizer (earlier experiments had shown faster convergence, Jan). CY43 was selected as the development branch for 4dvar. The use of ECMWF nonlinear and linear physics  was considered. Feasibility of this approach  will be investigated (Xiaohua) . In the mean time augmenting the simplified MF physics package that is currently used in 4dvar will be considered. Yann Michel provided the namelist used at MF and suggested to ask C. Loo from MF for further guidance on the use of the linear physics (not all switches are valid as they are still under development)
+
+The following list of priorities for the short term (coming half year) were defined:
+
+* Testing of the CY40_4DVAR functionality in CY43 (all, Nils and Roohollah)
+* Implementing LSMIX (Isabel, Magnus)
+* Investigate the use of LSTASPN which activates a linearized precipitation routine (Magnus, Jan).
+* Control of the lateral boundary conditions (Jan,Nils)
+* Check the implication for LWARM_MINIM when CONGRAD is used (Roohollah,Nils)
+
+
+=== **CY43 reference system** ===
+     ==== Observation error differences between CY40 and CY43 (Magnus, Roger, Eoin) ====
+
+     ==== Activating 4D-Var system (Roger, Roohollah,...) ====
+
+
+=== **Other algorithmic Topicss** ===
+
+     ==== LETKF porting to CY43 / CY46 / CY47 (Pau, Eoin) ====
+Pau promised to follow the advice from system group how port the new development to CY46 or CY47.
+
+     ==== !EnVar (Hybrid) scheme in CY43 / CY46 / CY47 (Jelena, Eoin, Pau) ====
+Jelena promised to follow the advice from system group how port the new development to CY46 or CY47.
+
+     ==== VarQC approach (Martin, Jelena) ====
+     >Florian Meier Joined trough google meet and talked about 
+     >[https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/DA- 
+     >austria2019VARQC_new.pptm his implementation] of the VARQC technique to quality control surface, GNSS ZTD, and 
+     >radar observations. 
+
+     ==== IAU and surface DA (Jelena, Roger, Magnus, Carlos, Jan) ====
+     > Florian Meier also 
+     >[https://hirlam.org/trac/attachment/wiki/Meetings/HarmonieWorkingWeek/UseofObsandALGO201910/DA- 
+     >austria2019VARQC_new.pptm presented the use of the IAU and latent heat nudging techniques in their nowcasting 
+     >system. 
+
+     ==== Code for control variables in NetCDF (Yann, Magnus, Nils)====
+Yann provided code modifications for handling of control vector
+variables in netcdf format. The routines provided were based on cycle 
+43T2_OP2. 
+
+=== Verification tools ===
+
+     ==== FESTAT & netCDF output (Yann, Magnus, Alena) ====
+
+ The option (LNETCDF_IO=.TRUE.) to have a NETCDF output of stabal and stabcv files has been added to the festat software in cycle 45T1. This has the advantage of making those files portable between supercomputers. One can also use it to watch directly the balance coefficients as well as the vertical covariances as a function of horizontal wavenumber with a NETCDF browser e.g. ncview, NCL, [https://www.giss.nasa.gov/tools/panoply/ panoply] and epygram are popular. Yann Michel kindly provided the modset for a back-phasing to Magnus and Alena.
+
+[[Image(Panoply.png, 50%)]]
+    ==== New features in monitor verification package ====
+ Roger informed the group that Ulf updated the monitor package to be able to plot multiple comparison of experiments in one graph. See bellow. 
+[[Image(jsign_00000000_00000000_ALL_ALL_QQ_500.1.png, 50%)]]
+
+
+     ==== ODB online documentation (Alena) ====
+Alena provided a link to useful online odb documentation!
+http://www.umr-cnrm.fr/aladin/meshtml/DOC_odb/odb.php
+
+
+== Practical Information ==
+
+The hotel is in Puerto de la Cruz, in the North Part of the Island. https://www.belivehotels.com/hotel/EN/ficha_hotel/orotava_palace/descripcion.jsp
+
+There are busses from both airports to Puerto de la Cruz.
+      From Tenerife Sur, there is only one line 343, the frequency is not very high. Check here: https://www.titsa.com/index.php/en/tenerife-by-bus/getting-to-the-airport/tenerife-south-airport/linea-343.
+      From Tenerife Norte, there are two lines, the previous one 343 and 30. Check here: https://www.titsa.com/index.php/en/tenerife-by-bus/getting-to-the-airport/tenerife-north-airport/linea-30
+
+There are another options (but not direct bus). For more information of others bus lines: https://www.titsa.com/index.php/en/tenerife-by-bus/getting-to-the-airport
+
+Also you can rent a car, the most popular and cheap car hire company in Canary Islands is Cicar. https://www.cicar.com/en. I think that near the hotel it is difficult to find free parking, but you can ask to the hotel for the parking service prices.
+
+If you are going to go to Tenerife Sur Airport, don't forget to check the bus time tables!!!!
+
+Don't hesitate to ask Maria or Roger if you have any doubts.

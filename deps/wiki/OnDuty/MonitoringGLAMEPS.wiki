@@ -1,0 +1,71 @@
+[[PageOutline]]
+
+= '''Daily run-through of GLAMEPS Product Web Page and related Monitoring  Web Pages''' =
+
+The [https://glameps.org/ GLAMEPS product web page] shall be monitored daily by on-duty team. This page contains the ''cycle status table'', which informs about the latest cycles that have been finished by the GLAMEPS production suite, and it may also indicate if there are problems within the production chain. Following elements are important on this table:
+
+* There is one line per status message
+
+* The uppermost table entry refers to the latest status message, and it usually indicates the latest cycle, for which a status message has been issued
+
+* The left hand side date string in each status message indicates the date and time when the status message was issued
+
+* The background color of a status message line emphasizes the severity level of the message as follows:
+  1. '''GREEN''': information - usually indicates normal execution
+  1. '''YELLOW''': warning - indicates some issue, that might lead to a delay or an error in the production
+  1. '''RED''': error - an error that usually blocks any further production activity
+
+
+== '''What to Check''' ==
+
+=== '''production status''' ===
+
+ * check the cycle date of the latest cycle, that has been reported complete (message text "cycle <yyyymmddhh> finished") -- if the latest completed cycle lies back in time for more than about 10 hours, then there is some delay in the GLAMEPS production
+     
+   [[Color(magenta, action to take)]]: no action until the latest completed cycle lies back in time for more than 12 hours, then report to the GLAMEPS operators (see [wiki:MonitoringGLAMEPS#Contact contact] below)
+
+ * if one of the uppermost status lines is '''YELLOW''', but the uppermost status line is '''GREEN''', then some issues have occurred during production, but these have been fixed either automatically or manually by an operator
+     
+   [[Color(magenta, action to take)]]: none
+
+ * if the uppermost status line '''YELLOW''', then some problem has occurred, and normally, the operators are informed about it, or the system takes automatic standard correction action
+     
+   [[Color(magenta, action to take)]]: none
+
+ * if the uppermost status line has turned '''RED''', then a serious problem in the GLAMEPS production chain is present
+     
+   [[Color(magenta, action to take)]]: immediately inform the GLAMEPS operator team (see [wiki:MonitoringGLAMEPS#Contact contact] below)
+
+=== '''results''' ===
+
+Monitor the HIRLAM control runs used in GLAMEPS
+ * [https://hirlam.org/portal/glameps/WebgraF/ObsUse Observation data coverage maps].
+     
+   [[Color(magenta, action to take)]]: report data holes or other anomalies to the GLAMEPS community (see [wiki:MonitoringGLAMEPS#Contact contact] below)
+ * [https://hirlam.org/portal/glameps/WebgraF/Logplot Forecast diagnosis and analysis minimisation]
+     
+   [[Color(magenta, action to take)]]: report data holes or other anomalies to the GLAMEPS community (see [wiki:MonitoringGLAMEPS#Contact contact] below)
+
+Monitor the verification intercomparison about GLAMEPS control members
+ * GLAMEPS control runs: [https://hirlam.org/portal/glameps/WebgraF/ObsVer/Realtime/index.html?choice_ind=Surface Comparison between GLAMEPS control suites with CTLALAD (ALADIN 36T1), CTLKF (HIRLAM-7.3 KFRK) and CTLST (HIRLAM-7.3 STRACO) and ECMWF (CTLEC), also against GLAMEPS ensemble mean (GLAMEPS_v1), DMI-IHRLAM 5km ensemble mean (EPSMN), deterministic fore]cast from HIRLAM at FMI (RCR), SMHI (C11), met.no (H12), AEMET (ONR) , KNMI (CIS) , !MetEireann (ICH) and HARMONIE 36h1-ALADIN (ALAD36) ]
+     
+   [[Color(magenta, action to take)]]: optionally communicate any interesting feature to the GLAMEPS community (see [wiki:MonitoringGLAMEPS#Contact contact] below)
+
+
+== '''Contact''' ==
+
+=== '''concerning GLAMEPS production and technical issues''' ===
+
+  report to email:operator@glameps.org
+
+=== '''concerning data quality and monitoring issues''' ===
+
+  email to email:glameps@glameps.org or comment on [http://hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=15&id=72 HIRLAM forum page]
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

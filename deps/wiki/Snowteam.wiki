@@ -1,0 +1,105 @@
+
+== This page is intended for communication between the developers of HARMONIE snow-related parametrizations and data-assimilation ==
+
+=== Agenda and notes of a Web meeting at 9 - 10.30 UTC 17th of September 2014 ===
+
+Link to Saba meeting: http://mt204.sabameeting.com/GA/main/000000514f25c10147725ede78007b4f 
+
+
+1. Goals - discussion of the [https://hirlam.org/trac/attachment/wiki/Snowteam/snowtable.pdf snowtable] tasks and coming HARMONIE/SURFEX cycles
+
+In the discussion, it was agreed that the first yellow line in the table will be the first priority for NWP application. In addition, it was found interesting to test in SURFEX standalone and in HARMONIE-climate (SMHI, met.no) inclusion of 2-3 patches with or without MEB. Such combinations are immediately possible in an environment where data assimilation is not required. Patrick will study this. A task rising from the second yellow line of the table is the assimilation for the multilayer soil scheme (ISBA-dif): Katya will contact J-F Mahfouf and write here in wiki some notes about our possible contribution to this task, which is currently in the research phase in Meteo France.
+
+
+2. How to make FR + ES + MEB prognostic in SURFEX?
+
+Aaron is working with this, results to be expected till November after which it will be possible to test this in 3D HARMONIE without data assimilation.
+
+
+3. How to add to (2) OI in HARMONIE cy40 (with SURFEX 7.3) and test the combination?
+
+The first step could be to build and test in the present harmonie-38h1.1 the combination FR + soil DA + ES + snow OI with CANARI (no MEB!) to see that technically ES and snow depth OI combine as needed. The next step should be taken within cy40 + SURFEX 7.3, to avoid unnecessarily exotic local setups of cy38 + 7.3. harmonie-40h1.1beta is to be excpected during this autumn, already now cy40t1.bugfix... is available in the phasing directory of hirlam.org repository, but this is the Toulouse version, most suitable for looking at the code but not yet for experimenting. Mariken will work with this, consulting Aaron when needed for ES questions. 
+
+
+4. How to develop snow EKF following the work by Richard?
+
+Katya will write notes about the status and possible perspectives of this task, which is in research phase.
+
+
+5. Surface in HIRLAM physics plan 2015 
+
+The priority tasks are seen lower at this page, any comments are welcome. Comments did not appear during the Saba meeting.
+
+
+6. Start of COST ES1404
+
+Priority task is to get Sweden and Norway in. Patrick will continue his attempts to activate the Swedish national representative to take care of her job, Mariken will check the situation in Norway. Laura will make a presentation at EWGLAM/SRNWP in the end of September (draft of presentation is available below). The coordinator Ali Amin will travel to Brussel 14 October for COST committee instructions, after which the preparations for kick-off of COST ES1404 Action may start. The Action will add resources for scientific visits, workshops, training in the area of snow observations, data assimilation, validation of models.
+
+----
+
+== Plans and notes ==
+
+Snowtable 4.9.2014 [https://hirlam.org/trac/attachment/wiki/Snowteam/snowtable.pdf pdf]
+
+----
+
+HARMONIE and SURFEX cycles
+
+
+Harmonie 38h1.2  +  SURFEX 7.2             -     present
+
+Harmonie 40,41   +  SURFEX 7.3, no MEB     -     next, ready for testing till the end of 2014
+
+Harmonie 42      +  SURFEX 8               -     for testing during 2015
+
+See also slide 7 in [https://hirlam.org/trac/raw-attachment/wiki/HarmonieSystemTraining2014/Programme/SURFEX_for_Harmonie_training_2014.pdf Patrick's presentation]
+
+----
+
+Priority tasks suggested for HIRLAM physics plan 2015: 
+
+ * International cooperation for design and improvement of fine-resolution physiography data bases like ECOCLIMAP (EK, ...)
+
+ * Implementation and testing of prognostic MEB within SURFEX8 for cycle40/41 inproper connection with snow and soil schemes and related data assimilation (PS, EK, MH).
+
+ * Work with improvement of snow OI data assimilation and usage of remote sensing observations and extended conventional observations (work within the COST ES1404)
+
+ * Implementation and testing of the simple sea ice scheme into SURFEX8-cy40 with technical connection to existing sea ice data assimilation. Draft for implementation of HIGHTSI, with proper connection to GELATO in stand-alone SURFEX8 > cy41 (YB, MH, PS, EK, BC).
+
+ * Check and test combination of prognostic Flake and lake depth and climate data bases in SURFEX8-cy40. Prepare Flake for operational usage, with a possiblity of using it as a background for LSWT analysis (EK, MC).
+
+ * Introduction of sloping surface radiation with related preparation of neededorography parameters within SURFEX (CW, LR, EM, student from MF)
+
+----
+
+Notes of a snow meeting in met.no 17 November 2014
+Present: Mariken, Yuri, Dagrun, Jelena, Laura, Trygve, Teresa
+
+- Dagrun told about the COST ES1404 kick-off meeting held 10 November in Brussels. Main part of the meeting was devoted to information about the COST bureocracy, then needed people were elected and plans for next meeting accepted. Our efforts will mostly focus in the data assimilation WG and short-term scientific visits.
+
+- FR + ES + MEB was made prognostic by Aaron, available in SURFEX 7.3 MEB branch
+
+- From this follows two tasks in the framework of cycle40, where SURFEX 7.3 is available for testing
+
+  a) check that FR + ES without MEB provide reasonable first guess for OI horizontal interpolation, let prognostic and analysed snow live independently in other respects (no feedback from analysis to ES), experiment with this and compare with the results given by default cycle40 options, which possibly include surface layer multilayer scheme (CANOPY). 
+
+  b) add MEB and check that the combination FR + ES + MEB will work - will require import of code from the MEB branch on top of the regular 7.3. Experiment with this where MEB replaces surface layer multilayer scheme (CANOPY), compare with the results given by default cycle40 options. 
+
+
+These tasks can be started from the beginning of 2015 by Mariken and Trygve. After this, steps towards more advanced data assimilation by designing and trying a flavour of Kalman filter can be taken.
+
+----
+
+== Documents and presentations ==
+
+Draft for Laura's snow presentation in EWGLAM 2014 [https://wwww.hirlam.org/trac/attachment/wiki/Snowteam/RontuEWGLAM14_1.pdf pdf]
+
+----
+
+== Links to documents, code and data ==
+
+HARMONIE [https://www.hirlam.org/trac/wiki/HarmonieSystemDocumentation/Analysis/SurfaceAnalysis  surface analysis] document in wiki
+----
+
+== Experiment definitions and results ==
+

@@ -1,0 +1,10 @@
+
+
+= Updates to Hirlam Trac =
+The Hirlam Trac system has been updated with a number of enhancements from the [http://trac-hacks.org/ Trac Hacks] site. 
+
+ * [http://trac-hacks.org/wiki/TagsPlugin TagsPlugin] Provides a [http://en.wikipedia.org/wiki/Faceted_classification faceted classification system] for the Trac wiki.
+ * [http://trac-hacks.org/wiki/TracBlogPlugin TracBlogPlugin] Uses [http://trac-hacks.org/wiki/TagsPlugin TagsPlugin] to add a Blog component. 
+ * [http://trac-hacks.org/wiki/NewsFlashMacro NewsFlashMacro] Adds a colored box.
+ * [http://trac-hacks.org/wiki/TicketBoxMacro TicketBoxMacro] Ticket list in a box on the wiki page.
+ * [http://trac-hacks.org/wiki/PlannedMilestonesMacro PlannedMilestonesMacro]

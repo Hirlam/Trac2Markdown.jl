@@ -1,0 +1,84 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Helsinki, 20100118-20100122''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Objectives ==
+
+The working week is held in FMI, with participation of Ulf Andrae (SMHI), Sami Niemela (FMI), Sami Saarinen (CSC), Niko Sokka (FMI), Ole Vignes (met.no) and Xiaohua Yang (DMI). The main objectives of this working week are to
+ * Prepare for porting of CY36T1
+ * Discuss and merge new features introduced by FMI/CSC in xtport branch onto Harmonie-35h1 
+   * Build with gmake
+   * Various optimisations with OpenMP, bug fixes et al
+   * Check of performance issues with Dr Hook tool
+
+== Presentations ==
+
+ * New gmake-based build system ''makeup'' : [wiki:Build_with_makeup]
+ * Asyncronous I/O module '''SAMIO''' for AROME FA-files : [wiki:SAMIO]
+ * Dr.Hook traceback generator & profiling tool : [wiki:DrHook]
+ 
+== Status ==
+ * Preparation of CY36H1
+   * recent CY36T1 versions compiled and tested
+   * trunk works at cycling mode except for AROME, the namelist of latter needs update. MF is expected to provide example namelists in a week or two.
+   * porting of (yet-unreleased-) CY36T1 bf/export package and gmkpack to be done
+ * XTPORT feature test and porting
+   * makeup
+     * So far makeup-build has been tested successfully on FMI/DMI cray xt5 (pathscale), SMHI cluster (intel) and met.no (IBM pwr5)
+     * On FMI Cray platform, objects compiled with makeup is found to produce correct meteorological results (it is found that -O2 is to be used for arp-project) 
+     * On FMI and DMI Cray XT5, build on login node of 2 cores with makeup take around  5 to 6 hours. Sami experimented to do build using computer node hoping to bring the elapse time down dramatically
+     * On SMHI cluster, build on 8 cores using makeup takes around half hour
+     * Ole extended mini-SMS wrapper for makeup to build all executibles and succeeded on met.no platform with IBM pwr5
+   * xtport source code changes
+     * when porting xtport to 35h1branch and using GMKPACK build,  some problems are seen in DA procedure. To be re-assessed with updated source code
+     * source code porting to SMHI platform using GMKPACK run through after some debugging about AROME
+     * it is yet to be confirmed whether to source code changes will eliminate the crashes seens in the recent KNMI/DMI/FMI AROME runs.
+ * examination of performance issue using FULLPOS
+     * currently the test domain for high resolution, SMHI 750x1000x60 (ALARO resolution) and DMI-2.5 km AROME (1000x750x40) have been found to take 10 to 20 minutes per LBC interpolation using FULLPOS. The work was initiated on Cray XT5 platform to use the sample SMHI data (big case) and FMI (300x600x40, small case) to analyse profiles using Dr HOOK. Some dr.hook-related source code bugs have been cleared and the work will continue
+
+== Tentative discussion about Harmonie system benchmarking  ==
+CSC as well as several HIRLAM services are interested to put some efforts to develop a AROME system suitable for 
+benchmarking, e.g., in connection with new HPC purchase. It is agreed that although ultimate benchmark suites need to be prepared by individual institutions according to ther own needs, some shared contribution can be targeted. In concrete, the community shall aim to agree on a (minimum) common data set and contribute toward such a shared structure. The following paragraph lists the points touched upon during the discussion, which can be seen as proposal for further iterations among interested partners
+ 1. model
+   * identify the model object(s) for benchmarking. Branch 35h1, (probably in form of a special tagging of 35h1.4) could be considered, probably with a targeted system update interval of one to two years
+   * identify the components for benchmarking
+     * reference: AROME forecast model. ALARO as an additional voluntary option?
+     * eventually adding VAR component. (However, 3DVAR may not be a sufficiently heavy application and 4DVAR may still take 1+ year to stabilize for benchmarking purpose) 
+ 1. build
+   * work out an effective build procedure suitable for benchmarking purpose. Once verified against reference results using the current reference build, the CSC/FMI makeup structure as appearing in HARMONIE/FMI/xtport branch seem to be good candidate
+ 1. common data
+   * aim to work toward a common data base for 'reference' forecasts (or cycled products if VAR is involved), which shall be run by all contributing parties on the relevant platforms. A run at ECMWF platform shall in principle be used as reference results for validation purpose
+     * The reference domain may probably be defined on 2 common (standard) domains:
+       * A relatively small domain good for technical tests
+       * A relatively computationally demanding domain would be a natural choice, e.g AROME_2.5 (800x800x60)
+     * in addition, one or two voluntary additional domains that can be used for reference, e.g., the target domain for individual services 
+   * a model result data list needs to be agreed on, such as 1h, 3h and 24h forecasts with standard or reduced output parameters
+ 1. common scripts
+   * several example stand-alone test scripts shall be prepared, such as runaromefcst, runarome4dvar, runaromebdintp
+ 1. validation method
+   * it is proposed to use xtool for basic check of standard quantities between model output (in grib or fa)
+   * other methods can be further discussed for common usage
+ 1. common archive 
+   * identify ECMWF-ECFS (ec:/hirlam/benchmark/harmonie) as shared parking site for interested parties to excahnge data, scripts and results
+   * use HIRLAM wiki for information sharing
+   * probably also create a benchmark mailing list for the interested parties
+ 1. maintenance and organisation
+   * A practical solution for future maintenance would rely on a natural process in which groups of HIRLAM services devote more efforts to the benchmark work during one particular year than other, e.g., more efforts can be anticipated onto this work by
+     * CSC, met.no, AEMET, KNMI during 2010
+     * DMI, ... during 2011 
+   * The scope of involvement of the HIRLAM-A/B programme on benchmark system can be further discussed and clarified
+     * help setting up the corporation structure
+     * coordinate maintenance of source code and tools for benchmarking?
+     * provide 'reference' data sets on ECMWF platform
+     * provide recommendations...
+
+
+
+
+
+
+

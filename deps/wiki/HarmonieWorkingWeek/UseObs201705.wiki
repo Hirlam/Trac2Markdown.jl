@@ -1,0 +1,229 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie DA&UO Working Week 2017''' =
+''Reykjavik, 8th - 11th of May 2017''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+The HARMONIE DA&UO Working Week 2017 will be held this year at IMO.
+
+== Attendees ==
+||=Name                  =||= Institute     =||=    Arr.-Dep.    =||= Hotel             =||= Pref. restaurant  =|| 
+||Roger Randriamampianina || MET Norway      || Sun (~17:00)- Fri ||  Centralhotel Plaza ||  :)          ||
+||Magnus Lindskog         ||SMHI             || Sun - Fri         ||  Centralhotel Plaza ||              ||
+||Jelena Bojarova         ||SMHI             || Sun - Fri         ||  Centralhotel Plaza ||              ||
+||Sigurdur Thorsteinsson  ||IMO              || ---               || ---                 ||              ||
+||Bolli Palmason          ||IMO              || ---               || ---                 ||              ||
+||Eoin Whelan             ||METIE            || Sun~15z - Fri~06z || Centralhotel Plaza  ||              ||
+||Maria Diez              ||AEMET            || Sun~15z - Thu     || Centralhotel Plaza  ||              ||
+||Mats Dahlbom            ||DMI              || Sun - Fri         || Centralhotel Plaza  ||              ||
+||Wim Verkley             ||KNMI             ||                   || Centralhotel Plaza  ||              ||
+||Jan Barkmeijer          ||KNMI             ||                   || Centralhotel Plaza  ||              ||
+||Jana Sanchez            ||AEMET            ||                   || Centralhotel Plaza  ||              ||
+||Tuuli Perttula          ||FMI              || Sun - Thu         || Centralhotel Plaza  ||              ||
+
+== Agenda ==
+
+Normal daily agenda:[[BR]]
+09:00 - 10:30: Working in groups[[BR]]
+10:30 - 10:50: coffee break[[BR]]
+10:50 - 11:45: working in groups[[BR]]
+11:45 - 12:30: lunch break[[BR]]
+12:30 - 12:30: working in groups[[BR]]
+12:30 - 15:00: coffee break[[BR]]
+15:00 - 17:30: working in groups[[BR]]
+
+-- We started with short status report from each participating institute.[[BR]]
+   * Eoin: a brief update on Bator, SAPP and local testing [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201705/eoinWhelan_dauoWW2017.pdf pdf] 
+   * Mats: a brief status rapport on DMI Data Assimilation [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201705/Reykjavik201705DA.pdf pdf] 
+   * Jana: a brief report on use of new observations at AEMET (Iberian domain) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/AEMET_gnss_WWDA17_JS.pdf pdf]
+   * Maria: a brief report on use of new observations at AEMET (Canari Island domain) [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/WW_Reykjavik_2017.ppt ppt]
+   * Wim: a brief status report on KNMI observation impact study [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/status_2017_2.pdf pdf]
+   * Roger: a brief status report and some ongoing projects at MET Norway [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/National_report_MET_Norway.pdf pdf]
+   * Sigurdur: briefly showed the impact of ATOVS radiances and aircraft observations in the IGA domain. 
+   * Magnus: briefly reported the implementation of the newly processed GNAA GNSS ZTD data and their ongoing work to update the background error covariance matrices in MetCoOp DA.
+   * Jelena: briefly reported about the convergence issue observed in adjoint test in variational scheme. She mentioned that it would be worth to check the transform done in the Hirlam model in the Harmonie DA. Example the handling of extension zone. She also mentioned the importance of having an ensemble system, which sensitive to observations. Also perturbation of ifrst-guess (background field) maybe worth to check instead of observation perturbation.
+   * Jan briefly introduced his development work with 4D-Var accounting for multiple outerloop and tendency forcing.
+-- Actions from last year (see below) and video meetings (see below).[[BR]]
+   * **Action 1**: Kept
+   * **Action 2**: Closed. The impact of GNAA data was checked with different thinning distance and also in preop regime.
+   * **Action 3**: Kept
+   * **Action 4**: Closed. This was discussed during the working week.
+   * **Action 5**: Kept
+   * **Action 6**: Kept. There is a temporary access problem to ATMS data at DMI.
+   * **Action 7**: Closed. See Wim's [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/status_2017_2.pdf report]
+   * **Action 8**: Closed. Decision was taken during this WW to create a branch for DA development and tools implementation.[[BR]]
+   -- [source:branches/harmonie-40h1_DA harmonie-40h1_DA] branch has been created with MTEN changes applied  (Eoin)[[BR]]
+   -- [source:trunk/contrib/da_tools da_tools] repository created for DA related tools
+
+== The following working groups were formed: ==
+=== Radiance data processing: ===
+==== ATOVS radiances ====
+ [[Center(begin)]]
+ [[Image(AMSUA_weighting_function.png)]]
+ [[Center(end)]]
+ -- A weighting function for the AMSU-A channels using tropical profile.
+ 
+ -- Blacklisting procedure and good channels from the existing satellites was discussed.[[BR]]
+ -- There was one case we didn't understand fully. ECMWF seems to avoid the use of some channels from AMSU-A on NOAA-18.[[BR]]
+ -- The default setting for AMSU-A in mf_blacklist.b was also discussed. The tagged versions of the Harmonie cycles will be updated accordingly. After comparing the results from different experiments, we decided to have the channels 5-10 as default in Harmonie-AROME DA.[[BR]]
+ -- From results of study done on the Canary Island domain of AEMET, further addition of observations in the system maybe advantageous when using the ATOVS radiances. This was also shown in the Icelandic experiments, where a complete re-run of the control experiment was necessary.[[BR]]
+ -- ATOVS radiances have positive impact on top of surface, radiosonde and aircraft observation in IGA domain.[[BR]]
+ -- The Harmonie wiki page was updated with the [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/ObservationHowto/Atovs HowTo details] for ATOVS radiances.[[BR]]
+
+====  IASI radiances ====
+ -- Weighting functions for the IASI channels are available in [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/UseObs201705/weighting_functions.tar.gz this tarbal file].[[BR]]
+ -- Maria was instructed to set up IASI passive experiment on EC Machines.[[BR]]
+ -- Mats have done a one month passive assimilation of IASI, but the results were not yet evaluated.[[BR]]
+ -- Sigurdur have a set up experiment ready to be run for passive assimilation of IASI radiances.[[BR]]
+
+==== Seviri radiances ====
+ -- E-mail, exchange discussing the development of Seviri radiance pre-processing was sent by Alena. She is following/forwarding the question sent by Tayfun on possible extraction of Seviri radiances in HDF5 format instead of grib in Bator.[[BR]]
+ -- Jana copied Magnus' experiment (using 4D-Var) to start with Seviri radiance assimilation.[[BR]]
+
+=== DFS implementation ===
+ -- More participants expressed their wish to have extended plotting tool supporting more experiments.
+ -- In fact the shared R plotting tool supports already more experiments, which was tested by Magnus during the working week. Roger gave an other plotting script during the meeting.[[BR]]
+ -- Sigurdur started to set up the DFS computation under his computing environment.[[BR]]
+ -- Mats extended the DFS computation also for GPS-RO data.[[BR]]
+ -- There is a wish of creation of playfile under the new test branch doing the full chain of DFS computation.[[BR]]
+
+=== MTEN tool ===
+ -- Roger presented how the ensemble system is used to do all needed re-runs for MTEN (moist total energy norm) diagnostic. This consists of as many denial experiments as many observations one  would like to diagnose. All the re-runs done at different dates and time (well separated and represent as divers as possible meteorological cases) and start from guesses of the experiment using all the diagnosed observations. A !HowTo on MTEN has been initiated , ([wiki:HarmonieSystemDocumentation/MTEN MTEN HowTo]). Until it is completed all questions will be welcomed by Roger.[[BR]]
+ -- Magnus, Mats and Jan set up the ensemble experiment, which was provided by Roger. Test is ongoing.[[BR]]
+ -- Eoin has added MTEN ensemble functionality to the harmonie-40h1_DA branch and started MTEN documentation ([wiki:HarmonieSystemDocumentation/MTEN MTEN])
+
+=== AMV data ===
+ -- Roger set up an experiment based on CY40h1.1, which should read and treat all available AMV data (MARS, EUMETSAT-produced Geo and polar, and locally produced). This is needed before finalising the implementation and the documentation (!HowTo), because Roger did his experiments based on CY38h1.2.[[BR]]
+ -- Angeles Hernadez expressed already her interest to look and work with the experiment setup above.[[BR]]
+
+=== GNSS ZTD ===
+ -- Jana is running experiment using VarBC coefficients for GPS ZTD (zenith total delay) updated only twice a days (00 and 12 UTC, when more observations are available in DA system) to have more anchoring observations, especially radiosondes.[[BR]]
+
+=== GNSS STD ===
+ -- Jan informed us on behalf of Siebren de Haan, who succeed to commit necessary changes for processing the GNSS STD (slant total delay) to CY43. The decision was based on the suggestion done by Jean-Francois Mahfouf.[[BR]]
+
+=== Mode-S data ===
+ -- Since in CY40h1.2 Mode-S is planned to come with subtype=147. We decided to have an Action aiming at asking ECMWF about their solution since they are testing these data already.[[BR]]
+ * **Action 9**: Ask ECMWF (probably Bruce Ingleby) about their implementation of Mode-S data in IFS.[[BR]]
+ -- Eoin started to create the !HowTo for Mode-S data.[[BR]]
+
+=== Radar data ===
+ -- Tuuli reported that she was not able to use Swedish and Danish reflectivity data in her test experiment. During the working week with Mats they found the reason the data were not see in the Obsmon monitoring tool.[[BR]]
+ -- Wim is exploring the impact of radar data in the analyses accounting for data from all stations inside their domain. He was encouraged to use also DFS diagnostic in his work.[[BR]]
+ -- Jana is planning to run experiments with radar, ATOVS and GNSS ZTD data.[[BR]]
+ -- Radar in the Netherlands have been updated recently to be operated with more scanning frequency. 2,5 minutes for full scan and repeated at each time.[[BR]]
+
+=== Hybrid scheme ===
+ -- Jelena decided to continue the development work with CY40.[[BR]]
+
+=== 4D-Var development ===
+ -- During the working week Jelena fixed the problem with LBC and 4D-Var under trunk.[[BR]]
+ -- 4D-Var with 2 outer-loops in trunk, so far fails.[[BR]]
+ -- Jan checked the adjoint test. The default version seems to work properly. So, what is making the adjoint test to be not satisfactory?[[BR]]
+ -- Running the 4D-Var in spectral mode, the adjoint test is good.[[BR]]
+ -- It looks like some computation in the extension zone is resulting the bad convergence.[[BR]]
+ -- Default setting of 4D-Var with the minimizers M1QN3 and CONGRAD behave similarly, so CONGRAD is taken as default.
+ -- Accounting for the tendency (weak constraint) we cannot use CONGRAD, so for this particular setting M1QN3 is used. This needs to be fixed.
+ -- Test 2 outer-loops altering default (first loop) and the weak constraint (second loop) does not work properly. Possible reasons and solutions were discussed during the working week. Good news was set by Jan about the fact that he succeed to make this version working.[[BR]]
+
+=== !ObsTool ===
+ -- Patrik Benacek presented during the last LACE working week on data assimilation his tool for estimation of observation and background errors and also estimation of optimal distances between different kinds observations. We name this tool as !ObsTool :), which was accepted by Patrik.[[BR]]
+ -- Jana tested an older version of this tool, which was built only for satellite observations only.[[BR]] 
+ -- Patrik was so kind to prepare an upgraded version of the tool flexible for all observation types. The new version of the !ObsTool was tested during the working week, when some bug was detected. Patrik fixed the bugs and Mats was able to run it and get diagnostic results with DMI data.[[BR]]
+ -- Mats and Jana found the tool a bit slow. They suggested Patrik to make it more faster. We are waiting for the update, but we are already very satisfied with the recent version.
+ 
+
+
+=== SAPP Webinar: ===
+ -- A webinar was organised on Thursday, May 11th at 10:00GMT. Many Hirlam and Aladin colleagues attended this meeting. Webinar presentation: [https://hirlam.org/trac/raw-attachment/wiki/HarmonieWorkingWeek/UseObs201705/SAPP.pdf SAPP.pdf]
+
+=== Video meeting with system group on 4D-Var issues in trunk ===
+ -- The meeting was initiated by the Hirlam project leaders for system (Daniel Santos) and upper-air data assimilation (Roger) to find solution to a problem occurring the Harmonie trunk recently. The problem was reported by Jelena and it was about the fact that some development work(s) affected the functionality of 4D-Var scheme.[[BR]] 
+ -- The meeting aimed at finding solution to mitigate similar situation in the future by recognising that 4D-Var is a clear target scheme for HIRLAM consortium.[[BR]]
+ -- It was decided that the existing testbed system will be updated to take into account  also test of 4D-Var scheme.[[BR]]
+ -- Jelena agreed to provide a starting 4D-Var script based on trunk to Daniel Santos to be added to the testbed.[[BR]]
+
+=== Hirlam keynote presentation at the next EUMETSAT conference in October ===
+ The following ideas were suggested by the group:[[BR]]
+ -- Use of level 1-C radiances (ATOVS, ATMS, IASI, Seviri ) in 3D- and 4D-Var;[[BR]]
+ -- Use of level-2 data (AMV, ASCAT, also in cloud initialisation -- SAF-NWC products like cloud type, cloud top..., GNSS ZTD, GNSS STD, GPS RO);[[BR]]
+ -- Helping treatment of radar data: So far we use data distributed by the OPERA,by not yet the processed radar data. OPERA uses satellite-derived products to control the quality of OIFS radar data;[[BR]]
+ -- Phase correction using Bayesian theory in ensemble system, using individual weighted image, applying advection of images;[[BR]]
+ -- use of satellite data in the new surface scheme (SAR, SMOS, Sentinel-3 data, AMSR-2,...);[[BR]]
+ -- Use of cloud products in verification...[[BR]]
+
+ 
+== Preparation of the meeting ==
+=== Suggestion for groups: ===
+We start with short discussion on where we are with (short presentation is welcome but not mandatory):[[BR]]
+ --Radiance: ATOVS (Sigurdur & Maria & Roger); IASI (Tuuli & Roger); Seviri (Magnus); ATMS & CrIS(?) (Mats);[[BR]]
+ --DFS computation (Roger / Magnus);[[BR]]
+ --MTEN computation (Roger);[[BR]]
+ --AMV (Roger);[[BR]]
+ --GNSS ZTD (Jana & Magnus);[[BR]]
+ --Mode-S (Eoin / Mats ?);[[BR]]
+ --ASCAT (Roger);[[BR]]
+ --Bator-related tasks (Eoin);[[BR]]
+ --Radar (Mats & Wim);[[BR]]
+ --4D-VAR (Jan);[[BR]]
+ --Hybrid !EnVar (Jelena);[[BR]]
+ --Obsmon (Roger & Magnus);[[BR]]
+ --!ObsTool: Patrik's diagnostic tool for obs errors and thinning distance evaluation (Jana); 
+
+
+||=     Tasks  and groups                             =||=    Contributors               =||
+|| Bator: implementation of AMV, use of BUFR AMDAR/radiosonde, AMDAR-Humidity ||                                ||
+|| Radiance (ATOVS- AMSU-A, AMSU-B/MHS, Seviri, IASI, ATMS, CrIS) assimilation. Depending on the size of the group, we will see if sub-groups will be needed ||    ||
+|| Implementation of the DFS tool in Harmonie system -- do we have play file for DFS?  ||           ||
+|| Implementation of the MTEN diagnostic tool in Harmonie system -- solution exists using ensemble environment ||          ||
+|| Retrieval data: GNSS ZTD, Mode-S, AMV, ASCAT,... Here as well, we will see if a sub-group needs to created ||     ||
+|| Radar data processing and assimilation  ||       ||
+|| (near) Surface and crowd observations ||   ||
+|| obsmon and !ObsTool installation          ||               ||
+|| use of observations in 4D-VAR  ||       ||
+|| CY43 -- data assimilation testing  ||           || 
+
+
+
+
+Relevant topics have been discussed at the meeting last year. We have the following Actions, which we will discuss during this meeting:[[BR]]
+
+**Action-1:** Martin talked about the fact that when adding radar data from Finland and Denmark, he is using the Norwegian radar data processed through Baltrad and in HDF5 format. Recently, at MET Norway creation of HDF5 formatted data is ongoing. Martin's experiment can be used to evaluate the quality of data processed through Batrad versus data processed through the Prorad tool box.[[BR]]
+
+**Action-2:** At SMHI, the impact GNA-processed data is under test. It was recommended to have this test extended to other processing centres (ROBH and METO) for comparison.[[BR]]
+
+**Action-3:** At DMI, the GPS-RO is used in operational. Closer check to the performance of the observation operator (with relatively low model top -- 10 hPa) was encouraged.[[BR]]
+
+**Action-4:** When discussing the different steps of ATOVS radiances implementation at AEMET, we agreed that an up-to-date table describing the commonly blacklisted channels will be of interest to all community.
+
+**Action-5:** to Carlos to test in FA scheme radar data in HDF5 and processed by Baltrad toolbox. As example for this exercise, KNMI data will be taken.
+
+**Action-6:** we decided to have a follow up discussion meeting on the choice of field of views for ATMS radiances.
+
+**Action-7:** Wim was encouraged to follow his work with radial wind using different evaluation techniques.
+
+**Action-8:** Create a system branch for the implementation of the diagnostic tools and testing of the new observations like IASI, ASCAT and AMV. [[BR]]
+ -- [source:branches/harmonie-40h1_DA harmonie-40h1_DA] branch has been created with MTEN changes applied  (Eoin)[[BR]]
+ -- [source:trunk/contrib/da_tools da_tools] repository created for DA related tools
+
+The following groups were formed: Radiance assimilation; AMV assimilation; Radar data assimilation; implementation of the DFS and MTEN diagnostic tools.
+
+== Practical Information: ==
+
+Sigurdur made a group reservation of rooms at Centerhotel Plaza. Please do your room booking ASAP and refer to the booking code 74.245. Note that the price depends on the number registering people. The limit is 10. So we have to be at least 10 to get good price reduction.
+
+The meeting will be held at IMO premises. 
+
+**Previous meetings on the use of observations**
+   * [wiki:HarmonieWorkingWeek/UseObs201605 Harmonie DA&UO Working Week 2016], Madrid, 17th - 20th of May 2016
+   * [wiki:HarmonieWorkingWeek/UseObs201509 Harmonie DA&UO Working Week 2015], Dublin, 7th - 10th of September 2015
+   * [wiki:HarmonieWorkingWeek/UseObs201410 Harmonie DA&UO Working Week 2014], AEMET (Santander), 13th - 16th October 2014
+   * [wiki:HarmonieWorkingWeek/UseObs201312 Harmonie DA&UO Working Week 2013], DMI, 2nd - 5th December 2013
+   * [wiki:HarmonieWorkingWeek/UseObs201303 HArmonie DA&UO Working Week 2013], (a follow-up of the extended radar data impact studies), SMHI, 12th - 15th March 2013
+   * [wiki:HarmonieWorkingWeek/UseObs201111 Harmonie DA&UO Working Week 2012], (Use of High Frequency Observations), met.no, 14th - 18th of November 2011 
+
+
+

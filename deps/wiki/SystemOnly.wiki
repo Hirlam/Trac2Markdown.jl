@@ -1,0 +1,7 @@
+
+== Information useful to the Hirlam system core group ==
+
+ * [wiki:SystemOnly/WebServer OLD hirlam.org server (Ubuntu 12.04) configuration]
+ * [wiki:SystemOnly/NewWebServer NEW hirlam.org server (Ubuntu 16.04)]
+ * more ?
+

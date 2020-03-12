@@ -1,0 +1,51 @@
+[[PageOutline]]
+[[Center(begin)]]
+= ''' Data Assimilation methods intercomparison project ''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+This page is a working document to make an intercomparison between different Data Assimilation methods
+
+== DA Methods ==
+
+=== Description ===
+
+The following table summarizes the main changes between targets:
+
+
+||= 3DVar  =||= EDA        =||=  LETKF   =||= 4DVar =||
+||                  ||                     ||                      ||                 ||
+||                  ||                     ||                      ||                 ||
+
+=== Experiments ===
+
+For the different configurations branches or tags will be set pa 
+
+||= Setup =||= git =||= Path at ECMWF =||= Experiment example setup =||
+||  3DVAR||  NA   || harmonie-43h2.1|| /home/ms/spsehlam/hlam/hm_home/harmonie-43h2.1 ||
+|| EDA || branch harmonie-43h2.EDA || /home/ms/spsehlam/hlam/harmonie_release/git/branches/harmonie-43h2.1.EDA||  NA  ||
+|| LETKF || branch harmonie-43h2.LETKF || /home/ms/spsehlam/hlam/harmonie_release/git/branches/harmonie-43h2.LETKF||  NA  ||
+|| 4DVar ||   branch harmonie-43h2.4DVar  ||   /home/ms/spsehlam/hlam/harmonie_release/git/branches/harmonie-43h2.4DVAR||  NA  ||
+
+== Experiments ==
+
+The Tables below will contain relevant information defining the individual experiments and their results   :
+
+
+||= Experiment name =||= Area specification =||= start to end time specification =||= Tester(country/$USER) =||=Additional , e.g. name list related =||= Verification link =|| 
+|| DKA_SEP18_40h111[[BR]]DKA_SEP18_43h2tgt1[[BR]]DKA_SEP18_43h2tgt2   ||      DKA     ||18081400-18093000 || Kai Sattler (dk/nhk) || spinup included || [https://hirlam.org/portal/smhi/harmonie-43h21_validation/DKA_SEP18/ Validation page] ||  
+
+
+ ==== Verification of long runs ====
+
+We would like to see how the targets perform already during the spinup period. Thus, please use full forecast length also under the spinup period (i.e. do not ude the WARMUP_PERIOD option). Please make a montior validation after one week and report any peculiarities the management group.
+
+'''For all monitor validations please use the latest version of monitor and a specific script, Env_exp_cy43h21_targets, dedicated for validation of targets'''. You find the latest version of monitor and the script in the git repository of monitor:
+{{{
+git clone https://git.hirlam.org/monitor
+}}}
+
+
+[[FootNote]] 

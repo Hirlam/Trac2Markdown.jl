@@ -1,0 +1,195 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Working Weeks''' =
+[[Center(end)]]
+A list of HIRLAM Working Weeks
+== 2016 ==
+ * [wiki:HarmonieWorkingWeek/System201612 HARMONIE System Working Week], Copenhagen, December 12-16, 2016
+ * [wiki:HirlamMeetings/Surface201610 HIRLAM/ALADIN/LACE/SURFEX Surface Working Week], Zagreb, October 24-26, 2016
+ * [wiki:HirlamMeetings/HMG_visit_SMHI_September_2016 HIRLAM Management Group visit to SMHI], Norrköping, September 8 2016
+ * [wiki:HarmonieWorkingWeek/UseObs201605 HARMONIE Data Assimilation and Observations Working Week], Madrid, 17th - 20th of May 2016
+ * [wiki:HarmonieWorkingWeek/Radiation201604 HARMONIE Radiation Working Week], Lisboa, 31th of March - 1th of April 2016
+== 2015 ==
+ * [wiki:HarmonieWorkingWeek/UseObs201509 HARMONIE Data Assimilation and Observations Working Week], Dublin, 7th - 10th of September 2015
+ * [wiki:HarmonieWorkingWeek/System201505 HARMONIE System Working Week], Vilnius, 18th - 22nd of May 2015
+ * [wiki:HarmonieWorkingWeek/Radiation201504 Harmonie Radiation Working week], 9 Sep - 10 Apr 2014, Copenhagen
+ * [wiki:GLAMEPS_HARMONEPS_HARPworkingweek2015-1 Hirlam-B/ALADIN Joint Working Week on GLAMEPS/HarmonEPS & HARP],  Brussels, 16th - 20th March 2015
+== 2014 ==
+ * [wiki:HarmonieWorkingWeek/System201402 HARMONIE System Working Week], FMI, Helsinki, 24 - 28 February 2014 
+ * [wiki:HarmonieWorkingWeek/Radiation201403 Harmonie Radiation Working week], 10 Mar - 12 Mar 2014, Prague
+ * [wiki:HarmonieWorkingWeek/Radiation201409 Harmonie Radiation Working week], 24 Sep - 26 Sep 2014, Copenhagen
+ * [wiki:HarmonieWorkingWeek/UseObs201410 HARMONIE Data Assimilation and Observations Working Week], 13 - 16 October 2014, Santander
+ * [wiki:HarmonieWorkingWeek/System201411 HARMONIE System Working Week], SMHI, Norrköping, 24 - 28 of November 2014
+ * [wiki:GLAMEPS_HARMONEPSworkingweek2014-2 Hirlam-B/ALADIN Autumn Working Week on GLAMEPS & HarmonEPS], SMHI, Norrköping, 24 - 28 of November 2014
+== 2013 ==
+ * [wiki:HarmonieWorkingWeek/Radiation201302 Harmonie Radiation Working week], 25-28 Feb 2013, Copenhagen
+ * [wiki:HarmonieWorkingWeek/System201303 HARMONIE System Working Week], Met Éireann, Dublin, 4 - 8 March 2013 
+ * [wiki:HarmonieWorkingWeek/UseObs201303 HARMONIE High Resolution Observations Working Week], 12 - 15 March 2013, Norrköping
+ * [wiki:HarmonieWorkingWeek/UseObs201312 HARMONIE Data Assimilation and Observations Working Week], 2 - 5 December 2013, Copenhagen
+ * [wiki:HarmonieWorkingWeek/Radiation201310 Harmonie Radiation Working week], 29 Oct - 1 Nov 2013, Helsinki
+== 2012 ==
+ * [wiki:HarmonieWorkingWeek/SnowAna201201 HARMONIE snow data assimilation working week], 23-26 January 2012, Oslo
+ * [wiki:HarmoniePostPP2012 HARMONIE Post-Processing working meeting], 31 January - 1 February 2012, De Bilt
+ * [wiki:HarmonieWorkingWeek/Radar201202 HARMONIE Radar Working Week], 21 - 23 February 2012, Norrköping
+ * [wiki:HarmonieTrainingWeek/Highresobs HARMONIE Training Week on Use of High Frequency High Resolution Observations], 24-27 April 2012, Norrköping
+ * [wiki:HarmonieWorkingWeek/System201209 HARMONIE System Working Week], 3 - 7 September 2012, Oslo
+ * [wiki:HarmonieSystemTraining2012], 17 - 20 September 2012, Norrköping
+ * [wiki:DAWorkingWeek201209 Harmonie Working Week on Flow-Dependent Methods for Meso-scale Data Assimilation], 24-28 Oct 2012, Copenhagen
+ * [wiki:HarmonieWorkingWeek/Radiation201210 Harmonie Radiation Working week], 17-19 Oct 2012, Dublin
+ * [wiki:C++OOPSTraining201210 C++ and OOPS training], 22 - 26 October 2012, Madrid
+ * [wiki:HarmonieWorkingWeek/Clouds201210 Working days on Clouds and Convection in HARMONIE], 29-30 Oct 2012, Norrköping
+ * [wiki:GLAMEPS_HARMONEPSworkingweek2012 GLAMEPS and HarmonEPS Working Week], 29 October - 2 November 2012, Copenhagen
+== 2011 ==
+ * [wiki:HarmonieWorkingWeek/System201103 HARMONIE System Working Week], 28 Feb-3 March 2011, Norrköping
+ * [wiki:HarmonieWorkingWeek/Radar201103 HARMONIE Radar Working Week], 1 -3 March 2011, Norrköping
+ * [wiki:HarmonieWorkingWeek/SURFACEDA201103 HARMONIE Surface Data Assimilation Working Meeting], 9-11 March 2011, Helsinki 
+ * [wiki:HarmonieWorkingWeek/System201106 HARMONIE System Working Week], 14 -17 June 2011, Copenhagen
+ * [wiki:HarmonieWorkingWeek/UseObs201111 HARMONIE High Frequency Observations Working Week], 14-18 November 2011, Oslo
+ * [http://netfam.fmi.fi/muscwd11 Working days on HARMONIE_MUSC], 29 November - 2 December 2011, Helsinki 
+ * [wiki:HarmonieWorkingWeek/System201112 System Working Week], 12-16 December 2011, Norrköping
+== 2010 ==
+ * [wiki:HarmonieWorkingWeek/System201001 HARMONIE System Working Week], 18-22 2010, Helsinki
+ * [wiki:RadarWorkshopOslo2010 HARMONIE Radar data assimilation meeting], 17-18 March 2010, Oslo
+ * [wiki:HarmonieWorkingWeek/System201004 HARMONIE System Working Week], April 2010, offline
+ * [wiki:HarmonieWorkingWeek/System201006 HARMONIE System Working Week], 20-24 June 2010, Norrköping
+ * 
+{{{ 
+#!html
+<a href="http://www.cnrm.meteo.fr/gmapdoc/spip.php?article208" target="_blank">
+ Joint HIRLAM/ALADIN System Maintenance Training, Collection of Presentation, Sept 22-24, Toulouse</a>
+}}}
+ * 
+{{{ 
+#!html
+<a href="http://hirlam.org/trac/wiki/HirlamMeetings/surface_ww_Nov2010_final.pdf" target="_blank"> HARMONIE Working week on surface data assimilation, 15 - 19 Nov 2010, Oslo</a>
+}}}
+ * [wiki:HarmonieWorkingWeek/4DVAR201011 HARMONIE 4D-VAR Working Week], 22 -26 Nov 2010, Norrköping
+ * [wiki:HarmonieWorkingWeek/System201011 HARMONIE System Working Week], 29 Nov-3 Dec 2010, Copenhagen
+== 2009 ==
+ * [wiki:ChemicalBrnachTraining2009 Enviro Hirlam Training week at DMI], 26-30 Jan 2009, Copenhagen
+ * 
+{{{ 
+#!html
+<a href="http://www.cnrm.meteo.fr/aladin/spip.php?article118" target="_blank">
+ Joint HIRLAM/ALADIN All Staff Meeting/Workshop, 12-15 2009, Utrecht</a>
+}}}
+ * [wiki:OOPS/OopsSeminarAtECMWF200911 ECMWF OOPS Seminar], 18 Nov 2009, Reading
+ * [wiki:HarmonieWorkingWeek/4DVAR200911 HARMONIE 4D-VAR Working Week], 30 Nov - 4 Dec 2009, Norrköping
+ * [https://hirlam.org/trac/attachment/wiki/HirlamMeetings/minutes_2009.doc SRNWP Interoperability Workshop, 9 -11 Dec 2009, Reading]
+== 2008 ==
+ * 
+{{{ 
+#!html 
+<a href="http://www.cnrm.meteo.fr/aladin/meetings/Wk2008/ind.html" target="_blank">
+ Joint HIRLAM/ALADIN All Staff Meeting/Workshop, 7-10 April 2008, Bruxells</a>
+}}}
+ * [wiki:HarmonieDAWorkshop200805 Harmonie Data Assimilation Working week], 5-9 May, 2008, Oslo
+ * [wiki:HarmonieDAworkingweek200806 Harmonie ALADIN 3DVAR portability Working week], 2-5 June, 2008, Norrköping
+ * [wiki:HarmonieSystemTraining2008 Harmonie system training workshop], 30 Sept-3 Oct, 2008, Copenhagen
+== 2007 ==
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/Minutes_working_days_on_dynamics.pdf" target="_blank"> Meeting of dynamics staff, 26 February 2007, Madrid</a>
+}}}
+ * GLAMEPS weeking week, 15-19 January 2007, Reading
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/4dvarww/4dvarww_agenda.html" target="_blank">
+ 4D-VAR training week for use of obs staff, 19-23 February 2007, Norrkøping</a>
+}}}
+ * 
+{{{ 
+#!html
+<a href="https://hirlam.org/open/meetings/da2007" target="_blank">
+ SRNWP/HIRLAM/MetOffice joint workshop on variational data assimilation, 21-23 March 2007, Norrkøping</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/verificationww.txt" target="_blank">
+ Meeting on verification and model intercomparison, 26-29 March 2007, Copenhagen</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/ASM2007" target="_blank">
+ Joint HIRLAM/ALADIN All Staff Meeting/Workshop, 22-26 April 2007, Oslo</a>
+}}}
+ * [wiki:SystemWorkingmeeting200704 Hirlam system meeting], 26-27 April 2007, Oslo
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/jbweek_aug2007.pdf" target="_blank">
+ HIRLAM-A Working Meeting on background error, 21-24 August 2007, Copenhagen</a>
+}}}
+ * [wiki:SystemWorkingmeeting200709 Harmonie system working week], 3-7 September 2007, Copenhagen
+ * [wiki:HARMONIE_WORKSHOP Harmonie workshop (on physics)], 10-14 September 2007, Helsinki
+ * 
+{{{ 
+#!html 
+<a href="http://netfam.fmi.fi/HMS07/index.html" target="_blank">HIRLAM-AAA workshop on Surface data assimilation</a>, Budapest, 12-14 November 2007
+}}}
+== 2006 ==
+ * working meeting on code management, 23-24 January 2006, Copenhagen
+ * working meeting on surface modelling, 15 February, Norrköping
+ * 
+{{{ 
+#!html 
+<a href="http://hirlam.org/open/publications/HLworkshops/EPS_planmeeting_20060311.html" target="_blank">
+ HIRLAM-ALADIN EPS_planning meeting on predictability, 11 March 2006, Madrid</a>
+}}}
+ * 4D-VAR training week, 24-28 April 2006, Norrkjoping
+ * Mesoscale working meeting, 3-5 May, Copenhagen
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/ASM2006" target="_blank">
+ All Staff Meeting/Workshop, 15-18 May 2006, Sofia</a>
+}}}
+ * ODB + 3DVAR training workshop, 6-9 June, Budapest
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/eps_wweek.doc" target="_blank">
+ HIRLAM-ALADIN EPS system working meeting, 12-16 June, Norrköping</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/system_wweek.pdf" target="_blank">
+ HIRLAM system group meeting, 20-22 June, Oslo</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="https://hirlam.org/HX/organisation/reports/4dvarwwsep06.pdf" target="_blank">
+ Working meeting 4D-VAR, 28 Aug – 1 Sep, Norrkjoping</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="http://hirlam.org/open/publications/HLworkshops/Simphys_meeting_20060908.html" target="_blank">
+ HIRLAM-ALADIN Planning meeting on physics for 4DVAR, 8 September, Reading</a>
+}}}
+ * 
+{{{ 
+#!html 
+<a href="http://hirlam.org/open/publications/HLworkshops/meso-DA_20061014.html" target="_blank">
+ HIRLAM-ALADIN meeting on mesoscale data assimilation strategy, 13 October, Zurich</a>
+}}}
+ * [wiki:SystemWorkshop2006 System workshop and system group working meeting], 23-27 October 2006, Madrid
+ * 
+{{{ 
+#!html 
+<a href="http://hirlam.org/open/publications/HLworkshops/GLAMEPS_planmeeting_200611.html" target="_blank">
+ GLAMEPS workshop, 13-14 November 2006, Vienna</a>
+}}}
+ * [wiki:MesoscaleWorkshop2006 Mesoscale working week], 29 November-1 Dec 2006, Helsinki
+ * 
+{{{ 
+#!html 
+<a href="http://www.cnrm.meteo.fr/aladin/meetings/surfex.html" target="_blank">
+ HIRLAM-ALADIN surface/SURFEX workshop, 11-13 December 2006, Toulouse</a>
+}}}

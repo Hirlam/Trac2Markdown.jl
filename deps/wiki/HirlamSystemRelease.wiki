@@ -1,0 +1,62 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Hirlam System Release''' ==
+[[LastModified]]
+[[Center(end)]]
+ * [wiki:Hirlam_7.4], Hirlam forecast system Hirlam-7.4, is tagged on 9 Mar 2012. See [wiki:ReleaseNotes7.4].
+ * [wiki:Hirlam_7.4]rc1, the release candidate of the new Hirlam forecast system Hirlam-7.4, is tagged on 3 Feb 2012 for final pre-release evaluation.
+ * [wiki:Hirlam_7.4]alpha, the alpha version of the new Hirlam forecast system Hirlam-7.4, is tagged on 23 Dec 2010 for test and evaluation. 7.4 defines a new RCR domain with increased resolution in horizontal and vertical, and includes parameterisation the fresh lake scheme Flake.
+ * [wiki:Hirlam_7.3], the latest version of the official Hirlam forecast system featuring new surface scheme, multi-loop, multi-incremental 4DVAR, is launched on 2 November, 2010. See [wiki:ReleaseNotes7.3]
+ * [wiki:Hirlam_7.3]rc3, the third update to the previous Release Candidate for the coming Hirlam forecast system Hirlam-7.3, is tagged on 13 Sept 2010 as preparation for Hirlam 7.3, which is scheduled now in October 2010.
+ * [wiki:Hirlam_7.3]rc2, the update to the previous Release Candidate for the coming Hirlam forecast system Hirlam-7.3, is tagged on 2 July 2010 as preparation for Hirlam 7.3, which is scheduled in September 2010. Cold start is recommended for activating this version in view of problems seen in snow and ice analyses seen in 7.3rc1
+ * [wiki:Hirlam_7.2].2, update of the official Hirlam forecast system Hirlam-7.2, tagged on 10 June 2010. 7.2.2 implements correction on deep soil ice reservoir. See [wiki:ReleaseNotes7.2.2]
+ * [wiki:Hirlam_7.3]rc1, the Release Candidate for the coming Hirlam forecast system Hirlam-7.3, is tagged on 23 April 2010 as preparation for Hirlam 7.3, which is scheduled in late May 2010
+ * [wiki:Hirlam_7.3]beta3, the third beta version of the coming Hirlam forecast system Hirlam-7.3, is tagged on 9 April 2010 as preparation for Hirlam 7.3rc1 which is scheduled on April 23 2010
+ * [wiki:Hirlam_7.3]beta2, the second beta version of the coming Hirlam forecast system Hirlam-7.3, is tagged on 8 Jan 2010 for test and evaluation. 7.3beta2 implements new surface scheme (newsnow branch)
+ * [wiki:Hirlam_7.3]beta1, the first beta version of the new Hirlam forecast system Hirlam-7.3, is tagged on 17 April 2009 for test and evaluation. 7.3beta1 defines ECMWF C1A as default computer platform
+ * [wiki:Hirlam_7.3]beta1newsnow, the newsnow branch corresponding to the system of Hirlam-7.3beta1, is tagged on 17 April 2009 for test and evaluation. 7.3beta1newsnow defines ECMWF C1A as default computer platform
+ * [wiki:Hirlam_7.2].1, the update release of the official Hirlam forecast system Hirlam-7.2, is tagged on 17 April 2009. 7.2.1 switches to ECMWF C1A as default computer platform. See [wiki:ReleaseNotes7.2.1]
+ * [wiki:Hirlam_7.1].5, the update release of the previous official Hirlam forecast system Hirlam-7.1, is tagged on 17 April 2009. 7.1.5 switches to ECMWF C1A as default computer platform. See [wiki:ReleaseNotes7.1.5]
+ * [wiki:Hirlam_7.2], the latest version of the official Hirlam forecast system, is launched on 2 September, 2008. See [wiki:ReleaseNotes7.2]
+ * [wiki:Hirlam_7.2]rc4, the last release candidate for [wiki:Hirlam_7.2], is tagged on 29 August, 2008
+ * [wiki:newsnow20080508 newsnow20080508] is tagged on 8 May, 2008, with the frozen version of newsnow branch which is 7.2rc3-compatible
+ * [wiki:CIS080424 CIS080424] is tagged on 24 April, 2008, with the frozen version of CIS branch which is 7.2rc3-compatible
+ * [wiki:Hirlam_7.2]rc3, the third release candidate for [wiki:Hirlam_7.2], is tagged on 17 April, 2008
+ * [wiki:Hirlam_7.2]rc2, the updated version of the release candidates for [wiki:Hirlam_7.2], is tagged on 3 March, 2008
+ * [wiki:Hirlam_7.1].4, the fourth bug correction for [wiki:Hirlam_7.1], is released on 18 Feb, 2008. See [wiki:ReleaseNotes7.1.4]. Hirlam 7.1.4 replaces 7.1.3 as official Hirlam reference version.
+ * [wiki:Hirlam_7.2]rc1, the first release candidate for [wiki:Hirlam_7.2], is tagged on 8 February, 2008. 
+ * [wiki:Hirlam_7.1].3, the third bug correction for [wiki:Hirlam_7.1], is released on 6 Dec, 2007. See [wiki:ReleaseNotes7.1.3]. Hirlam 7.1.3 replaces 7.1.2 as official Hirlam reference version.
+ * [wiki:Hirlam_7.2]beta1, the first beta release for [wiki:Hirlam_7.2], is tagged on 23 Nov, 2007. 
+ * [wiki:Hirlam_7.1].2, the second bug correction for [wiki:Hirlam_7.1], is released on 3 Aug, 2007. See [wiki:ReleaseNotes7.1.2]. Hirlam 7.1.2 replaces 7.1.1 as official Hirlam version.
+ * [wiki:Hirlam_7.1].1, the bug correction for [wiki:Hirlam_7.1], is released on 30 May, 2007. See [wiki:ReleaseNotes7.1.1]. Hirlam 7.1.1 replaces 7.1 as official Hirlam version.
+ * [wiki:Hirlam_7.1], the latest version of the official Hirlam forecast system, is launched on 28 March, 2007. See [wiki:ReleaseNotes7.1]
+ * [wiki:Hirlam_7.1] rc 2, the updated release candidate for [wiki:Hirlam_7.1], is released on 14 March, 2007. See [wiki:ReleaseNotes7.1rc2]
+ * [wiki:Hirlam_7.1] rc 1, the release candidate for [wiki:Hirlam_7.1], is released on 19 Feb, 2007. See [wiki:ReleaseNotes7.1rc1]
+ * [wiki:Hirlam_7.1] beta 3, the third and last beta release for [wiki:Hirlam_7.1], is tagged on 16 Feb, 2007. See [wiki:ReleaseNotes7.1beta3]. Hirlam 7.1 beta 3 is a technical release and identical to Hirlam 7.1 rc1.
+ * [wiki:Hirlam_7.1] beta 2, the second beta release for [wiki:Hirlam_7.1], is tagged on 1 Feb, 2007. See [wiki:ReleaseNotes7.1beta2]
+ * [wiki:Hirlam_7.1], the coming official HIRLAM release, is in preparation
+ * [wiki:Hirlam_7.1] beta 1, the first beta release for [wiki:Hirlam_7.1], is tagged on 9 Jan, 2007. See [wiki:ReleaseNotes7.1beta1]
+ * The [https://hirlam.org/trac/browser/trunk trunk] version for Harmonie system, the developing HIRLAM meso-scale forecast system, is introduced on 30 November 2006 in the Hirlam source code repository with changeset [4792]. The acronym HARMONIE stands for "Hirlam Aladin Research toward Meso-scale Operational NWP in Europe", according to Prof. Peter Lynch, who initially made the proposal in Dec 2005
+ * [wiki:Hirlam_7.1] alpha 3, the third trial release for [wiki:Hirlam_7.1], is tagged on 27 November, 2006. See [wiki:ReleaseNotes7.1alpha3]
+ * [wiki:Hirlam_7.1] alpha 3 newsnow, the integrated system version between the development branch for new surface scheme, 'newsnow' and [wiki:ReleaseNotes7.1alpha3 Hirlam 7.1alpha3], is tagged on 27 November, 2006. See [wiki:ReleaseNotes7.1alpha3newsnow]
+ * Information about the latest update to the Hirlam repository is listed in HeadNote with details in CodeUpdate.
+ * [wiki:Hirlam_7.0].1, the update to the official Hirlam release, [wiki:Hirlam_7.0], is released on 8 November, 2006. See [wiki:ReleaseNotes7.0.1]. Hirlam 7.0.1 becomes now the default Hirlam version.
+ * [wiki:Hirlam_7.1] alpha 2, the second trial release for [wiki:Hirlam_7.1], is tagged on 8 November, 2006. See [wiki:ReleaseNotes7.1alpha2]
+ * [wiki:Hirlam_7.1] alpha 2 newsnow, the integrated system version between the development branch for new surface scheme, 'newsnow' and [wiki:ReleaseNotes7.1alpha2 Hirlam 7.1alpha2], is tagged on 8 November, 2006. See [wiki:ReleaseNotes7.1alpha2newsnow]
+ * [wiki:Hirlam_7.1] alpha 1, the preliminarily assembled code version for Hirlam, [wiki:Hirlam_7.1], is released on 27 September, 2006. See [wiki:ReleaseNotes7.1alpha1]
+ * Official Hirlam release, [wiki:Hirlam_7.0] is made on 2 May, 2006.
+
+
+[[Center(begin)]]
+[wiki:HirlamSystemDocumentation Hirlam System Documentation]
+
+[wiki:HirlamHowto HIRLAM Howto]
+
+[https://hirlam.org/trac/wiki Back to the home page of the HIRLAM-System wiki]
+[[Center(end)]]
+----
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

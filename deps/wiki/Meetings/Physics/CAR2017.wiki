@@ -1,0 +1,164 @@
+= Cloud - Aerosol - Radiation working group meeting 4 April 2017 Helsinki =
+
+
+[https://meetings.webex.com/collabs/meetings/join?uuid=MEMZNPZEFTYCXQV6NTEAA0LI6W-4XE7   Webex link of this meeting]
+
+
+== Tuesday the 4th April  16 - 18 ==
+
+=== 16:10 - 17:10 Five-minute presentations (two slides or so) + five minutes for questions ===
+
+Erik Gregow, FMI: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/Gregow_04April2017.pdf Two first slides!] Validation of HARMONIE cloud experiments using Finnish global radiation observations
+
+Joni-Pekka Pietikäinen, FMI: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/pietikainen_jpp_hclim_04042017.pdf First HCLIM test of CAMS AOD550 over the Nordic domain]
+
+Kristian Pagh Nielsen, DMI: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/Nielsen_20170404_ASM_Aerosol_presentation.pdf Lessons of Marco Polo aerosol experiments] 
+
+Karl-Ivar Ivarsson, SMHI: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/KII_radcloud.pdf Effective radiuses for radiation from microphysics]
+
+Laura Rontu, FMI: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/Rontu_Haraero_CAR.pdf CAMS aerosol status and open questions]
+
+Eric Bazile, Meteo France: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/expose_EBazile_ASM2017.pdf Two last slides!] Summary and status of the Toulouse cloud meeting plans
+
+
+=== 17:10 - 18:10 Planning of next steps ===
+
+Aerosol tasks: data, variables, experiments, next steps 
+
+Usage of MUSC cy40, preparation of MUSC cy43 for experiments
+
+NWP validation with radiation: how to obtain observations and do validations?
+
+How to continue with long-term radiation strategy?
+
+
+Aerosol tasks: data, variables, experiments, next steps 
+
+== Notes from the meeting ==
+
+Lisa Bengtsson: Using Sibbo's cloud DA scheme from HIRLAM may be a problem,
+since AROME uses a statistical cloud scheme that is quite different from the
+Rasch-Kristjansson scheme in HIRLAM. This could cause overestimation of the
+cloud cover.
+
+-o-
+
+Laura Rontu: How to use the global radiation station observations (shown in Erik's presentation) in Finland be used for NWP validation?
+
+Anders Lindfors: The data are available on a minute-by-minute basis.
+Some stations are cleaned regularly, others are not; they are thus gruped
+into first class and second class stations. The main stations data are
+available from at least the last 15 years.
+
+-o-
+
+Mikhail Sofiev: The Menon et al. scheme for cloud droplet number concentration
+is not the best to use.
+
+Mikhail Sofiev responding to the question on the aerosol data available from SILAM, both from operational forecast and re-analysis 1980-2015: the data include concentrations and AOD at 385/550/1020nm, hourly, with all main aerosol components and size classes for global, European, Asian, and Northern-European domains (see e.g. http://silam.fmi.fi/thredds/catalog.html for the forecasts description and download).
+
+-o-
+
+Kristian Pagh Nielsen: We should consider using the new ECRAD radiation
+scheme.
+
+Eric Bazile: Intercomparisons are needed before we choose to change the
+radiation scheme.
+
+Karl Ivar Ivarsson: Currently, I work on the current IFS (cy25) radiation
+scheme. Should I stop doing so if this is to be substituted?
+
+Kristian Pagh Nielsen: Optimally, the radiation schemes need only optical
+properties of gases, clouds and aerosols. Alternatively, cloud liquid and
+ice water concentrations, together with the cloud droplet number concentration
+
+-o-
+
+Laura Rontu: We should externalise the cloud-precipitation microphysics computations (particle size) from the
+radiation scheme.
+
+Francois Bouyssel: Climatological log-normal size distributions of aerosols
+are used as input to the LIMA scheme.
+
+-o-
+
+Lisa Bengtsson: The new MUSC that we (Eric, Wim, Lisa, ...) have been
+developing during the last two years should be put in a common repository.
+ALARO should also be included in such a test bed.
+
+Daan de Grauwe: I agree, however, we need to aim for a common cycle.
+
+Laura Rontu: Can you forecast if this should cy43 or cy44?
+
+Daan de Grauwe: No.
+
+Eric Bazile: MUSC should be the same version as the current operational system.
+
+Laura Rontu: We (Karl Ivar, Laura, Emily, ...) have just managed to compile and build a MUSC test experiment of cy43t2. 
+MUSC input for atmospheric part was picked from older 3D HARMONIE experiment, for PGD from a full 43t2-experiment.
+
+Eric Bazile: The new version of MUSC is already in Mitraillette. Here the new
+MUSC version includes correct forcing during the run, while the previous
+version only runs from an initial value.
+
+Lisa Bengtsson: Who would do the work with implementing this in the HIRLAM
+repository?
+
+Eric Bazile: 70% of our problems come from SURFEX. The SURFEX people do 1D
+tests with 1D Meso-NH, uses a 16 point grid, rather than the 4 point grid that
+is used in MUSC.
+
+Laura Rontu: There are two ways to prepare MUSC input: pick by gl from the 3D model (and edit the atmospheric profile if needed), or generate by ACADFA, PGD, PREP from namelist input. The latter way should be build also for cy43, not yet done.
+
+Eric Bazile: A MUSC user community could be made.
+
+Jeanette Onvlee: This needs to be decided at a management level.
+
+-o-
+
+Eric Bazile: If OOPS will go deep into the dynamical parts of our code, this
+could be a huge issue.
+
+-o-
+
+Laura & Lisa: We should rather wait for when we are to phase the LIMA scheme
+into the model than to implement too overly complex aerosol aspects into the
+current microphysics scheme.
+
+-o-
+
+Victoria & Francois Bouyssel: In other to input MOGACE data to our current
+research version of AROME, we now use a Python script for the interpolation.
+This needs to be changed for operational purposes.
+
+Francois Bouyssel: Now we also just provide the initial aerosol condition,
+which is then used throughout the forecast.
+
+Laura Rontu: Do we know if we can get ready made optical properties from
+CAMS in near real time? Are the aerosol concentrations aa sufficient input for the cloud-precipitation microphysics?
+
+Francois Bouyssel: Yes, for the time being the concentrations are the only
+thing that we need for the precipitation microphysics.
+
+-o-
+
+Eric Bazile: In UERRA we found systematical SW surface downward biases of
+more than +20 W/m^^2. Have anyone else found similar values?
+
+-o-
+
+Emily Gleeson: I've added some preliminary Tegen vs CAMS results for the Irish domain: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/CAR2017/TEGENvCAMSplots.pdf Tegen vs CAMS Ireland]
+- regarding comparing output from any runs to radiation measurements, it would also be very useful to use sites that have relevant cloud data also (cloud profiles etc).
+
+
+== Resources ==
+
+https://hirlam.org/trac/wiki/Aerosol
+
+https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Radiation201604
+
+Toulouse cloud meeting, January 2017 http://www.umr-cnrm.fr/aladin/spip.php?article311&lang=en
+
+== Announcements ==
+
+[http://meetingorganizer.copernicus.org/EMS2017/session/25550 Radiation session] European Meteorological Society Meeting Dublin,  4–8 September 2017

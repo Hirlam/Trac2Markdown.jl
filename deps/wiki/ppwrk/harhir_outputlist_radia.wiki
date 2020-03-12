@@ -1,0 +1,222 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+
+== ''Working page for'' ==
+= HARMONIE Data Archive and Parameter List, GRIB Definition - work page for radiation variables =
+[[Center(end)]]
+
+= atmospheric file =
+[[BR]]
+
+||  52 || SURFFLU.RAY.SOLA   ||  1 ||  111 ||   0 || 105 || Surface SW net flux accum. || J/m^2 ||
+||  53 || SURFFLU.RAY.THER   ||  1 ||  112 ||   0 || 105 || Surface LW net flux accum. || J/m^2 ||
+||  54 || SURFRAYT THER DE   ||  1 ||  115 ||   0 || 105 || Surface LW downward flux accum. || J/m^2 ||
+||  55 || SURFRAYT SOLA DE   ||  1 ||  117 ||   0 || 105 || Surface SW downward flux accum. || J/m^2 ||
+||  56 || SURFRAYT.LUNE.DE   ||  1 ||  158 ||   0 ||   1 || Surface SW downward moon flux accum. || J/m^2 ||
+||  57 || SURFRAYT DIR SUR   ||  1 ||  117 || 667 || 105 || Surface SW direct downward flux instant. || W/m^2 ||
+||  58 || SURFRAYT.SOLAIRE   ||  1 ||  117 || 666 || 105 || Surface SW flux instant. || W/m^2 ||
+||  59 || SURFRAYT.TERREST   ||  1 ||  118 || 666 || 105 || Surface LW flux instant. || W/m^2 ||
+|| 109 || TOPRAYT DIR SOM    ||  1 ||  117 || 666 ||   8 || TOA direct solar flux ??? instant. || W/m^2 ||
+|| 126 || SOMMFLU.RAY.SOLA   ||  1 ||  113 ||   0 ||   8 || TOA SW net flux accum. || J/m^2 ||
+|| 127 || SOMMFLU.RAY.THER   ||  1 ||  114 ||   0 ||   8 || TOA LW net flux accum. || J/m^2 ||
+|| 128 || SOMMRAYT.SOLAIRE   ||  1 ||  117 || 667 ||   8 || TOA instant. SW flux instant. || W/m^2 ||
+|| 129 || SOMMRAYT.TERREST   ||  1 ||  118 || 667 ||   8 || TOA instant. LW flux instant. || W/m^2 ||
+|| 201 || SNNNRAYT SOL CL    ||  1 ||  129 ||   0 || 105 || Surface SW net clear sky flux accum. || J/m^2 ||
+|| 202 || SNNNRAYT THER CL   ||  1 ||  130 ||   0 || 105 || Surface LW net clear sky flux accum. || J/m^2 ||
+|| 203 || S001RAYT SOL CL    ||  1 ||  129 ||   0 ||   8 || TOA SW net clear sky flux accum. || J/m^2 ||
+|| 204 || S001RAYT THER CL   ||  1 ||  130 ||   0 ||   8 || TOA LW net clear sky flux accum. || J/m^2 ||
+|| 229 || #                  ||  1 ||  117 ||   0 ||   8 || TOA total flux - LW + SW DN ?? accum. || J/m^2 ||
+
+[[BR]]
+= surfex files =
+[[BR]]
+Sea
+
+|| 630 || RN_SEA             ||  1 ||    2 || 760 || 105 || Net radiation flux sea ||
+|| 641 || SWD_SEA            ||  1 ||  117 || 760 || 105 || Surface downward SW flux ||
+|| 642 || LWD_SEA            ||  1 ||  118 || 760 || 105 || Surface downward LW flux ||
+|| 643 || SWU_SEA            ||  1 ||  119 || 760 || 105 || Surface upward SW flux ||
+|| 644 || LWU_SEA            ||  1 ||  120 || 760 || 105 || Surface upward LW flux ||
+|| 645 || SWD_SEA_1          ||  1 ||  117 || 761 || 105 || SW downward band 1 ||
+|| 646 || SWD_SEA_2          ||  1 ||  117 || 762 || 105 || SW downward band 2 ||
+|| 647 || SWD_SEA_3          ||  1 ||  117 || 763 || 105 || SW downward band 3 ||
+|| 648 || SWD_SEA_4          ||  1 ||  117 || 764 || 105 || SW downward band 4 ||
+|| 649 || SWD_SEA_5          ||  1 ||  117 || 765 || 105 || SW downward band 5 ||
+|| 650 || SWD_SEA_6          ||  1 ||  117 || 766 || 105 || SW downward band 6 ||
+|| 651 || SWU_SEA_1          ||  1 ||  119 || 761 || 105 || SW upward band 1 ||
+|| 652 || SWU_SEA_2          ||  1 ||  119 || 762 || 105 || SW upward band 2 ||
+|| 653 || SWU_SEA_3          ||  1 ||  119 || 763 || 105 || SW upward band 3 ||
+|| 654 || SWU_SEA_4          ||  1 ||  119 || 764 || 105 || SW upward band 4 ||
+|| 655 || SWU_SEA_5          ||  1 ||  119 || 765 || 105 || SW upward band 5 ||
+|| 656 || SWU_SEA_6          ||  1 ||  119 || 766 || 105 || SW upward band 6 ||
+[[BR]][[BR]]
+Lakes and other water bodies
+
+|| 657 || RI_WAT             ||  1 ||    1 || 770 || 105 || Ri num water ||
+|| 658 || RN_WAT             ||  1 ||    2 || 770 || 105 || Net radiation flux water ||
+|| 669 || SWD_WAT            ||  1 ||  117 || 770 || 105 || Surface downward SW flux ||
+|| 670 || LWD_WAT            ||  1 ||  118 || 770 || 105 || Surface downward LW flux ||
+|| 671 || SWU_WAT            ||  1 ||  119 || 770 || 105 || Surface upward SW flux ||
+|| 672 || LWU_WAT            ||  1 ||  120 || 770 || 105 || Surface upward LW flux ||
+|| 673 || SWD_WAT_1          ||  1 ||  117 || 771 || 105 || SW downward band 1 ||
+|| 674 || SWD_WAT_2          ||  1 ||  117 || 772 || 105 || SW downward band 2 ||
+|| 675 || SWD_WAT_3          ||  1 ||  117 || 773 || 105 || SW downward band 3 ||
+|| 676 || SWD_WAT_4          ||  1 ||  117 || 774 || 105 || SW downward band 4 ||
+|| 677 || SWD_WAT_5          ||  1 ||  117 || 775 || 105 || SW downward band 5 ||
+|| 678 || SWD_WAT_6          ||  1 ||  117 || 776 || 105 || SW downward band 6 ||
+|| 679 || SWU_WAT_1          ||  1 ||  119 || 771 || 105 || SW upward band 1 ||
+|| 680 || SWU_WAT_2          ||  1 ||  119 || 772 || 105 || SW upward band 2 ||
+|| 681 || SWU_WAT_3          ||  1 ||  119 || 773 || 105 || SW upward band 3 ||
+|| 682 || SWU_WAT_4          ||  1 ||  119 || 774 || 105 || SW upward band 4 ||
+|| 683 || SWU_WAT_5          ||  1 ||  119 || 775 || 105 || SW upward band 5 ||
+|| 684 || SWU_WAT_6          ||  1 ||  119 || 776 || 105 || SW upward band 6 ||
+[[BR]]
+ISBA - nature
+
+|| 686 || RN_ISBA            ||  1 ||    2 || 800 || 105 || Net radiation flux isba ||
+|| 697 || SWD_ISBA           ||  1 ||  117 || 800 || 105 || Surface downward SW flux ||
+|| 698 || LWD_ISBA           ||  1 ||  118 || 800 || 105 || Surface downward LW flux ||
+|| 699 || SWU_ISBA           ||  1 ||  119 || 800 || 105 || Surface upward SW flux ||
+|| 700 || LWU_ISBA           ||  1 ||  120 || 800 || 105 || Surface upward LW flux ||
+|| 701 || SWD_ISBA_1         ||  1 ||  117 || 801 || 105 || SW downward band 1 ||
+|| 702 || SWD_ISBA_2         ||  1 ||  117 || 802 || 105 || SW downward band 2 ||
+|| 703 || SWD_ISBA_3         ||  1 ||  117 || 803 || 105 || SW downward band 3 ||
+|| 704 || SWD_ISBA_4         ||  1 ||  117 || 804 || 105 || SW downward band 4 ||
+|| 705 || SWD_ISBA_5         ||  1 ||  117 || 805 || 105 || SW downward band 5 ||
+|| 706 || SWD_ISBA_6         ||  1 ||  117 || 806 || 105 || SW downward band 6 ||
+|| 707 || SWU_ISBA_1         ||  1 ||  119 || 801 || 105 || SW upward band 1 ||
+|| 708 || SWU_ISBA_2         ||  1 ||  119 || 802 || 105 || SW upward band 2 ||
+|| 709 || SWU_ISBA_3         ||  1 ||  119 || 803 || 105 || SW upward band 3 ||
+|| 710 || SWU_ISBA_4         ||  1 ||  119 || 804 || 105 || SW upward band 4 ||
+|| 711 || SWU_ISBA_5         ||  1 ||  119 || 805 || 105 || SW upward band 5 ||
+|| 712 || SWU_ISBA_6         ||  1 ||  119 || 806 || 105 || SW upward band 6 ||
+[[BR]]
+Town Energy Balance
+
+|| 737 || RN_TEB             ||  1 ||    2 || 950 || 105 || Net radiation flux town ||
+|| 748 || SWD_TEB            ||  1 ||  117 || 950 || 105 || Surface downward SW flux ||
+|| 749 || LWD_TEB            ||  1 ||  118 || 950 || 105 || Surface downward LW flux ||
+|| 750 || SWU_TEB            ||  1 ||  119 || 950 || 105 || Surface upward SW flux ||
+|| 751 || LWU_TEB            ||  1 ||  120 || 950 || 105 || Surface upward LW flux ||
+|| 752 || SWD_TEB_1          ||  1 ||  117 || 951 || 105 || SW downward band 1 ||
+|| 753 || SWD_TEB_2          ||  1 ||  117 || 952 || 105 || SW downward band 2 ||
+|| 754 || SWD_TEB_3          ||  1 ||  117 || 953 || 105 || SW downward band 3 ||
+|| 755 || SWD_TEB_4          ||  1 ||  117 || 954 || 105 || SW downward band 4 ||
+|| 756 || SWD_TEB_5          ||  1 ||  117 || 955 || 105 || SW downward band 5 ||
+|| 757 || SWD_TEB_6          ||  1 ||  117 || 956 || 105 || SW downward band 6 ||
+|| 758 || SWU_TEB_1          ||  1 ||  119 || 951 || 105 || SW upward band 1 ||
+|| 759 || SWU_TEB_2          ||  1 ||  119 || 952 || 105 || SW upward band 2 ||
+|| 760 || SWU_TEB_3          ||  1 ||  119 || 953 || 105 || SW upward band 3 ||
+|| 761 || SWU_TEB_4          ||  1 ||  119 || 954 || 105 || SW upward band 4 ||
+|| 762 || SWU_TEB_5          ||  1 ||  119 || 955 || 105 || SW upward band 5 ||
+|| 763 || SWU_TEB_6          ||  1 ||  119 || 956 || 105 || SW upward band 6 ||
+[[BR]]
+Grid averages
+
+|| 765 || RN_PATCH           ||  1 ||    2 || 790 || 105 || Net radiation flux patch ||
+|| 774 || RN                 ||  1 ||    2 || 810 || 105 || Net radiation flux ||
+|| 785 || SWD                ||  1 ||  117 ||   0 || 105 || Surface downward SW flux ||
+|| 786 || LWD                ||  1 ||  118 ||   0 || 105 || Surface downward LW  flux ||
+|| 787 || SWU                ||  1 ||  119 ||   0 || 105 || Surface upward SW flux ||
+|| 788 || LWU                ||  1 ||  120 ||   0 || 105 || Surface upward LW flux ||
+|| 789 || SWD_1              ||  1 ||  117 ||   1 || 105 || SW downward band 1 ||
+|| 790 || SWD_2              ||  1 ||  117 ||   2 || 105 || SW downward band 2 ||
+|| 791 || SWD_3              ||  1 ||  117 ||   3 || 105 || SW downward band 3 ||
+|| 792 || SWD_4              ||  1 ||  117 ||   4 || 105 || SW downward band 4 ||
+|| 793 || SWD_5              ||  1 ||  117 ||   5 || 105 || SW downward band 5 ||
+|| 794 || SWD_6              ||  1 ||  117 ||   6 || 105 || SW downward band 6 ||
+|| 795 || SWU_1              ||  1 ||  119 ||   1 || 105 || SW upward band 1 ||
+|| 796 || SWU_2              ||  1 ||  119 ||   2 || 105 || SW upward band 2 ||
+|| 797 || SWU_3              ||  1 ||  119 ||   3 || 105 || SW upward band 3 ||
+|| 798 || SWU_4              ||  1 ||  119 ||   4 || 105 || SW upward band 4 ||
+|| 799 || SWU_5              ||  1 ||  119 ||   5 || 105 || SW upward band 5 ||
+|| 800 || SWU_6              ||  1 ||  119 ||   6 || 105 || SW upward band 6 ||
+
+[[BR]]
+
+= HIRLAM =
+[[BR]]
+
+|| Variable ||	Unit ||	IPAR ||	LTYP ||	LEV ||	File ||	Note ||
+|| [[Color(red, shadow coefficient a for radiation)]] ||  || 162 || 191-198 || 0 || fc || not used || 
+|| [[Color(red, shadow coefficient b for radiation)]] ||  || 163 || 191-198 || 0 || fc || not used || 
+|| [[Color(red, slope of suboro for radiation)]] || rad || 165 || 191-198 || 0 || fc ||  || 
+|| [[Color(red, sky view factor due to suboro)]] || 0-1 || 166 || 105 || 0 || fc ||   || 
+|| [[Color(red, directional fraction of suboro aspect)]] || 0-1 || 167 || 191-198 || 0 || fc ||   || 
+[[BR]]
+
+=== Near-surface and surface diagnostics ===
+[[BR]]
+
+|| Accumulated net surface SW radiation flux || J/m^2 || 111  || 105  || 0  || fcmd ||  || 
+|| Accumulated net surface LW radiation flux || J/m^2 || 112  || 105  || 0  || fcmd ||  ||
+|| Accumulated net t.o.a SW radiation flux || J/m^2 || 113  || 008  || 0  || fcmd ||  ||
+|| Accumulated net t.o.a LW radiation flux || J/m^2 || 114  || 008  || 0  || fcmd ||  ||
+|| Accumulated downward surface LW radiation flux || J/m^2 || 115  || 105  || 0  || fcmd ||  || 
+|| Accumulated downward (global) SW radiation flux || J/m^2 || 117  || 105  || 0  || fcmd ||  ||
+|| Accumulated global t.o.a SW radiation flux || J/m^2 || 117  || 008  || 0  || fcmd ||  ||
+|| Accumulated diffuse surface SW radiation flux || J/m^2 || 118  || 105  || 0  || fcmd ||  || 
+|| [[Color(green, slope fraction)]]  || fraction || 160  || 105  || 0  || fcmd || diagnostics of orographic effects on radiation ||
+|| [[Color(green, shadow fraction)]]  || fraction || 161  || 105  || 0  || fcmd || diagnostics of orographic effects on radiation ||
+|| [[Color(green, sky view factor)]]  || fraction || 166  || 105  || 0  || fcmd || diagnostics of orographic effects on radiation || 
+[[BR]]
+
+=== Near-surface state and diagnostic variables for subtypes ===
+[[BR]]
+
+The variable written as level height parameter is obtained by combination of subtype and sublevel parameters: LEV = LTYPE + JTYPE. E.g. the two-metre temperature over forest is now denoted by combination of parameters IPAR = 11, LTYP = 105, LEV = 805. The following variables may have subtype values:
+[[BR]]
+
+|| snow albedo  || fraction  || 190  || 105  || 901-907  || fc || || 
+[[BR]]
+
+=== Prognostic and diagnostic lake/sea variables ===
+[[BR]]
+
+|| [[Color(red, SW net radiation flux over lake)]]  || W/m^2  || 111  || 160  || 0  || fc ||  || 
+|| [[Color(red, LW net radiation flux over lake)]]  || W/m^2  || 112  || 160  || 0  || fc ||  || 
+[[BR]]
+
+=== Three-dimensional tendencies and fluxes due to physical parametrizations ===
+[[BR]]
+
+|| dTdt_rad    ||  K    || 211 || 109 || 1 ... nlev || chosen || accumulated, divide by time || 
+|| LWnet flux  ||  W/m^2 || 213 || 109 || 1 ... nlev || chosen || represent half level values || 
+|| SWnet flux  ||  W/m^2 || 214 || 109 || 1 ... nlev || chosen || represent half level values || 
+
+[[BR]]
+=== Level types used in HIRLAM ===
+[[BR]]
+
+|| level type  || WMO/HIRLAM type definition  || notes ||
+|| [[Color(red, 160)]]  || [[Color(red, lake surface level type)]]  || HIRLAM definition ||
+|| [[Color(red, 191)]]  || [[Color(red, direction N)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 192)]]  || [[Color(red, direction NE)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 193)]]  || [[Color(red, direction E)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 194)]]  || [[Color(red, direction SE)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 195)]]  || [[Color(red, direction S)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 196)]]  || [[Color(red, direction SW)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 197)]]  || [[Color(red, direction W)]]  || HIRLAM definition, used for orographic radiation ||
+|| [[Color(red, 198)]]  || [[Color(red, direction NW)]]  || HIRLAM definition, used for orographic radiation ||
+[[BR]]
+
+= MUSC lfa files (default, any addition is possible) =
+[[BR]]
+
+  || PEMTD    ||    downward LW emis         || 
+  || PEMTU    ||    upward LW emis	     || 
+  || PTRSO    ||    SW trans		     || 
+  || PFRSO    ||    SW flux		     || 
+  || PFRTH    ||    LW flux		     || 
+  || PFRSODS  ||    SW downward flux (surf)  || 
+  || PFRTHDS  ||    LW downward flux (surf)  || 
+  || PFRSOC   ||    SW (clear sky)	     || 
+  || PFRTHC   ||    LW (clear sky)           || 
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM-System Documentation]
+[[Center(end)]]
+----
+[[Center(begin)]]
+[[Disclaimer]]

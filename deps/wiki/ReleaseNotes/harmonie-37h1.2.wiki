@@ -1,0 +1,409 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''HARMONIE 37h1''' ==
+
+[[Center(end)]]
+
+== Highlights of Harmonie 37h1 ==
+
+Harmonie 37h1 is HIRLAM's adaptation to the IFS/ALADIN Cycle 37T1 released in June 2011 and the subsequent bugfix versions 1 to 5.
+
+On 13th of June 2012, [source:tags/harmonie-37h1.1 harmonie-37h1.1] is tagged as the first official release of cy37h1. On 20th of December 2012, [source:tags/harmonie-37h1.2 harmonie-37h1.2] was tagged as the last major release of cy37h1. At its default, HARMONIE-37h1 features a meso-scale forecast system with convection-permitting AROME physics, 3D-VAR upper air assimilation, and an optimal interpolation-based surface analysis, on a model grid with 2.5 km grid-spacing in horizontal and 65 vertical levels. Harmonie-37h1 also includes a comprehensive set of scripts and utilities supporting various optional components and applications.
+
+=== Harmonie 37h1.1 ===
+
+Harmonie 37h1 includes features contained in cycle 37T1 and the subsequent 5 source code bug fixes in addition to the HIRLAM developments. The major updates in cy37h1.1 compared to cy36h1.4.bf1 are:
+
+ * Physics
+  * SURFEX 6.1
+  * Updated EDMFM scheme for shallow convection
+  * Improved spinup of surface variables through a corrected handling of frozen soil moisture when starting with ECMWF/HIRLAM data.
+  * Diagnostics of cloud heights according to WMO definitions is now default for AROME. 
+  * Cellular automata in ALARO
+  * MUSC, the single column model in HARMONIE
+  * Optional usage of ECOCLIMAP2 ( experimental ) through the ECOCLIMAP_VERSION flag
+
+ * Assimilation
+  * Simple single obs experiment through the SINGLEOBS flag
+  * Experimental EKF setup for surface assimilation with SURFEX
+  * Allow for assimilation cycles shorter than 6h ( RUC )
+  * Use deep soil temperatures as a proxy for lake temperatures in assimilation.
+
+ * Technical
+  * Open-MP adaptations and other I/O optimizations
+  * Internal optional build of grib_api
+  * Reproducibility checks in testbed
+  * Introduce RUNNING_MODE=operational|research for different behaviour in error treatment
+  * Stand alone code norm checker
+  * Several mSMS updates
+  * More efficient MARS retrievals at ECMWF
+  * All namelists are created on the fly
+ 
+ * Verification
+   * Extended station list for verification
+   * New generalized input format for larger flexibility
+   * New and corrected skill scores.
+
+ * Diagnostics and postprocessing
+   * Rewritten listener with fewer tasks.
+   * Exteded list of postprocessing
+   * '''[wiki:HarmonieSystemDocumentation/Forecast/Outputlist/37h1 A completely new FA2GRIB conversion table]'''
+
+ * HARMONEPS ( experimental )
+   * Towards multi model ensemble capabilities
+   * Several technical updates for better performance.
+
+
+See the detailed listing as contained in the documentations attached at the bottom of this page about features entering cycle 37T1.
+
+=== Harmonie 37h1.2 ===
+
+On xth of December Harmonie-37h1.2 was tagged as the last major update of the 37h1 series. Compared to 37h1.1 it contains the following features and updates
+
+
+ * [wiki:HarmonieSystemDocumentation/EPS/Howto HARMONEPS] 
+   * Multi physics capabilities
+   * Perturbation of analyses
+
+ * [wiki:HarmonieSystemDocumentation/ClimateSimulation Harmonie Climate] 
+   * Integration of the climate simulation branch [10995]
+   * Treatment of SWI for ERA-interim data as initial condition [10994]
+   * Treatment of RACMO surface data as initial condition
+
+ * Surface physics 
+  * Switch off canopy model over sea/water in SURFEX. [10936]
+  * Optional generation of initial conditions directly through PREP. Controlled by SURFEX_PREP=yes. This is still experimental.
+  * Correct inconsistent LSM treatment between boundary interpolation (gl) and the model [10732]
+  * Correct inconsistent LSM treatment in Climate generation [10731]
+  * Avoid double adjust of temperature due to height differences when generating the surfex initial file. [10817]
+  * Support of offline SURFEX runs. [10720]
+  * Updates to CA coupling to 3MT convection [11064]
+  * Exclude lowest model level from low cloud diagnostics [11072]
+
+ * Upper air assimilation 
+  * LSMIXBC, spectral mixing of host model data prior to 3DVAR set default to yes.
+  * Updated varbc and blacklisting for assimilation of ATOVS.
+  * Integration of RADAR assimilation changes. [11219]
+
+ * Surface assimilation 
+  * Stronger coupling between surface analysis increments of T2M and RH2M and deep soil temperature changes. [10709]
+  * Generalization of surface assimilation code through SODA.
+  * Speedup of SODA(OI_MAIN) through less extensive calls to extrapolation routines. [11146]
+ 
+ * Dynamics, coupling 
+  * Reduce forecast model noise by using native start file (da or blended analysis, first guess) as first LBC. [10951]
+  * Updated settings for ALARO-NH.[11194]
+ 
+ * Diagnostics, postprocessing, misc
+   * Inline fullpos for more output streams controlled by INLINE_FULLPOS=yes and defined in [source:trunk/harmonie/scr/Setup_inline_postp Setup_inline_postp]
+   * Monitoring of gridpoint and spectral norm time evolution.
+   * Monitoring of CPU time evolution.
+   * Monitoring of surface assimilation increment time evolution.
+   * Several bugfixes in FA/LFI to GRIB conversion
+   * Support (experimental ) for FA to NETCDF conversion in gl [11164]
+   * More testbed configurations
+   * Support for reading lfi files in xtool [10991] 
+   * Correction of lambert projection problem for the southern hemisphere in gl. [10800]
+
+ * Technical 
+  * Flexible number of tasks for boundary interpolation through NBDMAX.
+  * Set number of listener tasks to fork by LISTENER_MAXPIDS.
+  * Correction of several out of bounds and portability bugs.
+  * Added configuration files for new platforms
+  * Correct WebgraF web page problem due to a bug in firefox.
+  * mXCdp GUI updates.
+
+ 
+== Harmonie-37h1 downloads ==
+
+ * On ECMWF, the check-out version of harmonie-37h1.2 is available as,
+{{{
+   ecgate:/home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-37h1.2
+}}}
+ * Via Subversion command:
+{{{
+   svn co https://svn.hirlam.org/tags/harmonie-37h1.2
+}}}
+ * The export tarball is available on hirlam.org, https://hirlam.org/portal/download/harmonie-37h1.2.tar
+
+ * The testbed data set including boundaries, observations, climate files and background statistics for assimilation can be downloaded [https://hirlam.org/portal/download/testbed/cy37h1/testbed_data.tar here].
+
+== Model Installation and Experiment Configuration ==
+
+Users are referred to the system wiki documentation about [wiki:HarmonieSystemDocumentation/37h1.2/Installation Information and Instruction on basic system installation and experiment configuration] and to the 
+[https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/37h1.2/Harmonie-mSMS Harmonie-mSMS configuration documentation] for running an experiment at ECMWF in particular and on your local platform in general.
+
+The version is available on ecgate as:
+
+{{{
+~hlam/harmonie_release/tags/harmonie-37h1.2/config-sh/Harmonie setup
+}}}
+
+=== Default configuration in Harmonie-37h1 and available alternatives ===
+ * Default computer platform: ECMWF ecgate-c2a; Reference installation at ecgate: /ms_perm/hirlam/harmonie_release/tags/harmonie-37h1.2
+ * Default build with MAKEUP. Check the [#SamplecomputationalcostsforrunningHARMONIE-37h1 comparison of compile times] on c2a for gmkpack and makeup. 
+ * Default configuration (available when setup using "Harmonie setup" or "Harmonie setup -c AROME_3DVAR")
+   * Dynamics with non-hydrostatic (nh)
+   * physics with AROME, see attached namelist in the reference
+   * Upper air analysis with 3DVAR using conventional data, surface analysis with CANARI_OI_MAIN
+   * Mixing of large scales from the host model prior to upper air assimilation through a spectral mixing with LSMIXBC
+   * DENMARK domain with 2.5 km resolution, 65 vertical leveling, nested to ifs lateral boundaries
+ * Other predefined options, available under "Harmonie setup -c $option")
+   * AROME physics
+     * "AROME"
+       * same as AROME_3DVAR above but with upper air blending, taking interpolated boundary data
+   * ALARO physics
+     * "ALARO_3DVAR"
+       * SCANDINAVIA_5.5 domain with 5.5 km resolution, HIRLAM-65 vertical levels, nested to ifs lateral boundary
+       * Upper air analysis with 3DVAR using conventional data, surface analysis with CANARI_OI_MAIN
+       * Hydrostatic dynamics
+       * physics with ALARO
+       * surface scheme 'surfex'
+       * incremental digital filtering initialisation
+       * Update the first guess with large scales features throu the LSMIXBC option
+     * "ALARO"
+       * same as "ALARO_3DVAR" above but with 'blending' for upper air by use of interpolated boundary data
+   * ALADIN physics
+     * "ALADIN_3DVAR_SURFEX"
+       * SCANDINAVIA_5.5 domain with 5.5 km resolution, HIRLAM-65 vertical levels, nested to ifs lateral boundary
+       * Upper air analysis with 3DVAR using conventional data, surface analysis with CANARI_OI_MAIN
+       * Hydrostatic dynamics
+       * physics with ALADIN
+       * surface scheme 'old_surface' (ISBA)
+       * surface scheme 'surfex'
+       * incremental digital filtering initialisation
+     * "ALADIN"
+       * same as "ALADIN_3DVAR" above but with 'blending' for upper air by use of interpolated boundary data
+
+== Meteorological performance of Harmonie-37h1 ==
+
+An extensive validation of the Harmonie-37h1 performance can be seen [wiki:Harmonie_37h1/ValidationTests here]. A summary of the findings can be found in the presentation from the ASM in Marrakech by [http://www.cnrm.meteo.fr/aladin/spip.php?action=acceder_document&arg=2318&cle=8b02f5cc831481b5bdd7f88f25d305fe406632af&file=pdf%2F38-asm_37h1_validation.pdf Yang et.al.].
+
+For Harmonie-37h1.2 the default setup over Denmark have been checked for January and August 2010. The same setup but with PHYSICS=alaro have also been evaluated for the same periods. The verification for these experiments can be found [wiki:Harmonie_37h1/ValidationTests#Pre-releaseevaluationofharmonie37h1.2 here]. No reference exists for ALARO in 37h1.1 but for AROME we can find a small but significant improvement for MSLP, T2M and RH2M for the winter month and a small but significant improvement for T2M for the winter month for the whole domain. For subdomains the results may differ.
+
+The general diagnostics produced by the monitoring interface can be found for the alaro experiment for the [https://hirlam.org/portal/validation/37h1/alaronh_summer_dia/?choice_ind=obstat summer] and [https://hirlam.org/portal/validation/37h1/alaronh_winter_dia/?choice_ind=obstat winter] periods.
+
+== Technical aspects of Harmonie-37h1 ==
+
+=== Differences in cost between 37h1.1 and 37h1.2 ===
+
+The difference in cost between 37h1.1 and 37h1.2 as measured on to platforms can be seen in the table below. The most notable difference is the increased cost for OI_main. This is due to the shift from OI_main to SODA where the general SURFEX setup and a better treatment of points in the coastal zone causes the increase in cost.
+ 
+|| Version/Platform || Size || Canari || OI_main || Screening || Minimisation || Forecast ||
+|| 37h1.1 c2a || || 53s || 11s || 28 || 67s || 2195s (24h) ||
+|| 37h1.2 c2a || 60s || 66s || 22s || 66s || 2191s (24h) ||
+|| 37h1.1 krypton || 60s || 31s || - || - || 2175s (18h) ||
+|| 37h1.2 krypton || 60s || 113s || - || - || - (18h) ||
+
+=== Tested platforms, configurations, components for Harmonie-37h1 ===
+
+ Reports on the outcome of testbed configurations on different platforms can be found in the [https://hirlam.org/pipermail/testbed testbed mailing list]. The configurations included in the testbed are 
+
+ {{{
+     AROME AROME_1D AROME_3DVAR AROME_MUSC
+     ALARO ALARO_1D ALARO_3DVAR ALARO_MUSC
+     AROME_EKF
+     AROME_EPS AROME_EPS_COMP
+     ALADIN_3DVAR_SURFEX
+     ALADIN_TLAD
+     AROME_BD_ARO AROME_BD_ALA
+     AROME_CLIMSIM
+ }}}
+
+=== Problems and bugfixes ===
+
+ * 4DVAR option does not work properly
+ * The above and other reported problems for cy37h1 are listed on the [https://hirlam.org/trac/query?status=accepted&status=assigned&status=new&status=reopened&version=37h1&order=priority&report=11 ticket page]. Some problems of [https://hirlam.org/trac/query?status=accepted&status=assigned&status=new&status=reopened&version=36h1&order=priority&report=12 cy36h1] are also valid for cy37h1. Please report any problem in the [http://hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=2&id=760 cy37h1.1 thread] or create a [https://hirlam.org/trac/newticket ticket] if you are sure that it is a unknown bug. Bug corrections will be reported in the same thread.
+
+ A bugfix branch [https://svn.hirlam.org/branches/harmonie-37h1.1.bugfix] has been created and is continuously updated. The branch will be the basis for the coming bugfix releases.  
+
+=== Sample computational costs for running HARMONIE-37h1 ===
+
+The Following tables list a sample of computational costs for SUCCESSFULLY tested HARMONIE-37h1 runs with various configuration.
+
+ * Compilation 
+|| '''Platform''' || '''Tested components''' || '''Build option''' ||  '''Nr of PE''' || '''Total elapse time''' || '''SBU cost''' || '''Version''' ||
+|| ECMWF c2a (IBM) || Full build || Makeup  || 16|| 4600s || n/a  || 37h1.2 ||
+|| ECMWF c2a (IBM) || Full build || gmkpack || 16|| 4200s || n/a  || 37h1.2 ||
+|| ECMWF c2a (IBM) || Experiment without changes || Makeup || 1 || 1530s || n/a || 37h1.2 || 
+|| ECMWF c2a (IBM) || Experiment without changes || gmkpack || 1 || 220s || n/a || 37h1.2 || 
+|| ECMWF c2a (IBM) || Rebuild with change of mf_phys.F90 || Makeup || 1 || 1190s || n/a || 37h1.2 || 
+|| ECMWF c2a (IBM) || Rebuild with change of mf_phys.F90 || gmkpack || 1 || 210s || n/a || 37h1.2 || 
+|| ECMWF c1a (IBM) || Full build || Makeup || 16|| 6800s || n/a  || 37h1 ||
+|| redhat6.1 quad core || Full build || Makeup || 4 || 1400s || n/a  || 37h1 ||
+|| gimle, Linux || full build || makeup || 8 || 1131s || n/a || 37h1 ||
+||armoin, Linux (2xquad core) || full build || makeup || 1 ||  6960s || 270|| 37h1trunk 20120207 ||
+||armoin, Linux (2xquad core) || full build || makeup || 6 ||  2061s || n/a || 37h1 ||
+||stokes, Linux (2xquad core) || full build || makeup || 2 || 13468s || n/a || 37h1 ||
+||stokes, Linux (2xquad core) || full build || makeup || 6 || 10748s || n/a || 37h1 ||
+
+ * Cycle
+|| '''Domain''' || '''Platform''' || '''Tested components''' || '''Nr of cores''' || '''Forecast length''' || '''Total elapse time''' || '''SBU cost''' || '''Version''' || '''Commments''' || 
+{{{#!td
+ SCANDINAVIA_5.5
+}}}
+{{{#!td
+ c1a
+}}}
+{{{#!td
+ ALARO_3DVAR
+}}}
+{{{#!td
+ 9x10
+}}}
+{{{#!td
+ 36h
+}}}
+{{{#!td
+ !MakecycleInput 700s [[BR]]
+ Date 8500s [[BR]]
+ !PostProcessing 3000s [[BR]]
+
+}}}
+{{{#!td
+ !MakecycleInput 20SBU [[BR]]
+ Date 2700SBU [[BR]]
+ !PostProcessing 5SBU [[BR]]
+}}}
+{{{#!td
+ 37h1 (trunk)
+}}}
+{{{#!td
+ N/A
+}}}
+
+{{{#!td
+ DENMARK
+}}}
+{{{#!td
+ c1a
+}}}
+{{{#!td
+ AROME_3DVAR
+}}}
+{{{#!td
+ 9x10
+}}}
+{{{#!td
+ 24h
+}}}
+{{{#!td
+ !MakecycleInput 400s [[BR]]
+ Date 4300s [[BR]]
+ !PostProcessing 1200s [[BR]]
+}}}
+{{{#!td
+ !MakecycleInput 7SBU [[BR]]
+ Date 1400SBU [[BR]]
+ !PostProcessing 3SBU [[BR]]
+}}}
+{{{#!td
+ 37h1 (trunk)
+}}}
+{{{#!td
+ N/A
+}}}
+
+{{{#!td
+ DKA 600x899x65
+}}}
+{{{#!td
+ c1a
+}}}
+{{{#!td
+ AROME_3DVAR
+}}}
+{{{#!td
+ 10x18
+}}}
+{{{#!td
+ 36h
+}}}
+{{{#!td
+ !MakecycleInput ~43m [[BR]]
+ Date 11238s (~3h10m): SurAna 600s 3DVAR 134s FCST 10281s [[BR]]
+ !PostProcessing 2800s [[BR]]
+}}}
+{{{#!td
+ !MakecycleInput ~10 SBU [[BR]]
+ Date ~7000 SBU [[BR]]
+ !PostProcessing 3 SBU [[BR]]
+}}}
+{{{#!td
+ 37h1 (trunk) Sept 2012
+}}}
+{{{#!td
+ N/A
+}}}
+
+{{{#!td
+ DKA 600x899x65
+}}}
+{{{#!td
+ c1a
+}}}
+{{{#!td
+ AROME_blending
+}}}
+{{{#!td
+ 16x16, 4 nodes
+}}}
+{{{#!td
+ 36h
+}}}
+{{{#!td
+ !MakecycleInput ~43m [[BR]]
+ Date 9020s: SurAna 660s FCST 8223s [[BR]]
+ !PostProcessing 2800s [[BR]]
+}}}
+{{{#!td
+ !MakecycleInput ~10 SBU [[BR]]
+ Date ~5460 SBU [[BR]]
+ !PostProcessing 3 SBU [[BR]]
+}}}
+{{{#!td
+ 37h1.1.bugfix Sept 2012
+}}}
+{{{#!td
+ N/A
+}}}
+
+
+ * Forecast
+|| '''Domain''' || '''Platform''' || '''Components''' || '''Nr of nodes, total PE''' || '''Wall clock time (per step, I/O step, total )''' || '''SBU cost''' || '''Version''' ||
+|| DENMARK[[FootNote(384x400x65)]] || c1a || 24h AROME  || 2, 90 || 1.2s, 2.0s, ~3700 s || ~1290 || 37h1alfa ||
+|| DENMARK[[FootNote(384x400x65)]] || c1a || 36h AROME  || 2, 90 || 1.2s, 2.9s, ~4900 s || ~1630 || 37h1beta1||
+|| DENMARK || c1a || 24h AROME  || 4, 10x18 || 0.65s, 1.5s, ~2200 s || ~1460 || 37h1beta ||
+|| DENMARK || c1a || 24h AROME, edmfm || 2, 9x10 || 1.2s, n/a, ~4000 s || ~1340 || 37h1beta1 ||
+|| IBERIA_2.5[[FootNote(576x480x65)]] || c1a || 30h AROME, edkf || 2, 9x10 || 2.3s, 5.2s, ~9500 s || ~3200 || 37h1beta1 ||
+|| IBERIA_2.5[[FootNote(576x480x65)]] || c1a || 24h AROME, edmfm || 2, 9x10 || 2.4s, 5.3s, ~9600 s || ~3200 || 37h1beta1 ||
+|| IBERIA_2.5[[FootNote(576x480x65)]] || c1a || 30h AROME, edkf || 2 (128) || 1.6s, 3.7s, ~6580 s || ~2160 || 37h1beta2 ||
+|| IBERIA_2.5[[FootNote(576x480x65)]] || c1a || 30h AROME, edmfm || 2 (128) || 1.7s, 3.8s, ~6800 s || ~2250 || 37h1beta2 ||
+|| IRELAND25[[FootNote(540x500x65)]] || c1a || 30h AROME, edkf || 2, 9x10 || 2.2s, 5.0s, ~7120 s || ~2370 || 37h1beta1 ||
+|| IRELAND25[[FootNote(540x500x65)]] || c1a || 24h AROME, edkf || 2, 9x10 || 2.5s, 3.7s, ~8050 s || ~2700 || 36h1.4bf1 ||
+|| SCANDINAVIA_5.5 || c1a || 36h ALARO || 2, 90 || 3.3s, n/a, ~7300s || ~2430 || 36h1.3 ||
+|| SCANDINAVIA_5.5[[FootNote(540x600x60)]] || c1a || 36h ALARO || 2, 90 || 3.0s, 12.0s, ~7100s || ~2340 || 37h1 ||
+|| DENMARK || c1a || 24h AROME || 2, 9x10 || 1.2s, n/a, ~4000 s || ~1320 || 36h1.3 ||
+|| XXL[[FootNote(1600x1600x60, 2km)]] || Cray XT5 || 3h AROME || 120 node*12, mpi || 5.9s, 111, ~2082 s || - || 37h1.1 ||
+|| XXL || Cray XT5 || 3h AROME || 96 node*12, mpi || 4.9s, 72, ~1976 s || - || 37h1.1 ||
+|| XL[[FootNote(1200x1200x65)]] || Cray XT5 || 6h AROME || 96 node*12, mpi || 3.4s, 62, ~1867 s || - || 37h1.1 ||
+|| XL || Cray XT5 || 6h AROME || 48 node*12, mpi || 6.9s, 82, ~3224 s || - || 37h1.1 ||
+|| L[[FootNote(!MetCoop2)]] || Cray XT5 || 3h AROME || 96 node*12, mpi || 1.6s, 34, ~488s || - || 37h1.1 ||
+|| L || Cray XT5 || 3h AROME || 120 node*12, mpi || 1.2s, 36, ~440s || - || 37h1.1 ||
+|| DKA[[FootNote(800x600x65)]] || Cray XT5 || 3h AROME || 120 node*12, mpi || 1s, 25, ~335 s || - || 37h1.1 ||
+|| DKA || Cray XT5 || 6h AROME || 96 node*12, mpi || 1.2s, 25, ~720 s || - || 37h1.1 ||
+|| DKA || Cray XT5 || 6h AROME || 48 node*12, mpi || 2.5s, 22, ~1080 s || - || 37h1.1 ||
+
+
+ [[FootNote]]
+
+== Acknowledgements ==
+
+37h1-system is the result of collective development and implementation work of HIRLAM-B programme under the cooperation context of HARMONIE, with major scientific and technical contribution from partners in ECMWF, Meteo France and members of ALADIN consortia. We thank colleagues at our partner institutes for all the valuable contribution and assistance during the implementation of CY37T1.
+
+Toon Moene, KNMI, is the responding system manager for 37h1-code series. Bjarne Andersen, Ulf Andrae, Trygve Aspelien, Lisa Bengtsson, Javier Calvo, Mats Dahlbom, Per Dahlgren, Carl Fortelius, Nils Gustafsson, Estrella Guierrez, Mariken Holmleid, Karl-Ivar Ivarsson, Rimvydas Jasinskas, Martynas Kauzlaukas, Magnus Lindskog, Andres Luhamaa, Sami Niemela, Enda O'Brien, Roger Randriamampianina, Wim De Rooy, Sander Tijm, Sami Saarinen, Niko Sokka, Ole Vignes, Villaume Sébastien, Eoin Whelan and Xiaohua Yang contributed in different ways through development, evaluation and testing.
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]''

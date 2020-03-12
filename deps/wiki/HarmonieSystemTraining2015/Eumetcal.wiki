@@ -1,0 +1,14 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Instructions for Eumetcal webconferencing''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Registration ==
+All the lectures will be broadcasted online via the Eumetcal webconferencing tool Saba. To attend a lecture online please register by clicking the link “Follow online” in the [wiki:../Programme programme page]. You will then be redirected to a new page and required to insert your full name and email. After clicking next your registration will be confirmed and you’ll receive also a confirmation message to your mailbox. The confirmation message contains the link to access the online lecture and the “calendar” file to import the event to your electronic calendar. Always chose the option “Attend in browser”.
+
+== System check and troubleshooting ==
+Before you access the online lecture make sure your computer is setup correctly for the event run by visiting System Check (http://mt204.sabameeting.com/main/Customers/fmi/Install/SystemCheck.jsp). For troubleshooting you will find additional information at https://sites.google.com/site/sabafaq/
+
+== Linux users ==
+We anticipate that access from linux environment does not necessarily succeed. In some cases running a virtual Windows environment might help. 

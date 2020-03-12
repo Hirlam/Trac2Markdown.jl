@@ -1,0 +1,193 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= '''Build and Run HARMONIE Trunk version on ECMWF HPCE Platform''' =
+[[Center(end)]]
+
+This instruction assumes use of trunk version of the HARMONIE system starting from cycle 32. Two different builds are covered here, the first includes build of a HARMONIE master pack, which is to be built by user self. With HARMONIE mast pack built, users can easily build his/her own local/target pack. In this scenario, since the complete source of the HARMONIE system is available on ECMWF HPCE, there is no involvment of Subversion revision control, hence only HPCE platform is used. The second build scenario makes use of pre-compiled HIRALD main system objects on /hpce/ms_perm/hirald/pack, which is maintained by staffs from Meteo France for each exported IFS cycle (usually with tag in form of cycle 3xtn). Since the source under /hpce/ms_perm/hirald/pack is not necessarily the same as available in HARMONIE repository, syncronisation is needed, thus the build process involves use of a second platform, ECGATE (in which Subversion client exists). In both of the above two procedures, the compilation utility gmkpack is used.
+
+It is anticipated that these scenarios will be simplified and harmonised when HARMONIE miniSMS script system is introduced. 
+== Build HARMONIE System Using HARMONIE Main Pack ==
+The procedure here assumes exclusive use of HARMONIE source during the build. It involves build of a main pack by user self. Optionally, a target/local pack can be built as second step to allow minor source code changes for individual experiment. For tagged HARMONIE release starting with HARMONIE 32h2, the build of master pack is unnecessary because a reference master pack is installed on /ms_perm/hirlam/harmonie/pack. For trunk versions, it is necessary for users to build their own main pack, unless there exists a MF-hirald master pack which does not differe from the source in HARMONIE trunk, see the information about build using hirald main pack. 
+=== Build of HARMONIE Main Pack ===
+First set environment variables for a main pack. Define e.g. in your startup file ie. {{{$HOME/.user_profile}}} on HPCE
+{{{
+ export ROOTPACK=$TEMP/HARMONIE/rootpack
+ export HOMEPACK=$ROOTPACK
+ export HOMEBIN=$TEMP/HARMONIE/pack
+ export GMKROOT=/ms_perm/hirlam/harmonie/pack/util/gmkpack
+ export GMKFILE=IBMP690.HPCE
+ export GMKTMP=$TEMP/gmktmp
+ export PATH=$PATH:$GMKROOT/util
+ export MANPATH=$MANPATH:$GMKROOT/man
+}}}
+Remember to source this file: {{{. $HOME/.user_profile}}} , or alternatively log out from HPCE and log in again.
+Note that a complete main pack (sources, libraries and binaries) needs about 1 GB hard disk space. Usually you don't have sufficient disk space in your home directory on HPCE. Thus you are advised to store the main pack in temporary storage. This is reflected in the above environment variable settings.
+ 1. create a main pack in order to build the executable AROMODB. The following command produce a directory 20071005trunk_main.01.XLF91.x
+{{{
+  cd $HOMEPACK
+  gmkpack -r 20071005trunk -a -p aromodb   
+}}}
+ 1. get the HARMONIE source code ==
+{{{
+  cd $HOMEPACK/20071005trunk_main.01.XLF91.x
+  cd src/local
+  cp -r /ms_perm/hirlam/harmonie_release/trunk/src/* .
+}}}
+ 1. This is then followed by the last step to build libraries and executables
+{{{
+  cd $HOMEPACK/20071005trunk_main.01.XLF91.x
+  vi ics_aromodb # export INTFB_PROJLIST="ald arp"
+}}}
+ 1. To speed up compilation time, the batch header of the script ''ics_aromodb'' may be modified to use multiple PE's
+{{{
+ # @ node             = 1
+ # @ resources        = ConsumableCPUs(1) ConsumableMemory(1024 MB)
+ # @ wall_clock_limit = 04:00:00
+ # @ output           = aromodb.$(jobid)
+ # @ error            = aromodb.$(jobid)
+ # @ job_type         = parallel
+ # @ input            = /dev/null
+ # @ class            = np
+ # @ total_tasks      = 16
+ # @ network.MPI      = css0,,us
+ # @ notification     = never
+ # @ queue
+}}}
+ 1. Submit batch job for compilation. This will take around 2 to 3 hours
+{{{
+  llsubmit ics_aromodb
+}}}
+=== Optional Build of Local HARMONIE Target Pack ===
+ 1. Set environment variables for the target pack. Define e.g. in your startup file {{{$HOME/.user_profile}}} on HPCE and source it afterwards, or alternatively log out from HPCE and log in again.
+{{{
+ export ROOTPACK=$TEMP/HARMONIE/rootpack
+ export HOMEPACK=$HOME/HARMONIE/pack
+ export HOMEBIN=$TEMP/HARMONIE
+ export GMKROOT=/ms_perm/hirlam/harmonie/pack/util/gmkpack
+ export GMKFILE=IBMP690.HPCE
+ export GMKTMP=$TEMP/gmktmp
+ export PATH=$PATH:$GMKROOT/util
+ export MANPATH=$MANPATH:$GMKROOT/man
+}}}
+ 1. create a target pack in order to build the AROME executable: AROMODB. The following command produce a directory $HOMEPACK/$your_exp
+{{{
+  cd $HOMEPACK
+  gmkpack -r 20071005trunk -u $target_pack_dir -p aromodb      # e.g., $target_pack_dir=trunk1005
+}}}
+ 1. get the local HARMONIE source code update ==
+{{{
+  cd $HOMEPACK/$target_pack_dir
+  cd src/local; cp -r $local_updates_of_HARMONIE_source_of_your_own .   # port local source code updates
+}}}
+ 1. This is then followed by the step to build libraries and executables, which typically takes a couple of minutes in case no major local code revision is done 
+{{{
+  cd $HOMEPACK/$target_pack_dir
+  llsubmit ics_aromodb
+}}}
+ 1. The above compilation step will typically take only a few minutes and it produces a main executible AROMODB in directory bin. 
+== Build Target Pack Using HIRALD Main Pack ==
+The procedure here assumes use of HIRALD main pack. It involves process of syncronization of HARMONIE update with that of ARPEGE/IFS cycle released in Toulouse. Make sure you belong to the hirald group at ECMWF platform. Write to Claude Fisher at Meteo France (for ALADIN users) and Xiaohua Yang (for HIRLAM users) requesting it if you do not.
+ 1. Add the following to your [[Color(red, .user_profile )]] on [[Color(red, HPCE )]] to be able to run "gmkpack", which is the standard ALADIN compilation tool. If .user_profile does not exist, create one under $HOME/ [ Note that this is not only necessary to run "gmkpack" (which is done interactively), but also to make these environment variables known to jobs llsubmitted later on. ]
+{{{
+export GMKROOT=/ms_perm/hirald/tools/gmkpack
+export ROOTPACK=/ms_perm/hirald/pack
+export HOMEPACK=$HOME/HARMONIE/pack
+export HOMEBIN=$TEMP/HARMONIE
+export GMKFILE=IBMP690.HPCE
+export GMKTMP=$TEMP/gmktmp
+export PATH=$PATH:$GMKROOT/util
+export MANPATH=$MANPATH:$GMKROOT/man
+}}}
+ 1. Create directory $HOMEPACK as defined above. Under [[Color(red, Korn-Shell)]], create a new experiment $target_pack_dir for ALADIN/AROME with gmkpack. This will create a new directory $HOMEPACK/pack/$target_pack_dir with a file ics_aromodb which is your makefile. A directory structure similar to the reference installation (in $ROOTPACK) will also be created, with subdirectories bin, lib, src, sys. In particular, the directory $HOMEPACK/$target_pack_dir/src/local/ is where users shall put the modified codes
+{{{
+gmkpack -r 32t3 -u $target_pack_dir -p aromodb
+}}}
+ 1. Syncronising local source code with that of standard ARPEGE/IFS cycle as featured in the master pack in the /ms_perm/hirald. eg.,
+{{{
+ cd $HOMEPACK/$target_pack_dir/src/local
+ cp -r $local_updates_of_HARMONIE_source_of_your_own .   # port local source code updates
+}}}
+ 1. Compilation 
+  * submit batch job for compilation of main program
+{{{
+llsubmit ics_aromodb
+}}}
+
+== Perform Experiment Using HARMONIE Scripts ==
+
+To perform an experiment you must have created a target pack named {{{$target_pack_dir}}} and make sure that the ''scr'' and ''nam'' directories are in place
+ 1. build other utilities, including those needed for regular HARMONIE monitoring and verification
+{{{
+  cd $HOMEPACK/$target_pack_dir
+  mkdir util; cp -r /ms_perm/hirlam/harmonie_release/32h2/util/gl util
+  cd util/gl; ./gmake
+}}}
+ 1. link HARMONIE utilities to $HOMEBIN directory
+{{{
+  cd $HOMEBIN
+  ln -sf $HOMEPACK/$target_pack_dir/util/gl/ibmecmwf/bin/* .
+}}}
+
+=== Configure experiment using HARMONIE scripts ===
+After having created a target pack under $HOMEPACK/$target_pack_dir, HARMONIE experiment can be started in directory $HOMEPACK/$exp_dir. Note that $expdir here can be the same as $target_pack_dir or different.
+ 1. copy the necessary scripts and namelists
+{{{
+ cd $HOMEPACK/$exp_dir
+ cp -r /ms_perm/hirlam/harmonie_release/32h2/scr .
+ cp -r /ms_perm/hirlam/harmonie_release/32h2/nam .
+}}}
+ 1. make local modifications on scripts. The reference scripts specified experiment date in script Start_harmonie for shell variables {{{STARTDTG}}} and {{{ENDDTG}}}. In the configuration script Env_expdesc, it assumes the run to be for SCANDINAVIA area at 11 km resolution taking boundaries from the reference HIRLAM runs at ECMWF, RCRa. The run is in hydrostatic mode, using ALADIN physics package. It is likely that you need to do at least minimum modifications for your purpose, such as 
+  * Edit Change_exp to make sure the hard-coding for $exp_dir is updated.
+  * Env_expdesc. Most likely you need to edit the script to choose the right configuration for your experiment, such as domain, physics, timestepping etc. If your $exp_dir is not same as the $target_pack_dir, you need to point BINDIR to $target_pack_dir
+  * Start_harmonie. Choose the experiment date etc.
+  * Run_harmonie. Choose suitable nr of node/tark_per_node/memory etc.
+ 1. Launch the experiment
+{{{
+ $ ./Start_harmonie
+}}}
+ 1. When the experiment has terminated successfully you can find the results in your target packs temporary storage and in your storage on ''ecfs''.
+{{{
+ $ ls $TEMP/HARMONIE/$exp_dir/wrk/<yyyymmddhhii>
+ $ ls $TEMP/HARMONIE/$exp_dir/archive/<yyyymmddhhii>
+ $ ls $TEMP/HARMONIE/$exp_dir/archive/extract
+ $ els ec:HARMONIE/$exp_dir/<yyyymmddhhii>
+}}}
+=== Make an ALADIN forecast coupled to HIRLAM RCR ===
+The following shell variables should be set in {{{Env_expdesc}}}:
+{{{
+ EXP=<exp_dir>
+ BDLIB=RCRa
+ TSTEP=300
+ FLAG=ald_h
+ HOST_MODEL=hir
+ TRGT_MODEL=ald
+ DOMAIN=<your_aladin_11km_domain>
+}}}
+
+=== Make an AROME forecast coupled to coarse resolution ALADIN run ===
+
+ * The following shell variables should be set in {{{Env_expdesc}}}:
+{{{
+ EXP=<your_exp>
+ BDLIB=<name_of_existing_11km_experiment>
+ TSTEP=60
+ FLAG=arome
+ HOST_MODEL=ald
+ TRGT_MODEL=aro
+ DOMAIN=<your_arome_2.5km_domain>
+}}}
+ * Note that you are likely to need editing of Run_harmonie script to choose appropriate resource request such as number of node, task per node and memory limit etc.
+
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

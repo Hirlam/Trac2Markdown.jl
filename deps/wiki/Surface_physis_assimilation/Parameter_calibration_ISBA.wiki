@@ -1,0 +1,35 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Parameter calibration of ISBA''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Background ==
+
+John de Vries gave a [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/Surface201705/ISBA_calibration.pdf presentation about parameter calibration of ISBA] at the [https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Surface201705 HIRLAM Surface Working Week, May, 2017].
+
+The motivation for the methodology development is: Currently, given a new release of a HARMONIE-AROME cycle there are still a number of parameters in SURFEX which, if they are tuned, may give yet a bit better performance of a certain setup (domain). 
+
+The methodology consists of two steps:
+ * 1D offline simulations with SURFEX using forcing from tower observations will be used to identify the most sensitive parameters.
+ * 2D simulations with SURFEX using forcing from a HARMONIE-AROME simulation and use some validation data set for optimisation. A mentioned validation data set is [https://landsaf.ipma.pt/algorithms.jsp?seltab=5&starttab=5 LSA-SAF ET], i.e. a satellite/model based evapotranspiration data set. [https://landsaf.ipma.pt/GetDocument.do?id=287 It is documented in the Algorithm Theoretical Basis Document (ATBD)].
+
+
+The definition of a parameter in this context: A parameter is used in a specific process parametrisation where the author of the parametrisation/subroutine has provided access to the parameter via namelist setting. A parameter IS NOT physiography like LAI, clay or sand. A parameter IS NOT a value hard coded by the code author in some subroutine.
+
+A parameter can be vegetation type dependent, like RSMIN. In such a case the value of each vegetation type will not be considered but only the aggregated value for each grid box.
+
+== Parameters ==
+
+Many vegetation dependent parameters are found in [https://hirlam.org/trac/browser/trunk/harmonie/src/surfex/SURFEX/ini_data_param.F90 ini_data_param.F90]
+
+The considered parameters are:
+
+||=Parameter        =||=Description                             =||=Vegetation type dependent   =||
+|| PRSMIN            || Minimum stomatal resistance  (s/m)       || Yes                          ||
+
+
+
+

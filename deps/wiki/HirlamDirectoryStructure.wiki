@@ -1,0 +1,98 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Hirlam Source Code''' =
+[[Center(end)]]
+
+== HIRLAM Source Library Structure ==
+
+The main source of HIRLAM system consists of source code directories and scripts
+ * Makefile
+ * scripts
+   || grads_scripts || || || ||
+   || scripts       || || || ||
+ * source code
+ || Library || Short Description || Calling libraries || Dependency ||
+ ||  alsl ||  ||  ||  ||
+ ||  bfrx || || || ||
+ ||  bufr || || || ||
+ ||  cmastat || || || ||
+ ||  cmatoobs || || || ||
+ ||  common || || || ||
+ ||  config || || || ||
+ ||  config-sh || || || ||
+ ||  data  || || || ||
+ ||  gcod ||Old fork of emoslib from ECMWF + HIRLAM extensions for GRIB enc/dec ||port, grw1, tsfs || none||
+ ||  grdy || Grid point dynamics || mainsrc || phys, mpp, prpo, util, port, grw1 ||
+ ||  grw1 ||   Grib interface HIRLAM/emoslib || grdy, prpo || grdy, port ||
+ ||  hdfg || HDF utility library and climate generation code || || HDF4 ||
+ ||  hitmerge7 || || || ||
+ ||  hlbufr || || || ||
+ ||  hlcma || || || ||
+ ||  hlcmaio || || || ||
+ ||  hlhelp || || || ||
+ ||  hljb || || || ||
+ ||  hlmemory || || || ||
+ ||  hlvar || || || ||
+ ||  ifs || || || ||
+ ||  ifsaux || || || ||
+ ||  include || || || ||
+ ||  intp || || || ||
+ ||  invcalc || || || ||
+ ||  libadvar || || || ||
+ ||  libgen5 || || || ||
+ ||  librt7 || || || || 
+ || librt8 || || || ||
+ ||  mainsrc || || || ||
+ ||  Makefile || || || ||
+ ||  maof || || || ||
+ ||  mfphys || || || ||
+ ||  modules || || || ||
+ ||  obop || || || ||
+ || obsalloc || || || ||
+ ||  obscompress || || || ||
+ ||  obsort || || || ||
+ ||  obsproc || || || ||
+ ||  obssupport || || || ||
+ ||  phys || Routines pertaining to physical parametrization || grdy || util ||
+ ||  PHYS_AD || || || ||
+ ||  port || Asimof routines and some portability routines || grdy, grw1, tsfs || gcod || 
+ ||  prepobs || || || ||
+ ||  prpo || Routines for post-processing model level data || grdy || vari, tsfs, phys, grw1, util || 
+ ||  psplot || || || ||
+ ||  qdp || || || ||
+ ||  rtmmisc || || || || 
+ ||  scripts || || || ||
+ ||  scrobs || || || ||
+ ||  simobs || || || ||
+ ||  span || || || ||
+ ||  spdy  || || || ||
+ ||  stat || || || ||
+ ||  statis || || || ||
+ ||  strfun  || || || ||
+ ||  strgen4 || || || ||
+ ||  tools || || || ||
+ ||  tsfs ||  Routines to construct and manipulate time series files || prpo || port ||
+ ||  util ||  Misc utilities || grdy || none ||
+ ||  vari || Various coordinate transformations || prpo || none || 
+ ||  verification || || || ||
+ ||  vrfy || || || ||
+
+== Library Dependencies ==
+== Source codes/subroutines under each library ==
+== Scripts ==
+== Climate Data Base ==
+== References ==
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

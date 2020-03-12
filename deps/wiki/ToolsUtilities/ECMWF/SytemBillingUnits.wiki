@@ -1,0 +1,13 @@
+= ECMWF System Billing Unit tools =
+`[`last modified: [[LastModified]]`]`
+
+[[PageOutline(2-3, Contents, inline)]]
+
+== Tools ==
+
+=== '''`hlsbu`''' -- ECMWF system billing units used in a HIRLAM experiment ===
+
+''hlsbu'' scans the log files of a HIRLAM experiment (html logs) and determines the sum
+of the SBUs used by the experiment. Intermediate sums for each log file are listed, too. Type [[Color(green, hlsbu -help)]] for the manual page.
+
+[attachment:hlsbu download] latest version

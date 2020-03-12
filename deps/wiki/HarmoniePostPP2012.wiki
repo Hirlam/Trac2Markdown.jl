@@ -1,0 +1,107 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE Post-Processing Working Meeting''' =
+''KNMI, 31 Jan - 1 Feb 2012''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Purpose ==
+
+Discuss and update on default and optional post-processing parameters derived from HARMONIE system with the aim to enhance direct benefit from a nonhydrostatic mesoscale forecast system.
+
+== Participation, period and location ==
+
+The working meeting starts at 0900 on Tuesday morning, Jan 31, at KNMI, finishes at 1600 on Wednesday afternoon, 1 Feb 2012 
+
+Participates are,
+ * FMI:     Laura Rontu
+ * DMI:     Xiaohua Yang
+ * KNMI:    Sander Tijm 
+ * !MetEireann: Eoin Whelan
+ * SMHI:    Ulf Andrae 
+
+Jan Barkmeij (KNMI) and Kristian P. Nielsen (DMI) participated part of the discussions. Kristian took part some of the work as listed below.
+
+== Issues ==
+ * Inventory, discussion about selection of tools, and work about available and to-be-developed post-processing parameters for CY37
+  * ''for the near future we have to live with use of both FULLPOS and GL. The new development may likely to get in first via GL due to easier implementation but it shall be a target to ultimately contribute it to upstrream''
+   * surface wind: maximum wind gust between current and previous output time step
+     * ''in the system''
+   * surface temperature: T2 max, T2 min
+     * ''already in the system''
+   * geopotential height
+     * ''already in the system''
+   * cloud/radiation/precipitation/aviation parameters
+     * precipitation type
+       * ''Sander coded HIRLAM-equivalent using GRIB output. This may be easily ported into gl.'' 
+     *  CAPE, CIN, LCL
+       * ''CAPE and CIN are available via fullpos''
+       * ''LCL not output quantity but can be added either via [source:trunk/harmonie/src/arp/fullpos/fpcincape.F90 fpcincape.F90] related to CAPE/CIN or diagnosed using Td, T.''
+     * freezing level
+       * ''fullpos'', 
+     * visibility
+       * ''Sander has a modified version from HIRLAM. SMHI has another version''
+     * Fog
+       * ''Karl-Ivar Ivarsson has promised to look on how to implement fog within gl'' 
+     * Richardson number and eddy dissipation rate, clear air turbulence index
+       * ''Ask for experimental version of EDR from Yann Seitty. (Sander)''.
+       * [http://www.dmi.dk/dmi/sr12-01.pdf CAT developed by Nils Wothman and Claus Petersen] could be implemented in gl as a start. 
+     * In gl: cloud base (235); cloud top (236) heights ; cloud mask (77)
+       * ''Make it more flexible dependent on usage''
+     * Radiation, ''check by Kristian''
+       * global solar radiation/(Surface down solar flux - "surfrayt diff de" ?)
+       * downward diffuse shortwave radiation, and/or Surface parallel solar flux* - "surfrayt dir sur"
+       * Clear sky shortwave radiative flux - "surfrayt sol cl"
+     * cloud water effective radius, cloud ice particle effective size
+       * ''Investigated by Kristian''
+     * Integrated column values of rain, snow and graupel (graupel for lightning, hail forecasting), all added = VIL
+       * ''Ask Yann for code ?''
+       * graupel flux at T=-15C (for lightning forecasts), ''available in fullpos''
+   * pseudo parameters (output in the current FMI suite)
+     * radar reflectivity via fullpos [[FootNote(Sami N. reports to need a change of source in arp/adiab/gpprs0d.F90 in order to get the values in dBZ-units. Further Sami suggests extension of relectivity limit from 0 dBZ to -20 dBZ to allow snow fall)]] Implemented under a switch by Ulf
+     * pseudo cloud via GL: IR brightness temperature (131 [[FootNote(This parameter can already be gotten from the top of atmosphere brightness temperature, parameter ??)]]; WV brightenss temperature (132); WV brightenss temperature with cloud correction (133); cloud water reflectivity (134) also available in fullpos, investigated by Xiaohua.
+   * Boundary layer height, ''available in fullpos. Namelist is updated.''
+     * At the moment PHBL is limited by [XMINLM,XMAXLM] or [500.,3000.] meters which is a bit unphysical. Karl-Ivar Ivarsson is looking into this.
+   * precipitation and dew/rime intercepted by the foliage[[FootNote(In HIRLAM, isbah4 contains the parameter ZWL(PWL). By a quick look it seems as if the parameter is modified or used in acveg, surflx_forest, acdrov, surtend_land and surtend_forest, but it is not a "write-out" parameter like for example T2m(jtyp). It is not a write-out in postpp, but it is a write-out parameter in the history file, parameter 192, 105, 901-905: on canopy water.)]]. (rain and dew on low vegetation are the main concerns for agriculture people). Available in the standard output file of SURFEX as WR.
+ * Online option for post-processing using fullpos (a-synchronous IO?)
+   * Option for output of only near surface parameters like 10-m wind, 2-m temperature, cloud cover, wind gust, precipitation intensity etc., so not whole model state has to be written away, enabling a higher frequency of model output.
+     * ''some test may be tried this week following example of Meteo France and David at SMHI with climate branch (Xiaohua)''
+ * Consistence of Grib parameters in HIRLAM and HARMONIE: definition and convention ''(Eoin and Ulf)'', see #83.
+   * Output convention for surface fluxes from SURFEX. At the moment all fluxes written from SURFEX are instantaneous. With the flag LSURF_BUDGETC=T _some_ fluxes are written as cumulated values. Which of them should the reference system produce?
+   * Correct encoding of Max/Min values for e.g. temperature.
+   * Correct encoding of special levels like TOA or cloud base/top.
+   * Make sure we follow WMO GRIB convention where applicable.
+   * Encode generating process/centre/subcentre.
+ * Enabling the handling of multiple namelists by gl in one single call to gl, so model state has to be read in only once. This increases the speed of postprocessing when multiple files are written out on multiple grids. 
+   * ''This is doanble but with lower priority.''. Test version sent to Sander...
+ * Update documentation
+   * Output list for [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/37h1 37h1] similar to the hirlam one.
+   * Document the available requested postpp variables.
+ * Other relevant issues 
+   * tools for manipulating model data
+     * extraction of model data for selected geographic location (see GL documentation in the link)
+     * how to cat contents from two FA files (and with different geometry) and different variables. R can possibly do it, xtool/gl can possibly do it. Try:
+{{{
+  xtool -f -f1 ICMSHHARM+0006 -f2 ICMSHHARM+0003 -op SUM -o test.fa -of FA
+}}}
+   * Wishes and constraints for EPS usage. Input from the EPS group.
+     * Should the R postprocessing package be a part of harmonie?
+   * Output of arbitrary 3D fields from e.g. physics. 
+     * Could be handled by a GFLMISC field where the FA names are controlled by a namelist. Something similar should be done for 2D fields ( yet unclear how ).
+
+ [[FootNote]]
+
+== Reference ==
+ * [wiki:HarmonieSystemDocumentation/PostPP/Fullpos Harmonie Postprocessing with Fullpos]
+ * [wiki:HarmonieSystemDocumentation/PostPP/gl Harmonie Postprocessing with Gl] 
+ * [wiki:HarmonieSystemDocumentation/Forecast/Outputlist/37h1 Harmonie 37h1 output parameter table]
+ * [wiki:HHoutputlist Co-listing of HIRLAM-7.3 and Harmonie gribparameter list]
+ * [wiki:ppwrk/har_outputlist_discu Working version of the Harmonie output parameter table, original shown above]
+ * [wiki:ppwrk/harhir_outputlist_snow  Comparison of Harmonie Hirlam output for snow, draft]
+ * [wiki:ppwrk/harhir_outputlist_radia Comparison of Harmonie Hirlam output for radiation, draft]
+ * [wiki:HirlamSystemDocumentation/Forecast/Outputlist74 HIRLAM-7.4 output list from the proper location]
+ * [https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/listegrib_36t1_op1.pdf Meteo-France AROME output list]
+ * [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article157 Latest documentation about FULLPOS]
+ * [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article163 User's guide to add new GFL variables]
+ * [http://netfam.fmi.fi/muscwd11/MUSC_userguide.pdf This preliminary draft for MUSC userguide contains a list of LFA output available within MUSC]

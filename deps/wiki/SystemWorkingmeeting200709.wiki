@@ -1,0 +1,145 @@
+
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-A HARMONIE System Working Week''' =
+'''3 - 7 September 2007, DMI, Copenhagen'''
+[[Center(end)]]
+
+== '''Background and goals''' ==
+
+HIRLAM-A program is tasked to work towards a meso-scale forecast system through a full-code collaboration with ALADIN consortia. The targeted HARMONIE system is to be available for research and operational usage starting 2008. So far a substantial progress has been made in the HIRLAM community to set up a preliminary system repository including simple scripts and documentation to enable daily, real-time runs with 2.5 km resolution AROME model via multi-level coupling between ECMWF-> HIRLAM-> (hydrostatic ALADIN-> ) AROME. Work on porting ALADIN data assimilation is also ongoing. In addition, HIRLAM has been involved in development of HIRLAM-ALADIN multi-model limited area synoptic scale ensemble prediction (GLAMEPS) system.
+
+In the next few years HIRLAM/HARMONIE script system needs to be extended/developed to cover needs in both deterministic and probablistic forecast modes for research as well as operational purposes. Recently, several ideas to explore development/improvement in various system aspects such as revision control tool, integrated compile and run environment, job control and monitoring, as well as replacement of ALADIN file format (FA by GRIB) and make system (gmkpack by generic make) have been proposed. Preliminary discussion on these subjects have been made in the previous system meeting last April with most questions remain open.
+
+The Harmonie system working week has a two-fold mission. It starts with a two-day meeting to review and discuss various aspects of the HARMONIE system matters with the aim to define near-term strategy and work plan on building up HARMONIE system. In the second part of the week, some coding works are initiated.
+
+== '''Participants''' ==
+
+ * ECMWF: Nils Wedi (invited) (Monday-Tuesday)
+ * SMHI: Ulf Andrae (Monday-Thursday), Tomas Wilhelmsson (full week)
+ * MET.NO: Ole Vignes (full week)
+ * KNMI: Gerard Cats (full week), Toon Moene (full week)
+ * INM: Mariano Hortal (full week)
+ * FMI: Sami Niemela (Monday-Wednesday), Niko Sokka (full week)
+ * DMI: Kai Sattler (full week), Bjarne Stig Andersen (full week), Xiaohua (full week)
+
+== '''Review of status and presentation''' ==
+
+The first part of the meeting is devoted to reviews on current HARMONIE system status and discussions on topics of main concerns for this week. Tasks are then formulated based on these discussions, including coding works to be initiated during the week.
+ * [https://hirlam.org/HX/organisation/reports/systemww_200709/XY_harmonie_system_meeting.pdf Xiaohua: introduction and overview on HIRLAM-HARMONIE system]
+ * [https://hirlam.org/HX/organisation/reports/systemww_200709/dmi070903.ppt Bent Hansen Sass: short review about HIRLAM HARMONIE project]
+ * Ulf: [wiki:SystemWorkingmeeting200709/HARMONIE_system_repository_review HARMONIE system/repository review] or [https://hirlam.org/contrib/ulf/aladin/ua_cph.ppt PPT]
+ * Sami/Bjarne/Ulf/Ole/Niko/Toon: [wiki:SystemWorkingmeeting200709/HARMONIE_realtime_suites_review Experiences on real-time HARMONIE suites]
+ * [https://hirlam.org/HX/organisation/reports/systemww_200709/prepIFS2007.ppt Nils: an introduction of ECMWF integrated environment system] and demonstration
+
+== '''Discussion, status and near-term plan''' ==
+ 1. HARMONIE repository
+  * It is an unanimous view that HIRLAM needs to develop and maintain its own HARMONIE repository. As of today a preliminary HARMONIE system structure has been established, as featured in HIRLAM's system repository including trunk, tagged release (cycle 31h1), stable branch (31h1), vendor branches. Thanks to efforts by HIRLAM staffs, a simple script system is now available to performed cycled, forecast-only ALADIN/AROME runs with various coupling. Presently, there are a new main issues need to be addressed:
+   * Harmonie repository update and maintenance scheme needs to be established. Currently the source code in the trunk is still based on cycle 31 whereas IFS preparation for Cycle 33 will soon start. One fact that contributes to the slow pace of our adaptation of IFS/ALADIN cycle is that, at MF, most source code updates happen in branches and update in main repository is done only after phasing, which is very different from the incremental trunk update in HIRLAM. Currently we rely on export tarball which delays the process. In addition, it is also found that Clearcase repository in MF contains more sources such as IFS script which are not included in usual export tarball
+   * A job scheduler, i.e., the Harmonie-counterpart of mini-SMS in HIRLAM-system need to be implemented
+   * There are currently inconsistencies between source, scripts and documentation
+   * Further refinement of the repository/script structure is necessary. e.g.,
+    * Cycle-specific scripts and name-lists shall not be explicitly part of the repository. These are part of source and shall be kept in phase with rest of system
+    * In particular, the subdirectory nam shall eventually be made obsolete. Using Env-variables and scripts to generate cycle/experiment specific name-list and scripts instead.
+  * On procedure of repository update 
+   * It is agreed that system core group has the primary responsibility. To speed up update, we need to import directly MF Clearcase releases to HIRLAM's vendor branch in a more timely manner. Currently Tomas has already acquired access to the MF Clearcase repository and we shall try to broaden such access channel. Direct access to ECMWF Perforce repository, on the other hand, does not seem feasible at the current stage, because it requires Perforce license for individual user
+   * HIRLAM phasers are tasked to make adjustment with HARMONIE scripts (including that of name-lists) for each new cycle; 
+   * We aim to speed up test activities for new cycles on ECMWF platform, preferrably already during phasing. In this context, validation requirement and procedure can be less extensive compared to the current practice for HIRLAM system, due to the fact that tagged ALADIN cycles normally has gone through validation during phasing. Xiaohua will contact ALADIN to explore 
+    * adding ECMWF-HPCE as standard test platform for "Mitraillette"
+    * including test and update of HARMONIE script system as part of phasing tasks (Xiaohua)
+    * expanding export package to include full IFS/ALADIN repository (including ECMWF scr etc.)
+  * On HARMONIE scripts
+   * Hard-coding (cycle-specific) scripts/name-lists shall be replaced Env variables or alike
+   * Consistency check shall be added, starts with simple HIRLAM-style Perl scripts (Checkoption.pl); let it grow with system
+   * Tomas and Ole have both got example scripts from Andrea/Magnus for 3D-VAR. Tomas consider it rather clean. It is suggested to prepare mini-SMS script for DA scenario already now
+  * ACTIONS DURING THE WEEK: 
+   * update vendor branch and trunk source code with cycle 32t2 including bf2 (done, Tomas)
+   * update the latest gmkpack 6.2.3 (done, Tomas)
+   * update relevant HARMONIE documentation (partly done: Xiaohua, Ulf, Toon)
+ 1. Harmonie build 
+  * Performance of [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article79 gmkpack] is reviewed. Significant progress has been seen in recent years. Documentation in HARMONIE system documentation wiki page has been improved recently and developers have found it easier now to build HARMONIE with a procedure based on gmkpack. However, to developers within HIRLAM community that are used to a fairly efficient build for HIRLAM system, building HARMONIE from scratch is still a rather painful experience.
+   * INM work to set up parallel HARMONIE suite has suffered delay due to difficulties with building on Cray X1E platform, but Mariano thought the executible exists now. The main remaining problem might be to find manpower to work further to get the run started. It is suggested that system staff (Toon) can offer on-site support to INM if needed
+   * met.no experience so far has been smooth for build, but initial tests crashed
+   * !MetEireann started working on establishing HARMONIE system and reported working versions on both ECMWF and cluster
+  * There is a general preference to replace gmkpack by a generic make, as is done at ECMWF. It is proposed to try first to implement HIRLAM solution, probably with [http://www.metoffice.gov.uk/research/nwp/external/fcm/ UKMO FCM] as an auxilary tool in the process. Consider using pre-compiled objects as in gmkpack and IFS system. In the future build shall also be included as part of mini-SMS.
+  * ACTIONS THIS WEEK (Tomas and Toon)
+   * build with UKMO FCM: Results so far looks very promising. Toon progressed till the last step with remaining problems on external libraries. Will proceed further and try to solve part of the issues by communicating with ECMWF (ODB) and UKMO (FCM)
+   * build with HIRLAM-alike build (Tomas). Look first at experiences from FCM test and gmkpack 
+   * within the present gmkpack-based framework, on ECMWF platform, consider replacing HIRALD objects by HIRLAM's own
+ 1. Supervision and Monitoring system (SMS) and Command and Display Programme (CDP)
+  * It is agreed to continue with HIRLAM's mini-SMS/mXCDP and look for extension of functionality for HARMONIE
+   * start with FMI's SMS container
+   * contact also MF to learn similar works
+   * consider also EPS scenario
+  * Can mini-SMS and mXCDP be further enhanced?
+   * webserver. Ole contact ECMWF for request on assignment of port. Drop the work if it is unresolvable
+   * SMS container: more general form for HARMONIE is desirable for SMS compatibility. Consider also upstream change
+  * ACTIONS THIS WEEK (Ole, Gerard, Ulf, Sami, Niko, Bjarne, Kai)
+   * A preliminary script structure (scr, sms, msms... ) has been made and a HIRLAM-like miniSMS framework is shaping up. A special branch has been opened for the work with first results committed. The coding work will continue, to adopt scripts for prepare, forecast and postprocess scripts in the near future (Gerard, Ulf, Bjarne + ...)
+ 1. Integrated Build and Run Environment (!PrepHarmonie?)
+  * Prep-IFS demonstration is given by Nils and possibility to adopt prepIFS is discussed. In addition, possibility to adopt Olive/Swapp system is also briefly discussed. The MF system may contain extra features related to ALADIN system, but system support is a concern. As far as latter is concerned, the ECMWF prepIFS system is clearly favoured. While it is still too early to accept or exclude either prepIFS or Olive/SWAPP, it is agreed to consider positively future adoptation of either prepIFS or Olive/Swapp, following a "bottom-up" approach. This means to start with building up components such as build, SMS, consistency check, scripts and archiving structure. System staffs are encouraged to spend efforts to get to know the two systems. On the other hand, it is agreed that HIRLAM shall not spend efforts to invent systems with similar functionalities to prepIFS or Olive/SWAPP. Adopt PrepIFS or Olive/Swapp when manpower allows. Moreover, care must be taken to consider diverged application scenario of HARMONIE system: application in research and operational NWP; operational platform at ECMWF and in national services; NWP users and non-NWP users such as those in universities, climate and air quality modelling etc. 
+ 1. Version control
+  * It is agreed that HIRLAM shall stick to Subversion system. In addition, the system group can consider [http://git.or.cz/ GIT] as a utility to overcome difficulties seen in process of merging.
+ 1. Coupling between HIRLAM-AROME?
+  * Most centers now run HIRLAM-> hydrostatic ALADIN -> AROME coupling. However, a direct HIRLAM-AROME coupling as developed by Ulf,  seems to work fine in KNMI's real-time suit. Ulf cautioned about risk to lose information when coupling HIRLAM (tiled) data to SURFEX. ask Stefan and Patrik to check about (Ulf) ...
+  * Mariano proposes comparison between field conversion using GL and FULLPOS for HIRLAM ->  ALADIN/AROME, although no manpower has been found for this
+ 1. Preparation for cycle 32 (Tomas, Toon, Ulf, Sami, Xiaohua)
+  * Source code for cycle 32t2 including bug fixes has now been imported to vendor branch and merged thereafter to trunk. After successful technical tests on HPCE, a Harmonie 32h will be considered (Toon, Xiaohua, Ulf...)
+  * Earlier, Cycle 32t2 crashes in turbulence routine in AROME and recent bug fixes needs to be imported. Unclear if it solves problem
+  * climate generation. Mariano is in dialogue with Radmila to test difficult case in connection with modified scheme for orographic smoothing. The suggested modification set is tested in the framework of cycle32t2 this week and will be committed to trunk (Mariano, Xiaohua)
+ 1. Issues in running synoptic-scale ALADIN
+  * There is a strong interest/needs in HIRLAM services to evaluate feasibility of replacing synoptic HIRLAM by synoptic ALADIN for their operaitonal suite. Since most services run today a significantly larger model domain than operational ALADIN's (MF included), it is important to enable a realistic model inter-comparison between ALADIN and HIRLAM in synoptic scale. It is assumed that rotated Mercator projection should be applied for such purpose. This has so far not been possible.
+   * GL is not prepared for that option yet; Spanish colleague that worked with the option for GL has left. Ulf will spend some efforts to see if the GL problem can be solved. It is also suggested that FULPOS may be able to handle data from ECMWF forecasts but frame scenario needs to be checked. 
+ 1. data format
+  * It has been a general to replace FA/lfi by GRIB/GRIB2, latter on grid-point space, but so far no manpower has been found. Toon and Ulf will communicate on this to assess feasibility. HIRLAM's own transition to GRIB2 has not been started. Toon is looking at recent GRIB API release version 1.1.
+ 1. Plan of system activities for near-term and for 2008
+  * One major news from the meeting is that Gerard expressed his intention to spend around 3 months on system project. He is welcomed and will thus join system-group from now on, with main activities in the near future for miniSMS and preparation towards prepIFS/Olive.
+  * For 2008, approximate committable manpower on system and application project, (with main emphasis on system aspect), are listed, for those that are present at the meeting
+   * Toon, 8 mm (GRIB, make, parallel system, repository, FA2GRIB)
+   * Tomas, 8 mm (make, system adm, repository)
+   * Kai, 5 mm (EPS scripts for HIRLAM and HARMONIE, repository, applications)
+   * Xiaohua, 8 mm (4 mm on HARMONIE including DA, 4 mm on HIRLAM)
+   * Bjarne S., 5 mm (parallel system, post-processing/DDH package, ...)
+   * Niko, 5 mm? (HIRLAM application)
+   * Ole, 2 mm (HARMONIE, HIRLAM)
+   * Ulf, 3 mm (repository, parallel system, FA2GRIB)
+   * Gerard, 3 mm (HARMONIE script, Prep-IFS)
+   * Sami, 3 mm?
+  * main goal of system project in 2008
+   * a functioning HARMONIE system with comparable functionality as HIRLAM in repository, scripts, utilities, including a functioning DA and possibly also EPS components
+  * HARMONIE system tasks: near term and 2008
+   * development and maintainence of HARMONIE system components (Ole, Gerard, Tomas, Toon, Ulf, Sami, Kai, Xiaohua)
+    * miniSMS with mXCDP, investigation/preparation on prepIFS/Olive (Gerard, Ulf, Bjarne, Ole)
+    * HIRLAM's own build (Toon and Tomas)
+    * DA script: together with DA group (Tomas, Ole and Xiaohua)
+    * EPS script: extend from initial deterministic mode and consider cooperation with ALADIN (Kai)
+    * Test with rotated Mercator projection with hydrostatic and synoptic ALADIN (Ulf)
+   * real time system and monitoring
+    * DMI, SMHI, FMI, KNMI, met.no, INM, !MetIreann (1.5 mm each)
+   * phasing
+    * xiaohua will check with MF about possibility of sending two system staff for the winter phasing (Ole, avail. Nov, Toon, avail. Dec).  Tomas will be reserve candidate
+   * meso-scale verification
+    * scale dependent verification (Lisa, Ulf)
+    * DDH (Bjarne S. and Ulf)
+   * FA2GRIB (Ulf, Toon)
+  * HIRLAM system tasks
+   * reference system: new release, monitoring
+   * RCR and monitoring
+   * system overhaul
+     * implement the earlier proposed work on overhauls about CPP-flag, circular reference, cleaning etc (Tomas, Jacob)
+     * Toon to write a short description about GRIB issues in HIRLAM system in which various options are presented
+   * code optimization etc.
+     * Tomas and Ole are expected to deliver OpenMP updates for hirvda and for forecast model respectively
+   * common verification 
+   * !HeXnet, publication, data portal
+  * meeting plan 2008
+   * it is acceptable to arrange system meeting in connection with ASM as has been done in the recent two years
+   * possibility of using video-conferencing will be considered
+
+== '''Reference materials''' ==
+
+ * [https://hirlam.org/HX/organisation/reports/systemww_200709/18A_swapp_EricSevault.pdf Eric Sevault on MF Olive/SWAPP project]
+ * [https://hirlam.org/HX/organisation/reports/systemww_200709/Olive_UG.pdf Olive user's guide]
+ * [http://www.metoffice.gov.uk/research/nwp/external/fcm/ UKMO FCM]
+ * [http://www.prism.enes.org/PAEs/environments.php PRISM integration and modelling environment]
+ * [http://www.youtube.com/watch?v=4XpnKHJAok8 Linus Torvalds on GIT]

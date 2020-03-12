@@ -1,0 +1,7 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Hirlam Data Portal''' ==
+= '''Monitoring and Intercomparison of Operational and Real time HIRLAM/Harmonie''' =
+[[Center(end)]]
+
+The content of this page has now been moved to the new interface at [wiki:dataportal HIRLAM data portal]

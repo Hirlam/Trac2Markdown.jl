@@ -1,0 +1,40 @@
+= HIRLAM Mailing Lists =
+
+We aim to develop the HIRLAM mailing list facility into a primary form of the internal communication and discussions between the HIRLAM developers. If you are new to [http://www.gnu.org/ GNU] [http://www.list.org/ Mailman], you will find answers to most of you question in the [http://www.list.org/mailman-member/index.html List Member Manual]. Otherwise please contact [mailto:support@hirlam.org support@hirlam.org]
+
+Mailing lists are currently being setup and the following are the first few (not all active):
+
+== announce ==
+ https://hirlam.org/mailman/listinfo/announce/
+
+Announce is a low traffic mailing list for announcements regarding HIRLAM, mostly release informations and important updates. This list is '''read-only'''.  The list archive, which is open to the internal-public, is here
+
+ https://hirlam.org/pipermail/announce/
+
+== support ==
+ https://hirlam.org/mailman/listinfo/support/
+
+Subscribe to this mailing list to participate or follow Q & A concerning the HIRLAM system. The list archive, which is open to the internal-public, is in
+
+ https://hirlam.org/pipermail/support/
+
+== operational ==
+ https://hirlam.org/mailman/listinfo/operational/
+
+Subscribe to this mailing list to participate in discussions on both technical and quality issues concerning operational NWP suites using the Reference HIRLAM or member states implementations. The list archive, which is open to the internal-public, is in
+
+ https://hirlam.org/pipermail/operational/
+
+== dev ==
+ https://hirlam.org/mailman/listinfo/dev/
+
+Subscribe to this mailing list to participate in discussions on various issues concerning the reference HIRLAM systems currently under development. The list archive, which is open to the internal-public, is in
+
+ https://hirlam.org/pipermail/dev/
+
+== commits ==
+ https://hirlam.org/mailman/listinfo/commits/
+
+Commits is a fairly high traffic mailing list for keeping up to date with the HIRLAM Subversion repository. A message is posted on this list for each new commit. The list archive, which is open to the internal-public, is in
+
+ https://hirlam.org/pipermail/commits/

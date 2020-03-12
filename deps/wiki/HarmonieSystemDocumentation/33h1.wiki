@@ -1,0 +1,79 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Harmonie System Documentation: Release 33h1''' =
+[[Center(end)]]
+
+This page collects documentation updated to the release Harmonie 33h1. For documentation of past and later HARMONIE system releases and for those relevent to the current versions, please refer to links in [wiki:HarmonieSystemDocumentation]
+
+----
+
+== '''HARMONIE system''' ==
+ * [wiki:Harmonie_33h1 Harmonie system 33h1], released on June 19, 2008
+ * [wiki:HarmonieSystemDocumentation/33h1/Source Harmonie source code structure]
+ * [wiki:HirlamInventory/HarmonieSystem Real-time HARMONIE system at HIRLAM-services]
+ * [wiki:HarmonieSystemDocumentation/33h1/General/FileFormat HARMONIE data format]
+
+ * [http://www.cnrm.meteo.fr/aladin/partner/docoper/Minutes/minutes_080624_draft.pdf  Unofficial review of IFS/MF system status and near future release plan]
+
+== '''Installation''' ==
+
+ * [wiki:HarmonieSystemDocumentation/33h1/Install/General General requirements]
+ * [wiki:HarmonieSystemDocumentation/33h1/Harmonie-mSMS System Installation and confiuration with HarmonieSystemDocumentation/33h1/Harmonie-mSMS ]
+ * [wiki:HarmonieSystemDocumentation/33h1/Install_HARMONIE_trunk_ECMWF Build and Run HARMONIE Trunk version on ECMWF HPCE Platform For Cycle 32 ]
+ * [wiki:HarmonieSystemDocumentation/33h1/LocalInstall32 Build HARMONIE on an Independent Platform For Post-Cycle 31 Versions]
+ * [wiki:HarmonieSystemDocumentation/33h1/Install_HARMONIE_ECMWF Build HARMONIE at ECMWF Platform For HARMONIE 31h1]
+ * [wiki:HarmonieSystemDocumentation/33h1/CompileHarmonie Build HARMONIE Cycle31h1 in an Independent Platform Using GnuFortran]
+
+== '''HARMONIE Components''' ==
+
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts Mini-SMS system]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/SMS Documentation of the original ECMWF full SMS]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/mSMS_CLI.html mSMS interface: command line and environment]
+  * [https://hirlam.org/UG/HL_Documentation/mSMS/mXCdp mini-XCdp: graphical display] 
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts Harmonie scripts under mini-SMS]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Climategeneration Climate Generation]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Modeldomain Domain and horizontal grid]
+ * [wiki:HarmonieSystemDocumentation/33h1/Configure/VerticalGrid Vertical Grid]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Boundaryfilepreparation Initial and Lateral Boundary Interpolation]
+ * [wiki:HarmonieSystemDocumentation/33h1/UseofObservation Use of observation]
+ * [wiki:HarmonieSystemDocumentation/33h1/DataAssimilation3DVAR Data Assimilation with 3D-VAR]
+   * [wiki:HarmonieSystemDocumentation/33h1/DataAssimilation3DVAR Instruction about derivation of structure function]
+   * [wiki:HarmonieDAWorkshop200805 Presentation and Instructions from Harmonie 3DVAR and CANARI working week 200805]
+ * [wiki:HarmonieSystemDocumentation/33h1/Analysis/SurfaceAnalysis Surface Data Assimilation]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Boundaryfilecreation Initialization, Coupling and Nesting]
+  * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Boundaryfilecreation Hirlam coupled with ALADIN system]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Forecast Forecast]
+  * [wiki:HarmonieSystemDocumentation/33h1/Forecast/Dynamics Dynamics]
+  * [wiki:HarmonieSystemDocumentation/33h1/Forecast/Physics Physical parameterisation]
+ * [wiki:HarmonieSystemDocumentation/33h1/Forecast/Outputlist Harmonie forecast model output]
+ * [wiki:HarmonieSystemDocumentation/33h1/EnsemblePrediction Ensemble Prediction]
+ * [wiki:HarmonieSystemDocumentation/33h1/Scripts#Fullpospostprocessing Postprocessing]
+  * [source:tags/harmonie-33h1/util/monitor/doc Verification]
+  * [wiki:HarmonieSystemDocumentation/33h1/PostPP/Diagnostics Diagnostics]
+  * [wiki:HarmonieSystemDocumentation/33h1/PostPP/Graphics Graphics]
+
+  * [wiki:HarmonieSystemDocumentation/33h1/Evaluation/Mitraillette Mitraillette]
+  * [wiki:HarmonieSystemDocumentation/33h1/Evaluation/HarmonieTestbed Harmonie testbed]
+
+
+]
+== '''HARMONIE Reference materials''' ==
+
+ * [http://www.cnrm.meteo.fr/gmapdoc/spip.php?rubrique1 General ALADIN/Arome documentation link]
+ * [http://www.ecmwf.int/research/ifsdocs/CY31r1/TECHNICAL/IFSPart.pdf The last version of the official IFS documentation]
+ * El Khatib, R., 2003: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article35 Coding standards for ARPEGE/IFS/ALADIN. Internal note, 42pp]
+ * Guidard Vincent and C. Fischer, [wiki:HarmonieDAWorkshop200805/Guidard_3DVAR_theory.ppt ALADIN 3D-Var Theory and Practice]
+ * Kert'esz, S., 2001: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article64 A short overview of ODB]
+ * Kert'esz, S., 2002: Using ODB in ALADIN. Internal note, 21pp, available on "http://www.cnrm.meteo.fr/gmapdoc/" (topics "ODB")
+ * Puech, D., 2006: Documentation technique sur ODB. compilation of internal notes (generally in French) 
+ * R. Roger, [wiki:HarmonieDAWorkshop200805/R_Roger_data_handeling.ppt The data flow in HARMONIE data assimilation ]
+ * Trojakova Alena, [wiki:HarmonieDAWorkshop200805/Trojakova_canari_2.ppt CANARI optimum interpolation with emphasis on technical aspects ]
+ * Yessad K.: Aug 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article23 LIBRARY ARCHITECTURE AND HISTORY OF THE TECHNICAL ASPECTS IN ARPEGE/IFS, ALADIN AND AROME IN THE CYCLE 32T2 OF ARPEGE/IFS]
+ * Yessad, K., 2007: [http://www.cnrm.meteo.fr/gmapdoc/spip.php?article29 Basics about ARPEGE/IFS, ALADIN and AROME in the cycle 32T2 of ARPEGE/IFS]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

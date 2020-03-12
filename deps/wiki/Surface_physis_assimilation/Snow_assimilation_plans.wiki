@@ -1,0 +1,174 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Snow assimilation plans''' =
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+'''This page was first created as 'memory notes' from the snow discussion held at the [https://hirlam.org/trac/wiki/HarmonieWorkingWeek/Surface201604 Surface meeting in Oslo, April 2016].''' People involved in the discussion: Mariken Homleid (Met Norway), Laura Rontu (FMI), Ekaterina Kurzeneva (FMI), Patrick Samuelsson (SMHI), David Gustafsson (SMHI), Bolli Palmason
+
+== Short term plans ==
+
+At FMI a student will be active May-August 2016 to validate our current snow analysis in HARMONIE against SYNOP and satellite data. One job can be to evaluate if the snow fraction as used in SURFEX is working well. The snow fraction formulation used can be found in the [http://www.geosci-model-dev-discuss.net/5/3771/2012/gmdd-5-3771-2012-supplement.pdf SURFEX 7.2 Scientific Documentation] on page 77, Equation 4.4. In HIRLAM newsnow and in RCA model the snow fraction was related to the subgrid ororgraphy. This relationship was inherited from hydrologists at SMHI who correlated observed snow fraction with orography. The formulation used is described in the report [http://www.smhi.se/polopoly_fs/1.89799!/Menu/general/extGroup/attachmentColHold/mainCol1/file/meteorologi_157.pdf 'The surface processes of the Rossby Centre regional atmospheric climate model (RCA4)'] on page 12, Equation 32. David Gustafsson has good experience of using this formulation in the Swedish mountain region in the hydrology model of SMHI.
+
+Mariken has plotted the behaviour of the SURFEX snow fraction formulation for a number of specific locations assuming a snow density of 300 kg/m3. [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Snow_assimilation_plans/Snow_fractions_2.pdf See figure here]. Please note that since a constant snow density is used the hysteresis effect will not be seen, i.e. a low snow density in autumn will give a larger fraction than a large density in spring for the same amount of SWE.
+
+Next step is to utilize the satellite based snow extent (SE) product [http://hsaf.meteoam.it/ H-SAF]. Other possible sources of satellite snow-related information are H-SAF snow water equivalent (SWE), based on microwave data (also at [http://hsaf.meteoam.it/ H-SAF], similar to [http://www.globsnow.info Globsnow]), and [http://landsaf.meteo.pt/algorithms.jsp;jsessionid=FCF53771E351C461D36EAD996569DFA9?seltab=3&starttab=3 L-SAF albedo]. The question of combining all the different sources in the process of assimilation, taking into account the available backround fields and possible observation operators, needs further studies and possibly more advanced methods than straight-forward optimal interpolation. It seems reasonable to start from simple combination of H-SAF SE, current SYNOP and first guess SWE. This has been done in [http://harmosnow.eu/workshops/02.11.2015,%20Helsinki/derosnay_etal_201511.pdf ECMWF] and at [http://harmosnow.eu/workshops/02.11.2015,%20Helsinki/FMI_seminar2015_SPullen.pdf UKMO] and, based on Cryo Risk satellite data, by Mariken for [http://met.no/Forskning/Publikasjoner/MET_report/2013/filestore/snow_report.pdf CANARI]. Early work with L-SAF albedo has been reported by [http://www.meteo.fr/cic/meetings/lsasaf/presentations/session4_01.pdf Jure Cedilnik].  
+
+-------------------
+
+Comment on snow fraction definitions LR 16.4., updated 19.4 (I am using wiki for discussion. If this is not O.K. then perhaps move this to Forum?). The comment is below the photos.
+
+[[Image(tunturi02.jpg, 30%)]] [[Image(sodamastfeb16.jpg, 30%)]] [[Image(mbolungarvik.jpg, 30%)]]
+
+Text on page 77 of the surfex document should be corrected according to the code in mode_surf_snow_frac.F90 :
+
+{{{
+fr_sng =SWE/(SWE + SWE_crn)  , SWE_cnr=10mm
+fr_snv =SWE/(SWE + 5*z0_veg*rho_sn)
+fr_sn = (1 − fr_veg)fr_sng + fr_veg*fr_snv 
+}}}
+
+--------------------
+
+=== SURFEX settings of fr_veg and z0_veg added by Patrick ===
+
+Fraction of vegetation, fr_veg, is specified in SURFEX subroutine veg_from_lai.F90. For most vegtypes values are simply specified but for crops a formula is used:
+
+{{{
+ fr_veg_crops = ( 1-exp(-0.6*LAI) )
+}}}
+
+Roughness length of vegetation (including also non-vegetated surfaces) is based on the height of the vegetation, h_veg, as z0_veg = 0.13 * h_veg. The height of the vegetation is specified in SURFEX subroutine z0v_from_lai.F90. For some vegtypes values are simply specified but for grass/wetland, h_veg = LAI/6 (this value of 6 is a tuning coefficient), and for crops a formula is used:
+
+{{{
+ h_veg_crops = min( 2.5, zallen )
+ zallen = exp( (LAI-3.5)/1.3 )
+}}}
+
+This table shows values used in SURFEX for fr_veg and h_veg and the resulting z0_veg. Some values depend on LAI so then one or two LAI values are just given here for example. Also, for trees, their height is given individually for each tree cover type. Here 15 m is assumed for tress as an example:
+
+||= VEGTYPE               =||= fr_veg =||= h_veg (m) =||= z0_veg (m) =||
+|| Bare soil               || 0        || 0.1         || 0.013        ||
+|| Rock                    || 0        || 1.0         || 0.130        ||
+|| Permanent snow          || 0        || 0.01        || 0.001        ||
+|| Trees                   || 0.95     || ~15         || 1.950        ||
+|| Grass/wetlands, LAI=3.0 || 0.95     || LAI/6=0.5   || 0.065        ||
+|| Crops, LAI=0.5          || 0.26     || 0.1         || 0.013        ||
+|| Crops, LAI=4.0          || 0.90     || 1.5         || 0.195        ||
+
+In current operational HARMONIE setup SURFEX is used with only one patch over land. Thus, the table values will be area averaged to a final land-averaged value if the land part of a grid box includes more than one vegtype. 
+
+I checked the area around Salla in ECOCLIMAP and I would say that it is probably described by cover 310 which is S SCANDINAVIA TAIGA1 according to cover description table. In the ASCII files for characteristics per cover 310 has the following division between vegtypes:
+
+{{{
+ FRACTION     No   Rock   Snow   Tree   Coni   Ever     C3     C4    Irr   Gras   Trog   Park
+      310   0.05   0.05   0.00   0.10   0.73   0.00   0.01   0.00   0.00   0.00   0.00   0.06
+}}}
+
+i.e. dominated by conifer forest (73%) but also some bare soil, rocks, other trees, crops and wetlands (6%).
+
+'''Important:''' In RCA and HIRLAM newsnow the snow fraction in a forested area reefers to the snow on ground below the canopy. Thus, it is allowed to be close to 100% and the trees are still "seen" by the atmosphere since they are above the snow. However, in HARMONIE/SURFEX there is no explicit canopy yet (MEB will come in cy43/SURFEXv8). Thus, to describe the snow "seen" by the atmosphere in HARMONIE/SURFEX the snow fraction has to be quite small in a forested area. See the figures by Mariken above. So, one can not compare snow fraction formulation used in RCA/HIRLAM with HARMONIE/SURFEX for a forested landscape.
+
+---------------------
+
+'''Laura's comments on the pictures above before Patrick added the table above:'''
+
+Is it easy to calculate what is the fraction of snow in the attached picture (Salla, February 2016, elevation ca. 300m asl)? There was about one metre of snow around, most probably with a typical density 250 kg/m3. If in the grid-square around the fjall Sallatunturi z0_veg=0.7m and fr_veg 0.7, then
+fr_snv=0.35, fr_sng=0.96 and fr_sn = approx. 0.49. ('''Patrick:''' Hmhm, with your assumed values Laura I get fr_snv=250/(250+5*0.7*250)=0.22 and fr_sn=(1-0.7)*0.96+0.7*0.22=0.44  )
+
+In the more dense pine-treen forest of Sodankyla the snow depth was also around one metre, but there the trees were not totally snow-covered (second photo, Sodankyla micrometerological mast February 2016). We might assume fr_veg=0.85, z_0_veg=1m here, leading to fr_snv=0.44, fr_sng=0.96 and fr_sn = approx. 0.51. ('''Patrick:''' Hmhm, with your assumed values Laura I get fr_snv=250/(250+5*1.0*250)=0.17  and fr_sn=0.29  )
+
+The third photo is from Bolungarvik, Westfjords of Iceland, February 2014. If we assume that everything here is bare ground, fr_sn would be 0.96. However, here the subgrid-scale orography variability might be useful, as suggested by David and explained in the Rossby centre document at page 12.
+
+fr_sn = fr_sn_lim*tanh(100*SWE),  fr_sn_lim=0.985 
+(Is the unit of SWE kg/m2=mm as in SURFEX or something else, tanh(25000) sounds a bit strange?) '''Patrick:''' No it is in meter of water. Sorry for missing unit spec in documentation!
+
+fr_sn = SWE/(SWE_max*∆snfrd) ,fr_sn ≤ fr_sn_lim,
+∆snfrd = 0.6+0.001σ_orog, ∆snfrd ≤ 0.8
+
+In Bolungarvik, σ_orog might be 500 m, so ∆snfrd = 1.1, limited to 0.8 so fr_sn for SWE=SWE_max=250 kg/m2 would be 1.13, limited to 0.985.  If SWE would be 0.8*SWE, we would get the same result. Most probably this was the maximum snow depth time, however, in Bolungarvik.
+
+In Salla, σ_orog might be <100 m. This would give ∆snfrd=0.7 and again fr_sn=0.985 as also this is the time of maximum snow depth (which is however not so easy to know during the operational forecasting). 
+
+Sodankyla is flat, so we might assume σ_orog < 10 m, which would give here ∆snfrd = 0.61 and again fr_sn=0.985. 
+
+So the resulting fr_sn HARMONIE/Rossby-HIRLAM for the three photos and using values corrected by Patrick
+
+fr_sn Sodankyla       '''0.29''' / 0.985        
+
+fr_sn Salla           '''0.44''' / 0.985
+
+fr_sn Bolungarvik     0.96 / 0.985
+
+Intuitively, one might suggest fr_sn values like 0.85, 0.99, 0.75 to these locations shown in the photos. Otherwise, there might be space for some development of the diagnostic formulas before comparisons and assimilation? 
+
+Note that in the code of mode_surf_snow_frac.F90 there is the inverse function for SWE based on the bare ground snow cover:
+
+{{{
+PWSNOW(:) = XWCRN * PPSNG(:) / (1. - PPSNG(:))
+}}}
+
+There is an alternative possibility to derive the vegetation roughness from LAI in the SURFEX code, evidently not used in HARMONIE-SURFEX:
+('''Patrick:''' This parametrisation is activated when CSNOW=EBA, i.e. what is used for ARPEGE. I have not checked myself how it compares with the D95 version)
+
+{{{
+RLAIMAX=7. RLAI=3. A1=0.87 A2=0.84 FLAI(:)=1.
+WHERE(P_LAI(:)>RLAI)
+ FLAI(:)=1.-(P_LAI(:)/RLAIMAX)*(MAX(0.0,(A1-MAX(A2,P_SNOWALB(:))))/(A1-A2))
+END WHERE
+PPSNV(:)=PPSNG(:)*FLAI(:)
+}}}
+
+e.g. P_LAI=3.01 SNOWALB=0.85 PPSNG=1 FLAI= 1 - 3/7 *(0.87-MAX(0., MAX(0.84, 0.85)/0.03 = 1-0.43*0.02/0.03 = 0.86,
+
+e.g. P_LAI=2.99 PPSNV=1
+
+e.g. in Sodankylä P_LAI was approx. 1.5 in April, thus leading to PPSNV=1
+
+ 
+-------------
+
+In the namelist, PSNG_ISBA, PSNV_ISBA, PSN_ISBA: snow fraction over ground, vegetation and total can be requested as output when LSURF_MISC_BUDGET is true. In the FMI operational HARMONIE-SURFEX grib output we can find useful output for comparisons (but z0veg without grib number?). '''SWE could be compared with HSAF SWE, snow fraction over ground with HSAF SE and total albedo with LSAF albedo.''' 
+
+
+|| '''013-  800-105'''@20160415_06:00+003h00m tri:000 000 || '''1st layer snow wat. eq.''' (         ||       0.000E+000   85.256E+000    3.792E+003  241.380E+000 || 
+|| 191-  800-105@20160415_06:00+003h00m tri:000 000       || 1st layer snow density (i         ||     100.000E+000  250.175E+000  300.000E+000   66.415E+000 ||  
+|| 001-  300-105@20160415_06:00+003h00m tri:000 000       || Leaf area index                   ||     100.000E-003    1.509E+000    3.758E+000  781.146E-003 ||
+|| 002-  300-105@20160415_06:00+003h00m tri:000 000       || Vegetation fraction       (0-1)   ||       0.000E+000  814.446E-003  950.000E-003  131.688E-003 ||
+|| '''055-  800-105'''@20160415_06:00+003h00m tri:000     || '''Snow fraction over ground'''         ||       0.000E+000  388.544E-003  997.370E-003  411.660E-003 ||
+|| 056-  800-105@20160415_06:00+003h00m tri:000 000       || Snow fraction over veg            ||       0.000E+000  105.368E-003  997.370E-003  235.397E-003 ||
+|| 057-  800-105@20160415_06:00+003h00m tri:000 000       || Snow fraction total               ||       0.000E+000  145.188E-003  997.370E-003  248.430E-003 ||
+|| 190-  800-105@20160415_06:00+003h00m tri:000 000       || Snow albedo (isba)                ||     500.000E-003  692.608E-003  850.000E-003  124.096E-003 ||
+|| 026-  300-105@20160415_06:00+003h00m tri:000 000       || Soil near-IR albedo       (0-1)   ||     165.695E-003  205.584E-003  454.569E-003   34.959E-003 ||
+|| 027-  300-105@20160415_06:00+003h00m tri:000 000       || Soil vis albedo           (0-1)   ||      65.695E-003  105.584E-003  354.569E-003   34.959E-003 ||
+|| 028-  300-105@20160415_06:00+003h00m tri:000 000       || Soil UV albedo            (0-1)   ||     109.910E-003  142.021E-003  188.800E-003   16.278E-003 ||
+|| '''084-  800-105'''@20160415_06:00+003h00m tri:000 000 || '''Total albedo'''                      ||      72.920E-003  238.188E-003  848.693E-003  172.224E-003 ||
+|| 224-    0-105@20160415_06:00+003h00m         000 z0veg || ! only new trans_tab.h!           ||       1.300E-003  861.760E-003    1.950E+000  575.035E-003 ||
+
+
+
+Plans for HSAF SE - HARMONIE comparison in FMI summer 2016 by Katya et al.: [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Snow_assimilation_plans/SEANA_fin.pdf pdf]
+
+---------------
+
+A new colleague, Rafael Pimentel, in the hydrology research group of SMHI has background in snow observations and modelling, especially small-scaled snow distribution in complex terrain. His [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/Snow_assimilation_plans/Influence%20of%20microscale%20in%20snow%20distributed%20modelling%20in%20semiarid%20regions.pdf PhD thesis] is attached and here are also some links to papers:
+
+The first chapter of the PhD thesis was published in JHM ([http://journals.ametsoc.org/doi/10.1175/JHM-D-14-0046.1]), the second is now in HESS discussion ([http://www.hydrol-earth-syst-sci-discuss.net/hess-2016-454/]) and the last one, we are making the last revision to upload it.
+
+---------------
+
+== Medium term plans ==
+
+In Metcoop is has been said that next step we wish to go for is to use the [http://www.the-cryosphere-discuss.net/tc-2015-206/ Extended snow scheme a la ISBAv8] in combination with EKF and Force-restore. However, no man power at the moment to work on this.
+
+== Very long term plans ==
+
+Inspired by the [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/David-hirlam-surface-da-worskhop-oslo.pdf presentation given by David Gustafsson] we started to discuss how a surface assimilation system could look in the future. We would like to assimilate SYNOP data, satellite radiances of surface conditions, satellite derived water levels in lakes/rivers and river discharge in the same system. The water level and river discharge require that SURFEX is coupled to a routing system including hydrodynamic processes. Since the time scale would be on the order of days the assimilation method must be something like EnKF. For example, during a snow melt period the system needs to include members representing the range small-large amounts of snow so the corresponding range large-small amounts of river discharge will be covered and can be compared to observed river discharge values.
+
+When an analysis is done it will represent a stage which is a few days old. Thus, to reach the time of a NWP forecast starting time this old stage needs to be run offline with SURFEX using the last few days data as forcing. Then the stage of the system can be used to give the initial NWP stage.
+
+
+We can be inspired by the [http://www.cnrm-game-meteo.fr/spip.php?article424&lang=en French SIM system] which includes the reanalysis SAFRAN, SURFEX/ISBA and the routing model MODCOU. We also have [https://hirlam.org/trac/attachment/wiki/Surface_physis_assimilation/SURFEX_snow.pdf experience by Hanneke et al.] running SURFEX/Crocus offline for snow avalanche warnings in Norway. We may use the routing system model [http://www.smhi.se/en/research/research-departments/hydrology/hype-1.7994 included in HYPE] to replace MODCOU which is very French adjusted. Also, the routing model TRIP available in SURFEX via the OASIS coupler is not suitable for e.g. Nordic conditions where a lot of lakes delay the discharge response.
+
+

@@ -1,0 +1,18 @@
+== Surface Data-Assimilation in HARMONIE ==
+
+=== Training course Norrkoping September 2011 ===
+
+HARMONIE has two different surface schemes. In sms/config_exp.h they are known as:
+
+* old_surface
+* surfex
+
+The way that surface assimilation is performed is quite different depending on which scheme you choose to use. For old_surface, only one option exists and is called:
+
+* CANARI
+
+For SURFEX two options exist:
+* CANARI_OI_MAIN
+* CANARI_EKF_SURFEX
+
+For more info we will continue on the System Wiki page for [https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Analysis/SurfaceAnalysis Surface assimilation]

@@ -1,0 +1,146 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''On multi-locations, 26-30 April 2010''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Objectives ==
+
+The main goal of this working week is to further improve on trunk (based on CY36T1) focusing mainly on ALADIN/AROME options, and to port makeup and various optimisation features from FMI-xtport branch. It is targeted that an alpha-type release (technical one,  36h1.0) can be tagged after this, allowing more developers to use the system for a wider application.
+
+Different from other HIRLAM 'working week' is that no travel will be involved. People will sit in their own places, but with a common focus on the trunk. Hopefully this will also enable more contribution from system experts at various services.
+
+36h1.0 will be a technical tagging. Several of the new features such as makeup, open-mp option, AROME 3DVAR and SURFEX analysis will become optional features but not as default.
+
+== Status of the trunk as of April 25 2010 ==
+
+Currently, we are aware that the trunk, which has implemented the source code from CY36T1 up to bf4, suffers several problems, one associated with grib-packing (a feature to be solved in the coming CY36T1bf5 from Meteo France although release of which is not done yet), the other related to B-level parallelisation which has the consequence that only 1D domain decomposition is possible for AROME model. Additionally, the cycle contains massive number of un-initialised variables.
+
+For the working week, our focus will be porting of CY36T1bf5 when available, and porting of relevant xtport source code changes and test of makeup on various platforms. The outcome of the above will also enable, before the April 30 deadline, a delivery to CY36T2 phasing on features related to optimisation, SAMIO, which are on top of CY35T1.
+
+== Tasks ==
+
+ 1. source code porting, merge and test. First phase to be finished on Monday allowing subsequent test/corrections
+ 1. test(bed) under gmkpack on various platform (ECMWF, met.no, DMI, Linux/gfortran...)
+ 1. makeup on different platforms and script update featuring makeup
+ 1. some action on un-initialised variables
+
+== Progress and Status of the working week ==
+=== Committed participation ===
+   * Sami Saarinen: Mon, Wednesday: merging and test (usingmakeup) of xtport to trunk
+   * Ole Vignes, Mon-Thurs: porting of selected 35h1branch features and 36T1bf5 (when available) to trunk, script adaptation, preparation of HIRLAM contribution to CY36T2; debugging of 2D decomposition issue
+   * Toon Moene, Mon-Thurs: testing about gfortran on KNMI and PC platform; check on un-initialised variables;
+   * Niko Sokka: Wednesday: porting/test of script changes with makeup as option;
+   * Eoin Whelan: Mon-Wedn, trunk-installation and test on met.ie platform
+   * Mats Dahlbom: Mon.Thurs., trunk test at DMI platform
+   * Trygve Aspelien, MOn-Thurs: debugging of 2D decomposition
+   * Ulf Andrae: limited participation due to other commitment but will stay in email communication
+   * Xiaohua Yang, Mon-Thur., coordinating; daily update of rootpack, compilation using makeup at ecgate/c1a and DMI Cray xt5; test using testbed;
+=== Daily status report, in order of reporting ===
+   * 20100426: 
+     * Sami: makeup ported to trunk; solved various problems about circular library reference; succeeded in library building for all components except for GL
+     * Xiaohua: updated on ECMWF platform rootpack to [https://hirlam.org/trac/changeset/7950/trunk/harmonie/src 7950] and started going through testbed on ecgate. Tried makeup on DMI Cray Xt5 and gone through similar building until GL problem; Problem with mcmodel=medium
+     * Sami: Ulf fixed remaining GL problems; swab.c added to util/oulan/ from FMI branch : now all Harmonie-builds with makeup over trunk/ before FMI-merge proper technically ok
+     * Sami: configure & make commands used at FMI-site:
+{{{
+#!sh
+cd trunk/harmonie/src
+../util/makeup/configure -H -G -E sources.crayxt -B ../util/makeup/config.FMI.cray_xt5m.pathscale.mpi+openmp
+make
+}}}
+     * Sami: All the appropriate merges suggested by Xiaohua done and FMI-branch has been brought into trunk/. Proceed with clean compilation & fix problems encountered.
+     * Trygve: Ported TL/AD tests from 35h1branch to trunk
+     * Trygve: Changeset from Yann in mf_phys, apl_arome and aplpar to prevent increment in output time for AROME and ALADIN + SURFEX in the *.lfi files is added to trunk
+     * Eoin: Attempting build of trunk on ICHEC.stokes - hopefully it will have produced a MASTERODB by morning. Will attempt to use makeup tomorrow.
+     * Sami: After fixing few merge problems spotted by Toon, the compilation progressed at FMI and is now past Arpege & Aladin. I may update this tomorrow mornink.
+     * Sami: All compilations & linkings with makeup completed without problems at FMI later in the evening. So, technically looks sound. Now subject to testing guys!
+     * Ole: Merged 4D-Var related changesets 7141,7167,7181,7200,7220,7545,7957 from 35h1branch to trunk. Testing will follow tomorrow.
+   * 20100427: 
+     * Xiaohua: on ECMWF platform, the overnight building of [7977] with GMKPACK succeeded with ROOTPACK building but failed afterwards in Buildpack and Make_gl. Looks to be associated with problems in loading of libraries.
+     * Xiaohua: on DMI-Cray XT the makeup building with pathscale+openmp (and mcmodel=small) proceeded through main libraries but stooped at MONITOR utilities. probably problems associated with local settings.
+     * Trygve: Added missing mpi dummies needed for gl to compile after merging from branch
+     * Trygve: Corrected bug in iopack.f90 for Dr. Hook
+     * Trygve: Namelist options for ALARO + SURFEX added
+     * Trygve: Changes for minutly output and re-written Output_freq.pl ported to trunk
+     * Trygve: Tested configurations on IBM with gmkpack:
+      * ALARO + SURFEX: tested technically OK when DR_HOOK_NOT_MPI added in Prepare_pgd
+      * ALARO: Fails in Forecast after successful DFI. Similar crash as for 35h1branch
+      * ALADIN 3D-Var: Technically ok if I set Postpp to complete. Fullpos in Postpp fails with mismatch in sand field:         
+{{{
+ MAX. DIFFERENCE BETWEEN SOURCE AND MODEL PERCENTAGE OF SAND :  35.680552 %
+ ALLOWED DIFFERENCE :  0.010000 %
+ TOO MUCH DIFFERENCE >> RERUN CONFIGURATION 923
+ OR INCREASE RFPCSAB IN NAMELIST NAMFPC
+ ABOR1 CALLED
+  HPOS: SOURCE AND MODEL SAND MISMATCH
+
+}}}
+      * AROME_CANARI_OI_MAIN: Will be tested tomorrow
+     * Remark: There are still quite many script differences between 35h1branch and trunk. Should we do an effort in trying to merge as much as possible?
+   * 20100428: 
+    * Xiaohua: on ECMWF platform, the overnight building of [7982] with GMKPACK ran through all build, including ROOTPACK, Buildpack and Make_gl, Make_monitor and Make_oulan. 
+    * Sami: To clean up your trunk/harmonie/src for all clutter (I mean ALL not in SVN) use (after this you need to configure & make all again):
+{{{
+#!sh
+cd trunk/harmonie/src
+make veryclean
+
+#or
+
+../util/makeup/unconfigure
+}}}
+    * Eoin: executables built using [7988] with GMKPACK. Will test some simple forecast only configurations before looking at makeup 
+    * Sami: Added option -d source.emos-arch for MAKEUP to combine options -H -G -B -E sources.emos-arch
+    * Sami: Added make precompiled PRECOMPILED=/path to emulate precompiled objects -- work still in progress 
+    * Niko: Further development of Makeup script to handle gl/monitor/oulan as separate builds and to support  reference-build -- effort still under construction and postponed until next week due to a scheduling conflict this week
+   * 20100429:
+    * Ole: picked up cy36t1_bf.05 from !ClearCase, merged into vendor/aladin/current (as changeset 7998).
+    * Ole: merged changeset 7998 (from vendor/aladin/current) into trunk, resolved 1 conflict.
+    * Trygve: Roger R: better extraction of windprofilers and radar VADs added in Oulan
+    * Trygve & Mariken & Roger R: SST taken from bondaries for all files. Snow analysis added.
+   * 20100430:
+    * Trygve: Added possibility to twirk host specific submission details in testbed for the file Env_submit
+    * Trygve: Tested configurations revision 8010 with script changes for testbed:
+{{{
+       AROME 1-D: Technically OK
+       AROME 2-D: Crash early in forecast. Known problem not solved yet. Awaits help from Yann.
+       ALADIN + NH + SURFEX 1-D: Technically OK
+       ALADIN + NH + SURFEX 2-D: Technically OK
+       ALARO + NH + SURFEX 1-D: Technically OK
+       ALARO + NH + SURFEX 2-D: Technically OK
+       ALARO 2-D: Technically OK
+       ALADIN 2-D: Forecast OK, but fullpos for output hour 5 fails:
+             Signal received: SIGFPE - Floating-point exception
+             Signal generated for floating-point exception:
+             FP invalid operation
+
+             Instruction that generated the exception:
+             fctiwz fr00,fr01
+             Source Operand values:
+             fr01 =                   NaNQ
+
+             Traceback:
+             Offset 0x00003198 in procedure codega_, near line 1370 in file codega.F
+             Offset 0x00000f60 in procedure facine_, near line 299 in file facine.F
+             Offset 0x00000894 in procedure facond_, near line 155 in file facond.F
+             Offset 0x00000a08 in procedure prepacka_, near line 193 in file prepacka.F90 
+             Offset 0x00000c58 in procedure wrhfp_, near line 320 in file wrhfp.F90
+             Offset 0x00000688 in procedure iopack_, near line 258 in file iopack.F90
+             Offset 0x000004a4 in procedure stepo_, near line 271 in file stepo.F90
+              Offset 0x000006e8 in procedure dynfpos_, near line 197 in file dynfpos.F90
+             Offset 0x00002aa8 in procedure cnt4_, near line 900 in file cnt4.F90
+             Offset 0x00000ce4 in procedure cnt3_, near line 319 in file cnt3.F90
+             Offset 0x0000006c in procedure cnt2_, near line 77 in file cnt2.F90
+             Offset 0x000000d4 in procedure cnt1_, near line 117 in file cnt1.F90
+             Offset 0x000001b0 in procedure cnt0_, near line 154 in file cnt0.F90
+             Offset 0x000000d0 in procedure master, near line 32 in file master.F90
+             --- End of call chain ---
+             + exit
+}}}
+== Reference Links ==
+
+
+
+

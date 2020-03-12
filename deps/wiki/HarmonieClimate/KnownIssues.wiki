@@ -1,0 +1,66 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HCLIM Known issues''' =
+[[LastModified]]
+[[Center(end)]]
+
+'''A list with known issues in HCLIM, with possible solutions so they can be tackled at some point'''
+
+== Output ==
+=== Disappearing snow in fullpos files ===
+Snow in fullpos files disappears if surface temperature is > 0C, then re-appears if it is < 0C again. See [http://hirlam.org/index.php/forum/2-harmonie-system/1362-disappearing-snow-mystery disappearing snow mystery on the forum].
+==== Possible solutions: ====
+* Set LCRITSNOWTEMP to FALSE in the namfpc namelist in Select_postp.pl
+* Use SURFRESERV.NEIGE from the history file instead of from the fullpos file
+
+----
+
+== Technical issues ==
+=== Make_gl_grib_api_simple fails on ECMWF ===
+Task Make_gl_grib_api_simple fails on the ECMWF when building HCLIM. This task tries to build gl_grib_api on the ecgb (not cca), without FA capabilities. It fails with:
+{{{
+/usr/bin/ld: cannot find -lemos.R32.D64.I32
+}}}
+The emos library cannot be found in the using the $EMOSLIB variable when the (default) emos module is loaded in combination with the GNU/5.3.0 compiler as the specified directory (/usr/local/apps/libemos/000458/lib) does not exist.
+We don't really need gl_grib_api on the ecgb.
+==== Possible solutions (not tested): ====
+* Simple set it to complete after is fails
+* Remove the task from the build.inc file
+* Force loading an emos module compatible with GNU/5.3.0 (e.g. 455) 
+
+
+=== YMD looping in ecFlow ===
+The YMD loop in the climsim.def definition file is not a real date loop (as in the climsim.tdf), but just a loop over a predefined set integers. This means that the arithmetic in the triggers doesn't work as it should ideally: it now uses integers instead of days. For example in the !MakeCycleInput loop we have the following trigger to prevent boundary generation doesn't run to far ahead of the Forecast and PP:
+{{{
+      trigger ( MakeCycleInput:YMD lt ( Postprocessing:YMD + 300 ))
+}}}
+If YMD is a date this ensures !MakeCycleInput is at most 300 days ahead of Postprocessing. However, if YMD is an integer, it means !MakeCycleInput up to runs 3 months ahead, until a new year is reached, and then waits until Postprocessing has also completed that year, as for example:
+{{{
+20190101 - 20181201 = 8900
+}}}
+This means (wall clock) time is lost around new years as !MakeCycleInput and thus also the Date loop (Forecast) have to wait until also the Postprocessing has finished for that year.
+==== Possible solutions: ====
+* Better repeat loop in definition file.
+* A temporary solution has been committed in r18503: change the !MakeCycleInput family trigger to something horrible like the snippet below, so it continues over the year border:
+{{{
+      trigger ( InitRun == complete and Build == complete and \
+                ( \
+                  ( MakeCycleInput:YMD lt ( Postprocessing:YMD + 300 )) or \
+                  ( ( MakeCycleInput:YMD ge ( Postprocessing:YMD + 8900 )) and ( MakeCycleInput:YMD lt ( Postprocessing:YMD + 9200 )) ) \
+                ) \
+              )
+}}}
+
+=== Spectral nudging ===
+When using spectral nudging (by copying the NEMELBC0A namelist settings from the AROME section in nam/harmonie_namelists.pm to the respective ALARO or ALADIN sections), if SPNUDQ is set to 0.0, the simulation crashes in Forecast after a few timesteps. This is likely due to some propagation of NaN values because the log only reports a crash in line 2104 of [https://hirlam.org/trac/browser/branches/climate/38h1/HCLIM38h1/src/arp/phys_dmn/aplpar.F90]
+which is 
+{{{
+ZDQV=MAX(0.0_JPRB,ZQV0-ZDQC)-PQ(JLON,JLEV)
+}}}
+While it is possible to nudge specific humidity by setting SPNUDQ to the same value as for the other variables, it is often desired to not nudge humidity.
+==== Possible solutions: ====
+* If spectral nudging of specific humidity is not desired, SPNUDQ can be set to a low value, e.g. 
+{{{
+'SPNUDQ' => '0.000000001,',
+}}}
+(Additionally, as with other branches, LESPCPL is not compatible with LUNBC, so LUNBC has to be turned off in sms/config_exp.h.)

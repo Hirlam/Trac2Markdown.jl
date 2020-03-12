@@ -1,0 +1,124 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE technical improvements''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Technical improvements of HARMONIE in general ==
+HARMONIE is a great model, but many users consider it hard to handle. This page aims to list technical issues people experience when running HARMONIE and to come up with ways to resolve these issues. This should lead to a more user friendly model, so users have to spend less time on solving technical problems and have more time for doing runs and analysing the results.
+
+----
+
+== Main issues ==
+There seem to be two main areas that need improvement to make HARMONIE an easier model to use: the scripts and mini-SMS.
+
+=== scripts ===
+The scripts around HARMONIE have many tasks, build HARMONIE, retrieve host model files, prepare climate and boundary files, run the model, do post-processing and verification and archive the results. For NWP additional scripts are needed for assimilation. The scripts seem to have grown organically over time and it takes some time to figure out where certain operations are performed if something doesn't go as planned. Rewriting the scripts can greatly improve the transparency and stability of the HARMONIE as many decisions that determine the model outcome are taken in the scripts.
+Rewriting the scripts is a fairly delicate task. It may be a good idea to do this first for the climate branch for which the workflow is relatively simple. Once we have proven the new scripts work better than the currently used scripts, we can incorporate specific NWP tasks such as assimilation.
+Some points the improved scripts should adhere to:
+* ''group by function'': Group scripts by function in subdirectories of the scr directory or use a prefix in script names. Groups could be for example: Build, Climate, Boundary, Assimilation, Forecast, PP, Archive.
+* ''mSMS task = script'': Link all scripts directly to a task in mSMS, so the workflow is immediately clear from the mSMS window. Currently sometimes scripts call other scripts, making it less clear what is going on.
+* ''comment code'': Describe function of scripts, their requirements and where necessary the steps taken inside the script. If not desirable in the script then the wiki may be used.
+* ''show info'': Print information to the logfile about what the script is doing, rather than using "set -x". This gives log files that area easier to read and together with proper error catching should still provide enough information to find out why a script failed.
+* ''1 language'': Using one language for all scripts improves consistency.
+* ''error catching'': The exit status of all commands should be checked, so all errors can be detected and reported.
+* ''independent'': All scripts must be independent of the login shell (now bash seems to be required). Furthermore, it should be possible to run all scripts manually from the command line. This is useful when making changes, debugging, or rerunning a failed step.
+* ''central location for variables'': Derive all important variables, certainly those used in more than 1 script, in a central location. This enables users to view their values and gives a clear overview of all possible variables that can be set. If all variables are written to a file (somewhat similar to mSMS_env), all scripts can source this file to access the variables. Using this file, scripts can also be run manually from the command line, without the need to set all required environment variables by hand. An example of how this can be done is show in the figure below (click to show).
+{{{#!td width=25px style="border-width: 0px;"
+}}}
+{{{#!td style="border-width: 0px;"
+[[Image(HARMONIE_scripts_setup.png, 400px)]]
+}}}
+{{{#!td width=25px style="border-width: 0px;"
+}}}
+{{{#!td width=500px valign=top align=justify style="border-width: 0px;"
+'''Setting variables in a central location'''\\
+In this case users supply two settings files to Harmonie, 1 with experiment specific settings (config_exp.h) and one with system dependent settings (Env_system/Env_submit). The check_experiment is called immediately after starting the Harmonie script. The check_experiment script first sets default values for all variables (either non-nonsense, so the model crashes or accepted common values). It then sources the two settings files, overwriting the default variable settings. After this, the compatibility of variables can be checked and additional variables can be derived. After all variables have been set, they are written to a text file ("variable file" in the figure). This "variable file" can then be supplied as single argument to all other scripts, that can then source it to receive all variables. After a cycle the old "variable file" can be updated by parsing it through check_experiment again, so that for example paths that include the DTG are updated. Afterwards, the "variable file" can always be recreated using the original two settings files and the check_experiment script, making re-running scripts easier. A similar approached is used for RACMO.
+}}}
+
+=== mSMS ===
+mSMS in principle is a great tool as you can easily create different combinations of scripts. Unfortunately it is not very stable and once something goes wrong it is not always easy to get it running properly again, for example if a .pid isn't cleaned, a task is still running is mSMS, but is cancelled on the cca (or vice versa). This makes running a few experiments at the same time quite labour-intensive. Furthermore, the GUI mXCdp is quite sluggish when running on the ECMWF. Perhaps these problems are caused by problems in the Harmonie scripts or the ecgate/cca, rather than by mSMS itself. However, as we will move to ecFlow in the future, starting with cy40, it is probably not worthwhile to spend a lot of time on improving mSMS. If we continue to work with earlier (pre-cy40) versions, we might consider back-porting ecFlow to the climate versions if ecFlow performs better. [[span(style=color: green, AEMET uses ECFLOW in 38h1.2 so a solution exits. Samuel Viana copied ecFlow to HCLIM. Both mSMS and ecFlow are available now.)]]
+
+----
+
+== Long list with technical issues ==
+Below is a list of technical issues people at KNMI experienced, mainly on the ECMWF (ecgb/cca). In some cases a comparison is made with RACMO, which is the hydrostatic Regional Atmospheric Climate MOdel used at KNMI. Probably not all points raised are correct, so please, feel free to comment on points, or add new ones.
+
+=== mSMS ===
+* Use ecFlow instead of mSMS. ecFlow is maintained by ECMWF and documented. [[span(style=color: green, This is already supported in cy40, and has now also been made available in HCLIM)]]
+* mSMS sometimes gets confused, making a task red, while its is still running (or vice versa) etc. Not relevant after switch to ecFlow
+* Would it be possible to include options or mSMS tdf files to run MUSC or surfex standalone? [[span(style=color: green, There is a musc.tdf, to run MUSC, and a offline.tdf to run surfex. New tdf s for any combination of tasks can be created quite easily.)]]
+* Possibly you can create a RACMO-like environment by making separate tdf files for compiling, climate file generation, boundaries, simulation, PP etc. This way you can only run that part of HARMONIE you are interested in. [[span(style=color: green, Harmonie install runs compilation only. Similarly separate tdfs could be created for only climate file generation, etc.)]]
+* Why doesn't "right mouse click/view variables" show all variables set in _mSMS_env? This would be helpful to find out what paths and other variables are used.
+* Many small serial jobs (like listen, archiving) use an entire node to run on the cca. These jobs are submitted to the np queue which is not shared. This seems of waste of resources. Shouldn't these jobs be submitted to the ns queue (as ExtractBD_ or nf. Job list at ECMWF: [[span(style=color: green, Implemented in 40h1 as [14570]. Also a multitask option has been constructed to run several scalar jobs on 1 node, but this is not available in HCLIM yet)]]
+{{{
+Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+2071247.ccapar  nkl      np       convertFA   46282   2  24   13gb 32:13 R 06:08
+2094533.ccapar  nkl      np       Forecast    41110  14 312  765gb 32:00 R 00:11
+2094623.ccapar  nkl      np       Listen      48582   2  24   13gb 32:08 R 00:09
+2095437.ccapar  nkl      np       Forecast    22267  14 312  765gb 32:00 R 00:00
+2095591.ccapar  nkl      np       Listen      39434   2  24   13gb 32:08 R 00:00
+2095593.ccapar  nkl      ns       ExtractBD   14731   1   1   12gb 24:00 R 00:00
+2095599.ccapar  nkl      ns       ExtractBD   28065   1   1   12gb 24:00 R 00:00
+}}}
+
+
+=== Scripts ===
+* Try to use only 1 language for scripts (now sh, ksh, bash, perl)
+* Scripts should not depend on the login shell, now bash seems to be required, though with some tweaking c-shell can be used as well.
+* Better error catching, sometimes the scripts crash later than the actual problem occurred, and the messages are not so clear. Sometimes there is no error at all (e.g. Makegrib)
+* (Environment) variables used in more than 1 script, must be defined/derived in 1 central location. This way any script can be run at any time using this central location (or 2, 1 for experiment, 1 for system). With RACMO we do this. Now often a variable is used in a script that is set in another script, but it is not clear where.
+* The scripts should be callable manually from everywhere once you supply the proper environment file
+* All scripts should be called by mSMS. Scripts should not call scripts. This makes the flow of all the scripts easier to understand.
+* Create directory structure to group scripts: climate, boundary, build, etc.
+* Remove all the printed module load messages when running the Harmonie script (''e.g.'' load slurm 2.5.4 (PATH, MANPATH,SQUEUE_FORMAT,SACCT_FORMAT)). This is not very relevant in most cases and distracts information from the important bits. [[span(style=color: orange, Resonable suggestion.)]] [[span(style=color: purple, Using something like "module -s load module-name" in Env_sytem should do the job.)]] 
+* Access_lpfs will only work on ECMWF. Would be good if it can be extended for other institutes as well. For RACMO we have written a script (domos.sc) with a similar purpose (but with more option) which works at the ECMWF, but also on the KNMI HPC and workstations. [[span(style=color: green, If local users needs extended functionality it should be incorporated by them.)]]
+* Remove "set -x" from scripts. Instead echo relevant info so log files are easier to understand. Once proper error catching is implemented "set -x" shouldn't be necessary to figure out what went wrong. [[span(style=color: green, No "set -x" in the scripts in 40h1.)]]
+
+=== Version control ===
+* Compile version info and changes into executable (as with RACMO) or find another way to exactly define which svn version is used and what changes have been made to that version.
+* Create a tar file with the experiment directory (~/hm_home/$EXP) and store that together with the output files so you can always rerun your experiment.
+* Hybrid situation, svn versus changes in hm_home
+
+=== Compilation ===
+* The build system should allow to (re)compile only a part of the system manually. This is useful when debugging and you want to a write statement in the code without having to go through the entire system. [[span(style=color: green, It is possible to compile manually using the info on [wiki:HarmonieSystemDocumentation/Build_with_makeup HarmonieSystemDocumentation/Build_with_makeup] (thanks to Eoin). Manual compilation works on KNMI Fedora workstation and on Linux Mint. Configuration took 3 - 4 minutes, compilation 32 minutes.)]]
+* People also report "strange things" happening when re-compiling part of the code. Usually then the advised solution is to delete everything and start over again (which takes hours on the ECMWF)
+* Perhaps include an option to checkout (copy/rsync) only the required pieces of code for certain configurations, e.g. if you want to do a climate run you don't need all the assimilation code, similar for MUSC. This makes it more transparent what code is actually used and easier to figure out how the model works.
+* Run (part of) the system on a linux workstation. Great for development/debugging purposes. [[span(style=color: green, the system runs on several desktops on small domains. Of course it's a matter of finding the right configuration. It is possible to compile and run Harmonie, including input file preparation, on a workstation. Debuggers and valgrind can be used to find bugs in the code. )]]
+* ‘Harmonie install’ doesn’t seem to work with gmkpack on the ECMWF with cy38h1.2. It crashes in step Build_rootpack.
+
+=== Model source code ===
+* Solve memory leak (cy38h1.2, nh-dynamics, AROME physics). A run for the NETHERLANDS domain on the ECMWF aborts after ca. 15 days, because it runs out of memory. Also on the KNMI HPC the memory leak exists, but when using enough nodes the model doesn’t crash. The memory leak seems not to exist in MUSC. [[span(style=color: green, Several bugs have fixed in HCLIM. Memory usage is now constant, but no long runs at the ECMWF have been attempted yet.)]]
+* Debug/improve code so it can be run with all debugging compiler options (check array bounds, floating point exceptions, uninitialised variables). [[span(style=color: green, Several bugs have fixed in HCLIM and a it can now be run with compiler options on, at least on a workstation. Note that a list of files should be excluded from array bound checking due to code design, although it may be good to check this is true for all files in the list. )]]
+* Get output consistent, independent of number of processors used, and independent of domain decomposition. This is a great situation which makes finding specific bugs (variables not set properly in loops over grid points or levels). [[span(style=color: orange, According to Mariano Hortal HARMONIE output should be independent of number of processors. Check if true for short climate run.)]] [[span(style=color: orange, EDMFM is not MPI/nproma reproducible for large domains. See ticket #100)]]
+* Better restarts, bitwise identical after restart. This way it doesn't matter in how many parts you do your run. Very handy for debugging also, if you run crashes in the last day of your month, you can create a restart file just before the crash and start debugging, without the need to rerun the entire month every time. [[span(style=color: orange, Status of the current code is unknown.)]]
+
+=== Input ===
+* Find a way to to prepare boundary files on local HPCs. This means at least find a way to retrieve host-model data (ERA-Interim, ECMWF-operational) and copy them to the local HPC. [[span(style=color: orange, Is the wish about automatic fetching of outside world data?)]]
+* Run HARMONIE from EC-Earth boundaries.  [[span(style=color: green, Done by the Rossby centre so a method exists. Currently rurther developed by Sebastian Scher at KNMI.)]]
+
+=== Output & postprocessing ===
+* Adding output variables should be easier, apparently this is not trivial, then at least document it. EZDIAG?
+* Add a way to create timeseries (every time step) for selected grid points, for e.g. Cabauw  [[span(style=color: green, Read about DDH in  http://www.cnrm.meteo.fr/gmapdoc//spip.php?article19 )]]
+* For long runs it is better to organise files per variable (1 variable, many steps) than the current default output (many variables, 1 step). See also asim2cdf point. [[span(style=color: green, When converting FA to netCDF with convertFA files are re-organised to files with one variable and all time steps.)]]
+* Create a postprocessing tool a la asim2cdf which calculates e.g. Daily means etc. xtool may be suitable to some extent for this purpose.
+* Accumulated fields cannot be stored properly in GRIB1 for long runs because startStep and endStep are stored as single bytes (max 256). How do we deal with that? Agree on a custom definition as ECMWF or go to NetCDF directly. This seems to be possible in grib2, so make HARMONIE create grib2 files. 
+* Create/update the grib definition tables in the grib_api, so many programs (like cdo) will couple grib codes to names/units properly. Eoin started this, but this is not fully complete/correct and only for eidb.
+* Get netcdf conversion working with convertFA (already ported to cy40 from HCLIM38h1.1?)  [[span(style=color: green, included in 40h1.1.beta.3.)]]
+* convertFA produces netcdf3 files. Converting them to netcdf4 makes the files much smaller. Probably best to do this at the end of convertFA with nccopy as writing to netcdf4 is slower (compression). 
+* The netcdf conversion is taking a long time. Depending on the number of output fields it may even be slower than the Forecast and the postprocessing start lagging, certainly in combination with archiving on ECFS. This can be improved by doing the conversion during the forecast (as was done by Listen4Makegrib). Or by distributing the variables that need to be converted over cores in a node as a poor-man's parellelisation. Something similar was done for RACMO and that worked quite well. Of course a real parallel program is also an option. [[(span(style=color: green, Meteo France is working on GRIB output for the IO server. Why not joing this or adda netcdf option?)]]
+* On cca conversion to grib with gl sometimes fails for fullpos files, the files then contain too few fields. This is not detected by sms.
+* The Makegrib conversion regularly fails, without an error. After re-queueing, the task usually completes successfully.
+* The output lists on the wiki are not the same as trans_tab.h in gl[_grib_api]. 
+
+=== General structure ===
+* The structure is not clear to new users, especially on ECMWF (ecgate: svn repository, hm_home, SMS/logs on scratch; cca: logs (& lib) on perm, compiled code & model input/output on scratch, archiving in ECFS). An easy improvement would be to echo the most important information (output, input directories) when starting the run.
+* Perhaps it would be safer to switch from a system where “everything works with the push of a button” to a system where nothing works if not configured properly. That way people are forced to figure out how things work, and the model becomes less of a black box, and probably simpler/more transparent. Now people type `Harmonie start`, you get nice results, and assume everything went as you want it to go. [[span(style=color: orange, Remember that the main task for HIRLAM is to build an operational NWP system. )]]
+* Separation of code, run scripts, settings in experiments. in the present setup, if you want to do multiple experiments (say 1 in hindcast, 1 in climate) , you have to copy the entire experiment directory again. This leads to a lot of duplication, and makes it difficult if you want to make a change afterwards (say add an extra output variable the fullpos output), because you have to make the same change in all experiments separately.
+
+=== Documentation ===
+* Documentation must be improved. Which script does what, on what does it depend. The documentation must be easily accessible (1 central website, or in the svn tree) and must be properly searchable. It must also be kept up to date. A lot of information is already available on the wiki, but for some reason people are not able to find it.
+* On wiki, put specialisations of people so that you know who to contact if you have a problem. Certainly not everything is known at each institute.
+* Create a wiki structure where people can document what they have figured out, how a piece of code works, etc. Perhaps extend https://hirlam.org/trac/wiki/HarmonieSystemDocumentation/Content
+* But keep in mind that people don’t read documentation, so scripts, code must be as self-explanatory as possible

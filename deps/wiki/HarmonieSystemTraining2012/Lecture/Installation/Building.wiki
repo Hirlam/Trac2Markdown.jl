@@ -1,0 +1,19 @@
+= Building the HARMONIE system =
+The rest is amazingly simple. 
+
+But before that you have to set the submission rules to be able to execute task under mSMS by identifying your submit file Env-submit or by writing a new submit.YOURHOST file. This file defines how you submit your jobs in your local (batch) system. 
+The routine get_job is called from [source:trunk/harmonie/scr/submission.db submission.db] and should return the appropriate (batch) header including some environment variables specifying the parallel decomposition if any. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
+
+Even if you would not have input data at all yet, you can already build the HARMONIE software by simply doing the following:
+{{{
+cd $HOME/hm_home/$EXP    # change directory to your experiment directory.
+PATH_TO_HARMONIE/config-sh/Harmonie start DTG=2011090100  # Fictitious date.
+}}}
+This will pop up a miniSMS window driven by mXCdp, which allows you to follow the progress of the build.
+
+If you are only interested in building the executables, you could also use:
+{{{
+cd $HOME/hm_home/$EXP    # change directory to your experiment directory.
+
+PATH_TO_HARMONIE/config-sh/Harmonie install
+}}}

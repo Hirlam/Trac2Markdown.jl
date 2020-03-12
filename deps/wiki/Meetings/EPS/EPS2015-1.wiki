@@ -1,0 +1,132 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam-B/ALADIN Joint Working Week on GLAMEPS/HarmonEPS & HARP''' =
+''Brussels. Monday 16 March - Friday 20 March. ''
+
+[[Center(end)]]
+
+== Purpose ==
+
+First GLAMEPS/HarmonEPS working week for this year & First HARP working week 2015. 
+Following are the main headlines (based on who is participating):
+
+ 1. Operational GLAMEPSv2
+    * Review of status
+      * Production: updates, regularity
+      * Products
+      * Quality
+    * Work plan for rest of 2015
+ 1. GLAMEPS upgrades
+    * CAPE-SVs?
+    * Further increase in horizontal resolution? (8km -> 5km)
+    * Upgrades to Alaro part? (3D-Var? Perturbed surface observations?)
+    * Hirlam version 7.4?
+ 1. Calibration of GLAMEPS and HarmonEPS
+    * Evaluate how the calibration is working now. Are we ready to call it operational? Spatial variation ok?
+    * Calibration for precipitation, can we use what is developed for yr.no?
+    * Look at new methods besides ELR
+ 1. HarmonEPS perturbation experiments
+    * SLAF experimentation
+    * Start working on EDA with 3D-Var, first technical then investigate optimal number of members in EDA.
+    * MSG cloud mask perturbations, stochastic perturbations to “freezing probability per unit time”. Perturb (stochastically) the thresholds for autoconversion.
+    * Experiment with perturbations of surface parameters (e.g. soil moisture, albedo, snow, SST, LAI, vegetation fraction, roughness length and soil temperature)
+    * Surface physics: study perturbations in momentum, heat and moisture flux parameterizations
+ 1. HARP
+    * We need quality control of observations. Very important also for calibration.
+    * Extend EPS verification to verify against ECMWF analyses, needed for spatial verification of EPS.
+    * FSS for EPS verification    
+
+
+== Participants ==
+
+ || Name                 || Arriving || Leaving || Working with ||
+ || Inger-Lise Frogner   || Monday   || Friday  || HarmonEPS ||
+ || John Bjørnar Bremnes || Monday   || Friday  || calibration ||
+ || Jose A. Garcia-Moya  || Monday   || Friday  || HARP - SLAF ||
+ || Jeanette Onvlee      || Monday   || Friday  || Program manager ||
+ || Kai Sattler          || Monday   || Friday  || GLAMEPS, HARP ||
+ || Geert Smet           || Monday   || Friday  || HarmonEPS ||
+ || Xiaohua Yang         || Monday   || Friday  || GLAMEPS, HARP ||
+ || Andrew Singleton     || Monday   || Friday  || HarmonEPS, HARP ||
+ || Thomas Nipen         || Monday   || Friday  || Calibration ||
+ || Juha Kilpinen        ||          ||         || Calibration ||
+ || Karolina Hämäläinen  ||          ||         || Calibration ||
+ || Åke Johansson        || Monday   || Friday  || HARP - Verification ||
+ || Alex Deckmyn         || Monday   || Thursday|| GLAMEPS, HARP ||
+ || Bogdan Bochenek      || Monday   || Friday  || HARP ||
+ || Ole Vignes           || Monday   || Friday  || HarmonEPS ||
+ || Christoph Zingerle   || Monday   || Friday  || HARP      ||
+ || Sibbo van der Veen   || Monday   || Friday  || Glameps/HarmonEPS ||
+ || Gema Morales         || Monday   || Friday  || HARP      ||
+ || Maurice Schmeits     || Monday   ||         || Calibration ||
+
+
+== Agenda ==
+
+ * Monday
+   * 1300 start of ww
+   * 1400 HARP session:
+     * Alex: HARP development status
+       * Alex went through the basic structure of [https://docs.google.com/document/d/1hx6FRtKvwiu5s8k5SKxsAkgcnYzBK2IUZsuy9Vsn5Bk/edit the documentation] on Google docs which is accessible to those that need it. The doc is not finalized. Newcomers are suggested to follow the documentation and try it to find problems.
+       * introduction/installation/configuration/running eps verification/running spatial verification/extending HARP/examples
+     * Discussions and plans for this weeks work
+       * discuss and finalise the release version this week!
+       * from vfld to sqlite to enable verification of HarmonEPS
+       * spatial verification
+       * infrastructure to allow conditional verifications
+   * 1600 Operational GLAMEPS session
+     * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2015-1/pres_150316.pdf Kai. Review of operational status]
+     * [https://shiny.hirlam.org/harp Xiaohua: quality trends since last WW]
+     * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2015-1/Brussel2015_8.ppt Sibbo: Final verification results of Hirlam Singular Vectors in Glameps]
+     * Discussions and plans for this weeks work
+ * Tuesday
+   * Calibration session
+     * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2015-1/calibration.pdf Thomas: Overview of how the calibration is working/verifying now]
+     * Discussions and plans for this weeks work
+   * HarmonEPS session
+     * [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2015-1/SLAF.ppt Jose A: First results of SLAF implementation in Harmonie]
+     * Discussions and plans for this weeks work
+   * Harp discussion
+     * After some tests and last corrections the first HARP version 1.0 shall be tagged this week. Spatial verification will be left out.
+     * Andrew and Alex so far are the main ones working on the master branch and shall stay so. Changes of git and svn repository can be automatically followed by [https://hirlam.org/mailman/listinfo/commits signing up to the mailing list commits@hirlam.org]. Uses are advised to use only tagged versions.
+     * Tools for very basic conditional verification on summary scores (bias,CRPS,RMSE) can be developed for plot time through the monitor table that is optionally produced - may not be viable for operational production due to large data requirements. For other scores and more complex conditions, tools to specify conditions before running the verification will need to be developed.
+     * QC on observations will be made by adding a column with an observation quality flag to the observation SQLite table. Gross error checks following Harmonie monitor will be done first with temporal and spatial consistency checks to be added at a later time.
+     * An example data set can be prepared to enable starters with minimum data to test technical aspects of the HARP. It is strongly advised not to use such simple data set for any serious study of algorithm.
+     * Christoph starts to refresh from the unfinished work by Emiel. Xiaohua forward the latest materials from Emiel to Christoph. Efficiency maybe an issue in computation of FSS for long time series.
+   * working session
+ * Wednesday
+   * working sessions
+ * Thursday
+   * working session
+ * Friday
+   * working sessions
+   * wrap up
+   * 13.00 end of ww
+
+== Preparations ==
+
+* Basic working details
+
+  People should bring their own laptop.
+
+  wi-fi and wired connections will be available.
+ 
+* How to get there:
+
+  a detailed route description from the airport to RMI can be found at[[BR]]
+  http://www.meteo.be/meteo/view/en/131470-How+to+reach+us.html
+
+  Note that the Best Western County House Hotel is located exactly at the "Héros" tram stop (route from Brussels South station).
+
+  As an alternative to taking bus 43 from the hotel, you can walk to RMI (about 20 minutes, see map under "Attachments"). The easiest route is to walk along Avenue De Fre for about 1km, and then turn right onto Avenue Houzeau. This will lead you straight to the main entry. RMI is the building on the right. The entry is at the other side of the building.
+   
+* Hotel
+We currently have a block booking for 15 rooms, and we should urge people to make their reservations soon. Price is €118/night
+Deadline: 23/02. After that, price will be higher.
+
+Reservation is by e-mail (*not* via the website of the hotel!) resas@countyhouse.be
+Code meeting: HarmonEPS.
+
+Best Western County House Hotel
+Square des Héros 2-4
+B - 1180 Brussels

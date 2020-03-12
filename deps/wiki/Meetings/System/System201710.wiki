@@ -1,0 +1,216 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Madrid, 23rd - 27th October 2017''
+
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+
+[[Image(IMG_0001.jpg,50%)]]
+
+System Team and Eoin's laptop power adapter 
+== Practical ==
+
+The HARMONIE system Working Week will take place in the Agencia Estatal de Meteorología (AEMET) Leonardo Prieto Castro,8 2800 Madrid
+
+Working week will start on Monday 23/10/2017 at 13:00 in the meeting room Sala Departamentos. 2nd Floor. 
+
+* Participants, arrival, departure, hotel:
+ * AEMET: Daniel Santos, Monday ~ 900, Friday ~1500
+ * METIE: Eoin Whelan, Monday ~ 1100, Thursday ~1800, T3 Tirol
+ * SMHI: Ulf Andrae, Monday ~ 900, Friday ~1500, T3 Tirol
+ * MET Norway: Ole Vignes, Monday ~ 900, Friday ~1200, 4C Bravo Murillo
+ * FMI: Niko Sokka, Monday ~ 1200, Friday ~1400, TBD
+ * KNMI: Toon Moene, Monday ~ 1300, Friday ~ 1400, T3 Tirol
+
+ === Transport and Accomodation ===
+  
+[http://www.aemet.es/documentos/en/conocenos/quienes_somos/informacion_util/info_in_english_2017.pdf]
+ 
+=== Dinner ===
+  
+  Joint dinner with SRNWP Meeting 20:30 h Cornucopia Restaurant
+  Navas de Tolosa, 9  [https://goo.gl/maps/RzHKwuVbzRD2 Map]
+
+== Preliminary Agenda ==
+
+- Model placement on ECMWF and improvement model compilation - '''Niko''':
+  - Sami Saarinen from ECMWF went to FMI to evaluate Harmonie performance and other issues on Cray systems, FMI Cray XC30/ECMWF XC40 (cca).
+      - Improved, RAPS16 style, build system for Harmonie
+      - CCE build for full Harmonie, the best practice CCE runtime settings for the suite
+      - Introduction of ecProf profiler to Harmonie system
+      - how to place multiple independent non-MPI applications on a single or multiple compute nodes in a form of a single batch job on Cray XC systems- i.e. how to implement multitask.pl type of functionality on cca
+  - Sami is going to go FMI once per month. Niko will inform about the progress of this tasks.
+
+- [https://software.ecmwf.int/wiki/display/SUP/2014/01/07/Adopting+CMake+for+building+and+installing+software ECMWF Adopting CMake for building and installing software]
+       - Can/should we start integrating this (already available) approach for libECMA.a, libCCMA.a and the rest of the ODB libraries? -''' Eoin'''
+
+- Use of Cray compiler in ECMWF to compile Harmonie-Arome - '''Ole'''
+   -Model compiles but fails on runtime.
+   -Wait to Sami's action on FMI  
+
+- Dynamical suites(tdf) and variable treatment in ecFlow. ecFlow Python API- '''Angeles, Ole, Ulf, Daniel'''
+       - Possible mSMS phase out or keep it "Without support" at some point (cy43?)
+       - Manual on each ecf container: couple of lines summary (as an abstract) with link to wiki or pdf for more detailed documentation (input from PLs needed).
+       - Involve Roel on discussion about functional DA description  
+       - First prototype will be based on Install_rootpack.tdf 
+       - Further analysis is needed on how to translate harmonie.pm to python for EPS cases and other uses
+       - Angeles thinks she could likely start with this task in January 2018. Ole and Angeles might do some preparation work earlier.
+       - Ole will test the new ecFlow / mSMS definition files when they are available.
+       - harmonie.pm has been translated to python and also runs in ensemble mode -''' Ole'''
+       - Possible next candidates to be translated and redesigned could be Submit.pl and submission.db
+       - Use of ECF_variable for  HPC placement. It is an ECMWF suggestion for easier use of ecflow suites Consider MetEireean and AEMET TC suites in this discussion
+
+- harmonie-40h1.1.bf1 is that it still suffers from the problem of environment variables inherited from the settings when the ECFLOW server was started - '''Ole,  Daniel, Ulf'''
+        - Use another way to start the server to avoid undesirable interferences 
+        - Ask ECMWF for possible solutions like using the mSMS queue ...
+        - Set test to reproduce the problem - '''Ulf'''
+ 
+- Wiki & Joomla upgrade for hirlam.org - '''Daniel'''
+  - The Joomla DB can be transfer to Joomla 3.6.x 
+  - Joomla [license https://www.joomlatools.com/pricing/]
+  - Possible change to other CMS like !WordPress or Atlasian 
+  - Web master could be necessary if we want to increase the usability and regular content updates
+  - Work on fixing wiki broken links after MG reorganization 
+     - System meetings has been reorganized. 
+     - Missing links will be manually checked or fixed with the following tools: 
+        - [https://trac-hacks.org/wiki/WantedPagesMacro https://trac-hacks.org/wiki/WantedPagesMacro] may be useful
+        - Other ''Orphaned Pages'' plugins?
+  
+
+- hirlam.org OS upgrade -''' Ole'''
+      - The hiram.org server setup is documented in [wiki:SystemOnly/WebServer wiki]
+      - After 5 years probably we can buy a new server (HW) 
+      - New server will allow us an easier remote installation and reduce the hiram.org downtime among increase HW capabilities
+      - This initiative must be discussed with HMG 
+
+ - Ensure past testbed tests before new contribution- '''Eoin'''
+       - Testing contributions - discussed ... developers should ensure changes pass testbed tests at ECMWF
+       - Branches and upgrades: 4DVar, !HybridEnvVar... 
+           - Eoin: enable 4DVAR testbed member in trunk - '''done''' (in changeset:16398)
+           - Eoin: discussed 4DVar and !HybridEnvVar branches with Jelena Bojarova ... 4DVAR is being kept up to date with trunk and Jelena will revisit the !HybridEnvVar branch soon and liaise with Eoin
+       - Define new testbed dates/domains - Eoin (with observations and DA in mind) 
+           - Eoin: use IRELAND150 domain for 3DVAR testbed members (keeping TEST_11 -> TEST_8 -> TEST_2.5 for the ''nesting'' testbed members)
+           - Eoin: default testbed DTGs updated to !2017093018-!2017100100
+           - Eoin: testbed changes committed in changeset:16398
+           - Discussion of including non-conventional observations on testbed
+                   - Parsing include.ass - '''Ulf''' fixed in [16424]
+                   - Define domains and times representative for different non-conv obs. '''Eoin'''
+
+- Preliminary correction of obsmon_stat placement -'''Eoin, Daniel & Roel''' 
+  - Move all the tasks to fractional (''nf'') queue
+  - Reduce of number of task from 50 to 4
+  - '''Roel''' is going to test on ECMWF. Dominique will check if this preliminary solution solves the use of more memory than requested and a proper use of queues when multiple scripts are launched in pararallel.
+  - '''Niko''' will discuss with Trygve about a better placement of this task.
+  - Obsmon could be no active for users not interested on DA/Obstat
+  - plotlog don't work for EPS.  Ask if plot log is used or not now is active in config_exp.sh.
+  - Collectlog and Wraup tasks could be improved. Use of html or tar files to store all logs.
+  - Ole is going to check the operational log strategy in MetCoOp branch 
+   
+- !EpyGram, Vortex and openMitraillete status - '''No action''' 
+       * Instructions and documentation on how to create suitable FA libraries with Makeup. [wiki:HarmonieSystemDocumentation/HarmonieSystemTraining2016/EPyGrAM#BuildsharedlibrariesforEPyGrAM First attempt] - "Works (with minor modifications) on local Linux server. Will try to build library on ecgate (using MUSC branch)."
+       * [https://opensource.cnrm-game-meteo.fr/projects/epygram https://opensource.cnrm-game-meteo.fr/projects/epygram]: EPyGram wiki
+       * [https://opensource.cnrm-game-meteo.fr/projects/epygram/wiki/Vortex_packages https://opensource.cnrm-game-meteo.fr/projects/epygram/wiki/Vortex_packages]: Vortex information
+       * Alexader tried unsuccessfully instal EpyGram in ecgb 
+       * MF should increase the efforts on more portable "open software" on common platforms for the partners like ECMWF computers
+
+- SVN 2 GIT  - '''Kai'''
+   - Connect Hirlam GIT repository with MF GIT is posible (vendor)
+   - Preserve the SVN history is possible some manual intervection is necessary in subbranches.
+   - Best practices and documentation about how to GIT commits
+   - Possible SVN deadline after relising harmonie 40h1.2 
+   -  43h1 will be the first master GIT
+   - Tagging from the master branch and other development branch 
+   - Inform users/developers about SVN deadlines and if they want to port their branches  
+   - Toy setup to test connection with MF. Cheery picking is necessary to only transfer in src directory
+   - Sub repositories are possible
+   - Online seminar on "Code development best practices and GIT" 
+   - Questions about repository design
+
+- cy40h1.2 status - '''Daniel'''
+    - Proposed deadline to tag the full or "technical" version of cy40h1.2  is before 2018 ASM
+
+- cy43h status - '''Niko'''
+   - The standard experiment's forecast model seems to run fine in [source:branches/harmonie-43t2] when the predictor-corrector dynamics is used.
+   - CY43T2_bf.03 available ?  
+   - Ask for bf documentation to MF
+   - Adiabatic run on cy43t2_bf2 and trunk -'''Ulf'''
+     - Fails after a few timesteps, no further action.
+   - GRID_TYPE_LCQ related code is missing
+     - Replaced by LBOUND_D3. The check of NSTEP < NFOST is missing in gnhd3.F90. On purpose or mistake? Will add it back '''Ulf''' fixed in [16417]
+       - Causes crash in forecast model, reverted in [16433]
+   - Logics for LSRTM/LRAY and RADSN/RADGR is broken in suecrad.F90, fixed in changeset:16393
+   - CY43 runs all the necessary changes include a  shortcut in aro_ground_param.F90 were included in changeset:16393
+   - SURFEX_LSELECT functionality is missing although sent to [wiki:Phasing/cy43t1#SupportforSURFEXlselect phasing]. Requires rephasing of [14252]. Disabled for the time being.
+   - SFX.ZS output from the model is truncated and causes problems if a .sfx file is used as input for the forecast. Could be avoided by setting LPGDFWR=F in NAMPHMSE but that's only hiding the problem. Question sent to Yann Seity.
+   - Feedback  our relevant corrections from our branch to MF - '''Niko'''   
+   - To tackle the current cy43t situation 4 working groups must be establish:
+            - DA team for upper air and surface
+            - Surface team for SURFEX v8 
+            - CANARI expert
+            - System team
+  - All this groups had been invited to the next WW in SMHI (check below)
+  - '''Daniel'''will ask Claude about the reasons of CANARI problems (Eric Bazile suggested that could be related with ODB treatment), technical memorandum about the recent and the possible new bug fix versions and include HIRLAM on the bugfix info flow.   
+ 
+
+- cy45 phasing - '''Toon'''
+     - [wiki:Phasing/cy45t1]
+     - The mitraillete tests are on-going on MF HPCs to avoid problems on cca.
+     - '''Eoin''' had test all our Bator proposed changes on top of cy45 using ECMWF and MF obs. 
+     -  Frank  Guillaume will check all Bator contributions
+     - Claude's proposed deadline for R&D  contributions to CY45T1 by mid-November. After that they will be focus on fixes only.
+     - A branch compiles and can be checked by MF Bator experts.
+     - B branch is ongoing with the help of KNMI people
+     - C branch is obsolete SURFEX changes should enter through SURFEX repository.
+     - D branch DA 
+     - E branch Technical fixes that probably were included by MF in cy45_main
+- '''Magnus''' had ported  msginit to cy40h1.1 -'''Roger and Sibbo'''
+    - mods contain around 10 files. 
+    - They are adopted to the cloud field content produced by smhi, so a bit 'non-general' in reading, but the general procedure is the same as in cy 38 
+after which is dissapeared.
+
+
+- GRIB2 design questions for HIRLAM and !MetCoOp  - '''Ulf'''
+     -  Suggestion is to keep the values in the files unchanged between GRIB1 and GRIB2. 
+     -  This means that the units will be different compared to the WMO convention for a given parameter. 
+     -   Here we have two choices: 
+              * Output a parameter with the wrong unit (like we have done for ages) 
+              * '''Give the parameter a new parameterNumber (Andreas C preference).''' Finally this option has been selected
+     - The difference compared to GRIB1 is that there are no local tables available for these kind of things thus it's harder to specify these kind of deviations. 
+     - Most of our users will use the GRIB_API to read the data and there we will have tables where couple the shortName to a specific parameter depending on generatingCentre.
+     - Will ecCodes give us the same funtionality?
+
+- 40h1.1 Bugfix version and backport submit.ecgb-cca config.ecgb-cca  and choose_PrgEnv.cca to cy38h.1.2. - '''Daniel'''
+     - New harmonie-40h1.1.bf.1 version was release with the new ECMWF HPC settings and a fix for env variables for ecFlow
+     - Include documentation on WIKI
+   
+-  Harmonie-Arome CMC on Météo France's infrastructure- '''Daan Degrauve'''
+     * source code in git: He merged cy40t1_bf.07 (as available at Météo France) with cy40h1.1 (as available with svn from hirlam.org). A resulting git branch "degrauwe_CY40T1_CMC_harmonie-arome" was posted to Météo France's git repository, which should be available to all. 
+     * mitraillette test: He created mitraillette tests for the 3 CMC's, all running with the same data on a small test domain. The namelist for the Harmonie-Arome CMC was created with the Get_namelist script from the Harmonie system. The initial data and coupling files were created with Harmonie at ECMWF. The other two CMC's run also fine with these data. The mitraillette scripts can be found under ~degrauwe/aladin/mitraille/mitraille_CMCHA
+     * Daan'sconclusions from this exercise:
+            - it did not require an enormous effort (in fact, the main difficulty was that cy40 is no longer supported in the most recent mitraillette, so I had to create input data, find correct versions of ecoclimap, etc 
+            - mitraillette is mainly a sanity check; I did not verify if the results of the AROME and ALARO CMC's with cy40h1.1 are the same as with cy40t1_bf.07.
+            - the difference between cy40t1_bf.07 and cy40h1.1 in terms of code is quite substantial (about 400 files are modified, out of which 150 are actually called by the CMC forecast). To fully integrate the Harmonie-Arome CMC in the common cycling and testing, I believe the "t" and "h" cycles should be closer together. For instance, I don't know how many of these 400 routines made their way to cy43t2, or to cy45t1... 
+            - Suggest that could be a better test to use cy43 + cy40h1.1 as CMC because part of the 400 changes should be there.
+
+- GLAMEPS V2 phase-out - '''Toon'''
+
+- Scalability - '''Daniel'''
+      - Bull-Atos profiled Harmonie for AEMET
+      - European Programme on Extremes of Weather, Climate and Computing (EPECC) [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201710/EPECC_ExecSummary.pdf Executive Summary ] [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201710/EPECC_Flow.pdf Workflow ]
+      - Jacob and Per will sent some comments about the model performance.
+      - Simplification, non-spectral dynamical core, increasing OMP parallelism could be necessary in the future.
+      - ESCAPE project has good scalability results in ACRANEB and variable resolution grids - Bent 
+      - Some time from ESCAPE could be assigned to analyze Harmonie-Arome.
+
+- 2018 RWP and system tasks [raw-attachment:RWP2018_20171011.pdf pdf] .
+
+- AOB
+      - Reintegration of Obsmon 2 from the UERRA branch
+      - Next WW will be hosted by SHMI on weeks 6, 9, 10 with possible participation of DA team (Magnus, Martin, Roger, et al.), Surfex Team (Katia, Patrick et al.,) and HIRLAM CANARI expert [https://doodle.com/poll/6a6f8g32zhe6qtqd Doodle]
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

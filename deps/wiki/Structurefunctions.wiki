@@ -1,0 +1,85 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Harmonie System Documentation''' ==
+= ''' Derivation of Structure Functions upd ''' =
+[[Center(end)]]
+
+== '''General''' ==
+For each new model domain, in order to carry out upper air data assimilation (3DVAR or 4DVAR) one needs to generate background error covariances (generally referred to as structure functions). The structure functions can be calculated from an ensemble of HARMONIE forecasts. A data sets from ECMWF ensemble experiments have been acquired by HIRLAM, for the period 20060920 and 20061031. With this data set, HARMONIE ensemble forecast runs can be initiated from ECMWF 6h forecasts, using ECMWF forecasts as initial and lateral boundary conditions. Such HARMONIE ensemble forecasts can be run for up to 6 hours, with results archived. To obtain stable statistics, it seems appropriate to run 4 ensembles for each day of the episode, all from 00 UTC. Then the forecasts can be processed to generate structure functions by method described below.
+
+Note that in the HIRLAM VAR implementation it has been possible technically to run 3/4DVAR using structure functions derived from other HIRLAM runs on different domain. This is not the case in the current HARMONIE data assimilation So the derivation of structure function is the first step to go before any VAR experiment can be done. There is a program developed for converting structure functions from one area to another but it is recommended  to be used for technical tests only. The procedure below has been tested on HARMONIE cy36h1.4, from which version it is applicable For earlier versions the [wiki:HarmonieSystemDocumentation/Structurefunctionsold  old procedure for generating structure functions] should be used, which require slightly more work. The procedure for generating structure functions is described below for a AROME setup with 2.5 km horizontal resolution,  65 vertical levels and located over FINLAND. The actual generation of structure functions take place in the 'Preparation' and 'Calculation' sections described below. The other sections deals with how to interface the newly generated structure functions into the data assimilation, how to diagnose the structure functions and something about future development plans.  
+  
+== '''Example on ecgate/c1a, for area FINLAND''' ==
+ * Preparation
+   1. Run the 4 downscaled HARMONIE 6h ensemble forecasts in for 20060920-20061031 00 UTC. Create 36h14e1 to 36h14e4 directories as described below for 36h14e1. 36h14e2 to 36h14e4 procedure is exactly the same, except for that you do include 'export JB_ENS_MEMBER=2' etc, instead of 'export JB_ENS_MEMBER=1' at the bottom of config_exp.h.
+     1. create hm_home/36h14e1 directory. Then cd $HOME/hm_home/36h14e1.
+     1. create experiment by typing '~hlam/Harmonie setup' (or '~hlam/Harmonie setup -r /home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-36h1.4').
+     1. edit sms/config_exp.h as follows
+       * set DOMAIN=FINLAND, 
+       * set FCINT=24,
+       * set BDSTRATEGY=jb_ensemble
+       * set OUTINT=6,  
+       * set ANAATMO=none
+       * set ANASURF=none
+       * I have also set ECFSLOC=ec, instead of default ectmp, but that is not crucial. In case of ECFSLOC=ec the forecasts will be archived at ec:/$uid/harmonie/$EXP/$YYYY/$MM/$DD/$HH.
+       * add 'bdiff' 'pinuts' to OTHER_PROGRAMS so that OTHER_PROGRAMS="oi_main pgd blend odbtools bator ioassign mandalay blendsur addsurf bdiff pinuts"
+       * include the following line at the bottom of config_exp.h: export JB_ENS_MEMBER=1 
+     1. From $HOME/hm_home/36h14e1 launch experiment by typing
+{{{
+   ~hlam/Harmonie start DTG=2006092000 DTGEND=2006103100 LLMAIN=06
+}}}
+   1. Generate difference files from 6 h forecasts (for forecasts valid at the same time) in a format suitable for background error statistics program.
+       1. Log in to c1a (rlogin c1a). 
+       1. Go to $TEMP, followed by 'cp -r /ms_perm/alas/Jb_dir  $TEMP/.'. You will get a number of subdirectories under your 'Jb_dir'
+       1. In scripts (cd scripts) you find the script 'makediff'. Take a look at it and modify $uid 'smx' to your own uid and set paths to find your data and executables (BDIFF should be taken from bin directory of one of your ensemble experiments and forecast files from your ensemble experiments, as stored on ecfs). Modify start and end dates to match the ones of your experiment.
+       1. In case of running AROME do not modify $TEMP/Jb_dir/bdiff.nml. In the case of running ALADIN or ALARO  set YQ_NL%LGP=.FALSE. and YQ_NL%LSP=.TRUE. in $TEMP/Jb_dir/bdiff.nml.  
+       1.  When finished with the editing, launch the experiment (positioned in scripts directory) with 'llsubmit ./makediff'. 
+       1. check if you are running by typing llq -u $uid'. Out directory will be on $TEMP/ald3dvar. Note three sub-directories 'Diff2 Stat Work'. 'Work' is where the calculations take place and 'Diff2' where the output difference files appear in a format suitable for coming structure function calculation (names like nmcstat2006092000.0i, i=1,..4). 
+
+ * Calculation
+   1. On c1a $TEMP/Jb_dir/scripts you find 'linkdiff' script. Take a look at it. It justs creates symbolic links between the difference files  '$TEMP/Jb_dir/Diff/nmcstatYYYYMMDDHH.1' etc and  '$TEMP/Jb_dir/Stat/nmcstat001' (002 for the next file and so forth), needed for the next step. Modify paths and dates and run by typing (placed in $TEMP/Jb_wiki/scripts) ./linkdiff (the outcome will be the links in '$TEMP/ald3dvar/Stat'.
+   1. Time to compile festat program. Make sure you use /bin/ksh. Go to $TEMP/Jb_dir/nmcstat/src. There edit compilation script 'festat'. Here you will find roughly 25 different parameters to set, related to dates and number of cases you have, as well as model geometry for your domain. Edit these parameters. To find out about your model parameters, fetch a forecast file in FA-format from your experiment. and examine it with executable frodo. See following. Afterwards, type './frodo $FILE' and you will receive a file 'INFO.$FILE' providing you with geometrical information. After editing festat compile by typing './festat' and a festat.x will appear.
+     * fetch the executable '$TEMP/hm_home/36h14e1/bin/PINUTS' from your DF_ENS experiment and name it as 'frodo' (cp $TEMP/hm_home//36h14e1/bin/PINUTS frodo). 
+   1. Now  it is time for running festat by utilizing the script runfestat in $TEMP/Jb_dir/scripts. Modify paths (/ms_perm/alas to $TEMP and smx to your uid), make sure runfestat is using your newly compiled festat.x, and run by (placed in script directory) typing 'llsubmit ./runfestat'. The structure function program festat.x will run at $TEMP/Jb_dir/Stat and the structure function output will be three files starting with 'stabfiltn'. There will also be a lot of diagnostical files with names starting on 'cov' and 'cor' as well as a log file (these files are worth saving). The two files 'stabfiltn*.cv' and 'stabfiltn*.bal' will be needed by the assimilation later on. gzip them and copy to ecfs (emkdir ec:/$uid/jbdata followed by: ecp stabfiltn*.cv.gz ec:/$uid/. and stabfiltn*.bal.gz ec:/$uid)
+
+ * Run data assimilation 
+     1. create hm_home/36h14as directory. Then cd $HOME/hm_home/36h14as.
+     1. create experiment by typing '~hlam/Harmonie setup' (or '~hlam/Harmonie setup -r /home/ms/spsehlam/hlam/harmonie_release/tags/harmonie-36h1.4').
+     1. edit sms/config_exp.h as follows
+       * set DOMAIN=FINLAND, 
+       * I have also set ECFSLOC=ec, instead of default ectmp, but that is not crucial. In case of ECFSLOC=ec the forecasts will be archived at ec:/$uid/harmonie/$EXP/$YYYY/$MM/$DD/$HH.
+    * create directory $HOME/hm_home/AN_ENS/scr and place the file include.ass in that directory (include ass you can get from $TEMP/hm_home/lib/scr/ on c1a). In include.ass set JBDIR=ec:/$uid/jbdata (uid being your userid) and  f_JBCV='name of your .cv file in ec:/$uid/jbdata' (without .gz) (example stabfiltn_demo_20070201_10.cv,f_JBBAL=' name of your .bal file in ec:/$uid/jbdata  (without .gz) (example stabfiltn_demo_20070201_10.bal). 
+     * in $HOME/hm_home/AN_ENS, launch '~nhz/Harmonie start DTG=2007020100' and you will create an experiment with data assimilation
+   1. The analysis file will be called 'MXMIN1999+0000'. Results will appear on $TEMP/hm_home/AN_ENS' and ECFS. Note that with structure functions based on a too small sample you might get an error in minimization due to issues like zero humidity eigenvalue.
+     1. From $HOME/hm_home/36h14as launch experiment by typing
+{{{
+   ~hlam/Harmonie start DTG=2010010306 DTGEND=2010010312 LLMAIN=06
+}}}
+
+   1. On ecgate $HOME/hm_home/, copy experiment FC_ENS1 to AN_ENS (cp -r FC_ENS1 AN_ENS)
+   1. go to $HOME/hm_home/AN_ENS
+     * set in sms/config_exp.h, ANAATMO=3DVAR, ANASURF=yes, BDSTRATEGY=operational and remove last line in config_exp.h (export JB_ENS_MEMBER=1)
+     * create directory $HOME/hm_home/AN_ENS/scr and place the file include.ass in that directory (include ass you can get from $TEMP/hm_home/lib/scr/ on c1a). In include.ass set JBDIR=ec:/$uid/jbdata (uid being your userid) and  f_JBCV='name of your .cv file in ec:/$uid/jbdata' (without .gz) (example stabfiltn_demo_20070201_10.cv,f_JBBAL=' name of your .bal file in ec:/$uid/jbdata  (without .gz) (example stabfiltn_demo_20070201_10.bal). 
+     * in $HOME/hm_home/AN_ENS, launch '~nhz/Harmonie start DTG=2007020100' and you will create an experiment with data assimilation
+   1. The analysis file will be called 'MXMIN1999+0000'. Results will appear on $TEMP/hm_home/AN_ENS' and ECFS. Note that with structure functions based on a too small sample you might get an error in minimization due to issues like zero humidity eigenvalue.
+
+ * Diagnosis of structure functions and analysis increments
+   * Diagnosis of structure functions is a rather complicated task. On c1a /ms_perm/alas/Jb_wiki/dia you will find makescript fediacov, it utilizes diagn.include and libgsa_var_comp_gsa_log.F. Compile it while shell /bin/ksh by typing ./fediacov (note that in diagn.include and libgsa_var_comp_gsa_log.F there are geometrical settings according to your domain that you need to specify before comiling to get it correct). Place the resulting diacov.x in $TEMP/ald3dvar/Stat and type './diacov.x' (it needs the three gunzipped stabfiltn*-files as input. Output will be a lot of cov* and cor* files and more. In  $TEMP/sfun_dem/plot example of octave plot programs for displaying data are provided as example. prep_gmt.F reads data cov*.xy and put in a perhaps more plot-freindly format. To get an idea of what the correlations and covariances should look like take a look in the article: Berre, L., 2000: Estimation of synoptic and meso scale forecast error covariances in a limited area model. Mon. Wea. Rev., 128, 644-667. It would also be fruitfuil to look at the 3D-VAR analysis increments of your AN_DEMO experiment. Copy the files MXMIN1999+0000 (analysis) and ICMSHANAL+0000 (fg, with surface analysis applied) to $TEMP. Convert from FA-file format to GRIB with the gl-software ($TEMP/hm_home/AN_DEMO/bin/gl) by typing 'gl -p MXMIN1999+0000' and gl -p ICMSHANAL+0000'. Then plot the difference file with your favorite software
+
+ * Future developments
+   * Present work regarding structure functions concerns ensemble data assimilation systems with perturbed observations also in HARMONIE.
+
+[[SubWiki]]
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+ 

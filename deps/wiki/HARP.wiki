@@ -1,0 +1,100 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARP Verification Toolbox''' =
+[[Center(end)]]
+
+== '''Introduction''' ==
+
+HARP originally stands for the Hirlam-Aladin R Package for verification. The plan for developing a joint verification package for probabilistic and spatial verification dates back to the ALADIN Workshop & HIRLAM All Staff Meeting in Marrakech in 2012. HARP is a verification toolbox aimed to be used by the HIRLAM and ALADIN community. Although R package is extensively used in the HARP, the tool package is not limited to the R language and utilities.
+
+The original choice for R was inspired by a number of reasons:
+
+    * It is free and readily available.
+
+    * Several packages for verification already exist.
+
+    * There is considerable expertise in several member institutes both within HIRLAM and ALADIN consortia.
+
+In addition, the need for EPS verification tools arose from developments in GLAMEPS and HarmonEPS. Especially in GLAMEPS various tasks in forecast post-processing were already coded in R. Those routines became the basis for several HARP routines. However, while the heritage of GLAMEPS is easily seen in the code, HARP is not meant as a tools for one particular forecasting system.
+
+An important aspect of HARP is its modularity. HARP is not a single monolithic program, but a set of routines that each perform different tasks. HARP is a toolbox. Some of the tools it provides are
+
+    * extraction (interpolation) of forecasts for specific locations (e.g. synop stations)
+
+    * compilation of synop and temp observations into a database
+
+    * EPS verification score calculation
+
+    * spatial verification of deterministec forecasts
+
+    * Graphical routines (either in batch mode or via an interactive web interface)
+
+In particular, notice that the generation of verification scores and the visualisation are quite separate tasks.
+
+Besides R, another important ingredient of HARP is the use of SQLite. This is a very common and robust format for SQL data files. By storing input and output in SQLite tables, the data can easily be moved and also remains accessible with other tools (e.g. R, python, C offer SQLite tools, and various separate data browsers are also available).
+
+This modular structure means that various tasks may be adapted or even replaced as long as the basic data structure (SQLite tables) is maintained. Hopefully therefore, HARP will be easily adaptable to local needs and also able to evolve.
+
+
+Please be advised that HARP is still in development. While EPS point verification is reasonably mature and tested, other functionalities are quite new, or only partially implemented. HARP uses SQLite as a file format. On certain network file systems (notably NFS), this may cause problems when two processes write to the same SQLite file at the same time. You should avoid situations where two processes try to write to the same SQLite file. 
+
+HARP version 2.0 includes spatial verification scores. This module is not yet as well developped as pointwise EPS verification. Users are encouraged to contact Alex Deckmyn whith problems or suggestions.
+
+== '''Repository''' ==
+
+   * [https://hirlam.org/trac/browser/Harp HARP repository in git]
+
+== '''Tagging History''' ==
+      * November 9 2017, Harp 2.0-beta is tagged
+      * April 9 2015, Harp 1.1 is tagged, fixing bugs of 1.0. This is defined as officially released Version 1 (HARP V1). 
+      * March 27 2015, HARP 1.0 is tagged
+
+
+== '''Installation''' ==
+   * Fetch the source
+     * '''Download''' [https://hirlam.org/trac/attachment/wiki/HARP/Harp_v2.0-beta.tar.gz tarball]. Version control feature is stripped off here, which is suitable for normal usage.
+     * via git repository, with version control feature retained, suitable for developers.
+       * The Master HARP repository is stored on the git server at hirlam.org. In order to download the repository you need to have an user account on hirlam.org and the Git client available on your platform. Git is readily available for all flavours of Linux. For access to hirlam.org, please contact HIRLAM system manager Daniel Santos,  dsantosm at aemet.es.
+       * For downloading on ecgate (ecgb), it may be necessary to setup a https proxy to gain access to hirlam.org:
+         * export https_proxy=http://proxy.ecmwf.int:3333
+       * Once you have everything in place, cd to the directory where you want to install HARP and download HARP with the following commands:
+         * GIT_SSL_NO_VERIFY=true 
+         * git clone https://userID@git.hirlam.org/Harp
+       * where userID is your user name on hirlam.org. Insert your password for hirlam.org when prompted. This while create a directory ./Harp where all the software is installed.
+       * The above 'git clone' command retrieves the master branch including all the latest commits that have been published on hirlam.org. In order to get to a tagged version like e.g 'v2.0-beta', you checkout that version within your newly cloned local repository as follows:
+         * git checkout -b my_v2 v2.0-beta
+       * This creates the branch 'myv1' within your local repository clone, and checks out the code according to tag 'v2.0-beta' within the new branch 'my_v2', and switches to that branch, so you can start using the version right away.
+   * Install using the INSTALL script
+   * Please refer to [wiki:HARP?version=14#Knownbugscorrections section below] to follow bug reports and use eventual correction as recommended.
+
+== '''Known bugs, corrections''' ==
+
+   * v1: April 13 2015, a fatal error detected and corrected which affects verification of surface parameters like T2m. The [https://hirlam.org/trac/changeset?reponame=Harp&new=f2f064bb1fd9fddeae1634935155524e35199637%40%2F&old=8dc9459534036adb100b201380eeb41e370c983b%40%2F correction] is committed. Please download the correction [https://hirlam.org/trac/attachment/wiki/HARP/Harpv1_bugfix20150413.tar.gz tarball].
+
+== '''Documentation''' ==
+The main HARP documentation is located on google drive, where it is regularly updated. You can extract it from there as a pdf file or read it online. 
+
+   * [https://docs.google.com/document/d/1hx6FRtKvwiu5s8k5SKxsAkgcnYzBK2IUZsuy9Vsn5Bk/edit HARP documentation on Google]
+
+A frozen version of the documentation can also be found in the source tar file (but it is not tracked in the git repository).
+
+== '''HARP and HARP related working meeting''' ==
+   * [https://hirlam.org/trac/wiki/GLAMEPS_HARMONEPS_HARPworkingweek2015-1 Joint GLAMEPS/HARMONEPS/HARP working week, March 2015, RMI ]
+   * [https://hirlam.org/trac/wiki/GLAMEPS_HARMONEPSworkingweek2014-2 GLAMEPS/HARMONEPS working week, Nov 2014, SMHI ]
+   * [https://hirlam.org/trac/wiki/GLAMEPS_HARMONEPSworkingweek2014-1 GLAMEPS/HAEMONEPS working week, May 2014, AEMET/Barcelona ]
+   * [https://hirlam.org/trac/wiki/HARP201403 HARP working week, March 2014, RMI ]
+   * [https://hirlam.org/trac/wiki/GLAMEPS_HARMONEPSworkingweek2013-1 Joint GLAMEPS/HARP working week, March 2013, RMI ]
+   * [https://hirlam.org/trac/wiki/GLAMEPS_HARMONEPSworkingweek2012 joint GLAMEPS/HARMONEPS/HARP working week, Oct 2012, DMI ]
+
+== '''Contact''' ==
+
+  * Verification-related work including development of HARP software is coordinator by Christoph Zingerle from ALADIN side and Bent Hansen Sass from HIRLAM side.
+  * A general mailing list for harp work is available on hirlam.org as harp@hirlam.org. Those interested can use [https://hirlam.org/mailman/listinfo/harp interface ]to sign up to the mailing list.
+  * HARP team: Alex Deckmyn, Andrew Singleton, Christoph Zingerle, Bent Hansen Sass. Andrew takes main responsibility of maintaining EPS side of repository and Alex on spatial verification and R packages.
+
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

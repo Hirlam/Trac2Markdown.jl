@@ -1,0 +1,230 @@
+[[PageOutline]]
+[[Center(begin)]]
+== '''Release Notes of HIRLAM 7.4''' ==
+[[LastModified]]
+[[Center(end)]]
+
+== Highlights of Hirlam 7.4 ==
+
+HIRLAM-7.4 is the last development version of synoptic-scale HIRLAM forecast system. Compared to Hirlam 7.3, version 7.4 contains as default following main features:
+ * Increased resolution with reference domain '''RCR-7.4'''. Compared to previous RCR grid mesh, the horizontal grid-resolution is now more than doubled, at 0.068 degree or 7 km. In the vertical, a [wiki:SixtyfiveLevel 65 level] structure is applied, with lowest model level at ca 12 m. The '''RCR-7.4''' grid mesh is now 1030x816x65 with smaller domain coverage than previous versions with RCR domain defined as '''RCR-7.1''')
+ * Lake parametrisation, Freshlake scheme Flake
+ * Orographic radiation parametrisation
+ * other minor technical changes
+
+== Hirlam 7.4 tagging history ==
+ * On Mar 09 2012, Hirlam-7.4 is tagged.
+ * On Feb 03 2012, Hirlam-7.4rc1 is tagged.
+ * On Aug 15 2011, Hirlam-7.4 beta1 is tagged. Note that the 7.4beta1 extended somewhat the preliminary default domain in 7.4 alpha 1.
+ * On Dec 23 2010, Hirlam-7.4 alpha is tagged
+
+== Hirlam 7.4 source code downloads ==
+
+Upon tagging of hirlam-7.4rc1, the complete source code can be obtained by using either
+
+ * Subversion command
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.4
+}}}
+ * or source code tarball, available from hirlam.org as
+{{{
+https://hirlam.org/portal/download/src/hirlam-7.4.tar.gz
+}}}
+or ECMWF ecfs:/hirlam/src/tar/hirlam-7.4.tar.gz which contains the sandbox (check-out version) of Hirlam 7.4.
+
+== New Features in Hirlam 7.4 ==
+
+=== Source changes in Hirlam 7.4 ===
+
+The source changes in Hirlam-7.4, relative to Hirlam-73, are included in the Subversion changesets between [8639] and [10415] for trunk/hirlam, see also  the detailed listing of the source code and script modifications. The following listing provide an approximate breakdown of the changes according to main components. These include both new additions and various modifications, corrections and bugfixes. 
+
+ * data assimilation
+   * data assimilation, algorithm: [8827],[10035],[10409],[10415]
+   * surface assimilation: [8645],[8854],[9247],[9266],[9273],[9277:9278],[9597:9599],[10231]
+   * use of observations: [8641], [8828],[9378,9380],[9511],[10036,10195]
+ * forecast model
+   * physics: [8806,9431,9442:9443],[8826],[8966],[9381],[10003],[10068],[10223],[10231],[10408]
+   * dynamics, boundary interpolation and coupling, other aspects: [8821,8836],[9213],[9242],[9256],[9432,9434],[9450],[9461],[10205],[10207],[10240]
+ * probabilistic forecast: [8876],[8954],[9015],[9017],[9038:9039],[9135],[9544],[9718],[10087]
+ * post-processing, diagnostics: [8956],[9379],[9382],[10058:10059,10062]
+ * other system settings
+   * computation platform:[8835,8843],[9447],[9452,9466],[10081:10082],[10389]
+   * scripts, utilities: [8652], [8815],[8824:8825],[8853],[8858],[8867],[8875],[8877],[8899],[8901],[8953],[9195:9196],[9201],[9203],[9215],[9228],[9343],[9416],[9480],[9539:9540],[9587],[9595],[9976],[10038:10039],[10071],[10194]
+   * system overhaul:[9512],[9519],[9583],[9910],[10037],[10193],[10247],[10350],[10389,10395]
+
+
+===  ===
+
+=== New reference domain ===
+Table below lists difference of main specifications for the new RCR domain compared to previous one. Note that change of vertical resolution requires new structure function in upper air variational data assimilation. 
+
+||domain name||'''RCR-7.4'''||'''RCR-7.1'''||
+||model versions||HIRLAM-7.4||Hirlam-7.1, Hirlam-7.2, Hirlam-7.3||
+||nlon||1030||582||
+||nlat||816||448||
+||nlev||65||60||
+||south||-24.00||-32.025||
+||west||-33.50||-49.875||
+||north||31.42||35.025||
+||east||36.472||37.275||
+||polat||-30.0||-30.0||
+||polon||0.0||0.0||
+
+=== Flake scheme ===
+
+'''FLake''' stands for '''F'''reswater '''Lake''' Model, developed by [http://www.flake.igb-berlin.de/ Dmitri Mironov et al.]. A recent special lake issue of [http://www.borenv.net/  Bor. Env. Research (volume 15, number 2)], contains many papers on FLake and its application in different NWP models. The present implementation of FLake as a parametrizations in HIRLAM is based on work by Ekaterina Kourzeneva et al., see Newsletter 54, p.54 for description of the first steps. During winter 2009-2010 FLake parametrizations have shown to be able to handle lake freezing and melting better than any other method tried in HIRLAM.
+
+FLake implementation in HIRLAM[[FootNote(Note for the HARMONIE users: FLake parametrizations exist in SURFEX, but its initialization and physiography in the HARMONIE environment need yet to be explored)]] requires the following elements:
+  1. FLake code and interfaces in the forecast model 
+  1. Description of lake depth and fraction in the physiography (climate files)
+  1. Lake climatology data for the initialization of the prognostic variables in cold start
+  1. Code in the surface data assimilation 
+
+The FLake parametrizations is built behind a switch in FLAKE_PAR=yes in Env_expdesc. With FLAKE_PAR=no, the code should behave like Hirlam-7.3. Swiching FLAKE_PAR=yes will require additional climate fields. The lake data base used is described in http://hirlam.org/index.php?option=com_docman&task=doc_download&Itemid=70&gid=969 . 
+
+In the present form the FLake parametrizations and possible lake surface data assimilation (e.g. Finlake climatology, ECMWF analysis over large lakes) live a peaceful coexistence. This means that the prognostic variables of FLake are not influenced by the analysis, but provide a diagnostic lake surface temperature for the background of the analysis. In the future, a proper assimilation of the prognostic variables should be developed. This will require usage of satellite and in-situ observations on lake surface state.
+
+ '''WARNING''' Cold start (from climatological fields) of HIRLAM with FLake is presently only possible in late summer and autumn conditions! Read more about the constraints and requirements in [http://hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=3&id=651 here].
+
+
+ [[FootNote]]
+
+=== Orographic radiation parametrisation ===
+
+ Radiation parametrisation for sloping surfaces is turned on and controlled by RADORO_PAR. The parametrisation is described in [http://hirlam.org/index.php?option=com_docman&task=doc_download&Itemid=70&gid=620 here] and Senkova et al., 2007.
+
+=== Large scale constraint with Jk ===
+
+ Constraints of large scales from ECMWF through an extra term, Jk, in the data assimilation is introduced. The method is described in [http://hirlam.org/index.php?option=com_docman&task=doc_download&Itemid=70&gid=989 presentation] by Per Dahlgren and published in Tellus A 2012, 64. A switch JKASSIM is introduced in Env_expdesc and is turned off by default. At the moment the only structure functions avilable for JK is for 60 levels.
+
+=== New post-processing output ===
+
+ * Cloud base height diagnostic. It can be called with parameter 6 (geopotential height), level type 2, level xx with xx being the threshold cloud cover to be exceeded before it is called the cloud base (to be given in percent, 30 for 30% cloud cover). One can think of several thresholds that are interesting to use. Normal cloud base is the level where the cloud cover exceeds 3/8. But that means that the cloud base can be missed completely when the clouds are convective in nature. For these conditions it is better to use a threshold of 10%.
+
+ * Wet bulb potential temperature at pressure levels. This parameter is often useful for duty forecasters to follow air masses. Fronts can be easily distinguished and followed with this parameter. It can be called through 229 105 850 in FCinput.
+
+=== Updates in physics
+  
+ * Using lower surface roughness over ice over Baltic, for better 10m winds. [10231]
+ * Tunings for 2m temperature in stable conditions. Gives slightly better temperatures in in case of weak winds. [10231]
+ * Possible to use the Liu-Penner parametrization if koption(14) is set to 2 (no change if zero) koption(1) or (2) gives a somewhat more realistic CCN distribution. Read more in [http://hirlam.org/index.php?option=com_docman&task=doc_download&Itemid=70&gid=1177 here]
+ * Updates of STRACO.
+
+=== Other configuration changes ===
+
+  * There are now two methods for assimilation of ASCAT data, ASCAT and SCATT.
+  * SEAWIND is removed as an option.
+  * In EPS mode specific members can be selected by ENSSEL and surface assimilation (SPAN) can be turned on for all members through SPAN_EDA.
+  * Select if boundary data are in GRIB1 or GRIB2 data through BDGRIB2.
+
+=== GRIB1 parameter list in 7.4 === 
+
+There are several new GRIB1 parameters related to FLAKE. The updated wiki [wiki:HirlamSystemDocumentation/Forecast/Outputlist74 listing of GRIB1-parameter] details the parameter definition as appearing in GRIB1 output data from hirlam-7.4.
+
+== Meteorological Evaluation of Hirlam 7.4 ==
+
+Hirlam-7.4 has been tested extensively in both validation and parallel suites at ECMWF and FMI and it has been shown to demonstrate an overall, and often significatnt improvement over that of 7.3 in key forecast parameters, such as
+those on mean sea level pressure, surface temperature and wind. The general improvement in quality is presumably due to an increased resolution in both vertical and horisontal.
+
+FMI switched to hirlam-7.4rc1 on the 6th of March 2012. The both versions are meteorologically equivalent. For more information visit [fminwp.fmi.fi/].
+
+
+== Running Hirlam 7.4-code series on the ECMWF platform ==
+
+ * The default configuration setting is ecgate, where ecgate (HOST0) is used for launching jobs and simple serial tasks and C1A (HOST1) is for computations. Please use reference installation on `ecgate:~hlam/hirlam_release` 
+ * To set up a 7.4 experiment "{exp}" on ecgate, one can go through following sequence of actions as in examples:
+{{{
+  mkdir ~/hl_home/{exp}; cd ~/hl_home/{exp} # note that experiment name {exp} shall not contain "."
+  ~hlam/Hirlam setup -r 7.4                  # running system 7.4
+}}}
+ * To modify source code or scripts, first 'check out' the reference ones and modify them. e.g,
+{{{
+  ~hlam/Hirlam co Env_domain; vi scripts/Env_domain
+  ~hlam/Hirlam co Env_expdesc; vi scripts/Env_expdesc
+  ~hlam/Hirlam co putdat.F; vi scripts/putdat.F
+}}}
+ * Launch experiment, e.g,
+{{{
+  ~hlam/Hirlam start DTG=2012030900 DTGEND=2012033106    # to perform cycled experiments from start cycle DTG to end cycle DTGEND
+}}}
+ * Note that due to change of contents in climate data base (in connection with introduction for MSO-SSO), climate data from previous model version can not be re-used. Due to increased horizontal resolution and new parameterisation scheme, climate generation now requires substantially longer time. A cold start in form of
+{{{
+   Hirlam start
+}}} 
+needs to be launched in order to achieve this.
+ * See also further examples of job launch command in the following sections.
+
+== Install and run Hirlam-7.4 on non-ECMWF platforms ==
+
+ * On non-ECMWF platforms, a local installation is needed by either local system manager or user self. A local installation needs an climate data (HDF file) set updated to 7.2. The procedure is similar to [https://hirlam.org/trac/wiki/HirlamHowto/Install/General#WhatisanHDFSETandwherecanIfindtheHDFsets that of 7.0], except to replace all instances of `hdfdb-7.0` there with `hdfdb-7.2`.
+
+ * Then install the HIRLAM source code on a local path $localpath:
+{{{
+   svn co https://svn.hirlam.org/tags/hirlam-7.4 7.4                   # with internet access, or
+   tar -zxvf hirlam-7.4.tar.gz                                    # with a source code tarball
+}}}
+   1. `alias Hirlam $localpath/hirlam/config-sh/Hirlam`
+   1. `Hirlam setup -r 7.4 -d $localpath`
+   1. Launch the job with:
+{{{
+    Hirlam start DTG=$yyyy$mm$dd$hh
+}}}
+
+
+=== Sample Computation Cost === 
+
+'''Climate generation'''
+
+||domain||grid size/distance || platform||MSO-SSO||RADORO||FLAKE||elapse time||
+||RCR-7.4|| 1030x816, 0.068d || ECMWF-C1A || yes|| yes|| yes|| 26 hour ||
+||RCR-7.4|| 1030x816, 0.068d || ECMWF-C1A || yes|| no|| yes|| 16 hour ||
+||RCR-7.4|| 1030x816, 0.068d || ECMWF-C1A || yes|| no|| no|| 7.5 hour ||
+||RCR-7.4|| 1030x816, 0.068d || ECMWF-C1A || no|| no|| no|| 5.5 hour ||
+||RCR-7.1|| 582x448, 0.15d || ECMWF-C1A || yes|| yes|| yes|| 10 hour ||
+||RCR-7.1|| 582x448, 0.15d || ECMWF-C1A || yes|| no|| yes|| 7.5 hour ||
+||RCR-7.1|| 582x448, 0.15d || ECMWF-C1A || yes|| no|| no|| 2 hour ||
+||RCR-7.1|| 582x448, 0.15d || ECMWF-C1A || no|| no|| no|| 1.5 hour ||
+
+[[BR]]
+
+'''4D-VAR minimisation'''
+
+||domain||tested 7.4 release||platform||simplified phys||nr of iterations||minimization resolution||nr of node,processors||elapse time||HPC billing unit||
+||RCR-7.4||7.4 beta1||ECMWF-C1A||MFSP1, MFSP1||40,30||63, 42 km||2, 64||490s, 1100s||160+360||
+
+
+[[BR]]
+
+'''4D-VAR trajectory forecasts (2 5h foecast integration)'''
+
+||domain||tested 7.4 versions||condensation schemes||platform||nr of nodes||task per node||nprocx||nprocy||ncpu_hgs||nhalo||time step||elapse time per step||5 h Forecast elapsed time||HPC Billing cost||
+||RCR-7.4||7.4beta1||KFRK||ECMWF-C1A||4||60||16||15||4||8||150s||~4.0s||866s + 866s||577 + 577||
+
+'''Forecast'''
+
+||domain||tested 7.4 versions||condensation schemes||platform||nr of nodes||task per node||nprocx||nprocy||ncpu_hgs||nhalo||time step||elapsed time per step||48 h Forecast elapsed time||HPC Billing cost||
+||RCR-7.4||7.4beta1||KFRK ||ECMWF-C1A||4||61||16||15||4||8||150s||~4.1s||4900s||3260||
+
+[[BR]]
+
+ [[FootNote]]
+
+== Acknowledgement ==
+The following are acknowledged for their direct contribution to the the code and script updates featured in HIRLAM 7.4:
+
+'''DA and EPS'''
+Nils Gustafsson, Frank Tveter, Jelena Bojarova, Bjarne Amstrup, Kai Sattler, Xiaohua Yang, Per Dahlgren, Per Kållberg
+
+
+'''Forecast model'''
+Stefan Gollvik, Sander Tijm, Laura Rontu, Karl-Ivar Ivarsson, Bent H. Sass, Kalle Eerola, Ole Vignes, Henrik Feddersen, Ekaterina Kourzeneva
+
+
+'''System'''
+Ole Vignes, Kai Sattler, Toon Moene, Kalle Eerola, Niko Sokka, Xiaohua Yang, Brian Sorensen
+
+
+----
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

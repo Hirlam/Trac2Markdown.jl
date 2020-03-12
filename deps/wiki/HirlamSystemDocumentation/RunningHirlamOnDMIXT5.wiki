@@ -1,0 +1,434 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Documentation''' ==
+= '''Running Reference Hirlam on DMI's Cray XT5''' =
+[[Center(end)]]
+
+== Reference Hirlam Installation on DMI's Cray XT5 ==
+
+The main reference Hirlam versions are installed, and daily updated when applicable, on DMI's supercomputer platform, XT5, under
+{{{
+   /home/xiaohua/hirlam_release            # for recently tagged HIRLAM releases, trunk, branches
+   /home/xiaohua/harmonie_release          # for recently tagged HARMONIE releases, trunk
+}}}
+Users may check from these directories Hirlam source codes and scripts for each installed versions.
+
+The available HIRLAM versions on MUNIN are,
+
+ 1. tagged versions
+{{{
+   
+   72cis                               # hirlam-7.2cis with partial DMI adaptation, gfortran compiler
+   hirlam-7.2                          # hirlam-7.2, as is (with no direct adaptation to DMI platform)
+   cis080424                           # tagged CIS branch on 20080424, used by CIS-group in impact studies (https://hirlam.org/portal/cis)
+}}}
+ 1. Frozen version out of development branches
+{{{
+
+   dminewsnow20100304                  # dminewsnow branch as on 20100304
+   chemgas20100304                     # chemistry branch as on 20100304 and with DMI platform adaptation
+}}}
+ 1. moving branch, with possible updates, bug fixes daily
+{{{
+   trunk                               # Hirlam trunk, i.e., the development branch toward hirlam-7.3
+   dminewsnow                          # adapted source code and scripts for DMI platform
+   newsnow                             # newsnow development branch
+   chemgas                             # chemistry branch + with local adaptation to DMI platform
+}}}
+
+Recently we updated the HIRLAM [https://hirlam.org/trac/browser/trunk/hirlam trunk], so that it now contains directly the settings for compile HIRLAM codes on DMI-Cray XT5 with PGI, PATHSCALE and GFORTRAN compilers. It is hence possible that on DMI platforms, one uses directly the latest trunk for compilation. However, trunk version is not suitable to be run directly on XT5 due to incomplete adaptation in data input and use of DMI-BUFR data in surface analysis. At present, interested users are advised to use, either the special DMI branch [https://hirlam.org/trac/browser/branches/dminewsnow], which have included technical adaptation of trunk for use at DMI platform including that of DMI BUFR data, or '''dminewsnow20100304''', which is a frozen version based on DMI-adapted trunk up to 20100304. 
+
+Note that the source codes [https://hirlam.org/trac/browser/trunk/hirlam trunk] and [https://hirlam.org/trac/browser/branches/dminewsnow dminewsnow] are both moving branches with possible changes on daily basis. Such moving branches have an advantage that the newest corrections and features are included, but also the disadvantage that the codes are less well tested. So use it with cautions.
+
+== Individual Hirlam Source Installation on Cray XT5 ==
+
+Since the code in /home/xiaohua/hirlam_release/dminewsnow is a moving version with frequent update, users that need to perform long experiment is advised to make own copy of the '''dminewsnow''' code in order to "freeze" it:
+
+{{{
+   mkdir -p $HOME/hirlam_release
+   cd $HOME/hirlam_release
+   cp -r ~xiaohua/hirlam_release/dminewsnow dminewsnow20100305                 # the name "dminewsnow201003051" is just an example
+}}}
+
+== Perform Hirlam experiment on DMI Cray XT5 ==
+
+ 1. create an experiment directory $exp under $HOME/hl_home, where $exp is a name of your free choice
+{{{
+   mkdir -p $HOME/hl_home/$exp; cd $HOME/hl_home/$exp             # note that in practice, the directory structure here is compulsory, i.e, the settings with $HOME/hl_home/ is expected by the mini-SMS script.
+}}}
+ 1. link utility script Hirlam
+{{{
+   alias Hirlam ~xiaohua/Hirlam
+}}}
+ 1. set up basic setting for Hirlam experiment
+{{{
+
+   Hirlam setup -r dminewsnow -d /home/xiaohua/hirlam_release -h xtpgi        
+}}}
+ 1. The above 'setup' option will install minimum settings for running Hirlam experiment using default settings on XT5 with PGI compiler
+{{{
+   config-sh/hl_vn                                  # A directory name of the reference source, in this case: /home/xiaohua/hirlam_release/dminewsnow
+   config-sh/Main                                   # Hirlam start scripe
+   Env_system => config-sh/config.xtpgi             # platform definition file defining platform, compiler and main directory strctures
+}}}
+ 1. alternatively, if you have made a frozen version as per example above with '''dminewsnow20100305''' in your $HOME/hirlam_release, you can base your experiment on that source
+{{{
+   Hirlam setup -d $HOME/hirlam_release -r dminewsnow20100305       
+}}}
+ 1. or, if you would like to try PATHSCALE/GFORTRAN compiler, you may replace the -h option in the above example,
+{{{
+   Hirlam setup -d $HOME/hirlam_release -r dminewsnow20100305 -h xtpathscale   
+   Hirlam setup -d $HOME/hirlam_release -r dminewsnow20100305 -h xtgfortran       
+}}}
+ 1. if applicable, 'check out' relevant source codes or scripts in order to do modification. See more details in next chapters.
+{{{
+   Hirlam co scripts/Env_domain               # e.g, to specify different request for number of nodes/PEs for the chosen model domain
+   Hirlam co scripts/Env_expdesc              # e.g., change domain, analysis scheme, physics scheme, obs types etc.
+   Hirlam co phys/hlconds.F                   # e.g., modify physics subroutine hlconds.F
+   Hirlam co phys                             # e.g., check out the entire phys library and modify some of them
+}}}
+ 1. launch experiment, e.g.,
+{{{
+   Hirlam start DTG=2010030200 DTGEND=2010030400 LL=06 # this runs forecast with start cycle 2010030200 and last cycle on 2010030400,
+             # with a forecast length of 6h. Note that due to limited storage space on XT5 only obs and boundary data for the past few 
+             # days are available. It is thus safer to pick up recent dates for experiments
+}}}
+ 1. The default 'dminewsnow' setup specifies location of local data in the following files. Modify them accordingly if necessary
+    * $HOME/$exp/Env_system
+{{{
+HL_CLDATA=/home/xiaohua/hirlam/dat                 # climate data directory
+HL_OPRDAT=/oprdata/hiropr/hirlam/database/tmp/     # location of conventional observation data
+HL_SATDAT=/oprdata/hiropr/SATdata/                 # location of satellite data
+}}}
+    * $HOME/$exp/Env_input
+{{{
+OBDIR=$HL_OPRDAT/bdbSCO; OBDIR2=$HL_OPRDAT/bdb     # observation file subdirectory
+ECSSTDIR=$HL_OPRDAT                                # location of ECMWF SST and ice cover
+INBDDIR=${INBDDIR-"/devdata/gribdatabase/ECMWF/GLM/FC/ML/RL/48575_-64625_-38675_27625_250_250"}   # location of ECN lateral boundary data
+if [ "$DTG" -le 2008103118 ]; then
+   INBDDIR=/data/xiaohua/gdb
+   OBDIR=/data/xiaohua/bdbSCO
+   OBDIR2=/data/xiaohua/bdb
+   ECSSTDIR=/data/xiaohua
+fi
+}}}
+ 1. The experiment results including log files are in /datadirs/data/$USER/hl_home/$exp
+    * Log files are in form of HL_*html and stored in /datadirs/data/$USER/hl_home/$exp/$cyclename
+{{{
+      HL_Cycle*html: log files for computations 
+      HL_MakeCycleInput*html: log files for cycle preparation
+      HL_PPcycle*html: logfiles for post-processing
+}}}
+    * experiment data for several cycles earlier will be automatically deleted
+    * full set of experiment data are archived in /datadirs/data/$USER/hl_arc/$exp/$yyy/$mm/$dd/hh/$ll
+ 1. You can follow your model runs via links in the Graphic User Interface (GUI) pop-up window
+    * You can turn off the graphic user interface prior to launch of experiment by
+{{{
+   setenv mXCdp DISABLE; setenv mSMS_WEBPORT=0
+}}}
+    * You can exit from the graphic user interface using File-> Quit GUI on the GUI window while keeping the experiment running
+    * You can then recover the previously closed GUI by
+{{{
+   cd ~/hl_home/$exp
+   Hirlam mXCdp                                                 
+}}}
+    * You can terminate the experiment completely by using File->Exit miniSMS button via the GUI
+
+== Compile HIRLAM models on Cray XT5 ==
+
+If you are just interested to compile HIRLAM codes, you may in principle follow the following example:
+
+ 1. create an source code directory $LOCALTMP
+{{{
+   mkdir -p $LOCALTMP; cd $LOCALTMP
+}}}
+ 1. install the HIRLAM source
+{{{
+    svn co https://svn.hirlam.org/branches/dminewsnow               # get it from HIRLAM repository directly
+    cp -r /home/xiaohua/hirlam_release/dminewsnow .                 # copy it from the reference installation at Cray XT5 (hpcdev)
+}}}
+ 1. if you use pgi compiler (the default at Cray XT5), following steps can be taken
+{{{
+   sh
+   cd refdmi
+   hdf=/home/xiaohua/local
+   HDFINCLUDES=-I${hdf}/include
+   HDFLIBS="-L ${hdf}/lib -lmfhdf -ldf -ljpeg -lz -lm"
+   export HDFINCLUDES HDFLIBS
+   module load fftw
+   module load PrgEnv-pgi
+   gmake ARCH=xtpgi [target]
+}}}
+ 1. if your login shell is csh or tcsh, then you may prefer
+{{{
+   cd refdmi
+   set hdf=/home/xiaohua/local
+   setenv HDFINCLUDES -I${hdf}/include
+   setenv HDFLIBS "-L ${hdf}/lib -lmfhdf -ldf -ljpeg -lz -lm"
+   module load fftw
+   module load PrgEnv-pgi
+   gmake ARCH=xtpgi [target]
+}}}
+ 1. if you use pathscale compilers  you may do following instead:
+{{{
+   sh
+   cd refdmi
+   hdf=/home/xiaohua/local
+   HDFINCLUDES=-I${hdf}/include
+   HDFLIBS="-L ${hdf}/lib -lmfhdf -ldf -ljpeg -lz -lm"
+   export HDFINCLUDES HDFLIBS
+   module load fftw
+   module switch PrgEnv-pgi PrgEnv-pathscale             
+   gmake ARCH=xtpathscale [target]
+}}}
+ 1. if you use gfortran compilers, you may do following:
+{{{
+   sh
+   cd refdmi
+   hdf=/home/xiaohua/local
+   HDFINCLUDES=-I${hdf}/include
+   HDFLIBS="-L ${hdf}/lib -lmfhdf -ldf -ljpeg -lz -lm"
+   export HDFINCLUDES HDFLIBS
+   module load fftw
+   module switch PrgEnv-pgi PrgEnv-gnu
+   module switch gcc gcc/4.2.0.quadcore             
+   gmake ARCH=xtgfortran [target]
+}}}
+ 1. If all is smooth, you shall get the compiled binaries and lib in directories $LOCALTMP/xt[pgi,pathscale,gfortran]/
+
+== Modification of source codes ==
+ * if you want to modify, add, delete source code from the reference setting, you may do so on the experiment set-up directory. Assuming again you have an experiment setting on $HOME/hl_home/$exp
+   1. First, 'check out' the relevant source codes for modification.
+{{{
+   Hirlam co phys/hlconds.F                   # e.g., if you want to modify physics subroutine hlconds.F
+   Hirlam co phys                             # e.g., check out the entire phys library and modify some of them
+}}}
+   1. modify the source codes
+   1. eventually, modify also the scripts in similar fashion, see examples below.
+   1. all done, launch the experiment:
+{{{
+   Hirlam start DTG=2010030200 DTGEND=2010030206 LL=06 
+}}}
+
+== Modification of [https://hirlam.org/trac/browser/branches/refdmi/scripts scripts], experiment configurations ==
+ * Most of the experiment configuration settings are defined in scripts [https://hirlam.org/trac/browser/branches/DMI/dminewsnow/scripts/Env_expdesc Env_expdesc], [https://hirlam.org/trac/browser/branches/DMI/dminewsnow/scripts/Env_domain Env_domain], [https://hirlam.org/trac/browser/branches/DMI/dminewsnow/scripts/Env_input Env_input], [https://hirlam.org/trac/browser/branches/DMI/dminewsnow/scripts/submission.crayxt5 submission.cratxt5]
+ * In $HOME/hl_home/$exp, use commands like following to retrieve reference scripts and modify
+{{{
+   Hirlam co Env_expdesc
+   Hirlam co Env_input           # You are likely to need modifying the script if your experiment is about historical episode, in which 
+                                 # the input data are not in the current operational data directories
+   Hirlam co Boundaries           
+}}}
+  * Selection of model domain and resolution
+     * edit [https://hirlam.org/trac/browser/branches/DMI/dminewsnow/scripts/Env_expdesc scripts/Env_expdesc] for selection of DOMAIN other than "DMI_E10" 
+       * possible alternatives: RCR-7.1, DMI_T15, DMI_M09, DMI_S03,DMI_K05, DMI_S05, DMI_E10, DMI_M10, DMI_N05, + other domain specifications from HIRLAM member services
+     * edit [https://hirlam.org/trac/browser/branches/refdmi/scripts/Env_domain scripts/Env_domian] for selection of CPU resource requests, output frequency etc.
+{{{
+    DMINPROC=40               # total nr of PE's for forecast and 4DVAR jobs
+    DMINODES=5                # total nr of computer nodes for forecast and 4DVAR jobs
+    DMINTASKS=8               # number of tasks per node
+    DMINPROCX=8               # domain decomposition with forecast model, x-direction
+    DMINPROCY=5               # domain decomposition with forecast model, y-direction, DMINPROCX*DMINPROCY+NHGS=DMINPROC!!
+    DMINPROCX4D=8             # domain decomposition with forecast model, x-direction with 4DVAR 
+    DMINPROCY4D=5             # domain decomposition with forecast model, y-direction with 4DVAR. DMINPROCY4D*DMINPROCX4D=DMINPROC!!
+}}}  
+ * Selection of analysis scheme
+   * edit [https://hirlam.org/trac/browser/branches/refdmi/scripts/Env_expdesc scripts/Env_expdesc] for selection of 
+    * ANALYSIS scheme ('''4DVAR''', 3DVAR, NOUA and NONE) for your interest
+    * LSMIX ('''yes''' or no for HIRLAM re-forecast scheme in which upper air analysis from host model is used to replace background ps, U, V, T, Q
+    * JBSTRFUN ('''statbal''', nonsep, statbal, nm_statbal) structure functions. check that if you do have proper structure function
+    * MINALG ('''CG''',QN,LZ  (Conjugate Gradients, m1qn3, Lanczos minimisation schemes)
+    * NEWMOIST ('''no''' or yes for new moisture analysis)
+    * SIMOBS ('''no''' or yes to perform single observation experiment !!! hard coding is needed in 3DVARan/4DVARan)
+    * ATOVS ('''yes''' or no to use ATOVS AMSU data)
+    * ATOVSONICE ('''yes''' or no to use AMSU-A over sea+ice, or sea only)
+     * NOAA18AMSUA=yes
+     * NOAA16AMSUB=yes
+     * NOAA17AMSUB=yes
+     * NOAA18MHS=yes
+     * METOPAAMSUA=yes
+     * METOPAMHS=yes
+    * AMVGEO ('''yes''' or no to use AMV from Geostationary satellites)
+    * AMVPOL ('''no''' or yes to use AMV from Polar Satellites (MODIS))
+    * SEAWINDS ('''yes''' or no to use SEAWINDS)
+  * The baseline 4DVAR configuration are as following, but users can explore alternative options:
+{{{
+  FCINT=06            # assimilation interval in h
+  ASSWIN=06           # length of assimilation window in h
+  NOUTERLOOP=1        # number of outer loops
+  ILRES=3             # minimisation resolution in 4DVAR innerloop
+  OBSCUT=0230         # observation cutoff time relative to the nominal analysis time (hhmm)
+                      # another possibility for operational usage is OBSCUT=0130, with shorter cutoff time
+  ILPHYS=MFSP1        # innerloop (tangent lienar and adjoint) physics NONE,BUIZZA,
+                      # MFSP1 (simplified vertical diffusion),MFSP2 (MFSP1+large scale condensation)
+  SPNDTIME=1800       # time step in spectral TLM and ADM during 4DVAR minimisation. 
+                      # May consider 1200s in case of finer inner loop resolution
+  NQLIMIT=60          # iteration limit for 4DVAR innerloop minimisation
+  SPHALO=10           # halo zone width in number of grid point for spectral HIRLAM used in 4DVAR minimisation
+  NBZONE=6            # boundary relaxation zone width in inner loop
+  MINALG=CG           # CG in minimisation (M1QN3 is another option)
+  VARQCSTART=15       # onset time for VarQC (iteration step)
+  VARQCEND=25         # turn off time for VarQC (iteration step)
+  JCDFI=yes           # yes to use weak constraint JcDFI for gravity wave damping
+  LBCCONTROL=no       # yes to use lateral boundary control in 4DVAR (not fully tested)
+  LOWRESINCR=yes      # yes to use lower resolution during 4DVAR minimisation
+  PROPAGATECONTROL=yes
+                      # yes to use tangent linear model TL to advect analysis increment from start of assimilation window
+                      # no to use nonlinear forecast model to project analysis increment to nominal analysis time
+}}}
+  * Data assimilation with 3D-VAR
+   * 3D-VAR assimilation scheme is now non-default option. It can be activated by setting ANALYSIS=3DVAR in scripts/Env_expdesc
+   * For 3D-VAR, the default options is 6h cycling (FCINT=06) with FGAT.
+   * Default background error structure function is now based on statistical balance, which is available for both 40 and 60 levels. The structure function data are obtained from RCR forecast using the NMC method.
+   * The default 3DVAR minimisation uses full resolution (LOWRESINCR=no) assuming the resolution in the background error structure function is the same as forecast model. When used for finer resolution 3DVAR such as 5 to 10 km, please consider to change LOWRESINCR in scripts/Env_expdesc to yes to avoid too noisy analysis increment, unless you use locally derived B.
+ * Selection of coupling scheme
+   * Current default in refdmi assumes boundary coupling to ECMWF/ECN data, with LSMIX and independent data assimilation
+   * For the current DMI-S05/DMI-G05, following setting changes are necessary
+     * Env_expdesc
+{{{
+   MIXINT=no
+   ANALYSIS=NOUA
+   INCMOD=2
+   BDSTRATEGY=same_cycle
+   BDINT=1
+}}}
+     * Env_input
+{{{
+   NESTING=yes
+   INBDEXP=$DMIBND; INBDDIR=$HL_ARC/$INBDEXP             # where $DMIBND, defined in Env_domain, is the host model with hourly data archived at $HL_ARC directory
+}}}
+     * Env_domain
+{{{
+   DMIBND=$T15exp                                        # $T15exp is the host model with hourly data archived at $HL_ARC directory
+}}}
+ * Choice of physics scheme
+   * Kain Fritsch Rasch Kristjansson condensation scheme is now the default scheme.
+   * STRACO condensation scheme may be used by changing COND_SCHEME from KF to STRACO in scripts/Env_expdesc
+   * By default, cloud ice is not an explicit model variable/output in the KF scheme 
+   * Moist CBR is the standard option and defined as NOPTION(3)=3 in the scripts FCinput. Technically its dry version is available with NOPTION(3)=2
+ * Choice of output data streams
+   * Edit Env_domain to request more model level output data than the default
+   * Edit Env_expdesc for OUTSTREAM to add or reduce post-processing data stream and parameters
+ * Launch of single/multi cycle jobs. progress.log and progressPP.log in the experiment home directory $HOME/hl_home/$exp are automatically generated and updated during HIRLAM cycle to enable tracking of current forecast cycles. progress.log contains following parameters:
+   * DTG                # current cycle date $YYYY$MM$DD$HH          
+   * DTGBEG             # date of the first cycle (cold start, set to DTG value at first launch of "Hirlam start DTG="
+   * RUN                # =1 as default for normal cycle, 2 for the short reforecast cycle
+    * Environment variables RUN and RUNEND have been introduced to indicate the tasks for the current (DTG) and finishing (DTGEND) cycles, with RUN=1 and RUN=2 specifying regular/long and re-forecast for cycle DTG, respectively. Correspondingly, RUNEND=1 and RUNEND=2 indicate the expected task to be performed at DTGEND. As default, RUN=1 and RUNEND=1. At the end of each forecast cycle, progress.log is updated with both DTG and RUN information. Thus in operational application, a sequence of single forecast can be launched at command line (or as crontab job), using 'prod' launching option, to form operational cycles, e.g.:
+{{{
+   Hirlam prod            # giving DTG and RUN=1, this performs a long forecast for cycle DTG. This is then finished with RUN updated to 2
+                          # in progress.log. This is followed by
+   Hirlam prod RUNEND=2   # giving DTG and RUN=2, this performs a re-forecast for cycle DTG. This is then finished with DTG updated to 
+                          # next cycle point and RUN to 1 in progress.log. This is then followed by
+   Hirlam prod            # giving the new DTG and RUN=1, this performs long forecast for the new cycle DTG and update RUN to 2 at the end
+}}}
+ * Please be watchful to avoid over-subscription of system resources
+   * Keep an eye on http://dmirrd/CRAY/munin.html
+   * Use 'apstat', 'qstat' on MUNIN to check status of used, available PEs etc. 
+
+=== Additional Reference ===
+ * [wiki:Hirlam_7.2 HIRLAM7.2 ]
+ * [wiki:HirlamSystemDocumentation Hirlam system documentation]
+
+== Remaining adaptation issues; TODOs ==
+ * Data usage
+   * AMSU-B/MHS data usage need to be evaluated
+ * 64-bit setting not available yet and the code reproducibility issue yet to be studied
+ * OpenMP option for 4DVAR code and the 4D-VAR scalability to be looked at (next week)
+ * OpenMP option for forecast code to be looked at
+ * hirlam.tdf to be expanded to allow standard graphics and ASIMOF-GRIB conversion
+ * '''dmiopr''' branch to be established to enable introduction of local features. The branch shall be open to all FM staffs involved in DMI-HIRLAM.
+
+== Existing utilities for verification, monitoring and diagnosis of experiment results ==
+
+=== Observation verification ===
+
+ * Reference Hirlam runs extract automatically model equivalent to a pre-selected SYNOP and TEMP observation station lists. 
+   * The ASCII format data are stored in /datadirs/data/$USER/hl_arc/$expdir/$YYYY/$mm/$dd/$hh/vfld$expdir$dtg.tar.gz
+ * Offline (stand-alone) extraction of model and observation data to pre-defined station list is possible using HARMONIE gl/fldextr utility.
+   * On ECMWG HPC, monthly ASCII-format observation data derived from MARS data set are archived in ec:/hirlam/oprint/OBS; The corresponding data for current month is available on ecgate:/scratch/ms/dk/nhz/oprint/OBS2
+ * Statistics inter-comparing model and observations for specific station/area list can be done using HARMONIE/monitor utility verobs
+ * see [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/PostPP/CommonVerification documentations on common verification]
+ * [https://hirlam.org/trac/wiki/oprint/general Hirlam operational model inter-comparison data portal]
+ * [https://hirlam.org/portal/refdmi Collection of Xiaohua's tests on Cray XT5 with reference models (temporal)]
+
+=== Analysis monitoring ===
+ * [https://hirlam.org/portal/dmiint/ObsVer/ObsUse/index.html?choice_ind=Observation%20Usage Use of observation monitoring]
+ * [https://hirlam.org/portal/monitor Joint Operational HIRLAM analysis monitoring]
+
+=== Forecast and analysis statistics ===
+ * [https://hirlam.org/portal/dmiint/ObsVer/Logplot/index.html?choice_ind=Forecast%20Diag Disgnosis and statistics plot]
+
+== Technical Information ==
+
+Following are some initial tests done on Cray XT5
+
+=== Tested architecture, model domains and components ===
+
+||tested version|| model domain ||computer platform||tested configurations ||purposes of tests||
+
+|| 72cis + BG blending || T15, M15, G45, E05 || XT5 || 4DVAR (T15), STRACO || 54h forecast ||
+|| trunk20081016 || RCR-7.1, T15, E05, K05, N05, M05, G05 || XT5 || 4DVAR (RCR and T15), KFRK and STRACO || 54h forecast ||
+
+ [[FootNote]]
+
+=== Computation cost === 
+
+'''4D-VAR inner loop'''
+
+||domain||tested 7.1 release||compiler||simplified phys||nr of iterations ||structure function||resolution|| timestep|| nr of processors ||elapsed time||||
+||M10 582x672x60 ||refdmi20081021||XT5||PGI||60||statistical||1/3||1800s|| 128||1500s||
+||E05 778x632x40 ||refdmi20081021||XT5||PGI||60||statistical||1/3||1200s|| 128||1800-2000s||
+||RCR ||trunk20081016||XT5||PGI||60||statistical||1/3||1800||82 ||1188s||
+||RCR ||trunk20081016||XT5||pathscale||60||statistical||1/3||1800||82||1060s||
+||RCR ||trunk20081016||XT5||gfortran||60||statistical||1/3||1800||82||1311s||
+||RCR 7.1||trunk20081016||FMI-Altix||MFSP1||60||statistical||1/3||1800s||121||~900s||
+ [[FootNote]]
+
+[[BR]]
+
+'''Forecast'''
+
+||domain||tested versions ||condensation schemes || compiler||nr of nodes|| total PE || nprocx||nprocy||ncpu_hgs||time step||elapsed time per step||48/54 h Forecast elapsed time ||
+
+||E05 778x632x40 ||trunk20081016||STRACO || PGI||79 ||632 || 25||25||7||150s||~0.56s||~937s||
+
+||E05 778x632x40 ||refdmi20081016||STRACO || PGI||41 ||328 || 20||16||8 ||150s||~0.92s||1185s (48h)||
+||N05 778x1014x40||refdmi20081021||STRACO || PGI||72 ||576 || 28||20||16||150s||~1.1s||~1460s (48h)||
+||M10 582x672x60 ||refdmi20081021||KF || PGI||51 ||408 || 20|| 20||8|| 300s||~1.10s||~770s (48h)||
+||M05||trunk20081016||STRACO || PGI O2||79 ||632 || 25||25||7||150s||~1.10s||~1795s||
+||M05||trunk20081016||STRACO || PGI O2||  ||590 ||  || || ||150s||~1.12s||~1860s||
+||M05||trunk20081016||STRACO || PGI O2||  ||488 ||  || || ||150s||~1.32s||~2122s||
+||M05||trunk20081016||STRACO || PGI O2||  ||328 ||  || || ||150s||~1.93s|| s||
+
+||M05||trunk20081016||STRACO ||pathscale O2||79 ||632 || 25||25||7||150s||~1.10s||~1815s||
+||M05||trunk20081016||STRACO ||pathscale O2||  ||590 ||  || || ||150s||~1.13s||~1900s||
+||M05||trunk20081016||STRACO ||pathscale O2|| ||488 ||  || || ||150s||~s||~ s||
+||M05||trunk20081016||STRACO ||pathscale O2 ||  ||328 ||  || || ||150s||~s|| s||
+
+||M05||trunk20081016||STRACO || gfortran O2 ||79 ||632 || 25||25||7||150s||~1.10s||~1825s||
+||M05||trunk20081016||STRACO || gfortran O2 ||  ||590 ||  || || ||150s||~1.20s||~1955s||
+||M05||trunk20081016||STRACO || gfortran O2 ||  ||488 ||  || || ||150s||~1.39s||~2192s||
+||M05||trunk20081016||STRACO || gfortran O2 ||  ||448 ||  || || ||150s||~1.46s||2374s||
+||M05||trunk20081016||STRACO || gfortran O2 ||  ||328 ||  || || ||150s||~2.00s||3010s||
+
+||G05||trunk20081016||STRACO || PGI||79 ||632 || 25||25||7||150s||~0.31s||||
+
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamHowto See also the corresponding pages on HIRLAM Howto]
+[[Center(end)]]
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamSystemDocumentation Back to the main page of the HIRLAM System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

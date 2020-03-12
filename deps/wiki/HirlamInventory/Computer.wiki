@@ -1,0 +1,40 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''Computer Platform in HIRLAM services''' =
+[[Center(end)]]
+
+
+== Super computer facility for operational suite ==
+
+|| Institues || DMI || FMI || AEMET|| KNMI || met.ie || met.no || SMHI || EMHI || LHMS || ECMWF (reference RCR) ||
+|| Hardware Platform || NEC-SX6 || SGI Altix BX2 || Cray X1E || Sun Fire 15K || SGI Altix ICE 8200EX || SGI Origin 3800 || PC cluster || PC cluster || SGI Altix ICE 8200EX || IBM ||
+|| Targeted upgrade time [[br]] for next supercomputer || 2007 || 2008 || 2010 || 2006  || 2011 ||  || 2007 || 2007 || 2013 ||  ||
+|| Fortran Compilers || sxf90 || ifort || ftn90 || f90 || ifort |||| ifort || ifort || ifort || xlf90_r||
+|| Number of PEs || 8x8 nodes || 256 || 128 || 50 || 16x12 available || 512 [[br]] 200 in ops || 162 available || 12 available || 128 available || ||
+|| Amount of memory || 320 GB || 256 GB || 320 GB || 100 GB || 2 GB per CPU || 512 GB || 1 GB per CPU || 1GB per CPU || 3GB per core || ||
+|| Amount of hard disk || ca 5 TB || 200 GB || 20 TB || 35 GB || 2 TB  ||300 GB || 8 TB || 80GB || 8 TB  || ||
+|| Queuing system [[BR]] for operational suite|| NQS II || LSF || PBS || none || PBS || none  || PBS || none || Torque || !LoadLeveler ||
+|| Separate platform for [[BR]] LBC or Pre-proc or PostPP ? || no || yes || no || no || no  ||yes || no || no || no || yes ||
+|| Operational Environment || shell/perl/cron || SMS || cron || cron, mini-SMS  || cron, mini-SMS || SMS, mini-SMS || mini-SMS || mini-SMS || cron,  mini-SMS || mini-SMS ||
+|| Delivery of LBC data || RMDCN || internet || RMDCN || RMDCN  || internet || internet || RMDCN || internet || internet || NA ||
+
+
+
+== Developers' daily platform in addition to the mainframes ==
+|| Institues || DMI || FMI || AEMET || KNMI || met.ie || met.no || SMHI || EMHI || LHMS || ECMWF (reference RCR) ||
+|| Hardware Platform || Intel/AMD PC linux + Asama Itanium || PC Linux/Win & Thin client || PC Linux, Sun || PowerPC, Intel/AMD PC linux || PC Linux || PC linux || PC linux || PC linux || PC linux || IBM (ecgate) ||
+|| Fortran compiler|| Intel 7/8, Gfortran 4.1 || || pgf90, f90 || pgf90, f90 || Intel 9,10,11 || || || Intel 8/9, gfortran || Intel9,gfortran ||||
+
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

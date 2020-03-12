@@ -1,0 +1,194 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Status of the real-time Harmonie System''' =
+[[LastModified]]
+[[Center(end)]]
+
+
+== '''DMI''' ==
+
+DMI is running '''CY36h1.4bf1''' with :
+
+ * '''GLA'''    NUUK-arome, blending, 2 km, 65 levels, 4 times a day, DT=30s, ''+36h'', ECMWF LBC with hourly frequency. This is operational suite.
+
+Seen Problems :
+
+ * GLA run was run with DT=45s until December 2011 when it experienced crashes presumably associated with stormy weather. It was afterwards reduced to 30s
+
+In addition, since Dec 2012, DMI runs a '''CY37h1.2''' quasi-operational AROME suite with:
+* '''DKA37'''    800x600x65 domain centered around Denmark, 3DVAR with LSMIXBC and asynoptic base time, 8 times a day, DT=60s, ''+58h'', ECMWF LBC with hourly frequency
+and it still maintains a corresponding '''CY36h1.4''' time suite with same model domain:
+
+ * '''DKA'''    800x600x65 domain centered around Denmark, blending,  4 times a day, DT=60s, ''+36h'', , ECMWF LBC with hourly frequency
+
+== '''SMHI''' ==
+
+
+SMHI is running '''CY37h1.1''' :
+ ( preoperational since 20120717 )
+
+ * Physics: '''AROME'''
+ * Domain: !MetCoOp-Hires2 , 2.5 km, 750x960x65  
+ * 3DVAR, SURFEX
+ * 00, 06, 12 and 18 UTC +36 hours
+ * Host model: ECMWF  
+
+Problems :
+
+== '''FMI''' ==
+
+FMI is running '''CY36h14''' with :
+
+ * '''AROME''' Finland 2.5km, 300x600 points, 65 levels. 4 times/day, 00, 06, 12 and 18 UTC ''+36h'' 
+ * Parallel phase since July 2011. Operational 14 Dec 2011.
+ * 3D-VAR + OI_MAIN with conventional observations.
+ * AROME physics including EDMFM
+
+Nesting :
+
+ * Boundary conditions from IFS, 3-hourly 
+
+Problems :
+
+ * Wind speed underestimated over land areas (especially in northern part of Finland)
+ * Too warm night-time temperature in summer/autumn.
+ * Winter-time "Nordic temperature problem".
+
+Successes :
+ 
+ * Precipitation structure has received good feedback.
+ * Good performance in several late autumn/early winter convective cases. 
+
+Verification:
+
+ * '''HIRLAM'''/'''Harmonie''' verification at http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE
+ * Mast verification at Sodankylä http://fminwp.fmi.fi/mastverifnew/
+
+== '''KNMI''' ==
+
+KNMI is running '''CY36h14''' with
+
+ * '''AROME''' Netherlands (800x800), 60 levels (Meteo France definition). Eight times a day, ''+24h''
+ * Wall clock time 1h05m, forecast 33m on 552 processors (1/8 of KNMI Bull computer)
+ * 3D-VAR HARMONIE analysis
+ * Runs started ~ 1 December 2011, data assimilation working properly ~ 10 January
+ * AROME physics including EDMFM
+
+Nesting :
+
+ * HIRLAM - H11(11km) --> AROME (2.5km) 
+
+Problems :
+
+ * Cloud base too low, too many high clouds
+ * Wind gusts may be a little bit too high in convection, warm sector gusts OK.
+ * Fullpos not working because of memory requirements
+
+Successes :
+ 
+ * Very good guidance in dynamic weather cases (line convection in cold front, wind gusts)
+
+== '''AEMET''' ==
+
+''warning: following information is outdated, need update!!!''
+
+AEMET is running '''CY32h2''' on CrayX1E platform with :
+
+ * '''ALADIN''' IBERIA (384x400), 11km, 40 levels. Once a day, 00 UTC ''+30h''
+ * '''AROME''' MEDITERRANEAN AREA (300x300), 2.5km, 40 levels. Once a day, 00 UTC ''+30h''
+ 
+Nesting :
+
+ * HIRLAM (17km) --> ALADIN (11km) --> AROME (2.5km)
+
+
+== ''' Met Éireann''' ==
+=== met.ie Summary ===
+
+ * Harmonie version: '''37h1.1'''
+ * Domain: Ireland + UK, '''IRELAND25''', 540x500 points, 2.5km grid-spacing
+ * Dynamics: '''non-hydrostatic'''
+ * Physics+surface: '''AROME''' + '''SURFEX'''
+ * Initialisation: ANAATMO='''blending''', ANASURF='''CANARI_OI_MAIN''', FCINT='''06'''
+ * Forecast length: 30hr
+ * Cycles: 4 - 00, 06, 12, 18
+ * Cut-off: ca. 2hr40min (runs once HIRLAM I10 same_forecast files are available)
+   - it is planned to run Harmonie before HIRLAM with a ~1hr00min cut-off soon
+ * Nesting : IFS --> AROME (2.5km)
+
+
+
+=== 36h1.3 problems ===
+ * Large number of Listener tasks was suspected to have caused crashes caused by failed ''ls'' and ''cat'' commands. Setting taskmax to 10 seems to have helped with this problem.
+ * One model crash in August 2011 related to strong upper air winds required a change in time-step to 45s for a couple of cycles.
+
+=== 37h1.1 problems ===
+ * Issues with file-system response to ''ls'' and ''cat'' commands persist
+ * Suspect quick md5sum checks have misdiagnosed completed writing of forecast files
+
+Plans:
+ * Evaluate to 3DVAR with 37h1
+ * Evaluate 38h1 (for operational use) once tagged
+
+== '''met.no''' ==
+
+See [https://hirlam.org/trac/wiki/HarmonieInventory/Operational]
+ 
+
+== '''MF''' ==
+
+''warning: following information is outdated, need update!!!''
+
+MF is running '''CY31t2''' with
+
+ * '''AROME''' South-west of France 2.5km (240x240), 41 levels. Once a day, 00 ''+30h''
+ * Initialized from interpolated ALADIN analysis (3D-VAR). No meso-scale DA yet.
+
+Problems :
+
+ * AROME is too cold and dry during night-time. Day-time is OK.
+ * Coupling problems: convergence in boundary region --> spurious rain amounts.
+ * AROME is not always able to present weak precipitation amounts (about 0-4 mm/12h) well. 
+
+Near furure:
+
+ * Moving to NEC platform --> Area enlarged to cover whole France.
+ * CY32t1
+   * Hail included.
+   * Microphysics enhancements for low clouds (fog).
+   * New cloud scheme + EDKF for shallow convection.
+
+== '''LHMS''' ==
+
+Switched to CY37h1.2 inf February 2013. Forecast range extended to 30 hr.
+
+LHMS is running '''CY37h1.2''' with :
+
+ * '''AROME''' LITHUANIA 2.5km, 384x400 points, 65 levels. 4 times/day, 00, 06, 12 and 18 UTC ''+30h'' 
+ * Blending + OI_MAIN with conventional observations.
+ * AROME physics + EDMFM
+
+Nesting :
+
+ * Boundary conditions from IFS, 3-hourly 
+
+Problems :
+
+ * Erroneous default Ecoclimap-1 surface cover types (non-existent inland water bodies)
+ * Erroneous T2m forecasts over some parts of the Baltic sea especially during spring. The source of problem was already explained here:
+   http://www.hirlam.org/index.php?option=com_kunena&Itemid=160&func=view&catid=2&id=1049#1059
+ * "Nordic temperature problem" also seen in winter time.
+
+
+
+== '''VI''' ==
+
+Vedurstofa Islands is running '''CY37h1.2''' with :
+
+ * '''AROME''' ICELAND 2.5km, 300x240 points, 65 levels. 4 times/day, 00, 06, 12 and 18 UTC ''+48h'' 
+ * Blending + OI_MAIN
+ * AROME physics + EDMFM
+
+Nesting :
+
+ * Boundary conditions from IFS, 3-hourly 

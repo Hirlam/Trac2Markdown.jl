@@ -1,0 +1,25 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Diagnostics''' =
+[[Center(end)]]
+
+== Xtool ==
+
+[wiki:HarmonieSystemDocumentation/35h1/PostPP/gl#xtool xtool]
+
+
+
+== SAL ==
+
+[wiki:HarmonieSystemDocumentation/35h1/PostPP/gl#SAL SAL]
+
+
+== DDH ==
+
+Diagnostics par Domaines Horizontaux (Diagnostics by Horizontal Domains) is a tool to create budgets of different processes in the model. Please read on in the documents attached below.
+
+You may also visit the gmap documentation: http://www.cnrm.meteo.fr/gmapdoc/spip.php?page=recherche&recherche=DDH
+
+https://hirlam.org/contrib/ulf/aladin/ddh.pdf
+
+

@@ -1,0 +1,38 @@
+[[PageOutline]]
+
+[[Center(begin)]]
+== '''Hirlam System Inventory''' ==
+= '''Data Format''' =
+[[Center(end)]]
+
+
+== Observation data format ==
+
+The following table lists information about bufr-data format that is different from the one defined in the reference model
+
+|| Institute || DMI || FMI || AEMET|| KNMI || met.ie || met.no || SMHI || EMHI ||
+|| || || || || || || || || ||
+
+
+== Field data format ==
+The following table lists information about field-data format used in HIRLAM operational model
+
+|| Institute || DMI || FMI || AEMET || KNMI || met.ie || met.no || SMHI || EMHI ||
+|| data format || || || grib || || || grib || || grib ||
+|| parameter nr [[br]] for TKE|| || || 200 || 200 || || 200 || || ||
+|| prec. type || || || || 201 || || || || ||
+|| CAPE || || || || 163 || || || || ||
+|| CIN || || || || 162 || || || || ||
+|| LNB || || || || 161 || || || || ||
+|| LCL || || || || 160 || || || || ||
+
+
+[[Center(begin)]]
+[https://hirlam.org/trac/wiki/HirlamInventory Back to the main page of the HIRLAM System Inventory]
+[[Center(end)]]
+----
+[[Center(begin)]]
+Disclaimer: The information in this and rest of the wiki web page may be inaccurate, in-complete or outdated. Please find 'Edit this page' button below to offer correction. When in doubt, please contact directly the authors of the relevant pages for clarification or correction. Use the 'Page History' button on the right upper corner of each wiki page to find out the author of any particular version of the wiki page. [[br]] [[br]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

@@ -1,0 +1,27 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HIRLAM Meetings''' =
+[[Center(end)]]
+
+== HIRLAM Working Areas ==
+
+* [wiki:Meetings/Data_assimilation Data assimilation]
+* [wiki:Meetings/Dynamics Dynamics]
+* [wiki:Meetings/EPS Ensemble Prediction]
+* [wiki:Meetings/HR High Resolution modeling]
+* [wiki:Meetings/Physics Physics parametrisation]
+* [wiki:Meetings/Quality_assurance Quality assurance]
+* [wiki:Meetings/Surface Surface analysis and modelling]
+* [wiki:Meetings/System System]
+* [wiki:Meetings/Users Users]
+
+== Member institute visits ==
+
+* [wiki:Meetings/Member_institute_visits Member Institute Visits]
+
+== ALADIN Workshop & HIRLAM All Staff Meeting ==
+
+* [http://www.umr-cnrm.fr/aladin/spip.php?rubrique25&lang=en ALADIN Workshop & HIRLAM All Staff Meeting]
+
+== Old meetings page ==
+ * [wiki:HirlamMeetings The old meetings page]

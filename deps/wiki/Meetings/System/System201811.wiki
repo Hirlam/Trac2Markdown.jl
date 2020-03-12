@@ -1,0 +1,289 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Met Éireann, 12th - 16th November 2018''
+
+Last modified [[LastModified]]
+
+[[Image(20181115_133353.jpg,40%)]]
+
+[[Center(end)]]
+
+== Practical ==
+ The meeting will be held in the Walton Room at DCU Alpha Innovation Campus, Dublin, D11 KXN4, Ireland (beside Met Éireann HQ). Your local host (Eoin) will meet you at the DCU Alpha reception each morning.
+
+ * Code for door: 2010
+ * Wifi: Guest_DCU_Innovation; password=innovate5443
+
+=== Participants ===
+||= Name              =||= Institute =||= ARR - DEP, Hotel                      =||
+||Eoin Whelan          ||METIE        ||0900 Monday - 1600 Friday, Casa Whelan   ||
+||Niko Sokka           ||FMI          ||1230 Monday - 1000 Friday, tbd           ||
+||Bert van Ulft        ||KNMI         ||0900 Monday - 1300 Friday, Academy Plaza ||
+||Toon Moene           ||KNMI         ||Attending remotely (toon at moene.org)   ||
+||Ole Vignes           ||METNO        ||1400 Monday - Friday morning, Skylon     ||
+||Roel Stappers        ||METNO        ||0900 Monday - Friday morning, Skylon     ||
+||Kai Sattler          ||DMI          ||Tuesday ~lunch - Friday, Skylon Hotel    ||
+||Ulf Andrae           ||SMHI         ||Wednesday - Friday, Skylon Hotel         ||
+||Paulo Medeiros       ||SMHI         ||Wednesday - Friday, Skylon Hotel         ||
+||Daniel Santos        ||AEMET        ||Sunday - Friday, Skylon Hotel            ||
+
+=== Accommodation ===
+
+
+ * '''Skylon Hotel''', 27 Upper Drumcondra Rd, Drumcondra, Dublin 9: 1.6km to DCU Alpha. 
+ * '''Bonnington Hotel''', Swords Road, D09 C7F8, Dublin, Ireland: 1.9km to DCU Alpha.
+
+ * '''The Gresham''', 23, Upper O'Connell Street, Dublin: 3.3km to DCU Alpha. About a 20 minute bus journey.
+ * '''Academy Plaza Hotel''', 10-14 Findlater Place, Dublin: 3.3km to DCU Alpha. About a 20 minute bus journey.
+ * '''Hotel Inn Express Dublin City Centre''', 28-32 O'Connell Street Upper, D01 T2X2, Dublin: 3.2km to DCU Alpha.
+ * '''Jurys Inn Dublin Parnell Street''', Moore Street Plaza, Parnell Street, Dublin: 3.2km to DCU Alpha. 
+ * '''Arlington Hotel O'Connell Bridge''', 23-25 Bachelors Walk, O'Connell Bridge, Dublin: 3.7km to DCU Alpha.
+ * '''Maldron Hotel Pearse Street''', 98-107 Pearse Street, Dublin: 5km to DCU Alpha.
+ * '''Cassidys Hotel''', Cavendish Row, Upper O'Connell Street, Dublin: 3.1km to DCU Alpha.
+
+== Transport ==
+
+When you arrive at the airport, buy a Leap Card. These are integrated transport cards used on the majority of public transport around Dublin. More information about the cards and where they can bought can be found [http://www.irishtourist.com/travel-info/leap-card-integrated-ticketing-on-irelands-public-transport/ here].
+In order to get to DCU Alpha from the city centre, [https://www.dublinbus.ie/ Dublin Bus] is the easiest way. The stop nearest DCU Alpha is "Glasnevin Hill, Met Office", which is directly opposite our [https://en.wikipedia.org/wiki/Met_%C3%89ireann#/media/File:Met_ireann_(Irish_Meteorological_Service)_(1387399963).jpg HQ building]. It's a difficult building to miss!
+
+From the city centre, bus numbers 83 and 83a stop directly outside our HQ on the opposite side of the road. Bus numbers 9 and 4 stop nearby at the "Mobhi Road, St. Mobhi Drive" stop. It is then only a 5 minute walk to DCU Alpha.
+
+== Dining near DCU Alpha ==
+
+A suggested list of [https://hirlam.org/trac/attachment/wiki/Meetings/EPS/EPS2018-1/Dining-near-DCU-Alpha.pdf lunch options:] which are within a few minutes walk of the DCU Alpha Campus
+
+=== Official WW Dinner === 
+On Wednesday Alan Hally ably assisted by Colm Clancy will escort you to the  [https://www.facebook.com/JohnKavanaghTheGravediggers/ The Gravediggers] for refreshments and sustenance. 
+
+== Agenda ==
+{{{
+ if 10:30 or 15:30
+   caffeine and sugar
+ else if Discussion on :
+     - Cy43 status and testing - MetCoOp Team
+     - Git status and future. Training webinars - Kai
+     - Cy46 phasing status - Toon & Bert & Niko 
+     - hirlam.org update - Ole & Kai
+     - Fordward phasing and 2019 System related activities - Daniel
+     - Testbed for testing scripting system changes - Daniel
+     - New types of observations, cloud QC ... - Daniel
+     - SAPP COPE scripting system modifications ... - Eoin, Daniel, Roel, Angeles, Roger, Paulo.
+     - Makeup, gmkpack, ecBuild, - Saami,  Niko  and  Martynas 
+     - ECFLOW: tdf for experimentation and python and mSMS phase out- Ole, Roel 
+     - AOB
+ else
+   hard work
+endif
+}}}
+== "Brainstorming" notes ==
+
+Due to different arrival times we started a more informal "brainstorming meeting". Here they are some notes about it:
+
+* harmonie 43h2.pre-alpha.1[https://docs.google.com/presentation/d/1dlyonx2jhDETLth3m-ThRFkpubvq7GxjhZ1jdg3-fA4/edit#slide=id.g47bbd07636_0_19 status]
+
+* Harmonie User Workshop [https://huw2018.aemet.es web]
+
+* DA Training
+  - Common platform 
+  - Simplify tdf (ecFlow) work flow
+  - Use of training accounts at ECMWF
+  - ODB software pre-instaled
+
+* Scripting system 
+  - Single language ... Python, Bash, Julia
+  - Operational vs Research 
+  - ecFlow vs mSMS
+         - Should mSMS phase out ?
+         - Should we increase the number of variables controlled at ecFLOW level ?   
+  - testbed vs mitraillette
+         - Testing scripting system inside our testbed without running MASTERODB
+         - Run mitraillette as another test case in testbed
+
+* SAPP and COPE   
+    - Not impact expected  in system from SAPP but something can happen with 4DVar and long assimilation windows.
+    - Obs preprocessing it is not currently a bottleneck in LAMs
+    - SAPP allows to generate: ecBUFR, ODB 2  files with mySQL and Python scripts (GTS converter)
+    - SAPP has a django web to monitor the messages
+    - Bator still necessary for radar data.  Divergence between MF and HIRLAM in radar but not in EUMETSAT Bufr (satellite data) and WMO Bufr (conventional data)
+
+* Possible System WW in Reading to share experiences in 
+   - ecFlow 
+   - Git repo organization
+   - Confluence read access 
+   - SAPP
+   - COPE
+   - OOPS
+   - ecBuild and cmake   
+      - Check the outcomes from the actions of Saami in FMI
+      - Circular dependencies are solved?
+      - Modifications for compilation of SURFEX, pandor and Bator will be needed by HIRLAM
+     
+      
+
+  * Namelist documentation :
+    - WRF  [https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html namelist example]
+    - ALARO-1 [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/e001_ALARO-1_CY43T2bf09_commented.nam namelist]  
+    - Perl wrapper to create the first draft of HARMONIE namelist comments
+
+ * Nowcasting model
+    - 30 min update ??
+    - Different files for first guess and background
+    - Sub hourly outputs
+
+== New Harmonie Repository (in git) ==
+
+* any further commits regarding cy40 remain under svn
+
+* merge CY43 into develop, but necessary to take into account some of the changes done under develop since branch-off, which have not yet entered
+  into CY43
+
+* how to exactly have a connection in history between Harmonie and MF repo still open.
+  The crucial issue is subdirectories in Harmonie that cannot be part of MF repo
+  (like e.g. the scripts), and vice versa.
+
+   Several options are mentioned:
+
+   1. using a dedicated ''phasing repository'':
+      * connected to MF repo via '''aprifs''' branch
+      * connetcted to Harmonie repo via e.g. '''CYnn''' branch
+      * keeps the phasing work outside the official public Harmonie git repo, so majority of users don't need to bother
+      * repo may be shared between system core members via hirlam.org
+      * need to find a useful working practice
+
+   2. using [https://www.atlassian.com/blog/git/git-submodules-workflows-tips ''submodules''] provided in git:
+      * kind of vendor branch handling within the Harmoinie git repo
+      * the ''vendor'' code, i.e. the 'src/' subdir contains its own repository within the Harmonie git repo - it is necessary for all to be aware of this
+      * commits that affect both Harmonie scripts and 'src/' subdir must actually be separated into two commits, and all users have to stick to this
+      * extended set of git commands necessary for all to learn
+      * need for own (Harmonie consortium) copy of the ''vendor'' repository, in order to:
+        a) give all users read access under the submodule
+        b) make it possible to have Harmonie specific adaptations, that never are going to enter the vendor repo
+      * submodule stuff is included within the major .git subdir
+      * all repository users have to take care
+
+   3. using [https://www.atlassian.com/blog/git/alternatives-to-git-submodule-git-subtree ''subtree'']: 
+      * probably a more suitable alternative to ''submodules''
+      * necessity for a new merge strategy
+      * mixing Harmonie only code and subtree code changes in commits is to be avoided
+      * all repository users have to take care
+
+   4. separate repositories: 
+      * simple concept 
+      * every Harmonie checkout must be done on both repositories 
+      * necessity for information on what state to check out from each repo in order to get a running system
+      * all repository users have to work on both repositories
+
+=== Howto get to CY46 ===
+
+after having realized that the last common ancestor between Harmonie CY43 branch and arpifs CY46 tag is several years back in time, pointing to a cy40 merge (Kai did not create merge points under CY43), and a naive trial to merge from there ended in an enormeous amount of conflicts, following approach may be useful:
+
+   * fork Harmonie repo into local ''phasing repo''
+   * branch off 'CY43wrk' from 'CY43' and reset to '7783a1f  2018-08-14 10:01:06 +0000  Merge cy43t2_bf.09 into the branches/harmonie-43h1.pre-alpha.1'
+   * checkout aprifs branch 'gco_CY43T2_bf' into the ''phasing repo''
+   * reset to tag 'CY43T2_bf.09', which should point to 'c763d630681c01d5ae6c92a36046305e2a7639d1'
+   * switch back to 'CY43wrk' and merge 'gco_CY43T2_bf' into CY43wrk branch, resolve all conflicts in favor of 'CY43wrk'
+   * then there should be a merge point
+   * switch to branch 'CY43', and branch off 'CY43mod', and switch into branch 'CY43mod'
+   * rebase 'CY43mod' to the merged 'CY43wrk', then there should be a new common ancestor
+   * now 'CY43mod' should contain a common ancestor that is of newer date, and 'CY43mod' would be the basis for merging of 'CY46', this would hopefully be less conflict filled than before
+
+the merge of 'CY46' could then look like:
+
+   * checkout arpifs branch 'master', name it 'arpifs_CY46', this branch contains tag 'CY46', reset to 'CY46'
+   * switch to branch 'CY43mod' and branch off 'CY46mod'
+   * checkout 'CY46mod' and start the merge of 'arpifs_CY46', this will hopefully give much less conflicts than before, and these must be resolved manually involving those how know the code well
+   * after resolving all merge conflicts and committing the result, 'CY46mod' contains the code ready for Harmonie cycle 46, BUT: it MUST NOT be pushed to the public Harmonie repo, because it contains modified history
+
+to reach to a CY46 branch that can be published with propper history:
+
+   * checkout 'CY46mod'
+   * leave the directory of the ''phasing repo'', and rsync a copy of it, lets call it ''phasing copy''
+   * move back into the ''phasing repo'', and checkout branch 'CY43' (the original CY43 branch with the propper history)
+   * start the merge of 'arpifs_CY46', this will end in enormeous amount of conflicts, so what?
+   * rsync all subdirectories of the ''phasing copy'' into ''phasing repo'', BUT DO NOT COPY '.git/'
+   * put everything into the index and commit to resolve the conflicts
+   * now 'CY43' should be ready to push back to the official Harmonie repo
+
+[[Color(red, under this procedure, the public Harmonie 'CY43' branch must ideally not be updated.)]]
+
+ 
+== Hands-on practice ==
+
+* cy46 phasing   - ''' Toon, Bert, Niko '''
+     - Compilation of v03 in cca
+     - Run mitraillette in cca
+
+* hirlam.org  - ''' Ole & Kai ''' 
+     - Joomla update - Contacted IT department to allow some Firewall changes
+         - Joomla updated to v3 in a copy under the current hirlam.org that has access though the firewall 
+         - Copy to the new server.
+         - Dowtime is expected 
+     
+     - Git & Trac or git lab
+     - Doc Man and contents - ''' Frank Lansheer ''' 
+     - Private list of Joomla users and mails
+ 
+* cy43 remaning merging tasks - '''Eoin, Ulf  '''
+      - VarBC translation tool from Alena Trojakova for GNSS
+      - Derivation of structure functions using harmonie-43h1.pre-alpha.1
+      - Merged with the latest trunk changes
+      - Fix for compilation problems
+      - Compile Karl-Ivar codes
+      - Cleaning
+      - Jb fix boundary interpolation. Problems expected
+      - Arome-Arome nesting. Read FA directly in Prep
+
+
+
+* Makeup, gmkpack, ecBuild - ''' Roel, Daniel, Yurii ??'''
+
+    - ecbuild replaced IFS build system in CY45R2  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/PreSAC_2018_Kral.pdf]
+    - cross check cy46R vs cy46T
+
+* Preparations to DA training - ''' Roger, Eoin, Daniel '''
+      - Video meeting with Roger [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/Implementation_plan.odp minutes]
+      - Training users can be created in ECMWF (Send request 2 weeks in advance at least)
+
+
+  
+* git usage and HIRLAM working practices - ''' Kai, Daniel '''
+       - Coding norms check  [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/ykarchi46.pdf cy46 document]
+       - Exercise on creating harmonie-46t1 starting with cy46t1.v02 and upgrade to cy46t1.v03 later on
+       - Short GIt [https://hirlam.org/trac/wiki/GitShortTutorial tutorial]
+       - Svn 2 git [https://hirlam.org/trac/attachment/wiki/Meetings/System/System201811/List%20of%20Equivalent%20Commands%20in%20Git%20and%20Subversion.pdf equivalence]
+       - MF mirror git clone ssh://reader054@git.cnrm-game-meteo.fr/git/arpifs.git
+       - 
+
+
+
+* namelist documentation - ''' Ole''' 
+       - Perl parser to create a first draft  
+
+* Scripting redesign- '''Roel, Daniel, Paulo, Bert, Angeles?, Alex ?'''
+     - Scripting documentation and progress  
+           - possible inclusion for 4DVar, EPS as incremental document on top of current 3DVar
+           - Use the 3DVar to establish a working plan
+     - ecFlow server status check 
+     - Use of json to share env 
+     - 1st  Meeting of Harmonie Scripting Redesign Working Group (HSRWG) 20181114
+            - Posible candidates to start: 1) Harmonie set up phase 2) Submission strategy   3) Definition file in run time 
+            - Definition file in run time => get rid off mSMS.pl, create ecf containers in repo, add manuals into them
+             -  mSMS phase out and python API to suite management 
+             - Increase the capabilities of ecFlow containers: manual, python scripting ...
+             - Containers must be created under ecf not using .sms and default as base
+             - Allows us to introduce manuals - '''Roel, Ronan'''
+             - Prune all .sms containers and create .ecf ones.
+             - Remove all if(ECFLOW) statements in ./msms/mSMS.pl and create a new script based on python.
+                 - PROS: 
+                             - Better use of ecflow features (python API)
+                             - Documentation available in ecmwf
+                             - Experiences with that in MetCoOp, MetEireean and AEMET
+                             - More dynamical suite creation
+                  - CONS:
+                             -  Readability of python script using object oriented programing 
+
+
+== Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]

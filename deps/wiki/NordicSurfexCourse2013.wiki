@@ -1,0 +1,206 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Nordic SURFEX course 2013''' =
+[[LastModified]]
+[[Center(end)]]
+
+== Programme ==
+
+Here is the [wiki:NordicSurfexCourse2013/Programme programme], including links to presentations and links to recordings of lectures.
+
+--------------------------------------
+
+== Recorded lectures == #Remote
+
+Remote participation has been provided using the [http://www.eumetcal.org/the-european-virtual-organisation/online-web-conferencing-tools/article/centra-ondemand EUMETCAL Centra OnDemand] system. Go to this page and make sure that your system is set up properly to use Centra by checking the "System Requirements" and test "Perform the system check". 
+
+On the [wiki:NordicSurfexCourse2013/Programme programme wiki page] you will see links to recordings of each day respectively. '''You will need the password 'northsfx' to get in.'''
+
+--------------------------------------
+
+== Recommended reading ==
+
+* [http://www.geosci-model-dev.net/6/929/2013/gmd-6-929-2013.html SURFEX 7.2 overview paper]
+* [http://www.geosci-model-dev-discuss.net/5/3771/2012/gmdd-5-3771-2012-supplement.pdf SURFEX 7.2 Scientific Documentation]
+* [http://www.cnrm.meteo.fr/surfex/IMG/pdf/surf-v7-3.pdf SURFEX 7.3 User's guide]
+
+--------------------------------------
+
+== Preparations for practical exercises == #Preparations
+
+'''The purpose of the exercises is that you as a participant find them as useful as possible in your work with SURFEX when you are back home again. Thus'''
+
+ * for new users of SURFEX we provide a number of test cases, most of them using some tower observations as forcing, which you can use while testing different configurations of SURFEX (namelist options).
+ * if you have data yourselves (forcing and evaluation) from a site which you would like to use in the exercises that is also good. But please prepare such data so they can be directly read by SURFEX and make sure that the data is in good shape (continuous and no spikes).
+ * if you are already working with SURFEX in any setup but wish to test new/different namelist options you can bring that setup to the exercises.
+
+'''Whatever level of SURFEX user you represent you are expected to install the SURFEX version provided below before you arrive to the course.''' This is to make sure that we have a common setup to refer to.   
+
+ * Before you arrive you should install SURFEX on a Linux system you have access to. I.e. on your Linux laptop or on a Linux system you can access remotely from e.g. your Windows laptop (e.g. krypton@nsc for SMHI people).
+ * For installation instructions please check the [http://www.cnrm.meteo.fr/surfex/IMG/pdf/surf-v7-3.pdf SURFEX 7.3 User's guide] or the [http://www.cnrm.meteo.fr/surfex-lab SURFEX-lab] page. If you can't access the SURFEX-lab page you have to visit the [http://www.cnrm.meteo.fr/surfex SURFEX home] page first and follow the instructions under "How to get the code". Access to the SURFEX-lab page is needed for useful documentation and for access of various data.
+ * '''Please use this link to download SURFEX:''' [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/EXPORT_r1341.tgz EXPORT_r1341]. Do not download SURFEX via "Export download" on the SURFEX-lab page since important updates of SURFEX have been done after those versions! If you are familiar with Subversion you can also download the latest trunk version.
+ * For installation: read the [http://www.cnrm.meteo.fr/surfex/IMG/pdf/surf-v7-3.pdf SURFEX 7.3 User's guide] or visit the [http://www.cnrm.meteo.fr/surfex-lab SURFEX-lab] page and go to "Documentation" --> "User's guide". Follow the instructions under "1.2. Export off-line version of SURFEX (from version 7_2)". '''Please replace any occurrence of "EXPORT_v7_2_0" with "EXPORT_r1341" when you follow the instructions.'''
+ * '''Be sure to follow these additional instructions during the installation procedure:'''
+   * '''You need to''' use a Linux bash shell. Check your current shell with "env | grep SHELL". If the answer is not "SHELL=/bin/bash" please write "bash" followed by return at your shell prompt. 
+   * '''Before you execute''' the "./configure" command please do "export ARCH=LXgfortran" and "export VER_MPI=NOMPI".
+ * It is possible to do installation, setup and running of an experiment using a few simple scripts from FMI, please download a [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/sfxenv.tgz tarball] with README. The are scripts sfx73 to create environment, install_surfex to install and Runsfx to execute pgd, prep and offline + move the results to a subdirectory with one command.
+ * The goal with the preparations is that you at least succeed to compile the code and get executables under the SURFEX exe directory. Please send an email to Patrick Samuelsson or to the SURFEX team at [http://www.cnrm.meteo.fr/surfex SURFEX home] page if you have problems. If you wish to proceed with SURFEX, installing experiments and do some test runs even better of course but no expectations. If so take a look at the [wiki:NordicSurfexCourse2013#Predefined Exercise: Pre-defined experiments included in the EXPORT distribution]. 
+ * Please remember to bring your laptop to the course and make sure you can access any systems at home that you need. SMHI provides wireless connection but no computer facilities.
+
+'''Visualization of SURFEX output'''
+
+ * Please make sure that you have access to some software where you can visualize SURFEX output data, like e.g. MATLAB, Octave, ipython --pylab, xmgrace.
+ * SURFEX can write output as e.g. ASCII and NetCDF. Default is ASCII in the test cases provided with SURFEX.
+ * Look under [wiki:NordicSurfexCourse2013#Exercises Exercises] below for some visualization scripts that are provided for different softwares.
+
+
+'''Download Physiography data'''
+
+ * SURFEX uses various amount of physiography data, e.g. land-use, clay, sand, lake depth. It is a good idea to take some time to download most of these data and put them on a disk area where you have good amount of space, e.g. your local_disk area. Then you can easily link to these data from where ever you need them.
+ * Here is an example of a [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/links.sh links.sh] file which you can put in your Physiography data directory (here /local_disk/Nordic_SURFEX_course_2013/PHYSIOGRAPHY_DATA). You can copy links.sh to any directory where you run SURFEX, uncomment the lines you need, execute links.sh and viola you have all the physiography data you need available. The set of physiography data listed in links.sh represents 17 GB.
+ * Go to [http://www.cnrm.meteo.fr/surfex-lab/spip.php?rubrique14 Physiography download] on the SURFEX-lab site and download the data under each sub category. Following the links.sh example you just put all data in your PHYSIOGRAPHY_DATA directory and unpack them.
+
+--------------------------------------
+
+== Exercises == #Exercises
+
+'''A few tips'''
+
+ * Before you run OFFLINE... in a shell window be sure to execute "export OMP_NUM_THREADS=1" in that shell. Otherwise the run may stop with Segmentation fault.
+ * It seems like some visualization softwares have problems to read the SURFEX ASCII output in double precision (like 0.276808D+03). You can change the ASCII output to single precision (like 0.276808E+03) by e.g. adding this modified [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/mode_write_surf_txt.F90 mode_write_surf_txt.F90] to your MYSRC directory and recompile with "export VER_USER=MYSRC".
+ * After you have installed a pre-defined experiment the pgd.exe, prep.exe and offline.exe symbolic links will always point to the FORC-versions of the executables. If you wish to run a new simulation based on updates in e.g. MYSRC, SURFEX or OFFLIN directories you have to rename the symbolic links or write the full path to the executable you wish to run.
+ * Those who have been working with earlier SURFEX versions, might avoid unnessary problems by reading the page  [http://www.cnrm.meteo.fr/surfex-lab/spip.php?article225 about changes in v.7.3] in [http://www.cnrm.meteo.fr/surfex-lab/]. Note for example the advise of using ncrename (which is a part of [http://nco.sourceforge.net NCO] software, available for installation in linux distributions) to repair earlier forcing files: ncrename -v FORC_TIME_STEP,FRC_TIME_STP FORCING.nc .
+
+
+'''Visualization of SURFEX output'''
+
+ * octave/MATLAB: One reading and one plotting routine each are provided to visualize SURFEX ASCII output: [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/read_SURFEX_data.m read_SURFEX_data.m] and [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/plot_SURFEX_data.m plot_SURFEX_data.m] (this plot script needs some simple editing to be used for MATLAB). Please observe that the reading scripts assume single precision SURFEX output (like 0.276808E+03).
+ * ipython --pylab: One reading and one plotting routine each are provided to visualize SURFEX ASCII output: [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/read_ASCII_SURFEX_data.py read_ASCII_SURFEX_data.py] and [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/plot_SURFEX_data.py plot_SURFEX_data.py]. Please observe that the reading scripts assume single precision SURFEX output (like 0.276808E+03).
+ * Some old grads- and python-based tools have been collected to sfxgraf_collecton [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/sfxgraf_collection.tgz tarball] . Inside there is a README explaining a bit more.
+ * SURFEX NetCDF output with ipython --pylab: A reading and plotting routine to visualize SURFEX NetCDF output: [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/read_NetCDF_SURFEX_data.py read_NetCDF_SURFEX_data.py]. Under the (CROCUS) snow experiment there are additional netcdf4-python plotting tools for snow profiles, see [http://hirlam.fmi.fi/tmp/snapscro.tgz this package].
+ * The visualization tool vespa mentioned in the User's guide does no longer exist.
+
+
+   === Exercise: Pre-defined experiments included in the EXPORT distribution === #Predefined
+
+   This exercise describes the natural continuation after first successful compilation of SURFEX. As a SURFEX beginner please start here if you wish to try out some simulations.
+
+   [wiki:NordicSurfexCourse2013/ExpPredefined Exercise description]
+
+=== Exercise: Training material used at the SURFEX course in Toulouse in October === #ToulouseCourse
+
+   For the SURFEX course in Toulouse in October colleagues at Météo France have prepared a very useful training material for introduction to SURFEX.  
+
+   [wiki:NordicSurfexCourse2013/ToulouseCourse Exercise description]
+
+   === Exercise: 1D simulations of high-latitude forest/snow conditions in Sodankylä === #Sodankyla
+
+   Room and time: Almagrundet Tuesday after fika
+
+   Two years measurements from Sodankylä, 2008-2009, are used to create a forcing data set for SURFEX. Also provided is corresponding evaluation data (as e.g. turbulent fluxes, snow depth,...). 
+
+   [wiki:NordicSurfexCourse2013/ExpSodankyla Exercise description]
+
+   === Exercise: Hydrological applications ===
+
+   Room and time: Almagrundet Wednesday at 14:30 
+
+   Exercice based on a 1500 km2 basin in Southwest of France (The Aveyron at Laguepie). Forcing data are extracted from the SAFRAN analysis system. Results are compared to the observed discharge.
+
+   [wiki:NordicSurfexCourse2013/ExpHydrology Exercise description]
+
+   === Exercise: Town-Energy Balance (TEB) === #TEB
+
+    Room and time: Nikkaluokta Tuesday before fika
+
+
+   [wiki:NordicSurfexCourse2013/ExpTEB Exercise description]
+
+   === Exercise: Snow Crocus === #Snow
+
+   Room and time: Nikkaluokta Wednesday at 13:30
+
+   [wiki:NordicSurfexCourse2013/ExpSnow Exercise description]
+
+ === Exercise: Forcing generation from model output  === #SForcing
+
+   Room and time: Nikkaluokta Tuesday after fika
+
+   [wiki:NordicSurfexCourse2013/Forcing Exercise description]
+
+ === Exercise: SODA === #SODA
+
+   Room and time: Almagrundet Thursday at 09:00
+
+   [wiki:NordicSurfexCourse2013/SODA Exercise description]
+
+=== Exercise: Lakes === #LAKES
+
+   Room and time: Almagrundet Tuesday before fika
+
+   [wiki:NordicSurfexCourse2013/LAKES Exercise description]
+
+----------------------------------------
+
+== Participants, Lecturers ==
+
+'''Experts for lecturers and practical exercises'''
+ * Patrick Samuelsson, SMHI
+ * Eric Martin, Météo France
+ * Samuel Morin, Météo France
+ * Ekaterina Kurzeneva, FMI
+ * Trygve Aspelien, met.no
+ * Mariken Homleid, met.no
+ * Christer Jansson, SMHI
+ * Laura Rontu, FMI
+ * David Gustafsson, SMHI
+
+'''Participants lectures and practical exercises ( limit of 30 ) '''
+
+ 1.  Klara Finkele, Met Éireann
+ 2.  David Gustafsson, SMHI
+ 3.  Esbjörn Olsson, SMHI
+ 4.  Guy Schurgers, Lund University
+ 5.  Dagrun Vikhamar Schuler, met.no
+ 6.  Karin Nyström, SMHI
+ 7.  Marco Kupiainen, SMHI
+ 8.  Emelie Karlsson, SMHI
+ 9.  Fabio Pereira, Lund University
+ 10. Bolli Palmason, Icelandic Met Office
+ 11. Gabriella Zsebeházi, Hungarian Met. Service
+ 12. Ilias Pechlivanidis, SMHI
+ 13. Tuuli Perttula, FMI
+ 14. Roberta Pirazzini, FMI
+ 15. Magnuz Engardt, SMHI
+ 16. Bin Cheng, FMI
+ 17. Jakob Süld, met.no
+ 18. Øyvind Sætra, met.no
+ 19. René Capell, SMHI
+ 20. Teresa Valkonen, met.no
+ 21. Malte Müller, met.no
+ 22. Alexander Mahura, DMI
+ 23. Andrew Singleton, met.no
+ 24. Niina Puttonen, FMI
+ 25. Charlotta Pers, SMHI
+ 26. Yourii Batrak, RSHU, St Petersburg
+ 27. Mahelvson Chaves, Lund University
+ 28. Joe Siltberg, Lund University
+ 29. Sigurður Þorsteinsson, Icelandic Met Office
+ 30. Viktor Tarjáni, Slovak Hydrometeorological Institute
+
+
+'''Remote participants of lectures ( limit of 5 at the moment) '''
+
+ 1. Gema Morales, AEMET
+ 2. Helga Toth, Hungarian Met. Service
+
+'''Participants lectures only ( no limit ) '''
+
+ * Magnus Lindskog, SMHI
+ * Mikael Magnusson, SMHI
+ * Tomas Landelius, SMHI
+ * Shiyu Wang, SMHI
+ * Gunnar Omstedt, SMHI
+ * Karl-Ivar Ivarsson, SMHI
+ * David Segersson, SMHI
+

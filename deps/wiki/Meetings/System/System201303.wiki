@@ -1,0 +1,196 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''HARMONIE System Working Week''' =
+''Met Éireann, Dublin, 4rd - 8th of March 2013''
+
+Last modified [[LastModified]]
+[[Center(end)]]
+
+== Practical ==
+
+ The meeting will be held at Met Éireann, Dublin
+
+ * Participants, arrival, departure, hotel:
+  * KNMI:    Toon Moene, Sunday evening (10pm), Friday 5pm, www.dublinskylonhotel.com
+  * SMHI:    Ulf Andrae, Sunday evening, Friday 5pm, www.dublinskylonhotel.com
+  * FMI:     Niko Sokka, Sunday evening (11pm), Friday 2pm, www.thecastlehotelgroup.com/HOTELSTGEORGE
+  * met.no:  Ole Vignes, Sunday evening, Wednesday 3pm, www.dublinskylonhotel.com
+  * met.no:  Trygve Aspelien, Monday 12 am, Friday 1pm, www.dublinskylonhotel.com
+  * Met Éireann: Eoin Whelan, Monday morning 8am, Friday 5pm, n/a
+  * ICHEC: Enda O'Brien, ?
+  * DMI: Xiaohua, Yang, Sunday evening to Friday 5pm, skylonhotel?
+  * AEMET: Mariano Hortal, ?
+ 
+ * Some practical information:
+  * Travel information: [https://hirlam.org/trac/attachment/wiki/HarmonieWorkingWeek/System201303/PracticalMetEireann.pdf PracticalMetEireann.pdf]
+  * Met Éireann reception is open from 9:15am. Eoin will let you in if you arrive before this. 
+
+== Objectives ==
+
+The main goal for the practical part of this working week is to work on cy38h1.1. We also need to discuss a number of general issues as listed below.
+
+== Agenda ==
+
+ * Monday: Gathering, setup
+  * Presentations
+    * Accelerators, Enda O'Brian, ICHEC
+    * Coarrays, Toon
+    * Boundary conditions in spectral space, Mariano
+    * Benchmark lessons, Ole
+    * Cope status, Eoin
+    * Status cy38, Ulf/Niko/Xiaohua 
+    * Status cy39, Trygve
+    * Operational status, problems, '''ALL'''
+  * Discussion points
+ * Tuesday-Friday: Hard work!
+ * Friday:
+  * Summary, continuation 
+
+== HIRLAM ==
+
+ * c2a porting '''DONE'''
+   * MPI problems (Toon: I ran 7.2.2.bf1 on its default domain without problems; experiment ~nkc/hl_home/721std, but with ...) 
+   * Climate generation (... Toon: I was successful building my own HDF4 from scratch - version 4.2.9) 
+=== HARMONIE ===
+
+ * c2a porting
+   * rcp doesn't work very well (port in use). We need a environment variable for the semaphore location so that we can use e.g. $PERM. '''DONE'''
+
+== cy37  ==
+
+== cy37h1.2 problems and experiences ==
+
+ * Humidity problem on mountain area seen from DMI platform, eventually a local implementation problem.
+ * inline fullpos looks to suffer memory leak problem at least on ECMWF platform, with crashes in middle of forecast. test on DMI-cray look to go smooth, need confirmation with operational suite (Xiaohua reporting) 
+ * Tickets '''Toon'''
+  * #108, memory leak in fullpos. '''DONE'''
+  * #109, less robust calculation in surfex, also check in cy38
+
+== cy38h1 ==
+
+ * Physics
+   * Lisa is checking UA physics namelist '''DONE'''
+   * ALARO + SURFEX does not work. Patrick S + David L. SMHI working on this
+   * #100, edmfm not reproducible. '''Martynas'''
+
+ * Upper air assimilation
+   * Get upper air DA running ;-) '''Niko, Eoin well done!'''
+      * Fixed by updated ODB tables and revert of the LL_ecmwf flags in odb routines. It remains to understand why we need this. '''Niko'''
+   * Mandalay sql update '''Done'''
+   * Merge cy37h1 bator changes. '''Eoin'''
+   * Empty pool fix from Dominique Puech ( Bator.F90 ). Still open, an implementation accepted by all parties searched for. 
+
+ * Surface assimilation
+   * Cost of Soda, keep old OI_main as an option?
+   * CANARI + OI_main/SODA '''Trygve'''
+     * OI_main inside CANARI implemented, needs to be evaluated
+     * SODA inside CANARI needs more development. '''Postponed'''
+     * SODA speedup by OpenMP statements.
+     * Discussion with MF on how to proceed is ongoing.
+   * Time window for surface observations. Problems seen by Xiaohua with the current +/- 30 min window. '''To be discussed'''
+
+ * HarmonEPS
+   * Correct BDSTRATEGY for all current cases '''Postponed'''
+
+ * Dynamics
+   * Introduce spectral coupling '''Mariano'''
+   * Namelist cleaning, no changes suggested '''Done'''
+
+ * mSMS/script
+   * Listener cannot be restarted. '''Should not be a problem after 37h1.2''' '''DONE'''
+   * LLMAIN settings for FCINT=3/6 ''' Keep the old one, i.e. LLMAIN at 00/12 FCINT elsewhere''' ''''Done'''
+   * Archiving/cleaning strategies low, medium, max '''Xiaohua''' '''DONE'''
+   * Trap Canari and Minim errors in .sms files for RUNNING_MODE=operational ( See DMI case ) '''Done'''
+   * File name convention to handle minute/second output hh/mm/ss '''Agreed, not done'''
+   * Correct Get_timing.pl to use file stat as time stamp '''Ulf'''
+   * Move from sh to bash
+   * Remove explicit "set -x" in the scripts, generalize the flags '''Removal done'''
+   * Improve the speed of makeup based on Jacobs ideas
+     * Start with absolute paths in makefiles
+     * Gather include files in one directory
+     * How to avoid recursive make
+   * Separate SURFEX from OUTINT in sms/config_exp.h and Output_freq.pl '''Trygve''' '''Done'''
+   * Traj out of ground to Severe_warnings.txt
+   * Inline fullpos
+     * Name convention of INLINE_FULLPOS/OFFLINE_FULLPOS '''Done'''
+     * Further POSTP inline|offline cleaning '''Trygve''' '''Done'''
+     * Inline output frequency interval. Has to be even ours or minutes. Minutes not tested '''Eoin'''
+   * Boundary strategy available does not search properly '''Done'''
+   * Remove Bator from the MakeCycleInput '''Done'''
+
+ * Cleaning
+   * Clean gmkpack settings from sms/config_exp.h. Move them to an include file ( perl hash ? ) used by CheckOptions and written to config_update.h '''Ulf'''
+   * Config options that could be removed
+     * Remove option SURFACE=old_surface, keep surfex. '''Keep for GLAMEPS'''
+     * Remove option BD_METHOD=old, keep gl '''Done'''
+     * Remove option MASS_FLUX_SCHEME=edkf, keep edmf '''Done'''
+     * Remove option PHYSICS=aladin, keep alaro,arome, '''Done'''
+     * Remove option MITRAILLETTE '''Done'''
+
+ * External libraries
+   * Update and clean auxlibs and grib api in cy38
+   * use eclite from xrd instead of auxlibs
+   * netcdf/hdf5? ''' No action, keep it outside'''
+
+ * Diagnostics
+   * Gustiness missing from ALARO in cy37-with surfex /cy38?
+   * Output of any variable from phys (postpp) (as arbitrary GFL output)
+   * Additional output parameters: Xiaohua is working with Sander Tijm et al to look for additional output parameters requested by DMI forecasters 
+ 	 	135	     * CAPE, maximum cape (in similar definition as in HIRLAM-7.4); LCL, CIN, LNB (level of neutral buoyancy), wind gust of last 6h 
+ 	 	136	     * geopotential height of freezing level from top and bottom, tropopause height 
+ 	 	137	     * equivalent potential temperature, web-bulb temperature 
+
+ * gl/gl_grib_api, '''This should be looked at in gl_grib_api'''
+   * tri for MIN/MAX values in gl. 
+   * GL staggering bug.
+   * Speed of gl in Makegrib.
+
+ * Monitor
+   * WebgraF interface for glameps.org my_con + my_xml does not work '''Ulf'''
+
+ * Computational
+   * Ensure gmkpack/makeup compatibility on c2a.
+   * support for OpenMP in submit.ecgate-c2a '''DONE'''
+
+ * I/O
+   * Add IO server template '''Ulf, Dag'''
+     * Problems building lfitools under Makeup. Fixed by moving some files from xrd/programs to xrd/misc. '''DONE''' 
+     * How to handle the listener. Script and listener function implemented. '''DONE'''
+     * gl extended to read several FA files and write one grib file. To be scripted.
+   * Surfex output as FA files '''Ulf'''
+     * Discussion with MF ongoing. Prep_ini_surfex doesn't work for us. Pragmatic approach implemented ( No FA first cycle )
+     * Current issue is now getting SODA to write FA files.
+
+ * Initialization
+   * Test Prep vs fullpos+prep. '''Postponed'''
+   * Memory increase in Prep_ini_surfex ( e927+fullpos ) between cy37 and cy38 reported by MetCoOp. Problems generation initial condition on 1200x1200 domain.
+
+ * Evaluation:
+   * [https://hirlam.org/portal/validation/38h1/trunk38 trunk runs] showed some degradation of scores, especially strong wind bias, too weak over mountains
+   * BE04 option not working yet.
+   * First round of "testers" being contacted
+
+ * Testbed data
+   * Create new testbed data set based on TEST_IRELAND. '''Ulf'''
+
+ * Derivation of structure functions in cy38h1. Help needed from DA staff
+   * Add the generation of the forecast ensemble from HarmonEPS
+   * Streamline the JB part
+
+== cy39h1 ==
+
+ * Send next update '''Trygve'''
+ * HARMONIE AROME setup for mitraillette
+ * HARMONIE MUSC  setup for mitraillette
+
+== Misc ==
+
+ * New hirlam.org server. Purchase is in process.
+ * GIT access
+   * Ole and Kai are investigation how to arrange the authentication. Authenticaton setup trough the hirlam.org accounts for HARP. '''DONE''' 
+ * Using high resolution topography, how to get a consistent setup. Presentation by Enda
+
+ == Reference: HARMONIE working weeks ==
+
+ * [wiki:Meetings/System System Working Weeks and Meetings]
+

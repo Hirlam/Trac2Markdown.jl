@@ -1,0 +1,19 @@
+= '''HIRLAM-A System Release History''' =
+
+
+== '''HIRLAM 7.0''' ==
+
+
+ * '''[https://hirlam.knmi.nl/UG/ReleaseNotes/HL6_4_4.html HIRLAM 6.4.4]'''(''equivalent to HIRLAM 7.0beta3''); beta release; released 9 February 2006
+   * Re-forecast procedure is introduced with the purpose of utilizing late-arriving, external analyses and forecasts in a re-forecast for a previous cycle, to improve quality of the HIRLAM background fields, especially in terms of representation of large scale features. 
+   * Assimilation of ATOVS AMSU-A data.
+
+ * '''[https://hirlam.knmi.nl/UG/ReleaseNotes/HL6_4_3.html HIRLAM 6.4.3]''' (''equivalent to HIRLAM 7.0beta2''); beta release; released 9 December 2005
+   * A revised postprocessing give a smoother mean sean level pressure field over mountain areas. 
+   * Other technical, most of them to embellish the new, cvs-based, system.
+
+ * '''[https://hirlam.knmi.nl/UG/ReleaseNotes/HL6_4_2.html HIRLAM 6.4.2]'''(''equivalent to HIRLAM 7.0beta1''); beta release; released 24 October 2005
+   * Less weight to the observations in the analysis
+   * Reduced evaporation in summer, smooth transition between seasons
+   * several minor corrections and technical improvements 
+

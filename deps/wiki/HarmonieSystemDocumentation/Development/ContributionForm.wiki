@@ -1,0 +1,40 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Trunk contribution form''' =
+[[Center(end)]]
+
+== Introduction ==
+
+Following the same strategy that we use during the phasings and in order to facilitate the commits to the trunk by system people the following Trunk contribution form must be submitted when a new develop wants to be committed to the trunk.
+
+== FORM ==
+
+[https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Development/ContributionForm/Trunk%20contribution%20form.docx docx]
+[https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Development/ContributionForm/Trunk%20contribution%20form.doc doc]
+[https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Development/ContributionForm/Trunk%20contribution%20form.odt odt]
+[https://hirlam.org/trac/attachment/wiki/HarmonieSystemDocumentation/Development/ContributionForm/Trunk%20contribution%20form.pdf pdf]
+
+== Example ==
+
+[[Image(wiki:HarmonieSystemDocumentation/Development/ContributionForm:TrunkContributionForm.JPG)]]
+
+
+
+
+
+
+
+
+
+
+
+[[Center(begin)]]
+[wiki:HarmonieSystemDocumentation Back to the main page of the HARMONIE System Documentation]
+[[Center(end)]]
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]

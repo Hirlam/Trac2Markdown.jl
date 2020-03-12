@@ -1,0 +1,140 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''Hirlam Initialization and coupling schemes''' =
+[[Center(end)]]
+
+[[Center(begin)]]
+== '''Overview of the relevant issues''' ==
+[[Center(end)]]
+=== '''Topics''' ===
+ 1. Currently, HIRLAM system uses incremental digital filtering initialization (IDFI) as its initialization scheme
+ 1. IDFI is used also in the re-forecast procedure in which ECMWF analysis and HIRLAM surface analysis are coupled with namelist option INCMOD=2
+ 1. Implementation of 4D-VAR in 7.1 eliminate now the need for explicit initialization. However, IDFI is still needed with the current implementation of re-forecast procedure in which ECMWF-analysis is coupled to the HIRLAM first guess for the past cycles to update background model state.
+ 1. The previous initialization scheme, nonlinear normal mode initialization scheme, is still available as an option for quick code test etc. and should be retained
+=== '''Background''' ===
+ * Initialization scheme is normally applied following analysis procedure
+   * "analysis" is a product of data assimilation in which the selected model states in the background field (forecast from previous cycle, which is assumed to be "balanced"), is modified with 'analysis increment' taking into account information from both observation and background as well as their assumed error characteristics
+   * the analysis procedure relies on some balance relationship, but that normally does not gurantee balance in the resulted 'analysis'
+     * the balance relationship is hard to find and usually incomplete; (imbalance between analysed quantities such as wind <=> mass)
+     * there is an intrinsic imbalance between analysed and unanalysed variables (dynamic quantities <==> moist quantities; )
+     * there is an imbalance due to model interpolation (eg., small scale features are introduced when interpolating coarse resolution analysis increment to high resolution; when interpolating external analysis---ECMWF analysis--- to higher resolution) 
+     * most analysis scheme (such as 3D-VAR) does not involve forecast model in its constraint, thus there is a potential imbalance
+   * Up to now analysis schemes only assimilate observation data at rather coarse resolution while they do not provide added information on sub-synoptic scales. The latter may thus be better represented by high resolution model through forecast fields
+   * 4D-VAR has an advanatge in balance issue due to two major factors. It is therefore common that no explicit initialization is needed in final forecast
+     1. The forecast model is part of the minimization constraint which improves balance. 
+     1. A gravity wave removal constraint, weak constraint DFI is implemented, which ensure good dynamic balance in the analysis increment at least at analysis resolution
+     1. However, the above advantages are partially compromised by the fact that moisture quantities are still not fully analysed and the final analysis involves interpolation from coarse resolution to fine resolution. 
+ * In the HIRLAM re-forecast procedure, IDFI is used to enable use of the (ECMWF) large scale analysis with the HIRLAM fields to provide improved model background states for future assimilation cycle
+   * The basic premise of this procedure is that ECMWF-large scale analysis indeed provide better description of the large scale atmospheric states, whilst the HIRLAM forecast provide useful information about remaining scales. The coupling with IDFI has also been found to improves the spin-up feature.
+=== '''Method''' ===
+ * The DFI filters selected prognostic variables while keeping other variables untouched compared to the original input (surface quantities etc.)
+ * The DFI is a low-pass time filter. The filtering is realized through following steps:
+   1. integrating forecast model in time, both backward and forward, to obtain a time serie of the model states
+   1. thereafter apply digital filter for such time serie to obtain a 'filtered model states'
+     * the algorithm is arranged so that the filtered model state is valid in the center of the filtering window, normally the analysis time. 
+     * for the default DFI scheme, a twice filtering with Dolph window filter is applied, which starts by a backward integration of 2 hours to get a filtered model state valid at -1h; The integration is then re-started from that point forward for 2 hours to finally arrived to a filtered model state at +0 h;
+     * in DFI launching scheme, in order to avoid backward integration, only forward time integration is applied for 2 h, which results in a filtered model state at +1 h. The integration is then re-intiated from that time point instead of from analysis time, thus no 'initialized model state' will be avaliable for analysis time;
+     * In both IDFI and DFI launching, other prognostic variables are untouched. In IDFI, the 'initialized model state' contains the surface prognostic variables, cloud properties etc from analysis/first guess; In DFI launching, the corresponding update obtained from the middle point of the half initialization window (+1h) is saved and used as initial model state.
+   1. With incremental DFI, identical DFI filtering is applied to the analysis and background files. The difference of the two filtered model states, "initialization increment", are then added on top of the background model state to obtain initialized model state. Thus the initialized mdoel state in IDFI is a combination of large scale fields from analysis and 'unfiltered'-scale fields from background
+ 
+=== '''Implementation, data flow''' ===
+ * IDFI filters following quantities
+{{{
+  ps, U, V, T, Q, CW
+}}}
+ * A "normal" (full) DFI normally links analysis input or external analysis input as fort.14 and it is no different compared to a 'normal' forecasr without initialization or NNMI
+ * With IDFI, a second file, fort.15 is needed which is to provide a balanced background field as well as input for surface quantities. An analysis file should normally not be linked to fort.15
+ * The initialization procedure is normally followed immediately by forecast afterwards
+
+[[Center(begin)]]
+== '''Relevant code and scripts''' ==
+[[Center(end)]]
+ * The DFI and incremental DFI procedures are implemented as part of the grid-point dynamics library: grdy
+ * The relevant source codes are:
+{{{
+   dfi.F (called by gemini.F)
+   incdfi.F
+   fuldfi.F
+   dfcoef.F
+   rdnamini.F
+   cheby.F
+   COMINI.inc
+   
+}}}
+ * The relevant scripts in which DFI scheme is involved are
+{{{
+   Env_expdesc
+   Progprolog.pl
+   FCinput
+   hirlam.tdf
+   4DVARan
+}}}
+
+
+[[Center(begin)]]
+
+== '''What's new in 7.0''' ==
+[[Center(end)]]
+Hirlam 7.0/Hirlam 6.4.4 introduces re-forecast procedure in which large scale analysis is coupled to HIRLAM background to extract large scale information from high quality ECMWF analysis, using IDFI with namelist option incmod=2 in NAMINI
+
+The detailed explanantion of the re-forecast procedure is available in instruction pages
+https://hirlam.org/UG/ReleaseNotes/restart.htm
+and a description of algorithm in the HL newsletter 51:
+{{{
+#!html
+<a href="http://hirlam.org/wikidoc/reforecast.ps"  target="_blank">
+Xiaohua Yang and Ole Vignes, Re-forecast procedure in Hirlam 7.0, Hirlam Newsletter 51, 2006.</a>
+}}} 
+[[Center(begin)]]
+== '''What's new in 7.1''' ==
+[[Center(end)]]
+In Hirlam 7.1, the explicit initialization scheme is turned off for normal cycles except for the reforecast
+
+[[Center(begin)]]
+== '''Relevant namelists, tunables''' ==
+[[Center(end)]]
+
+ * In Env_expdesc, one can
+   * modify initialization scheme by modifying
+{{{
+  LDFI = yes/no #for using DFI initialization
+}}}
+ * modify setting for incremental or full DFI
+{{{
+  IDFI=yes/no
+}}}
+ * change default DFI filter type
+{{{
+   NDFI=3  #twice DFI (full DFI)
+   NDFI=4  #DFI launching
+}}}
+ * change window length of DFI filtering
+{{{
+   DFISPAN=2  #2 hours
+}}}
+ * change mixing setting INCMOD
+{{{
+   INCMOD=2  #for reforecast only, always use surface fields from background fort.15
+   INCMOD=1  #default, always use surface fields from analysis fort.14
+ 
+}}}
+ * Remaining parameters for initialization on NAMINI can be changed in FCinput, with following main variables as default
+{{{
+   nfilt=7         # type of filter: default is Dolph window filter
+   taus=3          # double of the cut-off frequecy
+}}}
+
+[[Center(begin)]]
+== '''Monitoring subjects, tools''' ==
+[[Center(end)]]
+The main means of checking an initialization scheme are 
+ * Check the initialization increment by comparing field difference between analysis/background and initialized fields, especially for fields like MSLP, vertical velocity, 500hPa height etc.
+ * Check the initial and time series of the domain averaged quantities such as the dabs(dps/dt) for past three hours, rain rate, total cloud condensate, cloud cover, surface fluxes, etc.
+
+[[Center(begin)]]
+== '''Common error messages''' ==
+[[Center(end)]]
+[[Center(begin)]]
+== '''Overhaul issues, questions''' ==
+ * Some namelist options are not meaningful and should be cleaned, such as iteration of DFI; use of physics for backward integration.
+[[Center(end)]]

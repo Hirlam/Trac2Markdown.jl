@@ -1,0 +1,49 @@
+[[PageOutline]]
+[[Center(begin)]]
+=== '''Hirlam Data Portal''' ===
+== '''Monitoring and Intercomparison of Operational and Real time HIRLAM/Harmonie''' ==
+= '''Verification''' =
+
+[[Center(end)]]
+
+== '''Observation Verification ==
+
+=== Real-Time Cross-Model & Center Observation Verification Intercomparison ===
+ * Harmonie vs HIRLAM models
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/InterComp/index.html?choice_ind=Surface Cross-HIRLAM model intercomparisons]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/HAAA/index.html?choice_ind=Surface Operational HARMONIE/HIRLAM/ECMWF: SMHI/met.no (MetCoOP-AM25), DMI (Denmark-dka38h12, Greenland-glb38h12), FMI (aro38h12), KNMI(36h12), MetEireann (37h1p1), AEMET (AIB) ]
+ * Operational centers
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/DMI/index.html?choice_ind=Surface DMI (HARMONIE-dka38h12, HARMONIE-glb38h12, HIRLAM-SKA, HIRLAM-K05, HIRLAM-EPSEM (ensemble) ]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/FMI/index.html?choice_ind=Surface FMI (RCR, V74beta1, AROME-finland)]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/KNMI/index.html?choice_ind=Surface KNMI (HIRLAM-CIS, HARMONIE-36h12)]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METIE/index.html?choice_ind=Surface MetEireann (HARMONIE-37h1p1, HIRLAM-ICH)]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/METNO/index.html?choice_ind=Surface met.no (HARMONIE-AM25, HIRLAM-C11)]
+   * [https://hirlam.org/portal/oprint/WebgraF/ObsVer/SMHI/index.html?choice_ind=Surface SMHI (HARMONIE-AM25, HIRLAM-C11)]
+=== Algorithm and Information about verification scheme ===
+ * [https://hirlam.org/trac/wiki/HirlamSystemDocumentation/PostPP/CommonVerification Verification data and method]
+=== Monitoring and Verification at Operational Services ===
+ * [http://fminwp.fmi.fi/verif/LTVerifIndex.html Reference HIRLAM long term quality trend], [http://fminwp.fmi.fi/WebgraF/FMI-HARMONIE/ FMI HIRLAM vs AROME verification ]
+ * [https://hirlam.org/portal/dmi/WebgraF/DMI_Hirlam/index.html DMI-HIRLAM verification], [https://hirlam.org/portal/oprint/WebgraF/OprSWS/InterComp/index.html?choice_ind=HARMONIE Significant Weather Score ]
+== '''mast data verification''' ==
+Measurement towers: Sodakyla, Cabauw, Valladolid, Lindenberg...
+Participating services for model data: AEMET, Meteo France, FMI, ECMWF
+ * [http://fminwp.fmi.fi/mastverifnew/ Real time comparison for each mast]]
+ * [http://fminwp.fmi.fi/mastverif_stats/ Monthly statistics  ]
+== '''Hirlam Forecast monthly field verification''' ==
+ * [http://fminwp.fmi.fi/verif-uusi/WebgraFFieldverif/index.html  FMI monthly field verification]
+
+
+[[Center(begin)]]
+[wiki:dataportal Back to the main page of Hirlam data portal]
+[[Center(end)]]
+----
+
+[[Disclaimer]]
+
+[[Center(begin)]]
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
+
+
+
+

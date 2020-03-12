@@ -1,0 +1,44 @@
+[[PageOutline]]
+[[Center(begin)]]
+= '''A SODA experiment setup: 1D_test_case''' =
+
+Last modified [[LastModified]]
+
+[[Center(end)]]
+
+== Experiment description ==
+
+A SODA experiment setup has been prepared by Clément Albergel in the SURFEX team at Météo-France.
+This experiment allows offline assimilation of Leaf Area Index (LAI) and Surface Soil Moisture (SSM) observations on the 3-Layer version of ISBA for 1 site in south-western France.
+One year of observations / atmospheric forcing is available as well as links/scripts that are required to run an open-loop and analysis experiment.
+
+
+ 1. Make sure you have SURFEX setup
+   * Check out the SURFEX SODA branch including the 1D_test_case experiment setup:
+    {{{ svn co http://svn.cnrm-game-meteo.fr/projets/surfex/branches/SODA_V8 }}}.
+    If you cannot access the SURFEX repository please [http://www.cnrm-game-meteo.fr/surfex/spip.php?article147 follow these instructions] on the SURFEX web page. Please visit this [http://svnbook.red-bean.com/en/1.7/index.html web site for subversion (svn)] documentation and help.
+   * Or if you already have a SURFEXv8 setup checked out and compiled you can check out the 1D_test_case only:
+    {{{svn co http://svn.cnrm-game-meteo.fr/projets/surfex/branches/SODA_V8/MY_RUN/KTEST/1D_test_case}}}
+   * Or download a tar-ball of the SODA_V8 branch [http://exporter.nsc.liu.se/86e7786b8c4b4d6c9480e975ca0f101c here].
+
+ 2. Compile SURFEX if needed to get the executables PGD, PREP, OFFLINE and SODA:
+   * {{{cd SODA_V8/src}}}
+   * Edit the script {{{compile_surfex.sh}}} if necessary and execute it as {{{./compile_surfex.sh}}}
+   * Hopefully all goes well and you find the executables here: {{{SODA_V8/src/dir_obj-LXgfortran-SFX-V8-0-0-NOMPI-OMP-O2/MASTER}}}.
+
+ 3. Setup the 1D_test_case:
+   * Download ECOCLIMAP_II_EUROP.hdr.gz and ECOCLIMAP_II_EUROP_V2.2.dir.gz from [http://www.cnrm-game-meteo.fr/surfex/spip.php?article136]. Unpack and place the files in a suitable directory.
+   * {{{cd SODA_V8/MY_RUN/KTEST/1D_test_case}}}
+   * Edit the script {{{useful_links.sh}}} so the links to files are correct and execute the script.
+   * Unpack the tgz-files in the FORCING and Observations directories, respectively.
+
+ 4. Run the open loop experiment:
+   * Please note that one has to specify a LD_LIBRARY_PATH to the grib_api-1.17.0 lib files. Otherwise SURFEX complains (PGD,PREP,OFFLINE). Thus, look at the top of the script {{{Run_open_loop.sh}}},
+     uncomment the {{{LD_LIBRARY_PATH}}} line and give the correct path on your machine.
+   * Execute {{{./Run_open_loop.sh}}}. Run_open_loop.sh will create one month of experiment (January 2001) without any assimilation (normal SURFEX run) and store the results in Results/open_loop.
+
+ 5. Run the analysis experiment:
+   * Execute {{{./Run_SEKF.sh}}}. Run_SEKF.sh will create the same month of experiment analysing LAI and and SSM, it will store the results in Results/analysis, they can be compared to the open_loop to see the impact of the assimilation.
+
+ 6. In both Run_open_loop.sh and Run_SEKF.sh you can run the whole 2001 by modifying  AAAAMMJJRR_end=!2001013106 by AAAAMMJJRR_end=!2001123106
+

@@ -1,0 +1,341 @@
+[[PageOutline]]
+
+= '''A Short Tutorial on git''' =
+
+This documentation aims at getting started with git repository work, and it supplies some tools for the most basic actions using git. Please note that this tutorial is far from exaustive, and every user is highly recommended further reading on [http://git-scm.com/documentation more detailed documentation]. It is also expected that the reader has basic knowledege about revision control systems.
+
+Please note that this tutorial describes how to work with existing repositories, and it concentrates on the ''command line interface''. Steps on how to create a repository etc., or how to use via a ''graphical user interface'', are not described here.
+
+
+== '''General''' ==
+
+[http://git-scm.com Git] is a ''distributed'' revision control system. Still, it leaves the details on how to organize ones version controlling to the users. In the HIRLAM consortium, there are ''central'' git repositories hosted on [[Color(green, hirlam.org)]], like this has been done under subversion. The distributed character of git is, however, still present in the workflow, which includes following basic steps:
+
+ * ''clone'' repository to the local host, creating a local repository
+
+ * apply code changes (happening on the '''''working tree''''')
+
+ * ''index'' those code changes that are to be committed (changes are added to the '''''index''''')
+
+ * ''commit'' the code changes (still within your local repository only)
+
+ * perform more code changes, ''index'' and ''commit'' them (to the '''''HEAD''''')
+
+ * ''publish'' your changes to the common repository by ''pushing'' your commits
+
+The above listed basic work flow is fine as long as you are the only developer changing the repository. If several developers are involved, then the suggested work flow becomes a little more complex:
+
+ * ''clone'' repository to the local host, creating a local repository. The default branch when cloning is the ''master branch''
+
+ * create your ''own branch'' within the cloned repository and check out that branch
+   * apply code changes within your branch (happening on the '''''working tree''''')
+   * ''index'' the code changes that are to be committed (changes are added to the '''''index''''')
+   * ''commit'' the code changes (still within your branch under your local repository only)
+   * perform more code changes within your branch, ''index'' and ''commit'' them (to the '''''HEAD''''')
+
+ * before uploading your committed changes to the common repository, you have to take changes into account, which others may have published on the common repository while your were applying your changes on your local repository:
+   * checkout the ''master branch'' on your local repository
+   * update that ''master branch'' under your local repository with work that others have ''published'' in the meanwhile by ''pulling'' updates from the common repository
+
+ * while still in the ''master bracnh'', ''merge'' your committed code changes from your ''own branch'' into the ''master branch'' - it may become necessary to resolve merging conflicts
+
+ * once merging is finished ''publish'' your changes to the common repository by ''pushing'' your commits
+
+ * after having merged and published all your changes from your ''own branch'', remove your ''own branch''
+
+A git repository is nothing more than a normal directory, which contains the `.git` sub-directory at the uppermost directory level. If this sub-directory is removed, then there will not be any git repository any more, and the directory will just remain a normal directory.
+
+
+
+== '''Preparations for working with git Repositories''' ==
+
+Of, course, you need to have git installed on your computer - please consult the system documentation of your Linux distribution for details.
+
+When working with git, git takes configuration data from `~/.gitconfig`. The attached sample configuration file ([attachment:gitconfig download]) may be taken as a starting point for your own git configuration (the file content is not shown here, because some important TABs in the file would not be retained when copying from screen).
+
+For details on this configuration please consult the git manual pages or other relevant documantation. The aliases are described in more detail [#aliases further below].
+
+The file `~/.gitignore` ([attachment:gitignore download]) mentioned in `~/.gitconfig` has following content:
+
+{{{
+## generic files to ignore
+*~
+*.lock
+*.sw[op]
+*.out
+*.[aot]
+tmp.*
+}}}
+
+`~/.gitignore` lists all file names via ''regular expression'', which are not to be taken into account by git. An important example are backup files from text editors, but also temporary files maked with the prefix `tmp.`, or ''lock''-files marked by suffix `.lock`. '''It is important that those kind of files are excluded form git processing'''.
+
+Please note that placing `.gitconfig` and `~/.gitignore` under the `HOME` directory defines these configurations global for git. So it affects all git repositories that you might work with under your `HOME` directory.
+
+
+=== '''Useful git Aliases''' ===
+[=#aliases]
+The aliases included in the above mentioned git configuration file `~/.gitconfig` may help to make working with git more fluent. You are free to use them as is, or to modify them, or add new ones in order to fit your needs. The aliases are executed by following command:
+
+{{{
+git <alias name>
+}}}
+
+The meaning of the above listed aliases is as follows:
+
+|| '''alias name''' || '''description ||
+|| alias            || list the aliases defined for use in git ||
+|| b                || shorthand for `branch` ||
+|| co               || shorthand for `checkout` ||
+|| com              || shorthand for `commit -s` ||
+|| conf             || list the git configuration (content of `~/.gitconfig`) ||
+|| dih              || show differences between the **''index''** and the **''HEAD''** ||
+|| dwh              || show differences between the **''working tree''** and the **''HEAD''** ||
+|| dwi              || show differences between the **''working tree''** and the **''index''** ||
+|| la               || list the ''commit'' log, from oldest to newest, one line per log item ||
+|| lc               || list the ''commit'' log in concise form, from oldest to newest, with the full qualified ''commit ID'' and comment text ||
+|| le               || list the ''commit'' log in extended form, from oldest to newest, one line per log item ||
+|| lg               || list the ''commit'' log, grouped together with tags ||
+|| ll               || list the ''commit'' log, long format, like `ls -l`, an alternative to '''la''' ||
+|| lm               || list the ''commit'' log, list commits done during the last month ||
+|| ln <n>           || list the ''commit'' log, listing the <n> newest commits ||
+|| lq               || list the ''commit'' log, list commits done during the last three months ||
+|| lw               || list the ''commit'' log, list commits done during the last week ||
+|| m                || shorthand for `merge` ||
+|| r                || shorthand for `remote` ||
+|| rl               || list all **''refs''** entries, like ''remotes'' or ''tags'' ||
+|| s                || shorthand for `status` ||
+|| sb               || shorthand for `stash branch` to create a branch on basis of an existing stash ||
+|| sd               || shorthand for `stash drop`, for removing a stash ||
+|| sl               || list the existing stashes ||
+|| sp               || ''pop'' a **''stash''** and add the code changes separatly into the **''working tree''** and the **''index''** ||
+|| ss               || save the current **''working tree''** and the **''index''** into a **''stash'**' ||
+|| sub              || the reverse of `git add`, i.e. take changes out from the **''index''**, leaving them in the **''working tree''** ||
+|| sv               || view differences contained in a **''stash''** (w.r.t. its original parent) ||
+|| tg               || shorthand for `tag -a` ||
+|| tl               || list the existing tags with reference IDs, from oldest to newsest, one item per line ||
+|| tm               || list the existing tags with tag messages, from oldest to newsest, one item per line ||
+|| wsc              || ''whitespace check'', find all files in the current repository, which contain a trailing white-space ||
+
+
+You will most probably not understand all of them right away. Still, you might find them useful after a while.
+
+
+
+== '''Repository Access''' ==
+
+The common repositories at [[Color(green, hirlam.org)]] can be accessed in two ways:
+
+ * via '''ssh'''
+
+ * via '''https'''
+
+Unless you have sent your ssh public key to the system manager at [http://hirlam.org hirlam.org)]] for installation under the git repository server, you will not have access to the git repository via '''ssh'''. Note that ssh access offers higher security, it is, however, bound to the computer, on which you have the relevant private ssh key installed. So this access does only work from specific computers.
+
+Where '''https''' is concerned, you have by default ''read'' access to all relevant git repositories at [[Color(green, hirlam.org)]], if you are a registered user on this server. You can connect from any computer that allows '''https''' access to [[Color(green, hirlam.org)]]. In order to get ''write'' access via '''https''', please contact the system manager at [http://hirlam.org hirlam.org)]], who will arrange that an access key is being created and installed for you. You don't need to send any key in this case.
+
+
+
+== '''Working with a git Repository''' ==
+
+The following steps outline a basic work flow for a repository user. Let's assume we are working with the repository [[Color(blue, testing)]]. Actually, this repository exists, and you are welcome to use it in order to play and learn to work with git. Please take note of the README provided in [[Color(blue, testing)]], and follow it!
+
+The examples given below utilize some of the ''git aliases'' [#aliases described above]. In case you don't have these aliase defined, you will have to expand them manually (copy and paste) in order to apply the examples.
+
+
+=== '''Cloning''' ===
+
+With ''cloning'' you receive the source code and all repository information from the desired repository you are ''cloning'' from. In case of '''https''' access cloning of our example repository [[Color(blue, testing)]] is done by command
+
+{{{
+   git clone https://git.hirlam.org/testing
+}}}
+
+and in case you use '''ssh''' access:
+
+{{{
+   git clone git@hirlam.org:testing
+}}}
+
+After ''cloning'', change into the directory `testing`, then you are ready to work on the ''code''.
+
+
+=== '''Branching''' ===  #Branching
+
+If several people are applying code changes at the same time, then it is recommended to apply your changes within a separate branch instead of the ''master branch''. Once you have cloned the repository, move into it and create your ''own branch'':
+
+{{{
+   git branch own
+   git checkout own
+   git branch
+}}}
+
+The first command creates the branch ''own''. The second command check out that branch, so any changes you make refer to that branch. The third command lists all branches in your local repository, and it is just a check to assure you are in the intended branch.
+
+
+=== '''Applying code changes''' ===
+
+Applying changes in a git repository is no different from changing files and directories within a normal directory. However, you can, at any time check your changes w.r.t. the repository:
+
+{{{
+git s
+}}}
+
+will show you the list of files and directories you have changed or added, and
+
+{{{
+git dwh
+}}}
+
+will list the content of all your changes w.r.t. the latest ''commit'', which by default is the '''''HEAD'''''.
+
+
+=== '''Put changes into the ''index''''' ===
+
+Once you have a bunch of changes that you think are ready to be committed, you add them to the '''''index'''''. Let's assume that you changed file `foo`, as well as directory `bar` and want to ''add'' them to the '''''index''''':
+
+{{{
+git add foo
+git add bar
+}}}
+
+or just
+
+{{{
+git add foo bar
+}}}
+
+If you want to ''add'' all changes to the '''''index''''', it's just
+
+{{{
+git add .
+}}}
+
+provided your ''current working directory'' is the uppermost directory level of the repository.
+
+However, if you now find out that the file `bar/toomuch` has accidently also been added to the '''''index''''', you can take it out again from the '''''index''''' with
+
+{{{
+git sub bar/toomuch
+}}}
+
+If we now assume that you have placed some of your changes in the '''''index''''', and some other changes are still under the '''''working tree''''', then you may be interested to check the differences (d) between the '''''working tree''''' (w) and the '''''index''''' (i):
+
+{{{
+git dwi
+}}}
+
+or you may be interested to see only the differences (d) between the '''''index''''' (i) and the '''''HEAD''''' (h):
+
+{{{
+git dih
+}}}
+
+and the sum of both these changes you can see by using the following command:
+
+{{{
+git dwh
+}}}
+
+
+=== '''Whitespace check''' ===
+
+Before you ''commit'' anything, please check your changes w.r.t. whitespaces, especially at line endings. These kind of ''changes'' are of no use, they are rather a pain later on when viewing differences between changes. Therefore, it is highly recommended that you eliminate these kinds of useless changes '''before''' you ''commit'' your changes. A helpful command here is
+
+{{{
+git wsc
+}}}
+
+issued from the uppermost directory level of the repository. This will list all files that contain a trailing white space. You then have to decide upon removing those manually.
+
+=== '''Commit changes''' ===
+
+Once you have added all changes that you want to commit into the '''''index''''', and checked for whitespaces (see above), you can ''commit'' the changes from the '''''index''''', creating a new '''''HEAD''''':
+
+{{{
+git com -m "short and menaingful comment to my changes"
+}}}
+
+If you now list the ''commit log'', your new commit should appear as the newest one:
+
+{{{
+git ll
+}}}
+
+The new '''''HEAD''''' is given a unique ID consisting of letters and numbers, which is shown in short form at the leftmost column in the listing just done. This short form is usually enough to identify the ''commit'' uniquely. You can see the ID in long form by issuing for example
+
+{{{
+git le
+}}}
+
+Once your ''commit'' is finished, the '''''index''''' is ''empty'' and ready to receive new changes.
+
+
+=== '''Merge changes into the master branch''' === #Merge_changes_into_the_master_branch
+
+If you have applied your changes within your ''own branch'', then you have to merge them into the ''master branch'' before publishing them. First move to the ''master branch'':
+
+{{{
+git branch master
+}}}
+
+Then get the changes that were published to the common repository while you were working on your changes, by [#Update_local_repository updating your local repository]:
+
+{{{
+git pull origin master
+}}}
+
+After this, you can merge your changes from your branch (called ''own'') into the ''master branch'':
+
+{{{
+git merge own
+}}}
+
+While doing this, git may issue messages telling about merge conflicts. You will have to address them and resolve them manually in order to finalize the merge successfully. After this your changes are ready to be published, and you can [#Publishing_the_changes publish your changes], and skip the next paragraph, because that you already have done.
+
+
+=== '''Update local repository''' === #Update_local_repository
+
+Up to now the actions described in this paragraph of '''Working with a Repository''' have affected your local repository, the origin of which is located on [[Color(green, hirlam.org)]]. Other users may have changed the ''remote'' repository at [[Color(green, hirlam.org)]], from where you ''cloned'', while you were working on your own changes. You may have done this already within the step described in the [#Merge_changes_into_the_master_branch above paragraph]. In case you have not utilized [#Branching branching] and [Merge_changes_into_the_master_branch above paragraph merging], then you have you have to assure that your local repository is ''up-to-date'', before you can ''publish'' your ''committed'' changes to the rest of the community, otherwise your ''commits'' will not be accepted. Updating is done by ''pulling'' the changes from the ''origin'':
+
+{{{
+git pull origin
+}}}
+
+this will ''fetch'' all new changes from the ''remote'' repository (a.k.a. ''origin''), and ''merge'' them into your local repository.
+
+
+The ''merging'' of new ''remote'' changes with your own changes can easily become a cumbersome issue. In order to be able to better cope with this, it is recommended that you work with [#Branching '''''branches'''''], leaving the ''master branch'' untouched, and avoid direct ''pulls'' into your current working ''branch''. This topic not addressed in more detail within this short guide. Please refer to the manual pages and documentation available from [http://git-scm.com/documentation the net]. In order to have better control over merging conflicts when playing with the [[Color(blue, testing)]] repository, a certain convention about separate user directories is described in the 'README' file that comes with the [[Color(blue, testing)]] repository. Please stick to it!
+
+
+
+=== '''Publishing the changes''' === #Publishing_the_changes
+
+Once you are ready to publish the ''commits'' of your changes, you ''push'' the new local ''commits'' onto the ''remote'' repository at [[Color(green, hirlam.org)]], which in our example is identical with the ''origin'', because we have ''cloned'' from there. We also assume that we on the ''master branch'':
+
+{{{
+git push origin master
+}}}
+
+Once ''pushing'' your ''commits'' to the ''remote'' repository has been successful, you cannot ''undo'' this any more. If you still tried, you would break history, and you could cause a complex confusion, because others may already have ''pulled'' your changes.
+
+
+
+=== '''Who is to blame''' ===
+
+Finally, in order to check who has ''committed'' a certain change in file ''foo'' under sub-directory ''bar'', you can use
+
+{{{
+git blame bar/foo
+}}}
+
+Please note that the person who ''committed'' the change is not necessarily the author of the change. However, you may get further information about the original author from the ''committer''.
+
+
+
+----
+
+[[Center(begin)]]
+[[Disclaimer]]
+
+[[Color(red, Last modified on)]] [[LastModified]]
+[[Center(end)]]
