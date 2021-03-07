@@ -1,8 +1,0 @@
-''' Responsible expert: Ekaterina Kurzeneva '''
-
-* Exercise decription may be downloaded from [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/SURFEX_LAKE_exercises.pdf here] 
-* Materials for 1D experiments for boreal lakes are in [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/LAKE1D.tar.gz LAKE1D.tar.gz]
-* First part of forcing data (for SYKE lakes) is in [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/Bor_lake_forcing_1.tar.gz Bor_lake_forcing_1.tar.gz]
-* Second part of forcing data (for large lakes) is in [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/Bor_lake_forcing_2.tar.gz Bor_lake_forcing_2.tar.gz]
-* Observations for SYKE lakes are in [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/Bor_lake_obs.tar.gz Bor_lake_obs.tar.gz]
-* Materials for 2D experiments (PGD for lakes) are in [https://hirlam.org/trac/attachment/wiki/NordicSurfexCourse2013/LAKES/LAKE2D.tar.gz LAKE2D.tar.gz]

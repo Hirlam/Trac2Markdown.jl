@@ -1,9 +1,0 @@
-[[Center(begin)]]
-= '''Video Meetings until 2017''' =
-[[Center(end)]]
-
- * [wiki:Meetings/Data_assimilation/Video_Meetings/2017/Meeting_on_conventional_data_and_COPE Video meetings on the use of conventional observations and COPE]
- * [wiki:Meetings/Data_assimilation/Video_Meetings/2017/Meeting_on_radar_data_processing Video meetings on radar data (pre-)processing]
- * [wiki:Meetings/Data_assimilation/Video_Meetings/2017/Retrieval_data_assimilation Video meetings on retrievals (observations)] 
- * [wiki:Meetings/Data_assimilation/Video_Meetings/2017/etkf_4dvar_3dvar_oops_meeting Video meetings on algorithmic issues: 3DVar, 4DVar, ETKF, etc...]
- * [wiki:Meetings/Data_assimilation/Video_Meetings/2017/Radiance_data_assimilation Video meetings on radiance data assimilation]

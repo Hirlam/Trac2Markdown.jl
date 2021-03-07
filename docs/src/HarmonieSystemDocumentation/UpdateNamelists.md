@@ -6,16 +6,16 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/UpdateNameli
 ## Introduction
 
 Each namelists is build from a perl dictionary of different settings, 
-[harmonie_namelists.pm](https://hirlam.org/trac/browser/Harmonie/nam/harmonie_namelists.pm?rev=release-43h2.beta.3) as the deviation from the default setup.
+[harmonie_namelists.pm](https://hirlam.org/trac/browser/Harmonie/nam/harmonie_namelists.pm) as the deviation from the default setup.
 One section takes care of the general file settings, one of the mpp options and the large ones of different configurations. The script 
-[gen_namelists.pl](https://hirlam.org/trac/browser/Harmonie/nam/gen_namelists.pl?rev=release-43h2.beta.3) allows us to build new namelists adding the settings on top of each other.
+[gen_namelists.pl](https://hirlam.org/trac/browser/Harmonie/nam/gen_namelists.pl) allows us to build new namelists adding the settings on top of each other.
 In the following we describe how to add new namelists and include them in the suite.
 
 ## Create a new hash module
 
 Let us assume we have some new 4DVAR namelists we would like to merge.
 Create a directory, 4dvar, and put your new namelists in here. Run the script 
-[Create_hashes.pl](https://hirlam.org/trac/browser/Harmonie/nam/Create_hashes.pl?rev=release-43h2.beta.3)
+[Create_hashes.pl](https://hirlam.org/trac/browser/Harmonie/nam/Create_hashes.pl)
 
 ```bash
 ./Create_hashes.pl 4dvar
@@ -36,7 +36,7 @@ To get the module integrated in the system the module has to be merged with the 
 
 ## Create the new namelist
 
-Add the new namelists to the script [Get_namelist](https://hirlam.org/trac/browser/Harmonie/scr/Get_namelist?rev=release-43h2.beta.3). In this case we would add a new case for 4dvar
+Add the new namelists to the script [Get_namelist](https://hirlam.org/trac/browser/Harmonie/scr/Get_namelist). In this case we would add a new case for 4dvar
 
 ```bash
 4dvartraj) 
@@ -46,7 +46,7 @@ Add the new namelists to the script [Get_namelist](https://hirlam.org/trac/brows
 
 
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

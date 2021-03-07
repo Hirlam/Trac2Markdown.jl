@@ -1,8 +1,8 @@
 
 
-include("TrainingPages.jl")
+# include("TrainingPages.jl")
 
-HSD="HarmonieSystemDocumentation"
+HSD = "HarmonieSystemDocumentation"
 
 Configuration = [
     "Experiment" => "$HSD/ConfigureYourExperiment.md",
@@ -56,7 +56,7 @@ ECFLOW_TASKS = [
 pages = [
     # "Overview" => ["index" => ["index.md"]],
     
-    "Getting Started" => [
+    
         "Running at ECMWF and local" => [
             "Running at ECMWF" => "$HSD/Harmonie-mSMS.md",
             "Fast start on cca" => "$HSD/Fast_start_on_cca.md",
@@ -88,34 +88,17 @@ pages = [
         ],
         "Configuration" => Configuration,                
         "ECFlow tasks" => ECFLOW_TASKS, 
-        "Other" => [          
+        "Other" => [        
        
-            # "PreviousVersions.md",            
+               
             "$HSD/Scalability_and_Refactoring.md",
             "$HSD/HarmonieBenchMark.md",
             "$HSD/MFaccess.md",
             "$HSD/Phasing.md" 
-                  
-       # "$HSD/PreviousModelOutputLists.md",           
+                          
             
         ]
-    ],
-    "Training" => TrainingPages
-    #"Input Data" => [
-    #    "Climate" => "$HSD/ClimateGeneration.md",
-    #    "Boundaries" => "$HSD/BoundaryFilePreparation.md",
-        
-    #],
-    #"Data Assimilation" => [
-    #    "Screening" => "$HSD/Screening.md",
-    #    "Structure functions" => "$HSD/Structurefunctions_ensys.md",
-    #    "DFS" => "$HSD/DFS.md",         
-        # "Analysis" => "$HSD/Analysis.md", 
-    #    "Single Obs" => "$HSD/SingleObs_ensys.md",
-    #    "Conrad" => "$HSD/Conrad.md"     
-    #]
-         
-    # "$HSD/TrainingCourses.md",
     
+ 
     
 ]

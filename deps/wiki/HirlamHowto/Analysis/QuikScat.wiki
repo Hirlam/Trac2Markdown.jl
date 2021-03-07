@@ -1,2 +1,0 @@
-The previous content in this column has now been moved to the corresponding page under
-[https://hirlam.org/trac/wiki/HirlamSystemDocumentation/Analysis/QuikScat the system documentation].

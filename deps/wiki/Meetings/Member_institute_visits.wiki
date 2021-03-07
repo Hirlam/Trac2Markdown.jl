@@ -1,9 +1,0 @@
-[[Center(begin)]]
-= '''Member Institute Visits''' =
-[[Center(end)]]
-
-* [wiki:Meetings/Member_institute_visits/HMG_visit_FMI_September_2018 Member Institute Visit to FMI, 19. - 20. September 2018, Helsinki]
-* [wiki:Meetings/Member_institute_visits/HMG_visit_KNMI_August_2018 Member Institute Visit to KNMI, 30 August 2018, De Bilt]
-* [wiki:Meetings/Member_institute_visits/HMG_visit_METIE_March_2018 Member Institute Visit to Met Éireann, 6 March 2018, Dublin]
-* [wiki:Meetings/Member_institute_visits/HMG_visit_METNorway_September_2017 Member Institute Visit to MET Norway, 5 September 2017, Oslo]
-* [wiki:Meetings/Member_institute_visits/HMG_visit_SMHI_September_2016 Member Institute Visit to SMHI, 8 September 2016, Norrkoping]

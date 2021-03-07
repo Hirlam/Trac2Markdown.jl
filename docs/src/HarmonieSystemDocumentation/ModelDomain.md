@@ -13,7 +13,7 @@ Polar stereographic, Lambert and Mercator projectionRotated mercator projection
 
 For each domain we set variables related to the geometry and the resolution like:
 
-HARMONIE model domains are defined in settings in [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). The following variables related to the geometry and the resolution are required:
+HARMONIE model domains are defined in settings in [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm). The following variables related to the geometry and the resolution are required:
 
  * *TSTEP* is model timestep in seconds
  * *NLON* is number of points in x-direction.
@@ -31,7 +31,7 @@ HARMONIE model domains are defined in settings in [Harmonie_domains.pm](https://
  * ~~*BDNLON* is number of points in x-direction for intermediate climate file. *BDNLON* > *NLON*.~~
  * ~~*BDNLAT* is number of points in y-direction for intermediate climate file. *BDNLAT* > *NLAT*.~~
 
-The default area is the Denmark domain (DKCOECP). The following values for C+I zone and truncation are calculated in [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) from the values above. 
+The default area is the Denmark domain (DKCOECP). The following values for C+I zone and truncation are calculated in [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm) from the values above. 
 
  * *NDLUXG* is number of points in x-direction without extension (E) zone.
  * *NDGUXG* is number of points in y-direction without extension (E) zone.
@@ -52,7 +52,7 @@ on a map, see figure below.
 At present, it only works for Lambert and polar stereographic projection, not rotated mercator.
 
 ## Creating a new domain
-If you are happy with your new domain created with the help of the domain creation tool you can add it to [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) for your experiment, my_exp (assuming you have set up the experiment):
+If you are happy with your new domain created with the help of the domain creation tool you can add it to [Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm) for your experiment, my_exp (assuming you have set up the experiment):
 ```bash
 cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie co scr/Harmonie_domains.pm
@@ -88,7 +88,7 @@ Running gl using this namelist by
 gl -n namelist_file
 ```
 will create an GRIB file with a constant orography which you can use for plotting. 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

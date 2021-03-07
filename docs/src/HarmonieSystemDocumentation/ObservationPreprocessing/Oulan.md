@@ -111,7 +111,7 @@ oulan reads (primarily conventional observation) BUFR data and converts them int
 ### New BUFR templates
 **Valid for HARMONIE 40h1 and later**
 
-The use of new format (GTS WMO) BUFR is controlled in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3) by LNEWSYNOPBUFR, LNEWSHIPBUFR, LNEWBUOYBUFR, LNEWTEMPBUFR (set to 0 or 1). These environment variables control namelist settings in the Oulan script. GTS and ECMWF BUFR were used to guide the code changes so Oulan assumes either "flavour" of BUFR. Local changes may be required if your locally produced BUFR, in particular section 1 data sub-type settings, do not follow WMO and/or ECMWF practices.
+The use of new format (GTS WMO) BUFR is controlled in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass) by LNEWSYNOPBUFR, LNEWSHIPBUFR, LNEWBUOYBUFR, LNEWTEMPBUFR (set to 0 or 1). These environment variables control namelist settings in the Oulan script. GTS and ECMWF BUFR were used to guide the code changes so Oulan assumes either "flavour" of BUFR. Local changes may be required if your locally produced BUFR, in particular section 1 data sub-type settings, do not follow WMO and/or ECMWF practices.
 
 The ECMWF wiki contains updates regarding the quality of the new BUFR HR observations. See the following ECMWF wiki pages for furher information:
  * [https://software.ecmwf.int/wiki/display/TCBUF/TAC+To+BUFR+Migration](https://software.ecmwf.int/wiki/display/TCBUF/TAC+To+BUFR+Migration)

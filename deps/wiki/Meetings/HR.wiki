@@ -1,7 +1,0 @@
-[[Center(begin)]]
-= '''High Resolution Modeling''' =
-[[Center(end)]]
-== Overview of HARMONIE High Resolution Modeling meetings ==
- * [wiki:Meetings/HR/HR_2017_CPH   Hirlam-C/ALADIN High Resolution Workshop], Copenhagen, Denmark, 4-6 December 2017
- * [wiki:Meetings/HR/HR_2019_LasPalmas   Hirlam-C/ALADIN High Resolution and Nowcasting Workshop], Las Palmas, Spain, 10-13 December 2019
-

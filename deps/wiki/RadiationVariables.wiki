@@ -1,7 +1,0 @@
-== '''Radiation related variables and settings in 3D and in MUSC''' ==
-
-LDSL, LDSH, LDSV - these are related to Laura's orography-related changes. If set to False, her settings are not use.
-
-NAERHS - aerosols in relation to the use of the HLRADIA radiation scheme (1 = switch to old SW aerosols in HLRADIA i.e. tuned constants).
-
-LREADAB - set to False if using cy43 PGD files; true for 38 (it relates to the treatment of shadow factor elements in LR's orog work)

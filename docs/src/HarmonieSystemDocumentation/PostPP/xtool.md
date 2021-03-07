@@ -6,7 +6,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/PostPP/xtool
 
 ## xtool
 
-**Xtool**, part of the **gl** package, provides a utility to calculate differences between GRIB/FA files and produce the result in a new GRIB file. See xtool part of [gl-README](https://hirlam.org/trac/browser/Harmonie/util/gl/README#L221?rev=release-43h2.beta.3). The main commands are:
+**Xtool**, part of the **gl** package, provides a utility to calculate differences between GRIB/FA files and produce the result in a new GRIB file. See xtool part of [gl-README](https://hirlam.org/trac/browser/Harmonie/util/gl/README#L221). The main commands are:
 
 ```bash
  
@@ -65,7 +65,7 @@ One of the things xtool is useful for is to check if the result from two differe
 
 The is heavily used in the [Harmonie testbed](../../HarmonieSystemDocumentation/Evaluation/HarmonieTestbed.md) to check the difference between versions of the system.
 
-Below is a simple example of how to use **xtool**. You may also check the [field extraction](https://hirlam.org/trac/browser/Harmonie/scr/Fldver?rev=release-43h2.beta.3) to find examples. 
+Below is a simple example of how to use **xtool**. You may also check the [field extraction](https://hirlam.org/trac/browser/Harmonie/scr/Fldver) to find examples. 
 
  What is the difference between +24h and +48h MSLP forecasts during August 2008?
 

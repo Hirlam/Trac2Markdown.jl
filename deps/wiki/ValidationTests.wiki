@@ -1,1 +1,0 @@
-See [wiki:"Harmonie_40h1/ValidationTests"].

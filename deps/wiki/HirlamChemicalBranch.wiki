@@ -1,6 +1,0 @@
-= Chemical Branch and Enviro-HIRLAM =
- * [wiki:HirlamChemicalBranch/Introduction Introduction]
- * [wiki:HirlamChemicalBranch/News News]
- * [wiki:HirlamChemicalBranch/Enviro-HIRLAM Enviro-HIRLAM documentation]
- * [wiki:HirlamChemicalBranch/Meetings Meetings Memo and Presentations]
- * [wiki:HirlamChemicalBranch/Participants Participants]

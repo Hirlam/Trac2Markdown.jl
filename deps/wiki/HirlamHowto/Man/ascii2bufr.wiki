@@ -1,1 +1,0 @@
-The program "ascii2bufr" is replaced by "hitmerge".

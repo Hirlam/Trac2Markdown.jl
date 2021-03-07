@@ -1,9 +1,0 @@
-== Operational postprocessing ==
-
-HARMONIE is run as both a research model and an operational weather forecast model. Demands are different depending on the users, and operational_postp is a switch found in [source:tags/harmonie-36h1.4/sms/config_exp.h config_exp.h] to turn start postprocessing as soon as a file is written on disk. For an operational service this is important, although, more resources are used simultanously. This is activated by setting:
-
-operational_postp="yes"
-
-When you want all the postprocessing to wait until the complete forecast is finished, you should set:
-
-operational_postp="no"

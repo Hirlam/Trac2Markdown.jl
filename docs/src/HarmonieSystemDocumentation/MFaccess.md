@@ -13,21 +13,40 @@ The procedure to get access to MF servers and their read-only git repository is 
    - The *"Undertaking for the use of Météo-France computer resources"* form  is to be signed by you only
    - The *"Demande d'authorisation de conexion au résau de Météo Franc"* must be signed by you and your department head. It must also include an institute stamp. You should enter details in *Contacts*, *Compte d'accesés aux machines du Centre de Cacul* and at the bottom with authorization from you institute manager with institute stamp.   - A scan of both forms with a brief introductory note should be sent to Eric Escaliere (eric.escaliere@meteo.fr) and cc'ed to Daniel Santos (dsantosm@aemet.es) and Claude Fischer (claude.fischer@meteo.fr).
    - Be careful with the *"Machine du client"*. I had to specify the name and IP address of my institute's Firewall server as this is what the outside world sees when I access external servers from my PC.
- * Météo-France will send (by post) your username (*Identificateur*) and password (*Mot de passe*) for log into PARME
- * Now you are ready to access Météo-France's PARME for the first time:
+ * Météo-France will send (by post) your username (*Identificateur*) and password (*Mot de passe*) for log in.
+ * The authentication process itself remains in two steps (first “parme”, then target), as before. 
+ * A few specific examples follow (see [how_to_connect_toFW_afterCorr.pdf](how_to_connect_toFW_afterCorr.pdf), MF's instructions for full details):
+   * beaufix:
 ```bash
-ewhelan@eddy:~> telnet parme.meteo.fr
-Trying 137.129.20.1...
-Connected to parme.meteo.fr.
+ewhelan@realin23:gcc-8.3.1:.../~> which beaufix
+alias beaufix='telnet beaufix.meteo.fr'
+	/usr/bin/telnet
+ewhelan@realin23:gcc-8.3.1:.../~> beaufix 
+Trying 137.129.240.110...
+Connected to beaufix.meteo.fr.
 Escape character is '^]'.
-Check Point FireWall-1 authenticated Telnet server running on parmesan
+Check Point FireWall-1 authenticated Telnet server running on mascarpone
 User: whelane
-password: ********
+password: your_parme_password
 User whelane authenticated by FireWall-1 authentication
-Host: 
+
+Connected to 137.129.240.110
+Red Hat Enterprise Linux Server release 6.9 (Santiago)
+Kernel 2.6.32-696.6.3.el6.x86_64 on an x86_64
+beaufixlogin0 login: whelane
+Password: your_ldap_password
+Last login: Tue Oct 13 10:15:53 from gw2.met.ie
+ _                           __  _       
+| |                         / _|(_)      
+| |__    ___   __ _  _   _ | |_  _ __  __
+| '_ \  / _ \ / _` || | | ||  _|| |\ \/ /
+| |_) ||  __/| (_| || |_| || |  | | >  < 
+|_.__/  \___| \__,_| \__,_||_|  |_|/_/\_\ 
+
+[whelane@beaufixlogin0 ~]$ 
 ```
 
-## What next?
+## What next? **TO BE CONFIRMED**
 ### Access to MF servers via parme
  * Once you are happy that you can access PARME from your PC you should once again contact Eric Escaliere (eric.escaliere@meteo.fr) and request login details for merou (Eric will send you a temporary password) and LDAP login details to front-id to enable access to COUGAR, YUKI, BEAUFIX and ID-FRONT
  * An automatic e-mail will be sent from expl-identites@meteo.fr with you LDAP repository password.
@@ -117,7 +136,7 @@ git clone ssh://reader054@git.cnrm-game-meteo.fr/git/arpifs.git
 ```
 Happy gitting!
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 
 ----
 

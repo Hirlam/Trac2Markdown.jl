@@ -4,143 +4,35 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/StandaloneOd
 # ODB software
 ## Get the software
 To make best use of ODB information produced by your Harmonie experiment one should use ODB and ODB-API software developed by ECMWF. Below are instruction on how to obtain the software from ECMWF.
-### ODB-API
-ODB-API software is open source and released under an Apache licence. In the future the ODB Confluence page [https://software.ecmwf.int/wiki/display/ODB/ODB+Home](https://software.ecmwf.int/wiki/display/ODB/ODB+Home) will be open to the public and everybody will be allowed to download ODB-API source code from it and use it. Until then, ECMWF have said they are happy to give access to the page on case by case basis to interested member states/HIRLAM partners, so they have always access to the latest releases and release notes. Requesting access to ODB API from Data Services is not necessary.
 
-An e-mail should be sent to your ECMWF User Support contact to request access to the ODB-API Confluence page stating that you are working at an HIRLAM NMS and are using ODB data with your Harmonie experiments. 
+### ODB-API
+ODB-API software is open source and released under an Apache licence: [https://software.ecmwf.int/wiki/display/ODBAPI](https://software.ecmwf.int/wiki/display/ODBAPI) 
 
 ### ODB
 *ODB stands for Observational !DataBase. It is database software to store and retrieve large amounts of meteorological numerical data in an efficient manner while used from within IFS. ODB software mimics relational database queries through its ODB/SQL -compiler and accesses data currently via a Fortran90 library interface.* The original documentation is available here: [http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf](http://www.ecmwf.int/research/ifsdocs/CY28r1/pdf_files/odb.pdf)
 
-ODB software is made available to member states under a stricter license and must be requested from Data Services at ECMWF. It might be best for your ECMWF Computer Representative to make this request on behalf of your institute. This request may take some time to be processed. The request (one per institute) can be made by e-mail to (data.services@ecmwf.int) with the following information:
-```bash
-Dear Data Services,
-
-I would like to request a licence for the use of the following software packages:
- * ODB
- * OBSTAT
-
---- My organization
-Name:
-Registered Address:
-
---- Details of the person authorized to sign the licence on behalf of the organization
-Name:
-Title:
-e-mail:
-```
- * After some time your *person authorized to sign the licence on behalf of the organization* will receive a software license agreement to be signed and returned to ECMWF.
- * ....
-
 ## Building your ODB software
-Both ODB and ODB-API use cmake [http://www.cmake.org](http://www.cmake.org) to configure the makefiles used to compile the software. You may have to build your own (more up to date) copy of cmake depending on your PC operating system.
+The ODB-API Software bundle uses cmake [http://www.cmake.org](http://www.cmake.org) to configure the make files used to compile the software. The instructions below worked with Redhat 7/GCC 4.8.5 and CentOS 7/GCC 4.8.5. On newer systems python functionality may have to be switched off with -DENABLE_PYTHON=OFF.
 
-### ODB
-Instructions on how to build ODB:
- * Get ODB software once ECMWF have provided your institute with a software license from [https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases](https://software.ecmwf.int/wiki/display/ODB/Legacy+Releases)
 ```bash
-cd $HOME
-mkdir odb_releases
-cp Odb-1.0.0-Source.tar.gz odb_releases/
-cd odb_releases
-gunzip Odb-1.0.0-Source.tar.gz
-tar -xvf Odb-1.0.0-Source.tar
-cd Odb-1.0.0-Source
-```
- * Now draft a configuration script, **config.metie.sh**, that uses cmake. Here is my example sample script:
-```bash
-#!/bin/ksh
-alias cmake='/usr/local/cmake-2.8.9/bin/cmake'
-source_dir=$HOME/odb_releases/Odb-1.0.0-Source
-build_type=Production
-install_prefix=/opt/metlib/odb/`cat $source_dir/VERSION.cmake | awk '{print $2}' | sed 's/["]//g' | sed 's/[)]//g'`/gnu
-echo "prefix=$install_prefix"
-
-cmake $source_dir \
-    -DCMAKE_BUILD_TYPE=$build_type \
-    -DCMAKE_INSTALL_PREFIX=$install_prefix \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DCMAKE_C_COMPILER=gcc \
-    -DCMAKE_C_FLAGS="-g -fPIC -DLINUX -DINTEGER_IS_INT" \
-    -DCMAKE_C_FLAGS_DEBUG="-O0" \
-    -DCMAKE_C_FLAGS_RELEASE="-O2 -DNDEBUG" \
-    -DCMAKE_CXX_COMPILER=g++ \
-    -DCMAKE_CXX_FLAGS="-g -fPIC" \
-    -DCMAKE_CXX_FLAGS_DEBUG="-O0" \
-    -DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
-    -DCMAKE_Fortran_COMPILER=gfortran \
-    -DCMAKE_Fortran_FLAGS="-fconvert=big-endian -fdefault-real-8 -fPIC -DLINUX" \
-    -DCMAKE_Fortran_FLAGS_DEBUG="-g -O0" \
-    -DCMAKE_Fortran_FLAGS_RELEASE="-O2" \
-    -DODB_API_TOOLS=OFF \
-    -DNETCDF_PATH=/opt/metlib/netcdf/4.1.3/gnu $@
-```
- * No let's compile! (You should be in $HOME/odb_releases/Odb-1.0.0-Source)
-```bash
+VERSION=0.18.1
+wget https://software.ecmwf.int/wiki/download/attachments/61117379/odb_api_bundle-${VERSION}-Source.tar.gz
+gunzip odb_api_bundle-${VERSION}-Source.tar.gz
+tar -xvf odb_api_bundle-${VERSION}-Source.tar
+cd odb_api_bundle-${VERSION}-Source
 mkdir build
 cd build
-../config.metie.sh
-make
-make install  ## you may have to log in as root to carry out the final install
+cmake.. -DCMAKE_INSTALL_PREFIX=/opt/metapp/odb_api/${VERSION}/gnu \
+-DENABLE_ODB_API_SERVER_SIDE=ON -DENABLE_FORTRAN=ON \
+-DENABLE_GRIB=OFF -DENABLE_ODB_SERVER_TIME_FORMAT_FOUR_DIGITS=ON \
+-DENABLE_PYTHON=ON -DENABLE_ODB=ON -DODB_SCHEMAS="ECMA;CCMA"
+make -j 2
+ctest
+make install
 ```
 
-### ODB-API
-Instructions on how to build ODB-API:
- * Download the latest version of ODB-API from [https://software.ecmwf.int/wiki/display/ODB/Releases](https://software.ecmwf.int/wiki/display/ODB/Releases)
-```bash
-cd $HOME
-mkdir -p odb_releases
-cp OdbAPI-0.9.31-Source.tar.gz odb_releases/
-cd odb_releases/
-gunzip OdbAPI-0.9.31-Source.tar.gz
-tar -xvf OdbAPI-0.9.31-Source.tar
-cd OdbAPI-0.9.31-Source
-```
- * Now draft a configuration script, **config.metie.sh**, that uses cmake. Here is my example that I place in OdbAPI-0.9.31-Source
-```bash
-#!/bin/sh
-# This is an Irish template of a script for building ODB API. See instructions in file INSTALL.
-# Please edit values of the cmake options or delete them.
+# ACTION: FOR EOIN: everything below here needs to be updated
 
-export ODB_ROOT=/opt/metlib/odb/1.0.0/gnu
-. /opt/metlib/odb/1.0.0/gnu/bin/use_odb.sh
-
-alias cmake='/usr/local/cmake-2.8.9/bin/cmake'
-source_dir=$HOME/odb_releases/OdbAPI-0.9.31-Source
-build_type=Production
-install_prefix=/opt/metlib/odb_api/`cat $source_dir/VERSION.cmake | awk '{print $3}' | sed 's/["]//g' | sed 's/[)]//g'`/gnu
-
-echo "INSTALL = $install_prefix"
-echo "BUILD   = `basename $(pwd) | sed 's/\W[a-zA-Z0-9]*//'`"
-echo "ODB_ROOT= $ODB_ROOT"
-echo 
-
-cmake $source_dir \
-    -DCMAKE_BUILD_TYPE=$build_type \
-    -DCMAKE_PREFIX_PATH=/usr/local/python-2.7.2 \
-    -DCMAKE_C_COMPILER=gcc \
-    -DCMAKE_CXX_COMPILER=g++ \
-    -DCMAKE_Fortran_COMPILER=gfortran \
-    -DLIBGFORTRAN_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7 \
-    -DCMAKE_MODULE_PATH=$source_dir/ecbuild/cmake \
-    -DCMAKE_INSTALL_PREFIX=$install_prefix \
-    -DODB_PATH=/opt/metlib/odb/1.0.0/gnu \
-    -DECLIB_SOURCE=$source_dir/eclib \
-    -DBUILD_SHARED_LIBS=ON \
-    -DODB_API_MIGRATOR=ON \
-    -DODB_API_FORTRAN=ON \
-    -DODB_API_PYTHON=OFF \
-    -DBISON_EXECUTABLE=/usr/bin/bison \
-    -DSWIG_EXECUTABLE=/usr/bin/swig
-```
- * Now let's compile! (You should be in $HOME/odb_releases/OdbAPI-0.9.31-Source)
-```bash
-mkdir build
-cd build
-../config.metie.sh
-make
-make install  ## you may have to log in as root to carry out the final install
-```
 # ODB data
 ## Convert ODB-1 to ODB-2
 Details on how to convert your ODB-1 (Harmonie experiment) databases to ODB-2 using odb_migrator are described here. I have used version 0.9.31 of ODB-API (I have had some problems with 0.9.32). I will use a Harmonie CCMA conventional ODB-1 database as an example:

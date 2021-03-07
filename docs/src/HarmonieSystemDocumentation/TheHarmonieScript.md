@@ -6,9 +6,9 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/TheHarmonieS
 ## The Harmonie main script
 
 The Harmonie script is the main user interface to the harmonie system. It is used to setup, start, check and control your experiment and environment. Below follows the most useful commands. There are other commands inherited from the HIRLAM environment that may or may not work. For a full list check
-[Start](https://hirlam.org/trac/browser/Harmonie/scr/Start?rev=release-43h2.beta.3),
-[Actions](https://hirlam.org/trac/browser/Harmonie/scr/Actions?rev=release-43h2.beta.3),
-[Actions.pl](https://hirlam.org/trac/browser/Harmonie/scr/Actions.pl?rev=release-43h2.beta.3).
+[Start](https://hirlam.org/trac/browser/Harmonie/scr/Start),
+[Actions](https://hirlam.org/trac/browser/Harmonie/scr/Actions),
+[Actions.pl](https://hirlam.org/trac/browser/Harmonie/scr/Actions.pl).
 
  * ` Harmonie setup [ -r REVISION] [ -h HOST] [ -d DOMAIN] [ -c CONFIGURATION] [ -l LEVELS] ` where:
   * REVISION is the path to the version of harmonie you are working with.
@@ -37,7 +37,7 @@ The Harmonie script is the main user interface to the harmonie system. It is use
 
  * ` Harmonie diff [--xxdiff] ` will look for differences between the revision in config-sh/hm_rev and HM_LIB.
 
- * ` Harmonie CleanUp -ALL -go ` will clean the following directories: HM_DATA,HM_LIB,HM_EXP. Instructions from [Actions.pl](https://hirlam.org/trac/browser/Harmonie/scr/Actions.pl?rev=release-43h2.beta.3):
+ * ` Harmonie CleanUp -ALL -go ` will clean the following directories: HM_DATA,HM_LIB,HM_EXP. Instructions from [Actions.pl](https://hirlam.org/trac/browser/Harmonie/scr/Actions.pl):
 
 ```bash
 # args: if -go: remove, (default is to list but not remove the matching files)
@@ -57,7 +57,7 @@ The Harmonie script is the main user interface to the harmonie system. It is use
 #       (to be precise: use: CleanUp("REMOVE:1995/an", "-go");
 ```
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

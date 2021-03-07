@@ -1,1 +1,0 @@
-See [wiki:"HarmonieSystemDocumentation/Gmkpack_vs_Make"].

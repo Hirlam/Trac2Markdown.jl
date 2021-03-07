@@ -1,8 +1,0 @@
-[[PageOutline]]
-[[Center(begin)]]
-= '''Model Development Meetings''' =
-[[Center(end)]]
-Links to information on meetings/workshops related to model development involving HIRLAM and ALADIN/Météo France/ECMWF.
-
-= 2015 =
- * [wiki:HirlamMeetings/ModelMeetings/ObOpWorkshop OOPS Obs Operator Workshop]:  OOPS Observation Operator Workshop in Toulouse (July 1st 2015 - July 3rd 2015)

@@ -10,13 +10,13 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/UseofObserva
    * [http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf](http://www.rclace.eu/File/Data_Assimilation/2007/lace_obspp.pdf) Sandor's document about observation dataflow in ALADIN 
 
 ## Observation types
-The observation types used by Harmonie (upper-air) data assimilation are defined in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3).
+The observation types used by Harmonie (upper-air) data assimilation are defined in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass).
 ### SYNOP
 By default all SYNOP observation types (including SHIP) are used. 
 ```bash
 export SYNOP_OBS=1             # All synop
 ```
-To blacklist SYNOP observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [nam/LISTE_NOIRE_DIAP](https://hirlam.org/trac/browser/Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist 10m winds from Valentia Automatic SYNOP (03953) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
+To blacklist SYNOP observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [nam/LISTE_NOIRE_DIAP](https://hirlam.org/trac/browser/Harmonie/nam/LISTE_NOIRE_DIAP). For example to blacklist 10m winds from Valentia Automatic SYNOP (03953) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
 ```bash
  1 SYNOP       14  41 03953    10112012
 ```
@@ -30,7 +30,7 @@ By default all BUOY observation types are used.
 ```bash
 export BUOY_OBS=1              # Buoy
 ```
-To blacklist BUOY observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [nam/LISTE_NOIRE_DIAP](https://hirlam.org/trac/browser/Harmonie/nam/LISTE_NOIRE_DIAP?rev=release-43h2.beta.3). For example to blacklist surface temperatures from BUOY M5 (62094) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
+To blacklist BUOY observations add blacklisted "ODB observation type/ASCII type/ODB code type/ODB variable number/station identifier/date to blacklist from" to [nam/LISTE_NOIRE_DIAP](https://hirlam.org/trac/browser/Harmonie/nam/LISTE_NOIRE_DIAP). For example to blacklist surface temperatures from BUOY M5 (62094) from the 10th of November 2012 enter the following line to LISTE_NOIRE_DIAP:
 ```bash
  4 BUOY        165  11 62094    10112012
 ```
@@ -71,7 +71,7 @@ By default all AMSUA observation types are not used.
 ```bash
 export AMSUA_OBS=0             # AMSU-A
 ```
-To use locally received AMSUA data provided by EUMETCast set ATOVS_SOURCE to local in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3):
+To use locally received AMSUA data provided by EUMETCast set ATOVS_SOURCE to local in [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass):
 ```bash
 export ATOVS_SOURCE=mars       # local: EUMETCast; 
                                # mars: data from MARS

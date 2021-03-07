@@ -6,7 +6,7 @@ EditURL="https://hirlam.org/trac//wiki//HarmonieSystemDocumentation/ConfigureYou
 
 ## Introduction
 
-There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3).
+There are several levels on configuration available in HARMONIE. The highest level of configuration is done in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h). It includes the environment variables, which are used to control the experimentation. In the following we describe the meaning of the different variables and are described in the order they appear in [config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h).
 
 Host specific paths and environment variables for your system are defined in Env_system. Read more [here](../HarmonieSystemDocumentation/Installation.md).
 
@@ -40,7 +40,7 @@ WRK=$HM_DATA/$CYCLEDIR                  # Work directory
  * *WRK* is the work directory. The suggested path on cca is $SCRATCH/hm_home/${EXP}/$CYCLEDIR
 
 ## Archive settings (ECMWF)
-Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](https://hirlam.org/trac/browser/Harmonie/scr/Archive_host1?rev=release-43h2.beta.3) and [Archive_ecgb](https://hirlam.org/trac/browser/Harmonie/scr/Archive_ecgb?rev=release-43h2.beta.3). 
+Since $SCRATCH is cleaned regularly on cca and ecgb some files are transferred to ECFS for a more permanent storage by the scripts [Archive_host1](https://hirlam.org/trac/browser/Harmonie/scr/Archive_host1) and [Archive_ecgb](https://hirlam.org/trac/browser/Harmonie/scr/Archive_ecgb). 
 ```bash
 # **** Paths to archive ****
 # We need to define ARCHIVE early since it might be used further down
@@ -75,9 +75,9 @@ DOMAIN=DKCOEXP                          # See definitions in scr/Harmonie_domain
 TOPO_SOURCE=gmted2010                   # Input source for orography. Available are (gmted2010|gtopo30)
 GRID_TYPE=LINEAR                        # Type of grid (LINEAR|QUADRATIC|CUBIC)
 ```
- * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm?rev=release-43h2.beta.3). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain](../HarmonieSystemDocumentation/ModelDomain.md)
+ * *DOMAIN* defines your domain according to the settings in [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm) (__DKCOEXP__). The spectral truncation for your domain is determined from NLON and NLAT by [scr/Harmonie_domains.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_domains.pm). Further information on model domains are available in [HarmonieSystemDocumentation/ModelDomain](../HarmonieSystemDocumentation/ModelDomain.md)
  * *TOPO_SOURCE*: Defines input source for model orography (__gmted2010__|gtopo30). Further information available here: [hi-res topography](../HarmonieSystemDocumentation/How_to_use_hires_topography.md)
- * *GRID_TYPE*: This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](https://hirlam.org/trac/browser/Harmonie/scr/Cliamte?rev=release-43h2.beta.3) and [scr/Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast?rev=release-43h2.beta.3)
+ * *GRID_TYPE*: This variable is used to define the spectral truncation used (__LINEAR__|QUADRATIC|CUBIC). GRID_TYPE is used in [scr/Climate](https://hirlam.org/trac/browser/Harmonie/scr/Cliamte) and [scr/Forecast](https://hirlam.org/trac/browser/Harmonie/scr/Forecast)
 
 ## Vertical levels
 Set the number vertical levels to use. Further information is available here: [HarmonieSystemDocumentation/VerticalGrid](../HarmonieSystemDocumentation/VerticalGrid.md)
@@ -88,7 +88,7 @@ VLEV=65                                 # Vertical level definition name
                                         # See the other choices from scr/Vertical_levels.pl
 ```
 
- * *VLEV* is the name of the vertical levels defined in [Vertical_levels.pl](https://hirlam.org/trac/browser/Harmonie/scr/Vertical_levels.pl?rev=release-43h2.beta.3) (__65__). Further information is available here: [Vertical Grid](../HarmonieSystemDocumentation/VerticalGrid.md). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](../HarmonieSystemDocumentation/Structurefunctions.md)
+ * *VLEV* is the name of the vertical levels defined in [Vertical_levels.pl](https://hirlam.org/trac/browser/Harmonie/scr/Vertical_levels.pl) (__65__). Further information is available here: [Vertical Grid](../HarmonieSystemDocumentation/VerticalGrid.md). If you intend to run upper air assimilation you must select the same domain and level definition for which you have derived structure functions. Read more here: [Structure Functions](../HarmonieSystemDocumentation/Structurefunctions.md)
 
 ## Forecast model
 Higher level forecast model settings.
@@ -144,7 +144,7 @@ ALARO_VERSION=0                         # Alaro version (1|0)
 
 
 ## Assimilation
-Data assimilation settings. More assimilation related settings, in particular what observations to assimilate, can be found in [include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3)
+Data assimilation settings. More assimilation related settings, in particular what observations to assimilate, can be found in [include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass)
 ```bash
 # **** Assimilation ****
 ANAATMO=3DVAR                           # Atmospheric analysis (3DVAR|4DVAR|blending|none)
@@ -191,7 +191,7 @@ USE_MSG=no                              # Use MSG data for adjustment of inital 
 MSG_PATH=$SCRATCH/CLOUDS/               # Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH
 ```
  * *OBDIR*: Defines the directory that your (BUFR) observation files (obYYYYMMDDHH) are to read from
- * *RADARDIR*: Defines the directory that your (OPERA HDF5) radar observation files are to be read from. BALTRAD OPERA HDF5, MF BUFR and LOCAL files are treated in [scr/Prepradar](https://hirlam.org/trac/browser/Harmonie/scr/Prepradar?rev=release-43h2.beta.3)
+ * *RADARDIR*: Defines the directory that your (OPERA HDF5) radar observation files are to be read from. BALTRAD OPERA HDF5, MF BUFR and LOCAL files are treated in [scr/Prepradar](https://hirlam.org/trac/browser/Harmonie/scr/Prepradar)
  * *SINGLEOBS* Run single obs experiment with synthetic observation created by [source:Harmonie/scr/Create_single_obs scr/Create_single_obs) (__no__|yes)
  * *USE_MSG*: Use MSG data for adjustment of inital profiles, EXPERIMENTAL! (__no__|yes)
  * *MSG_PATH*:  Location of input MSG FA file, expected name is MSGcloudYYYYMMDDHH. Note that the pre-processing software to generate input files is not yet included in HARMONIE
@@ -336,7 +336,7 @@ FESTAT=no                               # Extract differences and do Jb calculat
  * *SLAFK* Perturbation coefficients for SLAF, experimental
  * *SLAFLAG* Time lag for boundaries in SLAG, experimental
 
- For member dependent settings see [msms/harmonie.pm](https://hirlam.org/trac/browser/Harmonie/msms/harmonie.pm?rev=release-43h2.beta.3).
+ For member dependent settings see [msms/harmonie.pm](https://hirlam.org/trac/browser/Harmonie/msms/harmonie.pm).
 
  * *PERTATMO* Observation perturbation with three options 
    * ECMA: In-line observation perturbation using the default IFS way.
@@ -592,7 +592,7 @@ MAPBIN=$HM_DATA/lib/util/mapbin
  * *FIELDMONITOR* Main switch (__no__|yes)
  * *MAPBIN* Path to plotting settings. Read more in [source:Harmonie/scr/Monitoring_maps]
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

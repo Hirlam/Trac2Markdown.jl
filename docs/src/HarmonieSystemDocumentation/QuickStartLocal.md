@@ -43,16 +43,16 @@ If this is the first time to install HARMONIE on your local platform please take
   * -r is the path to your downloaded version of HARMONIE
   * -h tells which configuration files to use. At ECMWF config.ecgb is the default one. List PATH_TO_HARMONIE/config-sh/config.* for available HOST configurations
  * This setup command  provides the default setup which currently is AROME physics with CANARI+OI_MAIN surface assimilation and 3DVAR upper air assimilations with 3h cycling on a domain covering Denmark using 2.5km horizontal resolution and 65 levels in the vertical.
- *  Now you can edit the basic configuration file [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3) to configure your experiment scenarios. Modify specifications for model domain, physics (AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. Read more about the options in [here](../HarmonieSystemDocumentation/ConfigureYourExperiment.md). You can also use some of the predefined configurations by calling Harmonie with the -c option:
+ *  Now you can edit the basic configuration file [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h) to configure your experiment scenarios. Modify specifications for model domain, physics (AROME, ALARO), data locations, settings for dynamics, physics, domain, coupling host model etc. Read more about the options in [here](../HarmonieSystemDocumentation/ConfigureYourExperiment.md). You can also use some of the predefined configurations by calling Harmonie with the -c option:
 ```bash
 mkdir $HOME/hm_home/my_exp
 cd $HOME/hm_home/my_exp
 PATH_TO_HARMONIE/config-sh/Harmonie setup -r PATH_TO_HARMONIE -h YOURHOST -c CONFIG 
 ```
- where `CONFIG` is one of the setups defined in [Harmonie_configurations.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_configurations.pm?rev=release-43h2.beta.3). If you give `-c` with out an argument or a non existing configuration a list of configurations will be printed.
+ where `CONFIG` is one of the setups defined in [Harmonie_configurations.pm](https://hirlam.org/trac/browser/Harmonie/scr/Harmonie_configurations.pm). If you give `-c` with out an argument or a non existing configuration a list of configurations will be printed.
  * In some cases you might have to edit the general system configuration file, Env_system. See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](../HarmonieSystemDocumentation/PlatformConfiguration.md)
  * The rules for how to submit jobs are defined in Env_submit]. See here for further information: [HarmonieSystemDocumentation/PlatformConfiguration](../HarmonieSystemDocumentation/PlatformConfiguration.md)
- * If you experiment in data assimilation you might also want to change [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass?rev=release-43h2.beta.3).
+ * If you experiment in data assimilation you might also want to change [scr/include.ass](https://hirlam.org/trac/browser/Harmonie/scr/include.ass).
 
 ## Start your experiment
 Launch the experiment by giving start time, DTG, end time, DTGEND, and forecast length, LL
@@ -157,7 +157,7 @@ to list the directories intended for cleaning. Again, convince yourself that thi
 **NOTE that these commands may not work properly in all versions. Do not run the removal before you're sure it's OK**
 
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

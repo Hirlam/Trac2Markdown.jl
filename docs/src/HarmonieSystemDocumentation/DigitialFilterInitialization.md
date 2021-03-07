@@ -8,13 +8,13 @@ Digital Filter Initialization (DFI) is documented by Météo France here: [http:
 
 ## DFI
 
-The use (or not) of DFI is controlled by the variable DFI in [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h?rev=release-43h2.beta.3). By default it is set to "none". 
+The use (or not) of DFI is controlled by the variable DFI in [ecf/config_exp.h](https://hirlam.org/trac/browser/Harmonie/ecf/config_exp.h). By default it is set to "none". 
 
  * "idfi", incremental DFI
  * "fdfi", full DFI 
  * "__none__" - no initialization (default)
 
-[scr/Dfi](https://hirlam.org/trac/browser/Harmonie/scr/Dfi?rev=release-43h2.beta.3) is the script which calls the model in order to carry out DFI.
+[scr/Dfi](https://hirlam.org/trac/browser/Harmonie/scr/Dfi) is the script which calls the model in order to carry out DFI.
 
 ## References
  * YESSAD K. (METEO-FRANCE/CNRM/GMAP/ALGO) July 7, 2015: [DIGITAL FILTERING INITIALISATION IN THE CYCLE 42 OF ARPEGE/IFS](http://www.cnrm.meteo.fr/gmapdoc//IMG/pdf/ykdfi42.pdf)
@@ -24,7 +24,7 @@ The use (or not) of DFI is controlled by the variable DFI in [ecf/config_exp.h](
  * YESSAD K. (METEO-FRANCE/CNRM/GMAP/ALGO) July 3, 2013: [DIGITAL FILTERING INITIALISATION IN THE CYCLE 40 OF ARPEGE/IFS](http://www.cnrm.meteo.fr/gmapdoc//IMG/pdf/ykdfi40.pdf)
 
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

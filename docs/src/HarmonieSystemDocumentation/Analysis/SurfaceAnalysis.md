@@ -45,7 +45,7 @@ The screen level analyisis (eg. T2m) used in blending/3DVAR/4DVAR is the same as
 
 ### Variables updated in CANARI for old_surface and SURFEX
 
-[Module of namelist variables](https://hirlam.org/trac/browser/Harmonie/src/arpifs/module/qactex.F90?rev=release-43h2.beta.3)
+[Module of namelist variables](https://hirlam.org/trac/browser/Harmonie/src/arpifs/module/qactex.F90)
 
 HARMONIE namelist settings:
 ```bash
@@ -75,5 +75,5 @@ It is possible, in HARMONIE data assimilation, to blacklist data from specific s
 
 
 
-
+[Back to the main page of the HARMONIE System Documentation](../../HarmonieSystemDocumentation.md)
 

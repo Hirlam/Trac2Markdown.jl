@@ -40,11 +40,11 @@ processed fields. It is possible to call FULL-POS when running the model. In suc
 
 However, with "inline" postprocessing, it is possible to get, at each post-processing time step, exactly the fields you wish. In this case, you have to make other namelists file which will contain the selection of the fields you wish to get. First, you have to set in NAMCT0 the variable CNPPATH as the directory where the selection files will be. Under this directory, the name of a selection file must be xxtDDDDHHMM, where DDDDHHMM specifies the date/time of the post-processing time step.
 
-The [Postpp](https://hirlam.org/trac/browser/Harmonie/scr/Postpp?rev=release-43h2.beta.3) script executes the "offline" FULL-POS postprocessing in HARMONIE system. 
+The [Postpp](https://hirlam.org/trac/browser/Harmonie/scr/Postpp) script executes the "offline" FULL-POS postprocessing in HARMONIE system. 
 
 
 The management of FULL-POS and the creation of selection files is made easier for the user by the 
-[Select_postp.pl](https://hirlam.org/trac/browser/Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3) perl script. 
+[Select_postp.pl](https://hirlam.org/trac/browser/Harmonie/scr/Select_postp.pl) perl script. 
 
 ## Parameter selection
 Some of the more relevant entries in this script:
@@ -62,7 +62,7 @@ You can define the levels you wish to output using the following variable:
  * **RFP3I**: temperature levels to postprocess
 
 ## Add new output
-This section provides a simple example on how to add a new parameter/vertical level for postprocessing in [Select_postp.pl](https://hirlam.org/trac/browser/Harmonie/scr/Select_postp.pl?rev=release-43h2.beta.3).
+This section provides a simple example on how to add a new parameter/vertical level for postprocessing in [Select_postp.pl](https://hirlam.org/trac/browser/Harmonie/scr/Select_postp.pl).
 
 To add new "height above ground" output at 150m to the FULL-POS output, two changes are required:
  * Add the new height, 150., to the RFP3H array
@@ -85,7 +85,7 @@ diff scr/Select_postp.pl scr/Select_postp.pl.ori
 ```
 ## Expert users
 
-In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomfpc.F90?rev=release-43h2.beta.3)), the variables are placed into different categories:
+In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/module/yomfpc.F90)), the variables are placed into different categories:
 
  * LFPCAPEX: if true XFU fields used for CAPE and CIN computation (with NFPCAPE).
  * LFPMOIS: month allowed for climatology usage:
@@ -113,7 +113,7 @@ In the FULL-POS namelist NAMFPC (variables explained in [yomfpc.F90](https://hir
    By default, one output domain is requested, CFPDOM(1)=’000’ and CFPDOM(i)=’’ for i>1.
  * L_READ_MODEL_DATE:  if: .TRUE. read date from the model
 
-The default FA-names for parameters in different categories can be found from [suafn1.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/setup/suafn1.F90#L687?rev=release-43h2.beta.3).
+The default FA-names for parameters in different categories can be found from [suafn1.F90](https://hirlam.org/trac/browser/Harmonie/src/arp/setup/suafn1.F90#L687).
 
 It's worth mentioning some of the variables postprocessed by FULL-POS
  * True vertical velocity w [VW] (for NH ALADIN only).
@@ -138,5 +138,5 @@ Problems may be encountered with FULL-POS when running on large domains. Here ar
  * Make sure NFPROMA and NFPROMA_DEP are small and equal to NPROMA.
  * Set NSTRIN=NSTROUT=NPROC in nampar0 if one of the above mentioned doesn't help.
  
-
+[Back to the main page of the HARMONIE System Documentation](../../HarmonieSystemDocumentation.md)
 ----

@@ -64,12 +64,6 @@ ecflow_client --port ECF_PORT  --host ECF_HOST  --ping
 If you know that your ecFlow server is running but you have no viewer attached to it you can restart the viewer:
 
 ```bash
-ecflowview  &
-```
-
-Alternatively `ecflow_ui` (the successor of ecflowview at ECMWF) can be used 
-
-```bash
 ecflow_ui &
 ```
 
@@ -158,7 +152,7 @@ Note: if you already have an ecFlow server running at your new port number befor
 
  
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

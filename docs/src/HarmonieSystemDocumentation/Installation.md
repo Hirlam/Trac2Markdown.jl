@@ -37,7 +37,7 @@ Available main packs on cca:/project/hirlam/harmonie/pack could look like:
 ie. CYCLE_BRANCH.VERIONS.COMPILER_VERSION.OPTION
 For the latest available packs please check on cca.
 
- * [Supported platforms and compilers](https://hirlam.org/trac/browser/Harmonie/util/gmkpack/arch?rev=release-43h2.beta.3)
+ * [Supported platforms and compilers](https://hirlam.org/trac/browser/Harmonie/util/gmkpack/arch)
     - IBM power 7, xlf95
     - Intel (g95, gfortran, intel)
     - NEC
@@ -88,7 +88,7 @@ Identify your system in one of the config files in config-sh or write a new conf
  AUXLIBS/EMOSLIB  # Path to your external libraries
 ```
 
-Compare e.g. with [config.ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb-cca?rev=release-43h2.beta.3) or [config.krypton](https://hirlam.org/trac/browser/Harmonie/config-sh/config.krypton?rev=release-43h2.beta.3).
+Compare e.g. with [config.ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/config.ecgb-cca) or [config.krypton](https://hirlam.org/trac/browser/Harmonie/config-sh/config.krypton).
 
 You also have to identify your system for gmkpack in:
 
@@ -113,9 +113,9 @@ The makefiles themselves should not have to be edited.
 ## Submission rules
 
 Next you have to identify your submit file in config-sh or write a new submit.YOURHOST file. This file defines how you submit your jobs in your local batch system. 
-The routine get_job is called from [submission.db](https://hirlam.org/trac/browser/Harmonie/scr/submission.db?rev=release-43h2.beta.3) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
+The routine get_job is called from [submission.db](https://hirlam.org/trac/browser/Harmonie/scr/submission.db) and should return the appropriate batch header including some environment variables specifying the parallel decomposition. The way the header is constructed could be different on different hosts as long as the appropriate header is returned.
 
-On [ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb-cca?rev=release-43h2.beta.3) three list of jobs are created:
+On [ecgb-cca](https://hirlam.org/trac/browser/Harmonie/config-sh/submit.ecgb-cca) three list of jobs are created:
  * backg_list for jobs running as background jobs on ecgb
  * scalar_list single PE jobs on cca
  * par_list for parallel jobs on cca
@@ -136,7 +136,7 @@ Start the compilation of the rootpack :
 ```
 
 The suite definition file used for the installation is 
-[Install_rootpack.tdf](https://hirlam.org/trac/browser/Harmonie/msms/Install_rootpack.tdf?rev=release-43h2.beta.3). The installation is just like running an experiment.
+[Install_rootpack.tdf](https://hirlam.org/trac/browser/Harmonie/msms/Install_rootpack.tdf). The installation is just like running an experiment.
 
 Where are things happening
 
@@ -163,7 +163,7 @@ When things goes wrong
 
 **The main task for the installation is to compile the rootpack. However, the binaries created are never used by any other experiment.**
 
-
+[Back to the main page of the HARMONIE System Documentation](../HarmonieSystemDocumentation.md)
 ----
 
 

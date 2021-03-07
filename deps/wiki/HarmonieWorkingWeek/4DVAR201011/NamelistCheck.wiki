@@ -1,5 +1,0 @@
-= Checking of 4D-Var namelists against 3D-Var/Forecast namelists =
-
- * [https://hirlam.org/portal/html_attachments/screening_diffs.html Differences in screening namelists]
- * [https://hirlam.org/portal/html_attachments/minim_diffs.html Differences in minimization namelists]
- * [https://hirlam.org/portal/html_attachments/fc_traj_diffs.html Differences between forecast and 4D-Var trajectory namelists]

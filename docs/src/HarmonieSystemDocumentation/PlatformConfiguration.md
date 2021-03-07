@@ -27,7 +27,7 @@ Env_system -> config-sh/config.YOURHOST           ## YOURHOST task submission se
 But, what if your host configuration is not available in the HARMONIE system? Host specific configuration files in PATH_TO_HARMONIE/config-sh must be available for your host and configuration files for the compilation of the code must be available. This documentation attempts to describe what is required.
 ## Host config files
 ### Env_system -> config-sh/config.YOURHOST
-The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [config-sh](https://hirlam.org/trac/browser/Harmonie/config-sh?rev=release-43h2.beta.3) to see what other people have done. The table below outlines variables set in config-sh/config-sh.YOURHOST and what the variables do:
+The config.YOURHOST file defines host specific variables such as some input directory locations. If your YOURHOST is not already included in HARMONIE it may be work looking at config.* files in [config-sh](https://hirlam.org/trac/browser/Harmonie/config-sh) to see what other people have done. The table below outlines variables set in config-sh/config-sh.YOURHOST and what the variables do:
 
 |= Variable name        =|= Description                                                                                                                      =|
 | --- | --- |
@@ -100,7 +100,7 @@ config files required for compilation of code using Makeup ...
 
 More information on Makeup is available here: [Build with Makeup](../HarmonieSystemDocumentation/Build_with_makeup.md)
 ### Obsmon
-For config files required for compilation of obsmon check [here](https://hirlam.org/trac/browser/Harmonie/util/obsmon/config?rev=release-43h2.beta.3)
+For config files required for compilation of obsmon check [here](https://hirlam.org/trac/browser/Harmonie/util/obsmon/config)
 
 ----
 

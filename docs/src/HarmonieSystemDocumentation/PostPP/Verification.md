@@ -48,13 +48,27 @@ The verification code can be fetched from the hirlam code repository by
 ```bash
 git clone https://git.hirlam.org/monitor
 cd monitor
-git checkout v1.1
 ```
 
-It contains all the history from the old subversion repository. For specific old tagged versions please us monitor from a harmonie version like
+
+For a specific version do 
 
 ```bash
-svn co https://svn.hirlam.org/tags/harmonie-40h1.1.1/util/monitor
+
+git ls-remote 
+Username for 'https://git.hirlam.org': uandrae
+Password for 'https://uandrae@git.hirlam.org': 
+From https://git.hirlam.org/monitor
+6e733fdaf0b47aefbd62721a33c10d30b9320759	HEAD
+6e733fdaf0b47aefbd62721a33c10d30b9320759	refs/heads/master
+9c0aa45d658edc052f427c9f1d750f31732f64cb	refs/tags/v1.0
+20dcc868000e94e3f3178e38cf661befff6d9e03	refs/tags/v1.0^{}
+7817776b7676ecf80020d0e4994a02fef3870d36	refs/tags/v1.1
+2989b8ff40de90abb2dde1521350107e2770aef5	refs/tags/v1.1^{}
+...
+
+git checkout vX.X
+
 ```
 
 The checkout gives you the following directories:
@@ -676,7 +690,7 @@ Transport_ver YOUR_CONFIG_FILE
 ```
 
 
-
+[Back to the main page of the HARMONIE System Documentation](../../HarmonieSystemDocumentation.md)
 ----
 
 
