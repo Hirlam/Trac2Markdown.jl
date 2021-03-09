@@ -1,5 +1,6 @@
 #  Outside a domain recognized by hirlam.org create a ~/.netrc file (chmod 600) 
-#  machines hirlam.org 
+#
+#  machine hirlam.org 
 #  login <username>
 #  password <password>
 
