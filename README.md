@@ -34,14 +34,6 @@ This will run the unit tests, downloads wiki pages from hirlam.org and converts 
 
 Add unit test to Travis so there is no need to have a local Julia installation. 
 
-### Note
-
-Outside a domain recognized by hirlam.org run 
-```bash
-export HLUSER=<hirlam.org username>
-export HLPASSW=<hirlam.org password>
-```
-before instantiating the `Trac2Markdown` package.
 
 
 
